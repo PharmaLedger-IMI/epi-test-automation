@@ -16,6 +16,7 @@ class LoginPage extends Page {
     }
 
 
+
     /**
      * a method to encapsule automation code to interact with the page
      * e.g. to login using username and password
@@ -30,12 +31,18 @@ class LoginPage extends Page {
         await this.enterpriseWallet.click();
     }
 
+    
+    
     /**
      * overwrite specific options to adapt it to page object
      */
     open() {
         return super.open('login');
     }
+    opensuburl() {
+        return super.opensuburl('login');
+    }
+
 }
 
 module.exports = new LoginPage();

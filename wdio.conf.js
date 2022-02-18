@@ -22,7 +22,9 @@ exports.config = {
     // will be called from there.
     //
     specs: [
-        './test/specs/**/*.js'
+        //'./test/specs/**/*.js',
+        //'test/specs/test.js',
+        'test/specs/landingPage.js'
     ],
     // Patterns to exclude.
     exclude: [
@@ -68,12 +70,12 @@ exports.config = {
         // excludeDriverLogs: ['*'], // pass '*' to exclude all driver session logs
         // excludeDriverLogs: ['bugreport', 'server'],
     },
-    {
-        browserName: 'firefox',
-        'moz:firefoxOptions': {
-            args: ['-private']
-          },
-    }
+    // {
+    //     browserName: 'firefox',
+    //     'moz:firefoxOptions': {
+    //         args: ['-private']
+    //       },
+    // }
     //,
     // {
     //     browserName: 'safari'
@@ -110,7 +112,8 @@ exports.config = {
     // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
     // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
     // gets prepended directly.
-    baseUrl: 'https://epiqa.westeurope.cloudapp.azure.com/',
+    //baseUrl: 'https://epiqa.westeurope.cloudapp.azure.com/',
+    baseUrl:'http://localhost:3000',
     //
     // Default timeout for all waitFor* commands.
     waitforTimeout: 10000,
@@ -127,7 +130,8 @@ exports.config = {
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
     
-    services: ['selenium-standalone'],
+   // services: ['selenium-standalone'],
+    services: ['chromedriver'],
     //services: ['browserstack'],
     
     // Framework you want to run your specs with.
