@@ -1,12 +1,14 @@
 const { browser } = require("har-validator");
 
-
 class batchesPage{
     get manageBatches(){
         return  $("=Batches")
     }
     get addbatchbutton(){
         return $("//button[normalize-space()='ADD BATCH']")
+    }
+    get batchIdValue1(){
+        return $('//input[@placeholder=\'Add batch id\']')
     }
     get addsitename(){
         return $("//input[@placeholder='Add site name']")
@@ -26,12 +28,18 @@ class batchesPage{
     get enableSerialNumberVerificationCheckbox(){
         return $("//label[normalize-space()='Enable Serial Number Verification']")
     }
-    get manageSerialNumbersClick(){
+    get selectOptionFromDropdown(){
         return $('//psk-select[@class=\'hydrated\']//select[@class=\'form-control\']')
     }
-    get manageSerialNumberFieldEnter(){
-        return $('//textarea[@value=\'@actionModalModel.serialNumbers\']')
+    get enterSerialNumberField(){
+        return $('//textarea[@value=\'@actionModalModel.serialNumbers\']')         
     }
+    get selectReasonFromDropdown(){
+        return $("//psk-select[@view-model='@actionModalModel.reason']//select[@class='form-control']")
+    }
+    // get selectUpdateRecalledSerial(){
+    //     return $("//option[@value='update-recalled-serial']")
+    // }
     get serialNumberAcceptButton(){
         return $("//button[normalize-space()='Accept']")
     }
@@ -54,7 +62,7 @@ class batchesPage{
         return $("//button[normalize-space()='Add batch']")
     }
 
-    //
+    ///////
     async Batch(){
         
         await this.manageBatches.click();
@@ -62,6 +70,13 @@ class batchesPage{
     async addBatch(){
 
         await this.addbatchbutton.click();
+        
+    }
+    async batchIdValue(){
+        const batchId = await this.batchIdValue1.getValue();
+        console.log(batchId)
+        return batchId
+
     }
     async siteName(site){
         
@@ -88,17 +103,31 @@ class batchesPage{
         await this.enableSerialNumberVerificationCheckbox.isEnabled()
         await expect(this.enableSerialNumberVerificationCheckbox).toBeEnabled();
     }
-    async manageSerialNumbersDropdown(updateValidSerial){
-        await this.manageSerialNumbersClick.addValue(updateValidSerial)
+    async selectUpdateValidSerialFromDropdown(updateValidSerialValue){
+        await this.selectOptionFromDropdown.selectByVisibleText(updateValidSerialValue)
+    } 
+    async selectUpdateRecalledSerialFromDropdown(updateRecalledSerialValue){
+        await this.selectOptionFromDropdown.selectByVisibleText(updateRecalledSerialValue)
     }
-    async manageSerialNumberField(serialnumber){
-        await this.manageSerialNumberFieldEnter.setValue(serialnumber)
-
+    async selectUpdateDecommissionedFromDropdown(updateDecommissionedValue){
+        await this.selectOptionFromDropdown.selectByVisibleText(updateDecommissionedValue)
     }
-    async serialNumberAccept(){
+    async selectLostReasonFromDropdown(Lost){
+        await this.selectReasonFromDropdown.selectByVisibleText(Lost)
+    }
+    async selectStolenReasonFromDropdown(Stolen){
+        await this.selectReasonFromDropdown.selectByVisibleText(Stolen)
+    }
+    async selectDamagedReasonFromDropdown(Damaged){
+        await this.selectReasonFromDropdown.selectByVisibleText(Damaged)
+    }
+    async enterSerialNumber(serialNumber){
+        await this.enterSerialNumberField.setValue(serialNumber)
+    }
+    async acceptSerialNumber(){
         await this.serialNumberAcceptButton.click()
     }
-    async serialNumberCancel(){
+    async cancelSerialNumber(){
         await this.serialNumberCancelButton.click()
     }
     async batchMessage(message){

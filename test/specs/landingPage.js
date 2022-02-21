@@ -8,10 +8,9 @@ const fs = require('fs')
 const bwipjs = require('bwip-js');
 
 
-
-
 const allureReporter = require('@wdio/allure-reporter').default
 let GTIN=""
+let BatchID=""
 describe('ePI Automation Testing', () => {
    
   
@@ -96,14 +95,14 @@ describe('ePI Automation Testing', () => {
         
      });
 
-     it('should clear and enter the GTIN number', async() => {
+     xit('should clear and enter the GTIN number', async() => {
 
         await products.gtinClrEnt();
         await browser.pause(2000)
         await products.gtinClrEnt(GTIN);
         await browser.pause(2000)
     });
-    it('should enter brand name and product description', async() => {
+    xit('should enter brand name and product description', async() => {
         await products.brandName("Eye-drops"); 
         await browser.pause(2000)
         await products.productDescription("Dolo-650 Tablet 15's contains 'Paracetamol' which is a mild analgesic and fever reducer"); 
@@ -111,7 +110,7 @@ describe('ePI Automation Testing', () => {
         
     });
    
-    it('should upload product photo', async() => {
+    xit('should upload product photo', async() => {
         
         //Upload product photo
         const filePath = path.join(__dirname, '/src/entresto.jpg');
@@ -125,16 +124,17 @@ describe('ePI Automation Testing', () => {
         await browser.pause(1000)
         // video source
         await products.videoSource("https://cdnapisec.kaltura.com/html5/html5lib/v2.92/mwEmbedFrame.php/p/2076321/uiconf_id/46847003/entry_id/1_cuq6u28l?wid=_2076321&iframeembed=true&playerId=kaltura_player&entry_id=1_cuq6u28l&flashvars%5bstreamerType%5d=auto&amp;flashvars%5blocalizationCode%5d=en&amp;flashvars%5bleadWithHTML5%5d=true&amp;flashvars%5bsideBarContainer.plugin%5d=true&amp;flashvars%5bsideBarContainer.position%5d=left&amp;flashvars%5bsideBarContainer.clickToClose%5d=true&amp;flashvars%5bchapters.plugin%5d=true&amp;flashvars%5bchapters.layout%5d=vertical&amp;flashvars%5bchapters.thumbnailRotator%5d=false&amp;flashvars%5bstreamSelector.plugin%5d=true&amp;flashvars%5bEmbedPlayer.SpinnerTarget%5d=videoHolder&amp;flashvars%5bdualScreen.plugin%5d=true&amp;flashvars%5bhotspots.plugin%5d=1&amp;flashvars%5bKaltura.addCrossoriginToIframe%5d=true&amp;&wid=1_iueede1t")
-        await browser.pause(1000)      
+        await browser.pause(1000)  
+  
     });
 
 
-    xit('should verify whether Enable Adverse Events Reporting is in enabled state ', async() => {
+    it('should verify whether Enable Adverse Events Reporting is in enabled state ', async() => {
         await products.adverseEvents(); 
         await browser.pause(1000)
     });
 
-    xit('should verify whether Enable Anti-Counterfeiting check for this product is in enabled state ', async() => {
+    it('should verify whether Enable Anti-Counterfeiting check for this product is in enabled state ', async() => {
         await products.antiCounterfeiting(); 
         await browser.pause(1000)
     });
@@ -222,7 +222,8 @@ describe('ePI Automation Testing', () => {
               
         await batches.addBatch(); 
         await browser.pause(2000)
-
+        BatchID= await batches.batchIdValue()
+        console.log("Batch value is "+BatchID)
         await batches.siteName("Dolo-650 Tablet 15's"); 
         await browser.pause(2000)
 
@@ -243,8 +244,8 @@ describe('ePI Automation Testing', () => {
         //  await selectBox.selectByAttribute('value', '10014331120600');
         //  await browser.pause(2000);
         
-        await selectBox.selectByAttribute('value', GTIN);
-        await browser.pause(3000);
+        // await selectBox.selectByAttribute('value', GTIN);
+        // await browser.pause(3000);
 
         //enable dateselection
         await batches.enableDaySelection();
@@ -261,22 +262,25 @@ describe('ePI Automation Testing', () => {
         await browser.pause(1000);
         await batches.enableSerialNumberVerification()
         await browser.pause(1000);
+
+       // await browser.$("//psk-select[@class='hydrated']//select[@class='form-control']").selectByVisibleText('Update Valid')
+    
         // manage serial numbers dropdown
-        await batches.manageSerialNumbersDropdown('update-valid-serial')
-        await browser.pause(1000);
+         await batches.selectUpdateValidSerialFromDropdown('Update Valid')
+         await browser.pause(5000);
         // manage serial number enter
-        await batches.manageSerialNumberField("3454569")
+        await batches.enterSerialNumber("3454569")
         await browser.pause(4000);
         // manage serial number accept 
-        await batches.serialNumberAccept()
+        await batches.acceptSerialNumber()
         await browser.pause(1000);
-        //cancel button
-        //await batches.serialNumberCancel()
-        //await browser.pause(1000);
-        //batch msg
+        // cancel button
+        await batches.cancelSerialNumber()
+        await browser.pause(1000);
+        // batch msg
         await batches.batchMessage("Sample")
         await browser.pause(1000);
-        //add epi leaflet
+        // add epi leaflet
         await batches.addEpi()
         await browser.pause(1000);
        // video source

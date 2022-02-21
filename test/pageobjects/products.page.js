@@ -47,6 +47,12 @@ class productsPage{
     get adverseE(){
         return $("//label[normalize-space()='Enable Anti-Counterfeiting check for this product']")
     }
+    get adverseEventUrl(){
+        return $("//input[@placeholder='Add Adverse Events Reporting URL']")
+    }
+    get antiCounterfeitingUrl(){
+        return $("//input[@placeholder='Add Anti-Counterfeiting End Point URL']")
+    }
     get adverseEtext(){
         return $("//input[@placeholder='Add Adverse Events Reporting URL'][@type='text']")
     }
@@ -172,10 +178,7 @@ class productsPage{
         await this.productdescription.setValue(description);
     }
     async productPhoto(filePath1){
-              
-        //await this.uploadphoto.click();
-               
-        //const filePath = path.join(__dirname, '/src/entresto.jpg');
+                             
         console.log(filePath1)
         await this.uploadphoto.addValue(filePath1);
        
@@ -192,12 +195,17 @@ class productsPage{
     async adverseEvents(){
        
         await this.adverseE.isEnabled();
-        await expect(this.adverseE).toBeEnabled()   
+        await expect(this.adverseE).toBeEnabled()  
+        const adverseEvent=await this.adverseEventUrl.getValue()
+        console.log(adverseEvent)  
+        
         }
     async antiCounterfeiting(){
        
         await this.anticounter.isEnabled();
-        await expect(this.anticounter).toBeEnabled();      
+        await expect(this.anticounter).toBeEnabled();  
+        const antiCounterfieting= await this.antiCounterfeitingUrl.getValue()
+        console.log(antiCounterfieting)    
         
     }
     async enableBatchIsRecalled(){
