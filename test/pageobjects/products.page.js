@@ -5,16 +5,12 @@ const expectChai = require('chai').expect;
 
 
 
-class productsPage{
-
-    //   get sFrame(){
-         
-    //      return $('iframe[frameborder=\'0\']')
-    //   }
+class productsPage {
 
 
     get openProduct(){
         return  $('//a[@href=\'/products\']//span')
+       //return $("//p[normalize-space()='Manage Products']")
     }
     get addProductButton(){
         return $('//button[normalize-space()=\'+ ADD PRODUCT\']')
@@ -127,7 +123,7 @@ class productsPage{
         return $("//input[@placeholder='Enter legal entity name']")
     }
     get addMarketButtonInPopupClick(){
-        return $("//button[contains(text(),'Add Market')]")
+        return ('document.querySelector("body > webc-app-root:nth-child(1) > webc-app-container:nth-child(3) > div:nth-child(1) > webc-app-router:nth-child(1) > stencil-router:nth-child(1) > stencil-route-switch:nth-child(1) > stencil-route:nth-child(9) > webc-app-loader:nth-child(1) > psk-page:nth-child(1) > h6:nth-child(1) > webc-container:nth-child(1) > webc-modal:nth-child(3) > footer:nth-child(3) > psk-button:nth-child(2) > button:nth-child(1)").click()')
     }
     get closeButtonInPopupClick(){
         return $("//button[normalize-space()='Close']")
@@ -143,6 +139,9 @@ class productsPage{
     get cancelbutton()
     {
         return $("//button[normalize-space()='Cancel']")
+    }
+    get clickViewEditButton(){
+        return browser.execute('document.querySelector("button[data-tag=\'edit-product\']").click()')
     }
     
 
@@ -290,10 +289,10 @@ class productsPage{
        await this.enterMAHNameInTextbox.setValue(MAHName)
    }
    async enterLegalEntityName(LegalEntityName){
-       await this.enterLegalEntityNameInTextbox.setDateInPicker(LegalEntityName)
+       await this.enterLegalEntityNameInTextbox.setValue(LegalEntityName)
    }
    async addMarketButtonInPopup(){
-       await this.addMarketButtonInPopupClick.click()
+       await this.addMarketButtonInPopupClick.execute()
    }
    async closeButtonInPopup(){
        await this.closeButtonInPopupClick.click()
@@ -320,6 +319,9 @@ class productsPage{
         
      await  browser.pause(2000)
     }
+    // async clickViewEdit(){
+    //     await this.clickViewEditButton
+    // }
         
 }
 

@@ -40,7 +40,7 @@ class LoginPage extends Page {
         return super.open('login');
     }
     opensuburl() {
-        return super.opensuburl('login');
+        return super.opensuburl('gs1');
     }
 
 }

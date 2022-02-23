@@ -1,5 +1,7 @@
 const { browser } = require("har-validator");
 
+
+
 class batchesPage{
     get manageBatches(){
         return  $("=Batches")
@@ -31,11 +33,21 @@ class batchesPage{
     get selectOptionFromDropdown(){
         return $('//psk-select[@class=\'hydrated\']//select[@class=\'form-control\']')
     }
+    get resetAllValidSerialNumberCheckbox(){
+        return $('//input[@id=\'update-valid-serial\']')
+    }
+    get resetAllRecalledSerialNumberCheckbox(){
+        return $("//input[@id='update-recalled-serial']")
+    }
+    get resetAllDecommisionedSerialNumberCheckbox(){
+        return $("//input[@id='update-decommissioned-serial']")
+    }
     get enterSerialNumberField(){
         return $('//textarea[@value=\'@actionModalModel.serialNumbers\']')         
     }
     get selectReasonFromDropdown(){
         return $("//psk-select[@view-model='@actionModalModel.reason']//select[@class='form-control']")
+        
     }
     // get selectUpdateRecalledSerial(){
     //     return $("//option[@value='update-recalled-serial']")
@@ -52,11 +64,20 @@ class batchesPage{
     get addEpiButton(){
         return $("//button[normalize-space()='+ Add ePI']")
     }
+    get selectLanguageDropdown(){
+        return $('//select[@id=\'language\']')
+    }
+    get selectTypeDropdown(){
+        return $('//select[@id=\'type\']')
+    }
     get videoSourceEpiEnter(){
         return $("//textarea[@value='@modalData.product.videoSource']")
     }
     get addEpiAcceptButton(){
         return $("//button[normalize-space()='Accept']")
+    }
+    get enableRecallThisBatch(){
+        return $("//input[@id='recalled']")
     }
     get createBatchButton(){
         return $("//button[normalize-space()='Add batch']")
@@ -106,6 +127,15 @@ class batchesPage{
     async selectUpdateValidSerialFromDropdown(updateValidSerialValue){
         await this.selectOptionFromDropdown.selectByVisibleText(updateValidSerialValue)
     } 
+    async enableResetAllValidSerialNumber(){
+        await this.resetAllValidSerialNumberCheckbox.click()
+    }
+    async enableResetAllRecalledSerialNumber(){
+        await this.resetAllRecalledSerialNumberCheckbox.click()
+    }
+    async enableResetAllDecommisionedSerialNumber(){
+        await this.resetAllDecommisionedSerialNumberCheckbox.click()
+    }
     async selectUpdateRecalledSerialFromDropdown(updateRecalledSerialValue){
         await this.selectOptionFromDropdown.selectByVisibleText(updateRecalledSerialValue)
     }
@@ -136,8 +166,17 @@ class batchesPage{
     async addEpi(){
         await this.addEpiButton.click()
     }
+    async selectLanguage(country){
+        await this.selectLanguageDropdown.selectByVisibleText(country)
+    }
+    async selectType(type){
+        await this.selectTypeDropdown.selectByVisibleText(type)
+    }
     async videoSourceEpi(link2){
         await this.videoSourceEpiEnter.setValue(link2)
+    }
+    async enableCheckToRecallThisBatch(){
+        await this.enableRecallThisBatch.click()
     }
    
     async acceptButton(){

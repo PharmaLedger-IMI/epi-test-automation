@@ -10,15 +10,19 @@ module.exports = class Page {
     open(path) {
         //return browser.url(`https://the-internet.herokuapp.com/${path}`)
         return browser.url('/')
+        
     }
 
     opensuburl(opensuburl){
         
+        //return browser.url('/')
         return browser.url('https://www.gs1.org/services/check-digit-calculator')
-    }
-    opensuburlProduct(opensuburlProduct){
+
         
-        return browser.url('https://epiqa.westeurope.cloudapp.azure.com/dsu-fabric-wallet/loader/?login')
     }
+    // opensuburlProduct(opensuburlProduct){
+        
+    //     return browser.url('https://epiqa.westeurope.cloudapp.azure.com/dsu-fabric-wallet/loader/?login')
+    // }
 
 }

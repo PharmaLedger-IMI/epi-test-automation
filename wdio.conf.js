@@ -22,10 +22,19 @@ exports.config = {
     // will be called from there.
     //
     specs: [
+        [
         //'./test/specs/**/*.js',
         //'test/specs/test.js',
-        'test/specs/landingPage.js'
+        // 'test/specs/landingPage.js',
+            'test/specs/gtinPage.js',
+            'test/specs/loginCredentials.js',
+            'test/specs/createProduct.js',
+            'test/specs/createBatch.js',
+            'test/specs/2dMatrixPage.js'
     ],
+],
+
+
     // Patterns to exclude.
     exclude: [
         // 'path/to/excluded/files'
@@ -88,7 +97,7 @@ exports.config = {
     // Define all options that are relevant for the WebdriverIO instance here
     //
     // Level of logging verbosity: trace | debug | info | warn | error | silent
-    logLevel: 'info',
+    logLevel: 'trace',
     //
     // Set specific log levels per logger
     // loggers:
@@ -107,6 +116,7 @@ exports.config = {
     // If you only want to run your tests until a specific amount of tests have failed use
     // bail (default is 0 - don't bail, run all tests).
     bail: 0,
+   
     //
     // Set a base URL in order to shorten url command calls. If your `url` parameter starts
     // with `/`, the base url gets prepended, not including the path portion of your baseUrl.

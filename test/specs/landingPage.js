@@ -8,10 +8,12 @@ const fs = require('fs')
 const bwipjs = require('bwip-js');
 
 
+
+
 const allureReporter = require('@wdio/allure-reporter').default
-let GTIN=""
+ let GTIN=""
 let BatchID=""
-describe('ePI Automation Testing', () => {
+describe('ePI Automation Testing page', () => {
    
   
     xit('should open the digitcalculator', async() => {
@@ -82,13 +84,24 @@ describe('ePI Automation Testing', () => {
         
     });
 
-    it('should open the Products page', async() => { 
+    xit('should open the Products page', async() => { 
 
         await products.clickProduct();
         await browser.pause(2000);
+      
      });
+     xit('should verify View/Edit for products in dashboard page', async() => { 
+        await browser.$("//input[@id='code-search']").setValue("64359348118242")
+        await browser.pause(5000);
+        await browser.keys('Enter')
+        await browser.pause(2000);
+        //view or edit
+        //await products.clickViewEdit()
+        await browser.execute('document.querySelector("button[data-tag=\'edit-product\']").click()')
+        await browser.pause(5000);
+     }) 
 
-    it('should click on Add Product', async() => {
+    xit('should click on Add Product', async() => {
 
         await products.addProduct();
         await browser.pause(5000);
@@ -129,12 +142,12 @@ describe('ePI Automation Testing', () => {
     });
 
 
-    it('should verify whether Enable Adverse Events Reporting is in enabled state ', async() => {
+    xit('should verify whether Enable Adverse Events Reporting is in enabled state ', async() => {
         await products.adverseEvents(); 
         await browser.pause(1000)
     });
 
-    it('should verify whether Enable Anti-Counterfeiting check for this product is in enabled state ', async() => {
+    xit('should verify whether Enable Anti-Counterfeiting check for this product is in enabled state ', async() => {
         await products.antiCounterfeiting(); 
         await browser.pause(1000)
     });
@@ -188,13 +201,10 @@ describe('ePI Automation Testing', () => {
 
     xit('should click Market Management', async() => {
        
-        //await browser.$(".btn btn-primary").click()
         
-        await browser.execute('document.querySelector("div:nth-child(2) > div:nth-child(1) > psk-button:nth-child(2) > button:nth-child(1)").click();')
-       // await products.marketManagementButton()
+        
+        await browser.execute('document.querySelector("body > webc-app-root:nth-child(1) > webc-app-container:nth-child(3) > div:nth-child(1) > webc-app-router:nth-child(1) > stencil-router:nth-child(1) > stencil-route-switch:nth-child(1) > stencil-route:nth-child(9) > webc-app-loader:nth-child(1) > psk-page:nth-child(1) > h6:nth-child(1) > webc-container:nth-child(1) > div:nth-child(1) > div:nth-child(2) > psk-tab-navigator:nth-child(4) > psk-tab:nth-child(2) > div:nth-child(1) > div:nth-child(2) > button:nth-child(1)").click()')
         await browser.pause(2000)
-        await products.addMarketButton()
-        await browser.pause(1000)
         await products.selectLanguageInMarketPage('Germany')
         await browser.pause(1000)
         await products.enterNationalCode('+49')
@@ -203,8 +213,9 @@ describe('ePI Automation Testing', () => {
         await browser.pause(1000)
         await products.enterLegalEntityName('Test')
         await browser.pause(1000)
-        await products.addMarketButtonInPopup()
-        await browser.pause(1000)
+        await browser.execute('document.querySelector("body > webc-app-root:nth-child(1) > webc-app-container:nth-child(3) > div:nth-child(1) > webc-app-router:nth-child(1) > stencil-router:nth-child(1) > stencil-route-switch:nth-child(1) > stencil-route:nth-child(9) > webc-app-loader:nth-child(1) > psk-page:nth-child(1) > h6:nth-child(1) > webc-container:nth-child(1) > webc-modal:nth-child(3) > footer:nth-child(3) > psk-button:nth-child(2) > button:nth-child(1)").click()')
+        // await products.addMarketButtonInPopup()
+        await browser.pause(10000)
 
     
     });
@@ -213,12 +224,39 @@ describe('ePI Automation Testing', () => {
         await browser.pause(4000)
     });
 /// batches page
-    xit('should click on Batches', async() => {
+    it('should click on Batches', async() => {
         await batches.Batch(); 
         await browser.pause(4000)
+
+       
+           
     });
+    it('should verify edit for batches page in dashboard', async() => {
+        let fArry = []
+        var i = 10
+
+        for (; await browser.$("div:nth-child(" + i + ")").isExisting() == true; i++) {
+            console.log(i)
+
+            fArry.push({ batchId: await browser.$("div:nth-child(" + i + ")").getText(), edit: i + 4 })
+            i = i + 6
+        }
+        let batchValue = "RY4115"
+        let rClick = ""
+        fArry.map((key, index) => {
+            if (key["batchId"] == batchValue) {
+                rClick = index
+            }
+
+        })
+        console.log(fArry)
+        console.log(fArry[rClick]["edit"])
+        //click on edit
+        await browser.execute('document.querySelector("div:nth-child(' + fArry[rClick]["edit"] + ') button:nth-child(1)").click()')
+        await browser.pause(2000)
+    })
     
-    xit('Should click on add batch and its functionalities', async() => {
+    xit('Should verify batch page functionalities', async() => {
               
         await batches.addBatch(); 
         await browser.pause(2000)
@@ -227,25 +265,42 @@ describe('ePI Automation Testing', () => {
         await batches.siteName("Dolo-650 Tablet 15's"); 
         await browser.pause(2000)
 
-        let expiryDate = "2029-05-28"
+        function randomDate() {
 
-        await browser.execute((date) => {
-            (function () {
-                let event = new Event('change');
-                let datePicker = document.querySelector("input[placeholder='dd/mm/yyyy']")
-                datePicker.value = date;
-                datePicker.dispatchEvent(event);
-            })();
+            let end = new Date("2029-05-28")
+            let start = new Date("2023-01-01")
+            var date1 = new Date(+start + Math.random() * (end - start));
+            finalD = date1
+            let month = finalD.getMonth()
+            let date = finalD.getDate()
+            if(finalD.getMonth()<10){
+                month = "0"+finalD.getMonth()
+            }
+            if(finalD.getDate()<10){
+                date =  "0"+finalD.getDate()
+               }
+            var date2=finalD.getFullYear() +"-" + month + "-" + date
+            console.log(date2)
+            return date2
 
-        }, expiryDate);
+         }
+        
+          let expiryDate = randomDate()
+          await browser.execute((date) => {
+              (function () {
+                  let event = new Event('change');
+                  let datePicker = document.querySelector("input[placeholder='dd/mm/yyyy']")
+                  datePicker.value = date;
+                  datePicker.dispatchEvent(event);
+              })();
+          }, expiryDate);
 
         await browser.pause(2000);
         const selectBox = await browser.$('//psk-select[@class=\'default-select hydrated\']//select[@class=\'form-control\']');
         //  await selectBox.selectByAttribute('value', '10014331120600');
-        //  await browser.pause(2000);
-        
-        // await selectBox.selectByAttribute('value', GTIN);
-        // await browser.pause(3000);
+        //  await browser.pause(2000);  
+        await selectBox.selectByAttribute('value', GTIN);
+        await browser.pause(3000);
 
         //enable dateselection
         await batches.enableDaySelection();
@@ -262,27 +317,45 @@ describe('ePI Automation Testing', () => {
         await browser.pause(1000);
         await batches.enableSerialNumberVerification()
         await browser.pause(1000);
-
-       // await browser.$("//psk-select[@class='hydrated']//select[@class='form-control']").selectByVisibleText('Update Valid')
     
         // manage serial numbers dropdown
-         await batches.selectUpdateValidSerialFromDropdown('Update Valid')
+        //  await batches.selectUpdateValidSerialFromDropdown('Update Valid')
+        //  await browser.pause(5000);
+        //  await batches.selectUpdateValidSerialFromDropdown('Update Recalled')
+        //  await browser.pause(5000);
+         await batches.selectUpdateValidSerialFromDropdown('Update decommissioned')
          await browser.pause(5000);
+        //  await batches.selectUpdateValidSerialFromDropdown('Update decommissioned')
+        //  await browser.pause(5000);
+        //  await batches.enableResetAllValidSerialNumber()
+        //  await browser.pause(1000);
+        //await batches.enableResetAllRecalledSerialNumber()
+        await batches.enableResetAllDecommisionedSerialNumber()
+        await browser.pause(1000);
+
         // manage serial number enter
-        await batches.enterSerialNumber("3454569")
+        const SerialNumber=Math.floor(100000 + Math.random() * 900000)
+        await batches.enterSerialNumber(SerialNumber)
         await browser.pause(4000);
+        await batches.selectStolenReasonFromDropdown('Stolen')
         // manage serial number accept 
         await batches.acceptSerialNumber()
         await browser.pause(1000);
         // cancel button
-        await batches.cancelSerialNumber()
-        await browser.pause(1000);
+        // await batches.cancelSerialNumber()
+        // await browser.pause(1000);
         // batch msg
         await batches.batchMessage("Sample")
         await browser.pause(1000);
         // add epi leaflet
         await batches.addEpi()
         await browser.pause(1000);
+        //
+        await batches.selectLanguage('German')
+        await browser.pause(1000)
+        //select type
+        await batches.selectType('SMPC')
+        await browser.pause(1000)
        // video source
         await batches.videoSourceEpi("https://cdnapisec.kaltura.com/html5/html5lib/v2.92/mwEmbedFrame.php/p/2076321/uiconf_id/46847003/entry_id/1_cuq6u28l?wid=_2076321&iframeembed=true&playerId=kaltura_player&entry_id=1_cuq6u28l&flashvars%5bstreamerType%5d=auto&amp;flashvars%5blocalizationCode%5d=en&amp;flashvars%5bleadWithHTML5%5d=true&amp;flashvars%5bsideBarContainer.plugin%5d=true&amp;flashvars%5bsideBarContainer.position%5d=left&amp;flashvars%5bsideBarContainer.clickToClose%5d=true&amp;flashvars%5bchapters.plugin%5d=true&amp;flashvars%5bchapters.layout%5d=vertical&amp;flashvars%5bchapters.thumbnailRotator%5d=false&amp;flashvars%5bstreamSelector.plugin%5d=true&amp;flashvars%5bEmbedPlayer.SpinnerTarget%5d=videoHolder&amp;flashvars%5bdualScreen.plugin%5d=true&amp;flashvars%5bhotspots.plugin%5d=1&amp;flashvars%5bKaltura.addCrossoriginToIframe%5d=true&amp;&wid=1_iueede1t")
         await browser.pause(1000);
@@ -290,9 +363,13 @@ describe('ePI Automation Testing', () => {
        // await batches.uploadLeafletFolder()
         await browser.$('//input[@type=\'file\']').addValue(path.join(__dirname, '/src/Entresto'));
         await browser.pause(4000);
+       
         //scrollIntoView
         await batches.acceptButton()
         await browser.pause(5000);
+        //checkbox
+        await batches.enableCheckToRecallThisBatch()
+        await browser.pause(1000)
         //Create batch
         await batches.createBatch()
         await browser.pause(3000);
@@ -300,20 +377,19 @@ describe('ePI Automation Testing', () => {
   
 
     xit('should generate 2D Matrix', async() => {
-        const gtinNumber=await browser.$("//div[16]").getText()
-        const expiryDate=await browser.$("div:nth-child(18)").getText()
-        const expdate=await expiryDate.replace('/', '')
-        const expdate1=await expdate.replace('/', '')
-        const serialNum="9501101020917";
-        const batchNO= await browser.$("//div[normalize-space()='MV6888']").getText()
-        const barcode='01'+gtinNumber+'17'+expdate1+'10'+batchNO+'21'+serialNum
+        // const gtinNumber=await browser.$("//div[16]").getText()
+         const expiryDate='29/05/28'
+         const expdate= expiryDate.replace('/', '')
+         const expdate1= expdate.replace('/', '')
+       // const serialNum="9501101020917";
+       // const batchNO= await browser.$("//div[normalize-space()='MV6888']").getText()
+        const barcode='(01)'+GTIN+'(17)'+expdate1+'(10)'+ BatchID+'(21)'+SerialNumber
         console.log(barcode)
         await browser.pause(2000)
         await browser.url('https://barcode.tec-it.com/barcode.ashx?data='+barcode+'&code=DataMatrix&dmsize=Default')
         await browser.pause(10000)
-        await browser.saveScreenshot('/Users/snehav/AppData/Local/Android/Sdk/emulator/resources/custom.png')
-        await browser.deleteSession()
-       
+        //await browser.saveScreenshot('/Users/snehav/AppData/Local/Android/Sdk/emulator/resources/custom.png')
+
         bwipjs.toBuffer({
 
             bcid:        'gs1datamatrix',  
@@ -339,7 +415,7 @@ describe('ePI Automation Testing', () => {
             }
         
         });
-         
+        await browser.deleteSession()
         
     });
     
