@@ -2,15 +2,45 @@ const LoginPage = require('../pageobjects/login.page');
 const gtinPage = require('../specs/gtinPage.js');
 const accessAccount= require('../pageobjects/access.Account');
 const products= require('../pageobjects/products.page');
-//const allureReporter = require('@wdio/allure-reporter').default
+const allureReporter = require('@wdio/allure-reporter').default
 const path= require('path');
+const fs = require('fs')
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
+let data =JSON.parse(fs.readFileSync('test/testData/myjsonFile.json'))
+const testData= require('../test/testdata/myjsonFile.json')
+
 
 describe('Create Product', () => {
 
-it('should open the Products page and its functionality', async() => { 
-    const frame = await browser.$('iframe[frameborder=\'0\']');
-    await browser.switchToFrame(frame);
-    await browser.pause(5000)
+
+   
+it('should verify product page', async() => { 
+    
+    allureReporter.addFeature('Create Product')
+    allureReporter.addSeverity('Critical');
+    allureReporter.addTestId('ProdAndBatchSetup_1')
+    allureReporter.addDescription('No. of products can be created by Adding Product')
+    allureReporter.startStep("Create new product with a valid GTIN, and add the ePI");
+
+    // const testExpectations = {};
+    // testExpectations.prodCode = '09088884204609';
+    // testExpectations.prodName = 'dolo-650'
+    // testExpectations.expiry = '23/09/26'
+    // testExpectations.batchNumber = '123456'
+    // testExpectations.batchRecall = true
+    // testExpectations.ePIBeDisplayed = true
+    // testExpectations.batchMessageDisplayed = true
+    // testExpectations.batchRecallMessage = "Tim said its recall"
+
+    // let jsonData = JSON.stringify(testExpectations)
+    // console.log("file is " + jsonData)
+    // fs.writeFile('C:/Users/snehav/epi-test-automation/test/testdata/myjsonFile.json', jsonData, 'utf8', () => {
+
+    //     console.log('written file')
+
+    // });
+
     await products.clickProduct();
     await browser.pause(2000);
     await products.addProduct();
@@ -19,8 +49,10 @@ it('should open the Products page and its functionality', async() => {
     await browser.pause(2000)
     console.log(gtinPage.gt())
     await products.gtinClrEnt(gtinPage.gt());
+    //await browser.$('//button[normalize-space()=\'+ ADD PRODUCT\']').setValue("09088884204609")
     await browser.pause(2000)
-    await products.brandName("Eye-drops"); 
+
+    await products.brandName("Dolo-650"); 
     await browser.pause(2000)
     await products.productDescription("Dolo-650 Tablet 15's contains 'Paracetamol' which is a mild analgesic and fever reducer"); 
     await browser.pause(4000)
@@ -41,7 +73,7 @@ it('should open the Products page and its functionality', async() => {
     await browser.pause(1000)
      //add epi
      await products.addEpi()
-     await browser.pause(1000)
+     await browser.pause(3000)
      //select language	
      await products.selectLanguage('German')
      await browser.pause(1000)
@@ -58,23 +90,11 @@ it('should open the Products page and its functionality', async() => {
      await browser.pause(3000)
      //Save product
      await products.saveProduct()
-     await browser.pause(8000)
+     await browser.pause(10000)
+     allureReporter.endStep("passed");
+     allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
+    
     
  });
-
- xit('should verify View/Edit for products in dashboard page', async() => { 
-    
-    await browser.$("//input[@id='code-search']").setValue("64359348118242")
-    await browser.pause(5000);
-    await browser.keys('Enter')
-    await browser.pause(2000);
-    //view or edit
-    //await products.clickViewEdit()
-    await browser.execute('document.querySelector("button[data-tag=\'edit-product\']").click()')
-    await browser.pause(5000);
- }) 
-
-
- 
 
 })

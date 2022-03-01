@@ -1,10 +1,12 @@
-const { browser } = require("har-validator");
 
 
+//const { browser } = require("har-validator");
 
+const expectChai = require('chai').expect;
 class batchesPage{
-    get manageBatches(){
+    get batchFromSideNav(){
         return  $("=Batches")
+        //return $("//a[normalize-space()='Batches']")
     }
     get addbatchbutton(){
         return $("//button[normalize-space()='ADD BATCH']")
@@ -79,14 +81,25 @@ class batchesPage{
     get enableRecallThisBatch(){
         return $("//input[@id='recalled']")
     }
+    get enterRecallMessageInTextbox(){
+        return $("//textarea[@placeholder='This text will be displayed to user after Barcode is scanned if batch is recalled']")
+    }
+    get updateBatchForEditButton(){
+        return $("//button[normalize-space()='Update batch']")
+    }
+    get cancelButtonForBatch(){
+        return $("//button[normalize-space()='Cancel']")       
+    }
+
     get createBatchButton(){
         return $("//button[normalize-space()='Add batch']")
     }
+    
 
     ///////
     async Batch(){
         
-        await this.manageBatches.click();
+        await this.batchFromSideNav.click();
     }
     async addBatch(){
 
@@ -94,6 +107,9 @@ class batchesPage{
         
     }
     async batchIdValue(){
+        this.batchIdValue1.click()
+        this.batchIdValue1.clearValue()
+        this.batchIdValue1.setValue("WL6190")
         const batchId = await this.batchIdValue1.getValue();
         console.log(batchId)
         return batchId
@@ -108,6 +124,28 @@ class batchesPage{
         await this.enableDaySelectionCheckbox.isEnabled()
         await expect(this.enableDaySelectionCheckbox).toBeEnabled();
     }
+
+    async randomDate() {
+
+        let end = new Date("2029-05-28")
+        let start = new Date("2023-01-01")
+        var date1 = new Date(+start + Math.random() * (end - start));
+        finalD = date1
+        let month = finalD.getMonth()
+        let date = finalD.getDate()
+        if(finalD.getMonth()<10){
+            month = "0"+finalD.getMonth()
+        }
+        if(finalD.getDate()<10){
+            date =  "0"+finalD.getDate()
+           }
+        var date2=finalD.getFullYear() +"-" + month + "-" + date
+        console.log(date2)
+        return date2
+    
+     }
+
+
     async videoSource(link1){
         await this.videoSourceEnter.setValue(link1)
     }
@@ -176,7 +214,22 @@ class batchesPage{
         await this.videoSourceEpiEnter.setValue(link2)
     }
     async enableCheckToRecallThisBatch(){
-        await this.enableRecallThisBatch.click()
+        //await this.enableRecallThisBatch.click()
+        await this.enableRecallThisBatch.scrollIntoView()
+        await expect(this.enableRecallThisBatch).toBeEnabled()
+
+    }
+    async enterRecallMessage(RecallMessage){
+        //await this.enterRecallMessageInTextbox.scrollIntoView()
+        await this.enterRecallMessageInTextbox.click()
+        await this.enterRecallMessageInTextbox.clearValue()
+        await this.enterRecallMessageInTextbox.setValue(RecallMessage)
+    }
+    async updateBatchForEdit(){
+        await this.updateBatchForEditButton.click()
+    }
+    async cancelButton(){
+        await cancelButtonForBatch.click()
     }
    
     async acceptButton(){
@@ -187,6 +240,33 @@ class batchesPage{
 
         await this.createBatchButton.click()
     }
+
+
+    async deleteFile(){
+        
+        // let fArry = []
+        // var i = 1
+        // for (; await browser.$("//li["+i+"]//div[1]//button[1]").isExisting() == true; i++) {
+        // fArry.push({ i })
+        // }
+        // let batchValue = 1
+        // let rClick = ""
+        // fArry.map((key) => {
+        
+        // if (key == batchValue) {
+        // rClick = key
+        // }
+        // })
+        // console.log("delete value is "+rClick)
+        // return rClick
+
+        
+      
+
+    }
+
+
+
 
 
 }

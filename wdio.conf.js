@@ -25,13 +25,27 @@ exports.config = {
         [
         //'./test/specs/**/*.js',
         //'test/specs/test.js',
-        // 'test/specs/landingPage.js',
-            'test/specs/gtinPage.js',
+         //'test/specs/landingPage.js',
+
+           // 'test/specs/gtinPage.js',
             'test/specs/loginCredentials.js',
-            'test/specs/createProduct.js',
-            'test/specs/createBatch.js',
-            'test/specs/2dMatrixPage.js'
+            // 'test/specs/createProduct.js',
+            // 'test/specs/createBatch.js',
+             //'test/specs/2dMatrixPage.js',
+            'test/specs/editProduct.js',
+            // 'test/specs/3_editProductforToggle_ePIFlag.js',
+            'test/specs/editBatch.js',
+            'test/specs/2_editBatchforRecallMsg.js',
+            // 'test/specs/createBatchWithoutanyFile.js',
+            // 'test/specs/createBatchWithUploadLeaflet.js',
+            // 'test/specs/createBatchWithUploadSMPC.js',
+            // 'test/specs/createBatchWithUploadBoth.js',
+            'test/specs/2dMatrixPage.js',
+          
+
+            
     ],
+
 ],
 
 
@@ -70,10 +84,10 @@ exports.config = {
         maxInstances: 5,
         //
         browserName: 'chrome',
-        acceptInsecureCerts: true,
-        'goog:chromeOptions': {
-            args: ["--incognito"]
-        }
+        // acceptInsecureCerts: true,
+        // 'goog:chromeOptions': {
+        //     args: ["--incognito"]
+        // }
         // If outputDir is provided WebdriverIO can capture driver session logs
         // it is possible to configure which logTypes to include/exclude.
         // excludeDriverLogs: ['*'], // pass '*' to exclude all driver session logs
@@ -122,8 +136,8 @@ exports.config = {
     // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
     // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
     // gets prepended directly.
-    //baseUrl: 'https://epiqa.westeurope.cloudapp.azure.com/',
-    baseUrl:'http://localhost:3000',
+    baseUrl: 'https://epiqa.westeurope.cloudapp.azure.com/',
+    //baseUrl:'http://localhost:3000',
     //
     // Default timeout for all waitFor* commands.
     waitforTimeout: 10000,
@@ -177,7 +191,7 @@ exports.config = {
     // See the full list at http://mochajs.org/
     mochaOpts: {
         ui: 'bdd',
-        timeout: 60000
+        timeout: 120000
     },
     //
     // =====

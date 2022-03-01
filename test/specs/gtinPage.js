@@ -1,5 +1,7 @@
 const LoginPage = require('../pageobjects/login.page');
 const digits= require('../pageobjects/digit.cal.js');
+const allureReporter = require('@wdio/allure-reporter').default
+
 let GTIN=""
 class gtin{
   gt(){

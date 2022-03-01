@@ -7,7 +7,9 @@ const path= require('path');
 const fs = require('fs')
 const bwipjs = require('bwip-js');
 
+const util = require('util');
 
+const exec = util.promisify(require('child_process').exec);
 
 
 const allureReporter = require('@wdio/allure-reporter').default
@@ -17,7 +19,6 @@ describe('ePI Automation Testing page', () => {
    
   
     xit('should open the digitcalculator', async() => {
-       
         
         await LoginPage.opensuburl();
         await browser.pause(2000)
@@ -84,13 +85,34 @@ describe('ePI Automation Testing page', () => {
         
     });
 
-    xit('should open the Products page', async() => { 
+    it('should open the Products page', async() => { 
 
         await products.clickProduct();
         await browser.pause(2000);
       
      });
-     xit('should verify View/Edit for products in dashboard page', async() => { 
+     it('should verify View/Edit for products in dashboard page', async() => { 
+
+
+        await products.addProduct();
+        await browser.pause(5000);
+
+         const testExpectations = {};
+         testExpectations.prodCode = '1234';
+         testExpectations.prodName = 'dolo-650'
+         testExpectations.expiry = '23/09/26'
+         testExpectations.batchNum = '123456'
+         testExpectations.shouldePIBeDisplayed = false
+         testExpectations.batchMessageDisplayed = true
+
+         let jsonData = JSON.stringify(testExpectations)
+         console.log("file is "+jsonData)
+         fs.writeFile('C:/Users/snehav/epi-test-automation/test/testdata/myjsonFile.json', jsonData, 'utf8',() => {
+
+            console.log('written file')
+            
+            });
+
         await browser.$("//input[@id='code-search']").setValue("64359348118242")
         await browser.pause(5000);
         await browser.keys('Enter')
@@ -174,7 +196,7 @@ describe('ePI Automation Testing page', () => {
         await products.patientInfo(); 
         await browser.pause(1000)
     });
-    xit('should upload in leaflet Management', async() => {
+    it('should upload in leaflet Management', async() => {
 
         //add epi
         await products.addEpi()
@@ -192,7 +214,40 @@ describe('ePI Automation Testing page', () => {
         await browser.pause(3000)
         //add epi accept
         await browser.execute('document.querySelector("psk-button[disabled=\'@modalData.filesWereNotSelected\'] button[class=\'btn btn-primary\']").click();');
-        await browser.pause(3000)
+        await browser.pause(4000)
+
+        // await products.addEpi()
+        // await browser.pause(1000)
+        // await browser.$('(//input[@type=\'file\'])[2]').addValue(path.join(__dirname, '/src/Entresto'));
+        // await browser.pause(3000)
+        // await browser.execute('document.querySelector("psk-button[disabled=\'@modalData.filesWereNotSelected\'] button[class=\'btn btn-primary\']").click();');
+        // await browser.pause(3000)
+
+
+        //await browser.execute('document.querySelector(".delete-language").click();')
+        await browser.$("//button[@class='delete-language']").click()
+
+        // let fArry = []
+        // var i = 1
+        // for (; await browser.$("//li["+i+"]//div[1]//button[1]").isExisting() == true; i++) {
+        // fArry.push({ i })
+        // }
+        // let batchValue = 1
+        // let rClick = ""
+        // fArry.map((key) => {
+        
+        // if (key == batchValue) {
+        // rClick = key
+        // }
+        // })
+        // console.log("delete value is "+rClick)
+       
+
+
+        // let value = await batches.deleteFile()
+        //await browser.$("//li["+ rClick+"]//div[1]//button[1]").click()
+        await browser.pause(10000);
+        
         //Save product
         await products.saveProduct()
         await browser.pause(8000)
@@ -224,14 +279,14 @@ describe('ePI Automation Testing page', () => {
         await browser.pause(4000)
     });
 /// batches page
-    it('should click on Batches', async() => {
+    xit('should click on Batches', async() => {
         await batches.Batch(); 
         await browser.pause(4000)
 
        
            
     });
-    it('should verify edit for batches page in dashboard', async() => {
+    xit('should verify edit for batches page in dashboard', async() => {
         let fArry = []
         var i = 10
 
@@ -303,44 +358,44 @@ describe('ePI Automation Testing page', () => {
         await browser.pause(3000);
 
         //enable dateselection
-        await batches.enableDaySelection();
-        await browser.pause(1000);
+        // await batches.enableDaySelection();
+        // await browser.pause(1000);
         //video source
         await batches.videoSource("https://cdnapisec.kaltura.com/html5/html5lib/v2.92/mwEmbedFrame.php/p/2076321/uiconf_id/46847003/entry_id/1_cuq6u28l?wid=_2076321&iframeembed=true&playerId=kaltura_player&entry_id=1_cuq6u28l&flashvars%5bstreamerType%5d=auto&amp;flashvars%5blocalizationCode%5d=en&amp;flashvars%5bleadWithHTML5%5d=true&amp;flashvars%5bsideBarContainer.plugin%5d=true&amp;flashvars%5bsideBarContainer.position%5d=left&amp;flashvars%5bsideBarContainer.clickToClose%5d=true&amp;flashvars%5bchapters.plugin%5d=true&amp;flashvars%5bchapters.layout%5d=vertical&amp;flashvars%5bchapters.thumbnailRotator%5d=false&amp;flashvars%5bstreamSelector.plugin%5d=true&amp;flashvars%5bEmbedPlayer.SpinnerTarget%5d=videoHolder&amp;flashvars%5bdualScreen.plugin%5d=true&amp;flashvars%5bhotspots.plugin%5d=1&amp;flashvars%5bKaltura.addCrossoriginToIframe%5d=true&amp;&wid=1_iueede1t")
         await browser.pause(1000);
         //enable incorrect expiration date verification
-        await batches.enableIncorrectExpirationDateVerification()
-        await browser.pause(1000);
-        //expiration date verification       
-        await batches.expirationDateVerification()
-        // enable serial number verification
-        await browser.pause(1000);
-        await batches.enableSerialNumberVerification()
-        await browser.pause(1000);
+        // await batches.enableIncorrectExpirationDateVerification()
+        // await browser.pause(1000);
+        // //expiration date verification       
+        // await batches.expirationDateVerification()
+        // // enable serial number verification
+        // await browser.pause(1000);
+        // await batches.enableSerialNumberVerification()
+        // await browser.pause(1000);
     
         // manage serial numbers dropdown
         //  await batches.selectUpdateValidSerialFromDropdown('Update Valid')
         //  await browser.pause(5000);
         //  await batches.selectUpdateValidSerialFromDropdown('Update Recalled')
         //  await browser.pause(5000);
-         await batches.selectUpdateValidSerialFromDropdown('Update decommissioned')
-         await browser.pause(5000);
+        //  await batches.selectUpdateValidSerialFromDropdown('Update decommissioned')
+        //  await browser.pause(5000);
         //  await batches.selectUpdateValidSerialFromDropdown('Update decommissioned')
         //  await browser.pause(5000);
         //  await batches.enableResetAllValidSerialNumber()
         //  await browser.pause(1000);
         //await batches.enableResetAllRecalledSerialNumber()
-        await batches.enableResetAllDecommisionedSerialNumber()
-        await browser.pause(1000);
+        // await batches.enableResetAllDecommisionedSerialNumber()
+        // await browser.pause(1000);
 
         // manage serial number enter
-        const SerialNumber=Math.floor(100000 + Math.random() * 900000)
-        await batches.enterSerialNumber(SerialNumber)
-        await browser.pause(4000);
-        await batches.selectStolenReasonFromDropdown('Stolen')
-        // manage serial number accept 
-        await batches.acceptSerialNumber()
-        await browser.pause(1000);
+        // const SerialNumber=Math.floor(100000 + Math.random() * 900000)
+        // await batches.enterSerialNumber(SerialNumber)
+        // await browser.pause(4000);
+        // await batches.selectStolenReasonFromDropdown('Stolen')
+        // // manage serial number accept 
+        // await batches.acceptSerialNumber()
+        // await browser.pause(1000);
         // cancel button
         // await batches.cancelSerialNumber()
         // await browser.pause(1000);
@@ -362,17 +417,56 @@ describe('ePI Automation Testing page', () => {
        // upload leaflet folder
        // await batches.uploadLeafletFolder()
         await browser.$('//input[@type=\'file\']').addValue(path.join(__dirname, '/src/Entresto'));
-        await browser.pause(4000);
+        await browser.pause(10000);
+        await batches.acceptButton()
+        await browser.pause(10000);
+
+        await batches.addEpi()
+        await browser.pause(1000);
        
-        //scrollIntoView
+       // video source
+        await batches.videoSourceEpi("https://cdnapisec.kaltura.com/html5/html5lib/v2.92/mwEmbedFrame.php/p/2076321/uiconf_id/46847003/entry_id/1_cuq6u28l?wid=_2076321&iframeembed=true&playerId=kaltura_player&entry_id=1_cuq6u28l&flashvars%5bstreamerType%5d=auto&amp;flashvars%5blocalizationCode%5d=en&amp;flashvars%5bleadWithHTML5%5d=true&amp;flashvars%5bsideBarContainer.plugin%5d=true&amp;flashvars%5bsideBarContainer.position%5d=left&amp;flashvars%5bsideBarContainer.clickToClose%5d=true&amp;flashvars%5bchapters.plugin%5d=true&amp;flashvars%5bchapters.layout%5d=vertical&amp;flashvars%5bchapters.thumbnailRotator%5d=false&amp;flashvars%5bstreamSelector.plugin%5d=true&amp;flashvars%5bEmbedPlayer.SpinnerTarget%5d=videoHolder&amp;flashvars%5bdualScreen.plugin%5d=true&amp;flashvars%5bhotspots.plugin%5d=1&amp;flashvars%5bKaltura.addCrossoriginToIframe%5d=true&amp;&wid=1_iueede1t")
+        await browser.pause(1000);
+       // upload leaflet folder
+       // await batches.uploadLeafletFolder()
+        await browser.$('//input[@type=\'file\']').addValue(path.join(__dirname, '/src/Entresto'));
+        await browser.pause(5000);
+
         await batches.acceptButton()
         await browser.pause(5000);
+
+        let fArry = []
+        var i = 1
+        for (; await browser.$("//li["+i+"]//div[1]//button[1]").isExisting() == true; i++) {
+        fArry.push({ i })
+        }
+        let batchValue = 1
+        let rClick = ""
+        fArry.map((key) => {
+        
+        if (key == batchValue) {
+        rClick = key
+        }
+        })
+        console.log("delete value is "+rClick)
+       
+
+
+        // let value = await batches.deleteFile()
+        await browser.$("//li["+ rClick+"]//div[1]//button[1]").click()
+        await browser.pause(10000);
+
+        //div[normalize-space()="English SMPC"]
+       
+        //scrollIntoView
+        // await batches.acceptButton()
+        // await browser.pause(5000);
         //checkbox
         await batches.enableCheckToRecallThisBatch()
         await browser.pause(1000)
         //Create batch
-        await batches.createBatch()
-        await browser.pause(3000);
+        // await batches.createBatch()
+        // await browser.pause(3000);
     });
   
 

@@ -1,6 +1,7 @@
 const batches= require('../pageobjects/batches.page.js');
 const gtinPage = require('../specs/gtinPage.js');
 const path= require('path');
+const allureReporter = require('@wdio/allure-reporter').default
 
 let BatchID=""
 let SerialNumber=""
@@ -13,42 +14,49 @@ class batchId{
         return SerialNumber
     }
 
-    randomDate(){
-        return expiryDate
-    }
+    // randomDate(){
+    //     return expiryDate
+    // }
     
   }
-function randomDate() {
+// function randomDate() {
 
-    let end = new Date("2029-05-28")
-    let start = new Date("2023-01-01")
-    var date1 = new Date(+start + Math.random() * (end - start));
-    finalD = date1
-    let month = finalD.getMonth()
-    let date = finalD.getDate()
-    if(finalD.getMonth()<10){
-        month = "0"+finalD.getMonth()
-    }
-    if(finalD.getDate()<10){
-        date =  "0"+finalD.getDate()
-       }
-    var date2=finalD.getFullYear() +"-" + month + "-" + date
-    console.log(date2)
-    return date2
+//     let end = new Date("2029-05-28")
+//     let start = new Date("2023-01-01")
+//     var date1 = new Date(+start + Math.random() * (end - start));
+//     finalD = date1
+//     let month = finalD.getMonth()
+//     let date = finalD.getDate()
+//     if(finalD.getMonth()<10){
+//         month = "0"+finalD.getMonth()
+//     }
+//     if(finalD.getDate()<10){
+//         date =  "0"+finalD.getDate()
+//        }
+//     var date2=finalD.getFullYear() +"-" + month + "-" + date
+//     console.log(date2)
+//     return date2
 
- }
-describe('Batch Page', () => {
+//  }
+describe('Create Batch', () => {
 
-it('Should verify batch page functionalities', async() => {
+it('Should verify batch page ', async() => {
+    allureReporter.addFeature('Create Batch')
+    allureReporter.addSeverity('Critical');
+    allureReporter.addTestId('ProdAndBatchSetup_1')
+    allureReporter.addDescription('No. of batches can be created by Adding batch')
+    allureReporter.startStep("Create a batch for the recent GTIN with all valid details.")
+  
     await batches.Batch(); 
     await browser.pause(4000)         
     await batches.addBatch(); 
     await browser.pause(2000)
+    await batches.batchIdValue()
     BatchID= await batches.batchIdValue()
     console.log("Batch value is "+BatchID)
     await batches.siteName("Dolo-650 Tablet 15's"); 
-    await browser.pause(3000)
-   // let expiryDate = randomDate()
+    await browser.pause(5000)
+    let expiryDate = batches.randomDate()
     await browser.execute((date) => {
         (function () {
             let event = new Event('change');
@@ -59,8 +67,8 @@ it('Should verify batch page functionalities', async() => {
     }, expiryDate);
     await browser.pause(2000);
     const selectBox = await browser.$('//psk-select[@class=\'default-select hydrated\']//select[@class=\'form-control\']');
-    //  await selectBox.selectByAttribute('value', '10014331120600');
-    //  await browser.pause(2000);  
+     //await selectBox.selectByAttribute('value', '09088884204609');
+     await browser.pause(2000);  
     await selectBox.selectByAttribute('value', gtinPage.gt());
     await browser.pause(3000);
     //enable dateselection
@@ -87,13 +95,13 @@ it('Should verify batch page functionalities', async() => {
      await browser.pause(5000);
     //  await batches.enableResetAllValidSerialNumber()
     //  await browser.pause(1000);
-    //await batches.enableResetAllRecalledSerialNumber()
     await batches.enableResetAllDecommisionedSerialNumber()
     await browser.pause(1000);
     // manage serial number enter
     SerialNumber=Math.floor(100000 + Math.random() * 900000)
-    await batches.enterSerialNumber(SerialNumber)
-    await browser.pause(4000);
+    //await batches.enterSerialNumber(SerialNumber)
+    await batches.enterSerialNumber("123456")
+    await browser.pause(5000);
     await batches.selectStolenReasonFromDropdown('Stolen')
     // manage serial number accept 
     await batches.acceptSerialNumber()
@@ -128,34 +136,14 @@ it('Should verify batch page functionalities', async() => {
     await browser.pause(1000)
     //Create batch
     await batches.createBatch()
-    await browser.pause(3000);
-});
-
-xit('should verify edit for batches page in dashboard', async() => {
+    await browser.pause(5000);
     
-    let fArry = []
-    var i = 10
-
-    for (; await browser.$("div:nth-child(" + i + ")").isExisting() == true; i++) {
-        console.log(i)
-
-        fArry.push({ batchId: await browser.$("div:nth-child(" + i + ")").getText(), edit: i + 4 })
-        i = i + 6
-    }
-    let batchValue = "RY4115"
-    let rClick = ""
-    fArry.map((key, index) => {
-        if (key["batchId"] == batchValue) {
-            rClick = index
-        }
-
-    })
-    console.log(fArry)
-    console.log(fArry[rClick]["edit"])
-    //click on edit
-    await browser.execute('document.querySelector("div:nth-child(' + fArry[rClick]["edit"] + ') button:nth-child(1)").click()')
-    await browser.pause(2000)
-})
+    
+    allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
+    allureReporter.endStep("passed");
+    // await batches.cancelButton()
+    // await browser.pause(1000)
+});
 
 
 

@@ -1,5 +1,7 @@
 const { browser } = require("har-validator");
 
+let userNameclt="kpepiwdio"
+
 class accessAccount{
 get accessAccount1(){
     return  $("(//div/descendant::a[@id='access-wallet'][text()='Access Account'])")
@@ -18,10 +20,15 @@ async clickAccessAccount(){
     await this.accessAccount1.click();
 }
 
-async userNameClrEnt(userName){
+async userNameclt(){
+    return userNameclt;
+}
+
+async userNameClrEnt(userNameclt){
+    
     await this.userName.click();
     await this.userName.clearValue();
-    await this.userName.setValue(userName);
+    await this.userName.setValue(userNameclt);
 
 }
 async Enterbutton(){

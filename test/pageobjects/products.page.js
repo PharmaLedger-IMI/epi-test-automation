@@ -1,16 +1,17 @@
-const { browser } = require("har-validator");
+//const { browser } = require("har-validator");
 
 
 const expectChai = require('chai').expect;
-
-
 
 class productsPage {
 
 
     get openProduct(){
-        return  $('//a[@href=\'/products\']//span')
-       //return $("//p[normalize-space()='Manage Products']")
+        //return  $('//a[@href=\'/products\']//span')
+       return $("//p[normalize-space()='Manage Products']")
+    }
+    get clickProductFromleftsideNav(){
+        return $("=Products")
     }
     get addProductButton(){
         return $('//button[normalize-space()=\'+ ADD PRODUCT\']')
@@ -104,6 +105,12 @@ class productsPage {
     get videoSourceEpiEnter(){
         return $("//textarea[@value='@modalData.product.videoSource']")
     }
+    get addEpiAcceptButton(){
+        return $("//button[normalize-space()='Accept']")
+    }
+    get clickDeleteLanguageButton(){
+        return $("//button[@class='delete-language']")
+    }
     get marketManagementButtonClick(){
         return $("div:nth-child(2) > div:nth-child(1) > psk-button:nth-child(2) > button:nth-child(1)")
     }
@@ -135,10 +142,17 @@ class productsPage {
     get saveProductButton(){
         return $("//button[normalize-space()='Save Product']")
     }
+    get searchProduct(){
+        return $("//input[@id='code-search']")
+    }
+    get updateProductButton(){
+        return $("//button[normalize-space()='Update Product']")
+    }
    
     get cancelbutton()
     {
         return $("//button[normalize-space()='Cancel']")
+       
     }
     get clickViewEditButton(){
         return browser.execute('document.querySelector("button[data-tag=\'edit-product\']").click()')
@@ -157,6 +171,9 @@ class productsPage {
        
         await this.openProduct.click();
         
+    }
+    async clickProductFromSideNav(){
+        await this.clickProductFromleftsideNav.click()
     }
     async addProduct(){
        
@@ -209,8 +226,8 @@ class productsPage {
     }
     async enableBatchIsRecalled(){
        
-        await this.batchIsRecalledClick.click();
-        await expect(this.batchIsRecalledClick).toBeSelected();
+        //await this.batchIsRecalledClick.click();
+        await expect(this.batchIsRecalledClick).toBeEnabled();
         
     }
     async enableExpirationDateIsIncorrect(){
@@ -267,6 +284,15 @@ class productsPage {
         await this.videoSourceEpiEnter.setValue(link2)
     }
 
+    async acceptButton(){
+        await this.addEpiAcceptButton.scrollIntoView()
+         await this.addEpiAcceptButton.click()
+     }
+
+    async clickDeleteLanguage(){
+        await this.clickDeleteLanguageButton.click()
+    }
+
     // async leafletUpload(filePath2){
     //     await this.leaflet.click()
     //     await this.leaflet.addValue(filePath2);
@@ -304,21 +330,31 @@ class productsPage {
     async saveProduct(){
         await this.saveProductButton.click();
     }
-    async  setDateInPicker (date) {
-        //let expiryDate = "2029-05-28"
 
-        await browser.execute((date) => {
-            (function () {
-                let event = new Event('change');
-                let datePicker = document.querySelector("input[placeholder='dd/mm/yyyy']")
-                datePicker.value = date;
-                datePicker.dispatchEvent(event);
-            })();
-
-        }, date)
-        
-     await  browser.pause(2000)
+    ///edit
+    async searchProductCode(code){
+        await this.searchProduct.setValue(code)
     }
+    async updateProduct(){
+        await this.updateProductButton.scrollIntoView()
+        await this.updateProductButton.click()
+    }
+
+    // async  setDateInPicker (date) {
+    //     //let expiryDate = "2029-05-28"
+
+    //     await browser.execute((date) => {
+    //         (function () {
+    //             let event = new Event('change');
+    //             let datePicker = document.querySelector("input[placeholder='dd/mm/yyyy']")
+    //             datePicker.value = date;
+    //             datePicker.dispatchEvent(event);
+    //         })();
+
+    //     }, date)
+        
+    //  await  browser.pause(2000)
+    // }
     // async clickViewEdit(){
     //     await this.clickViewEditButton
     // }
