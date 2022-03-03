@@ -2,7 +2,9 @@ const gtinPage = require('../specs/gtinPage.js');
 //const products= require('../pageobjects/products.page');
 const batches= require('../pageobjects/batches.page.js');
 //const createbatch= require('../specs/createBatch.js');
-//const editBatch = require('../specs/editBatch.js');
+
+const matrix=require('../utility/2dMatrixPage')
+const data=require('../utility/expectationFile')
 const date=require('../utility/randomDate')
 const allureReporter = require('@wdio/allure-reporter').default
 //const path= require('path');
@@ -12,7 +14,7 @@ describe('Batch Recall and Recall Message for Non-serialized batches ', () => {
     
         allureReporter.startStep('Create a batch for any product. Do not add any serial numners.  Set the batch to recall it and add a display message for the same.')
        // allureReporter.startStep('Go back to the Batch on the Enterprise Wallet and undo the batch recall flag. ')
-        allureReporter.addTestId('BatchRecall&Msg')
+        allureReporter.addTestId('BatchRecall&Msg_1')
         // await batches.Batch();
         // await browser.pause(4000)
         await batches.addBatch();
@@ -42,28 +44,6 @@ describe('Batch Recall and Recall Message for Non-serialized batches ', () => {
         await batches.createBatch()
         await browser.pause(14000);
 
-
-        // let fArry = []
-        // var i = 10
-        // for (; await browser.$("div:nth-child(" + i + ")").isExisting() == true; i++) {
-        //     console.log(i)
-    
-        //     fArry.push({ batchId: await browser.$("div:nth-child(" + i + ")").getText(), edit: i + 4 })
-        //     i = i + 6
-        // }
-        // // let batchValue = date.batchID()//"QS5078"
-        //  let batchValue=createbatch.batchIdVal()
-        // //let batchValue ="WI2048"
-        //  let rClick = ""  
-        // fArry.map((key) => {
-        //     //{batchId:"QS5078",edit:68}
-        //     if (key["batchId"] == batchValue) { 
-        //         rClick = key["edit"] 
-        //     }
-    
-        // })
-        // console.log(fArry)
-        // editRow=rClick
         let editValue = date.getbatchId()
         //click on edit 
         await browser.execute('document.querySelector("div:nth-child(' + await date.editBatchRow(editValue) + ') button:nth-child(1)").click()')       
@@ -71,10 +51,10 @@ describe('Batch Recall and Recall Message for Non-serialized batches ', () => {
         
         //click on checkbox
         await batches.enableCheckToRecallThisBatch()
-        await browser.pause(1000)
+        await browser.pause(2000)
         //display recall msg
         await batches.enterRecallMessage("Sample123")
-        await browser.pause(1000);
+        await browser.pause(2000);
         //update batch
         await batches.updateBatchForEdit()
         await browser.pause(6000);
@@ -83,12 +63,17 @@ describe('Batch Recall and Recall Message for Non-serialized batches ', () => {
         await browser.pause(2000)
         //undo the batch recall
         await batches.enableCheckToRecallThisBatch()
-        await browser.pause(1000)
+        await browser.pause(3000)
+
+        await data.expectData(gtinPage.gt(), date.getbatchId(), date.randomDate(),  (await batches.serialNum()).toString, await batches.checkBatchMessage(),"", await batches.checkBatchRecall(),"", await batches.checkBatchRecallMessage() )
+        await browser.pause(12000)
+
         //update batch
         await batches.updateBatchForEdit()
-        await browser.pause(9000);
+        await browser.pause(10000);
 
-
+        matrix.generateImage(gtinPage.gt(), date.getbatchId(), date.randomDate(), await batches.serialNum())
+        await browser.pause(8000)
 
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");

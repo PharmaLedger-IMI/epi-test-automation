@@ -245,8 +245,18 @@ class productsPage {
     async enableSnIsInRecallList(){
         await this.snIsInRecallListClick.scrollIntoView()
         await this.snIsInRecallListClick.click();
-        //await expect(this.snIsInRecallListClick).toBeSelected(); 
+        
     }
+    async checkSnIsInRecallList()  {   
+        if(await this.snIsInRecallListClick.isEnabled()==true){
+           let snIsInRecallList=true
+           return snIsInRecallList
+        }
+        else{
+            let snIsInRecallList=false
+           return snIsInRecallList
+        }
+           }
     async enableSnIsInDecommissionedList(){
         await this.snIsInDecommissionedListClick.click()
        // await expect(this.snIsInDecommissionedListClick).toBeSelected(); 

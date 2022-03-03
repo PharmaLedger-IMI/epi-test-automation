@@ -2,11 +2,22 @@ const gtinPage = require('../specs/gtinPage.js');
 //const products= require('../pageobjects/products.page');
 const batches= require('../pageobjects/batches.page.js');
 //const createbatch= require('../specs/createBatch.js');
+const matrix=require('../utility/2dMatrixPage')
+const data=require('../utility/expectationFile')
 const date=require('../utility/randomDate')
 const allureReporter = require('@wdio/allure-reporter').default
 //const path= require('path');
+// const util = require('util');
+// const exec = util.promisify(require('child_process').exec);
 describe('Batch Recall and Batch Message', () => {
-    it('should Create a batch with a batch message', async () => {
+
+    // after(async () => {
+    //     const { stdout1, stderr1 } =await exec('cd ../epi-mobileapp-test-automation && npm run test');
+    //     console.log('stdout:', stdout1);
+    //     console.log('stderr:', stderr1);
+    //     })
+
+    it('BatchRecall&Msg_1-should Create a batch with a batch message', async () => {
     
         allureReporter.startStep(' Create a batch with a batch message.')
         allureReporter.addTestId('BatchRecall&Msg_2')
@@ -36,9 +47,15 @@ describe('Batch Recall and Batch Message', () => {
         
         await batches.batchMessage("Sample")
         await browser.pause(1000);
+
+        await data.expectData(gtinPage.gt(), date.getbatchId(), date.randomDate(),  (await batches.serialNum()).toString, "",await batches.checkBatchMessage(),"", "" )
+        await browser.pause(12000)
        
         await batches.createBatch()
         await browser.pause(15000);
+
+        matrix.generateImage(gtinPage.gt(), date.getbatchId(), date.randomDate(), await batches.serialNum())
+        await browser.pause(5000)
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");
        

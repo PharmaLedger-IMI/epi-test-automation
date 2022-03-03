@@ -6,6 +6,8 @@ const date=require('../utility/randomDate')
 const allureReporter = require('@wdio/allure-reporter').default
 const matrix=require('../utility/2dMatrixPage')
 const data=require('../utility/expectationFile')
+// const util = require('util');
+// const exec = util.promisify(require('child_process').exec);
 
 //let BatchID=""
 let SerialNumber=""
@@ -22,6 +24,12 @@ class batchId{
 
 describe('Create Batch', () => {
 
+    // after(async () => {
+    //     const { stdout1, stderr1 } =await exec('cd ../epi-mobileapp-test-automation && npm run test');
+    //     console.log('stdout:', stdout1);
+    //     console.log('stderr:', stderr1);
+    //     })
+
 it('Should verify batch page ', async() => {
     allureReporter.addFeature('Create Batch')
     allureReporter.addSeverity('Critical');
@@ -31,7 +39,7 @@ it('Should verify batch page ', async() => {
    
   
     await batches.Batch(); 
-    await browser.pause(4000)         
+    await browser.pause(6000)         
     await batches.addBatch(); 
     await browser.pause(2000)
     await batches.batchIdValue()
@@ -118,21 +126,19 @@ it('Should verify batch page ', async() => {
     await browser.pause(5000);
     //checkbox
     await batches.enableCheckToRecallThisBatch()
-    await browser.pause(1000)
+    await browser.pause(3000)
+    
+    await data.expectData(gtinPage.gt(), await batches.batchIdValue(), date.randomDate(),  (await batches.serialNum()).toString, await batches.checkBatchRecall())
+    await browser.pause(3000)
+     
     //Create batch
     await batches.createBatch()
     await browser.pause(8000);
 
     //Generate Image
    matrix.generateImage(gtinPage.gt(), await batches.batchIdValue(), date.randomDate(), await batches.serialNum())
-   await browser.pause(3000)
-   
-   await data.expectData(gtinPage.gt(), await batches.batchIdValue(), date.randomDate(), await batches.serialNum(), await batches.checkBatchRecall())
-   await browser.pause(3000)
-   
+   await browser.pause(5000)
 
-
-    
     
     allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
     allureReporter.endStep("passed");

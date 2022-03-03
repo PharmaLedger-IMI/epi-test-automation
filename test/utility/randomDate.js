@@ -60,47 +60,58 @@ class batchId{
         
       }
 
-function randomDate() {
+      function randomDate() {
 
-   
-    let end = new Date("2029-05-28")
-    let start = new Date("2023-01-01")
-    var date1 = new Date(+start + Math.random() * (end - start));
-    finalD = date1
-    console.log(finalD)
-    let month = finalD.getMonth()
-    let date = finalD.getDate()
-    if(finalD.getMonth()<10){
-        month = "0"+(finalD.getMonth()+1)
-    }
-    if(finalD.getDate()<10){
-        date =  "0"+finalD.getDate()
-       }
-    var date2=finalD.getFullYear() +"-" + month + "-" + date
-    console.log(date2)
-    return date2
-
- }
+        let end = new Date("2029-05-28")
+        let start = new Date("2023-01-01")
+        var date1 = new Date(+start + Math.random() * (end - start));
+        finalD = date1
+        console.log(finalD)
+        let month = finalD.getMonth()+1
+        let date = finalD.getDate()
+        if(month<10){
+  
+            month = "0"+(month)
+  
+        }
+        if(date<10){
+  
+            date =  "0"+date
+  
+           }
+  
+        var date2=finalD.getFullYear() +"-" + month + "-" + date
+  
+        return date2
+  
+     }
 
  function randomDateExpired() {
 
    
-    let end = new Date("2015-05-28")
-    let start = new Date("2004-01-01")
-    var date1 = new Date(+start + Math.random() * (end - start));
-    finalD = date1
-    console.log(finalD)
-    let month = finalD.getMonth()
-    let date = finalD.getDate()
-    if(finalD.getMonth()<10){
-        month = "0"+(finalD.getMonth()+1)
-    }
-    if(finalD.getDate()<10){
-        date =  "0"+finalD.getDate()
-       }
-    var date2=finalD.getFullYear() +"-" + month + "-" + date
-    console.log(date2)
-    return date2
+        let end = new Date("2015-05-28")
+        let start = new Date("2004-01-01")
+        var date1 = new Date(+start + Math.random() * (end - start));
+        finalD = date1
+        console.log(finalD)
+        let month = finalD.getMonth()+1
+        let date = finalD.getDate()
+        if(month<10){
+  
+            month = "0"+(month)
+  
+        }
+        if(date<10){
+  
+            date =  "0"+date
+  
+           }
+  
+        var date2=finalD.getFullYear() +"-" + month + "-" + date
+  
+        return date2
+  
+  
 
  }
 

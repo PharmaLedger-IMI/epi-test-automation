@@ -33,19 +33,19 @@ exports.config = {
              'test/specs/createBatch.js',
             
            
-           // 'test/specs/3_editProductforToggle_ePIFlag.js',
+           'test/specs/3_editProductforToggle_ePIFlag.js',
            
-            // 'test/specs/2_editBatchforRecallMsg.js',
-            // 'test/specs/createBatchWithoutanyFile.js',
-            // 'test/specs/createBatchWithUploadLeaflet.js',
-            // 'test/specs/createBatchWithUploadSMPC.js',
-            // 'test/specs/createBatchWithUploadBoth.js',
-            //'test/specs/batchRecallForSerialized.js',
-            // 'test/specs/batchRecallForNonSerialized.js',
-            //  'test/specs/allCombinationofBothMsgs-1.js',
-            //  'test/specs/allCombinationofBothMsgs-2.js',
-            //  'test/specs/allCombinationofBothMsgs-3.js',
-            //  'test/specs/allCombinationofBothMsgs-4.js',
+            'test/specs/2_editBatchforRecallMsg.js',
+            'test/specs/createBatchWithoutanyFile.js',
+            'test/specs/createBatchWithUploadLeaflet.js',
+            'test/specs/createBatchWithUploadSMPC.js',
+            'test/specs/createBatchWithUploadBoth.js',
+            'test/specs/batchRecallForSerialized.js',
+            'test/specs/batchRecallForNonSerialized.js',
+             'test/specs/allCombinationofBothMsgs-1.js',
+             'test/specs/allCombinationofBothMsgs-2.js',
+             'test/specs/allCombinationofBothMsgs-3.js',
+             'test/specs/allCombinationofBothMsgs-4.js',
           
 
             

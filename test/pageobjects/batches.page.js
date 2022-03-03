@@ -124,7 +124,7 @@ class batchesPage{
    
 
     async serialNum(){
-      const  SerialNumber=Math.floor(100000 + Math.random() * 900000)
+      const  SerialNumber=  Math.floor(100000 + Math.random() * 900000)
       return SerialNumber
     }
     async siteName(site){
@@ -209,14 +209,14 @@ class batchesPage{
 
     async checkBatchMessage()  {   
         if(await this.batchMessageEnter.isDisplayed()==true){
-           let batchMessageDisplayed=true
+           let batchMessageDisplayed="Sample"
            return batchMessageDisplayed
         }
         else{
-            let batchMessageDisplayed=false
+            let batchMessageDisplayed="No Message"
            return batchMessageDisplayed
         }
-           }
+    }
     async addEpi(){
         await this.addEpiButton.click()
     }
@@ -236,7 +236,7 @@ class batchesPage{
 
     }
     async checkBatchRecall()  {   
-        if(this.enableRecallThisBatch.toBeEnabled()==true){
+        if(await this.enableRecallThisBatch.isEnabled()==true){
            let batchRecall=true
            return batchRecall
         }
@@ -251,6 +251,16 @@ class batchesPage{
         //await this.enterRecallMessageInTextbox.clearValue()
         await this.enterRecallMessageInTextbox.setValue(RecallMessage)
     }
+    async checkBatchRecallMessage()  {   
+        if(await this.enterRecallMessageInTextbox.isDisplayed()==true){
+           let recallMessage="Sample"
+           return recallMessage
+        }
+        else{
+            let enterRecallMessageInTextbox="NA"
+           return enterRecallMessageInTextbox
+        }
+           }
     async updateBatchForEdit(){
         await this.updateBatchForEditButton.click()
     }
