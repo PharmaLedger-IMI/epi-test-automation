@@ -2,6 +2,7 @@ const gtinPage = require('../specs/gtinPage.js');
 const products= require('../pageobjects/products.page');
 const batches= require('../pageobjects/batches.page.js');
 const createbatch= require('../specs/createBatch.js');
+const date=require('../utility/randomDate')
 const allureReporter = require('@wdio/allure-reporter').default
 const path= require('path');
 
@@ -26,7 +27,7 @@ describe('Product Information Update ', () => {
                 datePicker.value = date;
                 datePicker.dispatchEvent(event);
             })();
-        }, batches.randomDate());
+        }, date.randomDate());
 
         await browser.pause(2000);
         const selectBox = await browser.$('//psk-select[@class=\'default-select hydrated\']//select[@class=\'form-control\']'); 
@@ -59,11 +60,13 @@ describe('Product Information Update ', () => {
         //await products.clickViewEdit()
         await browser.execute('document.querySelector("button[data-tag=\'edit-product\']").click()')
         await browser.pause(5000);
+
+        //delete previous version file
         await products.clickDeleteLanguage()
 
         
 
-        //add epi
+        //add new version epi
         await products.addEpi()
         await browser.pause(3000)
         //Video source
@@ -76,8 +79,6 @@ describe('Product Information Update ', () => {
         await browser.execute('document.querySelector("psk-button[disabled=\'@modalData.filesWereNotSelected\'] button[class=\'btn btn-primary\']").click();');
         await browser.pause(5000)
         //Update product
-
-       // await browser.execute('document.querySelector("psk-button[data-tag="add-product"] button[class="btn btn-primary"]").click()')
         await products.updateProduct()
         await browser.pause(8000);
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');

@@ -1,43 +1,25 @@
 const batches= require('../pageobjects/batches.page.js');
 const gtinPage = require('../specs/gtinPage.js');
 const path= require('path');
-const allureReporter = require('@wdio/allure-reporter').default
 
-let BatchID=""
+const date=require('../utility/randomDate')
+const allureReporter = require('@wdio/allure-reporter').default
+const matrix=require('../utility/2dMatrixPage')
+const data=require('../utility/expectationFile')
+
+//let BatchID=""
 let SerialNumber=""
-let expiryDate = randomDate()
+
 class batchId{
-    batchId(){
-      return BatchID
-  }
+//     batchIdVal(){
+//       return BatchID
+//   }
     SerialNumber(){
         return SerialNumber
     }
-
-    // randomDate(){
-    //     return expiryDate
-    // }
     
   }
-// function randomDate() {
 
-//     let end = new Date("2029-05-28")
-//     let start = new Date("2023-01-01")
-//     var date1 = new Date(+start + Math.random() * (end - start));
-//     finalD = date1
-//     let month = finalD.getMonth()
-//     let date = finalD.getDate()
-//     if(finalD.getMonth()<10){
-//         month = "0"+finalD.getMonth()
-//     }
-//     if(finalD.getDate()<10){
-//         date =  "0"+finalD.getDate()
-//        }
-//     var date2=finalD.getFullYear() +"-" + month + "-" + date
-//     console.log(date2)
-//     return date2
-
-//  }
 describe('Create Batch', () => {
 
 it('Should verify batch page ', async() => {
@@ -46,17 +28,20 @@ it('Should verify batch page ', async() => {
     allureReporter.addTestId('ProdAndBatchSetup_1')
     allureReporter.addDescription('No. of batches can be created by Adding batch')
     allureReporter.startStep("Create a batch for the recent GTIN with all valid details.")
+   
   
     await batches.Batch(); 
     await browser.pause(4000)         
     await batches.addBatch(); 
     await browser.pause(2000)
     await batches.batchIdValue()
-    BatchID= await batches.batchIdValue()
-    console.log("Batch value is "+BatchID)
+    //take batchid
+   // BatchID= await batches.batchIdValue()
+    date.setBatchId(await batches.batchIdValue())
+    //console.log("Batch value is "+BatchID)
     await batches.siteName("Dolo-650 Tablet 15's"); 
     await browser.pause(5000)
-    let expiryDate = batches.randomDate()
+    //let expiryDate = batches.randomDate()
     await browser.execute((date) => {
         (function () {
             let event = new Event('change');
@@ -64,12 +49,12 @@ it('Should verify batch page ', async() => {
             datePicker.value = date;
             datePicker.dispatchEvent(event);
         })();
-    }, expiryDate);
+    }, date.randomDate());
     await browser.pause(2000);
     const selectBox = await browser.$('//psk-select[@class=\'default-select hydrated\']//select[@class=\'form-control\']');
      //await selectBox.selectByAttribute('value', '09088884204609');
      await browser.pause(2000);  
-    await selectBox.selectByAttribute('value', gtinPage.gt());
+     await selectBox.selectByAttribute('value', gtinPage.gt());
     await browser.pause(3000);
     //enable dateselection
     await batches.enableDaySelection();
@@ -99,8 +84,8 @@ it('Should verify batch page ', async() => {
     await browser.pause(1000);
     // manage serial number enter
     SerialNumber=Math.floor(100000 + Math.random() * 900000)
-    //await batches.enterSerialNumber(SerialNumber)
-    await batches.enterSerialNumber("123456")
+    await batches.enterSerialNumber(SerialNumber)
+   // await batches.enterSerialNumber("123456")
     await browser.pause(5000);
     await batches.selectStolenReasonFromDropdown('Stolen')
     // manage serial number accept 
@@ -136,7 +121,17 @@ it('Should verify batch page ', async() => {
     await browser.pause(1000)
     //Create batch
     await batches.createBatch()
-    await browser.pause(5000);
+    await browser.pause(8000);
+
+    //Generate Image
+   matrix.generateImage(gtinPage.gt(), await batches.batchIdValue(), date.randomDate(), await batches.serialNum())
+   await browser.pause(3000)
+   
+   await data.expectData(gtinPage.gt(), await batches.batchIdValue(), date.randomDate(), await batches.serialNum(), await batches.checkBatchRecall())
+   await browser.pause(3000)
+   
+
+
     
     
     allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');

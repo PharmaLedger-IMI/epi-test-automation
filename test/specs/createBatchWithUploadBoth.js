@@ -2,6 +2,7 @@ const gtinPage = require('../specs/gtinPage.js');
 const products= require('../pageobjects/products.page');
 const batches= require('../pageobjects/batches.page.js');
 const createbatch= require('../specs/createBatch.js');
+const date=require('../utility/randomDate')
 const allureReporter = require('@wdio/allure-reporter').default
 const path= require('path');
 describe('Product Information Update', () => {
@@ -25,7 +26,7 @@ describe('Product Information Update', () => {
                 datePicker.value = date;
                 datePicker.dispatchEvent(event);
             })();
-        }, batches.randomDate());
+        }, date.randomDate());
         await browser.pause(4000);
         const selectBox = await browser.$('//psk-select[@class=\'default-select hydrated\']//select[@class=\'form-control\']');  
         await selectBox.selectByAttribute('value', gtinPage.gt());

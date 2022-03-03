@@ -7,8 +7,8 @@ class productsPage {
 
 
     get openProduct(){
-        //return  $('//a[@href=\'/products\']//span')
-       return $("//p[normalize-space()='Manage Products']")
+        return  $('//a[@href=\'/products\']//span')
+       //return $("//p[normalize-space()='Manage Products']")
     }
     get clickProductFromleftsideNav(){
         return $("=Products")
@@ -226,13 +226,13 @@ class productsPage {
     }
     async enableBatchIsRecalled(){
        
-        //await this.batchIsRecalledClick.click();
-        await expect(this.batchIsRecalledClick).toBeEnabled();
+        await this.batchIsRecalledClick.click();
+        //await expect(this.batchIsRecalledClick).toBeEnabled();
         
     }
     async enableExpirationDateIsIncorrect(){
         await this.expirationDateIsIncorrectClick.click()
-        await expect(this.batchIsRecalledClick).toBeSelected();
+       // await expect(this.batchIsRecalledClick).toBeEnabled();
     }
     async batchExpired(){
               

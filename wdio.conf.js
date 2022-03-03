@@ -27,20 +27,25 @@ exports.config = {
         //'test/specs/test.js',
          //'test/specs/landingPage.js',
 
-           // 'test/specs/gtinPage.js',
+            'test/specs/gtinPage.js',
             'test/specs/loginCredentials.js',
-            // 'test/specs/createProduct.js',
-            // 'test/specs/createBatch.js',
-             //'test/specs/2dMatrixPage.js',
-            'test/specs/editProduct.js',
-            // 'test/specs/3_editProductforToggle_ePIFlag.js',
-            'test/specs/editBatch.js',
-            'test/specs/2_editBatchforRecallMsg.js',
+            'test/specs/createProduct.js',
+             'test/specs/createBatch.js',
+            
+           
+           // 'test/specs/3_editProductforToggle_ePIFlag.js',
+           
+            // 'test/specs/2_editBatchforRecallMsg.js',
             // 'test/specs/createBatchWithoutanyFile.js',
             // 'test/specs/createBatchWithUploadLeaflet.js',
             // 'test/specs/createBatchWithUploadSMPC.js',
             // 'test/specs/createBatchWithUploadBoth.js',
-            'test/specs/2dMatrixPage.js',
+            //'test/specs/batchRecallForSerialized.js',
+            // 'test/specs/batchRecallForNonSerialized.js',
+            //  'test/specs/allCombinationofBothMsgs-1.js',
+            //  'test/specs/allCombinationofBothMsgs-2.js',
+            //  'test/specs/allCombinationofBothMsgs-3.js',
+            //  'test/specs/allCombinationofBothMsgs-4.js',
           
 
             
@@ -136,8 +141,8 @@ exports.config = {
     // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
     // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
     // gets prepended directly.
-    baseUrl: 'https://epiqa.westeurope.cloudapp.azure.com/',
-    //baseUrl:'http://localhost:3000',
+    //baseUrl: 'https://epiqa.westeurope.cloudapp.azure.com/',
+    baseUrl:'http://localhost:3000',
     //
     // Default timeout for all waitFor* commands.
     waitforTimeout: 10000,

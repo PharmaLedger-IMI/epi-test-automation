@@ -1,9 +1,14 @@
 
 
-//const { browser } = require("har-validator");
+
 
 const expectChai = require('chai').expect;
+
+//var i = 10
 class batchesPage{
+
+    
+
     get batchFromSideNav(){
         return  $("=Batches")
         //return $("//a[normalize-space()='Batches']")
@@ -14,6 +19,9 @@ class batchesPage{
     get batchIdValue1(){
         return $('//input[@placeholder=\'Add batch id\']')
     }
+
+    
+    
     get addsitename(){
         return $("//input[@placeholder='Add site name']")
     }
@@ -107,13 +115,17 @@ class batchesPage{
         
     }
     async batchIdValue(){
-        this.batchIdValue1.click()
-        this.batchIdValue1.clearValue()
-        this.batchIdValue1.setValue("WL6190")
+       
         const batchId = await this.batchIdValue1.getValue();
         console.log(batchId)
         return batchId
 
+    }
+   
+
+    async serialNum(){
+      const  SerialNumber=Math.floor(100000 + Math.random() * 900000)
+      return SerialNumber
     }
     async siteName(site){
         
@@ -125,26 +137,9 @@ class batchesPage{
         await expect(this.enableDaySelectionCheckbox).toBeEnabled();
     }
 
-    async randomDate() {
+   
 
-        let end = new Date("2029-05-28")
-        let start = new Date("2023-01-01")
-        var date1 = new Date(+start + Math.random() * (end - start));
-        finalD = date1
-        let month = finalD.getMonth()
-        let date = finalD.getDate()
-        if(finalD.getMonth()<10){
-            month = "0"+finalD.getMonth()
-        }
-        if(finalD.getDate()<10){
-            date =  "0"+finalD.getDate()
-           }
-        var date2=finalD.getFullYear() +"-" + month + "-" + date
-        console.log(date2)
-        return date2
     
-     }
-
 
     async videoSource(link1){
         await this.videoSourceEnter.setValue(link1)
@@ -189,6 +184,16 @@ class batchesPage{
     async selectDamagedReasonFromDropdown(Damaged){
         await this.selectReasonFromDropdown.selectByVisibleText(Damaged)
     }
+
+    
+    // async serialNumber(){
+
+       
+    //     const  SerialNumber=Math.floor(100000 + Math.random() * 900000)
+    //     return SerialNumber
+
+    // }
+
     async enterSerialNumber(serialNumber){
         await this.enterSerialNumberField.setValue(serialNumber)
     }
@@ -201,6 +206,17 @@ class batchesPage{
     async batchMessage(message){
         await this.batchMessageEnter.setValue(message)
     }
+
+    async checkBatchMessage()  {   
+        if(await this.batchMessageEnter.isDisplayed()==true){
+           let batchMessageDisplayed=true
+           return batchMessageDisplayed
+        }
+        else{
+            let batchMessageDisplayed=false
+           return batchMessageDisplayed
+        }
+           }
     async addEpi(){
         await this.addEpiButton.click()
     }
@@ -214,15 +230,25 @@ class batchesPage{
         await this.videoSourceEpiEnter.setValue(link2)
     }
     async enableCheckToRecallThisBatch(){
-        //await this.enableRecallThisBatch.click()
         await this.enableRecallThisBatch.scrollIntoView()
+        await this.enableRecallThisBatch.click()
         await expect(this.enableRecallThisBatch).toBeEnabled()
 
     }
+    async checkBatchRecall()  {   
+        if(this.enableRecallThisBatch.toBeEnabled()==true){
+           let batchRecall=true
+           return batchRecall
+        }
+        else{
+            let batchRecall=false
+           return batchRecall
+        }
+           }
     async enterRecallMessage(RecallMessage){
         //await this.enterRecallMessageInTextbox.scrollIntoView()
         await this.enterRecallMessageInTextbox.click()
-        await this.enterRecallMessageInTextbox.clearValue()
+        //await this.enterRecallMessageInTextbox.clearValue()
         await this.enterRecallMessageInTextbox.setValue(RecallMessage)
     }
     async updateBatchForEdit(){
@@ -242,32 +268,66 @@ class batchesPage{
     }
 
 
-    async deleteFile(){
+  
+    // get editbatchR(){
         
-        // let fArry = []
-        // var i = 1
-        // for (; await browser.$("//li["+i+"]//div[1]//button[1]").isExisting() == true; i++) {
-        // fArry.push({ i })
-        // }
-        // let batchValue = 1
-        // let rClick = ""
-        // fArry.map((key) => {
-        
-        // if (key == batchValue) {
-        // rClick = key
-        // }
-        // })
-        // console.log("delete value is "+rClick)
-        // return rClick
+    //     $("div:nth-child(" + i + ")")
+    // }
 
+    // async editBatch(){
+    // let fArry = []
+    
+
+    // for (; await this.editbatchR.isExisting() == true; i++) {
+    //     console.log(i)
+
+    //     fArry.push({ batchId: await this.editbatchR.getText(), edit: i + 4 })
+    //     i = i + 6
+    // }
+    // // let batchValue = date.batchID()//"QS5078"
+    //  let batchValue=await this.batchIdValue1.getValue()
+    // //let batchValue ="WL6190"
+    //  let rClick = ""
+     
+    // fArry.map((key) => {
+    //     //{batchId:"QS5078",edit:68}
+    //     if (key["batchId"] == batchValue) { 
+    //         rClick = key["edit"] 
+    //     }
+
+    // })
+    // console.log(fArry)
+  
+    // editRow=rClick
+    // return editRow
+    // }
+
+
+
+
+
+    // async deleteFile(){
         
-      
+    //     // let fArry = []
+    //     // var i = 1
+    //     // for (; await browser.$("//li["+i+"]//div[1]//button[1]").isExisting() == true; i++) {
+    //     // fArry.push({ i })
+    //     // }
+    //     // let batchValue = 1
+    //     // let rClick = ""
+    //     // fArry.map((key) => {
+        
+    //     // if (key == batchValue) {
+    //     // rClick = key
+    //     // }
+    //     // })
+    //     // console.log("delete value is "+rClick)
+    //     // return rClick 
+
+    // }
 
     }
 
-
-
-
-
-}
-module.exports = new batchesPage();
+    
+    module.exports = new batchesPage();
+ 

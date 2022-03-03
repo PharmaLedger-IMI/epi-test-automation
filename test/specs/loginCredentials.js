@@ -39,7 +39,7 @@ it('should open Access Account', async() => {
      await accessAccount.userNameClrEnt("kpepiwdio");
      await browser.pause(2000)
      await accessAccount.Enterbutton();
-     await browser.pause(20000)
+     await browser.pause(15000)
      
      //home page screenshot
      allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');

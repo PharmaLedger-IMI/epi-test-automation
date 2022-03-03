@@ -1,26 +1,28 @@
 const gtinPage = require('../specs/gtinPage.js');
-const products= require('../pageobjects/products.page');
+//const products= require('../pageobjects/products.page');
 const batches= require('../pageobjects/batches.page.js');
 const createbatch= require('../specs/createBatch.js');
-const editBatch = require('../specs/editBatch.js');
+//const editBatch = require('../specs/editBatch.js');
+const date=require('../utility/randomDate')
 const allureReporter = require('@wdio/allure-reporter').default
-const path= require('path');
+//const path= require('path');
 
 describe('Batch Recall and Recall Message for serialized batches ', () => {
     it('BatchRecall&Msgs_1-should verify Batch Recall and Recall Message for serialized batches ', async () => {
     
         allureReporter.startStep('Create a batch for any product. Upload Valid Serial Numbers for the same')
-        allureReporter.startStep('Update the batch to recall it and add a display message for the same.')
-        allureReporter.addTestId('ProdInfoUpdate_1')
-        // await batches.Batch();
-        // await browser.pause(4000)
+        //allureReporter.startStep('Update the batch to recall it and add a display message for the same.')
+        allureReporter.addTestId('BatchRecall&Msg')
+        await batches.Batch();
+        await browser.pause(4000)
         await batches.addBatch();
-        await browser.pause(2000)
-        BatchID = await batches.batchIdValue()
-        console.log("Batch value is " + BatchID)
+        await browser.pause(3000)
+        date.setBatchId(await batches.batchIdValue())
+        // BatchID = await batches.batchIdValue()
+        // console.log("Batch value is " + BatchID)
         await batches.siteName("Dolo-650 Tablet 15's");
-        await browser.pause(5000)
-        // let expiryDate = randomDate()
+        await browser.pause(6000)
+        
         await browser.execute((date) => {
             (function () {
                 let event = new Event('change');
@@ -28,7 +30,7 @@ describe('Batch Recall and Recall Message for serialized batches ', () => {
                 datePicker.value = date;
                 datePicker.dispatchEvent(event);
             })();
-        }, batches.randomDate());
+        }, date.randomDate());
 
         await browser.pause(2000);
         const selectBox = await browser.$('//psk-select[@class=\'default-select hydrated\']//select[@class=\'form-control\']'); 
@@ -46,24 +48,56 @@ describe('Batch Recall and Recall Message for serialized batches ', () => {
         await browser.pause(1000);
        
         await batches.createBatch()
-        await browser.pause(5000);
+        await browser.pause(8000);
 
-        await browser.execute('document.querySelector("div:nth-child(' + editBatch.editbatchRow() + ') button:nth-child(1)").click()')       
-        await browser.pause(2000)
+        // let fArry = []
+        // var i = 10
+        // for (; await browser.$("div:nth-child(" + i + ")").isExisting() == true; i++) {
+        //     console.log(i)
+    
+        //     fArry.push({ batchId: await browser.$("div:nth-child(" + i + ")").getText(), edit: i + 4 })
+        //     i = i + 6
+        // }
+        // // let batchValue = date.batchID()//"QS5078"
+        //  let batchValue=createbatch.batchIdVal()
+        // //let batchValue ="WI2048"
+        //  let rClick = ""  
+        // fArry.map((key) => {
+        //     //{batchId:"QS5078",edit:68}
+        //     if (key["batchId"] == batchValue) { 
+        //         rClick = key["edit"] 
+        //     }
+    
+        // })
+        // console.log(fArry)
+        // editRow=rClick
         
-
+        let editValue = date.getbatchId()
+        //click on edit 
+        await browser.execute('document.querySelector("div:nth-child(' + await date.editBatchRow(editValue) + ') button:nth-child(1)").click()')       
+        await browser.pause(5000)
+        
+        //click on checkbox
         await batches.enableCheckToRecallThisBatch()
         await browser.pause(1000)
-
-        await batches.batchMessage("Sample")
+        //display recall msg
+        await batches.enterRecallMessage("Sample")
         await browser.pause(1000);
+        //update batch
+        await batches.updateBatchForEdit()
+        await browser.pause(6000);
+        //Again click on edit batch
+        await browser.execute('document.querySelector("div:nth-child(' + await date.editBatchRow(editValue) + ') button:nth-child(1)").click()')       
+        await browser.pause(2000)
+        //undo the batch recall
+        await batches.enableCheckToRecallThisBatch()
+        await browser.pause(1000)
+        //update batch
+        await batches.updateBatchForEdit()
+        await browser.pause(7000);
 
-        
 
-        
 
-        
-        
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");
        

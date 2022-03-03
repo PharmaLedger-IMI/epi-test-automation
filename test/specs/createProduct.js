@@ -1,14 +1,14 @@
-const LoginPage = require('../pageobjects/login.page');
+//const LoginPage = require('../pageobjects/login.page');
 const gtinPage = require('../specs/gtinPage.js');
-const accessAccount= require('../pageobjects/access.Account');
+//const accessAccount= require('../pageobjects/access.Account');
 const products= require('../pageobjects/products.page');
 const allureReporter = require('@wdio/allure-reporter').default
 const path= require('path');
-const fs = require('fs')
-const util = require('util');
-const exec = util.promisify(require('child_process').exec);
-let data =JSON.parse(fs.readFileSync('test/testData/myjsonFile.json'))
-const testData= require('../test/testdata/myjsonFile.json')
+ const fs = require('fs')
+// const util = require('util');
+// const exec = util.promisify(require('child_process').exec);
+//let data =JSON.parse(fs.readFileSync('test/testData/myjsonFile.json'))
+//const testData= require('../test/testdata/myjsonFile.json')
 
 
 describe('Create Product', () => {
@@ -23,26 +23,8 @@ it('should verify product page', async() => {
     allureReporter.addDescription('No. of products can be created by Adding Product')
     allureReporter.startStep("Create new product with a valid GTIN, and add the ePI");
 
-    // const testExpectations = {};
-    // testExpectations.prodCode = '09088884204609';
-    // testExpectations.prodName = 'dolo-650'
-    // testExpectations.expiry = '23/09/26'
-    // testExpectations.batchNumber = '123456'
-    // testExpectations.batchRecall = true
-    // testExpectations.ePIBeDisplayed = true
-    // testExpectations.batchMessageDisplayed = true
-    // testExpectations.batchRecallMessage = "Tim said its recall"
-
-    // let jsonData = JSON.stringify(testExpectations)
-    // console.log("file is " + jsonData)
-    // fs.writeFile('C:/Users/snehav/epi-test-automation/test/testdata/myjsonFile.json', jsonData, 'utf8', () => {
-
-    //     console.log('written file')
-
-    // });
-
     await products.clickProduct();
-    await browser.pause(2000);
+    await browser.pause(3000);
     await products.addProduct();
     await browser.pause(5000);
     await products.gtinClrEnt();
@@ -68,7 +50,7 @@ it('should verify product page', async() => {
     await browser.pause(1000)
     // video source
     await products.videoSource("https://cdnapisec.kaltura.com/html5/html5lib/v2.92/mwEmbedFrame.php/p/2076321/uiconf_id/46847003/entry_id/1_cuq6u28l?wid=_2076321&iframeembed=true&playerId=kaltura_player&entry_id=1_cuq6u28l&flashvars%5bstreamerType%5d=auto&amp;flashvars%5blocalizationCode%5d=en&amp;flashvars%5bleadWithHTML5%5d=true&amp;flashvars%5bsideBarContainer.plugin%5d=true&amp;flashvars%5bsideBarContainer.position%5d=left&amp;flashvars%5bsideBarContainer.clickToClose%5d=true&amp;flashvars%5bchapters.plugin%5d=true&amp;flashvars%5bchapters.layout%5d=vertical&amp;flashvars%5bchapters.thumbnailRotator%5d=false&amp;flashvars%5bstreamSelector.plugin%5d=true&amp;flashvars%5bEmbedPlayer.SpinnerTarget%5d=videoHolder&amp;flashvars%5bdualScreen.plugin%5d=true&amp;flashvars%5bhotspots.plugin%5d=1&amp;flashvars%5bKaltura.addCrossoriginToIframe%5d=true&amp;&wid=1_iueede1t")
-    await browser.pause(1000) 
+    await browser.pause(2000) 
     await products.enableBatchIsRecalled(); 
     await browser.pause(1000)
      //add epi
@@ -90,7 +72,7 @@ it('should verify product page', async() => {
      await browser.pause(3000)
      //Save product
      await products.saveProduct()
-     await browser.pause(10000)
+     await browser.pause(14000)
      allureReporter.endStep("passed");
      allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
     
