@@ -33,9 +33,9 @@ exports.config = {
              'test/specs/createBatch.js',
             
            
-        //    'test/specs/3_editProductforToggle_ePIFlag.js',
+          // 'test/specs/3_editProductforToggle_ePIFlag.js',
            
-        //     'test/specs/2_editBatchforRecallMsg.js',
+           'test/specs/2_editBatchforRecallMsg.js',
         //     'test/specs/createBatchWithoutanyFile.js',
         //     'test/specs/createBatchWithUploadLeaflet.js',
         //     'test/specs/createBatchWithUploadSMPC.js',

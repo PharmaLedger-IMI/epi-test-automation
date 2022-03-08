@@ -44,14 +44,7 @@ describe('Product Information Update', () => {
         await browser.pause(3000);
         await batches.videoSource("https://cdnapisec.kaltura.com/html5/html5lib/v2.92/mwEmbedFrame.php/p/2076321/uiconf_id/46847003/entry_id/1_cuq6u28l?wid=_2076321&iframeembed=true&playerId=kaltura_player&entry_id=1_cuq6u28l&flashvars%5bstreamerType%5d=auto&amp;flashvars%5blocalizationCode%5d=en&amp;flashvars%5bleadWithHTML5%5d=true&amp;flashvars%5bsideBarContainer.plugin%5d=true&amp;flashvars%5bsideBarContainer.position%5d=left&amp;flashvars%5bsideBarContainer.clickToClose%5d=true&amp;flashvars%5bchapters.plugin%5d=true&amp;flashvars%5bchapters.layout%5d=vertical&amp;flashvars%5bchapters.thumbnailRotator%5d=false&amp;flashvars%5bstreamSelector.plugin%5d=true&amp;flashvars%5bEmbedPlayer.SpinnerTarget%5d=videoHolder&amp;flashvars%5bdualScreen.plugin%5d=true&amp;flashvars%5bhotspots.plugin%5d=1&amp;flashvars%5bKaltura.addCrossoriginToIframe%5d=true&amp;&wid=1_iueede1t")
         await browser.pause(1000);
-        // await batches.selectUpdateValidSerialFromDropdown('Update Valid')
-        // await browser.pause(5000);
-        // await batches.enableResetAllValidSerialNumber()
-        // await browser.pause(1000);
-        // await batches.enterSerialNumber(createbatch.SerialNumber())
-        // await browser.pause(5000);
-        // await batches.acceptSerialNumber()
-        // await browser.pause(1000);
+        //Enter batch message
         await batches.batchMessage("Sample")
         await browser.pause(1000);
         await batches.addEpi()

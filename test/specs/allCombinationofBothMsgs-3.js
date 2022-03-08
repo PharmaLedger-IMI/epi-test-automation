@@ -51,7 +51,7 @@ describe('Batch Recall and Batch Message', () => {
         await batches.enterRecallMessage("Tim said its recall")
         await browser.pause(3000)
 
-        await data.expectData(gtinPage.gt(), date.getbatchId(), date.randomDate(),  date.getSerialNumber(), "","", await batches.checkBatchRecall(),"", await batches.checkBatchRecallMessage() )
+        await data.expectData(gtinPage.gt(), date.getbatchId(), date.randomDate(),  date.getSerialNumber(),await batches.checkBatchRecall(), "","", await batches.checkBatchRecallMessage() )
         await browser.pause(12000)
        
         await batches.createBatch()

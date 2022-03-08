@@ -11,7 +11,7 @@ let currentJSON = ""
     //     testExpectations.batchRecall = batchCheck
         
     //     } 
-    async expectData(gtin, batchNumber, expiryDate, serialNumber, batchCheck, batchMessage, snIsInRecallList, recallMessage){
+    async expectData(gtin, batchNumber, expiryDate, serialNumber, productName, batchCheck, batchMessage, snIsInRecallList, recallMessage){
 
     const expdate = expiryDate.replace('-', '')
     const expdate1 = expdate.replace('-', '')
@@ -22,7 +22,7 @@ let currentJSON = ""
     testExpectations.batchValue=batchNumber
     testExpectations.expiry = expiryDate1
     testExpectations.batchSerialNumber = serialNumber
-    testExpectations.prodName = 'Dolo-650'  
+    testExpectations.prodName = productName  
     testExpectations.batchRecall = batchCheck
     testExpectations.batchMessageDisplayed = batchMessage
     testExpectations.snIsInRecallListePIBeDisplayed = snIsInRecallList

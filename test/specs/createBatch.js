@@ -5,20 +5,12 @@ const path= require('path');
 const date=require('../utility/randomDate')
 const allureReporter = require('@wdio/allure-reporter').default
 const matrix=require('../utility/2dMatrixPage')
-const data=require('../utility/expectationFile')
+const data=require('../utility/expectationFile');
+
+
 // const util = require('util');
 // const exec = util.promisify(require('child_process').exec);
 
-//let BatchID=""
-// let SerialNumber=""
-
-class batchId{
-
-//     SerialNumber(){
-//         return SerialNumber
-//     }
-    
-   }
 
 describe('Create Batch', () => {
 
@@ -36,14 +28,17 @@ it('Should verify batch page ', async() => {
     allureReporter.startStep("Create a batch for the recent GTIN with all valid details.")
    
   
-    await batches.Batch(); 
-    await browser.pause(6000)         
-    await batches.addBatch(); 
-    await browser.pause(2000)
-    await batches.batchIdValue()
+    // await batches.Batch(); 
+    await browser.execute('document.querySelector(`a[href="/batches"]`).click()')
+    await browser.pause(6000)   
+    await browser.execute('document.querySelector(`button[data-tag="add-batch"]`).click()')      
+    // await batches.addBatch(); 
+    await browser.pause(3000)
+    //await batches.batchIdValue()
     //take batchid
    // BatchID= await batches.batchIdValue()
     date.setBatchId(await batches.batchIdValue())
+    await browser.pause(3000)
     //console.log("Batch value is "+BatchID)
     await batches.siteName("Dolo-650 Tablet 15's"); 
     await browser.pause(5000)
@@ -64,37 +59,37 @@ it('Should verify batch page ', async() => {
     await browser.pause(3000);
     //enable dateselection
     await batches.enableDaySelection();
-    await browser.pause(1000);
+    await browser.pause(2000);
     //video source
     await batches.videoSource("https://cdnapisec.kaltura.com/html5/html5lib/v2.92/mwEmbedFrame.php/p/2076321/uiconf_id/46847003/entry_id/1_cuq6u28l?wid=_2076321&iframeembed=true&playerId=kaltura_player&entry_id=1_cuq6u28l&flashvars%5bstreamerType%5d=auto&amp;flashvars%5blocalizationCode%5d=en&amp;flashvars%5bleadWithHTML5%5d=true&amp;flashvars%5bsideBarContainer.plugin%5d=true&amp;flashvars%5bsideBarContainer.position%5d=left&amp;flashvars%5bsideBarContainer.clickToClose%5d=true&amp;flashvars%5bchapters.plugin%5d=true&amp;flashvars%5bchapters.layout%5d=vertical&amp;flashvars%5bchapters.thumbnailRotator%5d=false&amp;flashvars%5bstreamSelector.plugin%5d=true&amp;flashvars%5bEmbedPlayer.SpinnerTarget%5d=videoHolder&amp;flashvars%5bdualScreen.plugin%5d=true&amp;flashvars%5bhotspots.plugin%5d=1&amp;flashvars%5bKaltura.addCrossoriginToIframe%5d=true&amp;&wid=1_iueede1t")
-    await browser.pause(1000);
+    await browser.pause(2000);
     //enable incorrect expiration date verification
     await batches.enableIncorrectExpirationDateVerification()
-    await browser.pause(1000);
+    await browser.pause(2000);
     //expiration date verification       
     await batches.expirationDateVerification()
     // enable serial number verification
-    await browser.pause(1000);
+    await browser.pause(2000);
     await batches.enableSerialNumberVerification()
-    await browser.pause(1000);
+    await browser.pause(2000);
     // manage serial numbers dropdown
-    //  await batches.selectUpdateValidSerialFromDropdown('Update Valid')
-    //  await browser.pause(5000);
+     await batches.selectUpdateValidSerialFromDropdown('Update Valid')
+     await browser.pause(5000);
     //  await batches.selectUpdateValidSerialFromDropdown('Update Recalled')
     //  await browser.pause(5000);
-     await batches.selectUpdateValidSerialFromDropdown('Update decommissioned')
-     await browser.pause(5000);
-    //  await batches.enableResetAllValidSerialNumber()
-    //  await browser.pause(1000);
-    await batches.enableResetAllDecommisionedSerialNumber()
-    await browser.pause(1000);
+    //  await batches.selectUpdateValidSerialFromDropdown('Update decommissioned')
+    //  await browser.pause(5000);
+     await batches.enableResetAllValidSerialNumber()
+     await browser.pause(2000);
+    // await batches.enableResetAllDecommisionedSerialNumber()
+    // await browser.pause(1000);
     // manage serial number enter
    // SerialNumber=Math.floor(100000 + Math.random() * 900000)
     date.setSerialNumber(await batches.serialNum())
     await batches.enterSerialNumber(date.getSerialNumber())
    // await batches.enterSerialNumber("123456")
     await browser.pause(5000);
-    await batches.selectStolenReasonFromDropdown('Stolen')
+    // await batches.selectStolenReasonFromDropdown('Stolen')
     // manage serial number accept 
     await batches.acceptSerialNumber()
     await browser.pause(1000);
@@ -102,8 +97,8 @@ it('Should verify batch page ', async() => {
     // await batches.cancelSerialNumber()
     // await browser.pause(1000);
     // batch msg
-    await batches.batchMessage("Sample")
-    await browser.pause(1000);
+    // await batches.batchMessage("Sample")
+    // await browser.pause(1000);
     // add epi leaflet
     await batches.addEpi()
     await browser.pause(1000);
@@ -124,15 +119,16 @@ it('Should verify batch page ', async() => {
     await batches.acceptButton()
     await browser.pause(5000);
     //checkbox
-    await batches.enableCheckToRecallThisBatch()
-    await browser.pause(3000)
+    // await batches.enableCheckToRecallThisBatch()
+    // await browser.pause(3000)
     
-    await data.expectData(gtinPage.gt(), await batches.batchIdValue(), date.randomDate(),  date.getSerialNumber(), await batches.checkBatchRecall())
+    await data.expectData(gtinPage.gt(), date.getbatchId(), date.randomDate(),  date.getSerialNumber(), date.getBrandName(), "","","","")
     await browser.pause(3000)
      
     //Create batch
-    await batches.createBatch()
-    await browser.pause(8000);
+     await batches.createBatch()
+
+     await browser.pause(40000);
 
     //Generate Image
    matrix.generateImage(gtinPage.gt(), await batches.batchIdValue(), date.randomDate(), date.getSerialNumber())
@@ -148,4 +144,4 @@ it('Should verify batch page ', async() => {
 
 
 })
-module.exports = new batchId();
+

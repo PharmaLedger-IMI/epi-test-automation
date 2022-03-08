@@ -72,7 +72,7 @@ describe('Batch Recall and Recall Message for Non-serialized batches ', () => {
         await batches.enableCheckToRecallThisBatch()
         await browser.pause(3000)
 
-        await data.expectData(gtinPage.gt(), date.getbatchId(), date.randomDate(),  date.getSerialNumber(), await batches.checkBatchMessage(),"", await batches.checkBatchRecall(),"", await batches.checkBatchRecallMessage() )
+        await data.expectData(gtinPage.gt(), date.getbatchId(), date.randomDate(),  date.getSerialNumber(),await batches.checkBatchRecall(), await batches.checkBatchMessage(),"", await batches.checkBatchRecallMessage() )
         await browser.pause(12000)
 
         //update batch

@@ -24,14 +24,22 @@ describe('Edit batch for recall message', () => {
         allureReporter.addTestId('ProdAndBatchSetup_1')
 
         await batches.Batch(); 
-        await browser.pause(4000) 
+        await browser.pause(8000) 
         let editValue = date.getbatchId()
         await browser.execute('document.querySelector("div:nth-child(' + await date.editBatchRow(editValue) + ') button:nth-child(1)").click()')       
         await browser.pause(8000)
+
+         //checkbox
+        await batches.enableCheckToRecallThisBatch()
+        await browser.pause(3000)
+        date.setBatchRecall(await batches.checkBatchRecall())
+        await browser.pause(2000)
         await batches.enterRecallMessage("Sample")
         await browser.pause(4000)
+        date.setBatchRecallMsg(await batches.checkBatchRecallMessage()) 
+        await browser.pause(2000) 
 
-        await data.expectData(gtinPage.gt(), date.getbatchId(), date.randomDate(),  date.getSerialNumber(), "","","", await batches.checkBatchRecallMessage() )
+        await data.expectData(gtinPage.gt(), date.getbatchId(), date.randomDate(),  date.getSerialNumber(),date.getBrandName(), date.getBatchRecall(),"","", date.getBatchRecallMsg() )
         await browser.pause(12000)
         
         // await batches.enableCheckToRecallThisBatch()

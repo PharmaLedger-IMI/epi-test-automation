@@ -7,6 +7,7 @@ let currentID = ''
 let currentSerial=''
 let currentBatchRecall=''
 let currentBatchRecallMsg=''
+let currentBrandName=''
 
 //let SerialNumber=serialNumber()
 class batchId{
@@ -25,6 +26,15 @@ class batchId{
     }
     getSerialNumber() {
         return currentSerial
+    }
+
+    setBrandName(brand){
+        currentBrandName=brand
+        console.log("current brandName is " +currentBrandName)
+       
+    }
+    getBrandName(){
+        return currentBrandName
     }
 
 

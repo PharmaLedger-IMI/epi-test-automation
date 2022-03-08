@@ -1,7 +1,5 @@
 const gtinPage = require('../specs/gtinPage.js');
-//const products= require('../pageobjects/products.page');
 const batches= require('../pageobjects/batches.page.js');
-//const createbatch= require('../specs/createBatch.js');
 const matrix=require('../utility/2dMatrixPage')
 const data=require('../utility/expectationFile')
 const date=require('../utility/randomDate')

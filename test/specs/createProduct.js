@@ -2,9 +2,11 @@
 const gtinPage = require('../specs/gtinPage.js');
 //const accessAccount= require('../pageobjects/access.Account');
 const products= require('../pageobjects/products.page');
+const date=require('../utility/randomDate')
 const allureReporter = require('@wdio/allure-reporter').default
 const path= require('path');
- const fs = require('fs')
+// const fs = require('fs');
+
 // const util = require('util');
 // const exec = util.promisify(require('child_process').exec);
 //let data =JSON.parse(fs.readFileSync('test/testData/myjsonFile.json'))
@@ -34,7 +36,8 @@ it('should verify product page', async() => {
     //await browser.$('//button[normalize-space()=\'+ ADD PRODUCT\']').setValue("09088884204609")
     await browser.pause(2000)
 
-    await products.brandName("Dolo-650"); 
+    await products.brandName("Dolo-650");
+    date.setBrandName(await products.checkBrandName()) 
     await browser.pause(2000)
     await products.productDescription("Dolo-650 Tablet 15's contains 'Paracetamol' which is a mild analgesic and fever reducer"); 
     await browser.pause(4000)
@@ -71,8 +74,10 @@ it('should verify product page', async() => {
      await browser.execute('document.querySelector("psk-button[disabled=\'@modalData.filesWereNotSelected\'] button[class=\'btn btn-primary\']").click();');
      await browser.pause(3000)
      //Save product
-     await products.saveProduct()
-     await browser.pause(20000)
+    //  await products.saveProduct()
+    await browser.execute('document.querySelector(`psk-button[data-tag="add-product"] button[class="btn btn-primary"]`).click()')
+   
+    await browser.pause(33000)
      allureReporter.endStep("passed");
      allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
     

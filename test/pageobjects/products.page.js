@@ -189,6 +189,16 @@ class productsPage {
        
         await this.brand.setValue(brandName);
     }
+    async checkBrandName()  {   
+        if(await this.brand.isDisplayed()==true){
+           let brandDisplayed="Dolo-650"
+           return brandDisplayed
+        }
+        else{
+            let brandDisplayed="No Message"
+           return brandDisplayed
+        }
+    }
     async productDescription(description){
        
         await this.productdescription.setValue(description);

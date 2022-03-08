@@ -1,5 +1,6 @@
+
 const products= require('../pageobjects/products.page');
-const batches= require('../pageobjects/batches.page.js');
+//const batches= require('../pageobjects/batches.page.js');
 const gtinPage = require('../specs/gtinPage.js')
 const allureReporter = require('@wdio/allure-reporter').default
 const matrix=require('../utility/2dMatrixPage')
@@ -21,6 +22,8 @@ describe('Edit product for ePI', () => {
         allureReporter.startStep("Update Product information in the products page. ")
 
         await products.clickProductFromSideNav()
+
+        //await browser.execute('document.querySelector(`body webc-app-root`).click()')
    
         // await products.clickProduct();
         await browser.pause(2000);
@@ -40,7 +43,7 @@ describe('Edit product for ePI', () => {
         await products.enableSnIsInRecallList()
         await browser.pause(4000);
         //expectation file
-        await data.expectData(gtinPage.gt(),  date.getbatchId(), date.randomDate(),  date.getSerialNumber(), " ", " ", await products.checkSnIsInRecallList()," ")
+        await data.expectData(gtinPage.gt(),  date.getbatchId(), date.randomDate(),  date.getSerialNumber(), date.getBrandName(), " ", " ", await products.checkSnIsInRecallList()," ")
         await browser.pause(15000)
         //update products
         await products.updateProduct()

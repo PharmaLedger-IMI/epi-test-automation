@@ -1,7 +1,5 @@
 const gtinPage = require('../specs/gtinPage.js');
-//const products= require('../pageobjects/products.page');
 const batches= require('../pageobjects/batches.page.js');
-//const createbatch= require('../specs/createBatch.js');
 const matrix=require('../utility/2dMatrixPage')
 const data=require('../utility/expectationFile')
 const date=require('../utility/randomDate')
@@ -26,11 +24,8 @@ describe('Product Information Update', () => {
         // await browser.pause(4000)
         await batches.addBatch();
         await browser.pause(2000)
-        // BatchID = await batches.batchIdValue()
-        // console.log("Batch value is " + BatchID)
         await batches.siteName("Dolo-650 Tablet 15's");
         await browser.pause(5000)
-        // let expiryDate = randomDate()
         await browser.execute((date) => {
             (function () {
                 let event = new Event('change');
