@@ -72,7 +72,7 @@ it('should verify product page', async() => {
      await browser.pause(3000)
      //Save product
      await products.saveProduct()
-     await browser.pause(14000)
+     await browser.pause(20000)
      allureReporter.endStep("passed");
      allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
     

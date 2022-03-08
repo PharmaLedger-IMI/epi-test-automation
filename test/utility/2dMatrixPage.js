@@ -15,11 +15,11 @@ class matrixGenerator{
 
             
         const expdate = expiryDate.replace('-', '')
-        const expdate1 = expdate.replace('-', '')
-        var expiryDate1 = expdate1.slice(2);
+        const expdated = expdate.replace('-', '')
+        var expiryDateR = expdated.slice(2);
        // const barcode='(01)'+gtin.gt()+'(17)'+expiryDate+'(10)'+await batches.batchIdValue()+'(21)'+await batches.serialNum()
 
-        const barcode='(01)'+gtin+'(17)'+expiryDate1+'(10)'+batchNumber +'(21)'+serialNumber
+        const barcode='(01)'+gtin+'(17)'+expiryDateR+'(10)'+batchNumber +'(21)'+serialNumber
         console.log(barcode)    
         bwipjs.toBuffer({
             bcid:        'gs1datamatrix',  

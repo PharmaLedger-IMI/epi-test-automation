@@ -10,17 +10,15 @@ const data=require('../utility/expectationFile')
 // const exec = util.promisify(require('child_process').exec);
 
 //let BatchID=""
-let SerialNumber=""
+// let SerialNumber=""
 
 class batchId{
-//     batchIdVal(){
-//       return BatchID
-//   }
-    SerialNumber(){
-        return SerialNumber
-    }
+
+//     SerialNumber(){
+//         return SerialNumber
+//     }
     
-  }
+   }
 
 describe('Create Batch', () => {
 
@@ -91,8 +89,9 @@ it('Should verify batch page ', async() => {
     await batches.enableResetAllDecommisionedSerialNumber()
     await browser.pause(1000);
     // manage serial number enter
-    SerialNumber=Math.floor(100000 + Math.random() * 900000)
-    await batches.enterSerialNumber(SerialNumber)
+   // SerialNumber=Math.floor(100000 + Math.random() * 900000)
+    date.setSerialNumber(await batches.serialNum())
+    await batches.enterSerialNumber(date.getSerialNumber())
    // await batches.enterSerialNumber("123456")
     await browser.pause(5000);
     await batches.selectStolenReasonFromDropdown('Stolen')
@@ -128,7 +127,7 @@ it('Should verify batch page ', async() => {
     await batches.enableCheckToRecallThisBatch()
     await browser.pause(3000)
     
-    await data.expectData(gtinPage.gt(), await batches.batchIdValue(), date.randomDate(),  (await batches.serialNum()).toString, await batches.checkBatchRecall())
+    await data.expectData(gtinPage.gt(), await batches.batchIdValue(), date.randomDate(),  date.getSerialNumber(), await batches.checkBatchRecall())
     await browser.pause(3000)
      
     //Create batch
@@ -136,7 +135,7 @@ it('Should verify batch page ', async() => {
     await browser.pause(8000);
 
     //Generate Image
-   matrix.generateImage(gtinPage.gt(), await batches.batchIdValue(), date.randomDate(), await batches.serialNum())
+   matrix.generateImage(gtinPage.gt(), await batches.batchIdValue(), date.randomDate(), date.getSerialNumber())
    await browser.pause(5000)
 
     

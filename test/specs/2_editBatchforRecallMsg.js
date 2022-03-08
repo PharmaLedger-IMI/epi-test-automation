@@ -30,7 +30,8 @@ describe('Edit batch for recall message', () => {
         await browser.pause(8000)
         await batches.enterRecallMessage("Sample")
         await browser.pause(4000)
-        await data.expectData(gtinPage.gt(), date.getbatchId(), date.randomDate(),  (await batches.serialNum()).toString, "","","", await batches.checkBatchRecallMessage() )
+
+        await data.expectData(gtinPage.gt(), date.getbatchId(), date.randomDate(),  date.getSerialNumber(), "","","", await batches.checkBatchRecallMessage() )
         await browser.pause(12000)
         
         // await batches.enableCheckToRecallThisBatch()
@@ -39,8 +40,8 @@ describe('Edit batch for recall message', () => {
          await browser.pause(2000)
          await batches.updateBatchForEdit()
          await browser.pause(10000)
-         matrix.generateImage(gtinPage.gt(), date.getbatchId(), date.randomDate(), await batches.serialNum())
-        await browser.pause(5000)
+         matrix.generateImage(gtinPage.gt(), date.getbatchId(), date.randomDate(), date.getSerialNumber())
+         await browser.pause(5000)
        
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");

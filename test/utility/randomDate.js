@@ -4,27 +4,51 @@
 let expiryDate = randomDate()
 let expiredDate= randomDateExpired()
 let currentID = ''
+let currentSerial=''
+let currentBatchRecall=''
+let currentBatchRecallMsg=''
 
 //let SerialNumber=serialNumber()
 class batchId{
-    setBatchId (id){
+    setBatchId(id) {
         currentID = id
-        console.log("util value is "+currentID)
+        console.log("batch value is " + currentID)
     }
-    getbatchId(){
+    getbatchId() {
         return currentID
     }
-    
-        // SerialNumber(){
-        //     return SerialNumber
-        // }
-    
-        randomDate(){
-            return expiryDate
-        }
-        randomDateExpired(){
-            return expiredDate
-        }
+
+    setSerialNumber(No) {
+        currentSerial = No
+        console.log("Serial NUmber is " + currentSerial)
+
+    }
+    getSerialNumber() {
+        return currentSerial
+    }
+
+
+    setBatchRecall(boolean){
+        currentBatchRecall=boolean
+        console.log("currentBatchRecall is " + currentBatchRecall)
+    }
+    getBatchRecall(){
+        return currentBatchRecall
+    }
+    setBatchRecallMsg(Msg){
+        currentBatchRecallMsg=Msg
+        console.log("currentBatchRecallMsg is " + currentBatchRecallMsg)
+    }
+    getBatchRecallMsg(){
+        return currentBatchRecallMsg
+    }
+
+    randomDate() {
+        return expiryDate
+    }
+    randomDateExpired() {
+        return expiredDate
+    }
 
 
 

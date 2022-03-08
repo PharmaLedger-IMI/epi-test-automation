@@ -33,19 +33,22 @@ exports.config = {
              'test/specs/createBatch.js',
             
            
-           'test/specs/3_editProductforToggle_ePIFlag.js',
+        //    'test/specs/3_editProductforToggle_ePIFlag.js',
            
-            'test/specs/2_editBatchforRecallMsg.js',
-            'test/specs/createBatchWithoutanyFile.js',
-            'test/specs/createBatchWithUploadLeaflet.js',
-            'test/specs/createBatchWithUploadSMPC.js',
-            'test/specs/createBatchWithUploadBoth.js',
-            'test/specs/batchRecallForSerialized.js',
-            'test/specs/batchRecallForNonSerialized.js',
-             'test/specs/allCombinationofBothMsgs-1.js',
-             'test/specs/allCombinationofBothMsgs-2.js',
-             'test/specs/allCombinationofBothMsgs-3.js',
-             'test/specs/allCombinationofBothMsgs-4.js',
+        //     'test/specs/2_editBatchforRecallMsg.js',
+        //     'test/specs/createBatchWithoutanyFile.js',
+        //     'test/specs/createBatchWithUploadLeaflet.js',
+        //     'test/specs/createBatchWithUploadSMPC.js',
+        //     'test/specs/createBatchWithUploadBoth.js',
+        //     'test/specs/batchRecallForSerialized.js',
+        //     'test/specs/batchRecallForNonSerialized.js',
+        //      'test/specs/allCombinationofBothMsgs-1.js',
+        //      'test/specs/allCombinationofBothMsgs-2.js',
+        //      'test/specs/allCombinationofBothMsgs-3.js',
+        //      'test/specs/allCombinationofBothMsgs-4.js',
+            //  'test/specs/combinationChecks-1.js',
+            //  'test/specs/combinationChecks-2.js',
+            //  'test/specs/combinationChecks-3.js'
           
 
             
@@ -141,8 +144,8 @@ exports.config = {
     // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
     // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
     // gets prepended directly.
-    //baseUrl: 'https://epiqa.westeurope.cloudapp.azure.com/',
-    baseUrl:'http://localhost:3000',
+    baseUrl: 'https://epiqa.westeurope.cloudapp.azure.com/',
+    //baseUrl:'http://localhost:3000',
     //
     // Default timeout for all waitFor* commands.
     waitforTimeout: 10000,

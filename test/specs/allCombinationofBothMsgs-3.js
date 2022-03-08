@@ -51,13 +51,13 @@ describe('Batch Recall and Batch Message', () => {
         await batches.enterRecallMessage("Tim said its recall")
         await browser.pause(3000)
 
-        await data.expectData(gtinPage.gt(), date.getbatchId(), date.randomDate(),  (await batches.serialNum()).toString, "","", await batches.checkBatchRecall(),"", await batches.checkBatchRecallMessage() )
+        await data.expectData(gtinPage.gt(), date.getbatchId(), date.randomDate(),  date.getSerialNumber(), "","", await batches.checkBatchRecall(),"", await batches.checkBatchRecallMessage() )
         await browser.pause(12000)
        
         await batches.createBatch()
         await browser.pause(15000);
 
-        matrix.generateImage(gtinPage.gt(), date.getbatchId(), date.randomDate(), await batches.serialNum())
+        matrix.generateImage(gtinPage.gt(), date.getbatchId(), date.randomDate(), date.getSerialNumber())
         await browser.pause(5000)
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");

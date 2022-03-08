@@ -7,9 +7,16 @@ const matrix=require('../utility/2dMatrixPage')
 const data=require('../utility/expectationFile')
 const date=require('../utility/randomDate')
 const allureReporter = require('@wdio/allure-reporter').default
+// const util = require('util');
+// const exec = util.promisify(require('child_process').exec);
 //const path= require('path');
 
 describe('Batch Recall and Recall Message for Non-serialized batches ', () => {
+    // after(async () => {
+    //     const { stdout1, stderr1 } =await exec('cd ../epi-mobileapp-test-automation && npm run test');
+    //     console.log('stdout:', stdout1);
+    //     console.log('stderr:', stderr1);
+    //     })
     it('BatchRecall&Msgs_1-should verify Batch Recall and Recall Message for Non-serialized batches ', async () => {
     
         allureReporter.startStep('Create a batch for any product. Do not add any serial numners.  Set the batch to recall it and add a display message for the same.')
@@ -65,14 +72,14 @@ describe('Batch Recall and Recall Message for Non-serialized batches ', () => {
         await batches.enableCheckToRecallThisBatch()
         await browser.pause(3000)
 
-        await data.expectData(gtinPage.gt(), date.getbatchId(), date.randomDate(),  (await batches.serialNum()).toString, await batches.checkBatchMessage(),"", await batches.checkBatchRecall(),"", await batches.checkBatchRecallMessage() )
+        await data.expectData(gtinPage.gt(), date.getbatchId(), date.randomDate(),  date.getSerialNumber(), await batches.checkBatchMessage(),"", await batches.checkBatchRecall(),"", await batches.checkBatchRecallMessage() )
         await browser.pause(12000)
 
         //update batch
         await batches.updateBatchForEdit()
         await browser.pause(10000);
 
-        matrix.generateImage(gtinPage.gt(), date.getbatchId(), date.randomDate(), await batches.serialNum())
+        matrix.generateImage(gtinPage.gt(), date.getbatchId(), date.randomDate(), date.getSerialNumber())
         await browser.pause(8000)
 
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');

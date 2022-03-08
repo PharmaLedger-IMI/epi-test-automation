@@ -6,14 +6,23 @@ const matrix=require('../utility/2dMatrixPage')
 const data=require('../utility/expectationFile')
 const date=require('../utility/randomDate')
 const allureReporter = require('@wdio/allure-reporter').default
-const path= require('path');
+//const path= require('path');
+// const util = require('util');
+// const exec = util.promisify(require('child_process').exec);
 describe('Combination checks ', () => {
-    it('should verify Combination checks ', async () => {
+
+     // after(async () => {
+    //     const { stdout1, stderr1 } =await exec('cd ../epi-mobileapp-test-automation && npm run test');
+    //     console.log('stdout:', stdout1);
+    //     console.log('stderr:', stderr1);
+    //     })
+    
+    it('BatchRecall&Msg_Checks-should verify Combination checks-1 ', async () => {
     
         allureReporter.startStep('2. Create a batch 3. Add Valid serial number 4. Add valid expiry date 5. Add a recall message')
         allureReporter.addTestId('BatchRecall&Msg_Checks')
-        // await batches.Batch();
-        // await browser.pause(4000)
+        await batches.Batch();
+        await browser.pause(4000)
         await batches.addBatch();
         await browser.pause(2000)
         date.setBatchId(await batches.batchIdValue())
@@ -41,25 +50,29 @@ describe('Combination checks ', () => {
         await batches.selectUpdateValidSerialFromDropdown('Update Valid')
         await browser.pause(5000);
         await batches.enableResetAllValidSerialNumber()
-        await browser.pause(1000);
-        await batches.enterSerialNumber(createbatch.SerialNumber())
+        await browser.pause(3000);
+        date.setSerialNumber(await batches.serialNum())
+        await batches.enterSerialNumber(date.getSerialNumber())
         await browser.pause(5000);
         await batches.acceptSerialNumber()
-        await browser.pause(1000);
+        await browser.pause(2000);
         await batches.enableCheckToRecallThisBatch()
         await browser.pause(1000)
 
+        date.setBatchRecall(await batches.checkBatchRecall())
+        await browser.pause(2000)
         await batches.enterRecallMessage("Tim said its recall")
-        await browser.pause(1000)  
-        
-        await data.expectData(gtinPage.gt(), date.getbatchId(), date.randomDate(),  (await batches.serialNum()).toString, "","", await batches.checkBatchRecall(),"", await batches.checkBatchRecallMessage() )
+        await browser.pause(2000) 
+        date.setBatchRecallMsg(await batches.checkBatchRecallMessage()) 
+        await browser.pause(2000) 
+        await data.expectData(gtinPage.gt(), date.getbatchId(), date.randomDate(),  date.getSerialNumber(), "","", date.getBatchRecall(),"", date.getBatchRecallMsg())
         await browser.pause(12000)
         
         await batches.createBatch()
         await browser.pause(15000);
 
-        matrix.generateImage(gtinPage.gt(), date.getbatchId(), date.randomDate(), await batches.serialNum())
-        await browser.pause(5000)
+        matrix.generateImage(gtinPage.gt(), date.getbatchId(), date.randomDate(), date.getSerialNumber())
+        await browser.pause(8000)
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");
        

@@ -51,7 +51,8 @@ describe('Batch Recall and Recall Message for serialized batches ', () => {
         await browser.pause(5000);
         await batches.enableResetAllValidSerialNumber()
         await browser.pause(1000);
-        await batches.enterSerialNumber(createbatch.SerialNumber())
+        date.setSerialNumber(await batches.serialNum())
+        await batches.enterSerialNumber(date.getSerialNumber())
         await browser.pause(5000);
         await batches.acceptSerialNumber()
         await browser.pause(1000);
@@ -80,14 +81,14 @@ describe('Batch Recall and Recall Message for serialized batches ', () => {
         await batches.enableCheckToRecallThisBatch()
         await browser.pause(3000)
 
-        await data.expectData(gtinPage.gt(), date.getbatchId(), date.randomDate(),  (await batches.serialNum()).toString, await batches.checkBatchMessage(),"", await batches.checkBatchRecall(),"", await batches.checkBatchRecallMessage() )
+        await data.expectData(gtinPage.gt(), date.getbatchId(), date.randomDate(),  date.getSerialNumber(), await batches.checkBatchMessage(),"", await batches.checkBatchRecall(),"", await batches.checkBatchRecallMessage() )
         await browser.pause(12000)
 
         //update batch
         await batches.updateBatchForEdit()
         await browser.pause(8000);
 
-        matrix.generateImage(gtinPage.gt(), date.getbatchId(), date.randomDate(), await batches.serialNum())
+        matrix.generateImage(gtinPage.gt(), date.getbatchId(), date.randomDate(), date.getSerialNumber())
         await browser.pause(5000)
 
 

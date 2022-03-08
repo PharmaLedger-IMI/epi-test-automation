@@ -81,14 +81,14 @@ describe('Product Information Update ', () => {
         await browser.execute('document.querySelector("psk-button[disabled=\'@modalData.filesWereNotSelected\'] button[class=\'btn btn-primary\']").click();');
         await browser.pause(5000)
 
-        await data.expectData(gtinPage.gt(), date.getbatchId(), date.randomDate(),  (await batches.serialNum()).toString, "","","", "" )
+        await data.expectData(gtinPage.gt(), date.getbatchId(), date.randomDate(),  date.getSerialNumber(), "","","", "" )
         await browser.pause(12000)
 
         //Update product
         await products.updateProduct()
         await browser.pause(8000);
        
-        matrix.generateImage(gtinPage.gt(), date.getbatchId(), date.randomDate(), await batches.serialNum())
+        matrix.generateImage(gtinPage.gt(), date.getbatchId(), date.randomDate(), date.getSerialNumber())
         await browser.pause(5000)
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");

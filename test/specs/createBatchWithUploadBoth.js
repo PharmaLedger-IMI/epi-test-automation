@@ -76,9 +76,9 @@ describe('Product Information Update', () => {
         await batches.batchMessage("Sample")
         await browser.pause(2000);
 
-        await data.expectData(gtinPage.gt(), date.getbatchId(), date.randomDate(),  (await batches.serialNum()).toString, await batches.checkBatchMessage(),"","", "" )
+        await data.expectData(gtinPage.gt(), date.getbatchId(), date.randomDate(),  date.getSerialNumber(), await batches.checkBatchMessage(),"","", "" )
         await browser.pause(12000)
-        matrix.generateImage(gtinPage.gt(), date.getbatchId(), date.randomDate(), await batches.serialNum())
+        matrix.generateImage(gtinPage.gt(), date.getbatchId(), date.randomDate(), date.getSerialNumber())
         await browser.pause(5000)
        
         await batches.createBatch()

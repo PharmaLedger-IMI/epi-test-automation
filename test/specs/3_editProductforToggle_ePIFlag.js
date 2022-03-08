@@ -40,12 +40,12 @@ describe('Edit product for ePI', () => {
         await products.enableSnIsInRecallList()
         await browser.pause(4000);
         //expectation file
-        await data.expectData(gtinPage.gt(),  date.getbatchId(), date.randomDate(),  (await batches.serialNum()).toString, " ", " ", await products.checkSnIsInRecallList()," ")
+        await data.expectData(gtinPage.gt(),  date.getbatchId(), date.randomDate(),  date.getSerialNumber(), " ", " ", await products.checkSnIsInRecallList()," ")
         await browser.pause(15000)
         //update products
         await products.updateProduct()
         await browser.pause(8000);
-        matrix.generateImage(gtinPage.gt(), date.getbatchId(), date.randomDate(), await batches.serialNum())
+        matrix.generateImage(gtinPage.gt(), date.getbatchId(), date.randomDate(), date.getSerialNumber())
         await browser.pause(5000)
         allureReporter.endStep("passed");
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
