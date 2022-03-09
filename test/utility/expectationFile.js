@@ -1,5 +1,5 @@
 const fs = require('fs')
-let currentJSON = ""
+//let currentJSON = ""
  class expectationData{
     
     // getJSONdata(){
@@ -14,13 +14,13 @@ let currentJSON = ""
     async expectData(gtin, batchNumber, expiryDate, serialNumber, productName, batchCheck, batchMessage, snIsInRecallList, recallMessage){
 
     const expdate = expiryDate.replace('-', '')
-    const expdate1 = expdate.replace('-', '')
-    var expiryDate1 = expdate1.slice(2);
+    const expdated = expdate.replace('-', '')
+    var expiryDateR = expdated.slice(2);
 
     const testExpectations = {};
     testExpectations.prodCode = gtin
     testExpectations.batchValue=batchNumber
-    testExpectations.expiry = expiryDate1
+    testExpectations.expiry = expiryDateR
     testExpectations.batchSerialNumber = serialNumber
     testExpectations.prodName = productName  
     testExpectations.batchRecall = batchCheck

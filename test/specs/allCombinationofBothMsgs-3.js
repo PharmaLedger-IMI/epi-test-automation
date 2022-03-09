@@ -4,7 +4,7 @@ const batches= require('../pageobjects/batches.page.js');
 //const createbatch= require('../specs/createBatch.js');
 const matrix=require('../utility/2dMatrixPage')
 const data=require('../utility/expectationFile')
-const date=require('../utility/randomDate')
+const info=require('../utility/reusableFile')
 const allureReporter = require('@wdio/allure-reporter').default
 //const path= require('path');
 // const util = require('util');
@@ -37,7 +37,7 @@ describe('Batch Recall and Batch Message', () => {
                 datePicker.value = date;
                 datePicker.dispatchEvent(event);
             })();
-        }, date.randomDate());
+        }, info.randomDate());
         await browser.pause(4000);
         const selectBox = await browser.$('//psk-select[@class=\'default-select hydrated\']//select[@class=\'form-control\']');  
         await selectBox.selectByAttribute('value', gtinPage.gt());
@@ -51,13 +51,13 @@ describe('Batch Recall and Batch Message', () => {
         await batches.enterRecallMessage("Tim said its recall")
         await browser.pause(3000)
 
-        await data.expectData(gtinPage.gt(), date.getbatchId(), date.randomDate(),  date.getSerialNumber(),await batches.checkBatchRecall(), "","", await batches.checkBatchRecallMessage() )
+        await data.expectData(gtinPage.gt(), info.getbatchId(), info.randomDate(),  info.getSerialNumber(),await batches.checkBatchRecall(), "","", await batches.checkBatchRecallMessage() )
         await browser.pause(12000)
        
         await batches.createBatch()
         await browser.pause(15000);
 
-        matrix.generateImage(gtinPage.gt(), date.getbatchId(), date.randomDate(), date.getSerialNumber())
+        matrix.generateImage(gtinPage.gt(), info.getbatchId(), info.randomDate(), info.getSerialNumber())
         await browser.pause(5000)
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");

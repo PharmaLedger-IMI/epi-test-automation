@@ -124,7 +124,7 @@ class batchesPage{
    
 
     async serialNum(){
-      const  SerialNumber=  Math.floor(100000 + Math.random() * 900000)
+      const  SerialNumber=  (Math.floor(100000 + Math.random() * 900000)).toString()
       return SerialNumber
     }
     async siteName(site){

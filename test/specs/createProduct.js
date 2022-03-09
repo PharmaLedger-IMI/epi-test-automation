@@ -2,7 +2,7 @@
 const gtinPage = require('../specs/gtinPage.js');
 //const accessAccount= require('../pageobjects/access.Account');
 const products= require('../pageobjects/products.page');
-const date=require('../utility/randomDate')
+const info=require('../utility/reusableFile')
 const allureReporter = require('@wdio/allure-reporter').default
 const path= require('path');
 // const fs = require('fs');
@@ -37,7 +37,7 @@ it('should verify product page', async() => {
     await browser.pause(2000)
 
     await products.brandName("Dolo-650");
-    date.setBrandName(await products.checkBrandName()) 
+    info.setBrandName(await products.checkBrandName()) 
     await browser.pause(2000)
     await products.productDescription("Dolo-650 Tablet 15's contains 'Paracetamol' which is a mild analgesic and fever reducer"); 
     await browser.pause(4000)

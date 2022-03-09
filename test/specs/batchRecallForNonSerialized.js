@@ -5,7 +5,7 @@ const batches= require('../pageobjects/batches.page.js');
 
 const matrix=require('../utility/2dMatrixPage')
 const data=require('../utility/expectationFile')
-const date=require('../utility/randomDate')
+const info=require('../utility/reusableFile')
 const allureReporter = require('@wdio/allure-reporter').default
 // const util = require('util');
 // const exec = util.promisify(require('child_process').exec);
@@ -26,7 +26,7 @@ describe('Batch Recall and Recall Message for Non-serialized batches ', () => {
         // await browser.pause(4000)
         await batches.addBatch();
         await browser.pause(5000)
-        date.setBatchId(await batches.batchIdValue())
+        info.setBatchId(await batches.batchIdValue())
         // BatchID = await batches.batchIdValue()
         // console.log("Batch value is " + BatchID)
         await batches.siteName("Dolo-650 Tablet 15's");
@@ -39,7 +39,7 @@ describe('Batch Recall and Recall Message for Non-serialized batches ', () => {
                 datePicker.value = date;
                 datePicker.dispatchEvent(event);
             })();
-        }, date.randomDate());
+        }, info.randomDate());
 
         await browser.pause(2000);
         const selectBox = await browser.$('//psk-select[@class=\'default-select hydrated\']//select[@class=\'form-control\']'); 
@@ -51,9 +51,9 @@ describe('Batch Recall and Recall Message for Non-serialized batches ', () => {
         await batches.createBatch()
         await browser.pause(14000);
 
-        let editValue = date.getbatchId()
+        let editValue = info.getbatchId()
         //click on edit 
-        await browser.execute('document.querySelector("div:nth-child(' + await date.editBatchRow(editValue) + ') button:nth-child(1)").click()')       
+        await browser.execute('document.querySelector("div:nth-child(' + await info.editBatchRow(editValue) + ') button:nth-child(1)").click()')       
         await browser.pause(2000)
         
         //click on checkbox
@@ -66,20 +66,20 @@ describe('Batch Recall and Recall Message for Non-serialized batches ', () => {
         await batches.updateBatchForEdit()
         await browser.pause(6000);
         //Again click on edit batch
-        await browser.execute('document.querySelector("div:nth-child(' + await date.editBatchRow(editValue) + ') button:nth-child(1)").click()')       
+        await browser.execute('document.querySelector("div:nth-child(' + await info.editBatchRow(editValue) + ') button:nth-child(1)").click()')       
         await browser.pause(2000)
         //undo the batch recall
         await batches.enableCheckToRecallThisBatch()
         await browser.pause(3000)
 
-        await data.expectData(gtinPage.gt(), date.getbatchId(), date.randomDate(),  date.getSerialNumber(),await batches.checkBatchRecall(), await batches.checkBatchMessage(),"", await batches.checkBatchRecallMessage() )
+        await data.expectData(gtinPage.gt(), info.getbatchId(), info.randomDate(),  info.getSerialNumber(),await batches.checkBatchRecall(), await batches.checkBatchMessage(),"", await batches.checkBatchRecallMessage() )
         await browser.pause(12000)
 
         //update batch
         await batches.updateBatchForEdit()
         await browser.pause(10000);
 
-        matrix.generateImage(gtinPage.gt(), date.getbatchId(), date.randomDate(), date.getSerialNumber())
+        matrix.generateImage(gtinPage.gt(), info.getbatchId(), info.randomDate(), info.getSerialNumber())
         await browser.pause(8000)
 
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');

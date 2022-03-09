@@ -5,7 +5,7 @@ const gtinPage = require('../specs/gtinPage.js')
 const allureReporter = require('@wdio/allure-reporter').default
 const matrix=require('../utility/2dMatrixPage')
 const data=require('../utility/expectationFile')
-const date=require('../utility/randomDate')
+const info=require('../utility/reusableFile')
 // const util = require('util');
 // const exec = util.promisify(require('child_process').exec);
 describe('Edit product for ePI', () => {
@@ -43,12 +43,12 @@ describe('Edit product for ePI', () => {
         await products.enableSnIsInRecallList()
         await browser.pause(4000);
         //expectation file
-        await data.expectData(gtinPage.gt(),  date.getbatchId(), date.randomDate(),  date.getSerialNumber(), date.getBrandName(), " ", " ", await products.checkSnIsInRecallList()," ")
+        await data.expectData(gtinPage.gt(),  info.getbatchId(), info.randomDate(),  info.getSerialNumber(), info.getBrandName(), " ", " ", await products.checkSnIsInRecallList()," ")
         await browser.pause(15000)
         //update products
         await products.updateProduct()
         await browser.pause(8000);
-        matrix.generateImage(gtinPage.gt(), date.getbatchId(), date.randomDate(), date.getSerialNumber())
+        matrix.generateImage(gtinPage.gt(), info.getbatchId(), info.randomDate(), info.getSerialNumber())
         await browser.pause(5000)
         allureReporter.endStep("passed");
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');

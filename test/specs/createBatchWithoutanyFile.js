@@ -3,7 +3,7 @@ const products= require('../pageobjects/products.page');
 const batches= require('../pageobjects/batches.page.js');
 const matrix=require('../utility/2dMatrixPage')
 const data=require('../utility/expectationFile')
-const date=require('../utility/randomDate')
+const info=require('../utility/reusableFile')
 
 const allureReporter = require('@wdio/allure-reporter').default
 const path= require('path');
@@ -38,7 +38,7 @@ describe('Product Information Update ', () => {
                 datePicker.value = date;
                 datePicker.dispatchEvent(event);
             })();
-        }, date.randomDate());
+        }, info.randomDate());
 
         await browser.pause(2000);
         const selectBox = await browser.$('//psk-select[@class=\'default-select hydrated\']//select[@class=\'form-control\']'); 
@@ -80,14 +80,14 @@ describe('Product Information Update ', () => {
         await browser.execute('document.querySelector("psk-button[disabled=\'@modalData.filesWereNotSelected\'] button[class=\'btn btn-primary\']").click();');
         await browser.pause(5000)
 
-        await data.expectData(gtinPage.gt(), date.getbatchId(), date.randomDate(),  date.getSerialNumber(), "","","", "" )
+        await data.expectData(gtinPage.gt(), info.getbatchId(), info.randomDate(),  info.getSerialNumber(), "","","", "" )
         await browser.pause(12000)
 
         //Update product
         await products.updateProduct()
         await browser.pause(8000);
        
-        matrix.generateImage(gtinPage.gt(), date.getbatchId(), date.randomDate(), date.getSerialNumber())
+        matrix.generateImage(gtinPage.gt(), info.getbatchId(), info.randomDate(), info.getSerialNumber())
         await browser.pause(5000)
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");

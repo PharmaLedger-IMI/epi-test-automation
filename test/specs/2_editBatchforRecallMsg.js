@@ -5,7 +5,7 @@ const batches= require('../pageobjects/batches.page.js');
 const allureReporter = require('@wdio/allure-reporter').default
 const matrix=require('../utility/2dMatrixPage')
 const data=require('../utility/expectationFile')
-const date=require('../utility/randomDate')
+const info=require('../utility/reusableFile')
 
 // const util = require('util');
 // const exec = util.promisify(require('child_process').exec);
@@ -25,21 +25,21 @@ describe('Edit batch for recall message', () => {
 
         await batches.Batch(); 
         await browser.pause(8000) 
-        let editValue = date.getbatchId()
-        await browser.execute('document.querySelector("div:nth-child(' + await date.editBatchRow(editValue) + ') button:nth-child(1)").click()')       
+        let editValue = info.getbatchId()
+        await browser.execute('document.querySelector("div:nth-child(' + await info.editBatchRow(editValue) + ') button:nth-child(1)").click()')       
         await browser.pause(8000)
 
          //checkbox
         await batches.enableCheckToRecallThisBatch()
         await browser.pause(3000)
-        date.setBatchRecall(await batches.checkBatchRecall())
+        info.setBatchRecall(await batches.checkBatchRecall())
         await browser.pause(2000)
         await batches.enterRecallMessage("Sample")
         await browser.pause(4000)
-        date.setBatchRecallMsg(await batches.checkBatchRecallMessage()) 
+        info.setBatchRecallMsg(await batches.checkBatchRecallMessage()) 
         await browser.pause(2000) 
 
-        await data.expectData(gtinPage.gt(), date.getbatchId(), date.randomDate(),  date.getSerialNumber(),date.getBrandName(), date.getBatchRecall(),"","", date.getBatchRecallMsg() )
+        await data.expectData(gtinPage.gt(), info.getbatchId(), info.randomDate(),  info.getSerialNumber(),info.getBrandName(), info.getBatchRecall(),"","", info.getBatchRecallMsg() )
         await browser.pause(12000)
         
         // await batches.enableCheckToRecallThisBatch()
@@ -48,7 +48,7 @@ describe('Edit batch for recall message', () => {
          await browser.pause(2000)
          await batches.updateBatchForEdit()
          await browser.pause(10000)
-         matrix.generateImage(gtinPage.gt(), date.getbatchId(), date.randomDate(), date.getSerialNumber())
+         matrix.generateImage(gtinPage.gt(), info.getbatchId(), info.randomDate(), info.getSerialNumber())
          await browser.pause(5000)
        
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');

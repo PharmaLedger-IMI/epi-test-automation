@@ -2,7 +2,7 @@ const gtinPage = require('../specs/gtinPage.js');
 const batches= require('../pageobjects/batches.page.js');
 const matrix=require('../utility/2dMatrixPage')
 const data=require('../utility/expectationFile')
-const date=require('../utility/randomDate')
+const info=require('../utility/reusableFile')
 const allureReporter = require('@wdio/allure-reporter').default
 const path= require('path');
 // const util = require('util');
@@ -33,7 +33,7 @@ describe('Product Information Update', () => {
                 datePicker.value = date;
                 datePicker.dispatchEvent(event);
             })();
-        }, date.randomDate());
+        }, info.randomDate());
         await browser.pause(4000);
         const selectBox = await browser.$('//psk-select[@class=\'default-select hydrated\']//select[@class=\'form-control\']');  
         await selectBox.selectByAttribute('value', gtinPage.gt());
@@ -71,9 +71,9 @@ describe('Product Information Update', () => {
         await batches.batchMessage("Sample")
         await browser.pause(2000);
 
-        await data.expectData(gtinPage.gt(), date.getbatchId(), date.randomDate(),  date.getSerialNumber(), await batches.checkBatchMessage(),"","", "" )
+        await data.expectData(gtinPage.gt(), info.getbatchId(), info.randomDate(),  info.getSerialNumber(), await batches.checkBatchMessage(),"","", "" )
         await browser.pause(12000)
-        matrix.generateImage(gtinPage.gt(), date.getbatchId(), date.randomDate(), date.getSerialNumber())
+        matrix.generateImage(gtinPage.gt(), info.getbatchId(), info.randomDate(), info.getSerialNumber())
         await browser.pause(5000)
        
         await batches.createBatch()

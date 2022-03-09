@@ -2,7 +2,7 @@ const batches= require('../pageobjects/batches.page.js');
 const gtinPage = require('../specs/gtinPage.js');
 const path= require('path');
 
-const date=require('../utility/randomDate')
+const info=require('../utility/reusableFile')
 const allureReporter = require('@wdio/allure-reporter').default
 const matrix=require('../utility/2dMatrixPage')
 const data=require('../utility/expectationFile');
@@ -37,7 +37,7 @@ it('Should verify batch page ', async() => {
     //await batches.batchIdValue()
     //take batchid
    // BatchID= await batches.batchIdValue()
-    date.setBatchId(await batches.batchIdValue())
+    info.setBatchId(await batches.batchIdValue())
     await browser.pause(3000)
     //console.log("Batch value is "+BatchID)
     await batches.siteName("Dolo-650 Tablet 15's"); 
@@ -50,7 +50,7 @@ it('Should verify batch page ', async() => {
             datePicker.value = date;
             datePicker.dispatchEvent(event);
         })();
-    }, date.randomDate());
+    }, info.randomDate());
     await browser.pause(2000);
     const selectBox = await browser.$('//psk-select[@class=\'default-select hydrated\']//select[@class=\'form-control\']');
      //await selectBox.selectByAttribute('value', '09088884204609');
@@ -85,8 +85,8 @@ it('Should verify batch page ', async() => {
     // await browser.pause(1000);
     // manage serial number enter
    // SerialNumber=Math.floor(100000 + Math.random() * 900000)
-    date.setSerialNumber(await batches.serialNum())
-    await batches.enterSerialNumber(date.getSerialNumber())
+    info.setSerialNumber(await batches.serialNum())
+    await batches.enterSerialNumber(info.getSerialNumber())
    // await batches.enterSerialNumber("123456")
     await browser.pause(5000);
     // await batches.selectStolenReasonFromDropdown('Stolen')
@@ -122,7 +122,7 @@ it('Should verify batch page ', async() => {
     // await batches.enableCheckToRecallThisBatch()
     // await browser.pause(3000)
     
-    await data.expectData(gtinPage.gt(), date.getbatchId(), date.randomDate(),  date.getSerialNumber(), date.getBrandName(), "","","","")
+    await data.expectData(gtinPage.gt(), info.getbatchId(), info.randomDate(),  info.getSerialNumber(), info.getBrandName(), "","","","")
     await browser.pause(3000)
      
     //Create batch
@@ -131,7 +131,7 @@ it('Should verify batch page ', async() => {
      await browser.pause(40000);
 
     //Generate Image
-   matrix.generateImage(gtinPage.gt(), await batches.batchIdValue(), date.randomDate(), date.getSerialNumber())
+   matrix.generateImage(gtinPage.gt(), await batches.batchIdValue(), info.randomDate(), info.getSerialNumber())
    await browser.pause(5000)
 
     

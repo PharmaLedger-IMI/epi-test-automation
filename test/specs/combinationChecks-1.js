@@ -4,7 +4,7 @@ const batches= require('../pageobjects/batches.page.js');
 //const createbatch= require('../specs/createBatch.js');
 const matrix=require('../utility/2dMatrixPage')
 const data=require('../utility/expectationFile')
-const date=require('../utility/randomDate')
+const info=require('../utility/reusableFile')
 const allureReporter = require('@wdio/allure-reporter').default
 //const path= require('path');
 // const util = require('util');
@@ -25,7 +25,7 @@ describe('Combination checks ', () => {
         await browser.pause(4000)
         await batches.addBatch();
         await browser.pause(2000)
-        date.setBatchId(await batches.batchIdValue())
+        info.setBatchId(await batches.batchIdValue())
         // BatchID = await batches.batchIdValue()
         // console.log("Batch value is " + BatchID)
         await batches.siteName("Dolo-650 Tablet 15's");
@@ -38,7 +38,7 @@ describe('Combination checks ', () => {
                 datePicker.value = date;
                 datePicker.dispatchEvent(event);
             })();
-        }, date.randomDate());
+        }, info.randomDate());
         await browser.pause(4000);
         const selectBox = await browser.$('//psk-select[@class=\'default-select hydrated\']//select[@class=\'form-control\']');  
         await selectBox.selectByAttribute('value', gtinPage.gt());
@@ -51,27 +51,27 @@ describe('Combination checks ', () => {
         await browser.pause(5000);
         await batches.enableResetAllValidSerialNumber()
         await browser.pause(3000);
-        date.setSerialNumber(await batches.serialNum())
-        await batches.enterSerialNumber(date.getSerialNumber())
+        info.setSerialNumber(await batches.serialNum())
+        await batches.enterSerialNumber(info.getSerialNumber())
         await browser.pause(5000);
         await batches.acceptSerialNumber()
         await browser.pause(2000);
         await batches.enableCheckToRecallThisBatch()
         await browser.pause(1000)
 
-        date.setBatchRecall(await batches.checkBatchRecall())
+        info.setBatchRecall(await batches.checkBatchRecall())
         await browser.pause(2000)
         await batches.enterRecallMessage("Tim said its recall")
         await browser.pause(2000) 
-        date.setBatchRecallMsg(await batches.checkBatchRecallMessage()) 
+        info.setBatchRecallMsg(await batches.checkBatchRecallMessage()) 
         await browser.pause(2000) 
-        await data.expectData(gtinPage.gt(), date.getbatchId(), date.randomDate(),  date.getSerialNumber(), "","", date.getBatchRecall(),"", date.getBatchRecallMsg())
+        await data.expectData(gtinPage.gt(), info.getbatchId(), info.randomDate(),  info.getSerialNumber(), "","", info.getBatchRecall(),"", info.getBatchRecallMsg())
         await browser.pause(12000)
         
         await batches.createBatch()
         await browser.pause(15000);
 
-        matrix.generateImage(gtinPage.gt(), date.getbatchId(), date.randomDate(), date.getSerialNumber())
+        matrix.generateImage(gtinPage.gt(), info.getbatchId(), info.randomDate(), info.getSerialNumber())
         await browser.pause(8000)
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");
