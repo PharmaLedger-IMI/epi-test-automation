@@ -29,7 +29,8 @@ describe('Edit product for ePI', () => {
         console.log("prod to edit"+info.getProductId())
     
        // search the product codes
-       await wait.setTimeoutwait(3);
+       await products.searchProductCode(info.getProductId())
+        await wait.setTimeoutwait(3);
         await browser.keys('Enter')
         await wait.setTimeoutwait(4);
         //view or edits
@@ -48,7 +49,7 @@ describe('Edit product for ePI', () => {
         await products.updateProduct()
         await wait.setTimeoutwait(8);
         matrix.generateImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
-        await wait.setTimeoutwait(5);
+        await wait.setTimeoutwait();
         allureReporter.endStep("passed");
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
 
