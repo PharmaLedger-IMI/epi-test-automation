@@ -1,7 +1,8 @@
 const batches= require('../pageobjects/batches.page.js');
 const gtinPage = require('../specs/gtinPage.js');
 const path= require('path');
-
+const wait=require('../utility/timeout')
+const testData=require('../testdata/config.json')
 const info=require('../utility/reusableFile')
 const allureReporter = require('@wdio/allure-reporter').default
 const matrix=require('../utility/2dMatrixPage')
@@ -28,21 +29,22 @@ it('Should verify batch page ', async() => {
     allureReporter.startStep("Create a batch for the recent GTIN with all valid details.")
    
   
-    // await batches.Batch(); 
-    await browser.execute('document.querySelector(`a[href="/batches"]`).click()')
-    await browser.pause(6000)   
-    await browser.execute('document.querySelector(`button[data-tag="add-batch"]`).click()')      
-    // await batches.addBatch(); 
-    await browser.pause(3000)
-    //await batches.batchIdValue()
-    //take batchid
-   // BatchID= await batches.batchIdValue()
+    await batches.Batch(); 
+    await wait.setTimeoutwait(3);
+    // await browser.execute('document.querySelector(`a[href="/batches"]`).click()')
+    // await browser.pause(6000)   
+    // await browser.execute('document.querySelector(`button[data-tag="add-batch"]`).click()')      
+    await batches.addBatch(); 
+    await wait.setTimeoutwait(3);
+    
     info.setBatchId(await batches.batchIdValue())
-    await browser.pause(3000)
-    //console.log("Batch value is "+BatchID)
-    await batches.siteName("Dolo-650 Tablet 15's"); 
-    await browser.pause(5000)
-    //let expiryDate = batches.randomDate()
+    await wait.setTimeoutwait(3);
+   
+    await batches.siteName(testData[2]['batchDetails'].siteName); 
+    await wait.setTimeoutwait(5);
+    let expiryDate = info.setCurrentRandomDate()
+    // info.setCurrentRandomDate(expiryDate)
+    await wait.setTimeoutwait(2);
     await browser.execute((date) => {
         (function () {
             let event = new Event('change');
@@ -50,49 +52,43 @@ it('Should verify batch page ', async() => {
             datePicker.value = date;
             datePicker.dispatchEvent(event);
         })();
-    }, info.randomDate());
-    await browser.pause(2000);
+    }, expiryDate);
+
+    await wait.setTimeoutwait(2);
     const selectBox = await browser.$('//psk-select[@class=\'default-select hydrated\']//select[@class=\'form-control\']');
      //await selectBox.selectByAttribute('value', '09088884204609');
-     await browser.pause(2000);  
-     await selectBox.selectByAttribute('value', gtinPage.gt());
-    await browser.pause(3000);
+    await wait.setTimeoutwait(2); 
+    await selectBox.selectByAttribute('value', info.getProductId());
+    await wait.setTimeoutwait(2);
     //enable dateselection
     await batches.enableDaySelection();
-    await browser.pause(2000);
-    //video source
-    await batches.videoSource("https://cdnapisec.kaltura.com/html5/html5lib/v2.92/mwEmbedFrame.php/p/2076321/uiconf_id/46847003/entry_id/1_cuq6u28l?wid=_2076321&iframeembed=true&playerId=kaltura_player&entry_id=1_cuq6u28l&flashvars%5bstreamerType%5d=auto&amp;flashvars%5blocalizationCode%5d=en&amp;flashvars%5bleadWithHTML5%5d=true&amp;flashvars%5bsideBarContainer.plugin%5d=true&amp;flashvars%5bsideBarContainer.position%5d=left&amp;flashvars%5bsideBarContainer.clickToClose%5d=true&amp;flashvars%5bchapters.plugin%5d=true&amp;flashvars%5bchapters.layout%5d=vertical&amp;flashvars%5bchapters.thumbnailRotator%5d=false&amp;flashvars%5bstreamSelector.plugin%5d=true&amp;flashvars%5bEmbedPlayer.SpinnerTarget%5d=videoHolder&amp;flashvars%5bdualScreen.plugin%5d=true&amp;flashvars%5bhotspots.plugin%5d=1&amp;flashvars%5bKaltura.addCrossoriginToIframe%5d=true&amp;&wid=1_iueede1t")
-    await browser.pause(2000);
+    await wait.setTimeoutwait(2);
+    
     //enable incorrect expiration date verification
     await batches.enableIncorrectExpirationDateVerification()
-    await browser.pause(2000);
+    await wait.setTimeoutwait(2);
     //expiration date verification       
     await batches.expirationDateVerification()
     // enable serial number verification
-    await browser.pause(2000);
+    await wait.setTimeoutwait(2);
     await batches.enableSerialNumberVerification()
-    await browser.pause(2000);
+    await wait.setTimeoutwait(2);
     // manage serial numbers dropdown
-     await batches.selectUpdateValidSerialFromDropdown('Update Valid')
-     await browser.pause(5000);
-    //  await batches.selectUpdateValidSerialFromDropdown('Update Recalled')
-    //  await browser.pause(5000);
-    //  await batches.selectUpdateValidSerialFromDropdown('Update decommissioned')
-    //  await browser.pause(5000);
+     await batches.selectUpdateValidSerialFromDropdown(testData[2]['batchDetails'].updateValid)
+     await wait.setTimeoutwait(5);
+    //enable valid serial number
      await batches.enableResetAllValidSerialNumber()
-     await browser.pause(2000);
-    // await batches.enableResetAllDecommisionedSerialNumber()
-    // await browser.pause(1000);
-    // manage serial number enter
-   // SerialNumber=Math.floor(100000 + Math.random() * 900000)
+     await wait.setTimeoutwait(2);
+    //set serial number value
     info.setSerialNumber(await batches.serialNum())
+    //enter serial number
     await batches.enterSerialNumber(info.getSerialNumber())
    // await batches.enterSerialNumber("123456")
-    await browser.pause(5000);
+   await wait.setTimeoutwait(5);
     // await batches.selectStolenReasonFromDropdown('Stolen')
     // manage serial number accept 
     await batches.acceptSerialNumber()
-    await browser.pause(1000);
+    await wait.setTimeoutwait(1);
     // cancel button
     // await batches.cancelSerialNumber()
     // await browser.pause(1000);
@@ -101,38 +97,37 @@ it('Should verify batch page ', async() => {
     // await browser.pause(1000);
     // add epi leaflet
     await batches.addEpi()
-    await browser.pause(1000);
+    await wait.setTimeoutwait(1);
     //
-    await batches.selectLanguage('German')
-    await browser.pause(1000)
+    await batches.selectLanguage(testData[2]['batchDetails'].selectLanguage)
+    await wait.setTimeoutwait(2);
     //select type
-    await batches.selectType('SMPC')
-    await browser.pause(1000)
+    await batches.selectType(testData[2]['batchDetails'].selectType)
+    await wait.setTimeoutwait(2);
    // video source
-    await batches.videoSourceEpi("https://cdnapisec.kaltura.com/html5/html5lib/v2.92/mwEmbedFrame.php/p/2076321/uiconf_id/46847003/entry_id/1_cuq6u28l?wid=_2076321&iframeembed=true&playerId=kaltura_player&entry_id=1_cuq6u28l&flashvars%5bstreamerType%5d=auto&amp;flashvars%5blocalizationCode%5d=en&amp;flashvars%5bleadWithHTML5%5d=true&amp;flashvars%5bsideBarContainer.plugin%5d=true&amp;flashvars%5bsideBarContainer.position%5d=left&amp;flashvars%5bsideBarContainer.clickToClose%5d=true&amp;flashvars%5bchapters.plugin%5d=true&amp;flashvars%5bchapters.layout%5d=vertical&amp;flashvars%5bchapters.thumbnailRotator%5d=false&amp;flashvars%5bstreamSelector.plugin%5d=true&amp;flashvars%5bEmbedPlayer.SpinnerTarget%5d=videoHolder&amp;flashvars%5bdualScreen.plugin%5d=true&amp;flashvars%5bhotspots.plugin%5d=1&amp;flashvars%5bKaltura.addCrossoriginToIframe%5d=true&amp;&wid=1_iueede1t")
-    await browser.pause(1000);
+    await batches.videoSourceEpi(testData[2]['batchDetails'].videoSource)
+    await wait.setTimeoutwait(2);
    // upload leaflet folder
-   // await batches.uploadLeafletFolder()
     await browser.$('//input[@type=\'file\']').addValue(path.join(__dirname, '/src/Entresto'));
-    await browser.pause(4000);  
+    await wait.setTimeoutwait(4); 
     //scrollIntoView
     await batches.acceptButton()
-    await browser.pause(5000);
+    await wait.setTimeoutwait(5);
     //checkbox
     // await batches.enableCheckToRecallThisBatch()
     // await browser.pause(3000)
     
-    await data.expectData(gtinPage.gt(), info.getbatchId(), info.randomDate(),  info.getSerialNumber(), info.getBrandName(), "","","","")
-    await browser.pause(3000)
+    await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(), info.getBrandName(), "","","","")
+    await wait.setTimeoutwait(3);
      
     //Create batch
      await batches.createBatch()
 
-     await browser.pause(40000);
+     await wait.setTimeoutwait(15);
 
     //Generate Image
-   matrix.generateImage(gtinPage.gt(), await batches.batchIdValue(), info.randomDate(), info.getSerialNumber())
-   await browser.pause(5000)
+   matrix.generateImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
+   await wait.setTimeoutwait(8);
 
     
     allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');

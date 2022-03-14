@@ -1,8 +1,10 @@
 //const LoginPage = require('../pageobjects/login.page');
-const gtinPage = require('../specs/gtinPage.js');
-//const accessAccount= require('../pageobjects/access.Account');
+//const gtinPage = require('../specs/gtinPage.js');
+//const digits= require('../pageobjects/digit.cal.js');
 const products= require('../pageobjects/products.page');
 const info=require('../utility/reusableFile')
+const wait=require('../utility/timeout')
+const testData=require('../testdata/config.json')
 const allureReporter = require('@wdio/allure-reporter').default
 const path= require('path');
 // const fs = require('fs');
@@ -14,9 +16,7 @@ const path= require('path');
 
 
 describe('Create Product', () => {
-
-
-   
+  
 it('should verify product page', async() => { 
     
     allureReporter.addFeature('Create Product')
@@ -26,58 +26,55 @@ it('should verify product page', async() => {
     allureReporter.startStep("Create new product with a valid GTIN, and add the ePI");
 
     await products.clickProduct();
-    await browser.pause(3000);
+    await wait.setTimeoutwait(2);
     await products.addProduct();
-    await browser.pause(5000);
-    await products.gtinClrEnt();
-    await browser.pause(2000)
-    console.log(gtinPage.gt())
-    await products.gtinClrEnt(gtinPage.gt());
-    //await browser.$('//button[normalize-space()=\'+ ADD PRODUCT\']').setValue("09088884204609")
-    await browser.pause(2000)
+    await wait.setTimeoutwait(5);
+    await products.enterGtinCode(info.getProductId());
+    await wait.setTimeoutwait(2);
 
-    await products.brandName("Dolo-650");
+    await products.brandName(testData[1]['productDetails'].brandName);
     info.setBrandName(await products.checkBrandName()) 
-    await browser.pause(2000)
-    await products.productDescription("Dolo-650 Tablet 15's contains 'Paracetamol' which is a mild analgesic and fever reducer"); 
-    await browser.pause(4000)
+    await wait.setTimeoutwait(2);
+    await products.productDescription(testData[1]['productDetails'].productDescription); 
+    await wait.setTimeoutwait(4);
     //Upload product photo
     const filePath = path.join(__dirname, '/src/entresto.jpg');
     await products.productPhoto(filePath);
-    await browser.pause(1000)
+    await wait.setTimeoutwait(1);
     //internal material code
-    await products.internalMaterialCode("D-60")
-    await browser.pause(1000)
+    await products.internalMaterialCode(testData[1]['productDetails'].internalMaterialCode)
+    await wait.setTimeoutwait(1);
     //strength
-    await products.addStrength("123")
-    await browser.pause(1000)
+    await products.addStrength(testData[1]['productDetails'].addStrength)
+    await wait.setTimeoutwait(1);
     // video source
-    await products.videoSource("https://cdnapisec.kaltura.com/html5/html5lib/v2.92/mwEmbedFrame.php/p/2076321/uiconf_id/46847003/entry_id/1_cuq6u28l?wid=_2076321&iframeembed=true&playerId=kaltura_player&entry_id=1_cuq6u28l&flashvars%5bstreamerType%5d=auto&amp;flashvars%5blocalizationCode%5d=en&amp;flashvars%5bleadWithHTML5%5d=true&amp;flashvars%5bsideBarContainer.plugin%5d=true&amp;flashvars%5bsideBarContainer.position%5d=left&amp;flashvars%5bsideBarContainer.clickToClose%5d=true&amp;flashvars%5bchapters.plugin%5d=true&amp;flashvars%5bchapters.layout%5d=vertical&amp;flashvars%5bchapters.thumbnailRotator%5d=false&amp;flashvars%5bstreamSelector.plugin%5d=true&amp;flashvars%5bEmbedPlayer.SpinnerTarget%5d=videoHolder&amp;flashvars%5bdualScreen.plugin%5d=true&amp;flashvars%5bhotspots.plugin%5d=1&amp;flashvars%5bKaltura.addCrossoriginToIframe%5d=true&amp;&wid=1_iueede1t")
-    await browser.pause(2000) 
+    await products.videoSource(testData[1]['productDetails'].videoSource)
+    await wait.setTimeoutwait(2);
     await products.enableBatchIsRecalled(); 
-    await browser.pause(1000)
+    await wait.setTimeoutwait(1);
      //add epi
      await products.addEpi()
-     await browser.pause(3000)
+     await wait.setTimeoutwait(3);
      //select language	
-     await products.selectLanguage('German')
-     await browser.pause(1000)
-     //select type
-     await products.selectType('SMPC')
-     await browser.pause(1000)
+    //  await products.selectLanguage(testData[1]['productDetails'].selectLanguage)
+    //  await wait.setTimeoutwait(1);
+       //select type
+    //  await products.selectType(testData[1]['productDetails'].selectType)
+    //  await wait.setTimeoutwait(2);
      //Video source
-     await products.videoSourceEpi("https://cdnapisec.kaltura.com/html5/html5lib/v2.92/mwEmbedFrame.php/p/2076321/uiconf_id/46847003/entry_id/1_cuq6u28l?wid=_2076321&iframeembed=true&playerId=kaltura_player&entry_id=1_cuq6u28l&flashvars%5bstreamerType%5d=auto&amp;flashvars%5blocalizationCode%5d=en&amp;flashvars%5bleadWithHTML5%5d=true&amp;flashvars%5bsideBarContainer.plugin%5d=true&amp;flashvars%5bsideBarContainer.position%5d=left&amp;flashvars%5bsideBarContainer.clickToClose%5d=true&amp;flashvars%5bchapters.plugin%5d=true&amp;flashvars%5bchapters.layout%5d=vertical&amp;flashvars%5bchapters.thumbnailRotator%5d=false&amp;flashvars%5bstreamSelector.plugin%5d=true&amp;flashvars%5bEmbedPlayer.SpinnerTarget%5d=videoHolder&amp;flashvars%5bdualScreen.plugin%5d=true&amp;flashvars%5bhotspots.plugin%5d=1&amp;flashvars%5bKaltura.addCrossoriginToIframe%5d=true&amp;&wid=1_iueede1t")
-     await browser.pause(1000)
+     await products.videoSourceEpi(testData[1]['productDetails'].videoSource)
+     await wait.setTimeoutwait(1);
      await browser.$('(//input[@type=\'file\'])[2]').addValue(path.join(__dirname, '/src/Entresto'));
-     await browser.pause(3000)
+     await wait.setTimeoutwait(3);
      //add epi accept
      await browser.execute('document.querySelector("psk-button[disabled=\'@modalData.filesWereNotSelected\'] button[class=\'btn btn-primary\']").click();');
-     await browser.pause(3000)
+     await wait.setTimeoutwait(3);
+
+    //  await wait.waitforelement(await products.saveProduct());
      //Save product
-    //  await products.saveProduct()
-    await browser.execute('document.querySelector(`psk-button[data-tag="add-product"] button[class="btn btn-primary"]`).click()')
-   
-    await browser.pause(33000)
+     await products.saveProduct()
+     await wait.setTimeoutwait(15);
+    
      allureReporter.endStep("passed");
      allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
     

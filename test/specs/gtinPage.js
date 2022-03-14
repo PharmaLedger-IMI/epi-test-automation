@@ -1,13 +1,15 @@
 const LoginPage = require('../pageobjects/login.page');
 const digits= require('../pageobjects/digit.cal.js');
-const allureReporter = require('@wdio/allure-reporter').default
+const info=require('../utility/reusableFile')
+const wait=require('../utility/timeout')
+//const allureReporter = require('@wdio/allure-reporter').default
 
-let GTIN=""
-class gtin{
-  gt(){
-    return GTIN
-}
-}
+// let GTIN=""
+// class gtin{
+//   gt(){
+//     return GTIN
+// }
+// }
 describe('Gtin generator', () => {
    
     
@@ -15,21 +17,21 @@ describe('Gtin generator', () => {
        
         
         await LoginPage.opensuburl();
-        await browser.pause(2000)
+        await wait.setTimeoutwait(2);
         await browser.maximizeWindow();
-        await browser.pause(2000)
+        await wait.setTimeoutwait(2);
         await digits.clickCookie();
-        await browser.pause(4000)
+        await wait.setTimeoutwait(4);
         const random= Math.floor(1000000000000 + Math.random() * 9000000000000)
         await digits.digitenter(random);
-        await browser.pause(2000)
+        await wait.setTimeoutwait(2);
         await digits.caldigit();
-        //await digits.copydigit();
-        await browser.pause(2000)
+        await wait.setTimeoutwait(2);
         await digits.numbercopy();
         await digits.codeCopy();
         await digits.concat1();
         GTIN= await digits.concat1()
+        info.setProductId(await digits.concat1())
         console.log("Generated GTIN code is "+GTIN)
         
         
@@ -37,4 +39,4 @@ describe('Gtin generator', () => {
     
 
 })
-module.exports = new gtin();
+//module.exports = new gtin();

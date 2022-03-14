@@ -1,6 +1,6 @@
-const { browser } = require("har-validator");
 
-let userNameclt="kpepiwdio"
+
+// let userNameclt="kpepiwdio"
 
 class accessAccount{
 get accessAccount1(){
@@ -20,14 +20,20 @@ async clickAccessAccount(){
     await this.accessAccount1.click();
 }
 
-async userNameclt(){
-    return userNameclt;
+async clearUserName(){
+   await this.userName.click();
+   await this.userName.clearValue();
 }
 
-async userNameClrEnt(userNameclt){
+async enterUserName(userNameclt){
+    await browser.waitUntil(
+        async () => (await this.userName),
+        {
+        timeout: 5000,
+        timeoutMsg: 'expected text to be different after 5s'
+        }
+        );
     
-    await this.userName.click();
-    await this.userName.clearValue();
     await this.userName.setValue(userNameclt);
 
 }

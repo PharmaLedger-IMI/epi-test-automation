@@ -25,11 +25,11 @@ describe('Combination checks ', () => {
         
 
         
-        await data.expectData(gtinPage.gt(), info.getbatchId(), info.randomDateExpired(),  info.getSerialNumber(), info.getBatchRecall(),"","", info.getBatchRecallMsg())
+        await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), info.getBatchRecall(),"","", info.getBatchRecallMsg())
         await browser.pause(12000)
 
 
-        matrix.generateImage(gtinPage.gt(), info.getbatchId(), info.randomDateExpired(), await batches.serialNum())
+        matrix.generateImage(info.getProductId(), info.getbatchId(), info.randomDateExpired(), await batches.serialNum())
         await browser.pause(5000)
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");

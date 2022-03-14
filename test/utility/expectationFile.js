@@ -11,7 +11,7 @@ const fs = require('fs')
     //     testExpectations.batchRecall = batchCheck
         
     //     } 
-    async expectData(gtin, batchNumber, expiryDate, serialNumber, productName, batchCheck, batchMessage, snIsInRecallList, recallMessage){
+    async generateExpectationFile(gtin, batchNumber, expiryDate, serialNumber, productName, batchCheck, batchMessage, snIsInRecallList, recallMessage){
 
     const expdate = expiryDate.replace('-', '')
     const expdated = expdate.replace('-', '')
@@ -33,7 +33,7 @@ const fs = require('fs')
     
     let jsonData = JSON.stringify(testExpectations)
     console.log("file is " + jsonData)
-    fs.writeFile('C:/Users/snehav/epi-test-automation/test/testdata/myjsonFile.json', jsonData, 'utf8', () => {
+    fs.writeFile('C:/Users/snehav/epi-mobileapp-test-automation/test/testdata/testExpectations.json', jsonData, 'utf8', () => {
 
         console.log('written file')
 

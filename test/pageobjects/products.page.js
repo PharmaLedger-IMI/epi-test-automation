@@ -7,8 +7,8 @@ class productsPage {
 
 
     get openProduct(){
-        return  $('//a[@href=\'/products\']//span')
-       //return $("//p[normalize-space()='Manage Products']")
+       //return  $('//a[@href=\'/products\']//span')
+       return $("//p[normalize-space()='Manage Products']")
     }
     get clickProductFromleftsideNav(){
         return $("=Products")
@@ -141,6 +141,7 @@ class productsPage {
     // }
     get saveProductButton(){
         return $("//button[normalize-space()='Save Product']")
+        //return document.querySelector(`psk-button[data-tag="add-product"] button[class="btn btn-primary"]`)
     }
     get searchProduct(){
         return $("//input[@id='code-search']")
@@ -179,7 +180,7 @@ class productsPage {
        
         await this.addProductButton.click();
     }
-    async gtinClrEnt(gtinNumber){
+    async enterGtinCode(gtinNumber){
        
         await this.gtin.click();
         await this.gtin.clearValue();
@@ -259,11 +260,11 @@ class productsPage {
     }
     async checkSnIsInRecallList()  {   
         if(await this.snIsInRecallListClick.isEnabled()==true){
-           let snIsInRecallList=true
+           let snIsInRecallList='true'
            return snIsInRecallList
         }
         else{
-            let snIsInRecallList=false
+            let snIsInRecallList='false'
            return snIsInRecallList
         }
            }
@@ -349,6 +350,9 @@ class productsPage {
     }
     async saveProduct(){
         await this.saveProductButton.click();
+    }
+    async saveProductBtn(){
+        await this.saveProductButton
     }
 
     ///edit

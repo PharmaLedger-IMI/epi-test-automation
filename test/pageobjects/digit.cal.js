@@ -59,16 +59,15 @@ class digits {
         console.log("value2 is "+value2);
            
      }
+    
+        
      async concat1(){
        
         const checkdigit= await this.number.getText()+  await this.code.getText();
-        console.log("concat is "+checkdigit);
+        //console.log("concat is "+checkdigit);
         return checkdigit
      }
-     
-      
     
-
 }
 
 module.exports = new digits();

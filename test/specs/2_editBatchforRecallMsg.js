@@ -1,11 +1,12 @@
-const gtinPage = require('../specs/gtinPage.js')
-//const editBatch = require('../specs/editBatch.js');
+//const gtinPage = require('../specs/gtinPage.js')
+
 const batches= require('../pageobjects/batches.page.js');
-//const products= require('../pageobjects/products.page');
 const allureReporter = require('@wdio/allure-reporter').default
 const matrix=require('../utility/2dMatrixPage')
 const data=require('../utility/expectationFile')
 const info=require('../utility/reusableFile')
+const wait=require('../utility/timeout')
+const testData=require('../testdata/config.json')
 
 // const util = require('util');
 // const exec = util.promisify(require('child_process').exec);
@@ -24,32 +25,31 @@ describe('Edit batch for recall message', () => {
         allureReporter.addTestId('ProdAndBatchSetup_1')
 
         await batches.Batch(); 
-        await browser.pause(8000) 
+        await wait.setTimeoutwait(8);
         let editValue = info.getbatchId()
+        console.log("editValue is "+editValue)
         await browser.execute('document.querySelector("div:nth-child(' + await info.editBatchRow(editValue) + ') button:nth-child(1)").click()')       
-        await browser.pause(8000)
+        await wait.setTimeoutwait(8);
 
-         //checkbox
+         //enable checkbox for batch recall
         await batches.enableCheckToRecallThisBatch()
-        await browser.pause(3000)
+        await wait.setTimeoutwait(3);
         info.setBatchRecall(await batches.checkBatchRecall())
-        await browser.pause(2000)
-        await batches.enterRecallMessage("Sample")
-        await browser.pause(4000)
+        await wait.setTimeoutwait(2);
+        //enter batch msg
+        await batches.enterRecallMessage(testData[2]['productDetails'].batchMsg)
+        await wait.setTimeoutwait(4);
         info.setBatchRecallMsg(await batches.checkBatchRecallMessage()) 
-        await browser.pause(2000) 
+        await wait.setTimeoutwait(2);
 
-        await data.expectData(gtinPage.gt(), info.getbatchId(), info.randomDate(),  info.getSerialNumber(),info.getBrandName(), info.getBatchRecall(),"","", info.getBatchRecallMsg() )
-        await browser.pause(12000)
+        await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), info.getBatchRecall(),"","", info.getBatchRecallMsg() )
+        await wait.setTimeoutwait(12);
         
-        // await batches.enableCheckToRecallThisBatch()
-        // await browser.pause(2000)
-        // await batches.enterRecallMessage(testData.batchMessage)
-         await browser.pause(2000)
+        await wait.setTimeoutwait(2);
          await batches.updateBatchForEdit()
-         await browser.pause(10000)
-         matrix.generateImage(gtinPage.gt(), info.getbatchId(), info.randomDate(), info.getSerialNumber())
-         await browser.pause(5000)
+         await wait.setTimeoutwait(10);
+         matrix.generateImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
+         await wait.setTimeoutwait(8);
        
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");

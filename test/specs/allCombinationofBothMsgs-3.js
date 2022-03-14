@@ -23,13 +23,18 @@ describe('Batch Recall and Batch Message', () => {
         allureReporter.addTestId('BatchRecall&Msg_1')
         // await batches.Batch();
         // await browser.pause(4000)
-        await batches.addBatch();
-        await browser.pause(2000)
-        // BatchID = await batches.batchIdValue()
-        // console.log("Batch value is " + BatchID)
+        // await batches.addBatch();
+        // await browser.pause(2000)
+        await browser.execute('document.querySelector(`a[href="/batches"]`).click()')
+        await browser.pause(6000)   
+        await browser.execute('document.querySelector(`button[data-tag="add-batch"]`).click()') 
+        await browser.pause(3000)
+        info.setBatchId(await batches.batchIdValue())
         await batches.siteName("Dolo-650 Tablet 15's");
         await browser.pause(5000)
-        // let expiryDate = randomDate()
+        let expiryDate = info.setCurrentRandomDate()
+        // info.setCurrentRandomDate(expiryDate)
+        await browser.pause(2000)
         await browser.execute((date) => {
             (function () {
                 let event = new Event('change');
@@ -37,7 +42,7 @@ describe('Batch Recall and Batch Message', () => {
                 datePicker.value = date;
                 datePicker.dispatchEvent(event);
             })();
-        }, info.randomDate());
+        }, expiryDate);
         await browser.pause(4000);
         const selectBox = await browser.$('//psk-select[@class=\'default-select hydrated\']//select[@class=\'form-control\']');  
         await selectBox.selectByAttribute('value', gtinPage.gt());
@@ -50,14 +55,23 @@ describe('Batch Recall and Batch Message', () => {
 
         await batches.enterRecallMessage("Tim said its recall")
         await browser.pause(3000)
+        
 
-        await data.expectData(gtinPage.gt(), info.getbatchId(), info.randomDate(),  info.getSerialNumber(),await batches.checkBatchRecall(), "","", await batches.checkBatchRecallMessage() )
+        info.setBatchRecall(await batches.checkBatchRecall())
+        await browser.pause(2000)
+        info.setBatchRecallMsg(await batches.checkBatchRecallMessage()) 
+        await browser.pause(2000) 
+
+        //serial Number
+        info.setSerialNumber(await batches.serialNum())
+
+        await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(),info.getBatchRecall()," ","", info.getBatchRecallMsg() )
         await browser.pause(12000)
        
         await batches.createBatch()
         await browser.pause(15000);
 
-        matrix.generateImage(gtinPage.gt(), info.getbatchId(), info.randomDate(), info.getSerialNumber())
+        matrix.generateImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
         await browser.pause(5000)
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");

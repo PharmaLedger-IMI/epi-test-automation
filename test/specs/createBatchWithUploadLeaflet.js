@@ -25,11 +25,13 @@ describe('Product Information Update', () => {
         
         await batches.addBatch();
         await browser.pause(2000)
-        // BatchID = await batches.batchIdValue()
-        // console.log("Batch value is " + BatchID)
+        info.setBatchId(await batches.batchIdValue())
+        await browser.pause(2000)
         await batches.siteName("Dolo-650 Tablet 15's");
-        await browser.pause(5000)
-        // let expiryDate = randomDate()
+        await browser.pause(3000)
+        let expiryDate = info.setCurrentRandomDate()
+        // info.setCurrentRandomDate(expiryDate)
+        await browser.pause(2000)
         await browser.execute((date) => {
             (function () {
                 let event = new Event('change');
@@ -37,7 +39,7 @@ describe('Product Information Update', () => {
                 datePicker.value = date;
                 datePicker.dispatchEvent(event);
             })();
-        }, info.randomDate());
+        }, expiryDate);
         await browser.pause(2000);
         const selectBox = await browser.$('//psk-select[@class=\'default-select hydrated\']//select[@class=\'form-control\']');  
         await selectBox.selectByAttribute('value', gtinPage.gt());
@@ -70,9 +72,10 @@ describe('Product Information Update', () => {
         await browser.pause(2000);
 
 
-        await data.expectData(gtinPage.gt(), info.getbatchId(), info.randomDate(),  info.getSerialNumber(), await batches.checkBatchMessage(),"","", "" )
+
+        await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(),"", await batches.checkBatchMessage(),"", "" )
         await browser.pause(12000)
-        matrix.generateImage(gtinPage.gt(), info.getbatchId(), info.randomDate(), info.getSerialNumber())
+        matrix.generateImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
         await browser.pause(5000)
        
         await batches.createBatch()

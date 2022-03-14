@@ -1,17 +1,14 @@
 
-
-
-
 const expectChai = require('chai').expect;
 
-//var i = 10
+let isChecked=false
 class batchesPage{
 
-    
+   
 
     get batchFromSideNav(){
-        return  $("=Batches")
-        //return $("//a[normalize-space()='Batches']")
+        //return  $("=Batches")
+        return $("//a[normalize-space()='Batches']")
     }
     get addbatchbutton(){
         return $("//button[normalize-space()='ADD BATCH']")
@@ -19,7 +16,6 @@ class batchesPage{
     get batchIdValue1(){
         return $('//input[@placeholder=\'Add batch id\']')
     }
-
     
     
     get addsitename(){
@@ -87,7 +83,8 @@ class batchesPage{
         return $("//button[normalize-space()='Accept']")
     }
     get enableRecallThisBatch(){
-        return $("//input[@id='recalled']")
+        //return $("//input[@id='recalled']")
+        return $("//input[@type='checkbox'][@id='recalled']")
     }
     get enterRecallMessageInTextbox(){
         return $("//textarea[@placeholder='This text will be displayed to user after Barcode is scanned if batch is recalled']")
@@ -117,6 +114,7 @@ class batchesPage{
     async batchIdValue(){
        
         const batchId = await this.batchIdValue1.getValue();
+        
         console.log(batchId)
         return batchId
 
@@ -230,18 +228,29 @@ class batchesPage{
         await this.videoSourceEpiEnter.setValue(link2)
     }
     async enableCheckToRecallThisBatch(){
+
+
+     //   isChecked=!isChecked
+      
         await this.enableRecallThisBatch.scrollIntoView()
-        await this.enableRecallThisBatch.click()
+       await this.enableRecallThisBatch.click()  
+       if(isChecked == false){
+        isChecked = true
+        }
+        else{
+            isChecked = false
+        }
+       // console.log("check value is "+await this.enableRecallThisBatch.isDisabled())
         await expect(this.enableRecallThisBatch).toBeEnabled()
 
     }
     async checkBatchRecall()  {   
-        if(await this.enableRecallThisBatch.isEnabled()==true){
-           let batchRecall=true
+        if(isChecked){
+           let batchRecall='true'
            return batchRecall
         }
         else{
-            let batchRecall=false
+            let batchRecall='false'
            return batchRecall
         }
            }
@@ -251,14 +260,20 @@ class batchesPage{
         //await this.enterRecallMessageInTextbox.clearValue()
         await this.enterRecallMessageInTextbox.setValue(RecallMessage)
     }
+    async clearRecallMessage(){
+       
+        await this.enterRecallMessageInTextbox.click()
+        await this.enterRecallMessageInTextbox.clearValue()
+        
+    }
     async checkBatchRecallMessage()  {   
         if(await this.enterRecallMessageInTextbox.isDisplayed()==true){
            let recallMessage="Sample"
            return recallMessage
         }
         else{
-            let enterRecallMessageInTextbox="NA"
-           return enterRecallMessageInTextbox
+            let recallMessage="No Message"
+           return recallMessage
         }
            }
     async updateBatchForEdit(){
