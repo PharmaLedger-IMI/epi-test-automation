@@ -25,7 +25,8 @@ class batchId{
             console.log("incrementalProduct value is " + testData[3]['incrementalEditBatch'].prodId)
             return testData[3]['incrementalEditBatch'].prodId 
      }
-        else{       
+        else if(packageJson['scripts'].incrementalBatch=='false')
+        {       
 
             console.log("gtin value is " + GTIN)
             return GTIN 
@@ -38,8 +39,8 @@ class batchId{
     }
     getbatchId() {
         if(packageJson['scripts'].incrementalBatch=='true'){
-            console.log("incrementalBatch value is " + testData[1]['incrementalEditBatch'].batchId)
-           return testData[1]['incrementalEditBatch'].batchId 
+            console.log("incrementalBatch value is " + testData[3]['incrementalEditBatch'].batchId)
+           return testData[3]['incrementalEditBatch'].batchId 
      }
         else{
             
@@ -56,8 +57,8 @@ class batchId{
     }
     getSerialNumber() {
         if(packageJson['scripts'].incrementalBatch=='true'){
-            console.log("serial value is " + testData[1]['incrementalEditBatch'].serialNumber)
-           return testData[1]['incrementalEditBatch'].serialNumber 
+            console.log("serial value is " + testData[3]['incrementalEditBatch'].serialNumber)
+           return testData[3]['incrementalEditBatch'].serialNumber 
      }
         else{
         console.log("Serial NUmber is " + currentSerial)
@@ -103,8 +104,8 @@ class batchId{
     getCurrentRandomDate(){
 
         if(packageJson['scripts'].incrementalBatch=='true'){
-        console.log("date value is " + testData[1]['incrementalEditBatch'].expiryDate)
-        return testData[1]['incrementalEditBatch'].expiryDate 
+        console.log("date value is " + testData[3]['incrementalEditBatch'].expiryDate)
+        return testData[3]['incrementalEditBatch'].expiryDate 
      }
      else{
 
