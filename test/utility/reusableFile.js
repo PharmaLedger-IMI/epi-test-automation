@@ -25,7 +25,7 @@ class batchId{
             console.log("incrementalProduct value is " + testData[3]['incrementalEditBatch'].prodId)
             return testData[3]['incrementalEditBatch'].prodId 
      }
-        else if(packageJson['scripts'].incrementalBatch=='false')
+        else 
         {       
 
             console.log("gtin value is " + GTIN)
