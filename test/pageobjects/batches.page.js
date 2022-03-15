@@ -134,6 +134,9 @@ class batchesPage{
         await this.enableDaySelectionCheckbox.isEnabled()
         await expect(this.enableDaySelectionCheckbox).toBeEnabled();
     }
+    async enableDaySelectionClick(){
+        await this.enableDaySelectionCheckbox.click()
+    }
 
    
 

@@ -1,6 +1,6 @@
 
 const testData=require('../testdata/config.json')
-const packageJson=require('C:/Users/snehav/epi-test-automation/package.json')
+const packageJson=require('../../package.json')
 let expiredDate= randomDateExpired()
 let currentDate=''
 let currentID = ''
@@ -10,17 +10,19 @@ let currentBatchRecallMsg=''
 let currentBrandName=''
 let currentBatchMsg=''
 let currentDay=''
+let currentMonth=''
+let currentYear=''
 let GTIN=''
 
 //let SerialNumber=serialNumber()
-class batchId{
+class reuseFile{
 
     setProductId(id) {
         GTIN = id
     }
 
     getProductId(){
-        if(packageJson['scripts'].incrementalBatch=='true'){
+        if(packageJson['scripts'].incrementalTest=='true'){
            
             console.log("incrementalProduct value is " + testData[3]['incrementalEditBatch'].prodId)
             return testData[3]['incrementalEditBatch'].prodId 
@@ -38,8 +40,8 @@ class batchId{
         currentID = id
     }
     getbatchId() {
-        if(packageJson['scripts'].incrementalBatch=='true'){
-            console.log("incrementalBatch value is " + testData[3]['incrementalEditBatch'].batchId)
+        if(packageJson['scripts'].incrementalTest=='true'){
+            console.log("incrementalTest value is " + testData[3]['incrementalEditBatch'].batchId)
            return testData[3]['incrementalEditBatch'].batchId 
      }
         else{
@@ -56,7 +58,7 @@ class batchId{
 
     }
     getSerialNumber() {
-        if(packageJson['scripts'].incrementalBatch=='true'){
+        if(packageJson['scripts'].incrementalTest=='true'){
             console.log("serial value is " + testData[3]['incrementalEditBatch'].serialNumber)
            return testData[3]['incrementalEditBatch'].serialNumber 
      }
@@ -103,7 +105,7 @@ class batchId{
     }
     getCurrentRandomDate(){
 
-        if(packageJson['scripts'].incrementalBatch=='true'){
+        if(packageJson['scripts'].incrementalTest=='true'){
         console.log("date value is " + testData[3]['incrementalEditBatch'].expiryDate)
         return testData[3]['incrementalEditBatch'].expiryDate 
      }
@@ -144,7 +146,6 @@ class batchId{
     }
 
 
-
   async  editBatchRow(editValue){
         let fArry = []
         var i = 10
@@ -173,8 +174,6 @@ class batchId{
         return editRow
     }     
     
-
-
     async  editProduct(){
         let editValue = '25367613915299'
         let fArry = []
@@ -208,7 +207,6 @@ class batchId{
 
 
 
-
       function randomDateF() {
 
         let end = new Date("2029-05-28")
@@ -227,7 +225,7 @@ class batchId{
   
            }
         var date2=finalD.getFullYear() +"-" + month + "-" + date
-        console.log("date2 is"+date2)  
+        console.log("date2 is "+date2)  
         return date2
      }
      
@@ -325,4 +323,4 @@ function randomYear(randomDate) {
 
 }
 
- module.exports = new batchId();
+ module.exports = new reuseFile();

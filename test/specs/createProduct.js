@@ -32,23 +32,23 @@ it('should verify product page', async() => {
     await products.enterGtinCode(info.getProductId());
     await wait.setTimeoutwait(2);
 
-    await products.brandName(testData[1]['productDetails'].brandName);
+    await products.brandName(testData[1]['newProductDetails'].brandName);
     info.setBrandName(await products.checkBrandName()) 
     await wait.setTimeoutwait(2);
-    await products.productDescription(testData[1]['productDetails'].productDescription); 
+    await products.productDescription(testData[1]['newProductDetails'].productDescription); 
     await wait.setTimeoutwait(4);
     //Upload product photo
     const filePath = path.join(__dirname, '/src/entresto.jpg');
     await products.productPhoto(filePath);
     await wait.setTimeoutwait(1);
     //internal material code
-    await products.internalMaterialCode(testData[1]['productDetails'].internalMaterialCode)
+    await products.internalMaterialCode(testData[1]['newProductDetails'].internalMaterialCode)
     await wait.setTimeoutwait(1);
     //strength
-    await products.addStrength(testData[1]['productDetails'].addStrength)
+    await products.addStrength(testData[1]['newProductDetails'].addStrength)
     await wait.setTimeoutwait(1);
     // video source
-    await products.videoSource(testData[1]['productDetails'].videoSource)
+    await products.videoSource(testData[1]['newProductDetails'].videoSource)
     await wait.setTimeoutwait(2);
     await products.enableBatchIsRecalled(); 
     await wait.setTimeoutwait(1);
@@ -56,13 +56,13 @@ it('should verify product page', async() => {
      await products.addEpi()
      await wait.setTimeoutwait(3);
      //select language	
-    //  await products.selectLanguage(testData[1]['productDetails'].selectLanguage)
+    //  await products.selectLanguage(testData[1]['newProductDetails'].selectLanguage)
     //  await wait.setTimeoutwait(1);
        //select type
-    //  await products.selectType(testData[1]['productDetails'].selectType)
+    //  await products.selectType(testData[1]['newProductDetails'].selectType)
     //  await wait.setTimeoutwait(2);
      //Video source
-     await products.videoSourceEpi(testData[1]['productDetails'].videoSource)
+     await products.videoSourceEpi(testData[1]['newProductDetails'].videoSource)
      await wait.setTimeoutwait(1);
      await browser.$('(//input[@type=\'file\'])[2]').addValue(path.join(__dirname, '/src/Entresto'));
      await wait.setTimeoutwait(3);

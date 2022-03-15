@@ -1,6 +1,6 @@
-const gtinPage = require('./gtinPage.js');
-const products= require('../pageobjects/products.page');
-const batches= require('../pageobjects/batches.page.js');
+// const gtinPage = require('./gtinPage.js');
+// const products= require('../pageobjects/products.page');
+// const batches= require('../pageobjects/batches.page.js');
 const matrix=require('../utility/2dMatrixPage')
 const data=require('../utility/expectationFile')
 const info=require('../utility/reusableFile')
@@ -18,10 +18,10 @@ describe('Expiry date Checks ', () => {
     //     console.log('stderr:', stderr1);
     //     })
 
-    it('Expiry date Checks_1.4- should Retest above batch by changing only the date on the new data matrix Y ', async () => {
+    it('Expiry date Checks_C1.4- should Retest above batch by changing only the date on the new data matrix Y ', async () => {
     
         allureReporter.startStep('Retest above by changing only the date on the new data matrix Y')
-        allureReporter.addTestId('Expiry date Checks_1.4')
+        allureReporter.addTestId('Expiry date Checks_C1.4')
         
        
         await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), "","","", "" )

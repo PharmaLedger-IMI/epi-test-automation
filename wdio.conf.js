@@ -27,10 +27,10 @@ exports.config = {
         //'test/specs/test.js',
          //'test/specs/landingPage.js',
 
-             'test/specs/gtinPage.js',
+            //  'test/specs/gtinPage.js',
              'test/specs/loginCredentials.js',
-             'test/specs/createProduct.js',
-             'test/specs/createBatch.js',
+            //  'test/specs/createProduct.js',
+            //  'test/specs/createBatch.js',
         
            
          // 'test/specs/3_editProductforToggle_ePIFlag.js',
@@ -53,6 +53,7 @@ exports.config = {
             //  'test/specs/combinationChecks-3.js',
             // 'test/specs/expiryDateChecks-C1.js',
             // 'test/specs/expiryDateChecks-C1.4.js',
+            'test/specs/expiryDateChecks-C3.js'
 
           
 

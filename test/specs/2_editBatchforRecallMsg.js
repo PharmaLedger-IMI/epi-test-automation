@@ -37,7 +37,7 @@ describe('Edit batch for recall message', () => {
         info.setBatchRecall(await batches.checkBatchRecall())
         await wait.setTimeoutwait(2);
         //enter batch msg
-        await batches.enterRecallMessage(testData[2]['productDetails'].batchMsg)
+        await batches.enterRecallMessage(testData[2]['newBatchDetails'].batchMsg)
         await wait.setTimeoutwait(4);
         info.setBatchRecallMsg(await batches.checkBatchRecallMessage()) 
         await wait.setTimeoutwait(2);

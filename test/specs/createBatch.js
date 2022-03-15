@@ -40,7 +40,7 @@ it('Should verify batch page ', async() => {
     info.setBatchId(await batches.batchIdValue())
     await wait.setTimeoutwait(3);
    
-    await batches.siteName(testData[2]['batchDetails'].siteName); 
+    await batches.siteName(testData[2]['newBatchDetails'].siteName); 
     await wait.setTimeoutwait(5);
     let expiryDate = info.setCurrentRandomDate()
     // info.setCurrentRandomDate(expiryDate)
@@ -74,7 +74,7 @@ it('Should verify batch page ', async() => {
     await batches.enableSerialNumberVerification()
     await wait.setTimeoutwait(2);
     // manage serial numbers dropdown
-     await batches.selectUpdateValidSerialFromDropdown(testData[2]['batchDetails'].updateValid)
+     await batches.selectUpdateValidSerialFromDropdown(testData[2]['newBatchDetails'].updateValid)
      await wait.setTimeoutwait(5);
     //enable valid serial number
      await batches.enableResetAllValidSerialNumber()
@@ -84,7 +84,7 @@ it('Should verify batch page ', async() => {
     //enter serial number
     await batches.enterSerialNumber(info.getSerialNumber())
    // await batches.enterSerialNumber("123456")
-   await wait.setTimeoutwait(5);
+    await wait.setTimeoutwait(5);
     // await batches.selectStolenReasonFromDropdown('Stolen')
     // manage serial number accept 
     await batches.acceptSerialNumber()
@@ -99,13 +99,13 @@ it('Should verify batch page ', async() => {
     await batches.addEpi()
     await wait.setTimeoutwait(1);
     //
-    await batches.selectLanguage(testData[2]['batchDetails'].selectLanguage)
+    await batches.selectLanguage(testData[2]['newBatchDetails'].selectLanguage)
     await wait.setTimeoutwait(2);
     //select type
-    await batches.selectType(testData[2]['batchDetails'].selectType)
+    await batches.selectType(testData[2]['newBatchDetails'].selectType)
     await wait.setTimeoutwait(2);
    // video source
-    await batches.videoSourceEpi(testData[2]['batchDetails'].videoSource)
+    await batches.videoSourceEpi(testData[2]['newBatchDetails'].videoSource)
     await wait.setTimeoutwait(2);
    // upload leaflet folder
     await browser.$('//input[@type=\'file\']').addValue(path.join(__dirname, '/src/Entresto'));

@@ -1,9 +1,11 @@
-const gtinPage = require('../specs/gtinPage.js');
+//const gtinPage = require('../specs/gtinPage.js');
 const products= require('../pageobjects/products.page');
 const batches= require('../pageobjects/batches.page.js');
 const matrix=require('../utility/2dMatrixPage')
 const data=require('../utility/expectationFile')
 const info=require('../utility/reusableFile')
+const wait=require('../utility/timeout')
+const testData=require('../testdata/config.json')
 
 const allureReporter = require('@wdio/allure-reporter').default
 const path= require('path');
@@ -25,15 +27,15 @@ describe('Product Information Update ', () => {
         // await batches.Batch();
         // await browser.pause(4000)
         await batches.addBatch();
-        await browser.pause(2000)
+        await wait.setTimeoutwait(2);
         info.setBatchId(await batches.batchIdValue())
-        await browser.pause(3000)
+        await wait.setTimeoutwait(3);
    
-        await batches.siteName("Dolo-650 Tablet 15's");
-        await browser.pause(5000)
+        await batches.siteName(testData[2]['batchDetails'].siteName);
+        await wait.setTimeoutwait(5);
         let expiryDate = info.setCurrentRandomDate()
         // info.setCurrentRandomDate(expiryDate)
-        await browser.pause(2000)
+        await wait.setTimeoutwait(2);
         await browser.execute((date) => {
             (function () {
                 let event = new Event('change');
@@ -43,36 +45,36 @@ describe('Product Information Update ', () => {
             })();
         }, expiryDate);
 
-        await browser.pause(2000);
+        await wait.setTimeoutwait(2);
         const selectBox = await browser.$('//psk-select[@class=\'default-select hydrated\']//select[@class=\'form-control\']'); 
-        await selectBox.selectByAttribute('value', gtinPage.gt());
+        await selectBox.selectByAttribute('value', info.getProductId());
         await browser.pause(3000);
         await batches.videoSource("https://cdnapisec.kaltura.com/html5/html5lib/v2.92/mwEmbedFrame.php/p/2076321/uiconf_id/46847003/entry_id/1_cuq6u28l?wid=_2076321&iframeembed=true&playerId=kaltura_player&entry_id=1_cuq6u28l&flashvars%5bstreamerType%5d=auto&amp;flashvars%5blocalizationCode%5d=en&amp;flashvars%5bleadWithHTML5%5d=true&amp;flashvars%5bsideBarContainer.plugin%5d=true&amp;flashvars%5bsideBarContainer.position%5d=left&amp;flashvars%5bsideBarContainer.clickToClose%5d=true&amp;flashvars%5bchapters.plugin%5d=true&amp;flashvars%5bchapters.layout%5d=vertical&amp;flashvars%5bchapters.thumbnailRotator%5d=false&amp;flashvars%5bstreamSelector.plugin%5d=true&amp;flashvars%5bEmbedPlayer.SpinnerTarget%5d=videoHolder&amp;flashvars%5bdualScreen.plugin%5d=true&amp;flashvars%5bhotspots.plugin%5d=1&amp;flashvars%5bKaltura.addCrossoriginToIframe%5d=true&amp;&wid=1_iueede1t")
-        await browser.pause(1000);
+        await wait.setTimeoutwait(1);
        
-        await batches.batchMessage("Sample")
-        await browser.pause(1000);
+        await batches.batchMessage(testData[2]['batchDetails'].batchMsg)
+        await wait.setTimeoutwait(1);
         await batches.createBatch()
-        await browser.pause(5000);
+        await wait.setTimeoutwait(5);
 
         await products.clickProductFromSideNav()
-        await browser.pause(2000);
+        await wait.setTimeoutwait(2);
 
         //search the product code
-        await products.searchProductCode(gtinPage.gt())
-        await browser.pause(5000);
+        await products.searchProductCode(info.getProductId())
+        await wait.setTimeoutwait(5);
         await browser.keys('Enter')
-        await browser.pause(2000);
+        await wait.setTimeoutwait(2);
         //view or edit
         //await products.clickViewEdit()
         await browser.execute('document.querySelector("button[data-tag=\'edit-product\']").click()')
-        await browser.pause(5000);
+        await wait.setTimeoutwait(5);
 
         //delete previous version file
         await products.clickDeleteLanguage()
         //add new version epi
         await products.addEpi()
-        await browser.pause(3000)
+        await wait.setTimeoutwait(3);
         //select language	
         await products.selectLanguage(testData[1]['productDetails'].selectLanguage)
         await wait.setTimeoutwait(1);
@@ -81,25 +83,25 @@ describe('Product Information Update ', () => {
         await wait.setTimeoutwait(2);
         //Video source
         await products.videoSourceEpi("https://cdnapisec.kaltura.com/html5/html5lib/v2.92/mwEmbedFrame.php/p/2076321/uiconf_id/46847003/entry_id/1_cuq6u28l?wid=_2076321&iframeembed=true&playerId=kaltura_player&entry_id=1_cuq6u28l&flashvars%5bstreamerType%5d=auto&amp;flashvars%5blocalizationCode%5d=en&amp;flashvars%5bleadWithHTML5%5d=true&amp;flashvars%5bsideBarContainer.plugin%5d=true&amp;flashvars%5bsideBarContainer.position%5d=left&amp;flashvars%5bsideBarContainer.clickToClose%5d=true&amp;flashvars%5bchapters.plugin%5d=true&amp;flashvars%5bchapters.layout%5d=vertical&amp;flashvars%5bchapters.thumbnailRotator%5d=false&amp;flashvars%5bstreamSelector.plugin%5d=true&amp;flashvars%5bEmbedPlayer.SpinnerTarget%5d=videoHolder&amp;flashvars%5bdualScreen.plugin%5d=true&amp;flashvars%5bhotspots.plugin%5d=1&amp;flashvars%5bKaltura.addCrossoriginToIframe%5d=true&amp;&wid=1_iueede1t")
-        await browser.pause(1000)
+        await wait.setTimeoutwait(1);
         //upload
         await browser.$('(//input[@type=\'file\'])[2]').addValue(path.join(__dirname, '/src/Entresto'));
-        await browser.pause(5000)
+        await wait.setTimeoutwait(5);
         //add epi accept
         await browser.execute('document.querySelector("psk-button[disabled=\'@modalData.filesWereNotSelected\'] button[class=\'btn btn-primary\']").click();');
-        await browser.pause(5000)
+        await wait.setTimeoutwait(5);
         
         info.setSerialNumber(await batches.serialNum())
 
         await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), "","","", "" )
-        await browser.pause(12000)
+        await wait.setTimeoutwait(12);
 
         //Update product
         await products.updateProduct()
-        await browser.pause(8000);
+        await wait.setTimeoutwait(8);
        
         matrix.generateImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
-        await browser.pause(5000)
+        await wait.setTimeoutwait(5);
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");
        

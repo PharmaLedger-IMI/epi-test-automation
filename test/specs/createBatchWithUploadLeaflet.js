@@ -1,8 +1,10 @@
-const gtinPage = require('../specs/gtinPage.js');
+//const gtinPage = require('../specs/gtinPage.js');
 const batches= require('../pageobjects/batches.page.js');
 const matrix=require('../utility/2dMatrixPage')
 const data=require('../utility/expectationFile')
 const info=require('../utility/reusableFile')
+const wait=require('../utility/timeout')
+const testData=require('../testdata/config.json')
 const allureReporter = require('@wdio/allure-reporter').default
 const path= require('path');
 // const util = require('util');
@@ -27,7 +29,7 @@ describe('Product Information Update', () => {
         await browser.pause(2000)
         info.setBatchId(await batches.batchIdValue())
         await browser.pause(2000)
-        await batches.siteName("Dolo-650 Tablet 15's");
+        await batches.siteName(testData[2]['newBatchDetails'].siteName);
         await browser.pause(3000)
         let expiryDate = info.setCurrentRandomDate()
         // info.setCurrentRandomDate(expiryDate)
@@ -42,12 +44,12 @@ describe('Product Information Update', () => {
         }, expiryDate);
         await browser.pause(2000);
         const selectBox = await browser.$('//psk-select[@class=\'default-select hydrated\']//select[@class=\'form-control\']');  
-        await selectBox.selectByAttribute('value', gtinPage.gt());
+        await selectBox.selectByAttribute('value', info.getProductId());
         await browser.pause(3000);
         await batches.videoSource("https://cdnapisec.kaltura.com/html5/html5lib/v2.92/mwEmbedFrame.php/p/2076321/uiconf_id/46847003/entry_id/1_cuq6u28l?wid=_2076321&iframeembed=true&playerId=kaltura_player&entry_id=1_cuq6u28l&flashvars%5bstreamerType%5d=auto&amp;flashvars%5blocalizationCode%5d=en&amp;flashvars%5bleadWithHTML5%5d=true&amp;flashvars%5bsideBarContainer.plugin%5d=true&amp;flashvars%5bsideBarContainer.position%5d=left&amp;flashvars%5bsideBarContainer.clickToClose%5d=true&amp;flashvars%5bchapters.plugin%5d=true&amp;flashvars%5bchapters.layout%5d=vertical&amp;flashvars%5bchapters.thumbnailRotator%5d=false&amp;flashvars%5bstreamSelector.plugin%5d=true&amp;flashvars%5bEmbedPlayer.SpinnerTarget%5d=videoHolder&amp;flashvars%5bdualScreen.plugin%5d=true&amp;flashvars%5bhotspots.plugin%5d=1&amp;flashvars%5bKaltura.addCrossoriginToIframe%5d=true&amp;&wid=1_iueede1t")
         await browser.pause(1000);
        
-        await batches.selectUpdateValidSerialFromDropdown('Update Valid')
+        await batches.selectUpdateValidSerialFromDropdown(testData[2]['newBatchDetails'].updateValid)
         await browser.pause(5000);
         await batches.enableResetAllValidSerialNumber()
         await browser.pause(1000);
@@ -60,7 +62,7 @@ describe('Product Information Update', () => {
         await batches.addEpi()
         await browser.pause(2000);
         // video source
-        await batches.videoSourceEpi("https://cdnapisec.kaltura.com/html5/html5lib/v2.92/mwEmbedFrame.php/p/2076321/uiconf_id/46847003/entry_id/1_cuq6u28l?wid=_2076321&iframeembed=true&playerId=kaltura_player&entry_id=1_cuq6u28l&flashvars%5bstreamerType%5d=auto&amp;flashvars%5blocalizationCode%5d=en&amp;flashvars%5bleadWithHTML5%5d=true&amp;flashvars%5bsideBarContainer.plugin%5d=true&amp;flashvars%5bsideBarContainer.position%5d=left&amp;flashvars%5bsideBarContainer.clickToClose%5d=true&amp;flashvars%5bchapters.plugin%5d=true&amp;flashvars%5bchapters.layout%5d=vertical&amp;flashvars%5bchapters.thumbnailRotator%5d=false&amp;flashvars%5bstreamSelector.plugin%5d=true&amp;flashvars%5bEmbedPlayer.SpinnerTarget%5d=videoHolder&amp;flashvars%5bdualScreen.plugin%5d=true&amp;flashvars%5bhotspots.plugin%5d=1&amp;flashvars%5bKaltura.addCrossoriginToIframe%5d=true&amp;&wid=1_iueede1t")
+        await batches.videoSourceEpi(testData[2]['newBatchDetails'].videoSource)
         await browser.pause(1000);
         //upload
         await browser.$('//input[@type=\'file\']').addValue(path.join(__dirname, '/src/Entresto'));
@@ -68,7 +70,7 @@ describe('Product Information Update', () => {
         //accept upload
         await batches.acceptButton()
         await browser.pause(5000);
-        await batches.batchMessage("Sample")
+        await batches.batchMessage(testData[2]['newBatchDetails'].batchMsg)
         await browser.pause(2000);
 
 

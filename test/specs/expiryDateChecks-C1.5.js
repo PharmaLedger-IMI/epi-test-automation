@@ -18,10 +18,10 @@ describe('Expiry date Checks ', () => {
     //     console.log('stderr:', stderr1);
     //     })
 
-    it('Expiry date Checks_1.5- should Retest above by changing only the month on the new data matrix Y ', async () => {
+    it('Expiry date Checks_C1.5- should Retest above by changing only the month on the new data matrix Y ', async () => {
     
         allureReporter.startStep('Retest above by changing only the month on the new data matrix Y')
-        allureReporter.addTestId('Expiry date Checks_1.5')
+        allureReporter.addTestId('Expiry date Checks_C1.5')
         
        
         await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), "","","", "" )
