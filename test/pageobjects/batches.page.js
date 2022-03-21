@@ -21,6 +21,10 @@ class batchesPage{
     get addsitename(){
         return $("//input[@placeholder='Add site name']")
     }
+    get brand()
+    {
+        return $("//input[@placeholder='Add site name']")
+    }
     get enableDaySelectionCheckbox(){
         return $("//label[normalize-space()='Enable day selection']")
     }
@@ -126,9 +130,28 @@ class batchesPage{
       return SerialNumber
     }
     async serialNum10(){
-        const  SerialNumber=  (Math.floor(1000000000 + Math.random() * 9000000000)).toString()
-        return SerialNumber
+        var serialNumberWithComma=''
+        var serialNumberUplaod=''
+        for (var i = 0; i < 10; i++) {
+        const  SerialNumber=  (Math.floor(100000 + Math.random() * 900000)).toString()
+        serialNumberWithComma += SerialNumber+",";
+        console.log(serialNumberWithComma)
+        
+        }
+        serialNumberUplaod=serialNumberWithComma.substring(0, serialNumberWithComma.length - 1)
+        return serialNumberUplaod
       }
+
+      async checkBrandName()  {   
+        if(await this.brand.isDisplayed()==true){
+           let brandDisplayed="Dolo-650"
+           return brandDisplayed
+        }
+        else{
+            let brandDisplayed="No Message"
+           return brandDisplayed
+        }
+    }
     async siteName(site){
         
         await this.addsitename.click();

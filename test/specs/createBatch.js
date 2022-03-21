@@ -43,6 +43,10 @@ it('Should verify batch page ', async() => {
    
     await batches.siteName(testData[2]['newBatchDetails'].siteName); 
     await wait.setTimeoutwait(5);
+
+    info.setBrandName(await batches.checkBrandName()) 
+    await wait.setTimeoutwait(3);
+
     let expiryDate = info.setCurrentRandomDate()
     // info.setCurrentRandomDate(expiryDate)
     await wait.setTimeoutwait(2);
@@ -101,16 +105,18 @@ it('Should verify batch page ', async() => {
     // await wait.setTimeoutwait(2);
    // video source
     await batches.videoSourceEpi(testData[2]['newBatchDetails'].videoSource)
-    await wait.setTimeoutwait(2);
+    await wait.setTimeoutwait(3);
    // upload leaflet folder
     await browser.$('//input[@type=\'file\']').addValue(path.join(__dirname, '/src/Entresto'));
     await wait.setTimeoutwait(4); 
     //scrollIntoView
     await batches.acceptButton()
     await wait.setTimeoutwait(5);
+
+   
     
     await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(), info.getBrandName(), "","","","")
-    await wait.setTimeoutwait(3);
+    await wait.setTimeoutwait(6);
      
     //Create batch
      await batches.createBatch()

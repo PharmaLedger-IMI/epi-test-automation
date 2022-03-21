@@ -69,12 +69,14 @@ describe('Expiry date Checks ', () => {
         await batches.selectUpdateValidSerialFromDropdown(testData[2]['newBatchDetails'].updateRecalled)
         await wait.setTimeoutwait(2);
         //enable checkbox
-        await batches.enableResetAllValidSerialNumber()
+        await batches.enableResetAllRecalledSerialNumber()
         await wait.setTimeoutwait(2);
         //set the serial number and enter
         info.setSerialNumber(await batches.serialNum10())
-        await batches.enterSerialNumber(info.getSerialNumber())
         await wait.setTimeoutwait(2);
+        await batches.enterSerialNumber(await batches.serialNum10())
+        await wait.setTimeoutwait(2);
+              
         //accept serial number
         await batches.acceptSerialNumber()
         await wait.setTimeoutwait(2);

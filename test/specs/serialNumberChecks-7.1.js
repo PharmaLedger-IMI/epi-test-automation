@@ -19,10 +19,12 @@ describe('Expiry date Checks ', () => {
     //     console.log('stderr:', stderr1);
     //     })
 
-    it('Serial Number Checks_7- should Create a batch and enable serial number verification and set valid serial numbers, recalled and decommissioned', async () => {
+    it('Serial Number Checks_7.1- should Create a batch and enable serial number verification and set valid serial numbers, recalled and decommissioned', async () => {
     
         allureReporter.startStep('Create a batch and enable serial number verification and set valid serial numbers, recalled and decommissioned')
-        allureReporter.addTestId('Serial Number Checks_7')
+        allureReporter.startStep('Scan with valid serial number')
+
+        allureReporter.addTestId('Serial Number Checks_7.1')
         await batches.Batch();
         await wait.setTimeoutwait(2);
         await batches.addBatch();
@@ -55,26 +57,29 @@ describe('Expiry date Checks ', () => {
         await wait.setTimeoutwait(2);
         //select valid serial number
         await batches.selectUpdateValidSerialFromDropdown(testData[2]['newBatchDetails'].updateValid)
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         //enable checkbox
         await batches.enableResetAllValidSerialNumber()
         await wait.setTimeoutwait(2);
         //set the serial number and enter
         let validserialNumber=info.setSerialNumber(await batches.serialNum())
+        console.log("validserialNumber is "+validserialNumber)
+        await wait.setTimeoutwait(4);
         await batches.enterSerialNumber(info.getSerialNumber())
         await wait.setTimeoutwait(2);
         //accept serial number
         await batches.acceptSerialNumber()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(4);
 
         //select recalled serial number
         await batches.selectUpdateValidSerialFromDropdown(testData[2]['newBatchDetails'].updateRecalled)
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         //enable checkbox
-        await batches.enableResetAllValidSerialNumber()
+        await batches.enableResetAllRecalledSerialNumber()
         await wait.setTimeoutwait(2);
         //set the serial number and enter
         info.setSerialNumber(await batches.serialNum())
+        await wait.setTimeoutwait(2);
         await batches.enterSerialNumber(info.getSerialNumber())
         await wait.setTimeoutwait(2);
         //accept serial number
@@ -84,12 +89,13 @@ describe('Expiry date Checks ', () => {
 
         //select decommisioned serial number
         await batches.selectUpdateValidSerialFromDropdown(testData[2]['newBatchDetails'].UpdateDecommissioned)
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         //enable checkbox
-        await batches.enableResetAllValidSerialNumber()
+        await batches.enableResetAllDecommisionedSerialNumber()
         await wait.setTimeoutwait(2);
         //set the serial number and enter
         info.setSerialNumber(await batches.serialNum())
+        await wait.setTimeoutwait(2);
         await batches.enterSerialNumber(info.getSerialNumber())
         await wait.setTimeoutwait(2);
         //Enter reason
@@ -109,6 +115,7 @@ describe('Expiry date Checks ', () => {
         matrix.generateImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), validserialNumber)
         await wait.setTimeoutwait(5);
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
+        allureReporter.endStep("passed");
         allureReporter.endStep("passed");
        
   

@@ -19,38 +19,47 @@ describe('Expiry date Checks ', () => {
     //     console.log('stderr:', stderr1);
     //     })
 
-    it('Serial Number Checks_5- should clear the valid serial numbers in the above batch  ', async () => {
+    it('Serial Number Checks_7.3- should Create a batch and enable serial number verification and set valid serial numbers, recalled and decommissioned', async () => {
     
-        allureReporter.startStep('In the batch created above - clear the valid serial numbers ')
-        allureReporter.addTestId('Serial Number Checks_5')
-        
+        allureReporter.startStep('Create a batch and enable serial number verification and set valid serial numbers, recalled and decommissioned')
+        allureReporter.startStep('Scan with decommissioned serial number')
 
+        allureReporter.addTestId('Serial Number Checks_7.3')
+        await batches.Batch();
+        await wait.setTimeoutwait(3);
+        //edit above batch
         let editValue = info.getbatchId()
         console.log("editValue is "+editValue)
         await browser.execute('document.querySelector("div:nth-child(' + await info.editBatchRow(editValue) + ') button:nth-child(1)").click()')       
         await wait.setTimeoutwait(8);
 
-        //select valid serial number
-        await batches.selectUpdateValidSerialFromDropdown(testData[2]['newBatchDetails'].updateRecalled)
+         //select decommisioned serial number
+        await batches.selectUpdateValidSerialFromDropdown(testData[2]['newBatchDetails'].UpdateDecommissioned)
         await wait.setTimeoutwait(2);
         //enable checkbox
-        await batches.enableResetAllValidSerialNumber()
+        await batches.enableResetAllDecommisionedSerialNumber()
         await wait.setTimeoutwait(2);
-        
+        //set the serial number and enter
+        info.setSerialNumber(await batches.serialNum())
+        await batches.enterSerialNumber(info.getSerialNumber())
+        await wait.setTimeoutwait(2);
+        //Enter reason
+        await batches.selectLostReasonFromDropdown(testData[2]['newBatchDetails'].Lost)
+        await wait.setTimeoutwait(2);
         //accept serial number
         await batches.acceptSerialNumber()
-        await wait.setTimeoutwait(2);
-       
+        await wait.setTimeoutwait(2); 
        
         await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), "","","", "" )
         await wait.setTimeoutwait(12);
-        //update batch
-        await batches.updateBatchForEdit()
-        await wait.setTimeoutwait(10);
+         //update batch
+         await batches.updateBatchForEdit()
+         await wait.setTimeoutwait(10);
        
         matrix.generateImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
         await wait.setTimeoutwait(5);
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
+        allureReporter.endStep("passed");
         allureReporter.endStep("passed");
        
   

@@ -74,8 +74,14 @@ class reuseFile{
        
     }
     getBrandName(){
+        if(packageJson['scripts'].incrementalTest=='true'){
+            console.log("serial value is " + testData[3]['incrementalTest'].prodName)
+           return testData[3]['incrementalTest'].prodName 
+     }
+        else{
         return currentBrandName
     }
+}
 
 
     setBatchRecall(flag){
@@ -334,6 +340,8 @@ function dateChange(randomDate,type) {
     return date2
 
 }
+
+
 
 
  module.exports = new reuseFile();
