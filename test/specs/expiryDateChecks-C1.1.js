@@ -1,5 +1,5 @@
-const gtinPage = require('./gtinPage.js');
-const products= require('../pageobjects/products.page');
+// const gtinPage = require('./gtinPage.js');
+// const products= require('../pageobjects/products.page');
 const batches= require('../pageobjects/batches.page.js');
 const matrix=require('../utility/2dMatrixPage')
 const data=require('../utility/expectationFile')
@@ -20,19 +20,18 @@ describe('Expiry date Checks ', () => {
     //     console.log('stderr:', stderr1);
     //     })
 
-    it('Expiry date Checks_C1- should create a batch with X expiry date ', async () => {
+    it('Expiry date Checks_C1.1- create a batch with X expiry date and Create a 2D data matrix with details of above batch but different expiration date Y ', async () => {
     
         allureReporter.startStep('create a batch with X expiry date and Create a 2D data matrix with details of above batch but different expiration date Y')
-        allureReporter.addTestId('Expiry date Checks_C1')
+        allureReporter.addTestId('Expiry date Checks_C1.1')
         await batches.Batch();
-        await browser.pause(4000)
+        await wait.setTimeoutwait(2);
         await batches.addBatch();
-        await browser.pause(2000)
+        await wait.setTimeoutwait(2);
         info.setBatchId(await batches.batchIdValue())
-        await browser.pause(3000)
+        await wait.setTimeoutwait(2);
         await batches.siteName(testData[2]['newBatchDetails'].siteName);
-        await browser.pause(5000)
-        //let expiryDate = info.randomDate()
+        await wait.setTimeoutwait(2);
       
         let expiryDate = info.setCurrentRandomDate()
         await browser.pause(2000)
@@ -44,31 +43,31 @@ describe('Expiry date Checks ', () => {
                 datePicker.dispatchEvent(event);
             })();
         }, expiryDate);
-        //
+        await wait.setTimeoutwait(2);
         console.log("different date is"+ info.randomDate())
-        await browser.pause(2000);
+
         const selectBox = await browser.$('//psk-select[@class=\'default-select hydrated\']//select[@class=\'form-control\']'); 
         await selectBox.selectByAttribute('value', info.getProductId());
-        await browser.pause(3000);
+        await wait.setTimeoutwait(2);
         await batches.videoSource(testData[2]['newBatchDetails'].videoSource)
-        await browser.pause(1000);
+        await wait.setTimeoutwait(2);
         info.setSerialNumber(await batches.serialNum())
-        await browser.pause(2000);
+        await wait.setTimeoutwait(2);
        
         await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), "","","", "" )
-        await browser.pause(12000)
+        await wait.setTimeoutwait(12);
         //create batch
         await batches.createBatch()
-        await browser.pause(8000);
+        await wait.setTimeoutwait(8);
 
         const futureDate=info.randomDate()
-        console.log("futuredate is "+futureDate)
-        info.setDayChange(futureDate)
-        info.setMonthChange(futureDate)
-        info.setYearChange(futureDate)
+        console.log("future date is "+futureDate)
+        info.setDateChange(futureDate,"day")
+        info.setDateChange(futureDate,"month")
+        info.setDateChange(futureDate,"year")
       
         matrix.generateImage(info.getProductId(), info.getbatchId(), futureDate, info.getSerialNumber())
-        await browser.pause(5000)
+        await wait.setTimeoutwait(5);
       
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");

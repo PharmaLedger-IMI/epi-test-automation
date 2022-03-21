@@ -1,4 +1,4 @@
-const gtinPage = require('./gtinPage.js');
+// const gtinPage = require('./gtinPage.js');
 //const products= require('../pageobjects/products.page');
 const batches= require('../pageobjects/batches.page.js');
 //const createbatch= require('../specs/createBatch.js');
@@ -25,17 +25,15 @@ describe('Batch Recall and Recall Message for Non-serialized batches ', () => {
        // allureReporter.startStep('Go back to the Batch on the Enterprise Wallet and undo the batch recall flag. ')
         allureReporter.addTestId('Batch recall for non-serialized_1')
         await batches.Batch();
-        await browser.pause(4000)
+        await wait.setTimeoutwait(4);
         await batches.addBatch();
-        await browser.pause(5000)
+        await wait.setTimeoutwait(2);
         info.setBatchId(await batches.batchIdValue())
-        // BatchID = await batches.batchIdValue()
-        // console.log("Batch value is " + BatchID)
+        await wait.setTimeoutwait(2);
         await batches.siteName(testData[2]['newBatchDetails'].siteName);
-        await browser.pause(5000)
+        await wait.setTimeoutwait(2);
         let expiryDate = info.setCurrentRandomDate()
-        // info.setCurrentRandomDate(expiryDate)
-        await browser.pause(2000)
+        await wait.setTimeoutwait(2);
         await browser.execute((date) => {
             (function () {
                 let event = new Event('change');
@@ -45,45 +43,42 @@ describe('Batch Recall and Recall Message for Non-serialized batches ', () => {
             })();
         }, expiryDate);
 
-        await browser.pause(2000);
+        await wait.setTimeoutwait(2);
         const selectBox = await browser.$('//psk-select[@class=\'default-select hydrated\']//select[@class=\'form-control\']'); 
         await selectBox.selectByAttribute('value', info.getProductId());
-        await browser.pause(3000);
-        await batches.videoSource("https://cdnapisec.kaltura.com/html5/html5lib/v2.92/mwEmbedFrame.php/p/2076321/uiconf_id/46847003/entry_id/1_cuq6u28l?wid=_2076321&iframeembed=true&playerId=kaltura_player&entry_id=1_cuq6u28l&flashvars%5bstreamerType%5d=auto&amp;flashvars%5blocalizationCode%5d=en&amp;flashvars%5bleadWithHTML5%5d=true&amp;flashvars%5bsideBarContainer.plugin%5d=true&amp;flashvars%5bsideBarContainer.position%5d=left&amp;flashvars%5bsideBarContainer.clickToClose%5d=true&amp;flashvars%5bchapters.plugin%5d=true&amp;flashvars%5bchapters.layout%5d=vertical&amp;flashvars%5bchapters.thumbnailRotator%5d=false&amp;flashvars%5bstreamSelector.plugin%5d=true&amp;flashvars%5bEmbedPlayer.SpinnerTarget%5d=videoHolder&amp;flashvars%5bdualScreen.plugin%5d=true&amp;flashvars%5bhotspots.plugin%5d=1&amp;flashvars%5bKaltura.addCrossoriginToIframe%5d=true&amp;&wid=1_iueede1t")
-        await browser.pause(1000);
+        await wait.setTimeoutwait(2);
+        await batches.videoSource(testData[2]['newBatchDetails'].videoSource)
+        await wait.setTimeoutwait(2);
         
         await batches.createBatch()
-        await browser.pause(14000);
+        await wait.setTimeoutwait(15);
 
         let editValue = info.getbatchId()
         //click on edit 
         await browser.execute('document.querySelector("div:nth-child(' + await info.editBatchRow(editValue) + ') button:nth-child(1)").click()')       
-        await browser.pause(2000)
+        await wait.setTimeoutwait(2);
         
         //click on checkbox
         await batches.enableCheckToRecallThisBatch()
-        await browser.pause(2000)
+        await wait.setTimeoutwait(2);
         //display recall msg
-        await batches.enterRecallMessage("Sample123")
-        await browser.pause(2000);
+        await batches.enterRecallMessage(testData[2]['newBatchDetails'].recallMsg)
+        await wait.setTimeoutwait(2);
 
         //serial Number
         info.setSerialNumber(await batches.serialNum())
-        await browser.pause(2000)
-
+        await wait.setTimeoutwait(2);
+        //Generate expectation file
         await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber(), info.getBrandName(), await batches.checkBatchRecall(), await batches.checkBatchMessage(), "", await batches.checkBatchRecallMessage())
-        await browser.pause(12000)
-
+        await wait.setTimeoutwait(12);
+        //Generate 2d Matrix
         matrix.generateImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
-        await browser.pause(10000)
+        await wait.setTimeoutwait(12);
         
         //update batch
         await batches.updateBatchForEdit()
-        await browser.pause(6000);
+        await wait.setTimeoutwait(6);
 
-      
-
-        
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");
        

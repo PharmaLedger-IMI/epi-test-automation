@@ -1,12 +1,12 @@
-//const LoginPage = require('../pageobjects/login.page');
-//const gtinPage = require('../specs/gtinPage.js');
-//const digits= require('../pageobjects/digit.cal.js');
+
 const products= require('../pageobjects/products.page');
 const info=require('../utility/reusableFile')
 const wait=require('../utility/timeout')
 const testData=require('../testdata/config.json')
 const allureReporter = require('@wdio/allure-reporter').default
 const path= require('path');
+const moment = require('moment')
+
 // const fs = require('fs');
 
 // const util = require('util');
@@ -32,7 +32,9 @@ it('should verify product page', async() => {
     await products.enterGtinCode(info.getProductId());
     await wait.setTimeoutwait(2);
 
-    await products.brandName(testData[1]['newProductDetails'].brandName);
+    var dateStringWithTime = moment().format('DD-MM-YY h:mm:ss');
+    console.log(dateStringWithTime)
+    await products.brandName(testData[1]['newProductDetails'].brandName + dateStringWithTime) 
     info.setBrandName(await products.checkBrandName()) 
     await wait.setTimeoutwait(2);
     await products.productDescription(testData[1]['newProductDetails'].productDescription); 
@@ -73,7 +75,7 @@ it('should verify product page', async() => {
     //  await wait.waitforelement(await products.saveProduct());
      //Save product
      await products.saveProduct()
-     await wait.setTimeoutwait(15);
+     await wait.setTimeoutwait(50);
     
      allureReporter.endStep("passed");
      allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');

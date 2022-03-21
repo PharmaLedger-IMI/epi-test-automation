@@ -20,10 +20,10 @@ describe('Expiry date Checks ', () => {
     //     console.log('stderr:', stderr1);
     //     })
 
-    it('Expiry date Checks_C2- should  create a batch with X expiry date that has already passed… choose a date from the past  ', async () => {
+    it('Expiry date Checks_C3.1- should create a batch with only MonthYear as expiry date ', async () => {
     
-        allureReporter.startStep(' create a batch with X expiry date that has already passed… choose a date from the past ')
-        allureReporter.addTestId('Expiry date Checks_C2')
+        allureReporter.startStep('Create a batch with only MonthYear as expiry date ')
+        allureReporter.addTestId('Expiry date Checks_C3.1')
         await batches.Batch();
         await wait.setTimeoutwait(2);
         await batches.addBatch();
@@ -32,20 +32,23 @@ describe('Expiry date Checks ', () => {
         await wait.setTimeoutwait(2);
         await batches.siteName(testData[2]['newBatchDetails'].siteName);
         await wait.setTimeoutwait(2);
-       
-      
-        let expiryDate = info.setCurrentRandomDate()
-        await browser.pause(2000)
+        //enable day selection
+        await batches.enableDaySelectionClick()
+        await wait.setTimeoutwait(2);
+        //set the date
+        let expiryDate = info.setCurrentRandomDate()//2023-05-13
+        let mmYYYY=expiryDate.substring(0, expiryDate.length - 3);
+        let ddMMYYYY=mmYYYY+("-00")
+        console.log("dayMonthYear "+ddMMYYYY)
+        await wait.setTimeoutwait(2);
         await browser.execute((date) => {
             (function () {
                 let event = new Event('change');
-                let datePicker = document.querySelector("input[placeholder='dd/mm/yyyy']")
+                let datePicker = document.querySelector("input[placeholder='mm/yyyy']")
                 datePicker.value = date;
                 datePicker.dispatchEvent(event);
             })();
-        }, expiryDate);
-        //
-        console.log("different date is"+ info.randomDate())
+        }, mmYYYY);
         await wait.setTimeoutwait(2);
         const selectBox = await browser.$('//psk-select[@class=\'default-select hydrated\']//select[@class=\'form-control\']'); 
         await selectBox.selectByAttribute('value', info.getProductId());
@@ -55,14 +58,15 @@ describe('Expiry date Checks ', () => {
         info.setSerialNumber(await batches.serialNum())
         await wait.setTimeoutwait(2);
        
-        await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), "","","", "" )
+        await data.generateExpectationFile(info.getProductId(), info.getbatchId(), ddMMYYYY,  info.getSerialNumber(),info.getBrandName(), "","","", "" )
         await wait.setTimeoutwait(12);
+        matrix.generateImage(info.getProductId(), info.getbatchId(), ddMMYYYY, info.getSerialNumber())
+        await wait.setTimeoutwait(6);
         //create batch
         await batches.createBatch()
         await wait.setTimeoutwait(8);
        
-        matrix.generateImage(info.getProductId(), info.getbatchId(), info.randomDateExpired(), info.getSerialNumber())
-        await wait.setTimeoutwait(5);
+
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");
        

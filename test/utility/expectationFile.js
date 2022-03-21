@@ -34,11 +34,10 @@ const fs = require('fs')
     let jsonData = JSON.stringify(testExpectations)
     console.log("file is " + jsonData)
     fs.writeFile('C:/Users/snehav/epi-mobileapp-test-automation/test/testdata/testExpectations.json', jsonData, 'utf8', () => {
-
-        console.log('written file')
+    console.log('written file')
 
     });
 
 }
- }
+}
  module.exports = new expectationData();

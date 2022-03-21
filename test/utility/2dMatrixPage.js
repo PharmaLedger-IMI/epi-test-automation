@@ -17,7 +17,6 @@ class matrixGenerator{
         const expdate = expiryDate.replace('-', '')
         const expdated = expdate.replace('-', '')
         var expiryDateR = expdated.slice(2);
-       // const barcode='(01)'+gtin.gt()+'(17)'+expiryDate+'(10)'+await batches.batchIdValue()+'(21)'+await batches.serialNum()
 
         const barcode='(01)'+gtin+'(17)'+expiryDateR+'(10)'+batchNumber +'(21)'+serialNumber
         console.log(barcode)    
@@ -25,7 +24,7 @@ class matrixGenerator{
             bcid:        'gs1datamatrix',  
             text:        barcode,    
             backgroundcolor: 'ffffff',
-            padding: 15 
+            padding: 65 
         }, function (err, buff) {
             if (err) {
         

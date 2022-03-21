@@ -1,4 +1,4 @@
-const gtinPage = require('./gtinPage.js');
+// const gtinPage = require('./gtinPage.js');
 const batches= require('../pageobjects/batches.page.js');
 const matrix=require('../utility/2dMatrixPage')
 const data=require('../utility/expectationFile')
@@ -19,25 +19,24 @@ describe('Batch Recall and Recall Message for serialized batches ', () => {
     it('BatchRecall&Msgs_1-should verify Batch Recall and Recall Message for serialized batches ', async () => {
     
         allureReporter.startStep('Create a batch for any product. Upload Valid Serial Numbers for the same and Update the batch to recall it and add a display message for the same.')
-        //allureReporter.startStep('Update the batch to recall it and add a display message for the same.')
         allureReporter.addTestId('BatchRecall&Msg_1')
         await batches.Batch();
-        await browser.pause(4000)
+        await wait.setTimeoutwait(2);
         await batches.addBatch();
-        await browser.pause(4000)
+        await wait.setTimeoutwait(2);
 
         // await browser.execute('document.querySelector(`a[href="/batches"]`).click()')
         // await browser.pause(6000)   
         // await browser.execute('document.querySelector(`button[data-tag="add-batch"]`).click()') 
         // await browser.pause(3000)
+
         //Set batch value after add batch
         info.setBatchId(await batches.batchIdValue())
-        await browser.pause(2000)
+        await wait.setTimeoutwait(2);
         await batches.siteName(testData[2]['newBatchDetails'].siteName);
-        await browser.pause(6000)
+        await wait.setTimeoutwait(2);
         let expiryDate = info.setCurrentRandomDate()
-        // info.setCurrentRandomDate(expiryDate)
-        await browser.pause(2000)
+        await wait.setTimeoutwait(2);
         await browser.execute((date) => {
             (function () {
                 let event = new Event('change');
@@ -47,53 +46,53 @@ describe('Batch Recall and Recall Message for serialized batches ', () => {
             })();
         }, expiryDate);
 
-        await browser.pause(2000);
+        await wait.setTimeoutwait(2);
         const selectBox = await browser.$('//psk-select[@class=\'default-select hydrated\']//select[@class=\'form-control\']'); 
         await selectBox.selectByAttribute('value', info.getProductId());
-        await browser.pause(3000);
-        await batches.videoSource("https://cdnapisec.kaltura.com/html5/html5lib/v2.92/mwEmbedFrame.php/p/2076321/uiconf_id/46847003/entry_id/1_cuq6u28l?wid=_2076321&iframeembed=true&playerId=kaltura_player&entry_id=1_cuq6u28l&flashvars%5bstreamerType%5d=auto&amp;flashvars%5blocalizationCode%5d=en&amp;flashvars%5bleadWithHTML5%5d=true&amp;flashvars%5bsideBarContainer.plugin%5d=true&amp;flashvars%5bsideBarContainer.position%5d=left&amp;flashvars%5bsideBarContainer.clickToClose%5d=true&amp;flashvars%5bchapters.plugin%5d=true&amp;flashvars%5bchapters.layout%5d=vertical&amp;flashvars%5bchapters.thumbnailRotator%5d=false&amp;flashvars%5bstreamSelector.plugin%5d=true&amp;flashvars%5bEmbedPlayer.SpinnerTarget%5d=videoHolder&amp;flashvars%5bdualScreen.plugin%5d=true&amp;flashvars%5bhotspots.plugin%5d=1&amp;flashvars%5bKaltura.addCrossoriginToIframe%5d=true&amp;&wid=1_iueede1t")
-        await browser.pause(1000);
-        await batches.selectUpdateValidSerialFromDropdown('Update Valid')
-        await browser.pause(5000);
+        await wait.setTimeoutwait(2);
+        await batches.videoSource(testData[2]['newBatchDetails'].videoSource)
+        await wait.setTimeoutwait(2);
+        await batches.selectUpdateValidSerialFromDropdown(testData[2]['newBatchDetails'].updateValid)
+        await wait.setTimeoutwait(2);
         await batches.enableResetAllValidSerialNumber()
-        await browser.pause(1000);
+        await wait.setTimeoutwait(2);
         info.setSerialNumber(await batches.serialNum())
         await batches.enterSerialNumber(info.getSerialNumber())
-        await browser.pause(5000);
+        await wait.setTimeoutwait(4);
         await batches.acceptSerialNumber()
-        await browser.pause(1000);
+        await wait.setTimeoutwait(2);
        
         await batches.createBatch()
-        await browser.pause(40000);
+        await wait.setTimeoutwait(15);
         
         let editValue = info.getbatchId()
         //click on edit 
         await browser.execute('document.querySelector("div:nth-child(' + await info.editBatchRow(editValue) + ') button:nth-child(1)").click()')       
-        await browser.pause(5000)
+        await wait.setTimeoutwait(5);
         
         //click on Batch Recall checkbox
         await batches.enableCheckToRecallThisBatch()
-        await browser.pause(1000)
+        await wait.setTimeoutwait(2);
         //Check and set batch Recall is in enabled state
         info.setBatchRecall(await batches.checkBatchRecall())
-        await browser.pause(2000)
+        await wait.setTimeoutwait(2);
 
         //Display recall msg
-        await batches.enterRecallMessage("Sample")
-        await browser.pause(3000);
+        await batches.enterRecallMessage(testData[2]['newBatchDetails'].recallMsg)
+        await wait.setTimeoutwait(2);
          //Check and set batch Recall Msg is displayed
         info.setBatchRecallMsg(await batches.checkBatchRecallMessage()) 
-        await browser.pause(2000) 
+        await wait.setTimeoutwait(2);
 
         await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), info.getBatchRecall(),"","", info.getBatchRecallMsg() )
-        await browser.pause(14000)
+        await wait.setTimeoutwait(12);
 
         matrix.generateImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
-        await browser.pause(12000)
+        await wait.setTimeoutwait(2);
 
         //update batch
         await batches.updateBatchForEdit()
-        await browser.pause(40000);    
+        await wait.setTimeoutwait(12);  
 
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");

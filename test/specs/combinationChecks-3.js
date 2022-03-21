@@ -1,10 +1,10 @@
-const gtinPage = require('../specs/gtinPage.js');
+
 const batches= require('../pageobjects/batches.page.js');
 const matrix=require('../utility/2dMatrixPage')
 const data=require('../utility/expectationFile')
 const info=require('../utility/reusableFile')
 const wait=require('../utility/timeout')
-const testData=require('../testdata/config.json')
+
 const allureReporter = require('@wdio/allure-reporter').default
 //const path= require('path');
 // const util = require('util');
@@ -28,11 +28,11 @@ describe('Combination checks ', () => {
 
         
         await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), info.getBatchRecall(),"","", info.getBatchRecallMsg())
-        await browser.pause(12000)
+        await wait.setTimeoutwait(12);
 
 
         matrix.generateImage(info.getProductId(), info.getbatchId(), info.randomDateExpired(), await batches.serialNum())
-        await browser.pause(5000)
+        await wait.setTimeoutwait(12);
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");
        

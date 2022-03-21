@@ -4,7 +4,7 @@ const batches= require('../pageobjects/batches.page.js');
 const matrix=require('../utility/2dMatrixPage')
 const data=require('../utility/expectationFile')
 const info=require('../utility/reusableFile')
-
+const wait=require('../utility/timeout')
 const allureReporter = require('@wdio/allure-reporter').default
 
 // const util = require('util');
@@ -25,10 +25,10 @@ describe('Expiry date Checks ', () => {
         
        
         await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), "","","", "" )
-        await browser.pause(12000)
+        await wait.setTimeoutwait(12);
               
-        matrix.generateImage(info.getProductId(), info.getbatchId(), info.getYearChange(), info.getSerialNumber())
-        await browser.pause(5000)
+        matrix.generateImage(info.getProductId(), info.getbatchId(), info.getDateChange("year"), info.getSerialNumber())
+        await wait.setTimeoutwait(12);
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");
        

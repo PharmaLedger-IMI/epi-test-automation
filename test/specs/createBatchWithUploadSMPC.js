@@ -1,5 +1,4 @@
-//const gtinPage = require('../specs/gtinPage.js');
-//const products= require('../pageobjects/products.page');
+
 const batches= require('../pageobjects/batches.page.js');
 const matrix=require('../utility/2dMatrixPage')
 const data=require('../utility/expectationFile')
@@ -25,14 +24,13 @@ describe('Product Information Update', () => {
         // await batches.Batch();
         // await browser.pause(4000)
         await batches.addBatch();
-        await browser.pause(2000)
+        await wait.setTimeoutwait(2);
         info.setBatchId(await batches.batchIdValue())
-        await browser.pause(2000)
+        await wait.setTimeoutwait(2);
         await batches.siteName(testData[2]['newBatchDetails'].siteName);
-        await browser.pause(5000)
+        await wait.setTimeoutwait(2);
         let expiryDate = info.setCurrentRandomDate()
-        // info.setCurrentRandomDate(expiryDate)
-        await browser.pause(2000)
+        await wait.setTimeoutwait(2);
         await browser.execute((date) => {
             (function () {
                 let event = new Event('change');
@@ -41,42 +39,42 @@ describe('Product Information Update', () => {
                 datePicker.dispatchEvent(event);
             })();
         }, expiryDate);
-        await browser.pause(3000);
+        await wait.setTimeoutwait(2);
         const selectBox = await browser.$('//psk-select[@class=\'default-select hydrated\']//select[@class=\'form-control\']');  
         await selectBox.selectByAttribute('value', info.getProductId());
-        await browser.pause(3000);
+        await wait.setTimeoutwait(2);
         await batches.videoSource(testData[2]['newBatchDetails'].videoSource)
-        await browser.pause(1000);
+        await wait.setTimeoutwait(2);
         //Enter batch message
         await batches.batchMessage(testData[2]['newBatchDetails'].batchMsg)
-        await browser.pause(1000);
+        await wait.setTimeoutwait(2);
+        //Add german smpc
         await batches.addEpi()
-        await browser.pause(1000);
+        await wait.setTimeoutwait(2);
         await batches.selectLanguage(testData[2]['newBatchDetails'].selectLanguage)
-        await browser.pause(1000)
+        await wait.setTimeoutwait(2);
         await batches.selectType(testData[2]['newBatchDetails'].selectType)
-        await browser.pause(1000)
+        await wait.setTimeoutwait(2);
         // video source
         await batches.videoSourceEpi(testData[2]['newBatchDetails'].videoSource)
-        await browser.pause(1000);
+        await wait.setTimeoutwait(2);
         // upload leaflet folder
-        // await batches.uploadLeafletFolder()
         await browser.$('//input[@type=\'file\']').addValue(path.join(__dirname, '/src/Entresto'));
-        await browser.pause(4000);
+        await wait.setTimeoutwait(2);
         //scrollIntoView
         await batches.acceptButton()
-        await browser.pause(5000);
-
+        await wait.setTimeoutwait(5);
+        //set serial number
         info.setSerialNumber(await batches.serialNum())
 
 
         await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(),"", await batches.checkBatchMessage(),"", "" )
-        await browser.pause(12000)
+        await wait.setTimeoutwait(12);
         matrix.generateImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
-        await browser.pause(5000)
+        await wait.setTimeoutwait(5);
        
         await batches.createBatch()
-        await browser.pause(5000);
+        await wait.setTimeoutwait(5);
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");
        

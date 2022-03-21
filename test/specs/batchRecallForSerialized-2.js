@@ -1,10 +1,9 @@
-const gtinPage = require('./gtinPage.js');
+// const gtinPage = require('./gtinPage.js');
 const batches= require('../pageobjects/batches.page.js');
 const matrix=require('../utility/2dMatrixPage')
 const data=require('../utility/expectationFile')
 const info=require('../utility/reusableFile')
 const wait=require('../utility/timeout')
-const testData=require('../testdata/config.json')
 const allureReporter = require('@wdio/allure-reporter').default
 //const path= require('path');
 // const util = require('util');
@@ -26,36 +25,30 @@ describe('Batch Recall and Recall Message for serialized batches ', () => {
     
         //Again click on edit batch
         await browser.execute('document.querySelector("div:nth-child(' + await info.editBatchRow(editValue) + ') button:nth-child(1)").click()')       
-        await browser.pause(3000)
-
-        // //Clear recall msg
-        // await batches.clearRecallMessage()
-        // await browser.pause(3000);
-        //Check and set batch Recall Msg is displayed
+        await wait.setTimeoutwait(2);
          
-
+        //set batch recall msg
         info.setBatchRecallMsg(await batches.checkBatchRecallMessage())
-        await browser.pause(4000)
+        await wait.setTimeoutwait(2);
 
         //undo the batch recall
         await batches.enableCheckToRecallThisBatch()
-        await browser.pause(4000)
+        await wait.setTimeoutwait(2);
 
 
         info.setBatchRecall(await batches.checkBatchRecall())
-        await browser.pause(4000)
+        await wait.setTimeoutwait(2);
 
        
-
         await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), info.getBatchRecall(),"","",  await batches.checkBatchRecallMessage() )
-        await browser.pause(15000)
+        await wait.setTimeoutwait(12);
 
         matrix.generateImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
-        await browser.pause(12000)
+        await wait.setTimeoutwait(12);
 
         //update batch
         await batches.updateBatchForEdit()
-        await browser.pause(40000);
+        await wait.setTimeoutwait(12);
        
 
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');

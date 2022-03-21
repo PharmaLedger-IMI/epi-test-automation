@@ -20,21 +20,21 @@ describe('Expiry date Checks ', () => {
     //     console.log('stderr:', stderr1);
     //     })
 
-    it('Expiry date Checks_3- should create a batch with only MonthYear as expiry date ', async () => {
+    it('Expiry date Checks_C3.2- should create a batch by disabling day selection, incorrect and expired date ', async () => {
     
-        allureReporter.startStep('Create a batch with only MonthYear as expiry date')
-        allureReporter.addTestId('Expiry date Checks_3')
+        allureReporter.startStep('Create a batch by disabling day selection, incorrect and expired date')
+        allureReporter.addTestId('Expiry date Checks_C3.2')
         await batches.Batch();
-        await browser.pause(4000)
+        await wait.setTimeoutwait(2);
         await batches.addBatch();
-        await browser.pause(2000)
+        await wait.setTimeoutwait(2);
         info.setBatchId(await batches.batchIdValue())
-        await browser.pause(3000)
+        await wait.setTimeoutwait(2);
         await batches.siteName(testData[2]['newBatchDetails'].siteName);
-        await browser.pause(5000)
-        //let expiryDate = info.randomDate()
+        await wait.setTimeoutwait(2);
+        //click on day selection
         await batches.enableDaySelectionClick()
-        await browser.pause(2000)
+        await wait.setTimeoutwait(2);
         //set the date
         let expiryDate = info.setCurrentRandomDate()
         let mmYYYY=expiryDate.substring(0, expiryDate.length - 3);
@@ -49,22 +49,28 @@ describe('Expiry date Checks ', () => {
                 datePicker.dispatchEvent(event);
             })();
         }, mmYYYY);
-        await browser.pause(2000);
+        await wait.setTimeoutwait(2);
+        //click on Incorrect Expiration Date Verification
+        await batches.enableIncorrectExpirationDateVerificationClick()
+        await wait.setTimeoutwait(2);
+        //click on Enable Expired Expiration Date Verification
+        await batches.expirationDateVerificationClick()
+        await wait.setTimeoutwait(2);
         const selectBox = await browser.$('//psk-select[@class=\'default-select hydrated\']//select[@class=\'form-control\']'); 
         await selectBox.selectByAttribute('value', info.getProductId());
-        await browser.pause(3000);
+        await wait.setTimeoutwait(2);
         await batches.videoSource(testData[2]['newBatchDetails'].videoSource)
-        await browser.pause(1000);
+        await wait.setTimeoutwait(2);
         info.setSerialNumber(await batches.serialNum())
-        await browser.pause(2000);
+        await wait.setTimeoutwait(2);
        
         await data.generateExpectationFile(info.getProductId(), info.getbatchId(), ddMMYYYY,  info.getSerialNumber(),info.getBrandName(), "","","", "" )
-        await browser.pause(12000)
+        await wait.setTimeoutwait(12);
         matrix.generateImage(info.getProductId(), info.getbatchId(), ddMMYYYY, info.getSerialNumber())
-        await browser.pause(5000)
+        await wait.setTimeoutwait(5);
         //create batch
         await batches.createBatch()
-        await browser.pause(8000);
+        await wait.setTimeoutwait(8);
        
 
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');

@@ -26,6 +26,7 @@
   "dependencies": {
     "chai-webdriverio": "^1.0.0",
     "chromedriver": "^98.0.0",
+    "moment": "^2.29.1",
     "webdriverio": "^7.16.14"
   }
 }

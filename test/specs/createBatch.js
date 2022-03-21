@@ -1,5 +1,5 @@
 const batches= require('../pageobjects/batches.page.js');
-const gtinPage = require('../specs/gtinPage.js');
+// const gtinPage = require('../specs/gtinPage.js');
 const path= require('path');
 const wait=require('../utility/timeout')
 const testData=require('../testdata/config.json')
@@ -29,11 +29,12 @@ it('Should verify batch page ', async() => {
     allureReporter.startStep("Create a batch for the recent GTIN with all valid details.")
    
   
-    await batches.Batch(); 
-    await wait.setTimeoutwait(3);
-    // await browser.execute('document.querySelector(`a[href="/batches"]`).click()')
-    // await browser.pause(6000)   
-    // await browser.execute('document.querySelector(`button[data-tag="add-batch"]`).click()')      
+    // await batches.Batch(); 
+    // await wait.setTimeoutwait(3);
+    //Created for QA environment
+    await browser.execute('document.querySelector(`webc-app-menu-item:nth-child(4) stencil-route-link:nth-child(1) a:nth-child(1)`).click()')
+    await browser.pause(6000)   
+      
     await batches.addBatch(); 
     await wait.setTimeoutwait(3);
     
@@ -89,21 +90,15 @@ it('Should verify batch page ', async() => {
     // manage serial number accept 
     await batches.acceptSerialNumber()
     await wait.setTimeoutwait(1);
-    // cancel button
-    // await batches.cancelSerialNumber()
-    // await browser.pause(1000);
-    // batch msg
-    // await batches.batchMessage("Sample")
-    // await browser.pause(1000);
     // add epi leaflet
     await batches.addEpi()
     await wait.setTimeoutwait(1);
     //
-    await batches.selectLanguage(testData[2]['newBatchDetails'].selectLanguage)
-    await wait.setTimeoutwait(2);
-    //select type
-    await batches.selectType(testData[2]['newBatchDetails'].selectType)
-    await wait.setTimeoutwait(2);
+    // await batches.selectLanguage(testData[2]['newBatchDetails'].selectLanguage)
+    // await wait.setTimeoutwait(2);
+    // //select type
+    // await batches.selectType(testData[2]['newBatchDetails'].selectType)
+    // await wait.setTimeoutwait(2);
    // video source
     await batches.videoSourceEpi(testData[2]['newBatchDetails'].videoSource)
     await wait.setTimeoutwait(2);
@@ -113,17 +108,13 @@ it('Should verify batch page ', async() => {
     //scrollIntoView
     await batches.acceptButton()
     await wait.setTimeoutwait(5);
-    //checkbox
-    // await batches.enableCheckToRecallThisBatch()
-    // await browser.pause(3000)
     
     await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(), info.getBrandName(), "","","","")
     await wait.setTimeoutwait(3);
      
     //Create batch
      await batches.createBatch()
-
-     await wait.setTimeoutwait(15);
+    await wait.setTimeoutwait(15);
 
     //Generate Image
    matrix.generateImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())

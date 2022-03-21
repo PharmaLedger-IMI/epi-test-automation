@@ -1,17 +1,17 @@
-//const gtinPage = require('../specs/gtinPage.js');
-//const products= require('../pageobjects/products.page');
+
 const batches= require('../pageobjects/batches.page.js');
-//const createbatch= require('../specs/createBatch.js');
 const matrix=require('../utility/2dMatrixPage')
 const data=require('../utility/expectationFile')
 const info=require('../utility/reusableFile')
 const wait=require('../utility/timeout')
 const testData=require('../testdata/config.json')
+
 const allureReporter = require('@wdio/allure-reporter').default
-//const path= require('path');
+
 // const util = require('util');
 // const exec = util.promisify(require('child_process').exec);
-describe('Batch Recall and Batch Message', () => {
+
+describe('Expiry date Checks ', () => {
 
     // after(async () => {
     //     const { stdout1, stderr1 } =await exec('cd ../epi-mobileapp-test-automation && npm run test');
@@ -19,24 +19,21 @@ describe('Batch Recall and Batch Message', () => {
     //     console.log('stderr:', stderr1);
     //     })
 
-    it('BatchRecall&Msg_1-should Create a batch with a batch recall and message', async () => {
+    it('Expiry date Checks_C3.5- should create a batch and enable day selection, disable incorrect and enable expired date ', async () => {
     
-        allureReporter.startStep('  Create a batch with a batch recall and message.')
-        allureReporter.addTestId('BatchRecall&Msg_1')
+        allureReporter.startStep('create a batch and enable day selection, disable incorrect and enable expired date')
+        allureReporter.addTestId('Expiry date Checks_C3.5')
         await batches.Batch();
-        await wait.setTimeoutwait(4);
+        await wait.setTimeoutwait(2);
         await batches.addBatch();
         await wait.setTimeoutwait(2);
-        // await browser.execute('document.querySelector(`a[href="/batches"]`).click()')
-        // await browser.pause(6000)   
-        // await browser.execute('document.querySelector(`button[data-tag="add-batch"]`).click()') 
-        
         info.setBatchId(await batches.batchIdValue())
         await wait.setTimeoutwait(2);
         await batches.siteName(testData[2]['newBatchDetails'].siteName);
-        await wait.setTimeoutwait(5);
+        await wait.setTimeoutwait(2);
+        //let expiryDate = info.randomDate()
+      
         let expiryDate = info.setCurrentRandomDate()
-        // info.setCurrentRandomDate(expiryDate)
         await wait.setTimeoutwait(2);
         await browser.execute((date) => {
             (function () {
@@ -46,39 +43,32 @@ describe('Batch Recall and Batch Message', () => {
                 datePicker.dispatchEvent(event);
             })();
         }, expiryDate);
-        await wait.setTimeoutwait(4);
-        const selectBox = await browser.$('//psk-select[@class=\'default-select hydrated\']//select[@class=\'form-control\']');  
-        await selectBox.selectByAttribute('value', info.getProductId());
-        await wait.setTimeoutwait(3);
-        await batches.videoSource(testData[2]['newBatchDetails'].videoSource)
-        await wait.setTimeoutwait(5);
-
-        await batches.enableCheckToRecallThisBatch()
-        await wait.setTimeoutwait(3);
-
-        await batches.enterRecallMessage(testData[2]['newBatchDetails'].recallMsg)
-        await wait.setTimeoutwait(3);
         
-
-        info.setBatchRecall(await batches.checkBatchRecall())
+        console.log("different date is"+ info.randomDate())
         await wait.setTimeoutwait(2);
-        info.setBatchRecallMsg(await batches.checkBatchRecallMessage()) 
+        //click on Incorrect Expiration Date Verification
+        await batches.enableIncorrectExpirationDateVerificationClick()
         await wait.setTimeoutwait(2);
-
-        //set serial Number
+        //select product from dropdown
+        const selectBox = await browser.$('//psk-select[@class=\'default-select hydrated\']//select[@class=\'form-control\']'); 
+        await selectBox.selectByAttribute('value', info.getProductId());
+        await wait.setTimeoutwait(2);
+        await batches.videoSource(testData[2]['newBatchDetails'].videoSource)
+        await wait.setTimeoutwait(2);
         info.setSerialNumber(await batches.serialNum())
         await wait.setTimeoutwait(2);
-
-        await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(),info.getBatchRecall()," ","", info.getBatchRecallMsg() )
-        await wait.setTimeoutwait(12);
        
+        await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), "","","", "" )
+        await wait.setTimeoutwait(12);
+        //create batch
         await batches.createBatch()
-        await wait.setTimeoutwait(15);
-
+        await wait.setTimeoutwait(8);
+       
         matrix.generateImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
         await wait.setTimeoutwait(5);
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");
        
+  
     })
 })    

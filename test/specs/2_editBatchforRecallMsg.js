@@ -24,7 +24,9 @@ describe('Edit batch for recall message', () => {
         allureReporter.startStep("Update any field on the batch and Save the changes")
         allureReporter.addTestId('ProdAndBatchSetup_1')
 
-        await batches.Batch(); 
+        // await batches.Batch(); 
+        await browser.execute('document.querySelector(`webc-app-menu-item:nth-child(4) stencil-route-link:nth-child(1) a:nth-child(1)`).click()')
+
         await wait.setTimeoutwait(8);
         let editValue = info.getbatchId()
         console.log("editValue is "+editValue)
@@ -37,7 +39,7 @@ describe('Edit batch for recall message', () => {
         info.setBatchRecall(await batches.checkBatchRecall())
         await wait.setTimeoutwait(2);
         //enter batch msg
-        await batches.enterRecallMessage(testData[2]['newBatchDetails'].batchMsg)
+        await batches.enterRecallMessage(testData[2]['newBatchDetails'].recallMsg)
         await wait.setTimeoutwait(4);
         info.setBatchRecallMsg(await batches.checkBatchRecallMessage()) 
         await wait.setTimeoutwait(2);

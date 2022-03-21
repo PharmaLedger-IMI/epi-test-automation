@@ -27,10 +27,10 @@ exports.config = {
         //'test/specs/test.js',
          //'test/specs/landingPage.js',
 
-            //  'test/specs/gtinPage.js',
-             'test/specs/loginCredentials.js',
-            //  'test/specs/createProduct.js',
-            //  'test/specs/createBatch.js',
+             'test/specs/gtinPage.js',
+            'test/specs/loginCredentials.js',
+              'test/specs/createProduct.js',
+             'test/specs/createBatch.js',
         
            
          // 'test/specs/3_editProductforToggle_ePIFlag.js',
@@ -51,9 +51,18 @@ exports.config = {
             //  'test/specs/combinationChecks-1.js',
             //  'test/specs/combinationChecks-2.js',
             //  'test/specs/combinationChecks-3.js',
-            // 'test/specs/expiryDateChecks-C1.js',
-            // 'test/specs/expiryDateChecks-C1.4.js',
-            'test/specs/expiryDateChecks-C3.js'
+            // 'test/specs/expiryDateChecks-C1.1.js',
+            //  'test/specs/expiryDateChecks-C1.4.js',
+            // 'test/specs/expiryDateChecks-C1.5.js',
+            //  'test/specs/expiryDateChecks-C1.6.js',
+            // 'test/specs/expiryDateChecks-C3.1.js',
+            //'test/specs/expiryDateChecks-C3.2.js',
+            // 'test/specs/expiryDateChecks-C3.3.js',
+            // 'test/specs/expiryDateChecks-C3.4.js',
+            // 'test/specs/expiryDateChecks-C3.5.js',
+            // 'test/specs/expiryDateChecks-C3.6.js',
+            // 'test/specs/expiryDateChecks-C3.7.js',
+            //'test/specs/serialNumberChecks-1.js'
 
           
 
@@ -150,8 +159,8 @@ exports.config = {
     // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
     // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
     // gets prepended directly.
-    //baseUrl: 'https://epiqa.westeurope.cloudapp.azure.com/',
-    baseUrl:'http://localhost:3000',
+    baseUrl: 'https://epiqa.westeurope.cloudapp.azure.com/',
+    //baseUrl:'http://localhost:3000',
     //
     // Default timeout for all waitFor* commands.
     waitforTimeout: 10000,

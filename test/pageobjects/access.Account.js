@@ -25,7 +25,7 @@ async clearUserName(){
    await this.userName.clearValue();
 }
 
-async enterUserName(userNameclt){
+async enterUserName(userName){
     await browser.waitUntil(
         async () => (await this.userName),
         {
@@ -34,7 +34,7 @@ async enterUserName(userNameclt){
         }
         );
     
-    await this.userName.setValue(userNameclt);
+    await this.userName.setValue(userName);
 
 }
 async Enterbutton(){

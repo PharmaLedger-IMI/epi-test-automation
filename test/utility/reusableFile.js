@@ -24,8 +24,8 @@ class reuseFile{
     getProductId(){
         if(packageJson['scripts'].incrementalTest=='true'){
            
-            console.log("incrementalProduct value is " + testData[3]['incrementalEditBatch'].prodId)
-            return testData[3]['incrementalEditBatch'].prodId 
+            console.log("incrementalProduct value is " + testData[3]['incrementalTest'].prodId)
+            return testData[3]['incrementalTest'].prodId 
      }
         else 
         {       
@@ -41,8 +41,8 @@ class reuseFile{
     }
     getbatchId() {
         if(packageJson['scripts'].incrementalTest=='true'){
-            console.log("incrementalTest value is " + testData[3]['incrementalEditBatch'].batchId)
-           return testData[3]['incrementalEditBatch'].batchId 
+            console.log("incrementalTest value is " + testData[3]['incrementalTest'].batchId)
+           return testData[3]['incrementalTest'].batchId 
      }
         else{
             
@@ -59,8 +59,8 @@ class reuseFile{
     }
     getSerialNumber() {
         if(packageJson['scripts'].incrementalTest=='true'){
-            console.log("serial value is " + testData[3]['incrementalEditBatch'].serialNumber)
-           return testData[3]['incrementalEditBatch'].serialNumber 
+            console.log("serial value is " + testData[3]['incrementalTest'].serialNumber)
+           return testData[3]['incrementalTest'].serialNumber 
      }
         else{
         console.log("Serial NUmber is " + currentSerial)
@@ -106,8 +106,8 @@ class reuseFile{
     getCurrentRandomDate(){
 
         if(packageJson['scripts'].incrementalTest=='true'){
-        console.log("date value is " + testData[3]['incrementalEditBatch'].expiryDate)
-        return testData[3]['incrementalEditBatch'].expiryDate 
+        console.log("date value is " + testData[3]['incrementalTest'].expiryDate)
+        return testData[3]['incrementalTest'].expiryDate 
      }
      else{
 
@@ -128,21 +128,67 @@ class reuseFile{
     }
 
     getDayChange(){
+        if(packageJson['scripts'].incrementalTest=='true'){
+            console.log("date value is " + testData[3]['incrementalTest'].expiryDate)
+            return testData[3]['incrementalTest'].expiryDate 
+        }
+        else
+        {
         return currentDay
+        }
     }
-    setMonthChange(randomDate){
+    // setMonthChange(randomDate){
 
-        return currentMonth=randomMonth(randomDate)
-    }
+    //     return currentMonth=randomMonth(randomDate)
+    // }
     getMonthChange(){
+        
+        if(packageJson['scripts'].incrementalTest=='true'){
+            console.log("date value is " + testData[3]['incrementalTest'].expiryDate)
+            return testData[3]['incrementalTest'].expiryDate 
+        }
+        else
+        {
         return currentMonth
+        }
     }
     setYearChange(randomDate){
 
         return currentYear=randomYear(randomDate)
     }
     getYearChange(){
+        if(packageJson['scripts'].incrementalTest=='true'){
+            console.log("date value is " + testData[3]['incrementalTest'].expiryDate)
+            return testData[3]['incrementalTest'].expiryDate 
+        }
+        else
+        {
         return currentYear
+        }
+    }
+
+    setDateChange(randomDate,type){
+        if(type=="day"){
+            currentDay = dateChange(randomDate,type)
+        }
+        else if(type=="month"){
+            currentMonth = dateChange(randomDate,type)
+        }
+        else if(type=="year"){
+            currentYear = dateChange(randomDate,type)
+        }
+    }
+
+    getDateChange(type){
+        if(type=="day"){
+           return currentDay
+        }
+        else if(type=="month"){
+           return currentMonth
+        }
+        else if(type=="year"){
+            return currentYear
+        }
     }
 
 
@@ -204,9 +250,6 @@ class reuseFile{
     }     
     }
 
-
-
-
       function randomDateF() {
 
         let end = new Date("2029-05-28")
@@ -249,78 +292,48 @@ class reuseFile{
         return date2
 
  }
- function randomDay(randomDate) {
-
+ //To change day/month/Year
+function dateChange(randomDate,type) {
     let randomDateG=new Date(randomDate)
-
-    let startYear = randomDateG.getFullYear()
-    let startMonth = randomDateG.getMonth() + 1
-    let start = new Date(startYear+"-"+startMonth+"-"+"01")
-    let end = new Date(startYear+"-"+startMonth+"-"+"28")
-    var date1 = new Date(+start + Math.random() * (end - start));
-    finalD = date1
-    console.log(finalD)
-    let month = finalD.getMonth()+1
-    let date = finalD.getDate()
-    if(month<10){
-        month = "0"+(month)
-    }
-    if(date<10){
-        date =  "0"+date
-       }
-
-    var date2=finalD.getFullYear() +"-" + month + "-" + date
-    //console.log("day is" +date2)
-    return date2
-}
-function randomMonth(randomDate) {
-
-    let randomDateG=new Date(randomDate)
-
     let startYear = randomDateG.getFullYear()
     let startDate = randomDateG.getDate()
-
-    let start = new Date(startYear+"-"+"01"+"-"+startDate)
-    let end = new Date(startYear+"-"+"12"+"-"+startDate)
-    var date1 = new Date(+start + Math.random() * (end - start));
+    let startMonth = randomDateG.getMonth()+1
+    console.log("newdate"+startDate,startMonth)
+    let start = ""
+    let end = ""
+    if(type=="day"){
+         start = new Date(startYear+"-"+startMonth+"-"+"01")
+         end = new Date(startYear+"-"+startMonth+"-"+"28")
+    }
+    else if(type=="month"){
+         
+        start = new Date(startYear + "-" + "01" + "-" + startDate)
+        end = new Date(startYear + "-" + "12" + "-" + startDate)
+    }
+    else if(type=="year"){
+         start = new Date("2023"+"-"+startMonth+"-"+startDate)
+         end = new Date("2029"+"-"+startMonth+"-"+startDate)
+    }
+    
+    var date1 = new Date(+start + Math.random() * (end - start)); //2023-08-17 to 2029-08-17
     finalD = date1
-    console.log(finalD)
-    let month = finalD.getMonth()+1
-    let date = finalD.getDate()
+
+    let month = type=="year"?randomDateG.getMonth() + 1:finalD.getMonth() + 1
+    let date = type=="year"||type=="month"?randomDateG.getDate():finalD.getDate()
+
+    // let month = finalD.getMonth()+1
+    // let date = finalD.getDate()
     if(month<10){
         month = "0"+(month)
     }
     if(date<10){
         date =  "0"+date
        }
-
     var date2=finalD.getFullYear() +"-" + month + "-" + date
+    console.log('changeddate of day/month/year'+date2,randomDate)
     return date2
 
 }
-function randomYear(randomDate) {
-    let randomDateG=new Date(randomDate)
 
-    let startMonth = randomDateG.getMonth() + 1
-    let startDate = randomDateG.getDate()
-
-    let start = new Date("2023"+"-"+startMonth+"-"+startDate)
-    let end = new Date("2029"+"-"+startMonth+"-"+startDate)
-    var date1 = new Date(+start + Math.random() * (end - start));
-    finalD = date1
-    console.log(finalD)
-    let month = finalD.getMonth()+1
-    let date = finalD.getDate()
-    if(month<10){
-        month = "0"+(month)
-    }
-    if(date<10){
-        date =  "0"+date
-       }
-
-    var date2=finalD.getFullYear() +"-" + month + "-" + date
-    return date2
-
-}
 
  module.exports = new reuseFile();

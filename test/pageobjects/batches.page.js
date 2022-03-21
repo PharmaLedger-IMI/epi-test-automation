@@ -125,6 +125,10 @@ class batchesPage{
       const  SerialNumber=  (Math.floor(100000 + Math.random() * 900000)).toString()
       return SerialNumber
     }
+    async serialNum10(){
+        const  SerialNumber=  (Math.floor(1000000000 + Math.random() * 9000000000)).toString()
+        return SerialNumber
+      }
     async siteName(site){
         
         await this.addsitename.click();
@@ -138,10 +142,6 @@ class batchesPage{
         await this.enableDaySelectionCheckbox.click()
     }
 
-   
-
-    
-
     async videoSource(link1){
         await this.videoSourceEnter.setValue(link1)
     }
@@ -149,9 +149,15 @@ class batchesPage{
         await this.enableIncorrectExpirationDateVerificationCheckbox.isEnabled()
         await expect(this.enableIncorrectExpirationDateVerificationCheckbox).toBeEnabled();
     }
+    async enableIncorrectExpirationDateVerificationClick(){
+        await this.enableIncorrectExpirationDateVerificationCheckbox.click()
+    }
     async expirationDateVerification(){
         await this.expirationDateVerificationCheckbox.isEnabled()
         await expect(this.expirationDateVerificationCheckbox).toBeEnabled();
+    }
+    async expirationDateVerificationClick(){
+        await this.expirationDateVerificationCheckbox.click()
     }
     async enableSerialNumberVerification(){
 
@@ -296,65 +302,7 @@ class batchesPage{
     }
 
 
-  
-    // get editbatchR(){
-        
-    //     $("div:nth-child(" + i + ")")
-    // }
-
-    // async editBatch(){
-    // let fArry = []
-    
-
-    // for (; await this.editbatchR.isExisting() == true; i++) {
-    //     console.log(i)
-
-    //     fArry.push({ batchId: await this.editbatchR.getText(), edit: i + 4 })
-    //     i = i + 6
-    // }
-    // // let batchValue = date.batchID()//"QS5078"
-    //  let batchValue=await this.batchIdValue1.getValue()
-    // //let batchValue ="WL6190"
-    //  let rClick = ""
-     
-    // fArry.map((key) => {
-    //     //{batchId:"QS5078",edit:68}
-    //     if (key["batchId"] == batchValue) { 
-    //         rClick = key["edit"] 
-    //     }
-
-    // })
-    // console.log(fArry)
-  
-    // editRow=rClick
-    // return editRow
-    // }
-
-
-
-
-
-    // async deleteFile(){
-        
-    //     // let fArry = []
-    //     // var i = 1
-    //     // for (; await browser.$("//li["+i+"]//div[1]//button[1]").isExisting() == true; i++) {
-    //     // fArry.push({ i })
-    //     // }
-    //     // let batchValue = 1
-    //     // let rClick = ""
-    //     // fArry.map((key) => {
-        
-    //     // if (key == batchValue) {
-    //     // rClick = key
-    //     // }
-    //     // })
-    //     // console.log("delete value is "+rClick)
-    //     // return rClick 
-
-    // }
-
-    }
+        }
 
     
     module.exports = new batchesPage();
