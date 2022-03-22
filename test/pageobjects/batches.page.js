@@ -168,6 +168,7 @@ class batchesPage{
         await this.expirationDateVerificationCheckbox.isEnabled()
         await expect(this.expirationDateVerificationCheckbox).toBeEnabled();
     }
+    
     async expirationDateVerificationClick(){
         await this.expirationDateVerificationCheckbox.click()
     }

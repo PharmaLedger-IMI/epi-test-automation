@@ -1,12 +1,11 @@
 
 const products= require('../pageobjects/products.page');
-//const gtinPage = require('../specs/gtinPage.js')
 const allureReporter = require('@wdio/allure-reporter').default
 const matrix=require('../utility/2dMatrixPage')
 const data=require('../utility/expectationFile')
 const info=require('../utility/reusableFile')
 const wait=require('../utility/timeout')
-//const testData=require('../testdata/config.json')
+
 // const util = require('util');
 // const exec = util.promisify(require('child_process').exec);
 describe('Edit product', () => {
@@ -35,7 +34,6 @@ describe('Edit product', () => {
         await browser.keys('Enter')
         await wait.setTimeoutwait(4);
         //view or edits
-        //await products.clickViewEdit()
         await browser.execute('document.querySelector("button[data-tag=\'edit-product\']").click()')
         await wait.setTimeoutwait(5);
         

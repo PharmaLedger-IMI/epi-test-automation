@@ -31,7 +31,7 @@ describe('Product Information Update', () => {
         await wait.setTimeoutwait(2);
         await batches.siteName(testData[2]['newBatchDetails'].siteName);
         await wait.setTimeoutwait(2);
-        let expiryDate = info.setCurrentRandomDate()
+        info.setCurrentRandomDate()
         await wait.setTimeoutwait(2);
         await browser.execute((date) => {
             (function () {
@@ -40,7 +40,7 @@ describe('Product Information Update', () => {
                 datePicker.value = date;
                 datePicker.dispatchEvent(event);
             })();
-        }, expiryDate);
+        }, info.getCurrentRandomDate());
         await wait.setTimeoutwait(2);
         const selectBox = await browser.$('//psk-select[@class=\'default-select hydrated\']//select[@class=\'form-control\']');  
         await selectBox.selectByAttribute('value', info.getProductId());
@@ -69,8 +69,8 @@ describe('Product Information Update', () => {
         //accept upload
         await batches.acceptButton()
         await wait.setTimeoutwait(2);
-        await batches.batchMessage(testData[2]['newBatchDetails'].batchMsg)
-        await wait.setTimeoutwait(2);
+        // await batches.batchMessage(testData[2]['newBatchDetails'].batchMsg)
+        // await wait.setTimeoutwait(2);
 
         await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(),"", await batches.checkBatchMessage(),"", "" )
         await wait.setTimeoutwait(12);

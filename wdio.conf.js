@@ -27,14 +27,14 @@ exports.config = {
         //'test/specs/test.js',
          //'test/specs/landingPage.js',
 
-            //  'test/specs/gtinPage.js',
+             // 'test/specs/gtinPage.js',
                 'test/specs/loginCredentials.js',
-                'test/specs/createProduct.js',
+                //'test/specs/createProduct.js',
             // 'test/specs/createBatch.js',
 
             // 'test/specs/2_editBatchforRecallMsg.js',
             // 'test/specs/3_editProductforToggle_ePIFlag.js',
-            // 'test/specs/createBatchWithoutanyFile.js',
+             'test/specs/createBatchWithoutanyFile.js',
             // 'test/specs/createBatchWithUploadLeaflet.js',
             // 'test/specs/createBatchWithUploadSMPC.js',
             // 'test/specs/createBatchWithUploadBoth.js',
@@ -75,7 +75,10 @@ exports.config = {
             // 'test/specs/serialNumberCheckEnabledWithValidMatrix.js',
             // 'test/specs/serialNumberCheckEnabledWithInValidMatrix.js',
             // 'test/specs/disableSerialNumberCheckWithSerialNumber.js',
-            // 'test/specs/disableSerialNumberCheckWithOutSerialNumber.js'
+            // 'test/specs/disableSerialNumberCheckWithOutSerialNumber.js',
+            // 'test/specs/enableExpiryDateCheckWithValidMatrix.js',
+            // 'test/specs/enableExpiryDateCheckWithInValidMatrix.js'
+            // 'test/specs/disableExpiryDateCheckWithInValidDate.js'
 
           
 

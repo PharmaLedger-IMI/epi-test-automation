@@ -19,9 +19,8 @@ describe('Basic Auth feature test ', () => {
     //     console.log('stderr:', stderr1);
     //     })   
 
-    enableExpiryDateCheckWithValidMatrix.js
-    enableExpiryDateCheckWithInValidMatrix.js
-    disableExpiryDateCheckWithInValidDate.js
+    
+   
 
     it('Basic Auth feature test_2- should Verify that the serial number check is enabled by default ', async () => {
     
@@ -41,21 +40,21 @@ describe('Basic Auth feature test ', () => {
         await batches.enableSerialNumberVerification()
         await wait.setTimeoutwait(2);
         
-        //select valid serial number
-        await batches.selectUpdateValidSerialFromDropdown(testData[2]['newBatchDetails'].updateValid)
-        await wait.setTimeoutwait(2);
-        //enable checkbox
-        await batches.enableResetAllValidSerialNumber()
-        await wait.setTimeoutwait(2);
+        // //select valid serial number
+        // await batches.selectUpdateValidSerialFromDropdown(testData[2]['newBatchDetails'].updateValid)
+        // await wait.setTimeoutwait(2);
+        // //enable checkbox
+        // await batches.enableResetAllValidSerialNumber()
+        // await wait.setTimeoutwait(2);
 
-        //set serial number
-        info.setSerialNumber(await batches.serialNum())
-        await batches.enterSerialNumber(info.getSerialNumber())
-        await wait.setTimeoutwait(2);
+        // //set serial number
+        // info.setSerialNumber(await batches.serialNum())
+        // await batches.enterSerialNumber(info.getSerialNumber())
+        // await wait.setTimeoutwait(2);
 
-        //accept serial number
-        await batches.acceptSerialNumber()
-        await wait.setTimeoutwait(2);
+        // //accept serial number
+        // await batches.acceptSerialNumber()
+        // await wait.setTimeoutwait(2);
                      
         await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), "","","", "" )
         await wait.setTimeoutwait(12);

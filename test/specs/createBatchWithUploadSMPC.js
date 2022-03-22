@@ -29,7 +29,7 @@ describe('Product Information Update', () => {
         await wait.setTimeoutwait(2);
         await batches.siteName(testData[2]['newBatchDetails'].siteName);
         await wait.setTimeoutwait(2);
-        let expiryDate = info.setCurrentRandomDate()
+        info.setCurrentRandomDate()
         await wait.setTimeoutwait(2);
         await browser.execute((date) => {
             (function () {
@@ -38,7 +38,7 @@ describe('Product Information Update', () => {
                 datePicker.value = date;
                 datePicker.dispatchEvent(event);
             })();
-        }, expiryDate);
+        }, info.getCurrentRandomDate());
         await wait.setTimeoutwait(2);
         const selectBox = await browser.$('//psk-select[@class=\'default-select hydrated\']//select[@class=\'form-control\']');  
         await selectBox.selectByAttribute('value', info.getProductId());
@@ -61,11 +61,11 @@ describe('Product Information Update', () => {
         // upload leaflet folder
         await browser.$('//input[@type=\'file\']').addValue(path.join(__dirname, '/src/Entresto'));
         await wait.setTimeoutwait(2);
-        //scrollIntoView
+        //accept
         await batches.acceptButton()
         await wait.setTimeoutwait(5);
-        //set serial number
-        info.setSerialNumber(await batches.serialNum())
+        // //set serial number
+        // info.setSerialNumber(await batches.serialNum())
 
 
         await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(),"", await batches.checkBatchMessage(),"", "" )

@@ -47,8 +47,7 @@ it('Should verify batch page ', async() => {
     info.setBrandName(await batches.checkBrandName()) 
     await wait.setTimeoutwait(3);
 
-    let expiryDate = info.setCurrentRandomDate()
-    // info.setCurrentRandomDate(expiryDate)
+    info.setCurrentRandomDate()
     await wait.setTimeoutwait(2);
     await browser.execute((date) => {
         (function () {
@@ -57,7 +56,7 @@ it('Should verify batch page ', async() => {
             datePicker.value = date;
             datePicker.dispatchEvent(event);
         })();
-    }, expiryDate);
+    }, info.getCurrentRandomDate());
 
     await wait.setTimeoutwait(2);
     const selectBox = await browser.$('//psk-select[@class=\'default-select hydrated\']//select[@class=\'form-control\']');

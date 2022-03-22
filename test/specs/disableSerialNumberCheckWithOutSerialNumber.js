@@ -36,18 +36,7 @@ describe('Basic Auth feature test ', () => {
         //diable serial number verification
         await batches.disableSerialNumberVerification()
         await wait.setTimeoutwait(2);
-        
-        //select valid serial number
-        await batches.selectUpdateValidSerialFromDropdown(testData[2]['newBatchDetails'].updateValid)
-        await wait.setTimeoutwait(2);
-        //enable checkbox
-        await batches.enableResetAllValidSerialNumber()
-        await wait.setTimeoutwait(2);
-
-        //accept serial number
-        await batches.acceptSerialNumber()
-        await wait.setTimeoutwait(2);
-                     
+                             
         await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),info.getBrandName(), "","","", "" )
         await wait.setTimeoutwait(12);
         //update batch

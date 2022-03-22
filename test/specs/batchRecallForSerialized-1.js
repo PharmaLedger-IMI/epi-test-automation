@@ -35,7 +35,7 @@ describe('Batch Recall and Recall Message for serialized batches ', () => {
         await wait.setTimeoutwait(2);
         await batches.siteName(testData[2]['newBatchDetails'].siteName);
         await wait.setTimeoutwait(2);
-        let expiryDate = info.setCurrentRandomDate()
+        info.setCurrentRandomDate()
         await wait.setTimeoutwait(2);
         await browser.execute((date) => {
             (function () {
@@ -44,7 +44,7 @@ describe('Batch Recall and Recall Message for serialized batches ', () => {
                 datePicker.value = date;
                 datePicker.dispatchEvent(event);
             })();
-        }, expiryDate);
+        }, info.getCurrentRandomDate());
 
         await wait.setTimeoutwait(2);
         const selectBox = await browser.$('//psk-select[@class=\'default-select hydrated\']//select[@class=\'form-control\']'); 

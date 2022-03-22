@@ -28,7 +28,7 @@ describe('Expiry date Checks ', () => {
         //Passing invalid serial number in 2dmatrix as serial number is cleared in above batch
        
        
-        await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  " ",info.getBrandName(), "","","", "" )
+        await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),info.getSerialNumber(), " ",info.getBrandName(), "","","", "" )
         await wait.setTimeoutwait(12);
         //update batch
         await batches.updateBatchForEdit()

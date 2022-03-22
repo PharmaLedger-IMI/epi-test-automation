@@ -22,12 +22,12 @@ class reuseFile{
     }
 
     getProductId(){
-        console.log('incremental test='+process.argv)
-        console.log('incremental test inc test with params='+process.argv[incrementalTest])
-        console.log('incremental test inc test='+process.argv['incrementalTest'])
-        console.log('incremental test2='+process.argv[2])
-        console.log('incremental test5='+process.argv[5])
-        console.log('incremental test0='+process.argv0)
+        // console.log('incremental test='+process.argv)
+        // console.log('incremental test inc test with params='+process.argv[incrementalTest])
+        // console.log('incremental test inc test='+process.argv['incrementalTest'])
+        // console.log('incremental test2='+process.argv[2])
+        // console.log('incremental test5='+process.argv[5])
+        // console.log('incremental test0='+process.argv0)
         if(packageJson['scripts'].incrementalTest=='true'){
            
             console.log("incrementalProduct value is " + testData[3]['incrementalTest'].prodId)

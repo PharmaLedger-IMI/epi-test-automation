@@ -34,7 +34,7 @@ describe('Expiry date Checks ', () => {
         await wait.setTimeoutwait(2);
        
       
-        let expiryDate = info.setCurrentRandomDate()
+        info.setCurrentRandomDate()
         await browser.pause(2000)
         await browser.execute((date) => {
             (function () {
@@ -43,7 +43,7 @@ describe('Expiry date Checks ', () => {
                 datePicker.value = date;
                 datePicker.dispatchEvent(event);
             })();
-        }, expiryDate);
+        }, info.getCurrentRandomDate());
         //
         console.log("different date is"+ info.randomDate())
         await wait.setTimeoutwait(2);

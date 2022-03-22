@@ -1,4 +1,4 @@
-//const gtinPage = require('../specs/gtinPage.js');
+
 const products= require('../pageobjects/products.page');
 const batches= require('../pageobjects/batches.page.js');
 const matrix=require('../utility/2dMatrixPage')
@@ -24,17 +24,17 @@ describe('Product Information Update ', () => {
     
         allureReporter.startStep('Create a batch without any leaflet/smpc and upload new version of ePI in product level')
         allureReporter.addTestId('ProdInfoUpdate_1')
-        // await batches.Batch();
-        // await browser.pause(4000)
+        await batches.Batch();
+        await browser.pause(4000)
         await batches.addBatch();
         await wait.setTimeoutwait(2);
         info.setBatchId(await batches.batchIdValue())
         await wait.setTimeoutwait(3);
    
-        await batches.siteName(testData[2]['batchDetails'].siteName);
+        await batches.siteName(testData[2]['newBatchDetails'].siteName);
         await wait.setTimeoutwait(5);
-        let expiryDate = info.setCurrentRandomDate()
-        // info.setCurrentRandomDate(expiryDate)
+        
+        info.setCurrentRandomDate()
         await wait.setTimeoutwait(2);
         await browser.execute((date) => {
             (function () {
@@ -43,19 +43,31 @@ describe('Product Information Update ', () => {
                 datePicker.value = date;
                 datePicker.dispatchEvent(event);
             })();
-        }, expiryDate);
+        }, info.getCurrentRandomDate());
 
         await wait.setTimeoutwait(2);
         const selectBox = await browser.$('//psk-select[@class=\'default-select hydrated\']//select[@class=\'form-control\']'); 
         await selectBox.selectByAttribute('value', info.getProductId());
         await wait.setTimeoutwait(2);
-        await batches.videoSource(testData[2]['batchDetails'].videoSource)
-        await wait.setTimeoutwait(1);
-       
-        await batches.batchMessage(testData[2]['batchDetails'].batchMsg)
-        await wait.setTimeoutwait(1);
+
+        //select recalled serial number
+        await batches.selectUpdateRecalledSerialFromDropdown(testData[2]['newBatchDetails'].updateRecalled)
+        await wait.setTimeoutwait(2);
+        //enable checkbox
+        await batches.enableResetAllRecalledSerialNumber()
+        await wait.setTimeoutwait(2);
+        //set the serial number and enter
+        info.setSerialNumber(await batches.serialNum())
+        await wait.setTimeoutwait(2);
+        await batches.enterSerialNumber(info.getSerialNumber())
+        await wait.setTimeoutwait(2);      
+        //accept serial number
+        await batches.acceptSerialNumber()
+        await wait.setTimeoutwait(2);
+
+        //create batch
         await batches.createBatch()
-        await wait.setTimeoutwait(5);
+        await wait.setTimeoutwait(40);
         //click product from sidenav
         await products.clickProductFromSideNav()
         await wait.setTimeoutwait(2);
@@ -76,22 +88,19 @@ describe('Product Information Update ', () => {
         await products.addEpi()
         await wait.setTimeoutwait(3);
         //select language	
-        await products.selectLanguage(testData[1]['productDetails'].selectLanguage)
+        await products.selectLanguage(testData[1]['newProductDetails'].selectLanguage)
         await wait.setTimeoutwait(1);
         //select type
-        await products.selectType(testData[1]['productDetails'].selectType)
+        await products.selectType(testData[1]['newProductDetails'].selectType)
         await wait.setTimeoutwait(2);
-        //Video source
-        await products.videoSourceEpi("https://cdnapisec.kaltura.com/html5/html5lib/v2.92/mwEmbedFrame.php/p/2076321/uiconf_id/46847003/entry_id/1_cuq6u28l?wid=_2076321&iframeembed=true&playerId=kaltura_player&entry_id=1_cuq6u28l&flashvars%5bstreamerType%5d=auto&amp;flashvars%5blocalizationCode%5d=en&amp;flashvars%5bleadWithHTML5%5d=true&amp;flashvars%5bsideBarContainer.plugin%5d=true&amp;flashvars%5bsideBarContainer.position%5d=left&amp;flashvars%5bsideBarContainer.clickToClose%5d=true&amp;flashvars%5bchapters.plugin%5d=true&amp;flashvars%5bchapters.layout%5d=vertical&amp;flashvars%5bchapters.thumbnailRotator%5d=false&amp;flashvars%5bstreamSelector.plugin%5d=true&amp;flashvars%5bEmbedPlayer.SpinnerTarget%5d=videoHolder&amp;flashvars%5bdualScreen.plugin%5d=true&amp;flashvars%5bhotspots.plugin%5d=1&amp;flashvars%5bKaltura.addCrossoriginToIframe%5d=true&amp;&wid=1_iueede1t")
-        await wait.setTimeoutwait(1);
-        //upload
+        //upload folder
         await browser.$('(//input[@type=\'file\'])[2]').addValue(path.join(__dirname, '/src/Entresto'));
         await wait.setTimeoutwait(5);
         //add epi accept
         await browser.execute('document.querySelector("psk-button[disabled=\'@modalData.filesWereNotSelected\'] button[class=\'btn btn-primary\']").click();');
         await wait.setTimeoutwait(5);
         
-        info.setSerialNumber(await batches.serialNum())
+        // info.setSerialNumber(await batches.serialNum())
 
         await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), "","","", "" )
         await wait.setTimeoutwait(12);
