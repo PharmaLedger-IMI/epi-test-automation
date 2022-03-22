@@ -42,7 +42,7 @@ describe('Edit batch', () => {
          await batches.enableResetAllRecalledSerialNumber()
          await wait.setTimeoutwait(2);
          //set the serial number and enter
-         info.setSerialNumber(info.serialNum10())
+         info.setSerialNumber(await batches.serialNum())
          await wait.setTimeoutwait(2);
          await batches.enterSerialNumber(info.getSerialNumber())
          await wait.setTimeoutwait(2);
