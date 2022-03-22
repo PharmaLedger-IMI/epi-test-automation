@@ -19,10 +19,10 @@ describe('Expiry date Checks ', () => {
     //     console.log('stderr:', stderr1);
     //     })
 
-    it('Serial Number Checks_10- should Upload 50K serial numbers ', async () => {
+    it('Serial Number Checks_11.2- should Update batch to have serial numbers ', async () => {
     
-        allureReporter.startStep('Upload 50K serial numbers and scan with valid serial number')
-        allureReporter.addTestId('Serial Number Checks_10')
+        allureReporter.startStep('Update batch to have serial numbers')
+        allureReporter.addTestId('Serial Number Checks_11.2')
         await batches.Batch();
         await wait.setTimeoutwait(2);
         
@@ -42,24 +42,23 @@ describe('Expiry date Checks ', () => {
         await batches.enableResetAllValidSerialNumber()
         await wait.setTimeoutwait(2);
 
-        //set the serial number and enter
-        info.setSerialNumber(info.serialNum50K())
+        //set serial number
+        info.setSerialNumber(await batches.serialNum())
         await batches.enterSerialNumber(info.getSerialNumber())
         await wait.setTimeoutwait(2);
     
         //accept serial number
         await batches.acceptSerialNumber()
         await wait.setTimeoutwait(2);
+              
        
-       
-       
-        await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber().split(',')[0],info.getBrandName(), "","","", "" )
+        await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), "","","", "" )
         await wait.setTimeoutwait(12);
         //create batch
-        await batches.createBatch()
+        await batches.updateBatchForEdit()
         await wait.setTimeoutwait(8);
        
-        matrix.generateImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber().split(',')[0])
+        matrix.generateImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
         await wait.setTimeoutwait(5);
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");

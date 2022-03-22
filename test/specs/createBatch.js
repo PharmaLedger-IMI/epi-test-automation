@@ -16,7 +16,7 @@ const data=require('../utility/expectationFile');
 describe('Create Batch', () => {
 
     // after(async () => {
-    //     const { stdout1, stderr1 } =await exec('cd ../epi-mobileapp-test-automation && npm run test');
+    //     const { stdout1, stderr1 } =await exec('cd ../epi-mobileapp-test-automation && npx kill-port 4723 && npm run addProductBatchTest');
     //     console.log('stdout:', stdout1);
     //     console.log('stderr:', stderr1);
     //     })
@@ -123,8 +123,8 @@ it('Should verify batch page ', async() => {
     await wait.setTimeoutwait(15);
 
     //Generate Image
-   matrix.generateImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
-   await wait.setTimeoutwait(8);
+    matrix.generateImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
+    await wait.setTimeoutwait(8);
 
     
     allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');

@@ -11,7 +11,7 @@ const allureReporter = require('@wdio/allure-reporter').default
 // const util = require('util');
 // const exec = util.promisify(require('child_process').exec);
 
-describe('Expiry date Checks ', () => {
+describe('Basic Auth feature test ', () => {
 
     // after(async () => {
     //     const { stdout1, stderr1 } =await exec('cd ../epi-mobileapp-test-automation && npm run test');
@@ -19,10 +19,11 @@ describe('Expiry date Checks ', () => {
     //     console.log('stderr:', stderr1);
     //     })
 
-    it('Serial Number Checks_10- should Upload 50K serial numbers ', async () => {
+    it('Basic Auth feature test_1- should Verify that the serial number check is enabled by default ', async () => {
     
-        allureReporter.startStep('Upload 50K serial numbers and scan with valid serial number')
-        allureReporter.addTestId('Serial Number Checks_10')
+        allureReporter.startStep('Verify that the serial number check is enabled by default')
+        allureReporter.startStep('Scan the valid data matrix code and verify that the serial number is valid.')
+        allureReporter.addTestId('Basic Auth feature test_1')
         await batches.Batch();
         await wait.setTimeoutwait(2);
         
@@ -35,33 +36,33 @@ describe('Expiry date Checks ', () => {
         //check enable serial number verification
         await batches.enableSerialNumberVerification()
         await wait.setTimeoutwait(2);
+        
         //select valid serial number
         await batches.selectUpdateValidSerialFromDropdown(testData[2]['newBatchDetails'].updateValid)
         await wait.setTimeoutwait(2);
-        //enable checkbox and remove 10 serial number
+        //enable checkbox
         await batches.enableResetAllValidSerialNumber()
         await wait.setTimeoutwait(2);
 
-        //set the serial number and enter
-        info.setSerialNumber(info.serialNum50K())
+        //set serial number
+        info.setSerialNumber(await batches.serialNum())
         await batches.enterSerialNumber(info.getSerialNumber())
         await wait.setTimeoutwait(2);
-    
+
         //accept serial number
         await batches.acceptSerialNumber()
         await wait.setTimeoutwait(2);
-       
-       
-       
-        await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber().split(',')[0],info.getBrandName(), "","","", "" )
+                     
+        await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), "","","", "" )
         await wait.setTimeoutwait(12);
-        //create batch
-        await batches.createBatch()
+        //update batch
+        await batches.updateBatchForEdit()
         await wait.setTimeoutwait(8);
        
-        matrix.generateImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber().split(',')[0])
+        matrix.generateImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
         await wait.setTimeoutwait(5);
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
+        allureReporter.endStep("passed");
         allureReporter.endStep("passed");
        
   

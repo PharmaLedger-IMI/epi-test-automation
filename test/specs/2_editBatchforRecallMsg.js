@@ -11,16 +11,17 @@ const testData=require('../testdata/config.json')
 // const util = require('util');
 // const exec = util.promisify(require('child_process').exec);
 
-describe('Edit batch for recall message', () => {
+describe('Edit batch', () => {
 
     // after(async () => {
-    //     const { stdout1, stderr1 } =await exec('cd ../epi-mobileapp-test-automation && npm run test');
+    //     console.log("Starting Mobile Execution");
+    //     const { stdout1, stderr1 } =await exec('cd ../epi-mobileapp-test-automation && npx kill-port 4723 && npm run editBatchRecallMsgTest');
     //     console.log('stdout:', stdout1);
     //     console.log('stderr:', stderr1);
     //     })
 
-    it('Should edit batch for recall message', async() => {
-        allureReporter.addDescription('Can edit batch for recall message ')
+    it('ProdAndBatchSetup_1-Should edit batch for recall message', async() => {
+        allureReporter.addDescription('Check batch recall and enter recall message ')
         allureReporter.startStep("Update any field on the batch and Save the changes")
         allureReporter.addTestId('ProdAndBatchSetup_1')
 
@@ -31,7 +32,24 @@ describe('Edit batch for recall message', () => {
         let editValue = info.getbatchId()
         console.log("editValue is "+editValue)
         await browser.execute('document.querySelector("div:nth-child(' + await info.editBatchRow(editValue) + ') button:nth-child(1)").click()')       
-        await wait.setTimeoutwait(8);
+        await wait.setTimeoutwait(6);
+
+
+         //select recalled serial number
+         await batches.selectUpdateRecalledSerialFromDropdown(testData[2]['newBatchDetails'].updateRecalled)
+         await wait.setTimeoutwait(2);
+         //enable checkbox
+         await batches.enableResetAllRecalledSerialNumber()
+         await wait.setTimeoutwait(2);
+         //set the serial number and enter
+         info.setSerialNumber(info.serialNum10())
+         await wait.setTimeoutwait(2);
+         await batches.enterSerialNumber(info.getSerialNumber())
+         await wait.setTimeoutwait(2);
+               
+         //accept serial number
+         await batches.acceptSerialNumber()
+         await wait.setTimeoutwait(2);
 
          //enable checkbox for batch recall
         await batches.enableCheckToRecallThisBatch()

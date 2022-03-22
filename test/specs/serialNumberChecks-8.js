@@ -25,31 +25,13 @@ describe('Expiry date Checks ', () => {
         allureReporter.addTestId('Serial Number Checks_8')
         await batches.Batch();
         await wait.setTimeoutwait(2);
-        await batches.addBatch();
-        await wait.setTimeoutwait(2);
-        info.setBatchId(await batches.batchIdValue())
-        await wait.setTimeoutwait(2);
-        await batches.siteName(testData[2]['newBatchDetails'].siteName);
-        await wait.setTimeoutwait(2);
-      
-        let expiryDate = info.setCurrentRandomDate()
-        await wait.setTimeoutwait(2);
-        await browser.execute((date) => {
-            (function () {
-                let event = new Event('change');
-                let datePicker = document.querySelector("input[placeholder='dd/mm/yyyy']")
-                datePicker.value = date;
-                datePicker.dispatchEvent(event);
-            })();
-        }, expiryDate);
-        
-        console.log("different date is"+ info.randomDate())
-        await wait.setTimeoutwait(2);
-       
-        //select product from dropdown
-        const selectBox = await browser.$('//psk-select[@class=\'default-select hydrated\']//select[@class=\'form-control\']'); 
-        await selectBox.selectByAttribute('value', info.getProductId());
-        await wait.setTimeoutwait(2);
+        //edit above batch
+        let editValue = info.getbatchId()
+        console.log("editValue is "+editValue)
+        await browser.execute('document.querySelector("div:nth-child(' + await info.editBatchRow(editValue) + ') button:nth-child(1)").click()')       
+        await wait.setTimeoutwait(8);
+
+
         //check enable serial number verification
         await batches.enableSerialNumberVerification()
         await wait.setTimeoutwait(2);
@@ -72,23 +54,22 @@ describe('Expiry date Checks ', () => {
         await batches.enableResetAllRecalledSerialNumber()
         await wait.setTimeoutwait(2);
         //set the serial number and enter
-        info.setSerialNumber(await batches.serialNum10())
+        info.setSerialNumber(info.serialNum10())
         await wait.setTimeoutwait(2);
-        await batches.enterSerialNumber(await batches.serialNum10())
+        await batches.enterSerialNumber(info.getSerialNumber())
         await wait.setTimeoutwait(2);
               
         //accept serial number
         await batches.acceptSerialNumber()
         await wait.setTimeoutwait(2);
-       
-       
-        await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), "","","", "" )
+              
+        await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber().split(',')[0],info.getBrandName(), "","","", "" )
         await wait.setTimeoutwait(12);
         //create batch
-        await batches.createBatch()
+        await batches.updateBatchForEdit()
         await wait.setTimeoutwait(8);
        
-        matrix.generateImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
+        matrix.generateImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber().split(',')[0])
         await wait.setTimeoutwait(5);
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");

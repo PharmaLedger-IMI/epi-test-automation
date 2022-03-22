@@ -22,6 +22,12 @@ class reuseFile{
     }
 
     getProductId(){
+        console.log('incremental test='+process.argv)
+        console.log('incremental test inc test with params='+process.argv[incrementalTest])
+        console.log('incremental test inc test='+process.argv['incrementalTest'])
+        console.log('incremental test2='+process.argv[2])
+        console.log('incremental test5='+process.argv[5])
+        console.log('incremental test0='+process.argv0)
         if(packageJson['scripts'].incrementalTest=='true'){
            
             console.log("incrementalProduct value is " + testData[3]['incrementalTest'].prodId)
@@ -67,6 +73,8 @@ class reuseFile{
         return currentSerial
         }
     }
+
+  
 
     setBrandName(brand){
         currentBrandName=brand
@@ -253,7 +261,34 @@ class reuseFile{
         let editRow=""
         editRow=rClick
         return editRow    
-    }     
+    }  
+    
+     serialNum10(){
+        var serialNumberWithComma=''
+        var serialNumberUplaod=''
+        for (var i = 0; i < 10; i++) {
+        const  SerialNumber=  (Math.floor(100000 + Math.random() * 900000)).toString()
+        serialNumberWithComma += SerialNumber+",";
+        console.log(serialNumberWithComma)
+        
+        }
+        serialNumberUplaod=serialNumberWithComma.substring(0, serialNumberWithComma.length - 1)
+        return serialNumberUplaod
+      }
+       serialNum50K(){
+        var serialNumberWithComma=''
+        var serialNumberUplaod=''
+        for (var i = 0; i < 50000; i++) {
+        const  SerialNumber=  (Math.floor(100000 + Math.random() * 900000)).toString()
+        serialNumberWithComma += SerialNumber+",";
+        console.log(serialNumberWithComma)
+        
+        }
+        serialNumberUplaod=serialNumberWithComma.substring(0, serialNumberWithComma.length - 1)
+        return serialNumberUplaod
+      }
+
+
     }
 
       function randomDateF() {
@@ -340,6 +375,9 @@ function dateChange(randomDate,type) {
     return date2
 
 }
+
+
+
 
 
 

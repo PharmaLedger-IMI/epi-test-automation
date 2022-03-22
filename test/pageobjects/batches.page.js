@@ -129,18 +129,7 @@ class batchesPage{
       const  SerialNumber=  (Math.floor(100000 + Math.random() * 900000)).toString()
       return SerialNumber
     }
-    async serialNum10(){
-        var serialNumberWithComma=''
-        var serialNumberUplaod=''
-        for (var i = 0; i < 10; i++) {
-        const  SerialNumber=  (Math.floor(100000 + Math.random() * 900000)).toString()
-        serialNumberWithComma += SerialNumber+",";
-        console.log(serialNumberWithComma)
-        
-        }
-        serialNumberUplaod=serialNumberWithComma.substring(0, serialNumberWithComma.length - 1)
-        return serialNumberUplaod
-      }
+    
 
       async checkBrandName()  {   
         if(await this.brand.isDisplayed()==true){
@@ -186,6 +175,11 @@ class batchesPage{
 
         await this.enableSerialNumberVerificationCheckbox.isEnabled()
         await expect(this.enableSerialNumberVerificationCheckbox).toBeEnabled();
+    }
+    async disableSerialNumberVerification(){
+
+        await this.enableSerialNumberVerificationCheckbox.click()
+       
     }
     async selectUpdateValidSerialFromDropdown(updateValidSerialValue){
         await this.selectOptionFromDropdown.selectByVisibleText(updateValidSerialValue)
@@ -300,7 +294,7 @@ class batchesPage{
     }
     async checkBatchRecallMessage()  {   
         if(await this.enterRecallMessageInTextbox.isDisplayed()==true){
-           let recallMessage="Sample"
+           let recallMessage="Tim said its recall"
            return recallMessage
         }
         else{
