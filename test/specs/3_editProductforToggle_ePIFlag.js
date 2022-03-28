@@ -19,7 +19,7 @@ describe('Edit product', () => {
 
     it('ProdAndBatchSetup_1-Check SN is in recalled list', async() => { 
         allureReporter.addTestId('ProdAndBatchSetup_1')
-        allureReporter.addDescription('Can edit product for toggle ePI ')
+        //allureReporter.addDescription('Can edit product for toggle ePI ')
         allureReporter.startStep("Update Product information in the products page. ")
 
         await products.clickProductFromSideNav()

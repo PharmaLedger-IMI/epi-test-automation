@@ -19,7 +19,7 @@ describe('Edit batch', () => {
     //     })
 
     it('ProdAndBatchSetup_1-Should edit batch for recall message', async() => {
-        allureReporter.addDescription('Check batch recall and enter recall message ')
+        //allureReporter.addDescription('Check batch recall and enter recall message ')
         allureReporter.startStep("Update any field on the batch and Save the changes")
         allureReporter.addTestId('ProdAndBatchSetup_1')
 
