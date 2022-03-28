@@ -42,12 +42,12 @@ describe('Edit product', () => {
         await wait.setTimeoutwait(4);
       
         //expectation file
-        await data.generateExpectationFile(info.getProductId(),  info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(), info.getBrandName(), " ", " ", await products.checkSnIsInRecallList()," ")
+        await data.generateExpectationFile(info.getProductId(),  info.getbatchId(false), info.getCurrentRandomDate(),  info.getSerialNumber(), info.getBrandName(), " ", " ", await products.checkSnIsInRecallList()," ")
         await wait.setTimeoutwait(15);
         //update products
         await products.updateProduct()
         await wait.setTimeoutwait(8);
-        matrix.generateImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
+        matrix.generateImage(info.getProductId(), info.getbatchId(false), info.getCurrentRandomDate(), info.getSerialNumber())
         await wait.setTimeoutwait();
         allureReporter.endStep("passed");
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');

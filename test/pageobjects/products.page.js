@@ -1,7 +1,9 @@
-//const { browser } = require("har-validator");
+
+
 
 
 const expectChai = require('chai').expect;
+let prodName=''
 
 class productsPage {
 
@@ -31,6 +33,12 @@ class productsPage {
     get uploadphoto()
     {
         return $("//input[@type=\'file\']")
+    }
+    get uploadEpiFile(){
+        return $('(//input[@type=\'file\'])[2]')
+    }
+    get epiFileDisplayed(){
+        return $("//li[@class='d-flex flex-row overflow-auto']")
     }
     get internalMaterialCodeEnter(){
         return $("//input[@placeholder='Add internal material code']")
@@ -67,7 +75,7 @@ class productsPage {
     {
         return $("//label[normalize-space()='Batch is expired']")
     }
-    get disableBatchExpiredCheckbox(){
+    get batchIsExpiredCheckbox(){
         return $("//label[normalize-space()='Batch is expired']")
     }
     get snIsInRecallListClick()
@@ -111,6 +119,9 @@ class productsPage {
     get clickDeleteLanguageButton(){
         return $("//button[@class='delete-language']")
     }
+    get clickdeleteSecondLanguage(){
+        return  $('//li[2]//div[1]//button[1]//i[1]')
+    }
     get marketManagementButtonClick(){
         return $("div:nth-child(2) > div:nth-child(1) > psk-button:nth-child(2) > button:nth-child(1)")
     }
@@ -136,9 +147,7 @@ class productsPage {
         return $("//button[normalize-space()='Close']")
     }
 
-    // get leaflet(){
-    //     return $('//button[normalize-space()=\'+ Add ePI\']')
-    // }
+    
     get saveProductButton(){
         return $("//button[normalize-space()='Save Product']")
         //return document.querySelector(`psk-button[data-tag="add-product"] button[class="btn btn-primary"]`)
@@ -188,11 +197,14 @@ class productsPage {
     }
     async brandName(brandName){
        
-        await this.brand.setValue(brandName);
+       await this.brand.setValue(brandName);
+        //const prodName=await this.brand.setValue(brandName);
+        //console.log("prodName"+prodName)
     }
     async checkBrandName()  {   
         if(await this.brand.isDisplayed()==true){
-           let brandDisplayed="Dolo-650"
+           let brandDisplayed=(await this.brand.getValue()).toString()
+           console.log("ProductName is "+brandDisplayed)
            return brandDisplayed
         }
         else{
@@ -204,11 +216,26 @@ class productsPage {
        
         await this.productdescription.setValue(description);
     }
-    async productPhoto(filePath1){
+    async productPhoto(uploadProductPhoto){
                              
-        console.log(filePath1)
-        await this.uploadphoto.addValue(filePath1);
+        console.log(uploadProductPhoto)
+        await this.uploadphoto.addValue(uploadProductPhoto);
        
+    }
+    async uploadFile(uploadEpi){
+        await this.uploadEpiFile.addValue(uploadEpi);
+    }
+    async epiDisplayed(){
+        if(await this.epiFileDisplayed.isExisting()==true){
+            let epiDisplayed="true"
+            console.log("epiDisplayed is "+epiDisplayed)
+            return epiDisplayed 
+        }
+        else{
+            let epiDisplayed="false"
+            console.log("epiDisplayed is "+epiDisplayed)
+            return epiDisplayed 
+        }
     }
     async internalMaterialCode(code){
         await this.internalMaterialCodeEnter.setValue(code)
@@ -250,8 +277,8 @@ class productsPage {
         await this.batchenabled.isEnabled();
         await expect(this.batchenabled).toBeEnabled(); 
     }
-    async disableBatchExpired(){
-        await this.disableBatchExpiredCheckbox.click();
+    async batchIsExpired(){
+        await this.batchIsExpiredCheckbox.click();
     }
     async enableSnIsInRecallList(){
         await this.snIsInRecallListClick.scrollIntoView()
@@ -313,11 +340,13 @@ class productsPage {
     async clickDeleteLanguage(){
         await this.clickDeleteLanguageButton.click()
     }
+    async deleteSecondLanguage(){
+        await this.clickdeleteSecondLanguage.click()
+    }
 
-    // async leafletUpload(filePath2){
-    //     await this.leaflet.click()
-    //     await this.leaflet.addValue(filePath2);
-    // }
+   
+
+   
 
     async marketManagementButton(){
         await this.marketManagementButtonClick.scrollIntoView()

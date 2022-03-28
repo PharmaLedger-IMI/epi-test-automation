@@ -1,4 +1,5 @@
 
+
 const expectChai = require('chai').expect;
 
 let isChecked=false
@@ -82,6 +83,12 @@ class batchesPage{
     }
     get videoSourceEpiEnter(){
         return $("//textarea[@value='@modalData.product.videoSource']")
+    }
+    get uploadEpiFile(){
+        return $('//input[@type=\'file\']')
+    }
+    get epiFileDisplayed(){
+        return $("//li[@class='d-flex flex-row overflow-auto']")
     }
     get addEpiAcceptButton(){
         return $("//button[normalize-space()='Accept']")
@@ -251,8 +258,23 @@ class batchesPage{
     async selectType(type){
         await this.selectTypeDropdown.selectByVisibleText(type)
     }
-    async videoSourceEpi(link2){
-        await this.videoSourceEpiEnter.setValue(link2)
+    async videoSourceEpi(link){
+        await this.videoSourceEpiEnter.setValue(link)
+    }
+    async uploadFile(uploadEpi){
+        await this.uploadEpiFile.addValue(uploadEpi);
+    }
+    async epiDisplayed(){
+        if(await this.epiFileDisplayed.isExisting()==true){
+            let epiDisplayed="true"
+            console.log("epiDisplayed is "+epiDisplayed)
+            return epiDisplayed 
+        }
+        else{
+            let epiDisplayed="false"
+            console.log("epiDisplayed is "+epiDisplayed)
+            return epiDisplayed 
+        }
     }
     async enableCheckToRecallThisBatch(){
 
@@ -311,12 +333,26 @@ class batchesPage{
     }
    
     async acceptButton(){
-       await this.addEpiAcceptButton.scrollIntoView()
+        await this.addEpiAcceptButton.scrollIntoView()
         await this.addEpiAcceptButton.click()
     }
     async createBatch(){
 
         await this.createBatchButton.click()
+    }
+
+    async  deleteAllFile(){
+       
+        var i = 1
+
+        for (;  await browser.$("//li["+i+"]//div[1]//button[1]//i[1]").isExisting();) {
+            console.log(i)
+            await browser.$("//li["+i+"]//div[1]//button[1]//i[1]").click()  
+        }
+        if(await browser.$('//i[@class="fa fa-trash-o"]').isExisting()){
+            await browser.$('//i[@class="fa fa-trash-o"]').click()
+        }
+               
     }
 
 

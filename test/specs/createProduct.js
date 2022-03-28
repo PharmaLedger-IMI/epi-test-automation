@@ -35,13 +35,13 @@ it('should verify product page', async() => {
     var dateStringWithTime = moment().format('DD-MM-YY h:mm:ss');
     console.log(dateStringWithTime)
     await products.brandName(testData[1]['newProductDetails'].brandName + dateStringWithTime) 
+    await wait.setTimeoutwait(3);
     info.setBrandName(await products.checkBrandName()) 
     await wait.setTimeoutwait(2);
     await products.productDescription(testData[1]['newProductDetails'].productDescription); 
     await wait.setTimeoutwait(4);
     //Upload product photo
-    const filePath = path.join(__dirname, '/src/entresto.jpg');
-    await products.productPhoto(filePath);
+    await products.productPhoto(path.join(__dirname, '/src/entresto.jpg'));
     await wait.setTimeoutwait(1);
     //internal material code
     await products.internalMaterialCode(testData[1]['newProductDetails'].internalMaterialCode)
@@ -52,7 +52,14 @@ it('should verify product page', async() => {
     // video source
     await products.videoSource(testData[1]['newProductDetails'].videoSource)
     await wait.setTimeoutwait(2);
+    //enable batch is recalled
     await products.enableBatchIsRecalled(); 
+    await wait.setTimeoutwait(1);
+    //
+    await products.enableExpirationDateIsIncorrect(); 
+    await wait.setTimeoutwait(1);
+    //
+    await products.enableSnIsUnknown(); 
     await wait.setTimeoutwait(1);
      //add epi
      await products.addEpi()
@@ -66,13 +73,14 @@ it('should verify product page', async() => {
      //Video source
      await products.videoSourceEpi(testData[1]['newProductDetails'].videoSource)
      await wait.setTimeoutwait(1);
-     await browser.$('(//input[@type=\'file\'])[2]').addValue(path.join(__dirname, '/src/Entresto'));
+     //Upload epi
+     const uploadEpiFile=path.join(__dirname, '/src/Leaflet_ProductLevel')
+     await products.uploadFile(uploadEpiFile);
      await wait.setTimeoutwait(3);
      //add epi accept
      await browser.execute('document.querySelector("psk-button[disabled=\'@modalData.filesWereNotSelected\'] button[class=\'btn btn-primary\']").click();');
      await wait.setTimeoutwait(3);
 
-    //  await wait.waitforelement(await products.saveProduct());
      //Save product
      await products.saveProduct()
      await wait.setTimeoutwait(50);

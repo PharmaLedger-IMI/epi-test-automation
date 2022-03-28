@@ -27,18 +27,17 @@ describe('Edit batch', () => {
         await browser.execute('document.querySelector(`webc-app-menu-item:nth-child(4) stencil-route-link:nth-child(1) a:nth-child(1)`).click()')
 
         await wait.setTimeoutwait(8);
-        let editValue = info.getbatchId()
+        let editValue = info.getbatchId(false)
         console.log("editValue is "+editValue)
         await browser.execute('document.querySelector("div:nth-child(' + await info.editBatchRow(editValue) + ') button:nth-child(1)").click()')       
         await wait.setTimeoutwait(6);
 
-
          //select recalled serial number
          await batches.selectUpdateRecalledSerialFromDropdown(testData[2]['newBatchDetails'].updateRecalled)
          await wait.setTimeoutwait(2);
-         //enable checkbox
-         await batches.enableResetAllRecalledSerialNumber()
-         await wait.setTimeoutwait(2);
+        //  //enable checkbox
+        //  await batches.enableResetAllRecalledSerialNumber()
+        //  await wait.setTimeoutwait(2);
          //set the serial number and enter
          info.setSerialNumber(await batches.serialNum())
          await wait.setTimeoutwait(2);
@@ -60,13 +59,12 @@ describe('Edit batch', () => {
         info.setBatchRecallMsg(await batches.checkBatchRecallMessage()) 
         await wait.setTimeoutwait(2);
 
-        await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), info.getBatchRecall(),"","", info.getBatchRecallMsg() )
+        await data.generateExpectationFile(info.getProductId(), info.getbatchId(false), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), info.getBatchRecall(),"","", info.getBatchRecallMsg() )
         await wait.setTimeoutwait(12);
         
-        await wait.setTimeoutwait(2);
          await batches.updateBatchForEdit()
          await wait.setTimeoutwait(10);
-         matrix.generateImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
+         matrix.generateImage(info.getProductId(), info.getbatchId(false), info.getCurrentRandomDate(), info.getSerialNumber())
          await wait.setTimeoutwait(8);
        
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');

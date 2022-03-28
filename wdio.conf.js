@@ -27,60 +27,113 @@ exports.config = {
         //'test/specs/test.js',
          //'test/specs/landingPage.js',
 
-             // 'test/specs/gtinPage.js',
-                'test/specs/loginCredentials.js',
-                //'test/specs/createProduct.js',
-            // 'test/specs/createBatch.js',
+            //  'test/specs/gtinPage.js',
+            'test/specs/loginCredentials.js',
+                'test/specs/createProduct.js',
+                'test/specs/createBatch.js',
 
             // 'test/specs/2_editBatchforRecallMsg.js',
             // 'test/specs/3_editProductforToggle_ePIFlag.js',
-             'test/specs/createBatchWithoutanyFile.js',
-            // 'test/specs/createBatchWithUploadLeaflet.js',
-            // 'test/specs/createBatchWithUploadSMPC.js',
-            // 'test/specs/createBatchWithUploadBoth.js',
-            // 'test/specs/batchRecallForSerialized-1.js',
-            // 'test/specs/batchRecallForSerialized-2.js',
-            // 'test/specs/batchRecallForNonSerialized-1.js',
-            // 'test/specs/batchRecallForNonSerialized-2.js',
-            // 'test/specs/allCombinationofBothMsgs-1.js',
-            // 'test/specs/allCombinationofBothMsgs-2.js',
-            // 'test/specs/allCombinationofBothMsgs-3.js',
-            // 'test/specs/allCombinationofBothMsgs-4.js',
-            //'test/specs/combinationChecks-1.js',
-            //'test/specs/combinationChecks-2.js',
-            //'test/specs/combinationChecks-3.js',
-            //'test/specs/expiryDateChecks-C1.1.js',
-            //'test/specs/expiryDateChecks-C1.4.js',
-            //'test/specs/expiryDateChecks-C1.5.js',
-            //'test/specs/expiryDateChecks-C1.6.js',
-            //'test/specs/expiryDateChecks-C3.1.js',
-            //'test/specs/expiryDateChecks-C3.2.js',
-            //'test/specs/expiryDateChecks-C3.3.js',
-            //'test/specs/expiryDateChecks-C3.4.js',
-            //'test/specs/expiryDateChecks-C3.5.js',
-            //'test/specs/expiryDateChecks-C3.6.js',
-            //'test/specs/expiryDateChecks-C3.7.js',
-            //'test/specs/serialNumberChecks-1.js',
-            //'test/specs/serialNumberChecks-2.js',
-            //'test/specs/serialNumberChecks-3.js',
-            //'test/specs/serialNumberChecks-4.js',
-            //'test/specs/serialNumberChecks-5.js',
-            //'test/specs/serialNumberChecks-6.js',
-            //'test/specs/serialNumberChecks-7.1.js',
-            //'test/specs/serialNumberChecks-7.2.js',
-            // 'test/specs/serialNumberChecks-7.3.js',
-            // 'test/specs/serialNumberChecks-8.js',
-            // 'test/specs/serialNumberChecks-9.js',
-            // 'test/specs/serialNumberChecks-10.js',
-            // 'test/specs/serialNumberCheckEnabledWithValidMatrix.js',
-            // 'test/specs/serialNumberCheckEnabledWithInValidMatrix.js',
+
+            //'test/specs/enableSerialNumberCheckWithValidMatrix.js',
+            //'test/specs/enableSerialNumberCheckWithInValidMatrix.js',
             // 'test/specs/disableSerialNumberCheckWithSerialNumber.js',
             // 'test/specs/disableSerialNumberCheckWithOutSerialNumber.js',
+            
             // 'test/specs/enableExpiryDateCheckWithValidMatrix.js',
-            // 'test/specs/enableExpiryDateCheckWithInValidMatrix.js'
-            // 'test/specs/disableExpiryDateCheckWithInValidDate.js'
+            // 'test/specs/enableExpiryDateCheckWithInValidMatrix.js'.
+            // 'test/specs/disableExpiryDateCheckWithInValidDate.js',
 
-          
+            
+            // 'test/specs/batchRecallForSerializedWithSN.js',
+            // 'test/specs/batchRecallForSerializedUndoRecallFlag.js',
+            // 'test/specs/batchRecallForNonSerializedWithoutSN.js',
+            // 'test/specs/batchRecallForNonSerializedUndoRecallFlag.js',
+
+            // 'test/specs/createBatchWithNoBatchMsg.js',
+            // 'test/specs/createBatchWithBatchMsg.js',
+            // 'test/specs/createBatchWithBatchRecall&Msg.js',
+            // 'test/specs/createBatchWithBatchMsgAndRecall&Msg.js',
+
+            //'test/specs/createBatchWithValidSnExpiryDateRecallMsg.js',
+            //'test/specs/scanExpiredDate.js',
+            //'test/specs/scanExpiredDateAndSerialNUmber.js',
+
+            //'test/specs/createBatchWithXExpiryDate.js',
+            //'test/specs/changeDayOnMatrixY.js',
+            //'test/specs/changeMonthOnMatrixY.js',
+            //'test/specs/changeYearOnMatrixY.js',
+
+            //'test/specs/createBatchWithMonthYearExpiryDate.js',
+            //'test/specs/disableDaySelectionIncorrectAndExpiredDate.js',
+            //'test/specs/disableDaySelectionIncorrectAndEnableExpiredDate.js',
+            //'test/specs/disableDaySelectionExpiredDateAndEnableIncorrect.js',
+            //'test/specs/enableDaySelectionAndDisableIncorrectExpiredDate.js',
+            //'test/specs/enableDaySelectionIncorrectAndDisableExpiredDate.js',
+            //'test/specs/enableDaySelectionExpiredDateAndDisableIncorrect.js',
+
+            //'test/specs/validSerialNumber.js',
+            //'test/specs/clearValidSerialNumber.js',
+            //'test/specs/clearInValidSerialNumber.js',
+            //'test/specs/recalledSerialNumbers.js',
+            //'test/specs/clearRecalledSerialNumbers.js',
+            //'test/specs/decommissionedSerialNumber.js',
+            //'test/specs/createBatchWithValidRecalledDecommissioned.js',
+            //'test/specs/scanWithRecalledSerialNumber.js',
+            // 'test/specs/scanWithDecommissionedSerialNumberjs',
+            // 'test/specs/upload10InRecalledSerialNumber.js',
+            // 'test/specs/upload10InDecommissionedSerialNumber.js',
+            // 'test/specs/upload50InValidSerialNumber.js',
+            // 'test/specs/updateBatchWithoutSerialNumber.js',
+            //  'test/specs/updateBatchWithSerialNumber.js',
+            // 'test/specs/updateBatchToResetSerialNUmber.js',
+            // 'test/specs/updateBatchWithDecommissioned&RecalledSerialNumber.js',
+            // 'test/specs/updateBatchWithNoDecommissioned&RecalledSerialNumber.js
+
+            // 'test/specs/createBatchWithoutanyFile.js',
+            // 'test/specs/uploadNewVersionOfEpiInProduct.js',
+            //  'test/specs/createBatchWithUploadLeaflet.js',
+            // 'test/specs/versionOfEpiNotReplaced.js',
+            // 'test/specs/createProductWithUploadLeaflet&SMPC.js',
+            //  'test/specs/updateProductWithNewLeaflet.js',
+            // 'test/specs/createBatchWithUploadLeaflet&SMPC.js',
+            //  'test/specs/deleteLeaflet&SMPCInBatch.js',
+            
+
+            // 'test/specs/gtinPage.js',
+            //'test/specs/createAnotherProduct.js',
+            //'test/specs/checkBatchIsNotRecalled.js',
+            //'test/specs/checkBatchIsRecalled.js',
+            //'test/specs/checkSmpcDeletedFromProductWithRecalledBatch.js',
+            // 'test/specs/unCheckBatchIsRecalled.js',
+            //'test/specs/unCheckBatchIsNotRecalled.js'
+            //'test/specs/unCheckSmpcDeletedFromProductWithRecalledBatch.js',
+
+            // 'test/specs/checkExpirationDateWithCorrectExpiryDate.js',
+            // 'test/specs/checkExpirationDateWithInCorrectExpiryDate.js',
+            // 'test/specs/checkSmpcDeletedFromProductWithIncorrectExpiryDate.js',
+            // 'test/specs/unCheckExpirationDateWithInCorrectExpiryDate.js',
+            // 'test/specs/unCheckExpirationDateWithCorrectExpiryDate.js',
+
+            // 'test/specs/checkBatchIsExpired.js'
+            // 'test/specs/checkBatchIsNotExpired.js'
+            // 'test/specs/checkSmpcDeletedFromProductWithExpiredBatch.js',
+            // 'test/specs/unCheckBatchIsExpired.js'
+            // 'test/specs/unCheckBatchIsNotExpired.js'
+
+            // 'test/specs/checkSnIsRecalled.js'
+            // 'test/specs/checkSnIsNotRecalled.js'
+            // 'test/specs/checkSmpcIsDeletedFromProductWithSnRecalled.js',
+            // 'test/specs/unCheckSnIsRecalled.js'
+            // 'test/specs/unCheckSnIsNotRecalled.js'
+
+            // 'test/specs/checkSnIsDecommissioned.js'
+            // 'test/specs/checkSnIsNotDecommissioned.js'
+            // 'test/specs/checkSmpcIsDeletedFromProductWithSnDecommissioned.js',
+            // 'test/specs/unCheckSnIsDecommissioned.js'
+            // 'test/specs/unCheckSnIsNotDecommissioned.js'
+            
+            
 
             
     ],

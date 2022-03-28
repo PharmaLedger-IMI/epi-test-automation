@@ -11,7 +11,7 @@ const fs = require('fs')
     //     testExpectations.batchRecall = batchCheck
         
     //     } 
-    async generateExpectationFile(gtin, batchNumber, expiryDate, serialNumber, productName, batchCheck, batchMessage, snIsInRecallList, recallMessage){
+    async generateExpectationFile(gtin, batchNumber, expiryDate, serialNumber, productName, batchRecallCheck, batchMessage, snIsInRecallList, recallMessage, epiDisplayed){
 
     const expdate = expiryDate.replace('-', '')
     const expdated = expdate.replace('-', '')
@@ -23,10 +23,11 @@ const fs = require('fs')
     testExpectations.expiry = expiryDateR
     testExpectations.batchSerialNumber = serialNumber
     testExpectations.prodName = productName  
-    testExpectations.batchRecall = batchCheck
+    testExpectations.batchRecall = batchRecallCheck
     testExpectations.batchMessageDisplayed = batchMessage
     testExpectations.snIsInRecallListePIBeDisplayed = snIsInRecallList
     testExpectations.batchRecallMessage = recallMessage
+    testExpectations.epiDisplayed = epiDisplayed
 
 
     // currentJSON = testExpectations

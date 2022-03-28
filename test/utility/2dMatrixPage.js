@@ -33,7 +33,7 @@ class matrixGenerator{
             } else {
     
                 fs.writeFileSync('/Users/snehav/AppData/Local/Android/Sdk/emulator/resources/custom.png', buff)
-                console.log("image generated")
+                console.log("first image generated")
         
             }
         
@@ -41,6 +41,75 @@ class matrixGenerator{
         return barcode
         
     }
+    generate2dMatrix(gtin, batchNumber, expiryDate){
+
+            
+        const expdate = expiryDate.replace('-', '')
+        const expdated = expdate.replace('-', '')
+        var expiryDateR = expdated.slice(2);
+
+        const barcode='(01)'+gtin+'(17)'+expiryDateR+'(10)'+batchNumber 
+        console.log(barcode)    
+        bwipjs.toBuffer({
+            bcid:        'gs1datamatrix',  
+            text:        barcode,    
+            backgroundcolor: 'ffffff',
+            padding: 65 
+        }, function (err, buff) {
+            if (err) {
+        
+                console.log("error", err)
+        
+            } else {
+    
+                fs.writeFileSync('/Users/snehav/AppData/Local/Android/Sdk/emulator/resources/custom.png', buff)
+                console.log("first image generated")
+        
+            }
+        
+        });
+        return barcode
+        
+    }
+
+
+
+
+    generateNewImage(gtin, batchNumber, expiryDate, serialNumber){
+
+            
+        const expdate = expiryDate.replace('-', '')
+        const expdated = expdate.replace('-', '')
+        var expiryDateR = expdated.slice(2);
+
+        const barcode='(01)'+gtin+'(17)'+expiryDateR+'(10)'+batchNumber +'(21)'+serialNumber
+        console.log(barcode)    
+        bwipjs.toBuffer({
+            bcid:        'gs1datamatrix',  
+            text:        barcode,    
+            backgroundcolor: 'ffffff',
+            padding: 65 
+        }, function (err, buff) {
+            if (err) {
+        
+                console.log("error", err)
+        
+            } else {
+    
+                fs.writeFileSync('/Users/snehav/AppData/Local/Android/Sdk/emulator/resources/customNew.png', buff)
+                console.log("second image generated")
+        
+            }
+        
+        });
+        return barcode
+        
+    }
+
+
+
+
+
 }
 
 module.exports = new matrixGenerator();

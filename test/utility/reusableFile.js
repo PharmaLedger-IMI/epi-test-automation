@@ -1,6 +1,5 @@
 
 const testData=require('../testdata/config.json')
-const packageJson=require('../../package.json')
 let expiredDate= randomDateExpired()
 let currentDate=''
 let currentID = ''
@@ -9,10 +8,14 @@ let currentBatchRecall=''
 let currentBatchRecallMsg=''
 let currentBrandName=''
 let currentBatchMsg=''
+let EpiDisplayed=''
 let currentDay=''
 let currentMonth=''
 let currentYear=''
 let GTIN=''
+const incrementalValue=process.argv
+const incrementalArg=incrementalValue.length-1
+
 
 //let SerialNumber=serialNumber()
 class reuseFile{
@@ -22,13 +25,11 @@ class reuseFile{
     }
 
     getProductId(){
-        // console.log('incremental test='+process.argv)
-        // console.log('incremental test inc test with params='+process.argv[incrementalTest])
-        // console.log('incremental test inc test='+process.argv['incrementalTest'])
-        // console.log('incremental test2='+process.argv[2])
-        // console.log('incremental test5='+process.argv[5])
-        // console.log('incremental test0='+process.argv0)
-        if(packageJson['scripts'].incrementalTest=='true'){
+        //console.log("increment test value"+process.argv)
+        
+        console.log("incrementalArg value is "+process.argv[incrementalArg])
+       
+        if((process.argv[incrementalArg].split('=')[1])==true){
            
             console.log("incrementalProduct value is " + testData[3]['incrementalTest'].prodId)
             return testData[3]['incrementalTest'].prodId 
@@ -45,26 +46,28 @@ class reuseFile{
     setBatchId(id) {
         currentID = id
     }
-    getbatchId() {
-        if(packageJson['scripts'].incrementalTest=='true'){
-            console.log("incrementalTest value is " + testData[3]['incrementalTest'].batchId)
+    getbatchId(existingBatch) {
+        if((process.argv[incrementalArg].split('=')[1])==true){
+            console.log("incremental batch value is " + testData[3]['incrementalTest'].batchId)
            return testData[3]['incrementalTest'].batchId 
+     }
+     else if(existingBatch==true){
+        console.log("incremental batch value is " + testData[3]['incrementalTest'].batchId)
+        return testData[3]['incrementalTest'].batchId 
      }
         else{
             
             console.log("batch value is " + currentID)
             return currentID
-
         }
     }
 
     setSerialNumber(Number) {
         currentSerial = Number
         
-
     }
     getSerialNumber() {
-        if(packageJson['scripts'].incrementalTest=='true'){
+        if((process.argv[incrementalArg].split('=')[1])==true){
             console.log("serial value is " + testData[3]['incrementalTest'].serialNumber)
            return testData[3]['incrementalTest'].serialNumber 
      }
@@ -74,16 +77,14 @@ class reuseFile{
         }
     }
 
-  
-
     setBrandName(brand){
         currentBrandName=brand
         console.log("current brandName is " +currentBrandName)
        
     }
     getBrandName(){
-        if(packageJson['scripts'].incrementalTest=='true'){
-            console.log("serial value is " + testData[3]['incrementalTest'].prodName)
+        if(process.argv[incrementalArg].split('=')[1]){
+            console.log("product name is " + testData[3]['incrementalTest'].prodName)
            return testData[3]['incrementalTest'].prodName 
      }
         else{
@@ -112,6 +113,13 @@ class reuseFile{
     getBatchMsg(){
         return currentBatchMsg
     }
+    setEpiDisplayed(epi){
+        EpiDisplayed= epi
+    }
+    getEpiDisplayed(){
+        return EpiDisplayed
+    }
+
 
     setCurrentRandomDate(){
         
@@ -119,7 +127,7 @@ class reuseFile{
     }
     getCurrentRandomDate(){
 
-        if(packageJson['scripts'].incrementalTest=='true'){
+        if((process.argv[incrementalArg].split('=')[1])==true){
         console.log("date value is " + testData[3]['incrementalTest'].expiryDate)
         return testData[3]['incrementalTest'].expiryDate 
      }
@@ -142,7 +150,7 @@ class reuseFile{
     }
 
     getDayChange(){
-        if(packageJson['scripts'].incrementalTest=='true'){
+        if((process.argv[incrementalArg].split('=')[1])==true){
             console.log("date value is " + testData[3]['incrementalTest'].expiryDate)
             return testData[3]['incrementalTest'].expiryDate 
         }
@@ -157,7 +165,7 @@ class reuseFile{
     // }
     getMonthChange(){
         
-        if(packageJson['scripts'].incrementalTest=='true'){
+        if((process.argv[incrementalArg].split('=')[1])==true){
             console.log("date value is " + testData[3]['incrementalTest'].expiryDate)
             return testData[3]['incrementalTest'].expiryDate 
         }
@@ -171,7 +179,7 @@ class reuseFile{
         return currentYear=randomYear(randomDate)
     }
     getYearChange(){
-        if(packageJson['scripts'].incrementalTest=='true'){
+        if((process.argv[incrementalArg].split('=')[1])==true){
             console.log("date value is " + testData[3]['incrementalTest'].expiryDate)
             return testData[3]['incrementalTest'].expiryDate 
         }
@@ -232,7 +240,8 @@ class reuseFile{
         let editRow=""
         editRow=rClick
         return editRow
-    }     
+    }  
+    
     
     async  editProduct(){
         let editValue = '25367613915299'
