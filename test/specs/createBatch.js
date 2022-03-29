@@ -95,7 +95,7 @@ it('Should verify batch page ', async() => {
     await batches.acceptButton()
     await wait.setTimeoutwait(5);
 
-    await data.generateExpectationFile(info.getProductId(), info.getbatchId(false), info.getCurrentRandomDate(),  info.getSerialNumber(), info.getBrandName(), "","","","", await batches.epiDisplayed())
+    await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(), info.getBrandName(), "","","","", await batches.epiDisplayed())
     await wait.setTimeoutwait(6);
      
     //Create batch
@@ -103,7 +103,7 @@ it('Should verify batch page ', async() => {
     await wait.setTimeoutwait(15);
 
     //Generate Image
-    matrix.generateImage(info.getProductId(), info.getbatchId(false), info.getCurrentRandomDate(), info.getSerialNumber())
+    matrix.generateImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
     await wait.setTimeoutwait(8);
 
     

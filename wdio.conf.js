@@ -27,18 +27,18 @@ exports.config = {
         //'test/specs/test.js',
          //'test/specs/landingPage.js',
 
-            //  'test/specs/gtinPage.js',
-            'test/specs/loginCredentials.js',
+             'test/specs/gtinPage.js',
+             'test/specs/loginCredentials.js',
                 'test/specs/createProduct.js',
                 'test/specs/createBatch.js',
 
-            // 'test/specs/2_editBatchforRecallMsg.js',
-            // 'test/specs/3_editProductforToggle_ePIFlag.js',
+            'test/specs/2_editBatchforRecallMsg.js',
+            'test/specs/3_editProductforToggle_ePIFlag.js',
 
-            //'test/specs/enableSerialNumberCheckWithValidMatrix.js',
-            //'test/specs/enableSerialNumberCheckWithInValidMatrix.js',
-            // 'test/specs/disableSerialNumberCheckWithSerialNumber.js',
-            // 'test/specs/disableSerialNumberCheckWithOutSerialNumber.js',
+            'test/specs/enableSerialNumberCheckWithValidMatrix.js',
+            'test/specs/enableSerialNumberCheckWithInValidMatrix.js',
+            'test/specs/disableSerialNumberCheckWithSerialNumber.js',
+            'test/specs/disableSerialNumberCheckWithOutSerialNumber.js',
             
             // 'test/specs/enableExpiryDateCheckWithValidMatrix.js',
             // 'test/specs/enableExpiryDateCheckWithInValidMatrix.js'.
@@ -50,7 +50,7 @@ exports.config = {
             // 'test/specs/batchRecallForNonSerializedWithoutSN.js',
             // 'test/specs/batchRecallForNonSerializedUndoRecallFlag.js',
 
-            // 'test/specs/createBatchWithNoBatchMsg.js',
+            //'test/specs/createBatchWithNoBatchMsg.js',
             // 'test/specs/createBatchWithBatchMsg.js',
             // 'test/specs/createBatchWithBatchRecall&Msg.js',
             // 'test/specs/createBatchWithBatchMsgAndRecall&Msg.js',

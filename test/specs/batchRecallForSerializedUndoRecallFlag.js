@@ -22,7 +22,7 @@ describe('Batch Recall and Recall Message for serialized batches ', () => {
         
         allureReporter.addTestId('BatchRecall&Msg_1')
 
-        let editValue = info.getbatchId(true)
+        let editValue = info.getbatchId()
     
         //Again click on edit batch
         await browser.execute('document.querySelector("div:nth-child(' + await info.editBatchRow(editValue) + ') button:nth-child(1)").click()')       
@@ -40,10 +40,10 @@ describe('Batch Recall and Recall Message for serialized batches ', () => {
         await wait.setTimeoutwait(2);
 
        
-        await data.generateExpectationFile(info.getProductId(), info.getbatchId(true), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), info.getBatchRecall(),"","",  await batches.checkBatchRecallMessage() )
+        await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), info.getBatchRecall(),"","",  await batches.checkBatchRecallMessage() )
         await wait.setTimeoutwait(12);
 
-        matrix.generateImage(info.getProductId(), info.getbatchId(true), info.getCurrentRandomDate(), info.getSerialNumber())
+        matrix.generateImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
         await wait.setTimeoutwait(12);
 
         //update batch

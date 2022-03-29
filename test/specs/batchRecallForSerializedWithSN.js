@@ -68,7 +68,7 @@ describe('Batch Recall and Recall Message for serialized batches ', () => {
         await batches.createBatch()
         await wait.setTimeoutwait(15);
         
-        let editValue = info.getbatchId(false)
+        let editValue = info.getbatchId()
         //click on edit 
         await browser.execute('document.querySelector("div:nth-child(' + await info.editBatchRow(editValue) + ') button:nth-child(1)").click()')       
         await wait.setTimeoutwait(5);
@@ -87,10 +87,10 @@ describe('Batch Recall and Recall Message for serialized batches ', () => {
         info.setBatchRecallMsg(await batches.checkBatchRecallMessage()) 
         await wait.setTimeoutwait(2);
 
-        await data.generateExpectationFile(info.getProductId(), info.getbatchId(false), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), info.getBatchRecall(),"","", info.getBatchRecallMsg() )
+        await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), info.getBatchRecall(),"","", info.getBatchRecallMsg() )
         await wait.setTimeoutwait(12);
 
-        matrix.generateImage(info.getProductId(), info.getbatchId(false), info.getCurrentRandomDate(), info.getSerialNumber())
+        matrix.generateImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
         await wait.setTimeoutwait(2);
 
         //update batch

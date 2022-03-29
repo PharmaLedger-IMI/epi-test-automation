@@ -16,8 +16,6 @@ let GTIN=''
 const incrementalValue=process.argv
 const incrementalArg=incrementalValue.length-1
 
-
-//let SerialNumber=serialNumber()
 class reuseFile{
 
     setProductId(id) {
@@ -25,15 +23,19 @@ class reuseFile{
     }
 
     getProductId(){
-        //console.log("increment test value"+process.argv)
-        
+        console.log("increment test value"+process.argv)
         console.log("incrementalArg value is "+process.argv[incrementalArg])
-       
-        if((process.argv[incrementalArg].split('=')[1])==true){
+        console.log("arg value is "+process.argv[incrementalArg].split('=')[1])
+        if((process.argv[incrementalArg].split('=')[1]=="exist")){
            
-            console.log("incrementalProduct value is " + testData[3]['incrementalTest'].prodId)
+            console.log("exist incrementalProduct value is " + testData[3]['incrementalTest'].prodId)
             return testData[3]['incrementalTest'].prodId 
-     }
+        }
+        
+        else if ((process.argv[incrementalArg].split('=')[1] == "newExist")) {
+            console.log("exist incrementalProduct value is " + testData[3]['incrementalTest'].prodId)
+            return testData[3]['incrementalTest'].prodId 
+        }
         else 
         {       
 
@@ -46,33 +48,47 @@ class reuseFile{
     setBatchId(id) {
         currentID = id
     }
+    
     getbatchId(existingBatch) {
-        if((process.argv[incrementalArg].split('=')[1])==true){
+      
+    if((process.argv[incrementalArg].split('=')[1] == "exist")){
             console.log("incremental batch value is " + testData[3]['incrementalTest'].batchId)
            return testData[3]['incrementalTest'].batchId 
      }
+    
+     else if(process.argv[incrementalArg].split('=')[1] == "newExist"){
+        console.log("batch value is " + currentID)
+        return currentID
+     }
      else if(existingBatch==true){
         console.log("incremental batch value is " + testData[3]['incrementalTest'].batchId)
-        return testData[3]['incrementalTest'].batchId 
+        return testData[3]['incrementalTest'].batchId
+         
      }
-        else{
+    else{
             
             console.log("batch value is " + currentID)
             return currentID
         }
     }
+    
 
     setSerialNumber(Number) {
         currentSerial = Number
         
     }
     getSerialNumber() {
-        if((process.argv[incrementalArg].split('=')[1])==true){
+       
+        if((process.argv[incrementalArg].split('=')[1]== "exist")){
             console.log("serial value is " + testData[3]['incrementalTest'].serialNumber)
            return testData[3]['incrementalTest'].serialNumber 
      }
+    else if((process.argv[incrementalArg].split('=')[1]== "newExist")){
+        console.log("serial value is " + testData[3]['incrementalTest'].serialNumber)
+       return testData[3]['incrementalTest'].serialNumber 
+ }
         else{
-        console.log("Serial NUmber is " + currentSerial)
+        console.log("Serial Number is " + currentSerial)
         return currentSerial
         }
     }
@@ -83,7 +99,8 @@ class reuseFile{
        
     }
     getBrandName(){
-        if(process.argv[incrementalArg].split('=')[1]){
+        
+        if((process.argv[incrementalArg].split('=')[1]== "exist")){
             console.log("product name is " + testData[3]['incrementalTest'].prodName)
            return testData[3]['incrementalTest'].prodName 
      }
@@ -126,11 +143,16 @@ class reuseFile{
         return currentDate=randomDateF()
     }
     getCurrentRandomDate(){
-
-        if((process.argv[incrementalArg].split('=')[1])==true){
-        console.log("date value is " + testData[3]['incrementalTest'].expiryDate)
+     
+        if((process.argv[incrementalArg].split('=')[1] == "exist")){
+        console.log("existing date value is " + testData[3]['incrementalTest'].expiryDate)
         return testData[3]['incrementalTest'].expiryDate 
      }
+    else if((process.argv[incrementalArg].split('=')[1] == "newExist")){
+        console.log("existing date value is " + testData[3]['incrementalTest'].expiryDate)
+        return testData[3]['incrementalTest'].expiryDate 
+     }
+    
      else{
 
         return currentDate
@@ -150,7 +172,12 @@ class reuseFile{
     }
 
     getDayChange(){
-        if((process.argv[incrementalArg].split('=')[1])==true){
+       
+        if((process.argv[incrementalArg].split('=')[1]== "exist")){
+            console.log("date value is " + testData[3]['incrementalTest'].expiryDate)
+            return testData[3]['incrementalTest'].expiryDate 
+        }
+        else if((process.argv[incrementalArg].split('=')[1]== "exist")){
             console.log("date value is " + testData[3]['incrementalTest'].expiryDate)
             return testData[3]['incrementalTest'].expiryDate 
         }
@@ -164,8 +191,8 @@ class reuseFile{
     //     return currentMonth=randomMonth(randomDate)
     // }
     getMonthChange(){
-        
-        if((process.argv[incrementalArg].split('=')[1])==true){
+                
+        if((process.argv[incrementalArg].split('=')[1]== "exist")){
             console.log("date value is " + testData[3]['incrementalTest'].expiryDate)
             return testData[3]['incrementalTest'].expiryDate 
         }
@@ -179,7 +206,8 @@ class reuseFile{
         return currentYear=randomYear(randomDate)
     }
     getYearChange(){
-        if((process.argv[incrementalArg].split('=')[1])==true){
+        
+        if((process.argv[incrementalArg].split('=')[1]== "exist")){
             console.log("date value is " + testData[3]['incrementalTest'].expiryDate)
             return testData[3]['incrementalTest'].expiryDate 
         }
@@ -224,10 +252,10 @@ class reuseFile{
             fArry.push({ batchId: await browser.$("div:nth-child(" + i + ")").getText(), edit: i + 4 })
             i = i + 6
         }
-        // let batchValue = date.batchID()//"QS5078"
+        
         let batchValue=editValue
       
-        console.log("batch value is "+batchValue)
+        //console.log("batch value is "+batchValue)
         let rClick = ""
          
         fArry.map((key) => {

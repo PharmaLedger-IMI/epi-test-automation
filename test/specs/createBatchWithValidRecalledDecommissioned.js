@@ -107,13 +107,13 @@ describe('Serial Number Checks ', () => {
         await wait.setTimeoutwait(2);
        
        
-        await data.generateExpectationFile(info.getProductId(), info.getbatchId(false), info.getCurrentRandomDate(),  validserialNumber,info.getBrandName(), "","","", "" )
+        await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  validserialNumber,info.getBrandName(), "","","", "" )
         await wait.setTimeoutwait(12);
         //create batch
         await batches.createBatch()
         await wait.setTimeoutwait(8);
        
-        matrix.generateImage(info.getProductId(), info.getbatchId(false), info.getCurrentRandomDate(), validserialNumber)
+        matrix.generateImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), validserialNumber)
         await wait.setTimeoutwait(5);
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");

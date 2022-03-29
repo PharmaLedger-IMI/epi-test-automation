@@ -72,9 +72,9 @@ describe('Leaflet updates on the product Batch specific version', () => {
         await batches.acceptButton()
         await wait.setTimeoutwait(5);
        
-        await data.generateExpectationFile(info.getProductId(), info.getbatchId(false), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(),"", await batches.checkBatchMessage(),"", "" )
+        await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(),"", await batches.checkBatchMessage(),"", "" )
         await wait.setTimeoutwait(12);
-        matrix.generateNewImage(info.getProductId(), info.getbatchId(false), info.getCurrentRandomDate(), info.getSerialNumber())
+        matrix.generateNewImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
         await wait.setTimeoutwait(5);
        
         await batches.createBatch()

@@ -29,7 +29,7 @@ describe('Serial Number checks ', () => {
         await batches.Batch();
         await wait.setTimeoutwait(3);
         //edit above batch
-        let editValue = info.getbatchId(true)
+        let editValue = info.getbatchId()
         console.log("editValue is "+editValue)
         await browser.execute('document.querySelector("div:nth-child(' + await info.editBatchRow(editValue) + ') button:nth-child(1)").click()')       
         await wait.setTimeoutwait(8);
@@ -48,13 +48,13 @@ describe('Serial Number checks ', () => {
         await batches.acceptSerialNumber()
         await wait.setTimeoutwait(2);       
        
-        await data.generateExpectationFile(info.getProductId(), info.getbatchId(true), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), "","","", "" )
+        await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), "","","", "" )
         await wait.setTimeoutwait(12);
          //update batch
          await batches.updateBatchForEdit()
          await wait.setTimeoutwait(10);
        
-        matrix.generateImage(info.getProductId(), info.getbatchId(true), info.getCurrentRandomDate(), info.getSerialNumber())
+        matrix.generateImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
         await wait.setTimeoutwait(5);
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");

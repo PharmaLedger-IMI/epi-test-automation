@@ -29,13 +29,13 @@ describe('Serial Number checks ', () => {
         //Passing invalid serial number in 2dmatrix as serial number is cleared in above batch
        
        
-        await data.generateExpectationFile(info.getProductId(), info.getbatchId(true), info.getCurrentRandomDate(),info.getSerialNumber(), " ",info.getBrandName(), "","","", "" )
+        await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),info.getSerialNumber(), " ",info.getBrandName(), "","","", "" )
         await wait.setTimeoutwait(12);
         // //update batch
         // await batches.updateBatchForEdit()
         // await wait.setTimeoutwait(10);
        
-        matrix.generateImage(info.getProductId(), info.getbatchId(true), info.getCurrentRandomDate(), info.getSerialNumber())
+        matrix.generateImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
         await wait.setTimeoutwait(5);
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");

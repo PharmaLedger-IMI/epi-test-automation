@@ -65,7 +65,7 @@ describe('Expiry date Checks ', () => {
         await batches.acceptSerialNumber()
         await wait.setTimeoutwait(1);
        
-        await data.generateExpectationFile(info.getProductId(), info.getbatchId(false), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), "","","", "" )
+        await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), "","","", "" )
         await wait.setTimeoutwait(12);
         //create batch
         await batches.createBatch()
@@ -77,7 +77,7 @@ describe('Expiry date Checks ', () => {
         info.setDateChange(futureDate,"month")
         info.setDateChange(futureDate,"year")
       
-        matrix.generateImage(info.getProductId(), info.getbatchId(false), futureDate, info.getSerialNumber())
+        matrix.generateImage(info.getProductId(), info.getbatchId(), futureDate, info.getSerialNumber())
         await wait.setTimeoutwait(5);
       
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');

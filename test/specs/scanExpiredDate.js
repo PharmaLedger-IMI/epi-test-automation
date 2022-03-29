@@ -29,7 +29,7 @@ describe('Combination checks ', () => {
         await browser.execute('document.querySelector(`webc-app-menu-item:nth-child(4) stencil-route-link:nth-child(1) a:nth-child(1)`).click()')
 
         await wait.setTimeoutwait(8);
-        let editValue = info.getbatchId(true)
+        let editValue = info.getbatchId()
         console.log("editValue is "+editValue)
         await browser.execute('document.querySelector("div:nth-child(' + await info.editBatchRow(editValue) + ') button:nth-child(1)").click()')       
         await wait.setTimeoutwait(6);
@@ -45,10 +45,10 @@ describe('Combination checks ', () => {
             })();
         }, expiredDate);
         
-        await data.generateExpectationFile(info.getProductId(), info.getbatchId(true), expiredDate,  info.getSerialNumber(),info.getBrandName(), info.getBatchRecall(),"","", info.getBatchRecallMsg())
+        await data.generateExpectationFile(info.getProductId(), info.getbatchId(), expiredDate,  info.getSerialNumber(),info.getBrandName(), info.getBatchRecall(),"","", info.getBatchRecallMsg())
         await wait.setTimeoutwait(12);
         
-        matrix.generateImage(info.getProductId(), info.getbatchId(true), expiredDate, info.getSerialNumber())
+        matrix.generateImage(info.getProductId(), info.getbatchId(), expiredDate, info.getSerialNumber())
         await wait.setTimeoutwait(8);
 
         await batches.updateBatchForEdit()

@@ -75,9 +75,9 @@ describe('Expiry date Checks ', () => {
         await batches.acceptSerialNumber()
         await wait.setTimeoutwait(1);
        
-        await data.generateExpectationFile(info.getProductId(), info.getbatchId(false), ddMMYYYY,  info.getSerialNumber(),info.getBrandName(), "","","", "" )
+        await data.generateExpectationFile(info.getProductId(), info.getbatchId(), ddMMYYYY,  info.getSerialNumber(),info.getBrandName(), "","","", "" )
         await wait.setTimeoutwait(12);
-        matrix.generateImage(info.getProductId(), info.getbatchId(false), ddMMYYYY, info.getSerialNumber())
+        matrix.generateImage(info.getProductId(), info.getbatchId(), ddMMYYYY, info.getSerialNumber())
         await wait.setTimeoutwait(5);
         //create batch
         await batches.createBatch()

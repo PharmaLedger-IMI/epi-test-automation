@@ -19,6 +19,14 @@ While in the *epi-test-automation* folder run:
 ```sh
 $ npm run test
 ```
+Runs existing product and batch
+```sh
+$ npm run test incrementalTest=exist
+```
+Runs existing product with new batch
+```sh
+$ npm run test incrementalTest=newExist
+```
 
 ### Step 3: Generate test report
 

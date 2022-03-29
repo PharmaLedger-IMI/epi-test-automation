@@ -25,10 +25,10 @@ describe('Expiry date Checks ', () => {
         allureReporter.addTestId('Expiry date Checks_C1.4')
         
        
-        await data.generateExpectationFile(info.getProductId(), info.getbatchId(true), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), "","","", "" )
+        await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), "","","", "" )
         await wait.setTimeoutwait(12);
               
-        matrix.generateImage(info.getProductId(), info.getbatchId(true), info.getDateChange("day"), info.getSerialNumber())
+        matrix.generateImage(info.getProductId(), info.getbatchId(), info.getDateChange("day"), info.getSerialNumber())
         await wait.setTimeoutwait(12);
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");

@@ -72,13 +72,13 @@ describe('Combination checks ', () => {
         info.setBatchRecallMsg(await batches.checkBatchRecallMessage()) 
         await wait.setTimeoutwait(2);
         //Generate expectation file
-        await data.generateExpectationFile(info.getProductId(), info.getbatchId(false), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), info.getBatchRecall()," ","", info.getBatchRecallMsg())
+        await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), info.getBatchRecall()," ","", info.getBatchRecallMsg())
         await wait.setTimeoutwait(12);
         //create batch
         await batches.createBatch()
         await wait.setTimeoutwait(12);
 
-        matrix.generateImage(info.getProductId(), info.getbatchId(false), info.getCurrentRandomDate(), info.getSerialNumber())
+        matrix.generateImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
         await wait.setTimeoutwait(12);
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");

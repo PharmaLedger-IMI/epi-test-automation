@@ -29,10 +29,22 @@ describe('Basic Auth feature test ', () => {
         await wait.setTimeoutwait(3);
         
         //edit above batch
-        let editValue = info.getbatchId(false)
+        let editValue = info.getbatchId()
         console.log("editValue is " + editValue)
         await browser.execute('document.querySelector("div:nth-child(' + await info.editBatchRow(editValue) + ') button:nth-child(1)").click()')
         await wait.setTimeoutwait(8);
+
+
+        await batches.clearRecallMessage()
+        await wait.setTimeoutwait(2);
+        info.setBatchRecallMsg(await batches.checkBatchRecallMessage()) 
+        await wait.setTimeoutwait(2);
+
+         //enable checkbox for batch recall
+         await batches.enableCheckToRecallThisBatch()
+         await wait.setTimeoutwait(3);
+         info.setBatchRecall(await batches.checkBatchRecall())
+         await wait.setTimeoutwait(2);
 
         //check enable serial number verification
         await batches.enableSerialNumberVerification()
@@ -54,13 +66,13 @@ describe('Basic Auth feature test ', () => {
         await batches.acceptSerialNumber()
         await wait.setTimeoutwait(2);
                      
-        await data.generateExpectationFile(info.getProductId(), info.getbatchId(false), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), "","","", "" )
+        await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), info.getBatchRecall(),"","", info.getBatchRecallMsg() )
         await wait.setTimeoutwait(12);
         //update batch
         await batches.updateBatchForEdit()
         await wait.setTimeoutwait(8);
        
-        matrix.generateImage(info.getProductId(), info.getbatchId(false), info.getCurrentRandomDate(), info.getSerialNumber())
+        matrix.generateImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
         await wait.setTimeoutwait(5);
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");
