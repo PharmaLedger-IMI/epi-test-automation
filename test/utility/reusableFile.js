@@ -100,13 +100,17 @@ class reuseFile{
     }
     getBrandName(){
         
-        if((process.argv[incrementalArg].split('=')[1]== "exist")){
+        if ((process.argv[incrementalArg].split('=')[1] == "exist")) {
             console.log("product name is " + testData[3]['incrementalTest'].prodName)
-           return testData[3]['incrementalTest'].prodName 
-     }
-        else{
-        return currentBrandName
-    }
+            return testData[3]['incrementalTest'].prodName
+        }
+        else if ((process.argv[incrementalArg].split('=')[1] == "newExist")) {
+            console.log("product name is " + testData[3]['incrementalTest'].prodName)
+            return testData[3]['incrementalTest'].prodName
+        }
+        else {
+            return currentBrandName
+        }
 }
 
 
@@ -177,7 +181,7 @@ class reuseFile{
             console.log("date value is " + testData[3]['incrementalTest'].expiryDate)
             return testData[3]['incrementalTest'].expiryDate 
         }
-        else if((process.argv[incrementalArg].split('=')[1]== "exist")){
+        else if((process.argv[incrementalArg].split('=')[1]== "newExist")){
             console.log("date value is " + testData[3]['incrementalTest'].expiryDate)
             return testData[3]['incrementalTest'].expiryDate 
         }
