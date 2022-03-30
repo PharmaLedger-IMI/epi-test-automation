@@ -14,7 +14,8 @@ let currentMonth=''
 let currentYear=''
 let GTIN=''
 const incrementalValue=process.argv
-const incrementalArg=incrementalValue.length-1
+const incrementalArg=incrementalValue.length-3
+const newbatch=incrementalValue.length-1
 
 class reuseFile{
 
@@ -26,14 +27,10 @@ class reuseFile{
         console.log("increment test value"+process.argv)
         console.log("incrementalArg value is "+process.argv[incrementalArg])
         console.log("arg value is "+process.argv[incrementalArg].split('=')[1])
-        if((process.argv[incrementalArg].split('=')[1]=="exist")){
+        console.log("arg newbatch value is "+process.argv[newbatch].split('=')[1])
+        if((process.argv[incrementalArg].split('=')[1]=="true")){
            
-            console.log("exist incrementalProduct value is " + testData[3]['incrementalTest'].prodId)
-            return testData[3]['incrementalTest'].prodId 
-        }
-        
-        else if ((process.argv[incrementalArg].split('=')[1] == "newExist")) {
-            console.log("exist incrementalProduct value is " + testData[3]['incrementalTest'].prodId)
+            console.log(" incrementalProduct value is " + testData[3]['incrementalTest'].prodId)
             return testData[3]['incrementalTest'].prodId 
         }
         else 
@@ -43,6 +40,7 @@ class reuseFile{
             return GTIN 
 
         }
+
     }
 
     setBatchId(id) {
@@ -51,15 +49,15 @@ class reuseFile{
     
     getbatchId(existingBatch) {
       
-    if((process.argv[incrementalArg].split('=')[1] == "exist")){
-            console.log("incremental batch value is " + testData[3]['incrementalTest'].batchId)
-           return testData[3]['incrementalTest'].batchId 
-     }
-    
-     else if(process.argv[incrementalArg].split('=')[1] == "newExist"){
+    if((process.argv[newbatch].split('=')[1]=="true")){
         console.log("batch value is " + currentID)
-        return currentID
+        return currentID 
      }
+    else if((process.argv[incrementalArg].split('=')[1]=="true")){
+        console.log("incremental batch value is " + testData[3]['incrementalTest'].batchId)
+        return testData[3]['incrementalTest'].batchId
+        
+    }
      else if(existingBatch==true){
         console.log("incremental batch value is " + testData[3]['incrementalTest'].batchId)
         return testData[3]['incrementalTest'].batchId
@@ -71,6 +69,7 @@ class reuseFile{
             return currentID
         }
     }
+
     
 
     setSerialNumber(Number) {
@@ -79,15 +78,11 @@ class reuseFile{
     }
     getSerialNumber() {
        
-        if((process.argv[incrementalArg].split('=')[1]== "exist")){
+        if((process.argv[incrementalArg].split('=')[1]== "true")){
             console.log("serial value is " + testData[3]['incrementalTest'].serialNumber)
            return testData[3]['incrementalTest'].serialNumber 
      }
-    else if((process.argv[incrementalArg].split('=')[1]== "newExist")){
-        console.log("serial value is " + testData[3]['incrementalTest'].serialNumber)
-       return testData[3]['incrementalTest'].serialNumber 
- }
-        else{
+    else{
         console.log("Serial Number is " + currentSerial)
         return currentSerial
         }
@@ -100,11 +95,7 @@ class reuseFile{
     }
     getBrandName(){
         
-        if ((process.argv[incrementalArg].split('=')[1] == "exist")) {
-            console.log("product name is " + testData[3]['incrementalTest'].prodName)
-            return testData[3]['incrementalTest'].prodName
-        }
-        else if ((process.argv[incrementalArg].split('=')[1] == "newExist")) {
+        if ((process.argv[incrementalArg].split('=')[1] == "true")) {
             console.log("product name is " + testData[3]['incrementalTest'].prodName)
             return testData[3]['incrementalTest'].prodName
         }
@@ -148,15 +139,10 @@ class reuseFile{
     }
     getCurrentRandomDate(){
      
-        if((process.argv[incrementalArg].split('=')[1] == "exist")){
-        console.log("existing date value is " + testData[3]['incrementalTest'].expiryDate)
+        if((process.argv[incrementalArg].split('=')[1] == "true")){
+        console.log("incremantal date value is " + testData[3]['incrementalTest'].expiryDate)
         return testData[3]['incrementalTest'].expiryDate 
-     }
-    else if((process.argv[incrementalArg].split('=')[1] == "newExist")){
-        console.log("existing date value is " + testData[3]['incrementalTest'].expiryDate)
-        return testData[3]['incrementalTest'].expiryDate 
-     }
-    
+     }    
      else{
 
         return currentDate
@@ -177,11 +163,7 @@ class reuseFile{
 
     getDayChange(){
        
-        if((process.argv[incrementalArg].split('=')[1]== "exist")){
-            console.log("date value is " + testData[3]['incrementalTest'].expiryDate)
-            return testData[3]['incrementalTest'].expiryDate 
-        }
-        else if((process.argv[incrementalArg].split('=')[1]== "newExist")){
+        if((process.argv[incrementalArg].split('=')[1]== "true")){
             console.log("date value is " + testData[3]['incrementalTest'].expiryDate)
             return testData[3]['incrementalTest'].expiryDate 
         }
@@ -196,7 +178,7 @@ class reuseFile{
     // }
     getMonthChange(){
                 
-        if((process.argv[incrementalArg].split('=')[1]== "exist")){
+        if((process.argv[incrementalArg].split('=')[1]== "true")){
             console.log("date value is " + testData[3]['incrementalTest'].expiryDate)
             return testData[3]['incrementalTest'].expiryDate 
         }
@@ -211,7 +193,7 @@ class reuseFile{
     }
     getYearChange(){
         
-        if((process.argv[incrementalArg].split('=')[1]== "exist")){
+        if((process.argv[incrementalArg].split('=')[1]== "true")){
             console.log("date value is " + testData[3]['incrementalTest'].expiryDate)
             return testData[3]['incrementalTest'].expiryDate 
         }
@@ -327,6 +309,25 @@ class reuseFile{
         }
         serialNumberUplaod=serialNumberWithComma.substring(0, serialNumberWithComma.length - 1)
         return serialNumberUplaod
+      }
+
+      unKnownBatch(){
+         
+        const characters ='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+        function generateString(length) {
+            let result = ' ';
+            let  batchResult=''
+            const charactersLength = characters.length;
+            for ( let i = 0; i < length; i++ ) {
+                result = characters.charAt(Math.floor(Math.random() * charactersLength));
+                batchResult=result+characters.charAt(Math.floor(Math.random() * charactersLength));
+            }
+        
+            return batchResult;
+        }
+        
+        return (generateString(2)+(Math.floor(1000 + Math.random() * 9000))).toString()
       }
 
 

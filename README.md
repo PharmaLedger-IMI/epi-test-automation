@@ -16,16 +16,17 @@ $ npm install
 
 While in the *epi-test-automation* folder run:
 
+Run new product and new batch
 ```sh
 $ npm run test
 ```
-Runs existing product and batch
+Run for existing product and existing batch
 ```sh
-$ npm run test incrementalTest=exist
+$ npm run test --incrementalTest=true --newBatch=false
 ```
-Runs existing product with new batch
+Run for existing product and new batch
 ```sh
-$ npm run test incrementalTest=newExist
+$ npm run test --incrementalTest=true --newBatch=true
 ```
 
 ### Step 3: Generate test report

@@ -1,5 +1,5 @@
 // const gtinPage = require('./gtinPage.js');
-const products= require('../pageobjects/products.page');
+//const products= require('../pageobjects/products.page');
 const batches= require('../pageobjects/batches.page.js');
 const matrix=require('../utility/2dMatrixPage')
 const data=require('../utility/expectationFile')
@@ -28,11 +28,6 @@ describe('Batch Recall and Recall Message for serialized batches ', () => {
         await batches.addBatch();
         await wait.setTimeoutwait(2);
 
-        // await browser.execute('document.querySelector(`a[href="/batches"]`).click()')
-        // await browser.pause(6000)   
-        // await browser.execute('document.querySelector(`button[data-tag="add-batch"]`).click()') 
-        // await browser.pause(3000)
-
         //Set batch value after add batch
         info.setBatchId(await batches.batchIdValue())
         await wait.setTimeoutwait(2);
@@ -57,8 +52,7 @@ describe('Batch Recall and Recall Message for serialized batches ', () => {
         await wait.setTimeoutwait(2);
         await batches.selectUpdateValidSerialFromDropdown(testData[2]['newBatchDetails'].updateValid)
         await wait.setTimeoutwait(2);
-        // await batches.enableResetAllValidSerialNumber()
-        // await wait.setTimeoutwait(2);
+        
         info.setSerialNumber(await batches.serialNum())
         await batches.enterSerialNumber(info.getSerialNumber())
         await wait.setTimeoutwait(4);
@@ -72,6 +66,16 @@ describe('Batch Recall and Recall Message for serialized batches ', () => {
         //click on edit 
         await browser.execute('document.querySelector("div:nth-child(' + await info.editBatchRow(editValue) + ') button:nth-child(1)").click()')       
         await wait.setTimeoutwait(5);
+
+        await batches.selectUpdateValidSerialFromDropdown(testData[2]['newBatchDetails'].updateValid)
+        await wait.setTimeoutwait(2);
+        // await batches.enableResetAllValidSerialNumber()
+        // await wait.setTimeoutwait(2);
+        info.setSerialNumber(await batches.serialNum())
+        await batches.enterSerialNumber(info.getSerialNumber())
+        await wait.setTimeoutwait(4);
+        await batches.acceptSerialNumber()
+        await wait.setTimeoutwait(2);
         
         //click on Batch Recall checkbox
         await batches.enableCheckToRecallThisBatch()

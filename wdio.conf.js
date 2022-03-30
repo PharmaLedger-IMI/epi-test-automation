@@ -27,18 +27,18 @@ exports.config = {
         //'test/specs/test.js',
          //'test/specs/landingPage.js',
 
-             'test/specs/gtinPage.js',
+             //'test/specs/gtinPage.js',
              'test/specs/loginCredentials.js',
-                'test/specs/createProduct.js',
-                'test/specs/createBatch.js',
+                // 'test/specs/createProduct.js',
+                // 'test/specs/createBatch.js',
 
-            'test/specs/2_editBatchforRecallMsg.js',
-            'test/specs/3_editProductforToggle_ePIFlag.js',
+            // 'test/specs/2_editBatchforRecallMsg.js',
+            // 'test/specs/3_editProductforToggle_ePIFlag.js',
 
-            'test/specs/enableSerialNumberCheckWithValidMatrix.js',
-            'test/specs/enableSerialNumberCheckWithInValidMatrix.js',
-            'test/specs/disableSerialNumberCheckWithSerialNumber.js',
-            'test/specs/disableSerialNumberCheckWithOutSerialNumber.js',
+            // 'test/specs/enableSerialNumberCheckWithValidMatrix.js',
+            // 'test/specs/enableSerialNumberCheckWithInValidMatrix.js',
+            // 'test/specs/disableSerialNumberCheckWithSerialNumber.js',
+           // 'test/specs/disableSerialNumberCheckWithOutSerialNumber.js',
             
             // 'test/specs/enableExpiryDateCheckWithValidMatrix.js',
             // 'test/specs/enableExpiryDateCheckWithInValidMatrix.js'.
@@ -50,7 +50,7 @@ exports.config = {
             // 'test/specs/batchRecallForNonSerializedWithoutSN.js',
             // 'test/specs/batchRecallForNonSerializedUndoRecallFlag.js',
 
-            //'test/specs/createBatchWithNoBatchMsg.js',
+            'test/specs/createBatchWithNoBatchMsg.js',
             // 'test/specs/createBatchWithBatchMsg.js',
             // 'test/specs/createBatchWithBatchRecall&Msg.js',
             // 'test/specs/createBatchWithBatchMsgAndRecall&Msg.js',
@@ -132,6 +132,18 @@ exports.config = {
             // 'test/specs/checkSmpcIsDeletedFromProductWithSnDecommissioned.js',
             // 'test/specs/unCheckSnIsDecommissioned.js'
             // 'test/specs/unCheckSnIsNotDecommissioned.js'
+
+            // 'test/specs/checkSnIsUnKnown.js',
+            // 'test/specs/checkSnIsKnown.js',
+            // 'test/specs/checkSmpcIsDeletedFromProductWithSnIsUnKnown.js',
+            // 'test/specs/unCheckSnIsUnKnown.js',
+            // 'test/specs/unCheckSnIsKnown.js',
+
+            // 'test/specs/checkBatchIsUnKnown.js',
+            // 'test/specs/checkBatchIsKnown.js',
+            // 'test/specs/checkSmpcIsDeletedFromProductWithBatchIsUnKnown.js',
+            // 'test/specs/unCheckBatchIsUnKnown.js',
+            // 'test/specs/unCheckBatchIsKnown.js',
             
             
 

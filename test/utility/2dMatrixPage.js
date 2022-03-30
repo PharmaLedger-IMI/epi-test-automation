@@ -33,7 +33,7 @@ class matrixGenerator{
             } else {
     
                 fs.writeFileSync('/Users/snehav/AppData/Local/Android/Sdk/emulator/resources/custom.png', buff)
-                console.log("first image generated")
+                console.log("image generated")
         
             }
         

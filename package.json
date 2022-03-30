@@ -4,8 +4,7 @@
   "description": "",
   "main": "wdio.conf.js",
   "scripts": {
-    "test": "npx wdio run wdio.conf.js $incrementalTest",
-    
+    "test": "npx wdio run wdio.conf.js $incrementalTest $newBatch",
     "report": "allure generate allure-results/ --clean && allure open"
   },
   "keywords": [],
@@ -21,11 +20,13 @@
     "allure-commandline": "^2.17.2",
     "bwip-js": "^3.0.4",
     "wdio-chromedriver-service": "^7.2.4",
+   
     "wdio-lambdatest-service": "^1.0.6"
   },
   "dependencies": {
     "chai-webdriverio": "^1.0.0",
-    "chromedriver": "^98.0.0",
+    "chromedriver": "^99.0.0",
+   
     "moment": "^2.29.1",
     "webdriverio": "^7.16.14"
   }
