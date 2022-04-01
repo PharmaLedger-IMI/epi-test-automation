@@ -60,7 +60,7 @@ describe('Expiry date Checks ', () => {
         await batches.createBatch()
         await wait.setTimeoutwait(8);
        
-        matrix.generateImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber().split(',')[0])
+        matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber().split(',')[0])
         await wait.setTimeoutwait(5);
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");

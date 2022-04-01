@@ -53,7 +53,7 @@ describe('Product - display ePI Flag', () => {
         await products.videoSourceEpi(testData[1]['newProductDetails'].videoSource)
         await wait.setTimeoutwait(1);
         //Upload smpc 
-        await products.uploadFile(path.join(__dirname, '/src/Leaflet_ProductLevel'));
+        await products.uploadFile(path.join(__dirname, '/src/SMPC_ProductLevel'));
         await wait.setTimeoutwait(3);
         //add epi accept
         await browser.execute('document.querySelector("psk-button[disabled=\'@modalData.filesWereNotSelected\'] button[class=\'btn btn-primary\']").click();');
@@ -93,7 +93,7 @@ describe('Product - display ePI Flag', () => {
         await batches.updateBatchForEdit()
         await wait.setTimeoutwait(10);   
        
-        matrix.generateImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
+        matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
         await wait.setTimeoutwait(8);
        
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');

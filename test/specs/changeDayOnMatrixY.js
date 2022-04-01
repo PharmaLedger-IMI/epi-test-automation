@@ -18,6 +18,19 @@ describe('Expiry date Checks ', () => {
     //     console.log('stdout:', stdout1);
     //     console.log('stderr:', stderr1);
     //     })
+    if((process.argv[incrementalArg].split('=')[1]== "true")){
+    it('Expiry date Checks_C1.6- should Retest above by changing only the day on the new data matrix Y ', async () => {
+        console.log("date value is " + testData[3]['incrementalTest'].expiryDate)
+       //return info.setDateChange(testData[3]['incrementalTest'].expiryDate,"day")
+      info.setDateChange(testData[3]['incrementalTest'].expiryDate,"day") 
+
+      await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getDateChange("day"),  info.getSerialNumber(),info.getBrandName(), "","","", "" )
+      await wait.setTimeoutwait(12);
+            
+      matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getDateChange("day"), info.getSerialNumber())
+      await wait.setTimeoutwait(2);
+    } )
+}else{
 
     it('Expiry date Checks_C1.4- should Retest above batch by changing only the date on the new data matrix Y ', async () => {
     
@@ -25,14 +38,15 @@ describe('Expiry date Checks ', () => {
         allureReporter.addTestId('Expiry date Checks_C1.4')
         
        
-        await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), "","","", "" )
+        await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getDateChange("day"),  info.getSerialNumber(),info.getBrandName(), "","","", "" )
         await wait.setTimeoutwait(12);
               
-        matrix.generateImage(info.getProductId(), info.getbatchId(), info.getDateChange("day"), info.getSerialNumber())
+        matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getDateChange("day"), info.getSerialNumber())
         await wait.setTimeoutwait(12);
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");
        
   
     })
+}
 })      

@@ -1,4 +1,5 @@
 const fs = require('fs')
+const testData=require('../testdata/config.json')
 //let currentJSON = ""
  class expectationData{
     
@@ -34,10 +35,12 @@ const fs = require('fs')
     
     let jsonData = JSON.stringify(testExpectations)
     console.log("file is " + jsonData)
-    fs.writeFile('C:/Users/snehav/epi-mobileapp-test-automation/test/testdata/testExpectations.json', jsonData, 'utf8', () => {
+    fs.writeFile(testData[4]['path'].testExpectation, jsonData, 'utf8', () => {
     console.log('written file')
-
+    
     });
+    return jsonData
+    
 
 }
 }

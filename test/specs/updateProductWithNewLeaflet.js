@@ -52,7 +52,7 @@ describe('SMPC update on the product Non- batch specific version', () => {
          await products.selectType(testData[1]['newProductDetails'].selectType)
          await wait.setTimeoutwait(2);
          //upload folder
-         await browser.$('(//input[@type=\'file\'])[2]').addValue(path.join(__dirname, '/src/Leaflet_UpdatedAtProductLevel'));
+         await browser.$('(//input[@type=\'file\'])[2]').addValue(path.join(__dirname, '/src/SMPC_UpdatedAtProductLevel'));
          await wait.setTimeoutwait(5);
 
          await products.acceptButton()

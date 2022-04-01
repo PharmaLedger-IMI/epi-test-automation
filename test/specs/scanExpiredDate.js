@@ -48,7 +48,7 @@ describe('Combination checks ', () => {
         await data.generateExpectationFile(info.getProductId(), info.getbatchId(), expiredDate,  info.getSerialNumber(),info.getBrandName(), info.getBatchRecall(),"","", info.getBatchRecallMsg())
         await wait.setTimeoutwait(12);
         
-        matrix.generateImage(info.getProductId(), info.getbatchId(), expiredDate, info.getSerialNumber())
+        matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), expiredDate, info.getSerialNumber())
         await wait.setTimeoutwait(8);
 
         await batches.updateBatchForEdit()

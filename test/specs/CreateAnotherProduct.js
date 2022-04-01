@@ -16,8 +16,14 @@ const moment = require('moment')
 
 
 describe('Create Product', () => {
+    if (process.argv[incrementalArg].split('=')[1] == "true") {
+
+        console.log("This testcase is running for existing product")
+        
+    }
+    else{
   
-it('should verify product page', async() => { 
+it('should verify product page', async() => {      
     
     allureReporter.addFeature('Create Product')
     allureReporter.addSeverity('Critical');
@@ -108,5 +114,6 @@ it('should verify product page', async() => {
     
     
  });
+}
 
 })

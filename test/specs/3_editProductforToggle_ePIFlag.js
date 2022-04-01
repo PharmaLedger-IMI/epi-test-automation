@@ -50,7 +50,7 @@ describe('Edit product', () => {
         //update products
         await products.updateProduct()
         await wait.setTimeoutwait(8);
-        matrix.generateImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
+        matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
         await wait.setTimeoutwait();
         allureReporter.endStep("passed");
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');

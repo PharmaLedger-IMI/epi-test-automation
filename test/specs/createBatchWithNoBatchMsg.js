@@ -70,14 +70,13 @@ describe('Batch Recall and Batch Message', () => {
         info.setBatchMsg(await batches.checkBatchMessage())
         await wait.setTimeoutwait(3);
 
-        await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), "",info.getBatchMsg(),"", "" )
+        await data.generateExpectationFile(info.getProductId(), await batches.batchIdValue(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), "",info.getBatchMsg(),"", "" )
+        await wait.setTimeoutwait(12);
+        matrix.generate2dMatrixImage(info.getProductId(), await batches.batchIdValue(), info.getCurrentRandomDate(), info.getSerialNumber())
         await wait.setTimeoutwait(12);
 
         await batches.createBatch()
-        await wait.setTimeoutwait(15);
-
-        matrix.generateImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
-        await wait.setTimeoutwait(12);
+        await wait.setTimeoutwait(15);      
 
        
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');

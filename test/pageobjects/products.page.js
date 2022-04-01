@@ -3,7 +3,7 @@
 
 
 const expectChai = require('chai').expect;
-let prodName=''
+// let prodName=''
 
 class productsPage {
 

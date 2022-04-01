@@ -24,6 +24,24 @@ describe('Expiry date Checks ', () => {
     
         allureReporter.startStep('Create a batch and enable serial number verification and set decommissioned serial numbers and reason code')
         allureReporter.addTestId('Serial Number Checks_6')
+
+         // search the product codes
+         await products.searchProductCode(info.getProductId())
+         await wait.setTimeoutwait(3);
+         await browser.keys('Enter')
+         await wait.setTimeoutwait(4);
+         //view or edits
+         await browser.execute('document.querySelector("button[data-tag=\'edit-product\']").click()')
+         await wait.setTimeoutwait(5);
+ 
+         // enable SN is in recall list
+         await products.enableSnIsInDecommissionedList()
+         await wait.setTimeoutwait(4);
+ 
+         //update products
+         await products.updateProduct()
+         await wait.setTimeoutwait(8);
+       // create a batch 
         await batches.Batch();
         await wait.setTimeoutwait(2);
         await batches.addBatch();
@@ -70,36 +88,16 @@ describe('Expiry date Checks ', () => {
         //accept serial number
         await batches.acceptSerialNumber()
         await wait.setTimeoutwait(2);
-
+     
+       
+        await data.generateExpectationFile(info.getProductId(), await batches.batchIdValue(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), "","","", "" )
+        await wait.setTimeoutwait(12);
+       
+        matrix.generate2dMatrixImage(info.getProductId(), await batches.batchIdValue(), info.getCurrentRandomDate(), info.getSerialNumber())
+        await wait.setTimeoutwait(5);
          //create batch
          await batches.createBatch()
          await wait.setTimeoutwait(8);
-
-
-        // search the product codes
-        await products.searchProductCode(info.getProductId())
-        await wait.setTimeoutwait(3);
-        await browser.keys('Enter')
-        await wait.setTimeoutwait(4);
-        //view or edits
-        await browser.execute('document.querySelector("button[data-tag=\'edit-product\']").click()')
-        await wait.setTimeoutwait(5);
-
-        // enable SN is in recall list
-        await products.enableSnIsInDecommissionedList()
-        await wait.setTimeoutwait(4);
-
-        //update products
-        await products.updateProduct()
-        await wait.setTimeoutwait(8);
-       
-       
-        await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), "","","", "" )
-        await wait.setTimeoutwait(12);
-       
-       
-        matrix.generateImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
-        await wait.setTimeoutwait(5);
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");
        

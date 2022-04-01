@@ -45,7 +45,7 @@ describe('Batch Recall and Recall Message for Non-serialized batches ', () => {
         await batches.updateBatchForEdit()
         await wait.setTimeoutwait(10);
 
-        matrix.generate2dMatrix(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate())
+        matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),"")
         await wait.setTimeoutwait(8);
 
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');

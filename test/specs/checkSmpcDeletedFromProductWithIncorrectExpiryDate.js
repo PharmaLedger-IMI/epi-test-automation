@@ -43,9 +43,11 @@ describe('Product - display ePI Flag', () => {
         await products.updateProduct()
         await wait.setTimeoutwait(8);  
 
-        await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), info.getBatchRecall(),"","", info.getBatchRecallMsg(), info.getEpiDisplayed())
+        const incorrectExpiryDate=info.randomDateExpired()
+
+        await data.generateExpectationFile(info.getProductId(), info.getbatchId(), incorrectExpiryDate,  info.getSerialNumber(),info.getBrandName(), info.getBatchRecall(),"","", info.getBatchRecallMsg(), info.getEpiDisplayed())
         await wait.setTimeoutwait(12);
-        matrix.generateImage(info.getProductId(), info.getbatchId(), info.randomDateExpired(), info.getSerialNumber())
+        matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), incorrectExpiryDate, info.getSerialNumber())
         await wait.setTimeoutwait(8);
        
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');

@@ -12,10 +12,12 @@ let EpiDisplayed=''
 let currentDay=''
 let currentMonth=''
 let currentYear=''
+let currentImage=''
+let currentData=''
 let GTIN=''
 const incrementalValue=process.argv
-const incrementalArg=incrementalValue.length-3
-const newbatch=incrementalValue.length-1
+const incrementalArg=incrementalValue.length-1
+//const newbatch=incrementalValue.length-1
 
 class reuseFile{
 
@@ -23,68 +25,74 @@ class reuseFile{
         GTIN = id
     }
 
-    getProductId(){
-        console.log("increment test value"+process.argv)
-        console.log("incrementalArg value is "+process.argv[incrementalArg])
-        console.log("arg value is "+process.argv[incrementalArg].split('=')[1])
-        console.log("arg newbatch value is "+process.argv[newbatch].split('=')[1])
-        if((process.argv[incrementalArg].split('=')[1]=="true")){
-           
+    getProductId() {
+        console.log("increment test value" + process.argv)
+        console.log("incrementalArg value is " + process.argv[incrementalArg])
+        console.log("arg value is " + process.argv[incrementalArg].split('=')[1])
+       // console.log("arg newbatch value is " + process.argv[newbatch].split('=')[1])
+        if ((process.argv[incrementalArg].split('=')[1] == "true")) {
+
             console.log(" incrementalProduct value is " + testData[3]['incrementalTest'].prodId)
-            return testData[3]['incrementalTest'].prodId 
+            return testData[3]['incrementalTest'].prodId
         }
-        else 
-        {       
+        else {
 
             console.log("gtin value is " + GTIN)
-            return GTIN 
+            return GTIN
 
         }
-
     }
 
     setBatchId(id) {
         currentID = id
     }
-    
-    getbatchId(existingBatch) {
-      
-    if((process.argv[newbatch].split('=')[1]=="true")){
-        console.log("batch value is " + currentID)
-        return currentID 
-     }
-    else if((process.argv[incrementalArg].split('=')[1]=="true")){
-        console.log("incremental batch value is " + testData[3]['incrementalTest'].batchId)
-        return testData[3]['incrementalTest'].batchId
-        
-    }
-     else if(existingBatch==true){
-        console.log("incremental batch value is " + testData[3]['incrementalTest'].batchId)
-        return testData[3]['incrementalTest'].batchId
-         
-     }
-    else{
-            
+    getbatchId() {
+        // if ((process.argv[newbatch].split('=')[1] == "true")) {
+        //     console.log("batch value is " + currentID)
+        //     return currentID
+        // }
+
+        if ((process.argv[incrementalArg].split('=')[1] == "true")) {
+            console.log("incremental batch value is " + testData[3]['incrementalTest'].batchId)
+            return testData[3]['incrementalTest'].batchId
+        }
+
+        else {
+
             console.log("batch value is " + currentID)
             return currentID
         }
     }
 
-    
+    setImage(image){
+        currentImage=image
 
+    }
+    
+    getImage(){
+        
+        return currentImage
+    }
+    setExpectationFile(data){
+        currentData=data
+
+    }
+    getExpectationFile(){
+        return currentData
+    }
     setSerialNumber(Number) {
         currentSerial = Number
-        
+
     }
     getSerialNumber() {
-       
-        if((process.argv[incrementalArg].split('=')[1]== "true")){
+
+        if ((process.argv[incrementalArg].split('=')[1] == "true")) {
             console.log("serial value is " + testData[3]['incrementalTest'].serialNumber)
-           return testData[3]['incrementalTest'].serialNumber 
-     }
-    else{
-        console.log("Serial Number is " + currentSerial)
-        return currentSerial
+            return testData[3]['incrementalTest'].serialNumber
+        }
+        else {
+            console.log("Serial Number is " + currentSerial)
+            return currentSerial
         }
     }
 
@@ -204,6 +212,7 @@ class reuseFile{
     }
 
     setDateChange(randomDate,type){
+        
         if(type=="day"){
             currentDay = dateChange(randomDate,type)
         }
@@ -216,7 +225,8 @@ class reuseFile{
     }
 
     getDateChange(type){
-        if(type=="day"){
+              
+         if(type=="day"){
            return currentDay
         }
         else if(type=="month"){
@@ -257,34 +267,34 @@ class reuseFile{
     }  
     
     
-    async  editProduct(){
-        let editValue = '25367613915299'
-        let fArry = []
-        var i = 9
-        for (;  await browser.$("body > webc-app-root:nth-child(1) > webc-app-container:nth-child(3) > div:nth-child(1) > webc-app-router:nth-child(1) > stencil-router:nth-child(1) > stencil-route-switch:nth-child(1) > stencil-route:nth-child(4) > webc-app-loader:nth-child(1) > page-template:nth-child(2) > h6:nth-child(2) > webc-container:nth-child(1) > div:nth-child(2) > webc-datatable:nth-child(1) > div:nth-child(2) > div:nth-child("+i+")").isExisting(); i++)
-         {
-            console.log(i)
+    // async  editProduct(){
+    //     let editValue = '25367613915299'
+    //     let fArry = []
+    //     var i = 9
+    //     for (;  await browser.$("body > webc-app-root:nth-child(1) > webc-app-container:nth-child(3) > div:nth-child(1) > webc-app-router:nth-child(1) > stencil-router:nth-child(1) > stencil-route-switch:nth-child(1) > stencil-route:nth-child(4) > webc-app-loader:nth-child(1) > page-template:nth-child(2) > h6:nth-child(2) > webc-container:nth-child(1) > div:nth-child(2) > webc-datatable:nth-child(1) > div:nth-child(2) > div:nth-child("+i+")").isExisting(); i++)
+    //      {
+    //         console.log(i)
     
-            fArry.push({ prodId: await browser.$("body > webc-app-root:nth-child(1) > webc-app-container:nth-child(3) > div:nth-child(1) > webc-app-router:nth-child(1) > stencil-router:nth-child(1) > stencil-route-switch:nth-child(1) > stencil-route:nth-child(4) > webc-app-loader:nth-child(1) > page-template:nth-child(2) > h6:nth-child(2) > webc-container:nth-child(1) > div:nth-child(2) > webc-datatable:nth-child(1) > div:nth-child(2) > div:nth-child("+i+")").getText(), edit: i + 3 })
-            i = i + 5
-        }
+    //         fArry.push({ prodId: await browser.$("body > webc-app-root:nth-child(1) > webc-app-container:nth-child(3) > div:nth-child(1) > webc-app-router:nth-child(1) > stencil-router:nth-child(1) > stencil-route-switch:nth-child(1) > stencil-route:nth-child(4) > webc-app-loader:nth-child(1) > page-template:nth-child(2) > h6:nth-child(2) > webc-container:nth-child(1) > div:nth-child(2) > webc-datatable:nth-child(1) > div:nth-child(2) > div:nth-child("+i+")").getText(), edit: i + 3 })
+    //         i = i + 5
+    //     }
         
-        let prodValue=editValue
+    //     let prodValue=editValue
       
-        console.log("product value is "+prodValue)
-         let rClick = "" 
-        fArry.map((key) => {
-            //{batchId:"QS5078",edit:68}
-            if (key["prodId"] == prodValue) { 
-                rClick = key["prodId"] 
-            }
+    //     console.log("product value is "+prodValue)
+    //      let rClick = "" 
+    //     fArry.map((key) => {
+    //         //{batchId:"QS5078",edit:68}
+    //         if (key["prodId"] == prodValue) { 
+    //             rClick = key["prodId"] 
+    //         }
     
-        })
-        console.log(fArry)
-        let editRow=""
-        editRow=rClick
-        return editRow    
-    }  
+    //     })
+    //     console.log(fArry)
+    //     let editRow=""
+    //     editRow=rClick
+    //     return editRow    
+    // }  
     
      serialNum10(){
         var serialNumberWithComma=''

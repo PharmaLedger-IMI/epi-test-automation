@@ -37,15 +37,16 @@ describe('Basic Auth feature test ', () => {
         //Disable expiry date check and don't show leaflet
         await batches.expirationDateVerificationClick()
         await wait.setTimeoutwait(2);
+        const incorrectExpiryDate=info.randomDateExpired()
             
-        await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), "","","", "" )
+        await data.generateExpectationFile(info.getProductId(), info.getbatchId(), incorrectExpiryDate,  info.getSerialNumber(),info.getBrandName(), "","","", "" )
         await wait.setTimeoutwait(12);
+       
+        matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), incorrectExpiryDate, info.getSerialNumber())
+        await wait.setTimeoutwait(5);
         //create batch
         await batches.updateBatchForEdit()
         await wait.setTimeoutwait(8);
-       
-        matrix.generateImage(info.getProductId(), info.getbatchId(), info.randomDateExpired(), info.getSerialNumber())
-        await wait.setTimeoutwait(5);
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");
         allureReporter.endStep("passed");

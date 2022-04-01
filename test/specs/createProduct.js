@@ -5,7 +5,10 @@ const wait=require('../utility/timeout')
 const testData=require('../testdata/config.json')
 const allureReporter = require('@wdio/allure-reporter').default
 const path= require('path');
-const moment = require('moment')
+const moment = require('moment');
+const incrementalValue=process.argv
+const incrementalArg=incrementalValue.length-1
+
 
 // const fs = require('fs');
 
@@ -16,6 +19,14 @@ const moment = require('moment')
 
 
 describe('Create Product', () => {
+    if ((process.argv[incrementalArg].split('=')[1] == "true")) {
+
+        console.log("This testcase is running for existing product")
+        
+    }
+    else{
+        
+    
   
 it('should verify product page', async() => { 
     
@@ -90,5 +101,6 @@ it('should verify product page', async() => {
     
     
  });
+}
 
 })

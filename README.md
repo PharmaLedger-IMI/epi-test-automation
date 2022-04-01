@@ -22,11 +22,7 @@ $ npm run test
 ```
 Run for existing product and existing batch
 ```sh
-$ npm run test -- incrementalTest=true -- newBatch=false
-```
-Run for existing product and new batch
-```sh
-$ npm run test -- incrementalTest=true -- newBatch=true
+$ npm run test -- incrementalTest=true 
 ```
 
 ### Step 3: Generate test report

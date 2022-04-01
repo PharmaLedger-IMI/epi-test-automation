@@ -78,7 +78,7 @@ describe('Product - display ePI Flag', () => {
         await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  unKnownSerialNumber,info.getBrandName(), info.getBatchRecall(),"","", info.getBatchRecallMsg(),info.getEpiDisplayed() )
         await wait.setTimeoutwait(12);
 
-        matrix.generateImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), unKnownSerialNumber)
+        matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), unKnownSerialNumber)
         await wait.setTimeoutwait(8);
 
         await batches.updateBatchForEdit()

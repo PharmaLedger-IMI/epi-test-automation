@@ -1,11 +1,14 @@
-const gtinPage = require('./gtinPage.js');
-const products= require('../pageobjects/products.page');
-const batches= require('../pageobjects/batches.page.js');
+// const gtinPage = require('./gtinPage.js');
+// const products= require('../pageobjects/products.page');
+// const batches= require('../pageobjects/batches.page.js');
 const matrix=require('../utility/2dMatrixPage')
 const data=require('../utility/expectationFile')
 const info=require('../utility/reusableFile')
 const wait=require('../utility/timeout')
 const allureReporter = require('@wdio/allure-reporter').default
+const incrementalValue=process.argv
+const incrementalArg=incrementalValue.length-1
+const testData=require('../testdata/config.json')
 
 // const util = require('util');
 // const exec = util.promisify(require('child_process').exec);
@@ -19,20 +22,37 @@ describe('Expiry date Checks ', () => {
     //     console.log('stderr:', stderr1);
     //     })
 
+    if((process.argv[incrementalArg].split('=')[1]== "true")){
+
+        it('Expiry date Checks_C1.6- should Retest above by changing only the year on the new data matrix Y ', async () => {
+        console.log("date value is " + testData[3]['incrementalTest'].expiryDate)
+       //return info.setDateChange(testData[3]['incrementalTest'].expiryDate,"day")
+      info.setDateChange(testData[3]['incrementalTest'].expiryDate,"year") 
+
+      await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getDateChange("year"),  info.getSerialNumber(),info.getBrandName(), "","","", "" )
+      await wait.setTimeoutwait(12);
+            
+      matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getDateChange("year"), info.getSerialNumber())
+      await wait.setTimeoutwait(2);
+    } )
+}
+    else{
+
     it('Expiry date Checks_C1.6- should Retest above by changing only the year on the new data matrix Y ', async () => {
     
         allureReporter.startStep('Retest above by changing only the year on the new data matrix Y')
         allureReporter.addTestId('Expiry date Checks_C1.6')
         
        
-        await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), "","","", "" )
+        await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getDateChange("year"),  info.getSerialNumber(),info.getBrandName(), "","","", "" )
         await wait.setTimeoutwait(12);
               
-        matrix.generateImage(info.getProductId(), info.getbatchId(), info.getDateChange("year"), info.getSerialNumber())
+        matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getDateChange("year"), info.getSerialNumber())
         await wait.setTimeoutwait(12);
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");
        
   
     })
+}
 })      

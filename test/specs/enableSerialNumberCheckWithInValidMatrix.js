@@ -57,7 +57,7 @@ describe('Basic Auth feature test ', () => {
         await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  invalidSerialNumber,info.getBrandName(), "","","", "" )
         await wait.setTimeoutwait(12);
        
-        matrix.generateImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), invalidSerialNumber)
+        matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), invalidSerialNumber)
         await wait.setTimeoutwait(5);
          //update batch
          await batches.updateBatchForEdit()

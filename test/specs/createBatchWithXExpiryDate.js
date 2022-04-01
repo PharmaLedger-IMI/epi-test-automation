@@ -64,21 +64,23 @@ describe('Expiry date Checks ', () => {
         // manage serial number accept 
         await batches.acceptSerialNumber()
         await wait.setTimeoutwait(1);
-       
-        await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), "","","", "" )
-        await wait.setTimeoutwait(12);
-        //create batch
-        await batches.createBatch()
-        await wait.setTimeoutwait(8);
 
         const futureDate=info.randomDate()
         console.log("future date is "+futureDate)
         info.setDateChange(futureDate,"day")
         info.setDateChange(futureDate,"month")
         info.setDateChange(futureDate,"year")
+       
+        await data.generateExpectationFile(info.getProductId(), await batches.batchIdValue(), futureDate,  info.getSerialNumber(),info.getBrandName(), "","","", "" )
+        await wait.setTimeoutwait(12);
+        
       
-        matrix.generateImage(info.getProductId(), info.getbatchId(), futureDate, info.getSerialNumber())
+        matrix.generate2dMatrixImage(info.getProductId(), await batches.batchIdValue(), futureDate, info.getSerialNumber())
         await wait.setTimeoutwait(5);
+
+         //create batch
+         await batches.createBatch()
+         await wait.setTimeoutwait(8);
       
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");

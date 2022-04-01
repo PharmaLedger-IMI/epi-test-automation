@@ -53,8 +53,8 @@ describe('Leaflet updates on the product Batch specific version', () => {
         await wait.setTimeoutwait(2);
         
         //upload epi
-        await browser.$('//input[@type=\'file\']').addValue(path.join(__dirname, '/src/Leaflet_BatchLevel'));
-        await wait.setTimeoutwait(4);
+        await batches.uploadFile(path.join(__dirname, '/src/Leaflet_BatchLevel'));
+        await wait.setTimeoutwait(3);
         //accept upload
         await batches.acceptButton()
         await wait.setTimeoutwait(5);
@@ -66,15 +66,15 @@ describe('Leaflet updates on the product Batch specific version', () => {
         await batches.selectType(testData[2]['newBatchDetails'].selectType)
         await wait.setTimeoutwait(1);
         //upload epi
-        await batches.uploadFile(path.join(__dirname, '/src/Leaflet_BatchLevel'));
+        await batches.uploadFile(path.join(__dirname, '/src/SMPC_BatchLevel'));
         await wait.setTimeoutwait(3);
         //scrollIntoView
         await batches.acceptButton()
         await wait.setTimeoutwait(5);
        
-        await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(),"", await batches.checkBatchMessage(),"", "" )
+        await data.generateExpectationFile(info.getProductId(), await batches.batchIdValue(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(),"", await batches.checkBatchMessage(),"", "" )
         await wait.setTimeoutwait(12);
-        matrix.generateNewImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
+        matrix.generate2dMatrixImage(info.getProductId(), await batches.batchIdValue(), info.getCurrentRandomDate(), info.getSerialNumber())
         await wait.setTimeoutwait(5);
        
         await batches.createBatch()

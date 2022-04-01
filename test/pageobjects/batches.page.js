@@ -136,16 +136,16 @@ class batchesPage{
       const  SerialNumber=  (Math.floor(100000 + Math.random() * 900000)).toString()
       return SerialNumber
     }
-    
 
-      async checkBrandName()  {   
-        if(await this.brand.isDisplayed()==true){
-           let brandDisplayed="Dolo-650"
-           return brandDisplayed
+
+    async checkBrandName() {
+        if (await this.brand.isDisplayed() == true) {
+            let brandDisplayed = (await this.brand.getValue()).toString()
+            return brandDisplayed
         }
-        else{
-            let brandDisplayed="No Message"
-           return brandDisplayed
+        else {
+            let brandDisplayed = "No Message"
+            return brandDisplayed
         }
     }
     async siteName(site){

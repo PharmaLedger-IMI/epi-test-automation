@@ -54,7 +54,7 @@ describe('Update product information ', () => {
         // await products.selectType(testData[1]['newProductDetails'].selectType)
         // await wait.setTimeoutwait(2);
         //upload folder
-        await batches.uploadFile(path.join(__dirname, '/src/Leaflet_Updated'));
+        await batches.uploadFile(path.join(__dirname, '/src/Leaflet_UpdatedAtProductLevel'));
         await wait.setTimeoutwait(5);
         //add epi accept
         await browser.execute('document.querySelector("psk-button[disabled=\'@modalData.filesWereNotSelected\'] button[class=\'btn btn-primary\']").click();');

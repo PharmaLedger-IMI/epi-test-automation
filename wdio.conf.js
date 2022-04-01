@@ -28,12 +28,12 @@ exports.config = {
          //'test/specs/landingPage.js',
 
              //'test/specs/gtinPage.js',
-             'test/specs/loginCredentials.js',
-                // 'test/specs/createProduct.js',
-                // 'test/specs/createBatch.js',
+            'test/specs/loginCredentials.js',
+            //'test/specs/createProduct.js',
+            // 'test/specs/createBatch.js',
 
             // 'test/specs/2_editBatchforRecallMsg.js',
-            // 'test/specs/3_editProductforToggle_ePIFlag.js',
+            //  'test/specs/3_editProductforToggle_ePIFlag.js',
 
             // 'test/specs/enableSerialNumberCheckWithValidMatrix.js',
             // 'test/specs/enableSerialNumberCheckWithInValidMatrix.js',
@@ -50,7 +50,7 @@ exports.config = {
             // 'test/specs/batchRecallForNonSerializedWithoutSN.js',
             // 'test/specs/batchRecallForNonSerializedUndoRecallFlag.js',
 
-            'test/specs/createBatchWithNoBatchMsg.js',
+            // 'test/specs/createBatchWithNoBatchMsg.js',
             // 'test/specs/createBatchWithBatchMsg.js',
             // 'test/specs/createBatchWithBatchRecall&Msg.js',
             // 'test/specs/createBatchWithBatchMsgAndRecall&Msg.js',
@@ -59,8 +59,8 @@ exports.config = {
             //'test/specs/scanExpiredDate.js',
             //'test/specs/scanExpiredDateAndSerialNUmber.js',
 
-            //'test/specs/createBatchWithXExpiryDate.js',
-            //'test/specs/changeDayOnMatrixY.js',
+            // 'test/specs/createBatchWithXExpiryDate.js',
+            // 'test/specs/changeDayOnMatrixY.js',
             //'test/specs/changeMonthOnMatrixY.js',
             //'test/specs/changeYearOnMatrixY.js',
 
@@ -90,7 +90,7 @@ exports.config = {
             // 'test/specs/updateBatchWithDecommissioned&RecalledSerialNumber.js',
             // 'test/specs/updateBatchWithNoDecommissioned&RecalledSerialNumber.js
 
-            // 'test/specs/createBatchWithoutanyFile.js',
+             'test/specs/createBatchWithoutanyFile.js',
             // 'test/specs/uploadNewVersionOfEpiInProduct.js',
             //  'test/specs/createBatchWithUploadLeaflet.js',
             // 'test/specs/versionOfEpiNotReplaced.js',
@@ -98,6 +98,7 @@ exports.config = {
             //  'test/specs/updateProductWithNewLeaflet.js',
             // 'test/specs/createBatchWithUploadLeaflet&SMPC.js',
             //  'test/specs/deleteLeaflet&SMPCInBatch.js',
+            // 'test/specs/scanPreviousBatch.js'
             
 
             // 'test/specs/gtinPage.js',

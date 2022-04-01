@@ -47,7 +47,7 @@ describe('SMPC update on the product Non- batch specific version', () => {
          await products.selectType(testData[1]['newProductDetails'].selectType)
          await wait.setTimeoutwait(2);
          //upload folder
-         await batches.uploadFile(path.join(__dirname, '/src/Leaflet_ProductLevel'));
+         await batches.uploadFile(path.join(__dirname, '/src/SMPC_ProductLevel'));
          await wait.setTimeoutwait(5);
 
          await products.acceptButton()
@@ -81,9 +81,11 @@ describe('SMPC update on the product Non- batch specific version', () => {
         await selectBox.selectByAttribute('value', info.getProductId());
         await wait.setTimeoutwait(2);
 
-        await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(),"", await batches.checkBatchMessage(),"", "" )
+        const expectationFile = await data.generateExpectationFile(info.getProductId(), await batches.batchIdValue(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(),"", await batches.checkBatchMessage(),"", "" )
+        info.setExpectationFile(expectationFile)
         await wait.setTimeoutwait(12);
-        matrix.generateImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
+        const batch=  matrix.generate2dMatrixImage(info.getProductId(), await batches.batchIdValue(), info.getCurrentRandomDate(), info.getSerialNumber())
+        info.setImage(batch)
         await wait.setTimeoutwait(5);
        //create batch
         await batches.createBatch()

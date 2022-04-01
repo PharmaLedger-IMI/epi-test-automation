@@ -64,7 +64,7 @@ describe('Edit batch', () => {
         
          await batches.updateBatchForEdit()
          await wait.setTimeoutwait(10);
-         matrix.generateImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
+         matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
          await wait.setTimeoutwait(8);
        
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');

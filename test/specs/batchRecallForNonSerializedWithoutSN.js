@@ -102,7 +102,7 @@ describe('Batch Recall and Recall Message for Non-serialized batches ', () => {
         await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), "", info.getBrandName(), await batches.checkBatchRecall(), await batches.checkBatchMessage(), "", await batches.checkBatchRecallMessage())
         await wait.setTimeoutwait(12);
         //Generate 2d Matrix
-        matrix.generate2dMatrix(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate() )
+        matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),"" )
         await wait.setTimeoutwait(12);
         
         //update batch

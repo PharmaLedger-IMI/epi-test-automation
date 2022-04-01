@@ -64,10 +64,10 @@ describe('Combination checks ', () => {
         await data.generateExpectationFile(info.getProductId(), info.getbatchId(), expiredDate,  info.getSerialNumber(),info.getBrandName(), info.getBatchRecall(),"","", info.getBatchRecallMsg())
         await wait.setTimeoutwait(12);
 
+        matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), expiredDate, await batches.serialNum())
+        await wait.setTimeoutwait(12);
         await batches.updateBatchForEdit()
         await wait.setTimeoutwait(2);
-        matrix.generateImage(info.getProductId(), info.getbatchId(), expiredDate, await batches.serialNum())
-        await wait.setTimeoutwait(12);
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");
        

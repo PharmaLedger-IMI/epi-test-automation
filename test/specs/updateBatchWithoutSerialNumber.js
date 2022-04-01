@@ -54,7 +54,7 @@ describe('Non Serialized batch tests ', () => {
         await batches.updateBatchForEdit()
         await wait.setTimeoutwait(8);
        
-        matrix.generate2dMatrix(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate())
+        matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate())
         await wait.setTimeoutwait(5);
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");

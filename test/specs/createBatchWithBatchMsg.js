@@ -1,17 +1,18 @@
-//const gtinPage = require('../specs/gtinPage.js');
-//const products= require('../pageobjects/products.page');
 const batches= require('../pageobjects/batches.page.js');
-//const createbatch= require('../specs/createBatch.js');
+const info=require('../utility/reusableFile')
 const matrix=require('../utility/2dMatrixPage')
 const data=require('../utility/expectationFile')
 const info=require('../utility/reusableFile')
 const wait=require('../utility/timeout')
 const testData=require('../testdata/config.json')
 const allureReporter = require('@wdio/allure-reporter').default
+
 //const path= require('path');
 // const util = require('util');
 // const exec = util.promisify(require('child_process').exec);
 describe('Batch Recall and Batch Message', () => {
+
+    
 
     // after(async () => {
         //console.log("Starting Mobile Execution");
@@ -19,6 +20,7 @@ describe('Batch Recall and Batch Message', () => {
     //     console.log('stdout:', stdout1);
     //     console.log('stderr:', stderr1);
     //     })
+
 
     it('BatchRecall&Msg_1-should Create a batch with a batch message', async () => {
     
@@ -66,10 +68,10 @@ describe('Batch Recall and Batch Message', () => {
         info.setBatchMsg(await batches.checkBatchMessage())
         await wait.setTimeoutwait(3);
        
-        await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), "",info.getBatchMsg(),"", "" )
+        await data.generateExpectationFile(info.getProductId(), await batches.batchIdValue(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), "",info.getBatchMsg(),"", "" )
         await wait.setTimeoutwait(12);
 
-        matrix.generateImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
+        matrix.generate2dMatrixImage(info.getProductId(), await batches.batchIdValue(), info.getCurrentRandomDate(), info.getSerialNumber())
         await wait.setTimeoutwait(12);
        // create batch
         await batches.createBatch()
@@ -80,4 +82,5 @@ describe('Batch Recall and Batch Message', () => {
         allureReporter.endStep("passed");
        
     })
+
 })    

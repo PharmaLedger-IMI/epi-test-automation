@@ -43,13 +43,15 @@ describe('Product - display ePI Flag', () => {
          info.setBatchRecall(await batches.checkBatchRecall())
          await wait.setTimeoutwait(2);
          
-         await batches.updateBatchForEdit()
-         await wait.setTimeoutwait(3);
+         
 
         await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), info.getBatchRecall(),"","", info.getBatchRecallMsg() )
         await wait.setTimeoutwait(12);
-        matrix.generateImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
+        matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
         await wait.setTimeoutwait(8);
+
+        await batches.updateBatchForEdit()
+        await wait.setTimeoutwait(3);
        
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");

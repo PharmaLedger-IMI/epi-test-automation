@@ -47,7 +47,7 @@ describe('Edit batch', () => {
     //     await wait.setTimeoutwait(2);
         
     //     // upload leaflet folder
-    //     await products.uploadFile(path.join(__dirname, '/src/Leaflet_ProductLevel'));
+    //     await products.uploadFile(path.join(__dirname, '/src/SMPC_ProductLevel'));
     //     await wait.setTimeoutwait(4);
     //     info.setEpiDisplayed(await products.epiDisplayed())
     //     await wait.setTimeoutwait(2);
@@ -64,7 +64,7 @@ describe('Edit batch', () => {
     // await wait.setTimeoutwait(3);
     //Created for QA environment
         await browser.execute('document.querySelector(`webc-app-menu-item:nth-child(4) stencil-route-link:nth-child(1) a:nth-child(1)`).click()')
-        await browser.pause(6000)
+        await wait.setTimeoutwait(6);
 
         await batches.addBatch();
         await wait.setTimeoutwait(3);
@@ -111,14 +111,13 @@ describe('Edit batch', () => {
         await wait.setTimeoutwait(2);
 
 
-        await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber(), info.getBrandName(), info.getBatchRecall(), "", "", info.getBatchRecallMsg(), info.getEpiDisplayed())
+        await data.generateExpectationFile(info.getProductId(), await batches.batchIdValue(), info.getCurrentRandomDate(), info.getSerialNumber(), info.getBrandName(), info.getBatchRecall(), "", "", info.getBatchRecallMsg(), info.getEpiDisplayed())
         await wait.setTimeoutwait(12);
 
-        await batches.updateBatchForEdit()
-        await wait.setTimeoutwait(10);
-
-        matrix.generateImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
+        matrix.generate2dMatrixImage(info.getProductId(), await batches.batchIdValue(), info.getCurrentRandomDate(), info.getSerialNumber())
         await wait.setTimeoutwait(8);
+         await batches.updateBatchForEdit()
+        await wait.setTimeoutwait(10);
 
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");

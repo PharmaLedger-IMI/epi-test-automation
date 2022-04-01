@@ -7,6 +7,8 @@ const allureReporter = require('@wdio/allure-reporter').default
 const matrix=require('../utility/2dMatrixPage')
 const data=require('../utility/expectationFile');
 const moment = require('moment')
+const incrementalValue=process.argv
+const incrementalArg=incrementalValue.length-1
 
 
 // const util = require('util');
@@ -14,15 +16,21 @@ const moment = require('moment')
 
 
 describe('Create Batch', () => {
+   
+    if ((process.argv[incrementalArg].split('=')[1] == "true")) {
+
+        console.log("This testcase is running for existing batch")
+    }
+    else{
 
     // after(async () => {
-        //console.log("Starting Mobile Execution");
+    //      console.log("Starting Mobile Execution");
     //     const { stdout1, stderr1 } =await exec('cd ../epi-mobileapp-test-automation && npx kill-port 4723 && npm run addProductBatchTest');
     //     console.log('stdout:', stdout1);
     //     console.log('stderr:', stderr1);
     //     })
-
-it('Should verify batch page ', async() => {
+    
+  it('Should verify batch page ', async() => {
     allureReporter.addFeature('Create Batch')
     allureReporter.addSeverity('Critical');
     allureReporter.addTestId('ProdAndBatchSetup_1')
@@ -103,7 +111,7 @@ it('Should verify batch page ', async() => {
     await wait.setTimeoutwait(15);
 
     //Generate Image
-    matrix.generateImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
+    matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
     await wait.setTimeoutwait(8);
 
     
@@ -112,6 +120,7 @@ it('Should verify batch page ', async() => {
     // await batches.cancelButton()
     // await browser.pause(1000)
 });
+    }
 
 
 

@@ -54,7 +54,7 @@ describe('Product - display ePI Flag', () => {
         await products.videoSourceEpi(testData[1]['newProductDetails'].videoSource)
         await wait.setTimeoutwait(1);
         //Upload smpc 
-        await products.uploadFile(path.join(__dirname, '/src/Leaflet_ProductLevel'));
+        await products.uploadFile(path.join(__dirname, '/src/SMPC_ProductLevel'));
         await wait.setTimeoutwait(3);
         //add epi accept
         await browser.execute('document.querySelector("psk-button[disabled=\'@modalData.filesWereNotSelected\'] button[class=\'btn btn-primary\']").click();');
@@ -94,7 +94,7 @@ describe('Product - display ePI Flag', () => {
         await data.generateExpectationFile(info.getProductId(), info.getbatchId(), expiredDate,  info.getSerialNumber(),info.getBrandName(), info.getBatchRecall(),"","", info.getBatchRecallMsg(),info.getEpiDisplayed() )
         await wait.setTimeoutwait(12);
 
-        matrix.generateImage(info.getProductId(), info.getbatchId(), expiredDate, info.getSerialNumber())
+        matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), expiredDate, info.getSerialNumber())
         await wait.setTimeoutwait(8);
 
         await batches.updateBatchForEdit()

@@ -37,15 +37,17 @@ describe('Basic Auth feature test ', () => {
         //check expiry date is in enabled state
         await batches.expirationDateVerification()
         await wait.setTimeoutwait(2);
+        const incorrectExpiryDate=info.randomDateExpired()
         //serial number passing in before testcase   
-        await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), "","","", "" )
+        await data.generateExpectationFile(info.getProductId(), info.getbatchId(), incorrectExpiryDate,  info.getSerialNumber(),info.getBrandName(), "","","", "" )
         await wait.setTimeoutwait(12);
+       
+        matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), incorrectExpiryDate, info.getSerialNumber())
+        await wait.setTimeoutwait(5);
+
         //update batch
         await batches.updateBatchForEdit()
         await wait.setTimeoutwait(8);
-       
-        matrix.generateImage(info.getProductId(), info.getbatchId(), info.randomDateExpired(), info.getSerialNumber())
-        await wait.setTimeoutwait(5);
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");
         allureReporter.endStep("passed");
