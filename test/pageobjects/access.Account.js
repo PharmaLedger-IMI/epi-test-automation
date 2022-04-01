@@ -3,7 +3,7 @@
 // let userNameclt="kpepiwdio"
 
 class accessAccount{
-get accessAccount1(){
+get accessAccount(){
     return  $("(//div/descendant::a[@id='access-wallet'][text()='Access Account'])")
 }
 
@@ -17,7 +17,7 @@ get Enter() {
 
 async clickAccessAccount(){
     
-    await this.accessAccount1.click();
+    await this.accessAccount.click();
 }
 
 async clearUserName(){

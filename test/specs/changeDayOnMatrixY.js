@@ -21,8 +21,7 @@ describe('Expiry date Checks ', () => {
     if((process.argv[incrementalArg].split('=')[1]== "true")){
     it('Expiry date Checks_C1.6- should Retest above by changing only the day on the new data matrix Y ', async () => {
         console.log("date value is " + testData[3]['incrementalTest'].expiryDate)
-       //return info.setDateChange(testData[3]['incrementalTest'].expiryDate,"day")
-      info.setDateChange(testData[3]['incrementalTest'].expiryDate,"day") 
+        info.setDateChange(testData[3]['incrementalTest'].expiryDate,"day") 
 
       await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getDateChange("day"),  info.getSerialNumber(),info.getBrandName(), "","","", "" )
       await wait.setTimeoutwait(12);

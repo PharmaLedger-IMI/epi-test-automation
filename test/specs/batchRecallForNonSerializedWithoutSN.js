@@ -46,35 +46,11 @@ describe('Batch Recall and Recall Message for Non-serialized batches ', () => {
     //     await products.enableBatchIsRecalled()
     //     await wait.setTimeoutwait(3);
 
-        //click on batch
-        await batches.Batch();
-        await wait.setTimeoutwait(4);
-        await batches.addBatch();
-        await wait.setTimeoutwait(2);
-        info.setBatchId(await batches.batchIdValue())
-        await wait.setTimeoutwait(2);
-        await batches.siteName(testData[2]['newBatchDetails'].siteName);
-        await wait.setTimeoutwait(2);
-        info.setCurrentRandomDate()
-        await wait.setTimeoutwait(2);
-        await browser.execute((date) => {
-            (function () {
-                let event = new Event('change');
-                let datePicker = document.querySelector("input[placeholder='dd/mm/yyyy']")
-                datePicker.value = date;
-                datePicker.dispatchEvent(event);
-            })();
-        }, info.getCurrentRandomDate());
 
-        await wait.setTimeoutwait(2);
-        const selectBox = await browser.$('//psk-select[@class=\'default-select hydrated\']//select[@class=\'form-control\']'); 
-        await selectBox.selectByAttribute('value', info.getProductId());
-        await wait.setTimeoutwait(2);
-        await batches.videoSource(testData[2]['newBatchDetails'].videoSource)
-        await wait.setTimeoutwait(2);
-        
-        await batches.createBatch()
-        await wait.setTimeoutwait(15);
+        await batches.Batch();
+        //await browser.execute('document.querySelector(`webc-app-menu-item:nth-child(4) stencil-route-link:nth-child(1) a:nth-child(1)`).click()')
+
+        await wait.setTimeoutwait(8);
 
         let editValue = info.getbatchId()
         //click on edit 
@@ -97,7 +73,6 @@ describe('Batch Recall and Recall Message for Non-serialized batches ', () => {
         await batches.enterRecallMessage(testData[2]['newBatchDetails'].recallMsg)
         await wait.setTimeoutwait(2);
 
-        
         //Generate expectation file
         await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), "", info.getBrandName(), await batches.checkBatchRecall(), await batches.checkBatchMessage(), "", await batches.checkBatchRecallMessage())
         await wait.setTimeoutwait(12);

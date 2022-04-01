@@ -20,10 +20,11 @@ Run new product and new batch
 ```sh
 $ npm run test
 ```
-Run for existing product and existing batch
+Run for existing product and existing batch or new batch
 ```sh
 $ npm run test -- incrementalTest=true 
 ```
+Created config.json file
 
 ### Step 3: Generate test report
 

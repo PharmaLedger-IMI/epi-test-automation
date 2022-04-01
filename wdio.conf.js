@@ -45,7 +45,7 @@ exports.config = {
             // 'test/specs/disableExpiryDateCheckWithInValidDate.js',
 
             
-            // 'test/specs/batchRecallForSerializedWithSN.js',
+             'test/specs/batchRecallForSerializedWithSN.js',
             // 'test/specs/batchRecallForSerializedUndoRecallFlag.js',
             // 'test/specs/batchRecallForNonSerializedWithoutSN.js',
             // 'test/specs/batchRecallForNonSerializedUndoRecallFlag.js',
@@ -90,7 +90,7 @@ exports.config = {
             // 'test/specs/updateBatchWithDecommissioned&RecalledSerialNumber.js',
             // 'test/specs/updateBatchWithNoDecommissioned&RecalledSerialNumber.js
 
-             'test/specs/createBatchWithoutanyFile.js',
+            // 'test/specs/createBatchWithoutanyFile.js',
             // 'test/specs/uploadNewVersionOfEpiInProduct.js',
             //  'test/specs/createBatchWithUploadLeaflet.js',
             // 'test/specs/versionOfEpiNotReplaced.js',
@@ -145,8 +145,11 @@ exports.config = {
             // 'test/specs/checkSmpcIsDeletedFromProductWithBatchIsUnKnown.js',
             // 'test/specs/unCheckBatchIsUnKnown.js',
             // 'test/specs/unCheckBatchIsKnown.js',
-            
-            
+
+            // 'test/specs/invalidSerialNumber&ExpiryDate.js',
+            // 'test/specs/checkUnknowBatchWithInvalidBatch&ExpiryDate.js'
+            // 'test/specs/invalidSerialNumberWithBatchRecalled.js'
+            //'test/specs/demiurgeLogin.js'
 
             
     ],
@@ -249,7 +252,7 @@ exports.config = {
     //
     // Default timeout in milliseconds for request
     // if browser driver or grid doesn't send response
-    connectionRetryTimeout: 190000,
+    connectionRetryTimeout: 400000,
     //
     // Default request retries count
     connectionRetryCount: 3,
@@ -296,7 +299,7 @@ exports.config = {
     // See the full list at http://mochajs.org/
     mochaOpts: {
         ui: 'bdd',
-        timeout: 190000
+        timeout: 400000
     },
     //
     // =====
