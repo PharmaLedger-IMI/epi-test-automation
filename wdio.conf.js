@@ -27,7 +27,7 @@ exports.config = {
        
 
         //       'test/specs/gtinPage.js',
-        //    'test/specs/loginCredentials.js',
+           'test/specs/loginCredentials.js',
            
         //      'test/specs/createProduct.js',
         //      'test/specs/createBatch.js',
@@ -60,7 +60,7 @@ exports.config = {
             //'test/specs/scanExpiredDateAndInvalidSerialNumberInBatch.js',
 
             // 'test/specs/createBatchWithXExpiryDate.js',
-             'test/specs/changeDayOnDateBatchMatrixY.js',
+            // 'test/specs/changeDayOnDateBatchMatrixY.js',
             //'test/specs/changeMonthOnDateBatchMatrixY.js',
             //'test/specs/changeYearOnDateBatchMatrixY.js',
 
@@ -153,7 +153,7 @@ exports.config = {
             //'test/specs/demiurgeAddEnterpriseWalletUser.js',
 
             //'test/specs/productImport.js',
-            //'test/specs/removeInventedNameInProductJson.js',
+            'test/specs/removeInventedNameInProductJson.js',
             //'test/specs/batchImport.js'
 
 

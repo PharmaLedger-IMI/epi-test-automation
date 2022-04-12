@@ -35,22 +35,25 @@ describe('Import Product - update ', () => {
         await products.selectFile(path.join(__dirname,'../testdata/sampleProductImport.json'));
         await wait.setTimeoutwait(8);
 
-        //update json file
-        rawdata.product.inventedName = inventedNameValue
-        fs.writeFileSync(testData.path.productImport, JSON.stringify(rawdata))
+       
         //click on import
         await products.import()
-        await wait.setTimeoutwait(10); 
+        await wait.setTimeoutwait(20); 
         //view message
         await products.viewMessage()
         await wait.setTimeoutwait(5); 
         await products.invalidFieldInfo()
         await wait.setTimeoutwait(5); 
-        await products.invalidFieldInfoData()
+        await products.invalidFieldInfoRequired()
         await wait.setTimeoutwait(5); 
 
         await products.closeButtonInPopup()
         await wait.setTimeoutwait(5); 
+
+         //update json file
+         rawdata.product.inventedName = inventedNameValue
+         fs.writeFileSync(testData.path.productImport, JSON.stringify(rawdata))
+         await wait.setTimeoutwait(8);
 
         
         allureReporter.endStep("passed");

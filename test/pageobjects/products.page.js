@@ -413,7 +413,7 @@ class productsPage {
             async () => (await $('//label[normalize-space()="Select files"]').waitForEnabled()),
             {
                 timeout: 5000,
-                timeoutMsg: 'import button is active'
+                timeoutMsg: 'import button is not active'
             }
         );
     }
@@ -424,6 +424,13 @@ class productsPage {
     async import(){
         
         await this.importF.click()
+        // await browser.waitUntil(
+        //     async () => (await $("(//div[@class='circle circle-8'])[1]").waitForEnabled()),
+        //     {
+        //         timeout: 5000,
+        //         timeoutMsg: ''
+        //     }
+        // );
     }
     async viewMessage(){
         
@@ -433,9 +440,9 @@ class productsPage {
         
         await this.clickInvalidFieldInfo.click()
     }
-    async invalidFieldInfoData(){
+    async invalidFieldInfoRequired(){
         
-        const requiredFields=await this.clickInvalidFieldInfoData.getValue()
+        const requiredFields=await this.clickInvalidFieldInfoData.getText()
         console.log('required fields '+requiredFields)
     }
    
