@@ -34,18 +34,23 @@ it('should open Access Account', async() => {
      allureReporter.addDescription('Valid Login with UserName and Password')
      allureReporter.startStep("Enter UserName and Password");
      await accessAccount.clickAccessAccount();
-     await browser.pause(4000)
+     await wait.setTimeoutwait(4);
      await accessAccount.clearUserName();
      await wait.setTimeoutwait(2);
-     await accessAccount.enterUserName(testData[0]['login'].username);
+     await accessAccount.enterUserName(testData.login.userName);
      await wait.setTimeoutwait(2);
+    //  await accessAccount.emailId();
+    //  await wait.setTimeoutwait(2);
+    //  await accessAccount.password();
+    //  await wait.setTimeoutwait(2);
      await accessAccount.Enterbutton();
      await wait.setTimeoutwait(15);
      
      //home page screenshot
-     allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
      const frame = await browser.$('iframe[frameborder=\'0\']');
      await browser.switchToFrame(frame);
+     allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
+
      allureReporter.endStep("passed");
        
 });

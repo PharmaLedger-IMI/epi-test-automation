@@ -110,6 +110,21 @@ class batchesPage{
     get createBatchButton(){
         return $("//button[normalize-space()='Add batch']")
     }
+    get importButton(){
+        return $('//button[normalize-space()="IMPORT"]')
+    }
+    get importFile(){
+        return $('//input[@type="file"]')
+    }
+    get importF(){
+        return $('//button[normalize-space()="Import"]')
+    }
+    get clickViewMessage(){
+        return $('webc-datatable[datasource="@failedDataSource"] button[class="btn btn-link p-0 col align-self-center text-left"]')
+    }
+    get clickInvalidFieldInfo(){
+        return $('psk-accordion-item[title="Invalid fields info"]')
+    }
     
 
     ///////
@@ -317,7 +332,7 @@ class batchesPage{
     }
     async checkBatchRecallMessage()  {   
         if(await this.enterRecallMessageInTextbox.isDisplayed()==true){
-           let recallMessage="Tim said its recall"
+           let recallMessage="This is a sample recall message"
            return recallMessage
         }
         else{
@@ -354,6 +369,37 @@ class batchesPage{
         }
                
     }
+
+
+    async clickImport(){
+        
+        await this.importButton.click()
+
+        await browser.waitUntil(
+            async () => (await $('//label[normalize-space()="Select files"]').waitForEnabled()),
+            {
+                timeout: 5000,
+                timeoutMsg: 'import button is active'
+            }
+        );
+    }
+    async selectFile(file){
+        
+        await this.importFile.addValue(file)
+    }
+    async import(){
+        
+        await this.importF.click()
+    }
+    async viewMessage(){
+        
+        await this.clickViewMessage.click()
+    }
+    async invalidFieldInfo(){
+        
+        await this.clickInvalidFieldInfo.click()
+    }
+
 
 
         }

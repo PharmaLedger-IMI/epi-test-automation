@@ -4,7 +4,7 @@
   "description": "",
   "main": "wdio.conf.js",
   "scripts": {
-    "test": "npx wdio run wdio.conf.js $incrementalTest",
+    "test": "npx wdio run wdio.conf.js",
     "report": "allure generate allure-results/ --clean && allure open"
   },
   "keywords": [],

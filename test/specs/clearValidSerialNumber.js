@@ -8,31 +8,42 @@ const testData=require('../testdata/config.json')
 
 const allureReporter = require('@wdio/allure-reporter').default
 
-// const util = require('util');
-// const exec = util.promisify(require('child_process').exec);
 
 describe('Serial Number checks ', () => {
 
-    // after(async () => {
-        //console.log("Starting Mobile Execution");
-    //     const { stdout1, stderr1 } =await exec('cd ../epi-mobileapp-test-automation && npm run test');
-    //     console.log('stdout:', stdout1);
-    //     console.log('stderr:', stderr1);
-    //     })
+    if(!process.env.npm_config_browserOnly){
+        const util = require('util');
+        const exec = util.promisify(require('child_process').exec);
 
-    it('Serial Number Checks_2- should clear the valid serial numbers in the above batch  ', async () => {
-    
+    after(async () => {
+        console.log("Starting Mobile Execution");
+        const { stdout1, stderr1 } =await exec('cd ../epi-mobileapp-test-automation && npm run test');
+        console.log('stdout:', stdout1);
+        console.log('stderr:', stderr1);
+        })
+        console.log("Running test suite in incremental mode and browser tests only")
+    } else {
+
+        console.log("different flag")
+
+    }
+
+    it('SerialNumberChecks_2- should clear the valid serial numbers in the above batch  ', async () => {
+        allureReporter.addDescription('Edit batch and reset serial number and scan with valid serial number')
         allureReporter.startStep('In the batch created above - clear the valid serial numbers ')
-        allureReporter.addTestId('Serial Number Checks_2')
+        allureReporter.addTestId('SerialNumberChecks_2')
         
+        await batches.Batch(); 
+        //await browser.execute('document.querySelector(`webc-app-menu-item:nth-child(4) stencil-route-link:nth-child(1) a:nth-child(1)`).click()')
 
+        await wait.setTimeoutwait(8);
         let editValue = info.getbatchId()
         console.log("editValue is "+editValue)
         await browser.execute('document.querySelector("div:nth-child(' + await info.editBatchRow(editValue) + ') button:nth-child(1)").click()')       
         await wait.setTimeoutwait(8);
 
         //select valid serial number
-        await batches.selectUpdateValidSerialFromDropdown(testData[2]['newBatchDetails'].updateValid)
+        await batches.selectUpdateValidSerialFromDropdown(testData.newBatchDetails.updateValid)
         await wait.setTimeoutwait(2);
         //enable checkbox
         await batches.enableResetAllValidSerialNumber()
@@ -42,15 +53,16 @@ describe('Serial Number checks ', () => {
         await batches.acceptSerialNumber()
         await wait.setTimeoutwait(2);
        
-       
-        await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), "","","", "" )
+       //generate expectation file 
+        data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), "","","", "" )
         await wait.setTimeoutwait(12);
-        //create batch
-        await batches.updateBatchForEdit()
-         await wait.setTimeoutwait(10);
-       
+       //generate 2d matrix image
         matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
         await wait.setTimeoutwait(5);
+
+         //update batch
+         await batches.updateBatchForEdit()
+         await wait.setTimeoutwait(10);
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");
        

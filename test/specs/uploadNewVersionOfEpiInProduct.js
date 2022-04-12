@@ -1,6 +1,5 @@
 
 const products= require('../pageobjects/products.page');
-//const batches= require('../pageobjects/batches.page.js');
 const matrix=require('../utility/2dMatrixPage')
 const data=require('../utility/expectationFile')
 const info=require('../utility/reusableFile')
@@ -9,23 +8,32 @@ const wait=require('../utility/timeout')
 
 const allureReporter = require('@wdio/allure-reporter').default
 const path= require('path');
-// const util = require('util');
-// const exec = util.promisify(require('child_process').exec);
+
 
 describe('Update product information ', () => {
 
-    // after(async () => {
-        //console.log("Starting Mobile Execution");
-    //     const { stdout1, stderr1 } =await exec('cd ../epi-mobileapp-test-automation && npm run test');
-    //     console.log('stdout:', stdout1);
-    //     console.log('stderr:', stderr1);
-    //     })
+    if(!process.env.npm_config_browserOnly){
+        const util = require('util');
+        const exec = util.promisify(require('child_process').exec);
 
-    it('ProdInfoUpdate_1-should verify if the new ePI is displayed in product level  ', async () => {
-    
+    after(async () => {
+        console.log("Starting Mobile Execution");
+        const { stdout1, stderr1 } =await exec('cd ../epi-mobileapp-test-automation && npm run test');
+        console.log('stdout:', stdout1);
+        console.log('stderr:', stderr1);
+        })
+        console.log("Running test suite in incremental mode and browser tests only")
+    } else {
+
+        console.log("different flag")
+
+    }
+
+    it('ProductInfoUpdate_1_2-should verify if the new ePI is displayed in product level  ', async () => {
+        allureReporter.addDescription('Edit product and delete existing version and upload new version of epi ')
         allureReporter.startStep('Visit the Enterprise wallet and upload a new version of the ePI for the same product at the product level')
-        allureReporter.startStep('Scan the batch created previously')
-        allureReporter.addTestId('ProdInfoUpdate_1')
+        allureReporter.startStep('Scan the batch')
+        allureReporter.addTestId('ProductInfoUpdate_1_2')
         
 
         //click product from sidenav
@@ -48,29 +56,30 @@ describe('Update product information ', () => {
         await products.addEpi()
         await wait.setTimeoutwait(3);
         // //select language	
-        // await products.selectLanguage(testData[1]['newProductDetails'].selectLanguage)
+        // await products.selectLanguage(testData.newProductDetails.selectLanguage)
         // await wait.setTimeoutwait(1);
         // //select type
-        // await products.selectType(testData[1]['newProductDetails'].selectType)
+        // await products.selectType(testData.newProductDetails.selectType)
         // await wait.setTimeoutwait(2);
         //upload folder
         await batches.uploadFile(path.join(__dirname, '/src/Leaflet_UpdatedAtProductLevel'));
         await wait.setTimeoutwait(5);
+        
         //add epi accept
         await browser.execute('document.querySelector("psk-button[disabled=\'@modalData.filesWereNotSelected\'] button[class=\'btn btn-primary\']").click();');
         await wait.setTimeoutwait(5);
-
-        await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), "","","", "" )
-        await wait.setTimeoutwait(12);
+        info.setEpiDisplayed()
+        await wait.setTimeoutwait(4);
+        //generate expectation file 
+        data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), "","","", "", info.getEpiDisplayed() )
+        await wait.setTimeoutwait(12);    
+        //generate 2d matrix image
+        matrix.generateImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
+        await wait.setTimeoutwait(5);
 
         //Update product
         await products.updateProduct()
         await wait.setTimeoutwait(8);
-
-        //Scan the previous matrix
-       
-        // matrix.generateImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
-        // await wait.setTimeoutwait(5);
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");
         allureReporter.endStep("passed");

@@ -8,24 +8,32 @@ const testData=require('../testdata/config.json')
 
 const allureReporter = require('@wdio/allure-reporter').default
 
-// const util = require('util');
-// const exec = util.promisify(require('child_process').exec);
 
 describe('Non Serialized batch tests ', () => {
 
-    // after(async () => {
-        //console.log("Starting Mobile Execution");
-    //     const { stdout1, stderr1 } =await exec('cd ../epi-mobileapp-test-automation && npm run test');
-    //     console.log('stdout:', stdout1);
-    //     console.log('stderr:', stderr1);
-    //     })
+    if(!process.env.npm_config_browserOnly){
+        const util = require('util');
+        const exec = util.promisify(require('child_process').exec);
 
-    it('Serial Number Checks_11.5- should Update the batch to have no decomissioned/ recalled serial numbers ', async () => {
-    
+    after(async () => {
+        console.log("Starting Mobile Execution");
+        const { stdout1, stderr1 } =await exec('cd ../epi-mobileapp-test-automation && npm run test');
+        console.log('stdout:', stdout1);
+        console.log('stderr:', stderr1);
+        })
+        console.log("Running test suite in incremental mode and browser tests only")
+    } else {
+
+        console.log("different flag")
+
+    }
+
+    it('SerialNumberChecks_11_5- should Update the batch to have no decomissioned/ recalled serial numbers ', async () => {
+        allureReporter.addDescription('Edit batch and update with no decomissioned/ recalled serial numbers')
         allureReporter.startStep('Update the batch to have no decomissioned/ recalled serial numbers')
-        allureReporter.addTestId('Serial Number Checks_11.5')
+        allureReporter.addTestId('SerialNumberChecks_11_5')
         await batches.Batch();
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(4);
         
         //edit above batch
         let editValue = info.getbatchId()
@@ -38,7 +46,7 @@ describe('Non Serialized batch tests ', () => {
         await wait.setTimeoutwait(2);
 
          //select recalled serial number
-         await batches.selectUpdateRecalledSerialFromDropdown(testData[2]['newBatchDetails'].UpdateDecommissioned)
+         await batches.selectUpdateRecalledSerialFromDropdown(testData.newBatchDetails.updateDecommissioned)
          await wait.setTimeoutwait(2);
         
         //enable checkbox and remove 10 serial number
@@ -50,7 +58,7 @@ describe('Non Serialized batch tests ', () => {
         await wait.setTimeoutwait(2);
 
         //select recalled serial number
-        await batches.selectUpdateRecalledSerialFromDropdown(testData[2]['newBatchDetails'].updateRecalled)
+        await batches.selectUpdateRecalledSerialFromDropdown(testData.newBatchDetails.updateRecalled)
         await wait.setTimeoutwait(2);
         //enable checkbox
         await batches.enableResetAllRecalledSerialNumber()
@@ -59,14 +67,14 @@ describe('Non Serialized batch tests ', () => {
         //accept serial number
         await batches.acceptSerialNumber()
         await wait.setTimeoutwait(2);
-                     
-        await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber().split(',')[0],info.getBrandName(), "","","", "" )
+        //generate expectation file              
+        data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), "",info.getBrandName(), "","","", "" )
         await wait.setTimeoutwait(12);
         //create batch
         await batches.updateBatchForEdit()
         await wait.setTimeoutwait(8);
-       
-        matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber().split(',')[0])
+        //generate 2d matrix image
+        matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), "")
         await wait.setTimeoutwait(5);
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");

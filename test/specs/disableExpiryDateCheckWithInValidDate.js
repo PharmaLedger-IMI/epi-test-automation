@@ -1,5 +1,4 @@
-// const gtinPage = require('./gtinPage.js');
-// const products= require('../pageobjects/products.page');
+
 const batches= require('../pageobjects/batches.page.js');
 const matrix=require('../utility/2dMatrixPage')
 const data=require('../utility/expectationFile')
@@ -8,43 +7,52 @@ const wait=require('../utility/timeout')
 
 const allureReporter = require('@wdio/allure-reporter').default
 
-// const util = require('util');
-// const exec = util.promisify(require('child_process').exec);
+
 
 describe('Basic Auth feature test ', () => {
 
-    // after(async () => {
-        //console.log("Starting Mobile Execution");
-    //     const { stdout1, stderr1 } =await exec('cd ../epi-mobileapp-test-automation && npm run test');
-    //     console.log('stdout:', stdout1);
-    //     console.log('stderr:', stderr1);
-    //     })
+    if(!process.env.npm_config_browserOnly){
+        const util = require('util');
+        const exec = util.promisify(require('child_process').exec);
 
-    it('Basic Auth feature test_1- should Update the setting and disable expiry date check', async () => {
-    
+    after(async () => {
+        console.log("Starting Mobile Execution");
+        const { stdout1, stderr1 } =await exec('cd ../epi-mobileapp-test-automation && npm run test');
+        console.log('stdout:', stdout1);
+        console.log('stderr:', stderr1);
+        })
+        console.log("Running test suite in incremental mode and browser tests only")
+    } else {
+
+        console.log("different flag")
+
+    }
+
+    it('BasicAuthFeatureTest_2_3- should Update the setting and disable expiry date check', async () => {
+        allureReporter.addDescription('Edit batch and disable expiry date check. Pass wrong expiry date in matrix')
         allureReporter.startStep(' Update the setting and disable expiry date check ')
         allureReporter.startStep(' Scan a data matrix code with wrong expiry date and verify that expiration check doesnt occur')
-        allureReporter.addTestId('Basic Auth feature test_1')
+        allureReporter.addTestId('BasicAuthFeatureTest_2_3')
         await batches.Batch();
         await wait.setTimeoutwait(2);
        
-        //edit the batch
+        //Edit batch
         let editValue = info.getbatchId()
         console.log("editValue is "+editValue)
         await browser.execute('document.querySelector("div:nth-child(' + await info.editBatchRow(editValue) + ') button:nth-child(1)").click()')       
         await wait.setTimeoutwait(8);
 
-        //Disable expiry date check and don't show leaflet
+        //Disable expiry date check 
         await batches.expirationDateVerificationClick()
         await wait.setTimeoutwait(2);
         const incorrectExpiryDate=info.randomDateExpired()
-            
-        await data.generateExpectationFile(info.getProductId(), info.getbatchId(), incorrectExpiryDate,  info.getSerialNumber(),info.getBrandName(), "","","", "" )
+        //Generate expectation file   
+        data.generateExpectationFile(info.getProductId(), info.getbatchId(), incorrectExpiryDate,  info.getSerialNumber(),info.getBrandName(), "","","", "" )
         await wait.setTimeoutwait(12);
-       
+        //Generate 2d matrix image 
         matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), incorrectExpiryDate, info.getSerialNumber())
         await wait.setTimeoutwait(5);
-        //create batch
+        //Update batch
         await batches.updateBatchForEdit()
         await wait.setTimeoutwait(8);
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');

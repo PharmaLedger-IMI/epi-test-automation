@@ -10,20 +10,25 @@ const data=require('../utility/expectationFile');
 
 
 
-
-// const util = require('util');
-// const exec = util.promisify(require('child_process').exec);
-
-
 describe('Other tests', () => {
    
    
-    // after(async () => {
-    //      console.log("Starting Mobile Execution");
-    //     const { stdout1, stderr1 } =await exec('cd ../epi-mobileapp-test-automation && npx kill-port 4723 && npm run addProductBatchTest');
-    //     console.log('stdout:', stdout1);
-    //     console.log('stderr:', stderr1);
-    //     })
+  if(!process.env.npm_config_browserOnly){
+    const util = require('util');
+    const exec = util.promisify(require('child_process').exec);
+
+after(async () => {
+    console.log("Starting Mobile Execution");
+    const { stdout1, stderr1 } =await exec('cd ../epi-mobileapp-test-automation && npm run test');
+    console.log('stdout:', stdout1);
+    console.log('stderr:', stderr1);
+    })
+    console.log("Running test suite in incremental mode and browser tests only")
+} else {
+
+    console.log("different flag")
+
+}
     
   it('Other tests_2-Should  Create a data matrix with same GTIN but the batch is invalid and expiry date is also invalid   ', async() => {
     allureReporter.addTestId('Other tests_2')
@@ -49,13 +54,13 @@ describe('Other tests', () => {
         // await products.addEpi()
         // await wait.setTimeoutwait(3);
         // //select language	
-        // await products.selectLanguage(testData[1]['newProductDetails'].selectLanguage)
+        // await products.selectLanguage(testData.newProductDetails.selectLanguage)
         // await wait.setTimeoutwait(1);
         // // select type
-        // await products.selectType(testData[1]['newProductDetails'].selectType)
+        // await products.selectType(testData.newProductDetails.selectType)
         // await wait.setTimeoutwait(2);
         // //Video source
-        // await products.videoSourceEpi(testData[1]['newProductDetails'].videoSource)
+        // await products.videoSourceEpi(testData.newProductDetails.videoSource)
         // await wait.setTimeoutwait(1);
         // //Upload smpc 
         // await products.uploadFile(path.join(__dirname, '/src/SMPC_ProductLevel'));

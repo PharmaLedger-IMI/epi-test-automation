@@ -43,19 +43,19 @@ it('should verify product page', async() => {
     await products.brandName(testData[1]['newProductDetails'].brandName + dateStringWithTime) 
     info.setBrandName(await products.checkBrandName()) 
     await wait.setTimeoutwait(2);
-    await products.productDescription(testData[1]['newProductDetails'].productDescription); 
+    await products.productDescription(testData.newProductDetails.medicinalProductName); 
     await wait.setTimeoutwait(4);
     //Upload product photo
     await products.productPhoto(path.join(__dirname, '/src/entresto.jpg'));
     await wait.setTimeoutwait(1);
     //internal material code
-    await products.internalMaterialCode(testData[1]['newProductDetails'].internalMaterialCode)
+    await products.internalMaterialCode(testData.newProductDetails.internalMaterialCode)
     await wait.setTimeoutwait(1);
     //strength
-    await products.addStrength(testData[1]['newProductDetails'].addStrength)
+    await products.addStrength(testData.newProductDetails.addStrength)
     await wait.setTimeoutwait(1);
     // video source
-    await products.videoSource(testData[1]['newProductDetails'].videoSource)
+    await products.videoSource(testData.newProductDetails.videoSource)
     await wait.setTimeoutwait(2);
     //enable batch is recalled
     await products.enableBatchIsRecalled(); 
@@ -77,7 +77,7 @@ it('should verify product page', async() => {
      await wait.setTimeoutwait(3);
      
      //Video source
-     await products.videoSourceEpi(testData[1]['newProductDetails'].videoSource)
+     await products.videoSourceEpi(testData.newProductDetails.videoSource)
      await wait.setTimeoutwait(1);
      //Upload epi
      const uploadEpiFile=path.join(__dirname, '/src/Leaflet_ProductLevel')
@@ -90,13 +90,13 @@ it('should verify product page', async() => {
      await products.addEpi()
      await wait.setTimeoutwait(3);
      //select language	
-     await products.selectLanguage(testData[1]['newProductDetails'].selectLanguage)
+     await products.selectLanguage(testData.newProductDetails.selectLanguage)
      await wait.setTimeoutwait(1);
       // select type
-     await products.selectType(testData[1]['newProductDetails'].selectType)
+     await products.selectType(testData.newProductDetails.selectType)
      await wait.setTimeoutwait(2);
      //Video source
-     await products.videoSourceEpi(testData[1]['newProductDetails'].videoSource)
+     await products.videoSourceEpi(testData.newProductDetails.videoSource)
      await wait.setTimeoutwait(1);
      //Upload smpc 
      await products.uploadFile(path.join(__dirname, '/src/Leaflet_ProductLevel'));

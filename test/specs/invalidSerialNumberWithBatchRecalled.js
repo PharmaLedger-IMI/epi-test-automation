@@ -9,24 +9,30 @@ const data=require('../utility/expectationFile');
 
 
 
-
-// const util = require('util');
-// const exec = util.promisify(require('child_process').exec);
-
-
 describe('Other tests', () => {
    
    
-    // after(async () => {
-    //      console.log("Starting Mobile Execution");
-    //     const { stdout1, stderr1 } =await exec('cd ../epi-mobileapp-test-automation && npx kill-port 4723 && npm run addProductBatchTest');
-    //     console.log('stdout:', stdout1);
-    //     console.log('stderr:', stderr1);
-    //     })
+  if(!process.env.npm_config_browserOnly){
+    const util = require('util');
+    const exec = util.promisify(require('child_process').exec);
+
+after(async () => {
+    console.log("Starting Mobile Execution");
+    const { stdout1, stderr1 } =await exec('cd ../epi-mobileapp-test-automation && npm run test');
+    console.log('stdout:', stdout1);
+    console.log('stderr:', stderr1);
+    })
+    console.log("Running test suite in incremental mode and browser tests only")
+} else {
+
+    console.log("different flag")
+
+}
     
-  it('Other tests_3-Should verify Serial number invalid and batch recalled  ', async() => {
-    allureReporter.addTestId('Other tests_3')
-    allureReporter.startStep("Create a product and then a batch where the recall message has been inserted.")
+  it('OtherTests_3-Should verify Serial number invalid and batch recalled  ', async() => {
+    allureReporter.addDescription("Edit product and verify epi displayed. Edit batch and pass invalid serial number in matrix")
+    allureReporter.addTestId('OtherTests_3')
+    allureReporter.startStep("Edit batch.")
     allureReporter.startStep("Add serial numbers to the batch and Save")
 
         await products.clickProductFromSideNav()
@@ -76,7 +82,7 @@ describe('Other tests', () => {
     await selectBox.selectByAttribute('value', info.getProductId());
     await wait.setTimeoutwait(2);
    
-    await batches.selectUpdateValidSerialFromDropdown(testData[2]['newBatchDetails'].updateValid)
+    await batches.selectUpdateValidSerialFromDropdown(testData.newBatchDetails.updateValid)
     await wait.setTimeoutwait(5);
     
     //set serial number value
@@ -87,24 +93,31 @@ describe('Other tests', () => {
     // manage serial number accept 
     await batches.acceptSerialNumber()
     await wait.setTimeoutwait(1);
-    // //Recall
-    // await batches.enableCheckToRecallThisBatch()
-    // await wait.setTimeoutwait(1);
-    // await batches.enterRecallMessage()
-    // await wait.setTimeoutwait(1);
+
+         //enable recall checkbox
+        // await batches.enableCheckToRecallThisBatch()
+        // await wait.setTimeoutwait(2);
+        // //set batch recall
+        // info.setBatchRecall(await batches.checkBatchRecall())
+        // await wait.setTimeoutwait(2);
+        // await batches.enterRecallMessage(testData.newBatchDetails.recallMsg)
+        // await wait.setTimeoutwait(2);
+        // //set batch recall msg
+        // info.setBatchRecallMsg(await batches.checkBatchRecallMessage())
+        // await wait.setTimeoutwait(2);
 
     const invalidSerialNumber=await batches.serialNum()
     console.log('invalid serial number '+invalidSerialNumber)
     await wait.setTimeoutwait(2);
-  
-    await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  invalidSerialNumber, info.getBrandName(), "","","","", info.getEpiDisplayed())
+    //generate expectation file 
+    data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  invalidSerialNumber, info.getBrandName(), "","","","", info.getEpiDisplayed())
     await wait.setTimeoutwait(6);
  
-    //Generate Image
+    //generate 2d matrix image
     matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), invalidSerialNumber)
     await wait.setTimeoutwait(8);
 
-    //Create batch
+    //update batch
     await batches.updateBatchForEdit()
     await wait.setTimeoutwait(15);
 
@@ -113,8 +126,7 @@ describe('Other tests', () => {
     allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
     allureReporter.endStep("passed");
     allureReporter.endStep("passed");
-    // await batches.cancelButton()
-    // await browser.pause(1000)
+    
 });
     
 

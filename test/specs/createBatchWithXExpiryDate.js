@@ -1,5 +1,4 @@
-// const gtinPage = require('./gtinPage.js');
-// const products= require('../pageobjects/products.page');
+
 const batches= require('../pageobjects/batches.page.js');
 const matrix=require('../utility/2dMatrixPage')
 const data=require('../utility/expectationFile')
@@ -9,29 +8,38 @@ const testData=require('../testdata/config.json')
 
 const allureReporter = require('@wdio/allure-reporter').default
 
-// const util = require('util');
-// const exec = util.promisify(require('child_process').exec);
+
 
 describe('Expiry date Checks ', () => {
 
-    // after(async () => {
-        //console.log("Starting Mobile Execution");
-    //     const { stdout1, stderr1 } =await exec('cd ../epi-mobileapp-test-automation && npm run test');
-    //     console.log('stdout:', stdout1);
-    //     console.log('stderr:', stderr1);
-    //     })
+    if(!process.env.npm_config_browserOnly){
+        const util = require('util');
+        const exec = util.promisify(require('child_process').exec);
 
-    it('Expiry date Checks_C1.1- create a batch with X expiry date and Create a 2D data matrix with details of above batch but different expiration date Y ', async () => {
-    
+    after(async () => {
+        console.log("Starting Mobile Execution");
+        const { stdout1, stderr1 } =await exec('cd ../epi-mobileapp-test-automation && npm run test');
+        console.log('stdout:', stdout1);
+        console.log('stderr:', stderr1);
+        })
+        console.log("Running test suite in incremental mode and browser tests only")
+    } else {
+
+        console.log("different flag")
+
+    }
+
+    it('ExpiryDateChecks_1_1- create a batch with X expiry date and Create a 2D data matrix with details of above batch but different expiration date Y ', async () => {
+        allureReporter.addDescription("create new batch and select future date. Pass different date in matrix")
         allureReporter.startStep('create a batch with X expiry date and Create a 2D data matrix with details of above batch but different expiration date Y')
-        allureReporter.addTestId('Expiry date Checks_C1.1')
+        allureReporter.addTestId('ExpiryDateChecks_1_1')
         await batches.Batch();
         await wait.setTimeoutwait(2);
         await batches.addBatch();
         await wait.setTimeoutwait(2);
         info.setBatchId(await batches.batchIdValue())
         await wait.setTimeoutwait(2);
-        await batches.siteName(testData[2]['newBatchDetails'].siteName);
+        await batches.siteName(testData.newBatchDetails.siteName);
         await wait.setTimeoutwait(2);
       
         info.setCurrentRandomDate()
@@ -50,10 +58,10 @@ describe('Expiry date Checks ', () => {
         const selectBox = await browser.$('//psk-select[@class=\'default-select hydrated\']//select[@class=\'form-control\']'); 
         await selectBox.selectByAttribute('value', info.getProductId());
         await wait.setTimeoutwait(2);
-        await batches.videoSource(testData[2]['newBatchDetails'].videoSource)
+        await batches.videoSource(testData.newBatchDetails.videoSource)
         await wait.setTimeoutwait(2);
         //valid serial number
-        await batches.selectUpdateValidSerialFromDropdown(testData[2]['newBatchDetails'].updateValid)
+        await batches.selectUpdateValidSerialFromDropdown(testData.newBatchDetails.updateValid)
         await wait.setTimeoutwait(5);
 
         //set serial number value
@@ -64,17 +72,17 @@ describe('Expiry date Checks ', () => {
         // manage serial number accept 
         await batches.acceptSerialNumber()
         await wait.setTimeoutwait(1);
-
+        //generate future date
         const futureDate=info.randomDate()
         console.log("future date is "+futureDate)
         info.setDateChange(futureDate,"day")
         info.setDateChange(futureDate,"month")
         info.setDateChange(futureDate,"year")
-       
-        await data.generateExpectationFile(info.getProductId(), await batches.batchIdValue(), futureDate,  info.getSerialNumber(),info.getBrandName(), "","","", "" )
+        //generate expectation file 
+        data.generateExpectationFile(info.getProductId(), await batches.batchIdValue(), futureDate,  info.getSerialNumber(),info.getBrandName(), "","","", "" )
         await wait.setTimeoutwait(12);
         
-      
+         //generate 2d matrix image
         matrix.generate2dMatrixImage(info.getProductId(), await batches.batchIdValue(), futureDate, info.getSerialNumber())
         await wait.setTimeoutwait(5);
 

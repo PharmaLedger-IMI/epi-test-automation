@@ -1,0 +1,32 @@
+{
+    "messageType": "Batch",
+    "messageTypeVersion": 0.1,
+    "senderId": "kpepiwdio",
+    "receiverId": "",
+    "messageId": "1385662894268",
+    "messageDateTime": "2022-04-11T10:30:54.889Z",
+    "token": "",
+    "batch": {
+        "productCode": "53828643489738",
+        "batch": "EZ4193",
+        "expiryDate": "290307",
+        "snValid": [],
+        "snRecalled": [
+            "916176"
+        ],
+        "snDecom unknown": [],
+        "flagEnableBatchRecallMessage": false,
+        "flagEnableSNVerification": true,
+        "flagEnableEXPVerification": true,
+        "flagEnableExpiredEXPCheck": true,
+        "recallMessage": "",
+        "batchMessage": "",
+        "packagingSiteName": "Sample site name",
+        "flagEnableACFBatchCheck": false,
+        "acdcAuthFeatureSSI": "",
+        "acfBatchCheckURL": false,
+        "snValidReset": false,
+        "snRecalledReset": false,
+        "snDecomReset": false
+    }
+}

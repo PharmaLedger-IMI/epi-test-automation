@@ -4,6 +4,7 @@ let expiredDate= randomDateExpired()
 let currentDate=''
 let currentID = ''
 let currentSerial=''
+let currentSnRecall=''
 let currentBatchRecall=''
 let currentBatchRecallMsg=''
 let currentBrandName=''
@@ -30,10 +31,10 @@ class reuseFile{
         console.log("incrementalArg value is " + process.argv[incrementalArg])
         console.log("arg value is " + process.argv[incrementalArg].split('=')[1])
        // console.log("arg newbatch value is " + process.argv[newbatch].split('=')[1])
-        if ((process.argv[incrementalArg].split('=')[1] == "true")) {
+        if (process.env.npm_config_incremental) {
 
-            console.log(" incrementalProduct value is " + testData[3]['incrementalTest'].prodId)
-            return testData[3]['incrementalTest'].prodId
+            console.log("incremental product value is " + testData.incrementalTest.prodId)
+            return testData.incrementalTest.prodId
         }
         else {
 
@@ -47,14 +48,10 @@ class reuseFile{
         currentID = id
     }
     getbatchId() {
-        // if ((process.argv[newbatch].split('=')[1] == "true")) {
-        //     console.log("batch value is " + currentID)
-        //     return currentID
-        // }
-
-        if ((process.argv[incrementalArg].split('=')[1] == "true")) {
-            console.log("incremental batch value is " + testData[3]['incrementalTest'].batchId)
-            return testData[3]['incrementalTest'].batchId
+        if (process.env.npm_config_incremental) {
+            console.log("value iss   "+process.env.npm_config_incremental )
+            console.log("incremental batch value is " + testData.incrementalTest.batchId)
+            return testData.incrementalTest.batchId
         }
 
         else {
@@ -86,9 +83,9 @@ class reuseFile{
     }
     getSerialNumber() {
 
-        if ((process.argv[incrementalArg].split('=')[1] == "true")) {
-            console.log("serial value is " + testData[3]['incrementalTest'].serialNumber)
-            return testData[3]['incrementalTest'].serialNumber
+        if (process.env.npm_config_incremental ) {
+            console.log("serial value is " + testData.incrementalTest.serialNumber)
+            return testData.incrementalTest.serialNumber
         }
         else {
             console.log("Serial Number is " + currentSerial)
@@ -103,9 +100,9 @@ class reuseFile{
     }
     getBrandName(){
         
-        if ((process.argv[incrementalArg].split('=')[1] == "true")) {
-            console.log("product name is " + testData[3]['incrementalTest'].prodName)
-            return testData[3]['incrementalTest'].prodName
+        if (process.env.npm_config_incremental ) {
+            console.log("product name is " + testData.incrementalTest.prodName)
+            return testData.incrementalTest.prodName
         }
         else {
             return currentBrandName
@@ -133,6 +130,12 @@ class reuseFile{
     getBatchMsg(){
         return currentBatchMsg
     }
+    setSnIsinRecallList(SnRecall){
+        currentSnRecall=SnRecall
+    }
+    getSnIsinRecallList(){
+        return currentSnRecall
+    }
     setEpiDisplayed(epi){
         EpiDisplayed= epi
     }
@@ -147,9 +150,9 @@ class reuseFile{
     }
     getCurrentRandomDate(){
      
-        if((process.argv[incrementalArg].split('=')[1] == "true")){
-        console.log("incremantal date value is " + testData[3]['incrementalTest'].expiryDate)
-        return testData[3]['incrementalTest'].expiryDate 
+        if(process.env.npm_config_incremental ){
+        console.log("incremental date value is " + testData.incrementalTest.expiryDate)
+        return testData.incrementalTest.expiryDate 
      }    
      else{
 
@@ -171,9 +174,9 @@ class reuseFile{
 
     getDayChange(){
        
-        if((process.argv[incrementalArg].split('=')[1]== "true")){
-            console.log("date value is " + testData[3]['incrementalTest'].expiryDate)
-            return testData[3]['incrementalTest'].expiryDate 
+        if(process.env.npm_config_incremental ){
+            console.log("date value is " + testData.incrementalTest.expiryDate)
+            return testData.incrementalTest.expiryDate 
         }
         else
         {
@@ -186,9 +189,9 @@ class reuseFile{
     // }
     getMonthChange(){
                 
-        if((process.argv[incrementalArg].split('=')[1]== "true")){
-            console.log("date value is " + testData[3]['incrementalTest'].expiryDate)
-            return testData[3]['incrementalTest'].expiryDate 
+        if(process.env.npm_config_incremental ){
+            console.log("date value is " + testData.incrementalTest.expiryDate)
+            return testData.incrementalTest.expiryDate 
         }
         else
         {
@@ -201,9 +204,9 @@ class reuseFile{
     }
     getYearChange(){
         
-        if((process.argv[incrementalArg].split('=')[1]== "true")){
-            console.log("date value is " + testData[3]['incrementalTest'].expiryDate)
-            return testData[3]['incrementalTest'].expiryDate 
+        if(process.env.npm_config_incremental ){
+            console.log("date value is " + testData.incrementalTest.expiryDate)
+            return testData.incrementalTest.expiryDate 
         }
         else
         {
@@ -265,36 +268,7 @@ class reuseFile{
         editRow=rClick
         return editRow
     }  
-    
-    
-    // async  editProduct(){
-    //     let editValue = '25367613915299'
-    //     let fArry = []
-    //     var i = 9
-    //     for (;  await browser.$("body > webc-app-root:nth-child(1) > webc-app-container:nth-child(3) > div:nth-child(1) > webc-app-router:nth-child(1) > stencil-router:nth-child(1) > stencil-route-switch:nth-child(1) > stencil-route:nth-child(4) > webc-app-loader:nth-child(1) > page-template:nth-child(2) > h6:nth-child(2) > webc-container:nth-child(1) > div:nth-child(2) > webc-datatable:nth-child(1) > div:nth-child(2) > div:nth-child("+i+")").isExisting(); i++)
-    //      {
-    //         console.log(i)
-    
-    //         fArry.push({ prodId: await browser.$("body > webc-app-root:nth-child(1) > webc-app-container:nth-child(3) > div:nth-child(1) > webc-app-router:nth-child(1) > stencil-router:nth-child(1) > stencil-route-switch:nth-child(1) > stencil-route:nth-child(4) > webc-app-loader:nth-child(1) > page-template:nth-child(2) > h6:nth-child(2) > webc-container:nth-child(1) > div:nth-child(2) > webc-datatable:nth-child(1) > div:nth-child(2) > div:nth-child("+i+")").getText(), edit: i + 3 })
-    //         i = i + 5
-    //     }
-        
-    //     let prodValue=editValue
-      
-    //     console.log("product value is "+prodValue)
-    //      let rClick = "" 
-    //     fArry.map((key) => {
-    //         //{batchId:"QS5078",edit:68}
-    //         if (key["prodId"] == prodValue) { 
-    //             rClick = key["prodId"] 
-    //         }
-    
-    //     })
-    //     console.log(fArry)
-    //     let editRow=""
-    //     editRow=rClick
-    //     return editRow    
-    // }  
+
     
      serialNum10(){
         var serialNumberWithComma=''
@@ -367,8 +341,8 @@ class reuseFile{
      
  function randomDateExpired() {
 
-        let end = new Date("2015-05-28")
-        let start = new Date("2004-01-01")
+        let end = new Date("2021-05-28")
+        let start = new Date("2011-01-01")
         var date1 = new Date(+start + Math.random() * (end - start));
         finalD = date1
         console.log(finalD)

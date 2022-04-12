@@ -1,25 +1,22 @@
 const fs = require('fs')
 const bwipjs = require('bwip-js');
 const testData=require('../testdata/config.json')
+const moment = require('moment');
 
-class matrixGenerator{
- 
-
- generate2dMatrixImage(gtin, batchNumber, expiryDate, serialNumber){
         
-        const expdate = expiryDate.replace('-', '')
-        const expdated = expdate.replace('-', '')
-        var expiryDateR = expdated.slice(2);
+    exports.generate2dMatrixImage = function(gtin, batchNumber, expiryDate, serialNumber){
+
+        const expdate=moment( expiryDate, 'YYYY-MM-DD').format("YYMMDD");
         let barcode=''
         
         if(serialNumber==""){
-             barcode='(01)'+gtin+'(17)'+expiryDateR+'(10)'+batchNumber
-            console.log("barcode1"+barcode)
+             barcode='(01)'+gtin+'(17)'+expdate+'(10)'+batchNumber   
         } 
         else{
-            barcode='(01)'+gtin+'(17)'+expiryDateR+'(10)'+batchNumber +'(21)'+serialNumber
-           console.log("barcode2"+barcode)
+            barcode='(01)'+gtin+'(17)'+expdate+'(10)'+batchNumber +'(21)'+serialNumber
+           
         }  
+        console.log("barcode "+barcode)
         bwipjs.toBuffer({
             bcid:        'gs1datamatrix',  
             text:        barcode,    
@@ -32,7 +29,7 @@ class matrixGenerator{
         
             } else {
     
-                fs.writeFileSync(testData[4]['path'].MatrixImage, buff)
+                fs.writeFileSync(testData.path.matrixImage, buff)
                 console.log("image generated")
         
             }
@@ -43,44 +40,3 @@ class matrixGenerator{
     }
     
 
-    // generateNewImage(gtin, batchNumber, expiryDate, serialNumber){
-
-            
-    //     const expdate = expiryDate.replace('-', '')
-    //     const expdated = expdate.replace('-', '')
-    //     var expiryDateR = expdated.slice(2);
-
-    //     const barcode='(01)'+gtin+'(17)'+expiryDateR+'(10)'+batchNumber +'(21)'+serialNumber
-    //     console.log(barcode)    
-    //     bwipjs.toBuffer({
-    //         bcid:        'gs1datamatrix',  
-    //         text:        barcode,    
-    //         backgroundcolor: 'ffffff',
-    //         padding: 65 
-    //     }, function (err, buff) {
-    //         if (err) {
-        
-    //             console.log("error", err)
-        
-    //         } else {
-    
-    //             fs.writeFileSync('/Users/snehav/AppData/Local/Android/Sdk/emulator/resources/customNew.png', buff)
-    //             console.log("second image generated")
-        
-    //         }
-        
-    //     });
-    //     return barcode
-        
-    // }
-
-
-
-
-
-}
-
-module.exports = new matrixGenerator();
-    
-// })
-// })

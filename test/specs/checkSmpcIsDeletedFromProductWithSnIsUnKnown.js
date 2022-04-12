@@ -7,23 +7,31 @@ const testData=require('../testdata/config.json')
 const info=require('../utility/reusableFile')
 const wait=require('../utility/timeout')
 
-// const util = require('util');
-// const exec = util.promisify(require('child_process').exec);
+
 
 describe('Product - display ePI Flag', () => {
 
-    // after(async () => {
-        //console.log("Starting Mobile Execution");
-    //     console.log("Starting Mobile Execution");
-    //     const { stdout1, stderr1 } =await exec('cd ../epi-mobileapp-test-automation && npx kill-port 4723 && npm run editBatchRecallMsgTest');
-    //     console.log('stdout:', stdout1);
-    //     console.log('stderr:', stderr1);
-    //     })
+    if(!process.env.npm_config_browserOnly){
+        const util = require('util');
+        const exec = util.promisify(require('child_process').exec);
 
-    it('Product - display ePI Flag-Should check If SMPC is deleted from the product and the serial number on the batch is unknown', async() => {
+    after(async () => {
+        console.log("Starting Mobile Execution");
+        const { stdout1, stderr1 } =await exec('cd ../epi-mobileapp-test-automation && npm run test');
+        console.log('stdout:', stdout1);
+        console.log('stderr:', stderr1);
+        })
+        console.log("Running test suite in incremental mode and browser tests only")
+    } else {
+
+        console.log("different flag")
+
+    }
+
+    it('ProductDisplayEpiFlag_6_3-Should check If SMPC is deleted from the product and the serial number on the batch is unknown', async() => {
         
         allureReporter.startStep("Check If SMPC is deleted from the product and the serial number on the batch is unknown")
-        allureReporter.addTestId('Product - display ePI Flag')
+        allureReporter.addTestId('ProductDisplayEpiFlag_6_3')
 
         await products.clickProductFromSideNav()
         await wait.setTimeoutwait(2);
@@ -58,7 +66,7 @@ describe('Product - display ePI Flag', () => {
         await browser.execute('document.querySelector("div:nth-child(' + await info.editBatchRow(editValue) + ') button:nth-child(1)").click()')
         await wait.setTimeoutwait(6);
         //
-        await batches.selectUpdateValidSerialFromDropdown(testData[2]['newBatchDetails'].updateValid)
+        await batches.selectUpdateValidSerialFromDropdown(testData.newBatchDetails.updateValid)
         await wait.setTimeoutwait(5);
 
          //set serial number
@@ -75,7 +83,7 @@ describe('Product - display ePI Flag', () => {
         await wait.setTimeoutwait(2);
         
 
-        await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  unKnownSerialNumber,info.getBrandName(), info.getBatchRecall(),"","", info.getBatchRecallMsg(),info.getEpiDisplayed() )
+        data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  unKnownSerialNumber,info.getBrandName(), info.getBatchRecall(),"","", info.getBatchRecallMsg(),info.getEpiDisplayed() )
         await wait.setTimeoutwait(12);
 
         matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), unKnownSerialNumber)

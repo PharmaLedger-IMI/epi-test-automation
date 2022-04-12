@@ -22,8 +22,12 @@ $ npm run test
 ```
 Run for existing product and existing batch or new batch
 ```sh
-$ npm run test -- incrementalTest=true 
+$ npm run test --incremental
 ```
+Run for existing product and existing batch in browser
+```sh
+$ npm run test --incremental --browserOnly
+``` 
 Created config.json file
 
 ### Step 3: Generate test report

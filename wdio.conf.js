@@ -24,16 +24,16 @@ exports.config = {
     specs: [
         [
         //'./test/specs/**/*.js',
-        //'test/specs/test.js',
-         //'test/specs/landingPage.js',
+       
 
-             //'test/specs/gtinPage.js',
-            'test/specs/loginCredentials.js',
-            //'test/specs/createProduct.js',
-            // 'test/specs/createBatch.js',
+        //       'test/specs/gtinPage.js',
+        //    'test/specs/loginCredentials.js',
+           
+        //      'test/specs/createProduct.js',
+        //      'test/specs/createBatch.js',
 
-            // 'test/specs/2_editBatchforRecallMsg.js',
-            //  'test/specs/3_editProductforToggle_ePIFlag.js',
+            //'test/specs/editBatchforRecallMsg.js',
+            // 'test/specs/editProductforToggle_ePIFlag.js',
 
             // 'test/specs/enableSerialNumberCheckWithValidMatrix.js',
             // 'test/specs/enableSerialNumberCheckWithInValidMatrix.js',
@@ -41,11 +41,11 @@ exports.config = {
            // 'test/specs/disableSerialNumberCheckWithOutSerialNumber.js',
             
             // 'test/specs/enableExpiryDateCheckWithValidMatrix.js',
-            // 'test/specs/enableExpiryDateCheckWithInValidMatrix.js'.
+            // 'test/specs/enableExpiryDateCheckWithInValidMatrix.js',
             // 'test/specs/disableExpiryDateCheckWithInValidDate.js',
 
             
-             'test/specs/batchRecallForSerializedWithSN.js',
+            // 'test/specs/batchRecallForSerializedWithSN.js',
             // 'test/specs/batchRecallForSerializedUndoRecallFlag.js',
             // 'test/specs/batchRecallForNonSerializedWithoutSN.js',
             // 'test/specs/batchRecallForNonSerializedUndoRecallFlag.js',
@@ -56,21 +56,21 @@ exports.config = {
             // 'test/specs/createBatchWithBatchMsgAndRecall&Msg.js',
 
             //'test/specs/createBatchWithValidSnExpiryDateRecallMsg.js',
-            //'test/specs/scanExpiredDate.js',
-            //'test/specs/scanExpiredDateAndSerialNUmber.js',
+            //'test/specs/scanExpiredDateInBatch.js',
+            //'test/specs/scanExpiredDateAndInvalidSerialNumberInBatch.js',
 
             // 'test/specs/createBatchWithXExpiryDate.js',
-            // 'test/specs/changeDayOnMatrixY.js',
-            //'test/specs/changeMonthOnMatrixY.js',
-            //'test/specs/changeYearOnMatrixY.js',
+             'test/specs/changeDayOnDateBatchMatrixY.js',
+            //'test/specs/changeMonthOnDateBatchMatrixY.js',
+            //'test/specs/changeYearOnDateBatchMatrixY.js',
 
             //'test/specs/createBatchWithMonthYearExpiryDate.js',
-            //'test/specs/disableDaySelectionIncorrectAndExpiredDate.js',
-            //'test/specs/disableDaySelectionIncorrectAndEnableExpiredDate.js',
-            //'test/specs/disableDaySelectionExpiredDateAndEnableIncorrect.js',
-            //'test/specs/enableDaySelectionAndDisableIncorrectExpiredDate.js',
-            //'test/specs/enableDaySelectionIncorrectAndDisableExpiredDate.js',
-            //'test/specs/enableDaySelectionExpiredDateAndDisableIncorrect.js',
+            //'test/specs/disableDaySelectionIncorrectAndExpiredDateFlag.js',
+            //'test/specs/disableDaySelectionIncorrectAndEnableExpiredDateFlag.js',
+            //'test/specs/disableDaySelectionExpiredDateAndEnableIncorrectFlag.js',
+            //'test/specs/enableDaySelectionAndDisableIncorrectExpiredDateFlag.js',
+            //'test/specs/enableDaySelectionIncorrectAndDisableExpiredDateFlag.js',
+            //'test/specs/enableDaySelectionExpiredDateAndDisableIncorrectFlag.js',
 
             //'test/specs/validSerialNumber.js',
             //'test/specs/clearValidSerialNumber.js',
@@ -81,75 +81,81 @@ exports.config = {
             //'test/specs/createBatchWithValidRecalledDecommissioned.js',
             //'test/specs/scanWithRecalledSerialNumber.js',
             // 'test/specs/scanWithDecommissionedSerialNumberjs',
-            // 'test/specs/upload10InRecalledSerialNumber.js',
-            // 'test/specs/upload10InDecommissionedSerialNumber.js',
+            // 'test/specs/remove10SnInValidUpload10InRecalledSerialNumber.js',
+            // 'test/specs/remove10SnInValidUpload10InDecommissionedSerialNumber.js',
             // 'test/specs/upload50InValidSerialNumber.js',
             // 'test/specs/updateBatchWithoutSerialNumber.js',
             //  'test/specs/updateBatchWithSerialNumber.js',
-            // 'test/specs/updateBatchToResetSerialNUmber.js',
+            // 'test/specs/updateBatchToResetSerialNumber.js',
             // 'test/specs/updateBatchWithDecommissioned&RecalledSerialNumber.js',
-            // 'test/specs/updateBatchWithNoDecommissioned&RecalledSerialNumber.js
+            // 'test/specs/updateBatchWithNoDecommissioned&RecalledSerialNumber.js,
 
             // 'test/specs/createBatchWithoutanyFile.js',
             // 'test/specs/uploadNewVersionOfEpiInProduct.js',
             //  'test/specs/createBatchWithUploadLeaflet.js',
-            // 'test/specs/versionOfEpiNotReplaced.js',
+             //'test/specs/versionOfEpiNotReplaced.js',
             // 'test/specs/createProductWithUploadLeaflet&SMPC.js',
             //  'test/specs/updateProductWithNewLeaflet.js',
             // 'test/specs/createBatchWithUploadLeaflet&SMPC.js',
             //  'test/specs/deleteLeaflet&SMPCInBatch.js',
-            // 'test/specs/scanPreviousBatch.js'
+            // 'test/specs/scanPreviousBatch.js',
             
 
-            // 'test/specs/gtinPage.js',
-            //'test/specs/createAnotherProduct.js',
-            //'test/specs/checkBatchIsNotRecalled.js',
-            //'test/specs/checkBatchIsRecalled.js',
+            
+            //'test/specs/checkBatchRecallInProduct&NotRecalledInBatch.js',
+            //'test/specs/checkBatchIsRecalledInProduct&Batch.js',
             //'test/specs/checkSmpcDeletedFromProductWithRecalledBatch.js',
-            // 'test/specs/unCheckBatchIsRecalled.js',
-            //'test/specs/unCheckBatchIsNotRecalled.js'
+            // 'test/specs/unCheckBatchRecallInProduct&RecalledInBatch.js',
+            //'test/specs/unCheckBatchRecallInProduct&Batch.js',
             //'test/specs/unCheckSmpcDeletedFromProductWithRecalledBatch.js',
 
-            // 'test/specs/checkExpirationDateWithCorrectExpiryDate.js',
-            // 'test/specs/checkExpirationDateWithInCorrectExpiryDate.js',
+            // 'test/specs/checkExpirationDateInProduct&BatchWithCorrectExpiryDate.js',
+            // 'test/specs/checkInCorrectExpiryDateInProduct&Batch.js',
             // 'test/specs/checkSmpcDeletedFromProductWithIncorrectExpiryDate.js',
-            // 'test/specs/unCheckExpirationDateWithInCorrectExpiryDate.js',
-            // 'test/specs/unCheckExpirationDateWithCorrectExpiryDate.js',
+            // 'test/specs/unCheckInCorrectExpiryDateInProduct&Batch.js',
+            // 'test/specs/unCheckExpirationDateInProduct&BatchWithCorrectExpiryDate.js',
 
-            // 'test/specs/checkBatchIsExpired.js'
-            // 'test/specs/checkBatchIsNotExpired.js'
+            // 'test/specs/checkBatchIsExpiredInProduct&Batch.js',
+            // 'test/specs/checkBatchIsExpiredInProduct&NotExpiredInBatch.js',
             // 'test/specs/checkSmpcDeletedFromProductWithExpiredBatch.js',
-            // 'test/specs/unCheckBatchIsExpired.js'
-            // 'test/specs/unCheckBatchIsNotExpired.js'
+            // 'test/specs/unCheckBatchIsExpiredInProduct&ExpiredInBatch.js',
+            // 'test/specs/unCheckBatchIsExpiredInProduct&NotExpiredInBatch.js',
 
-            // 'test/specs/checkSnIsRecalled.js'
-            // 'test/specs/checkSnIsNotRecalled.js'
+            // 'test/specs/checkSnRecallInProduct&Batch.js',
+            // 'test/specs/checkSnRecallInProduct&NotRecalledInBatch.js',
             // 'test/specs/checkSmpcIsDeletedFromProductWithSnRecalled.js',
-            // 'test/specs/unCheckSnIsRecalled.js'
-            // 'test/specs/unCheckSnIsNotRecalled.js'
+            // 'test/specs/unCheckSnRecallInProduct&UpdateSnInBatch.js',
+            // 'test/specs/unCheckSnRecallInProduct&NotRecalledInBatch.js',
 
-            // 'test/specs/checkSnIsDecommissioned.js'
-            // 'test/specs/checkSnIsNotDecommissioned.js'
+            // 'test/specs/checkSnDecommissionedInProduct&Batch.js',
+            // 'test/specs/checkSnDecommissionedInProduct&NotInBatch.js',
             // 'test/specs/checkSmpcIsDeletedFromProductWithSnDecommissioned.js',
-            // 'test/specs/unCheckSnIsDecommissioned.js'
-            // 'test/specs/unCheckSnIsNotDecommissioned.js'
+            // 'test/specs/unCheckSnDecommissionedInProduct&DecommissionedInBatch.js',
+            // 'test/specs/unCheckSnDecommissionedInProduct&NotDecommissionedInBatch.js',
 
-            // 'test/specs/checkSnIsUnKnown.js',
-            // 'test/specs/checkSnIsKnown.js',
+            // 'test/specs/checkSnIsUnKnownInProduct&Batch.js',
+            // 'test/specs/checkSnIsUnKnownInProduct&KnownInBatch.js',
             // 'test/specs/checkSmpcIsDeletedFromProductWithSnIsUnKnown.js',
-            // 'test/specs/unCheckSnIsUnKnown.js',
-            // 'test/specs/unCheckSnIsKnown.js',
+            // 'test/specs/unCheckSnIsUnKnownInProduct&Batch.js',
+            // 'test/specs/unCheckSnIsUnKnownInProduct&KnownInBatch.js',
 
-            // 'test/specs/checkBatchIsUnKnown.js',
-            // 'test/specs/checkBatchIsKnown.js',
+            // 'test/specs/checkBatchIsUnKnownInProductWithInvalidBatch.js',
+            // 'test/specs/checkBatchIsUnKnownInProductWithValidBatch.js',
             // 'test/specs/checkSmpcIsDeletedFromProductWithBatchIsUnKnown.js',
-            // 'test/specs/unCheckBatchIsUnKnown.js',
-            // 'test/specs/unCheckBatchIsKnown.js',
+            // 'test/specs/unCheckBatchIsUnKnownInProductWithInvalidBatch.js',
+            // 'test/specs/unCheckBatchIsUnKnownInProductWithValidBatch.js',
 
-            // 'test/specs/invalidSerialNumber&ExpiryDate.js',
-            // 'test/specs/checkUnknowBatchWithInvalidBatch&ExpiryDate.js'
-            // 'test/specs/invalidSerialNumberWithBatchRecalled.js'
-            //'test/specs/demiurgeLogin.js'
+            // 'test/specs/invalidSerialNumber&InvalidExpiryDate.js',
+            // 'test/specs/checkUnknowBatchWithInvalidBatch&InvalidExpiryDate.js',
+            // 'test/specs/invalidSerialNumberWithBatchRecalled.js',
+
+            //'test/specs/demiurgeAddAdmin.js',
+            //'test/specs/demiurgeAddEnterpriseWalletUser.js',
+
+            //'test/specs/productImport.js',
+            //'test/specs/removeInventedNameInProductJson.js',
+            //'test/specs/batchImport.js'
+
 
             
     ],
@@ -193,9 +199,10 @@ exports.config = {
         //
         browserName: 'chrome',
         // acceptInsecureCerts: true,
-        // 'goog:chromeOptions': {
-        //     args: ["--incognito"]
-        // }
+        'goog:chromeOptions': {
+            args: [ 'disable-infobars', 'disable-popup-blocking', 'disable-notifications' ]
+            //args: ["--incognito"]
+        }
         // If outputDir is provided WebdriverIO can capture driver session logs
         // it is possible to configure which logTypes to include/exclude.
         // excludeDriverLogs: ['*'], // pass '*' to exclude all driver session logs
@@ -246,6 +253,7 @@ exports.config = {
     // gets prepended directly.
     //baseUrl: 'https://epiqa.westeurope.cloudapp.azure.com/',
     baseUrl:'http://localhost:3000',
+   // baseUrl:'https://plsmap.westeurope.cloudapp.azure.com/',
     //
     // Default timeout for all waitFor* commands.
     waitforTimeout: 10000,

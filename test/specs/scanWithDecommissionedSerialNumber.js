@@ -8,24 +8,32 @@ const testData=require('../testdata/config.json')
 
 const allureReporter = require('@wdio/allure-reporter').default
 
-// const util = require('util');
-// const exec = util.promisify(require('child_process').exec);
 
 describe('Serial Number checks ', () => {
 
-    // after(async () => {
-        //console.log("Starting Mobile Execution");
-    //     const { stdout1, stderr1 } =await exec('cd ../epi-mobileapp-test-automation && npm run test');
-    //     console.log('stdout:', stdout1);
-    //     console.log('stderr:', stderr1);
-    //     })
+    if(!process.env.npm_config_browserOnly){
+        const util = require('util');
+        const exec = util.promisify(require('child_process').exec);
 
-    it('Serial Number Checks_7.3- should Create a batch and enable serial number verification and set valid serial numbers, recalled and decommissioned', async () => {
-    
+    after(async () => {
+        console.log("Starting Mobile Execution");
+        const { stdout1, stderr1 } =await exec('cd ../epi-mobileapp-test-automation && npm run test');
+        console.log('stdout:', stdout1);
+        console.log('stderr:', stderr1);
+        })
+        console.log("Running test suite in incremental mode and browser tests only")
+    } else {
+
+        console.log("different flag")
+
+    }
+
+    it('SerialNumberChecks_7_3- should Create a batch and enable serial number verification and set valid serial numbers, recalled and decommissioned', async () => {
+        allureReporter.addDescription('Create a new batch and verify enable serial number verification and scan with decommissioned serial numbers')    
         allureReporter.startStep('Create a batch and enable serial number verification and set valid serial numbers, recalled and decommissioned')
         allureReporter.startStep('Scan with decommissioned serial number')
 
-        allureReporter.addTestId('Serial Number Checks_7.3')
+        allureReporter.addTestId('SerialNumberChecks_7_3')
         await batches.Batch();
         await wait.setTimeoutwait(3);
         //edit above batch
@@ -35,7 +43,7 @@ describe('Serial Number checks ', () => {
         await wait.setTimeoutwait(8);
 
          //select decommisioned serial number
-        await batches.selectUpdateValidSerialFromDropdown(testData[2]['newBatchDetails'].UpdateDecommissioned)
+        await batches.selectUpdateValidSerialFromDropdown(testData.newBatchDetails.updateDecommissioned)
         await wait.setTimeoutwait(2);
         // //enable checkbox
         // await batches.enableResetAllDecommisionedSerialNumber()
@@ -44,23 +52,23 @@ describe('Serial Number checks ', () => {
         info.setSerialNumber(await batches.serialNum())
         await batches.enterSerialNumber(info.getSerialNumber())
         await wait.setTimeoutwait(2);
-        //Enter reason
-        await batches.selectLostReasonFromDropdown(testData[2]['newBatchDetails'].Lost)
+        //enter reason
+        await batches.selectLostReasonFromDropdown(testData.newBatchDetails.updateDecommissionedWithLostReason)
         await wait.setTimeoutwait(2);
         //accept serial number
         await batches.acceptSerialNumber()
         await wait.setTimeoutwait(2);
-
+ 
+        //generate expectation file 
+        data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), "","","", "" )
+        await wait.setTimeoutwait(12);
+       
+        //generate 2d matrix image
+        matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
+        await wait.setTimeoutwait(5);
         //update batch
         await batches.updateBatchForEdit()
         await wait.setTimeoutwait(10);
-
-        await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), "","","", "" )
-        await wait.setTimeoutwait(12);
-       
-       
-        matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
-        await wait.setTimeoutwait(5);
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");
         allureReporter.endStep("passed");

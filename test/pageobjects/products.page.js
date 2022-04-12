@@ -3,7 +3,7 @@
 
 
 const expectChai = require('chai').expect;
-// let prodName=''
+
 
 class productsPage {
 
@@ -158,8 +158,27 @@ class productsPage {
     get updateProductButton(){
         return $("//button[normalize-space()='Update Product']")
     }
+    get importButton(){
+        return $('button[data-tag="import"]')
+    }
+    get importFile(){
+        return $('//input[@type="file"]')
+    }
+    get importF(){
+        return $('//button[normalize-space()="Import"]')
+    }
+    get clickViewMessage(){
+        return $('webc-datatable[datasource="@failedDataSource"] button[class="btn btn-link p-0 col align-self-center text-left"]')
+    }
+    get clickInvalidFieldInfo(){
+        return $('psk-accordion-item[title="Invalid fields info"]')
+    }
+    get clickInvalidFieldInfoData(){
+        return $('//h6[normalize-space()="inventedName - Required field"]')
+    }
+    
    
-    get cancelbutton()
+    get cancelButton()
     {
         return $("//button[normalize-space()='Cancel']")
        
@@ -170,13 +189,7 @@ class productsPage {
     
 
 
-    // async switchframe(){
-       
-    //     const frame = await this.sFrame;
-
-    //    // await browser.switchToFrame(frame);
-        
-    // }
+    
     async clickProduct(){
        
         await this.openProduct.click();
@@ -375,7 +388,7 @@ class productsPage {
    }
     async Cancel(){
     
-        await this.cancelbutton.click();
+        await this.cancelButton.click();
     }
     async saveProduct(){
         await this.saveProductButton.click();
@@ -392,25 +405,42 @@ class productsPage {
         await this.updateProductButton.scrollIntoView()
         await this.updateProductButton.click()
     }
-
-    // async  setDateInPicker (date) {
-    //     //let expiryDate = "2029-05-28"
-
-    //     await browser.execute((date) => {
-    //         (function () {
-    //             let event = new Event('change');
-    //             let datePicker = document.querySelector("input[placeholder='dd/mm/yyyy']")
-    //             datePicker.value = date;
-    //             datePicker.dispatchEvent(event);
-    //         })();
-
-    //     }, date)
+    async clickImport(){
         
-    //  await  browser.pause(2000)
-    // }
-    // async clickViewEdit(){
-    //     await this.clickViewEditButton
-    // }
+        await this.importButton.click()
+
+        await browser.waitUntil(
+            async () => (await $('//label[normalize-space()="Select files"]').waitForEnabled()),
+            {
+                timeout: 5000,
+                timeoutMsg: 'import button is active'
+            }
+        );
+    }
+    async selectFile(file){
+        
+        await this.importFile.addValue(file)
+    }
+    async import(){
+        
+        await this.importF.click()
+    }
+    async viewMessage(){
+        
+        await this.clickViewMessage.click()
+    }
+    async invalidFieldInfo(){
+        
+        await this.clickInvalidFieldInfo.click()
+    }
+    async invalidFieldInfoData(){
+        
+        const requiredFields=await this.clickInvalidFieldInfoData.getValue()
+        console.log('required fields '+requiredFields)
+    }
+   
+
+    
         
 }
 

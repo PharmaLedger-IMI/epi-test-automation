@@ -1,55 +1,41 @@
-// const gtinPage = require('./gtinPage.js');
-//const products= require('../pageobjects/products.page');
-const batches= require('../pageobjects/batches.page.js');
-//const createbatch= require('../specs/createBatch.js');
 
+const batches= require('../pageobjects/batches.page.js');
 const matrix=require('../utility/2dMatrixPage')
 const data=require('../utility/expectationFile')
 const info=require('../utility/reusableFile')
 const wait=require('../utility/timeout')
 const testData=require('../testdata/config.json')
 const allureReporter = require('@wdio/allure-reporter').default
-// const util = require('util');
-// const exec = util.promisify(require('child_process').exec);
-//const path= require('path');
+
 
 describe('Batch Recall and Recall Message for Non-serialized batches ', () => {
-    // after(async () => {
-        //console.log("Starting Mobile Execution");
-    //     const { stdout1, stderr1 } =await exec('cd ../epi-mobileapp-test-automation && npm run test');
-    //     console.log('stdout:', stdout1);
-    //     console.log('stderr:', stderr1);
-    //     })
-    it('Batch recall for non-serialized_1-should verify Batch Recall and Recall Message for Non-serialized batches ', async () => {
-    
-        allureReporter.startStep('Create a batch for any product. Do not add any serial numners.  Set the batch to recall it and add a display message for the same.')
-       // allureReporter.startStep('Go back to the Batch on the Enterprise Wallet and undo the batch recall flag. ')
-        allureReporter.addTestId('Batch recall for non-serialized_1')
 
-        //enable batch is recalled in product
+    if(!process.env.npm_config_browserOnly){
+        const util = require('util');
+        const exec = util.promisify(require('child_process').exec);
+    after(async () => {
+        console.log("Starting Mobile Execution");
+        const { stdout1, stderr1 } =await exec('cd ../epi-mobileapp-test-automation && npm run batchRecallNonSerializedWithoutSnTest.js');
+        console.log('stdout:', stdout1);
+        console.log('stderr:', stderr1);
+        })
+        
+        console.log("Running test suite in incremental mode and browser tests only")
 
-    //     await products.clickProductFromSideNav()
+    } else {
 
-    //     await wait.setTimeoutwait(2);
-
-    //     console.log("prod to edit"+info.getProductId())
-    
-    //    // search the product codes
-    //     await products.searchProductCode(info.getProductId())
-    //     await wait.setTimeoutwait(3);
-    //     await browser.keys('Enter')
-    //     await wait.setTimeoutwait(4);
-    //     //view or edits
-    //     await browser.execute('document.querySelector("button[data-tag=\'edit-product\']").click()')
-    //     await wait.setTimeoutwait(5);
-
-    //     await products.enableBatchIsRecalled()
-    //     await wait.setTimeoutwait(3);
+        console.log("different flag")
+        
+        }
+    it('BatchRecallAndBatchMessage_10_1-should verify Batch Recall and Recall Message for Non-serialized batches ', async () => {
+        allureReporter.addDescription('Edit batch without serial number and check batch recall and display recall message')
+        allureReporter.startStep('Update batch by not adding any serial numners.  Set the batch to recall it and add a display message for the same.')
+        allureReporter.addTestId('BatchRecallAndBatchMessage_10_1')
 
 
         await batches.Batch();
+        //created for QA
         //await browser.execute('document.querySelector(`webc-app-menu-item:nth-child(4) stencil-route-link:nth-child(1) a:nth-child(1)`).click()')
-
         await wait.setTimeoutwait(8);
 
         let editValue = info.getbatchId()
@@ -57,9 +43,9 @@ describe('Batch Recall and Recall Message for Non-serialized batches ', () => {
         await browser.execute('document.querySelector("div:nth-child(' + await info.editBatchRow(editValue) + ') button:nth-child(1)").click()')       
         await wait.setTimeoutwait(2);
 
-        await batches.selectUpdateValidSerialFromDropdown(testData[2]['newBatchDetails'].updateValid)
+        await batches.selectUpdateValidSerialFromDropdown(testData.newBatchDetails.updateValid)
         await wait.setTimeoutwait(2);
-        //Without serial number
+        //without serial number
         await batches.enableResetAllValidSerialNumber()
         await wait.setTimeoutwait(2);
         
@@ -70,19 +56,19 @@ describe('Batch Recall and Recall Message for Non-serialized batches ', () => {
         await batches.enableCheckToRecallThisBatch()
         await wait.setTimeoutwait(2);
         //display recall msg
-        await batches.enterRecallMessage(testData[2]['newBatchDetails'].recallMsg)
+        await batches.enterRecallMessage(testData.newBatchDetails.recallMsg)
         await wait.setTimeoutwait(2);
 
-        //Generate expectation file
-        await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), "", info.getBrandName(), await batches.checkBatchRecall(), await batches.checkBatchMessage(), "", await batches.checkBatchRecallMessage())
+        //generate expectation file
+        data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), "", info.getBrandName(), await batches.checkBatchRecall(), await batches.checkBatchMessage(), "", await batches.checkBatchRecallMessage())
         await wait.setTimeoutwait(12);
-        //Generate 2d Matrix
+        //generate 2d matrix image
         matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),"" )
         await wait.setTimeoutwait(12);
         
         //update batch
         await batches.updateBatchForEdit()
-        await wait.setTimeoutwait(6);
+        await wait.setTimeoutwait(16);
 
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");

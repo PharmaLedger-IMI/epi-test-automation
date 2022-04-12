@@ -1,5 +1,4 @@
-// const gtinPage = require('./gtinPage.js');
-// const products= require('../pageobjects/products.page');
+
 const batches= require('../pageobjects/batches.page.js');
 const matrix=require('../utility/2dMatrixPage')
 const data=require('../utility/expectationFile')
@@ -14,12 +13,22 @@ const allureReporter = require('@wdio/allure-reporter').default
 
 describe('Expiry date Checks ', () => {
 
-    // after(async () => {
-        //console.log("Starting Mobile Execution");
-    //     const { stdout1, stderr1 } =await exec('cd ../epi-mobileapp-test-automation && npm run test');
-    //     console.log('stdout:', stdout1);
-    //     console.log('stderr:', stderr1);
-    //     })
+    if(!process.env.npm_config_browserOnly){
+        const util = require('util');
+        const exec = util.promisify(require('child_process').exec);
+
+    after(async () => {
+        console.log("Starting Mobile Execution");
+        const { stdout1, stderr1 } =await exec('cd ../epi-mobileapp-test-automation && npm run test');
+        console.log('stdout:', stdout1);
+        console.log('stderr:', stderr1);
+        })
+        console.log("Running test suite in incremental mode and browser tests only")
+    } else {
+
+        console.log("different flag")
+
+    }
 
     it('Expiry date Checks_C2- should  create a batch with X expiry date that has already passed… choose a date from the past  ', async () => {
     
@@ -31,7 +40,7 @@ describe('Expiry date Checks ', () => {
         await wait.setTimeoutwait(2);
         info.setBatchId(await batches.batchIdValue())
         await wait.setTimeoutwait(2);
-        await batches.siteName(testData[2]['newBatchDetails'].siteName);
+        await batches.siteName(testData.newBatchDetails.siteName);
         await wait.setTimeoutwait(2);
        
       
@@ -51,7 +60,7 @@ describe('Expiry date Checks ', () => {
         const selectBox = await browser.$('//psk-select[@class=\'default-select hydrated\']//select[@class=\'form-control\']'); 
         await selectBox.selectByAttribute('value', info.getProductId());
         await wait.setTimeoutwait(2);
-        await batches.videoSource(testData[2]['newBatchDetails'].videoSource)
+        await batches.videoSource(testData.newBatchDetails.videoSource)
         await wait.setTimeoutwait(2);
         info.setSerialNumber(await batches.serialNum())
         await wait.setTimeoutwait(2);

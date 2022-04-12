@@ -4,12 +4,6 @@ const info=require('../utility/reusableFile')
 const wait=require('../utility/timeout')
 //const allureReporter = require('@wdio/allure-reporter').default
 
-// let GTIN=""
-// class gtin{
-//   gt(){
-//     return GTIN
-// }
-// }
 describe('Gtin generator', () => {
    
     
@@ -39,4 +33,3 @@ describe('Gtin generator', () => {
     
 
 })
-//module.exports = new gtin();

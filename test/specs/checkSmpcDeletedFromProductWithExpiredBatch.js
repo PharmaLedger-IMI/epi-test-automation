@@ -7,24 +7,31 @@ const data=require('../utility/expectationFile')
 const info=require('../utility/reusableFile')
 const wait=require('../utility/timeout')
 
-// const util = require('util');
-// const exec = util.promisify(require('child_process').exec);
 
 describe('Product - display ePI Flag', () => {
 
-    // after(async () => {
-        //console.log("Starting Mobile Execution");
-    //     console.log("Starting Mobile Execution");
-    //     const { stdout1, stderr1 } =await exec('cd ../epi-mobileapp-test-automation && npx kill-port 4723 && npm run editBatchRecallMsgTest');
-    //     console.log('stdout:', stdout1);
-    //     console.log('stderr:', stderr1);
-    //     })
+    if(!process.env.npm_config_browserOnly){
+        const util = require('util');
+        const exec = util.promisify(require('child_process').exec);
 
-    it('Product - display ePI Flag-Should check If SMPC is deleted from the product and batch mentioned on barcode is expired', async() => {
+    after(async () => {
+        console.log("Starting Mobile Execution");
+        const { stdout1, stderr1 } =await exec('cd ../epi-mobileapp-test-automation && npm run test');
+        console.log('stdout:', stdout1);
+        console.log('stderr:', stderr1);
+        })
+        console.log("Running test suite in incremental mode and browser tests only")
+    } else {
+
+        console.log("different flag")
+
+    }
+
+    it('ProductDisplayEpiFlag_3_3-Should check If SMPC is deleted from the product and batch mentioned on barcode is expired', async() => {
         
         allureReporter.startStep("Check If SMPC is deleted from the product and batch mentioned on barcode is expired")
         
-        allureReporter.addTestId('Product - display ePI Flag')
+        allureReporter.addTestId('ProductDisplayEpiFlag_3_3')
 
         await products.clickProductFromSideNav()
         await wait.setTimeoutwait(2);
