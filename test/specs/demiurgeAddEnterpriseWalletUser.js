@@ -7,9 +7,9 @@ const wait=require('../utility/timeout');
 const allureReporter = require('@wdio/allure-reporter').default
 
 
-describe('Demiurge - Add Read and write user   for specific company', () => {
+describe('101_Demiurge - Add Read and write user   for specific company', () => {
 
-it('should open eneterprise wallet ', async() => {
+it('Browser - should open eneterprise wallet ', async() => {
     allureReporter.startStep('Open the ePI  URL')
     allureReporter.startStep('Navigate to the eneterprise Wallet and register the user')
     allureReporter.startStep('Go back and login with dev user and add member in write group')

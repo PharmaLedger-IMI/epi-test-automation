@@ -5,14 +5,15 @@ const matrix=require('../utility/2dMatrixPage')
 const data=require('../utility/expectationFile')
 const info=require('../utility/reusableFile')
 const wait=require('../utility/timeout')
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
 
 
 
-describe('Product - display ePI Flag', () => {
+describe('065_Edit product to uncheck batch is recalled and edit batch to uncheck batch recall', () => {
 
     if(!process.env.npm_config_browserOnly){
-        const util = require('util');
-        const exec = util.promisify(require('child_process').exec);
+        
 
     after(async () => {
         console.log("Starting Mobile Execution");
@@ -27,10 +28,35 @@ describe('Product - display ePI Flag', () => {
 
     }
 
-    it('ProductDisplayEpiFlag_1_5 -The same recalled batch is updated for not recalled now', async() => {
+    it('Browser - same recalled batch is updated for not recalled now', async() => {
         allureReporter.addDescription('Edit product and uncheck batch is recalled flag. Edit batch and check batch is not recalled ')
         allureReporter.startStep("Uncheck batch is not recalled")
         allureReporter.addTestId('ProductDisplayEpiFlag_1_5')
+
+        await products.clickProductFromSideNav()
+        await wait.setTimeoutwait(2);
+        console.log("prod to edit" + info.getProductId())
+       // search the product codes
+        await products.searchProductCode(info.getProductId())
+        await wait.setTimeoutwait(3);
+        await browser.keys('Enter')
+        await wait.setTimeoutwait(4);
+        //view or edits
+        await browser.execute('document.querySelector("button[data-tag=\'edit-product\']").click()')
+        await wait.setTimeoutwait(5);
+        
+        // //uncheck batch is recalled
+        // await products.enableBatchIsRecalled(); 
+        // await wait.setTimeoutwait(1);
+
+        info.setEpiDisplayed()
+        await wait.setTimeoutwait(1);
+
+        //update products
+        await products.updateProduct()
+        await wait.setTimeoutwait(8);
+
+
 
         //unchecked the batch is recalled in product level in above testcase  
 
@@ -44,6 +70,12 @@ describe('Product - display ePI Flag', () => {
          console.log("editValue is "+editValue)
          await browser.execute('document.querySelector("div:nth-child(' + await info.editBatchRow(editValue) + ') button:nth-child(1)").click()')       
          await wait.setTimeoutwait(6);
+
+         //clear recall message
+         await batches.clearRecallMessage()
+         await wait.setTimeoutwait(3);
+         info.setBatchRecallMsg(await batches.checkBatchRecallMessage())
+         await wait.setTimeoutwait(2);
  
         //uncheck batch recall
          await batches.enableCheckToRecallThisBatch()
@@ -52,12 +84,12 @@ describe('Product - display ePI Flag', () => {
          await wait.setTimeoutwait(2);
           
         //generate expectation file 
-        data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), info.getBatchRecall(),"","", info.getBatchRecallMsg() )
+        data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), info.getBatchRecall(),"","", info.getBatchRecallMsg(), info.getEpiDisplayed() )
         await wait.setTimeoutwait(12);
         //generate 2d matrix image
         matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
         await wait.setTimeoutwait(8);
-
+        //update batch
         await batches.updateBatchForEdit()
         await wait.setTimeoutwait(3);
        

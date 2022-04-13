@@ -7,14 +7,15 @@ const wait=require('../utility/timeout')
 const testData=require('../testdata/config.json')
 
 const allureReporter = require('@wdio/allure-reporter').default
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
 
 
 
-describe('Expiry date Checks ', () => {
+describe('040_Create a batch and enable serial number verification and set decommissioned serial numbers and reason code ', () => {
 
     if(!process.env.npm_config_browserOnly){
-        const util = require('util');
-        const exec = util.promisify(require('child_process').exec);
+        
 
     after(async () => {
         console.log("Starting Mobile Execution");
@@ -29,7 +30,7 @@ describe('Expiry date Checks ', () => {
 
     }
 
-    it('SerialNumberChecks_6- should Create a batch and enable serial number verification and set decommissioned serial numbers and reason code ', async () => {
+    it('Browser - should create a batch and enable serial number verification and set decommissioned serial numbers and reason code ', async () => {
         allureReporter.addDescription('Edit product and check decommissioned flag. Crete new batch and select decommissioned serial number and scan with decommissioned serial number')
         allureReporter.startStep('Create a batch and enable serial number verification and set decommissioned serial numbers and reason code')
         allureReporter.addTestId('SerialNumberChecks_6')

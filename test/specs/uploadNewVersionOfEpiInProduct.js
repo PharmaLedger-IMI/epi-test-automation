@@ -8,14 +8,13 @@ const wait=require('../utility/timeout')
 
 const allureReporter = require('@wdio/allure-reporter').default
 const path= require('path');
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
 
-
-describe('Update product information ', () => {
+describe('053_Edit product to upload a new version of the ePI ', () => {
 
     if(!process.env.npm_config_browserOnly){
-        const util = require('util');
-        const exec = util.promisify(require('child_process').exec);
-
+        
     after(async () => {
         console.log("Starting Mobile Execution");
         const { stdout1, stderr1 } =await exec('cd ../epi-mobileapp-test-automation && npm run test');
@@ -29,7 +28,7 @@ describe('Update product information ', () => {
 
     }
 
-    it('ProductInfoUpdate_1_2-should verify if the new ePI is displayed in product level  ', async () => {
+    it('Browser - should verify if the new ePI is displayed in product level  ', async () => {
         allureReporter.addDescription('Edit product and delete existing version and upload new version of epi ')
         allureReporter.startStep('Visit the Enterprise wallet and upload a new version of the ePI for the same product at the product level')
         allureReporter.startStep('Scan the batch')

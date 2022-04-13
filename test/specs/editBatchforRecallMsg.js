@@ -5,13 +5,13 @@ const data=require('../utility/expectationFile')
 const info=require('../utility/reusableFile')
 const wait=require('../utility/timeout')
 const testData=require('../testdata/config.json')
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
 
-describe('Edit batch', () => {
+describe('005_Edit batch to set recall message', () => {
 
     if(!process.env.npm_config_browserOnly){
-        const util = require('util');
-        const exec = util.promisify(require('child_process').exec);
-
+       
         after(async () => {
         console.log("Starting Mobile Execution");
         const { stdout1, stderr1 } =await exec('cd ../epi-mobileapp-test-automation && npx kill-port 4723 && npm run editBatchRecallMsgTest');
@@ -27,7 +27,7 @@ describe('Edit batch', () => {
         
         }
 
-    it('ProdAndBatchSetup_4-Should edit batch for recall message', async() => {
+    it('Browser - should edit batch for recall message', async() => {
         allureReporter.addDescription('Click on edit batch and enable checkbox for batch recall and enter recall message and update the batch.')
         allureReporter.startStep("Update any field on the batch and Save the changes")
         allureReporter.addTestId('ProdAndBatchSetup_4')

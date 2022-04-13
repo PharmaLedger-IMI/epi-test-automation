@@ -5,10 +5,10 @@ const allureReporter = require('@wdio/allure-reporter').default
 const wait=require('../utility/timeout')
 const path= require('path');
 
-describe('Import batch', () => {
+describe('106_Create a batch via import of Json', () => {
 
 
-    it('Create a batch via import of Json ', async() => { 
+    it('Browser - create a batch via import of Json ', async() => { 
         allureReporter.addTestId('ImportJson_1_3')
         allureReporter.addDescription('Create a batch via import of Json')
         allureReporter.startStep('1. Use the standard template Json', 

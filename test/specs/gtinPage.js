@@ -4,10 +4,10 @@ const info=require('../utility/reusableFile')
 const wait=require('../utility/timeout')
 //const allureReporter = require('@wdio/allure-reporter').default
 
-describe('Gtin generator', () => {
+describe('001_Generate gtin', () => {
    
     
-    it('should open the digitcalculator', async() => {
+    it('Browser - should generate gtin', async() => {
        
         
         await LoginPage.opensuburl();

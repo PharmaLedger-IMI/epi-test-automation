@@ -7,13 +7,13 @@ const wait=require('../utility/timeout')
 const testData=require('../testdata/config.json')
 
 const allureReporter = require('@wdio/allure-reporter').default
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
 
-
-describe('Serial Number checks ', () => {
+describe('036_Edit batch to reset serial number and scan with valid serial number ', () => {
 
     if(!process.env.npm_config_browserOnly){
-        const util = require('util');
-        const exec = util.promisify(require('child_process').exec);
+        
 
     after(async () => {
         console.log("Starting Mobile Execution");
@@ -28,8 +28,8 @@ describe('Serial Number checks ', () => {
 
     }
 
-    it('SerialNumberChecks_2- should clear the valid serial numbers in the above batch  ', async () => {
-        allureReporter.addDescription('Edit batch and reset serial number and scan with valid serial number')
+    it('Browser - should clear the valid serial numbers in the above batch  ', async () => {
+        allureReporter.addDescription('Edit batch to reset serial number and scan with valid serial number')
         allureReporter.startStep('In the batch created above - clear the valid serial numbers ')
         allureReporter.addTestId('SerialNumberChecks_2')
         

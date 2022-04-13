@@ -6,14 +6,14 @@ const data=require('../utility/expectationFile')
 //const testData=require('../testdata/config.json')
 const info=require('../utility/reusableFile')
 const wait=require('../utility/timeout')
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
 
 
-
-describe('Product - display ePI Flag', () => {
+describe('068_Edit product to check expiration date is incorrect and edit batch to have incorrect expiry date', () => {
 
     if(!process.env.npm_config_browserOnly){
-        const util = require('util');
-        const exec = util.promisify(require('child_process').exec);
+       
 
     after(async () => {
         console.log("Starting Mobile Execution");
@@ -28,7 +28,7 @@ describe('Product - display ePI Flag', () => {
 
     }
 
-    it('ProductDisplayEpiFlag_2_2-Should check Expiration Date is correct', async() => {
+    it('Browser - should check Expiration Date is correct', async() => {
         
         allureReporter.startStep("Check Expiration Date is correct")
         allureReporter.startStep("Scan the code with incorrect expiry date")
@@ -70,7 +70,7 @@ describe('Product - display ePI Flag', () => {
         // await wait.setTimeoutwait(6);
         
         const incorrectExpiryDate=info.randomDateExpired()
-        await data.generateExpectationFile(info.getProductId(), info.getbatchId(), incorrectExpiryDate,  info.getSerialNumber(),info.getBrandName(), info.getBatchRecall(),"","", info.getBatchRecallMsg(),info.getEpiDisplayed() )
+        data.generateExpectationFile(info.getProductId(), info.getbatchId(), incorrectExpiryDate,  info.getSerialNumber(),info.getBrandName(), info.getBatchRecall(),"","", info.getBatchRecallMsg(),info.getEpiDisplayed() )
         await wait.setTimeoutwait(12);  
        
         matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), incorrectExpiryDate, info.getSerialNumber())

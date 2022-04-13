@@ -6,8 +6,9 @@ const testData=require('../testdata/config.json')
 const wait=require('../utility/timeout');
 const allureReporter = require('@wdio/allure-reporter').default
 
-describe('Demiurge - Add administrator - for a specific company', () => {
-it('should open ePI landing page', async () => {
+
+describe('100_Demiurge - Add administrator - for a specific company', () => {
+it('Browser - should open ePI landing page', async () => {
 
     // allureReporter.addFeature('Landing Page');
     allureReporter.addSeverity('Critical');

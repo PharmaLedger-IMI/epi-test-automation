@@ -4,14 +4,14 @@ const matrix=require('../utility/2dMatrixPage')
 const data=require('../utility/expectationFile')
 const info=require('../utility/reusableFile')
 const wait=require('../utility/timeout')
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
 
 
-
-describe('Product - display ePI Flag', () => {
+describe('069_Edit product to check expiration date is incorrect and delete smpc. Pass incorrect expiry date in matrix', () => {
 
     if(!process.env.npm_config_browserOnly){
-        const util = require('util');
-        const exec = util.promisify(require('child_process').exec);
+       
 
     after(async () => {
         console.log("Starting Mobile Execution");
@@ -26,7 +26,7 @@ describe('Product - display ePI Flag', () => {
 
     }
 
-    it('ProductDisplayEpiFlag_2_3-If SMPC is deleted from the product with incorrect expiry date ', async() => {
+    it('Browser - if SMPC is deleted from the product with incorrect expiry date ', async() => {
         
         allureReporter.startStep("check If SMPC is deleted from the product with incorrect expiry date ")
         allureReporter.addTestId('ProductDisplayEpiFlag_2_3')
@@ -53,7 +53,7 @@ describe('Product - display ePI Flag', () => {
 
         const incorrectExpiryDate=info.randomDateExpired()
 
-        await data.generateExpectationFile(info.getProductId(), info.getbatchId(), incorrectExpiryDate,  info.getSerialNumber(),info.getBrandName(), info.getBatchRecall(),"","", info.getBatchRecallMsg(), info.getEpiDisplayed())
+        data.generateExpectationFile(info.getProductId(), info.getbatchId(), incorrectExpiryDate,  info.getSerialNumber(),info.getBrandName(), info.getBatchRecall(),"","", info.getBatchRecallMsg(), info.getEpiDisplayed())
         await wait.setTimeoutwait(12);
         matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), incorrectExpiryDate, info.getSerialNumber())
         await wait.setTimeoutwait(8);

@@ -4,15 +4,15 @@ const matrix=require('../utility/2dMatrixPage')
 const data=require('../utility/expectationFile')
 const info=require('../utility/reusableFile')
 const wait=require('../utility/timeout')
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
 
 
 
-
-describe('Leaflet updates on the product Batch specific version', () => {
+describe('059_Edit batch to delete ePI and SMPC file.', () => {
 
     if(!process.env.npm_config_browserOnly){
-        const util = require('util');
-        const exec = util.promisify(require('child_process').exec);
+       
 
     after(async () => {
         console.log("Starting Mobile Execution");
@@ -27,7 +27,7 @@ describe('Leaflet updates on the product Batch specific version', () => {
 
     }
 
-    it('ProductInfoUpdate_4_2-Should Delete the ePI and SMPC', async() => {
+    it('Browser - Should delete the ePI and SMPC', async() => {
         allureReporter.addDescription('Edit batch and delete ePI and SMPC file. Update valid serial number and scan batch')
         allureReporter.startStep("Delete the ePI and SMPC at Batch 2 - scan the product - you should be able to see the product level leaflet and same when you scan Batch 1 ")
         allureReporter.addTestId('ProductInfoUpdate_4_2')

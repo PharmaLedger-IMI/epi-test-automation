@@ -7,14 +7,15 @@ const wait=require('../utility/timeout')
 const testData=require('../testdata/config.json')
 
 const allureReporter = require('@wdio/allure-reporter').default
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
 
 
 
-describe('Non Serialized batch tests ', () => {
+describe('044_Edit batch to remove 10 serial numbers from valid and upload 10 in recalled serial numbers ', () => {
 
     if(!process.env.npm_config_browserOnly){
-        const util = require('util');
-        const exec = util.promisify(require('child_process').exec);
+        
 
     after(async () => {
         console.log("Starting Mobile Execution");
@@ -29,7 +30,7 @@ describe('Non Serialized batch tests ', () => {
 
     }
 
-    it('SerialNumberChecks_8- should remove 10 serial numbers from valid and upload 10 in recalled serial numbers ', async () => {
+    it('Browser - should remove 10 serial numbers from valid and upload 10 in recalled serial numbers ', async () => {
         allureReporter.addDescription('Edit batch by resetting valid serial number and uploading 10 in recalled serial number')
         allureReporter.startStep('Remove 10 serial numbers from valid and upload 10 in recalled serial numbers in batch')
         allureReporter.addTestId('SerialNumberChecks_8')

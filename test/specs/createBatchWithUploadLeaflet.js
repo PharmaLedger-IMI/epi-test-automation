@@ -7,12 +7,13 @@ const wait=require('../utility/timeout')
 const testData=require('../testdata/config.json')
 const allureReporter = require('@wdio/allure-reporter').default
 const path= require('path');
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
 
-describe('Update product information -Batch specific', () => {
+describe('054_Update product information -Batch specific', () => {
 
     if(!process.env.npm_config_browserOnly){
-        const util = require('util');
-        const exec = util.promisify(require('child_process').exec);
+        
 
     after(async () => {
         console.log("Starting Mobile Execution");
@@ -27,7 +28,7 @@ describe('Update product information -Batch specific', () => {
 
     }
 
-    it('ProductInfoUpdate_2_1-should verify that the batch specific version is displayed correctly.', async () => {
+    it('Browser - should verify that the batch specific version is displayed correctly.', async () => {
         allureReporter.addDescription('Create a new batch and upload new leaflet  ')
         allureReporter.startStep('Create a new batch  for the same product above and add a new leaflet at the batch level.')
         allureReporter.addTestId('ProductInfoUpdate_2_1')

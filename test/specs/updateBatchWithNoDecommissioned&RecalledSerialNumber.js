@@ -7,13 +7,13 @@ const wait=require('../utility/timeout')
 const testData=require('../testdata/config.json')
 
 const allureReporter = require('@wdio/allure-reporter').default
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
 
-
-describe('Non Serialized batch tests ', () => {
+describe('051_Edit batch to update without decommissioned and recalled serial number', () => {
 
     if(!process.env.npm_config_browserOnly){
-        const util = require('util');
-        const exec = util.promisify(require('child_process').exec);
+        
 
     after(async () => {
         console.log("Starting Mobile Execution");
@@ -28,7 +28,7 @@ describe('Non Serialized batch tests ', () => {
 
     }
 
-    it('SerialNumberChecks_11_5- should Update the batch to have no decomissioned/ recalled serial numbers ', async () => {
+    it('Browser - should Update the batch to have no decomissioned/ recalled serial numbers ', async () => {
         allureReporter.addDescription('Edit batch and update with no decomissioned/ recalled serial numbers')
         allureReporter.startStep('Update the batch to have no decomissioned/ recalled serial numbers')
         allureReporter.addTestId('SerialNumberChecks_11_5')

@@ -4,11 +4,11 @@ const allureReporter = require('@wdio/allure-reporter').default
 const wait=require('../utility/timeout')
 const path= require('path');
 
-describe('Import product', () => {
+describe('102_Import product', () => {
 
     
 
-    it('Create a product via import of Json ', async() => { 
+    it('Browser - create a product via import of Json ', async() => { 
         allureReporter.addTestId('ImportJson_1_1')
         allureReporter.addDescription('Create a product via import of Json  ')
         allureReporter.startStep('1. Use the standard template Json', 

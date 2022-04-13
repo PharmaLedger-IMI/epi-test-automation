@@ -7,13 +7,14 @@ const wait=require('../utility/timeout')
 const testData=require('../testdata/config.json')
 
 const allureReporter = require('@wdio/allure-reporter').default
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
 
 
-describe('Basic Auth feature test ', () => {
+describe('008_Edit batch and enable serial number check with invalid SN ', () => {
 
     if(!process.env.npm_config_browserOnly){
-        const util = require('util');
-        const exec = util.promisify(require('child_process').exec);
+        
 
 
     after(async () => {
@@ -30,7 +31,7 @@ describe('Basic Auth feature test ', () => {
         
         }  
 
-    it('BasicAuthFeatureTest_1_2- should Verify that the serial number check is enabled by default ', async () => {
+    it('Browser - should verify that the serial number check is enabled by default ', async () => {
         allureReporter.addDescription('Edit batch and verify enable serial number verification and update valid serial number. Pass invalid serial number in matrix')
         allureReporter.startStep('Verify that the serial number check is enabled by default in batch')
         allureReporter.startStep('Scan an invalid data matrix code to verify that the serial number check fails.')

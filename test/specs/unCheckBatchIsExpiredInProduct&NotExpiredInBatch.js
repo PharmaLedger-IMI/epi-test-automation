@@ -6,14 +6,14 @@ const data=require('../utility/expectationFile')
 //const testData=require('../testdata/config.json')
 const info=require('../utility/reusableFile')
 const wait=require('../utility/timeout')
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
 
 
-
-describe('Product - display ePI Flag', () => {
+describe('076_Edit product to uncheck batch is expired and edit batch to have valid batch', () => {
 
     if(!process.env.npm_config_browserOnly){
-        const util = require('util');
-        const exec = util.promisify(require('child_process').exec);
+        
 
     after(async () => {
         console.log("Starting Mobile Execution");
@@ -28,7 +28,7 @@ describe('Product - display ePI Flag', () => {
 
     }
 
-    it('ProductDisplayEpiFlag_3_5-Should check Batch is expired', async() => {
+    it('Browser - should check Batch is expired', async() => {
         
         allureReporter.startStep("Check Batch is expired")
         allureReporter.addTestId('ProductDisplayEpiFlag_3_5')

@@ -6,13 +6,13 @@ const data=require('../utility/expectationFile')
 const testData=require('../testdata/config.json')
 const info=require('../utility/reusableFile')
 const wait=require('../utility/timeout')
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
 
-
-describe('Product - display ePI Flag', () => {
+describe('081_Edit product to uncheck SN is in recall and edit batch to reset recalled serial number', () => {
 
     if(!process.env.npm_config_browserOnly){
-        const util = require('util');
-        const exec = util.promisify(require('child_process').exec);
+        
 
     after(async () => {
         console.log("Starting Mobile Execution");
@@ -27,7 +27,7 @@ describe('Product - display ePI Flag', () => {
 
     }
 
-    it('ProductDisplayEpiFlag_4_5-Should uncheck Serial number is not recalled', async() => {
+    it('Browser - should uncheck Serial number is not recalled', async() => {
         
         allureReporter.startStep("uncheck Serial number is not recalled")
         allureReporter.addTestId('ProductDisplayEpiFlag_4_5')
@@ -72,7 +72,7 @@ describe('Product - display ePI Flag', () => {
         await batches.acceptSerialNumber()
         await wait.setTimeoutwait(1);
 
-        await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  "",info.getBrandName(), info.getBatchRecall(),"","", info.getBatchRecallMsg(),info.getEpiDisplayed() )
+        data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  "",info.getBrandName(), info.getBatchRecall(),"","", info.getBatchRecallMsg(),info.getEpiDisplayed() )
         await wait.setTimeoutwait(12);
 
         matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),"")

@@ -6,14 +6,14 @@ const data=require('../utility/expectationFile')
 const testData=require('../testdata/config.json')
 const info=require('../utility/reusableFile')
 const wait=require('../utility/timeout')
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
 
 
-
-describe('Product - display ePI Flag', () => {
+describe('079_Edit product to check SN is recalled and delete smpc. Pass recalled SN in matrix', () => {
 
     if(!process.env.npm_config_browserOnly){
-        const util = require('util');
-        const exec = util.promisify(require('child_process').exec);
+        
 
     after(async () => {
         console.log("Starting Mobile Execution");
@@ -28,7 +28,7 @@ describe('Product - display ePI Flag', () => {
 
     }
 
-    it('ProductDisplayEpiFlag_4_3-Should check If SMPC is deleted from the product and the serial number on the barcode is recalled', async() => {
+    it('Browser - should check If SMPC is deleted from the product and the serial number on the barcode is recalled', async() => {
         
         allureReporter.startStep("Check If SMPC is deleted from the product and the serial number on the barcode is recalled")
         allureReporter.addTestId('ProductDisplayEpiFlag_4_3')

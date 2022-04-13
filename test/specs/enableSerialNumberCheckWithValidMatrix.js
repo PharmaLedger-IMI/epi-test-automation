@@ -7,16 +7,15 @@ const wait=require('../utility/timeout')
 const testData=require('../testdata/config.json')
 
 const allureReporter = require('@wdio/allure-reporter').default
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
 
 
 
-describe('Basic Auth feature test ', () => {
+describe('007_Edit batch and enable serial number check with valid SN', () => {
 
     if(!process.env.npm_config_browserOnly){
-        const util = require('util');
-        const exec = util.promisify(require('child_process').exec);
-
-
+        
     after(async () => {
         console.log("Starting Mobile Execution");
         const { stdout1, stderr1 } =await exec('cd ../epi-mobileapp-test-automation && npm run enableSnCheckSnIsValidTest');
@@ -32,7 +31,7 @@ describe('Basic Auth feature test ', () => {
         
         }
 
-    it('BasicAuthFeatureTest_1_1- should Verify that the serial number check is enabled by default ', async () => {
+    it('Browser - should verify that the serial number check is enabled by default ', async () => {
         allureReporter.addDescription('Click on edit batch and clear recall message and uncheck batch recall. Verify enable serial number verification and update valid serial number.')
         allureReporter.startStep('Verify that the serial number check is enabled by default in batch')
         allureReporter.startStep('Scan the valid data matrix code and verify that the serial number is valid.')

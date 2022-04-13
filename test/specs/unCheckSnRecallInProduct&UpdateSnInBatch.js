@@ -6,14 +6,14 @@ const data=require('../utility/expectationFile')
 const testData=require('../testdata/config.json')
 const info=require('../utility/reusableFile')
 const wait=require('../utility/timeout')
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
 
 
-
-describe('Product - display ePI Flag', () => {
+describe('080_Edit product to uncheck SN is in recall and edit batch to update valid SN', () => {
 
     if(!process.env.npm_config_browserOnly){
-        const util = require('util');
-        const exec = util.promisify(require('child_process').exec);
+        
 
     after(async () => {
         console.log("Starting Mobile Execution");
@@ -28,7 +28,7 @@ describe('Product - display ePI Flag', () => {
 
     }
 
-    it('ProductDisplayEpiFlag_4_4-Should uncheck Serial number on the batch is recalled', async() => {
+    it('Browser - should uncheck Serial number on the batch is recalled', async() => {
         
         allureReporter.startStep("uncheck Serial number on the batch is recalled")
         allureReporter.addTestId('ProductDisplayEpiFlag_4_4')

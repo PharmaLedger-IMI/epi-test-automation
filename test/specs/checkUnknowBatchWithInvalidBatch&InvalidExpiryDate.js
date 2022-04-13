@@ -7,15 +7,15 @@ const info=require('../utility/reusableFile')
 const allureReporter = require('@wdio/allure-reporter').default
 const matrix=require('../utility/2dMatrixPage')
 const data=require('../utility/expectationFile');
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
 
 
-
-describe('Other tests', () => {
+describe('098_Edit product to check batch is unknown and pass invalid batch and invalid expiry date', () => {
    
    
   if (!process.env.npm_config_browserOnly) {
-    const util = require('util');
-    const exec = util.promisify(require('child_process').exec);
+    
 
     after(async () => {
       console.log("Starting Mobile Execution");
@@ -30,8 +30,8 @@ describe('Other tests', () => {
 
   }
 
-  it('OtherTests_2-Should verify expiry date and invalid Batch with valid GTIN Only ', async() => {
-    allureReporter.addDescription("Edit product and verify epi is displayed. Edit batch and pass unknow batch and expiry date in matrix")
+  it('Browser - should verify expiry date and invalid Batch with valid GTIN Only ', async() => {
+    allureReporter.addDescription("Edit product and verify epi is displayed. Edit batch and pass unknow batch and invalid expiry date in matrix")
     allureReporter.startStep("Display ePI when Batch# is unknown flag is checked, ePI should be displayed with message Batch number in barcode could not be found ")
     allureReporter.addTestId('OtherTests_2') 
 

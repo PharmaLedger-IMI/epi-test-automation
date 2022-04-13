@@ -6,14 +6,15 @@ const data=require('../utility/expectationFile')
 //const testData=require('../testdata/config.json')
 const info=require('../utility/reusableFile')
 const wait=require('../utility/timeout')
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
 
 
 
-describe('Edit batch', () => {
+describe('071_Edit product to uncheck expiration date in incorrect and edit batch to have valid expiry date', () => {
 
     if(!process.env.npm_config_browserOnly){
-        const util = require('util');
-        const exec = util.promisify(require('child_process').exec);
+        
 
     after(async () => {
         console.log("Starting Mobile Execution");
@@ -28,7 +29,7 @@ describe('Edit batch', () => {
 
     }
 
-    it('ProductDisplayEpiFlag_2_5-Should check Expiration Date is incorrect', async() => {
+    it('Browser - should check Expiration Date is incorrect', async() => {
         
         allureReporter.startStep("Uncheck Expiration Date is incorrect")
         allureReporter.startStep("Scan the code with correct expiry date ")

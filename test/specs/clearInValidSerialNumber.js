@@ -4,17 +4,16 @@ const matrix=require('../utility/2dMatrixPage')
 const data=require('../utility/expectationFile')
 const info=require('../utility/reusableFile')
 const wait=require('../utility/timeout')
-
-
 const allureReporter = require('@wdio/allure-reporter').default
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
 
 
 
-describe('Serial Number checks ', () => {
+describe('037_Edit batch to reset serial number and scan with invalid serial number ', () => {
 
     if(!process.env.npm_config_browserOnly){
-        const util = require('util');
-        const exec = util.promisify(require('child_process').exec);
+        
 
     after(async () => {
         console.log("Starting Mobile Execution");
@@ -29,7 +28,7 @@ describe('Serial Number checks ', () => {
 
     }
 
-    it('SerialNumberChecks_3- should clear the invalid serial number in the above batch and Scan the 2D matrix with an invalid serial number   ', async () => {
+    it('Browser - should clear the invalid serial number in the above batch and Scan the 2D matrix with an invalid serial number   ', async () => {
         allureReporter.addDescription('Edit batch and reset serial number and scan with invalid serial number')
         allureReporter.startStep('should clear the invalid serial number in the above batch and Scan the 2D matrix with an invalid serial number ')
         allureReporter.addTestId('SerialNumberChecks_3')

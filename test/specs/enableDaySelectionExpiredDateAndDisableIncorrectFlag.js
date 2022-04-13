@@ -7,15 +7,16 @@ const wait=require('../utility/timeout')
 const testData=require('../testdata/config.json')
 
 const allureReporter = require('@wdio/allure-reporter').default
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
 
 
 
-describe('Expiry date Checks ', () => {
+describe('034_Create a batch with MonthYear as expiry date and enable day selection, disable incorrect and enable expired date flag', () => {
 
     
     if(!process.env.npm_config_browserOnly){
-        const util = require('util');
-        const exec = util.promisify(require('child_process').exec);
+        
 
     after(async () => {
         console.log("Starting Mobile Execution");
@@ -30,7 +31,7 @@ describe('Expiry date Checks ', () => {
         console.log("different flag")
         } 
 
-    it('ExpiryDateChecks_3_7- should create a batch and enable day selection, disable incorrect and enable expired date ', async () => {
+    it('Browser - should create a batch and enable day selection, disable incorrect and enable expired date ', async () => {
         allureReporter.addDescription("create new batch and enable day selection, disable incorrect and enable expired date")
         allureReporter.startStep('create a batch and enable day selection, disable incorrect and enable expired date')
         allureReporter.addTestId('ExpiryDateChecks_3_7')

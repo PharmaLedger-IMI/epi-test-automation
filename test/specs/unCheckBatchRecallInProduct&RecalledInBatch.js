@@ -5,13 +5,14 @@ const matrix=require('../utility/2dMatrixPage')
 const data=require('../utility/expectationFile')
 const info=require('../utility/reusableFile')
 const wait=require('../utility/timeout')
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
 
 
-describe('Product - display ePI Flag', () => {
+describe('064_Edit product to uncheck batch is recalled and edit batch to set recall message', () => {
 
     if(!process.env.npm_config_browserOnly){
-        const util = require('util');
-        const exec = util.promisify(require('child_process').exec);
+        
 
     after(async () => {
         console.log("Starting Mobile Execution");
@@ -26,7 +27,7 @@ describe('Product - display ePI Flag', () => {
 
     }
 
-    it('ProductDisplayEpiFlag_1_4-Should unCheck batch is recalled', async() => {
+    it('PBrowser - should unCheck batch is recalled', async() => {
         allureReporter.addDescription('Edit product and uncheck batch is recalled flag. Edit batch and check batch is recalled ')
         allureReporter.startStep("unCheck batch is recalled")
         allureReporter.addTestId('ProductDisplayEpiFlag_1_4')
@@ -66,7 +67,8 @@ describe('Product - display ePI Flag', () => {
         await browser.execute('document.querySelector("psk-button[disabled=\'@modalData.filesWereNotSelected\'] button[class=\'btn btn-primary\']").click();');
         await wait.setTimeoutwait(3);
 
-
+        info.setEpiDisplayed()
+        await wait.setTimeoutwait(1);
 
         //update products
         await products.updateProduct()
@@ -94,7 +96,7 @@ describe('Product - display ePI Flag', () => {
         info.setBatchRecallMsg(await batches.checkBatchRecallMessage())
         await wait.setTimeoutwait(2);
         //generate expectation file 
-        data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), info.getBatchRecall(),"","", info.getBatchRecallMsg() )
+        data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), info.getBatchRecall(),"","", info.getBatchRecallMsg(), info.getEpiDisplayed() )
         await wait.setTimeoutwait(12);
         //update batch
         await batches.updateBatchForEdit()

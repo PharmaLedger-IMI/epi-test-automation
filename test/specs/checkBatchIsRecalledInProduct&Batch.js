@@ -6,13 +6,13 @@ const data=require('../utility/expectationFile')
 const testData=require('../testdata/config.json')
 const info=require('../utility/reusableFile')
 const wait=require('../utility/timeout')
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
 
-
-describe('Product - display ePI Flag', () => {
+describe('062_Edit Product to check batch is recalled and edit batch to set recall message', () => {
 
     if(!process.env.npm_config_browserOnly){
-        const util = require('util');
-        const exec = util.promisify(require('child_process').exec);
+     
 
     after(async () => {
         console.log("Starting Mobile Execution");
@@ -27,7 +27,7 @@ describe('Product - display ePI Flag', () => {
 
     }
 
-    it('ProductDisplayEpiFlag_1_2-Should check batch is recalled', async() => {
+    it('Browser - should check batch is recalled', async() => {
         allureReporter.addDescription('Edit product and check batch is recalled flag. Edit batch and check batch is recalled ')
         allureReporter.startStep("check batch is recalled")
         allureReporter.addTestId('ProductDisplayEpiFlag_1_2')

@@ -7,15 +7,16 @@ const info=require('../utility/reusableFile')
 const allureReporter = require('@wdio/allure-reporter').default
 const matrix=require('../utility/2dMatrixPage')
 const data=require('../utility/expectationFile');
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
 
 
 
-describe('Other tests', () => {
+describe('098_Edit product to uncheck batch is unknown and edit batch to update valid SN and pass invalid batch and incorrect date', () => {
    
    
   if(!process.env.npm_config_browserOnly){
-    const util = require('util');
-    const exec = util.promisify(require('child_process').exec);
+  
 
 after(async () => {
     console.log("Starting Mobile Execution");
@@ -30,7 +31,7 @@ after(async () => {
 
 }
     
-  it('Other tests_2-Should  Create a data matrix with same GTIN but the batch is invalid and expiry date is also invalid   ', async() => {
+  it('Browser - should create a data matrix with same GTIN but the batch is invalid and expiry date is also invalid   ', async() => {
     allureReporter.addTestId('Other tests_2')
     allureReporter.startStep("Display ePI when Batch# is unknown flag is un-checked, ePI should not be displayed with message Batch number in barcode could not be found")
    
@@ -122,15 +123,15 @@ after(async () => {
 
     const incorrectExpiryDate=info.randomDateExpired()
     await wait.setTimeoutwait(2);
-    
-    await data.generateExpectationFile(info.getProductId(), unknownBatch, incorrectExpiryDate,  info.getSerialNumber(), info.getBrandName(), "","","","", await batches.epiDisplayed())
+    //generate expectation file 
+    data.generateExpectationFile(info.getProductId(), unknownBatch, incorrectExpiryDate,  info.getSerialNumber(), info.getBrandName(), "","","","", await batches.epiDisplayed())
     await wait.setTimeoutwait(6);
  
-    //Generate Image
+    //generate 2d matrix image
     matrix.generate2dMatrixImage(info.getProductId(), unknownBatch, incorrectExpiryDate, info.getSerialNumber())
     await wait.setTimeoutwait(8);
 
-    //Create batch
+    //update batch
     await batches.updateBatchForEdit()
     await wait.setTimeoutwait(15);
 

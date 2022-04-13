@@ -5,14 +5,14 @@ const data=require('../utility/expectationFile')
 const info=require('../utility/reusableFile')
 const wait=require('../utility/timeout')
 const testData=require('../testdata/config.json')
-
 const allureReporter = require('@wdio/allure-reporter').default
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
 
-describe('Non Serialized batch tests ', () => {
+describe('048_Edit batch to update valid serial number ', () => {
 
     if(!process.env.npm_config_browserOnly){
-        const util = require('util');
-        const exec = util.promisify(require('child_process').exec);
+        
 
     after(async () => {
         console.log("Starting Mobile Execution");
@@ -27,7 +27,7 @@ describe('Non Serialized batch tests ', () => {
 
     }
 
-    it('SerialNumberChecks_11_2- should Update batch to have serial numbers ', async () => {
+    it('Browser - should update batch to have serial numbers ', async () => {
         allureReporter.addDescription('Edit batch and update valid serial number')
         allureReporter.startStep('Update batch to have serial numbers')
         allureReporter.addTestId('SerialNumberChecks_11_2')
@@ -46,9 +46,9 @@ describe('Non Serialized batch tests ', () => {
         //select valid serial number
         await batches.selectUpdateValidSerialFromDropdown(testData.newBatchDetails.updateValid)
         await wait.setTimeoutwait(2);
-        //enable checkbox and remove 10 serial number
-        await batches.enableResetAllValidSerialNumber()
-        await wait.setTimeoutwait(2);
+        //enable checkbox 
+        // await batches.enableResetAllValidSerialNumber()
+        // await wait.setTimeoutwait(2);
 
         //set serial number
         info.setSerialNumber(await batches.serialNum())

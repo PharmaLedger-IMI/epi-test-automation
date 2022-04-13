@@ -6,13 +6,13 @@ const data=require('../utility/expectationFile')
 const testData=require('../testdata/config.json')
 const info=require('../utility/reusableFile')
 const wait=require('../utility/timeout')
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
 
-
-describe('Product - display ePI Flag', () => {
+describe('077_Edit product to check SN is recalled and edit batch to set recall message', () => {
 
     if(!process.env.npm_config_browserOnly){
-        const util = require('util');
-        const exec = util.promisify(require('child_process').exec);
+       
 
     after(async () => {
         console.log("Starting Mobile Execution");
@@ -27,7 +27,7 @@ describe('Product - display ePI Flag', () => {
 
     }
 
-    it('ProductDisplayEpiFlag_4_1-Should check Serial number on the batch is recalled', async() => {
+    it('Browser - should check Serial number on the batch is recalled', async() => {
         
         allureReporter.startStep("Check Serial number on the batch is recalled")
         allureReporter.addTestId('ProductDisplayEpiFlag_4_1')
@@ -74,7 +74,18 @@ describe('Product - display ePI Flag', () => {
         await batches.acceptSerialNumber()
         await wait.setTimeoutwait(1);
 
-        await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), info.getBatchRecall(),"","", info.getBatchRecallMsg(),info.getEpiDisplayed() )
+        //  //enable checkbox for batch recall
+        //  await batches.enableCheckToRecallThisBatch()
+        //  await wait.setTimeoutwait(3);
+        //  info.setBatchRecall(await batches.checkBatchRecall())
+        //  await wait.setTimeoutwait(2);
+        //  //enter recall msg
+        //  await batches.enterRecallMessage(testData.newBatchDetails.recallMsg)
+        //  await wait.setTimeoutwait(4);
+        //  info.setBatchRecallMsg(await batches.checkBatchRecallMessage())
+        //  await wait.setTimeoutwait(2);
+
+        data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), info.getBatchRecall(),"","", info.getBatchRecallMsg(),info.getEpiDisplayed() )
         await wait.setTimeoutwait(12);
 
         matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())

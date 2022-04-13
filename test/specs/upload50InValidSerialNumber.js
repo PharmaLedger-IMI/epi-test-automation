@@ -7,13 +7,13 @@ const wait=require('../utility/timeout')
 const testData=require('../testdata/config.json')
 
 const allureReporter = require('@wdio/allure-reporter').default
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
 
-
-describe('Expiry date Checks ', () => {
+describe('046_Edit batch to upload 50K valid serial numbers ', () => {
 
     if(!process.env.npm_config_browserOnly){
-        const util = require('util');
-        const exec = util.promisify(require('child_process').exec);
+        
 
     after(async () => {
         console.log("Starting Mobile Execution");
@@ -28,7 +28,7 @@ describe('Expiry date Checks ', () => {
 
     }
 
-    it('SerialNumberChecks_10- should Upload 50K serial numbers ', async () => {
+    it('Browser - should upload 50K serial numbers ', async () => {
         allureReporter.addDescription('Edit batch and upload 50k serial numbers')
         allureReporter.startStep('Upload 50K serial numbers and scan with valid serial number')
         allureReporter.addTestId('SerialNumberChecks_10')

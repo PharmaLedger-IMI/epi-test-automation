@@ -7,13 +7,13 @@ const wait=require('../utility/timeout')
 const testData=require('../testdata/config.json')
 const allureReporter = require('@wdio/allure-reporter').default
 const path= require('path');
-
-describe('Leaflet updates on the product Batch specific version', () => {
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
+describe('058_Leaflet updates on the product Batch specific version', () => {
 
 
     if(!process.env.npm_config_browserOnly){
-        const util = require('util');
-        const exec = util.promisify(require('child_process').exec);
+        
 
     after(async () => {
         console.log("Starting Mobile Execution");
@@ -28,7 +28,7 @@ describe('Leaflet updates on the product Batch specific version', () => {
 
     }
 
-    it('ProductInfoUpdate_4_1-should Create a new batch 2 and upload ePI and SMPC at Batch level ', async () => {
+    it('Browser - should create a new batch 2 and upload ePI and SMPC at Batch level ', async () => {
         allureReporter.addDescription('Create a new batch by uploading ePI and SMPC and update valid serial number.')
         allureReporter.startStep('Create a new batch 2 and upload ePI and SMPC at Batch level ')
         allureReporter.startStep('Scan the batch 2 and you should be able to see the leaflet that was uploaded at batch level')

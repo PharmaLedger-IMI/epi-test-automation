@@ -5,15 +5,14 @@ const data=require('../utility/expectationFile')
 const info=require('../utility/reusableFile')
 const wait=require('../utility/timeout')
 const allureReporter = require('@wdio/allure-reporter').default
-// const util = require('util');
-// const exec = util.promisify(require('child_process').exec);
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
 
 
-describe('Batch Recall and Recall Message for Non-serialized batches ', () => {
+describe('017_Edit batch to undo batch recall without SN ', () => {
 
     if(!process.env.npm_config_browserOnly){
-        const util = require('util');
-        const exec = util.promisify(require('child_process').exec);
+       
 
 
     after(async () => {
@@ -30,7 +29,7 @@ describe('Batch Recall and Recall Message for Non-serialized batches ', () => {
     console.log("different flag")
     } 
 
-    it('BatchRecallAndBatchMessage_10_2-should verify Batch Recall and Recall Message for Non-serialized batches ', async () => {
+    it('Browser - should verify Batch Recall and Recall Message for Non-serialized batches ', async () => {
         allureReporter.addDescription('Edit batch without entering serial number and uncheck batch recall and clear recall message')
         allureReporter.startStep('Go back to the Batch on the Enterprise Wallet and undo the batch recall flag.')
         allureReporter.addTestId('BatchRecallAndBatchMessage_10_2')

@@ -6,14 +6,14 @@ const data=require('../utility/expectationFile')
 const testData=require('../testdata/config.json')
 const info=require('../utility/reusableFile')
 const wait=require('../utility/timeout')
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
 
 
-
-describe('Product - display ePI Flag', () => {
+describe('094_Edit product to check batch is unknown and delete smpc. Pass unknown batch in matrix', () => {
 
     if(!process.env.npm_config_browserOnly){
-        const util = require('util');
-        const exec = util.promisify(require('child_process').exec);
+     
 
     after(async () => {
         console.log("Starting Mobile Execution");
@@ -28,7 +28,7 @@ describe('Product - display ePI Flag', () => {
 
     }
 
-    it('ProductDisplayEpiFlag_7_3-Should check If SMPC is deleted from the product and the batch on the barcode is unknown', async() => {
+    it('Browser - should check If SMPC is deleted from the product and the batch on the barcode is unknown', async() => {
         
         allureReporter.startStep("Check If SMPC is deleted from the product and the batch on the barcode is unknown")
         allureReporter.addTestId('ProductDisplayEpiFlag_7_3')
@@ -44,6 +44,7 @@ describe('Product - display ePI Flag', () => {
         //view or edit
         await browser.execute('document.querySelector("button[data-tag=\'edit-product\']").click()')
         await wait.setTimeoutwait(5);
+
 
         await products.deleteSecondLanguage()
         await wait.setTimeoutwait(5);

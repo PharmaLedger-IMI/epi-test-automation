@@ -7,15 +7,15 @@ const wait=require('../utility/timeout')
 const testData=require('../testdata/config.json')
 
 const allureReporter = require('@wdio/allure-reporter').default
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
 
 
 
-describe('Expiry date Checks ', () => {
+describe('024_Create a batch with X expiry date and pass different date Y in matrix ', () => {
 
     if(!process.env.npm_config_browserOnly){
-        const util = require('util');
-        const exec = util.promisify(require('child_process').exec);
-
+        
     after(async () => {
         console.log("Starting Mobile Execution");
         const { stdout1, stderr1 } =await exec('cd ../epi-mobileapp-test-automation && npm run test');
@@ -29,7 +29,7 @@ describe('Expiry date Checks ', () => {
 
     }
 
-    it('ExpiryDateChecks_1_1- create a batch with X expiry date and Create a 2D data matrix with details of above batch but different expiration date Y ', async () => {
+    it('Browser - create a batch with X expiry date and create a 2D data matrix with details of above batch but different expiration date Y ', async () => {
         allureReporter.addDescription("create new batch and select future date. Pass different date in matrix")
         allureReporter.startStep('create a batch with X expiry date and Create a 2D data matrix with details of above batch but different expiration date Y')
         allureReporter.addTestId('ExpiryDateChecks_1_1')

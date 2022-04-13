@@ -6,13 +6,13 @@ const info=require('../utility/reusableFile')
 const wait=require('../utility/timeout')
 const testData=require('../testdata/config.json')
 const allureReporter = require('@wdio/allure-reporter').default
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
 
-
-describe('Batch Recall and Recall Message for Non-serialized batches ', () => {
+describe('016_Edit batch to set batch recall without SN ', () => {
 
     if(!process.env.npm_config_browserOnly){
-        const util = require('util');
-        const exec = util.promisify(require('child_process').exec);
+      
     after(async () => {
         console.log("Starting Mobile Execution");
         const { stdout1, stderr1 } =await exec('cd ../epi-mobileapp-test-automation && npm run batchRecallNonSerializedWithoutSnTest.js');
@@ -27,7 +27,7 @@ describe('Batch Recall and Recall Message for Non-serialized batches ', () => {
         console.log("different flag")
         
         }
-    it('BatchRecallAndBatchMessage_10_1-should verify Batch Recall and Recall Message for Non-serialized batches ', async () => {
+    it('Browser - should verify Batch Recall and Recall Message for Non-serialized batches ', async () => {
         allureReporter.addDescription('Edit batch without serial number and check batch recall and display recall message')
         allureReporter.startStep('Update batch by not adding any serial numners.  Set the batch to recall it and add a display message for the same.')
         allureReporter.addTestId('BatchRecallAndBatchMessage_10_1')

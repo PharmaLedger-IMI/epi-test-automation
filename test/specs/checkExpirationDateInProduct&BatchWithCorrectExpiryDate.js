@@ -6,13 +6,13 @@ const data=require('../utility/expectationFile')
 const testData=require('../testdata/config.json')
 const info=require('../utility/reusableFile')
 const wait=require('../utility/timeout')
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
 
-
-describe('Product - display ePI Flag', () => {
+describe('067_Edit product to check expiration date is incorrect and edit batch to have correct expiry date', () => {
 
     if(!process.env.npm_config_browserOnly){
-        const util = require('util');
-        const exec = util.promisify(require('child_process').exec);
+        
 
     after(async () => {
         console.log("Starting Mobile Execution");
@@ -27,9 +27,9 @@ describe('Product - display ePI Flag', () => {
 
     }
 
-    it('ProductDisplayEpiFlag_2_1-Should check Expiration Date is incorrect', async() => {
+    it('Browser - should check expiration date is incorrect', async() => {
         
-        allureReporter.startStep("Check Expiration Date is correct")
+        allureReporter.startStep("Check expiration date is correct")
         allureReporter.startStep("Scan the code with correct expiry date ")
         allureReporter.addTestId('ProductDisplayEpiFlag_2_1')
 

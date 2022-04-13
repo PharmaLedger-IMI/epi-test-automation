@@ -7,14 +7,15 @@ const wait=require('../utility/timeout')
 const testData=require('../testdata/config.json')
 
 const allureReporter = require('@wdio/allure-reporter').default
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
 
 
 
-describe('Expiry date Checks ', () => {
+describe('045_Edit batch to remove 10 serial numbers from valid and upload 10 in decommissioned serial numbers ', () => {
 
     if(!process.env.npm_config_browserOnly){
-        const util = require('util');
-        const exec = util.promisify(require('child_process').exec);
+        
 
     after(async () => {
         console.log("Starting Mobile Execution");
@@ -29,7 +30,7 @@ describe('Expiry date Checks ', () => {
 
     }
 
-    it('SerialNumberChecks_9- should Remove 10 serial numbers from valid and upload 10 in decommissioned serial numbers ', async () => {
+    it('Browser - should remove 10 serial numbers from valid and upload 10 in decommissioned serial numbers ', async () => {
         allureReporter.addDescription('Edit batch by resetting valid serial number and uploading 10 in decommissioned serial number')
         allureReporter.startStep('Remove 10 serial numbers from valid and upload 10 in decommissioned serial numbers')
         allureReporter.addTestId('SerialNumberChecks_9')

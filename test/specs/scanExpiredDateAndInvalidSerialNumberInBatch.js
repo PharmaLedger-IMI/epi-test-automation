@@ -6,12 +6,13 @@ const info=require('../utility/reusableFile')
 const wait=require('../utility/timeout')
 
 const allureReporter = require('@wdio/allure-reporter').default
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
 
-describe('Combination checks ', () => {
+describe('023_Edit batch to set expired date and invalid serial number ', () => {
 
     if(!process.env.npm_config_browserOnly){
-        const util = require('util');
-        const exec = util.promisify(require('child_process').exec);
+        
 
     after(async () => {
         console.log("Starting Mobile Execution");
@@ -25,7 +26,7 @@ describe('Combination checks ', () => {
         console.log("different flag")
 
     }
-    it('BatchRecallAndBatchMessage_12_3-should verify Combination checks ', async () => {
+    it('Browser - should verify Combination checks ', async () => {
         allureReporter.addDescription("Edit batch and check batch recall, enter recall message and pass wrong serial number in matrix")
         allureReporter.startStep('2. Create a batch',
         '3. Choose a expiry date such that the batch is expired', 

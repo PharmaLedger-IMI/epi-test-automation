@@ -7,14 +7,15 @@ const wait=require('../utility/timeout')
 const testData=require('../testdata/config.json')
 
 const allureReporter = require('@wdio/allure-reporter').default
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
 
 
 
-describe('Expiry date Checks ', () => {
+describe('028_create a batch with only MonthYear as expiry date', () => {
 
     if(!process.env.npm_config_browserOnly){
-        const util = require('util');
-        const exec = util.promisify(require('child_process').exec);
+        
 
     after(async () => {
         console.log("Starting Mobile Execution");
@@ -29,7 +30,7 @@ describe('Expiry date Checks ', () => {
 
     }
 
-    it('ExpiryDateChecks_3_1- should create a batch with only MonthYear as expiry date ', async () => {
+    it('Browser - should create a batch with only MonthYear as expiry date ', async () => {
         allureReporter.addDescription("Create a new batch and uncheck day selection. Select month year date and update valid serial number")
         allureReporter.startStep('Create a batch with only MonthYear as expiry date ')
         allureReporter.addTestId('ExpiryDateChecks_3_1')

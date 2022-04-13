@@ -7,14 +7,15 @@ const wait=require('../utility/timeout')
 const testData=require('../testdata/config.json')
 
 const allureReporter = require('@wdio/allure-reporter').default
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
 
 
 
-describe('Basic Auth feature test ', () => {
+describe('010_Edit batch and disable serial number check without SN ', () => {
 
     if(!process.env.npm_config_browserOnly){
-        const util = require('util');
-        const exec = util.promisify(require('child_process').exec);
+       
 
     after(async () => {
         console.log("Starting Mobile Execution");
@@ -29,7 +30,7 @@ describe('Basic Auth feature test ', () => {
 
     }
 
-    it('BasicAuthFeatureTest_1_4- should Update the setting and disable serial number check ', async () => {
+    it('Browser - should update the setting and disable serial number check ', async () => {
         allureReporter.addDescription('Edit batch and disable serial number verification and reset valid serial number.')
         allureReporter.startStep('Update the setting and disable serial number check in batch')
         allureReporter.startStep('Scan a data matrix code without a serial number')

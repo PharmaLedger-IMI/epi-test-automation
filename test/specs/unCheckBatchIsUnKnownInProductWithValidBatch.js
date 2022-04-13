@@ -6,13 +6,14 @@ const data=require('../utility/expectationFile')
 const testData=require('../testdata/config.json')
 const info=require('../utility/reusableFile')
 const wait=require('../utility/timeout')
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
 
 
-describe('Product - display ePI Flag', () => {
+describe('096_Edit product to uncheck batch is unknown and edit batch to have valid batch', () => {
 
     if(!process.env.npm_config_browserOnly){
-        const util = require('util');
-        const exec = util.promisify(require('child_process').exec);
+        
 
     after(async () => {
         console.log("Starting Mobile Execution");
@@ -27,7 +28,7 @@ describe('Product - display ePI Flag', () => {
 
     }
 
-    it('ProductDisplayEpiFlag_7_5-Should uncheck batch is known and Batch  on the barcode is known', async() => {
+    it('Browser - should uncheck batch is known and Batch  on the barcode is known', async() => {
         allureReporter.addDescription("Edit product and verify epi displayed. Edit batch and pass valid batch on matrix")
         allureReporter.startStep("uncheck batch is known and Batch  on the barcode is known")
         allureReporter.addTestId('ProductDisplayEpiFlag_7_5')
@@ -77,10 +78,10 @@ describe('Product - display ePI Flag', () => {
         // manage serial number accept 
         await batches.acceptSerialNumber()
         await wait.setTimeoutwait(1);
-
+        //generate expectation file 
         data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), info.getBatchRecall(),"","", info.getBatchRecallMsg(),info.getEpiDisplayed() )
         await wait.setTimeoutwait(12);
-
+        //generate 2d matrix image
         matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
         await wait.setTimeoutwait(8);
 

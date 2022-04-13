@@ -7,13 +7,13 @@ const wait=require('../utility/timeout')
 const path= require('path');
 const fs = require('fs');
 
-describe('Import Product - update ', () => {
+describe('103_Update a product via import of Json by deleting an invented name element ', () => {
 
     
 
-    it('Update a product via import of Json ', async() => { 
-        allureReporter.addTestId('ImportJson_1_2')
-        allureReporter.addDescription('Update a product via import of Json by deleting one inventedName elemet and uploading modified file. View message and click on invalid field info')
+    it('Browser - update a product via import of Json ', async() => { 
+        allureReporter.addTestId('ImportJson_2_1')
+        allureReporter.addDescription('Update a product via import of Json by deleting an invented name element and uploading modified file. View message and click on invalid field info')
         allureReporter.startStep('1. Use the standard template Json', 
         '2. Fill up the details on the json', 
         '3. Use the import functionality to select the file', 
@@ -35,10 +35,15 @@ describe('Import Product - update ', () => {
         await products.selectFile(path.join(__dirname,'../testdata/sampleProductImport.json'));
         await wait.setTimeoutwait(8);
 
-       
         //click on import
         await products.import()
         await wait.setTimeoutwait(20); 
+
+        //update json file
+        rawdata.product.inventedName = inventedNameValue
+        fs.writeFileSync(testData.path.productImport, JSON.stringify(rawdata))
+        await wait.setTimeoutwait(8);
+
         //view message
         await products.viewMessage()
         await wait.setTimeoutwait(5); 
@@ -50,10 +55,7 @@ describe('Import Product - update ', () => {
         await products.closeButtonInPopup()
         await wait.setTimeoutwait(5); 
 
-         //update json file
-         rawdata.product.inventedName = inventedNameValue
-         fs.writeFileSync(testData.path.productImport, JSON.stringify(rawdata))
-         await wait.setTimeoutwait(8);
+        
 
         
         allureReporter.endStep("passed");

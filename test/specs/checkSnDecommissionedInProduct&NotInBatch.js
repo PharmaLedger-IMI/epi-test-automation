@@ -6,14 +6,14 @@ const data=require('../utility/expectationFile')
 const testData=require('../testdata/config.json')
 const info=require('../utility/reusableFile')
 const wait=require('../utility/timeout')
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
 
 
-
-describe('Product - display ePI Flag', () => {
+describe('083_Edit product to check SN is decommssioned and edit batch to reset decommissioned SN', () => {
 
     if(!process.env.npm_config_browserOnly){
-        const util = require('util');
-        const exec = util.promisify(require('child_process').exec);
+       
 
     after(async () => {
         console.log("Starting Mobile Execution");
@@ -28,7 +28,7 @@ describe('Product - display ePI Flag', () => {
 
     }
 
-    it('ProductDisplayEpiFlag_5_2-Should check serial number is not recalled', async() => {
+    it('Browser - should check serial number is not recalled', async() => {
         
         allureReporter.startStep("Check serial number is not recalled")
         allureReporter.addTestId('ProductDisplayEpiFlag_5_2')

@@ -6,14 +6,15 @@ const info=require('../utility/reusableFile')
 const wait=require('../utility/timeout')
 
 const allureReporter = require('@wdio/allure-reporter').default
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
 
 
 
-describe('Basic Auth feature test ', () => {
+describe('013_Edit batch and disable expiry date check with valid expiry date ', () => {
 
     if(!process.env.npm_config_browserOnly){
-        const util = require('util');
-        const exec = util.promisify(require('child_process').exec);
+        
 
     after(async () => {
         console.log("Starting Mobile Execution");
@@ -28,7 +29,7 @@ describe('Basic Auth feature test ', () => {
 
     }
 
-    it('BasicAuthFeatureTest_2_3- should Update the setting and disable expiry date check', async () => {
+    it('Browser - should update the setting and disable expiry date check', async () => {
         allureReporter.addDescription('Edit batch and disable expiry date check. Pass wrong expiry date in matrix')
         allureReporter.startStep(' Update the setting and disable expiry date check ')
         allureReporter.startStep(' Scan a data matrix code with wrong expiry date and verify that expiration check doesnt occur')

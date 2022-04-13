@@ -7,12 +7,13 @@ const info=require('../utility/reusableFile')
 const wait=require('../utility/timeout')
 const testData=require('../testdata/config.json')
 const allureReporter = require('@wdio/allure-reporter').default
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
 
-describe('Combination checks ', () => {
+describe('022_Create a batch with valid SN, expiry date and recall message', () => {
 
     if(!process.env.npm_config_browserOnly){
-        const util = require('util');
-        const exec = util.promisify(require('child_process').exec);
+        
 
     after(async () => {
         console.log("Starting Mobile Execution");
@@ -27,7 +28,7 @@ describe('Combination checks ', () => {
 
     }
     
-    it('BatchRecallAndBatchMessage_12_1-should verify Combination checks-1 ', async () => {
+    it('Browser - should verify Combination checks ', async () => {
         allureReporter.addDescription("create a new batch by adding valid serial number, expiry date and recall message")
         allureReporter.startStep('2. Create a batch 3. Add Valid serial number 4. Add valid expiry date 5. Add a recall message')
         allureReporter.addTestId('BatchRecallAndBatchMessage_12_1')

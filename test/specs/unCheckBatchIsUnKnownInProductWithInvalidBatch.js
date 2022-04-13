@@ -7,13 +7,13 @@ const testData=require('../testdata/config.json')
 const info=require('../utility/reusableFile')
 const wait=require('../utility/timeout')
 
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
 
-
-describe('Product - display ePI Flag', () => {
+describe('095_Edit product to uncheck batch is unknown and edit batch to have valid batch and pass invalid batch in matrix', () => {
 
     if(!process.env.npm_config_browserOnly){
-        const util = require('util');
-        const exec = util.promisify(require('child_process').exec);
+        
 
     after(async () => {
         console.log("Starting Mobile Execution");
@@ -28,7 +28,7 @@ describe('Product - display ePI Flag', () => {
 
     }
 
-    it('ProductDisplayEpiFlag_7_4-Should uncheck batch is unknown and batch  on the barcode is unknown', async() => {
+    it('Browser - should uncheck batch is unknown and batch  on the barcode is unknown', async() => {
         allureReporter.addDescription("Edit product and verify epi displayed and uncheck batch is unknown. Edit batch and pass unknown batch on matrix")
         allureReporter.startStep("uncheck batch is unknown and batch  on the barcode is unknown")
         allureReporter.addTestId('ProductDisplayEpiFlag_7_4')

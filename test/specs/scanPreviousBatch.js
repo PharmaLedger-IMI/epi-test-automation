@@ -3,10 +3,12 @@ const allureReporter = require('@wdio/allure-reporter').default
 
 const info=require('../utility/reusableFile')
 const wait=require('../utility/timeout')
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
 
 
 
-describe('Leaflet updates on the product Batch specific version', () => {
+describe('060_Scan previous batch to see the leaflet at product level', () => {
 
     
     if (process.env.npm_config_incremental) {
@@ -16,8 +18,7 @@ describe('Leaflet updates on the product Batch specific version', () => {
     }
    else {    
     if(!process.env.npm_config_browserOnly){
-        const util = require('util');
-        const exec = util.promisify(require('child_process').exec);
+        
 
       after(async () => {
          console.log("Starting Mobile Execution");
@@ -27,7 +28,7 @@ describe('Leaflet updates on the product Batch specific version', () => {
         })
     }
     
-    it('ProductInfoUpdate_4_3-Should scan previous Batch', async() => {
+    it('Browser - should scan previous Batch', async() => {
         allureReporter.addDescription('Scan batch 1 - you should still be able to see the leaflet at product level')
         allureReporter.startStep("scan previous Batch ")
         allureReporter.addTestId('ProductInfoUpdate_4_3')

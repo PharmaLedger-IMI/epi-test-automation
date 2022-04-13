@@ -6,15 +6,16 @@ const info=require('../utility/reusableFile')
 const allureReporter = require('@wdio/allure-reporter').default
 const matrix=require('../utility/2dMatrixPage')
 const data=require('../utility/expectationFile');
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
 
 
 
-describe('Other tests', () => {
+describe('099_Other tests', () => {
    
    
   if(!process.env.npm_config_browserOnly){
-    const util = require('util');
-    const exec = util.promisify(require('child_process').exec);
+    
 
 after(async () => {
     console.log("Starting Mobile Execution");
@@ -29,7 +30,7 @@ after(async () => {
 
 }
     
-  it('OtherTests_3-Should verify Serial number invalid and batch recalled  ', async() => {
+  it('Browser - should verify Serial number invalid and batch recalled  ', async() => {
     allureReporter.addDescription("Edit product and verify epi displayed. Edit batch and pass invalid serial number in matrix")
     allureReporter.addTestId('OtherTests_3')
     allureReporter.startStep("Edit batch.")

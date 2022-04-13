@@ -7,6 +7,8 @@ const wait=require('../utility/timeout')
 const testData=require('../testdata/config.json')
 
 const allureReporter = require('@wdio/allure-reporter').default
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
 
 // const util = require('util');
 // const exec = util.promisify(require('child_process').exec);
@@ -14,8 +16,7 @@ const allureReporter = require('@wdio/allure-reporter').default
 describe('Expiry date Checks ', () => {
 
     if(!process.env.npm_config_browserOnly){
-        const util = require('util');
-        const exec = util.promisify(require('child_process').exec);
+        
 
     after(async () => {
         console.log("Starting Mobile Execution");
@@ -30,7 +31,7 @@ describe('Expiry date Checks ', () => {
 
     }
 
-    it('Expiry date Checks_C2- should  create a batch with X expiry date that has already passed… choose a date from the past  ', async () => {
+    it('Browser - should create a batch with X expiry date that has already passed… choose a date from the past  ', async () => {
     
         allureReporter.startStep(' create a batch with X expiry date that has already passed… choose a date from the past ')
         allureReporter.addTestId('Expiry date Checks_C2')

@@ -9,7 +9,7 @@ const moment = require('moment');
 
 
 
-describe('Create Product', () => {
+describe('003_Create Product', () => {
     if(process.env.npm_config_incremental){
 
         console.log("This testcase is running for existing product")
@@ -17,7 +17,7 @@ describe('Create Product', () => {
     }
     else{ 
   
-it('should verify product page', async() => { 
+it('Browser - should verify product page', async() => { 
     
     allureReporter.addFeature('Create Product')
     allureReporter.addSeverity('Critical');

@@ -8,14 +8,15 @@ const wait=require('../utility/timeout')
 const testData=require('../testdata/config.json')
 
 const allureReporter = require('@wdio/allure-reporter').default
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
 
 
 
-describe('Update product information ', () => {
+describe('052_Update product information ', () => {
 
     if(!process.env.npm_config_browserOnly){
-        const util = require('util');
-        const exec = util.promisify(require('child_process').exec);
+        
 
     after(async () => {
         console.log("Starting Mobile Execution");
@@ -30,7 +31,7 @@ describe('Update product information ', () => {
 
     }
 
-    it('ProductInfoUpdate_1_1-should Verify that the product displayed in the mobile app - has all the details as uploaded.  ', async () => {
+    it('Browser - should verify that the product displayed in the mobile app - has all the details as uploaded.  ', async () => {
         allureReporter.addDescription('Create a new batch without any ePI files and update with valid serial numbers ')
         allureReporter.startStep('Create a batch and add serial number, choose the existing product with all valid details.')
         allureReporter.startStep('Scan the product using mobile app')

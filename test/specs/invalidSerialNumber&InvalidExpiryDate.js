@@ -6,15 +6,16 @@ const info=require('../utility/reusableFile')
 const allureReporter = require('@wdio/allure-reporter').default
 const matrix=require('../utility/2dMatrixPage')
 const data=require('../utility/expectationFile');
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
 
 
 
-describe('Other tests', () => {
+describe('097_Other tests', () => {
    
    
   if(!process.env.npm_config_browserOnly){
-    const util = require('util');
-    const exec = util.promisify(require('child_process').exec);
+    
 
 after(async () => {
     console.log("Starting Mobile Execution");
@@ -29,7 +30,7 @@ after(async () => {
 
 }
     
-  it('OtherTests_1-Should verify serial number invalid and expiry date invalid ', async() => {
+  it('Browser - should verify serial number invalid and expiry date invalid ', async() => {
     allureReporter.addDescription("Edit batch and pass invalid serial number and expiry date in matrix")
     allureReporter.addTestId('OtherTests_1')
     allureReporter.startStep("Scan a data matrix code where the Serial number is invalid and expiry date is also invalid ")

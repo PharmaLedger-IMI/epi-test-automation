@@ -7,12 +7,13 @@ const info=require('../utility/reusableFile')
 const wait=require('../utility/timeout')
 const testData=require('../testdata/config.json')
 const allureReporter = require('@wdio/allure-reporter').default
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
 
-describe('Batch Recall and Batch Message', () => {
+describe('021_Create a batch to set batch recall and batch message', () => {
 
     if(!process.env.npm_config_browserOnly){
-        const util = require('util');
-        const exec = util.promisify(require('child_process').exec);
+        
 
     after(async () => {
         console.log("Starting Mobile Execution");
@@ -27,7 +28,7 @@ describe('Batch Recall and Batch Message', () => {
 
     }
 
-    it('BatchRecallAndBatchMessage_11_4-should  Create a batch with a batch message and batch recall and recall message', async () => {
+    it('Browser - should create a batch with a batch message and batch recall and recall message', async () => {
         allureReporter.addDescription("create new batch and check batch recall, enter recall message and batch message and update valid serial number")
         allureReporter.startStep('Create a batch with a batch message and batch recall and recall message.')
         allureReporter.addTestId('BatchRecallAndBatchMessage_11_4')

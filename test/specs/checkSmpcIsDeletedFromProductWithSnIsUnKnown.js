@@ -6,14 +6,14 @@ const data=require('../utility/expectationFile')
 const testData=require('../testdata/config.json')
 const info=require('../utility/reusableFile')
 const wait=require('../utility/timeout')
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
 
 
-
-describe('Product - display ePI Flag', () => {
+describe('089_Edit product to check SN is unknown and delete smpc. Pass unknown SN in matrix', () => {
 
     if(!process.env.npm_config_browserOnly){
-        const util = require('util');
-        const exec = util.promisify(require('child_process').exec);
+      
 
     after(async () => {
         console.log("Starting Mobile Execution");
@@ -28,7 +28,7 @@ describe('Product - display ePI Flag', () => {
 
     }
 
-    it('ProductDisplayEpiFlag_6_3-Should check If SMPC is deleted from the product and the serial number on the batch is unknown', async() => {
+    it('Browser - should check If SMPC is deleted from the product and the serial number on the batch is unknown', async() => {
         
         allureReporter.startStep("Check If SMPC is deleted from the product and the serial number on the batch is unknown")
         allureReporter.addTestId('ProductDisplayEpiFlag_6_3')

@@ -6,13 +6,14 @@ const data=require('../utility/expectationFile')
 
 const info=require('../utility/reusableFile')
 const wait=require('../utility/timeout')
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
 
 
-describe('Product - display ePI Flag', () => {
+describe('073_Edit Product to check batch is expired and edit batch to check batch is not expired', () => {
 
     if(!process.env.npm_config_browserOnly){
-        const util = require('util');
-        const exec = util.promisify(require('child_process').exec);
+        
 
     after(async () => {
         console.log("Starting Mobile Execution");
@@ -27,7 +28,7 @@ describe('Product - display ePI Flag', () => {
 
     }
 
-    it('ProductDisplayEpiFlag_3_2-Should check Batch is Not expired', async() => {
+    it('Browser - should check Batch is Not expired', async() => {
         
         allureReporter.startStep("Check Batch is Not expired")
         allureReporter.addTestId('ProductDisplayEpiFlag_3_2')
@@ -48,13 +49,13 @@ describe('Product - display ePI Flag', () => {
         // await products.addEpi()
         // await wait.setTimeoutwait(3);
         // //select language	
-        // await products.selectLanguage(testData[1]['newProductDetails'].selectLanguage)
+        // await products.selectLanguage(testData.newProductDetails.selectLanguage)
         // await wait.setTimeoutwait(1);
         // // select type
-        // await products.selectType(testData[1]['newProductDetails'].selectType)
+        // await products.selectType(testData.newProductDetails.selectType)
         // await wait.setTimeoutwait(2);
         // //Video source
-        // await products.videoSourceEpi(testData[1]['newProductDetails'].videoSource)
+        // await products.videoSourceEpi(testData.newProductDetails.videoSource)
         // await wait.setTimeoutwait(1);
         // //Upload smpc 
         // await products.uploadFile(path.join(__dirname, '/src/Leaflet_ProductLevel'));

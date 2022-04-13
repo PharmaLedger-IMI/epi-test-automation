@@ -4,9 +4,10 @@ const info=require('../utility/reusableFile')
 const wait=require('../utility/timeout')
 
 const allureReporter = require('@wdio/allure-reporter').default
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
 
-
-describe('Update product information -Batch specific', () => {
+describe('055_Update product information that the version of ePI is not impacted / not replaced by  the batch specific', () => {
 
     if (process.env.npm_config_incremental) {
 
@@ -15,8 +16,7 @@ describe('Update product information -Batch specific', () => {
     }
    else {    
     if(!process.env.npm_config_browserOnly){
-        const util = require('util');
-        const exec = util.promisify(require('child_process').exec);
+       
 
       after(async () => {
          console.log("Starting Mobile Execution");
@@ -27,7 +27,7 @@ describe('Update product information -Batch specific', () => {
     }
 
 
-    it('ProductInfoUpdate_2_2-should verify that the version of ePI is not impacted / not replaced by  the batch specific version.', async () => {
+    it('Browser - should verify that the version of ePI is not impacted / not replaced by  the batch specific version.', async () => {
         allureReporter.addDescription('Scan previous batch and check version of epi not replaced ')
         allureReporter.startStep('Scan the data matrix of the old  batch created in the previous test case and verify that the version of ePI is not impacted / not replaced by  the batch specific version. ')
         allureReporter.addTestId('ProductInfoUpdate_2_2')

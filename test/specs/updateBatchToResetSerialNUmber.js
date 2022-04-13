@@ -7,14 +7,14 @@ const wait=require('../utility/timeout')
 const testData=require('../testdata/config.json')
 
 const allureReporter = require('@wdio/allure-reporter').default
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
 
 
-
-describe('Non Serialized batch tests', () => {
+describe('049_Edit batch to reset the serial Numbers', () => {
 
     if(!process.env.npm_config_browserOnly){
-        const util = require('util');
-        const exec = util.promisify(require('child_process').exec);
+        
 
     after(async () => {
         console.log("Starting Mobile Execution");
@@ -29,7 +29,7 @@ describe('Non Serialized batch tests', () => {
 
     }
 
-    it('SerialNumberChecks_11_3- should Update the batch to reset the serial Numbers  ', async () => {
+    it('Browser - should update the batch to reset the serial Numbers  ', async () => {
         allureReporter.addDescription('Edit batch and reset valid serial number')
         allureReporter.startStep('Update the above batch to reset the serial Numbers ')
         allureReporter.addTestId('SerialNumberChecks_11_3')

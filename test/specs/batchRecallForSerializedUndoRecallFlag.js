@@ -5,13 +5,13 @@ const data=require('../utility/expectationFile')
 const info=require('../utility/reusableFile')
 const wait=require('../utility/timeout')
 const allureReporter = require('@wdio/allure-reporter').default
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
 
-
-describe('Batch Recall and Recall Message for serialized batches ', () => {
+describe('015_Edit batch to undo batch recall with valid SN ', () => {
 
     if(!process.env.npm_config_browserOnly){
-        const util = require('util');
-        const exec = util.promisify(require('child_process').exec);
+       
     after(async () => {
         console.log("Starting Mobile Execution");
         const { stdout1, stderr1 } =await exec('cd ../epi-mobileapp-test-automation && npm run batchUncheckRecallFlagWithSerializedTest.js');
@@ -28,7 +28,7 @@ describe('Batch Recall and Recall Message for serialized batches ', () => {
     }
 
 
-    it('BatchRecallAndBatchMessage_9_2-should verify Batch Recall and Recall Message for serialized batches ', async () => {
+    it('Browser - should verify Batch Recall and Recall Message for serialized batches ', async () => {
         allureReporter.addDescription('Edit batch by updating valid Serial Numbers and unchecking batch recall and clearing recall message')
         allureReporter.startStep('Go back to the Batch on the Enterprise Wallet and undo the batch recall flag for above batch. ')
         allureReporter.addTestId('BatchRecallAndBatchMessage_9_2')

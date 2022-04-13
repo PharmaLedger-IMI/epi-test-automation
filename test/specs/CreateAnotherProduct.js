@@ -23,7 +23,7 @@ describe('Create Product', () => {
     }
     else{
   
-it('should verify product page', async() => {      
+it('Browser - should verify product page', async() => {      
     
     allureReporter.addFeature('Create Product')
     allureReporter.addSeverity('Critical');

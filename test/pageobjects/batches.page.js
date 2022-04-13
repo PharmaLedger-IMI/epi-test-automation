@@ -120,10 +120,16 @@ class batchesPage{
         return $('//button[normalize-space()="Import"]')
     }
     get clickViewMessage(){
-        return $('webc-datatable[datasource="@failedDataSource"] button[class="btn btn-link p-0 col align-self-center text-left"]')
+        return $("(//button[@class='btn btn-link p-0 col align-self-center text-left'][contains(text(),'View')])[16]")
     }
     get clickInvalidFieldInfo(){
         return $('psk-accordion-item[title="Invalid fields info"]')
+    }
+    get requiredFields(){
+        return $('ul[data-for="@actionModalModel.secondMessageData"]')
+    }
+    get closeButtonInPopupClick(){
+        return $("//button[normalize-space()='Close']")
     }
     
 
@@ -399,6 +405,15 @@ class batchesPage{
         
         await this.clickInvalidFieldInfo.click()
     }
+    async invalidFieldInfoRequired(){
+
+        const allFields= await this.requiredFields.getText()
+        console.log('required fields are '+allFields)   
+    
+}
+async closeButtonInPopup(){
+    await this.closeButtonInPopupClick.click()
+}
 
 
 

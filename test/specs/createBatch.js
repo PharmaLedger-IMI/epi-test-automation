@@ -7,9 +7,10 @@ const allureReporter = require('@wdio/allure-reporter').default
 const matrix=require('../utility/2dMatrixPage')
 const data=require('../utility/expectationFile');
 const moment = require('moment')
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
 
-
-describe('Create Batch', () => {
+describe('004_Create Batch', () => {
    
     if(process.env.npm_config_incremental){
 
@@ -18,16 +19,14 @@ describe('Create Batch', () => {
    else{
     if(!process.env.npm_config_browserOnly){
 
-        const util = require('util');
-        const exec = util.promisify(require('child_process').exec);
-
         after(async () => {
             console.log("Starting Mobile Execution");
             const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npx kill-port 4723 && npm run addProductBatchTest');
             console.log('stdout:', stdout1);
             console.log('stderr:', stderr1);
         })
-        it('Should verify batch page ', async () => {
+    }
+        it('Browser - should verify batch page ', async () => {
             allureReporter.addFeature('Create Batch')
             allureReporter.addSeverity('Critical');
             allureReporter.addTestId('ProdAndBatchSetup_1')
@@ -116,9 +115,9 @@ describe('Create Batch', () => {
             allureReporter.endStep("passed");
 
         });
-    }
-}
+    
 
+    }
 
 
 })

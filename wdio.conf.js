@@ -26,13 +26,13 @@ exports.config = {
         //'./test/specs/**/*.js',
        
 
-        //       'test/specs/gtinPage.js',
+            //   'test/specs/gtinPage.js',
            'test/specs/loginCredentials.js',
            
-        //      'test/specs/createProduct.js',
-        //      'test/specs/createBatch.js',
+            //  'test/specs/createProduct.js',
+            // 'test/specs/createBatch.js',
 
-            //'test/specs/editBatchforRecallMsg.js',
+            // 'test/specs/editBatchforRecallMsg.js',
             // 'test/specs/editProductforToggle_ePIFlag.js',
 
             // 'test/specs/enableSerialNumberCheckWithValidMatrix.js',
@@ -153,7 +153,17 @@ exports.config = {
             //'test/specs/demiurgeAddEnterpriseWalletUser.js',
 
             //'test/specs/productImport.js',
-            'test/specs/removeInventedNameInProductJson.js',
+            // 'test/specs/removeInventedNameInProductJson.js',
+            // 'test/specs/removeProductCodeInProductJson.js',
+            // 'test/specs/removeNameOfMedicinalProductInProductJson.js',
+           // 'test/specs/removeInventedName&ProductCodeInProductJson.js',
+            'test/specs/removeInventedNameProductCode&NameOfMedicinalProductInProductJson.js',
+        //    'test/specs/removeProductCode&NameOfMedicinalProductInProductJson.js',
+          //  'test/specs/removeInventedName&NameOfMedicinalProductInProductJson.js',
+           //  'test/specs/removeProductCodeInBatchJson.js',
+            // 'test/specs/removeBatchInBatchJson.js',
+            // 'test/specs/removeExpiryDateInBatchJson.js',
+           
             //'test/specs/batchImport.js'
 
 

@@ -7,14 +7,14 @@ const wait=require('../utility/timeout')
 const testData=require('../testdata/config.json')
 
 const allureReporter = require('@wdio/allure-reporter').default
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
 
 
-
-describe('Serial Number Checks ', () => {
+describe('041_Create a batch and enable serial number verification and set valid, recalled and decommissioned serial numbers', () => {
 
     if(!process.env.npm_config_browserOnly){
-        const util = require('util');
-        const exec = util.promisify(require('child_process').exec);
+       
 
     after(async () => {
         console.log("Starting Mobile Execution");
@@ -29,7 +29,7 @@ describe('Serial Number Checks ', () => {
 
     }
 
-    it('SerialNumberChecks_7_1- should Create a batch and enable serial number verification and set valid, recalled and decommissioned serial numbers', async () => {
+    it('Browser - should create a batch and enable serial number verification and set valid, recalled and decommissioned serial numbers', async () => {
         allureReporter.addDescription('Create a new batch and verify enable serial number verification and set valid, recalled and decommissioned serial numbers')
         allureReporter.startStep('Create a batch and enable serial number verification and set valid serial numbers, recalled and decommissioned')
         allureReporter.startStep('Scan with valid serial number')

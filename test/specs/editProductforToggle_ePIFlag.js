@@ -7,12 +7,13 @@ const matrix=require('../utility/2dMatrixPage')
 const data=require('../utility/expectationFile')
 const info=require('../utility/reusableFile')
 const wait=require('../utility/timeout')
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
 
-describe('Edit product', () => {
+describe('006_Edit product to check SN is in recalled list', () => {
 
     if(!process.env.npm_config_browserOnly){
-        const util = require('util');
-        const exec = util.promisify(require('child_process').exec);
+        
         after(async () => {
             console.log("Starting Mobile Execution");
             const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npx kill-port 4723 && npm run updateProductSnRecallTest');
@@ -27,7 +28,7 @@ describe('Edit product', () => {
         console.log("different flag")
 
     }
-    it('ProdAndBatchSetup_2-Check SN is in recalled list', async() => { 
+    it('Browser - check SN is in recalled list', async() => { 
         allureReporter.addTestId('ProdAndBatchSetup_2')
         allureReporter.addDescription('Go to product page and search product code and enter. Edit product by enabling SN is in recall list flag.', 
        'Edit batch by entering recalled serial number')

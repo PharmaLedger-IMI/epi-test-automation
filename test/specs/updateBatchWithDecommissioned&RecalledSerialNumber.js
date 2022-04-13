@@ -7,13 +7,13 @@ const wait=require('../utility/timeout')
 const testData=require('../testdata/config.json')
 
 const allureReporter = require('@wdio/allure-reporter').default
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
 
-
-describe('Non Serialized batch tests ', () => {
+describe('050_Edit batch to update with decommissioned and recalled serial number', () => {
 
     if(!process.env.npm_config_browserOnly){
-        const util = require('util');
-        const exec = util.promisify(require('child_process').exec);
+        
 
     after(async () => {
         console.log("Starting Mobile Execution");
@@ -28,7 +28,7 @@ describe('Non Serialized batch tests ', () => {
 
     }
 
-    it('SerialNumberChecks_11_4- should Update the batch with only decomissioned/ recalled serial numbers ', async () => {
+    it('Browser - should Update the batch with only decomissioned/ recalled serial numbers ', async () => {
         allureReporter.addDescription('Edit batch and update with only decomissioned/ recalled serial numbers')
         allureReporter.startStep('Update the batch with only decomissioned/ recalled serial numbers')
         allureReporter.addTestId('SerialNumberChecks_11_4')
@@ -47,9 +47,9 @@ describe('Non Serialized batch tests ', () => {
         //select decommisioned serial number
         await batches.selectUpdateDecommissionedFromDropdown(testData.newBatchDetails.updateDecommissioned)
         await wait.setTimeoutwait(2);
-        //enable checkbox and remove 10 serial number
-        await batches.enableResetAllDecommisionedSerialNumber()
-        await wait.setTimeoutwait(2);
+        // //enable checkbox 
+        // await batches.enableResetAllDecommisionedSerialNumber()
+        // await wait.setTimeoutwait(2);
         //set serial number
         info.setSerialNumber(await batches.serialNum())
         await batches.enterSerialNumber(info.getSerialNumber())
@@ -65,8 +65,8 @@ describe('Non Serialized batch tests ', () => {
          await batches.selectUpdateRecalledSerialFromDropdown(testData.newBatchDetails.updateRecalled)
          await wait.setTimeoutwait(2);
          //enable checkbox
-         await batches.enableResetAllRecalledSerialNumber()
-         await wait.setTimeoutwait(2);
+        //  await batches.enableResetAllRecalledSerialNumber()
+        //  await wait.setTimeoutwait(2);
          //set the serial number and enter
          info.setSerialNumber(await batches.serialNum())
          await wait.setTimeoutwait(2);

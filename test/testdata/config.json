@@ -4,7 +4,7 @@
         {
             "userName": "kpepiwdio",
             "demiurgeUser":"testing",
-            "enterpriseUser":"user14",
+            "enterpriseUser":"user12",
             "devUser":"devuser",
             "emailId":"dev@user.dev",
             "password":"SuperUserSecurePassword1!"
@@ -50,7 +50,7 @@
             "matrixImage":"/Users/snehav/AppData/Local/Android/Sdk/emulator/resources/custom.png",
             "testExpectation":"C:/Users/snehav/epi-mobileapp-test-automation/test/testdata/testExpectations.json",
             "productImport":"../epi-test-automation/test/testdata/sampleProductImport.json" ,
-            "modifiedContent":"../epi-test-automation/test/testdata/modifiedContent.json"
+            "batchImport":"../epi-test-automation/test/testdata/sampleBatchImport.json"
         }
     }
    

@@ -6,14 +6,15 @@ const data=require('../utility/expectationFile')
 const testData=require('../testdata/config.json')
 const info=require('../utility/reusableFile')
 const wait=require('../utility/timeout')
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
 
 
 
-describe('Product - display ePI Flag', () => {
+describe('091_Edit product to uncheck SN is unknown and edit batch to have valid SN', () => {
 
     if(!process.env.npm_config_browserOnly){
-        const util = require('util');
-        const exec = util.promisify(require('child_process').exec);
+        
 
     after(async () => {
         console.log("Starting Mobile Execution");
@@ -28,7 +29,7 @@ describe('Product - display ePI Flag', () => {
 
     }
 
-    it('ProductDisplayEpiFlag_6_5-Should uncheck SN is known and serial number on the batch is known', async() => {
+    it('Browser - should uncheck SN is known and serial number on the batch is known', async() => {
         allureReporter.addDescription("Edit product and verify epi displayed and SN is known. Edit batch and pass valid serial number on matrix")
         allureReporter.startStep("uncheck Serial number on the batch is known")
         allureReporter.addTestId('ProductDisplayEpiFlag_6_5')

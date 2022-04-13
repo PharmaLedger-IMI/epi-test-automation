@@ -6,14 +6,14 @@ const wait=require('../utility/timeout')
 const allureReporter = require('@wdio/allure-reporter').default
 
 const testData=require('../testdata/config.json')
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
 
 
-
-describe('Expiry date Checks ', () => {
+describe('027_change only the year on the new data matrix ', () => {
 
     if(!process.env.npm_config_browserOnly){
-        const util = require('util');
-        const exec = util.promisify(require('child_process').exec);
+       
 
     after(async () => {
         console.log("Starting Mobile Execution");
@@ -30,7 +30,7 @@ describe('Expiry date Checks ', () => {
 
     if(process.env.npm_config_incremental){
 
-        it('ExpiryDateChecks_4- should Retest above by changing only the year on the new data matrix Y ', async () => {
+        it('Browser - should Retest above by changing only the year on the new data matrix Y ', async () => {
         //     await batches.Batch(); 
         //     //await browser.execute('document.querySelector(`webc-app-menu-item:nth-child(4) stencil-route-link:nth-child(1) a:nth-child(1)`).click()')
     

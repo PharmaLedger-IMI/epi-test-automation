@@ -7,12 +7,13 @@ const wait=require('../utility/timeout')
 const testData=require('../testdata/config.json')
 const allureReporter = require('@wdio/allure-reporter').default
 const path= require('path');
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
 
-describe('SMPC update on the product Non- batch specific version', () => {
+describe('056_SMPC update on the product Non- batch specific version', () => {
 
     if(!process.env.npm_config_browserOnly){
-        const util = require('util');
-        const exec = util.promisify(require('child_process').exec);
+        
 
     after(async () => {
         console.log("Starting Mobile Execution");
@@ -27,7 +28,7 @@ describe('SMPC update on the product Non- batch specific version', () => {
 
     }
 
-    it('ProductInfoUpdate_3_1-should verify SMPC update on the product Non- batch specific version', async () => {
+    it('Browser - should verify SMPC update on the product Non-batch specific version', async () => {
         allureReporter.addDescription('Edit product and upload SMPC. Create a new batch with valid serial number and scan the matrix.')
         allureReporter.startStep('upload SMPC for existing product')
         allureReporter.startStep('Create a batch , and scan the code. The app must display the same information that was uploaded in step 1.')

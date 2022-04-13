@@ -1,7 +1,3 @@
-
-
-
-
 const expectChai = require('chai').expect;
 
 
@@ -173,9 +169,18 @@ class productsPage {
     get clickInvalidFieldInfo(){
         return $('psk-accordion-item[title="Invalid fields info"]')
     }
-    get clickInvalidFieldInfoData(){
-        return $('//h6[normalize-space()="inventedName - Required field"]')
+    get requiredFields(){
+        return $('ul[data-for="@actionModalModel.secondMessageData"]')
     }
+    // get inventedNameField(){
+    //     return $('//h6[normalize-space()="inventedName - Required field"]')
+    // }
+    // get inventedNameField(){
+    //     return $('//h6[normalize-space()="productCode - Required field"]')
+    // }
+    // get nameMedicinalProductField(){
+    //     return $('//h6[normalize-space()="nameMedicinalProduct - Required field"]')
+    // }
     
    
     get cancelButton()
@@ -441,13 +446,11 @@ class productsPage {
         await this.clickInvalidFieldInfo.click()
     }
     async invalidFieldInfoRequired(){
-        
-        const requiredFields=await this.clickInvalidFieldInfoData.getText()
-        console.log('required fields '+requiredFields)
-    }
-   
 
-    
+            const allFields= await this.requiredFields.getText()
+            console.log('required fields are '+allFields)   
+        
+    }
         
 }
 

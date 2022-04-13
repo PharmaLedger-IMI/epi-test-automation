@@ -8,13 +8,13 @@ const data=require('../utility/expectationFile')
 const info=require('../utility/reusableFile')
 const wait=require('../utility/timeout')
 // const path=require('path')
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
 
-
-describe('Product - display ePI Flag', () => {
+describe('061_Edit product to check batch is recalled and edit batch to uncheck batch recall ', () => {
 
     if(!process.env.npm_config_browserOnly){
-        const util = require('util');
-        const exec = util.promisify(require('child_process').exec);
+       
 
     after(async () => {
         console.log("Starting Mobile Execution");
@@ -29,7 +29,7 @@ describe('Product - display ePI Flag', () => {
 
     }
 
-    it('ProductDisplayEpiFlag_1_1-Should check batch is not recalled', async() => {
+    it('Browser - should check batch is not recalled', async() => {
         allureReporter.addDescription('Edit product and check batch is recalled flag. Edit batch and check batch is not recalled ')
         allureReporter.startStep("check batch is not recalled")
         allureReporter.addTestId('ProductDisplayEpiFlag_1_1')
@@ -81,17 +81,10 @@ describe('Product - display ePI Flag', () => {
         // await browser.execute('document.querySelector(`webc-app-menu-item:nth-child(4) stencil-route-link:nth-child(1) a:nth-child(1)`).click()')
         await wait.setTimeoutwait(6);
 
-        await batches.addBatch();
-        await wait.setTimeoutwait(3);
-
-        info.setBatchId(await batches.batchIdValue())
-        await wait.setTimeoutwait(3);
-
-        await batches.siteName(testData.newBatchDetails.siteName);
-        await wait.setTimeoutwait(5);
-
-        info.setBrandName(await batches.checkBrandName())
-        await wait.setTimeoutwait(3);
+        let editValue = info.getbatchId()
+        console.log("editValue is " + editValue)
+        await browser.execute('document.querySelector("div:nth-child(' + await info.editBatchRow(editValue) + ') button:nth-child(1)").click()')
+        await wait.setTimeoutwait(6);
 
         info.setCurrentRandomDate()
         await wait.setTimeoutwait(2);
@@ -121,6 +114,12 @@ describe('Product - display ePI Flag', () => {
         // manage serial number accept 
         await batches.acceptSerialNumber()
         await wait.setTimeoutwait(1);
+
+        // await batches.clearRecallMessage()
+        // await wait.setTimeoutwait(2);
+        //uncheck batch recall
+        // await batches.enableCheckToRecallThisBatch()
+        // await wait.setTimeoutwait(2);
 
         info.setBatchRecall(await batches.checkBatchRecall())
         await wait.setTimeoutwait(2);

@@ -4,13 +4,14 @@ const matrix=require('../utility/2dMatrixPage')
 const data=require('../utility/expectationFile')
 const info=require('../utility/reusableFile')
 const wait=require('../utility/timeout')
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
 
 
-describe('Product - display ePI Flag', () => {
+describe('066_Edit product to uncheck batch recall and delete SMPC and edit batch to have batch recall', () => {
 
     if(!process.env.npm_config_browserOnly){
-        const util = require('util');
-        const exec = util.promisify(require('child_process').exec);
+        
 
     after(async () => {
         console.log("Starting Mobile Execution");
@@ -25,7 +26,7 @@ describe('Product - display ePI Flag', () => {
 
     }
 
-    it('ProductDisplayEpiFlag_1_6-Uncheck If SMPC is deleted from the product with recalled batch', async() => {
+    it('Browser - uncheck if SMPC is deleted from the product with recalled batch', async() => {
         allureReporter.addDescription('Edit product and delete SMPC. Edit batch and check batch is recalled ')
         allureReporter.startStep("Uncheck If SMPC is deleted from the product with recalled batch")
         allureReporter.addTestId('ProductDisplayEpiFlag_1_6')
