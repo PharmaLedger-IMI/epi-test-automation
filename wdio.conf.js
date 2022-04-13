@@ -157,12 +157,12 @@ exports.config = {
             // 'test/specs/removeProductCodeInProductJson.js',
             // 'test/specs/removeNameOfMedicinalProductInProductJson.js',
            // 'test/specs/removeInventedName&ProductCodeInProductJson.js',
-            'test/specs/removeInventedNameProductCode&NameOfMedicinalProductInProductJson.js',
+           // 'test/specs/removeInventedNameProductCode&NameOfMedicinalProductInProductJson.js',
         //    'test/specs/removeProductCode&NameOfMedicinalProductInProductJson.js',
           //  'test/specs/removeInventedName&NameOfMedicinalProductInProductJson.js',
            //  'test/specs/removeProductCodeInBatchJson.js',
             // 'test/specs/removeBatchInBatchJson.js',
-            // 'test/specs/removeExpiryDateInBatchJson.js',
+             'test/specs/removeExpiryDateInBatchJson.js',
            
             //'test/specs/batchImport.js'
 

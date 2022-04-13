@@ -35,14 +35,16 @@ describe('110_Update a batch via import of Json by deleting batch ', () => {
         await batches.selectFile(path.join(__dirname,'../testdata/sampleBatchImport.json'));
         await wait.setTimeoutwait(8);
 
-        //update json file
-        rawdata.batch.batch = batchValue
-        fs.writeFileSync(testData.path.batchImport, JSON.stringify(rawdata))
-        await wait.setTimeoutwait(8);
        
         //click on import
         await batches.import()
         await wait.setTimeoutwait(20); 
+
+        //update json file
+        rawdata.batch.batch = batchValue
+        fs.writeFileSync(testData.path.batchImport, JSON.stringify(rawdata))
+        await wait.setTimeoutwait(8);
+        
         //view message
         await batches.viewMessage()
         await wait.setTimeoutwait(5);
