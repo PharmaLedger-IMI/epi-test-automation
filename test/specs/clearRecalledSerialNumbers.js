@@ -79,10 +79,10 @@ describe('039_Edit batch to reset recalled serial number and scan with recalled 
     //    await wait.setTimeoutwait(8);
 
         //generate expectation file 
-        data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  "",info.getBrandName(), "","","", "" )
+        data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), "","","", "" )
         await wait.setTimeoutwait(12);
        //generate 2d matrix image
-        matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), "")
+        matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
         await wait.setTimeoutwait(5);
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");
