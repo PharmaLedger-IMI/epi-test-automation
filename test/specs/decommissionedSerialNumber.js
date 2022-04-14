@@ -35,6 +35,9 @@ describe('040_Create a batch and enable serial number verification and set decom
         allureReporter.startStep('Create a batch and enable serial number verification and set decommissioned serial numbers and reason code')
         allureReporter.addTestId('SerialNumberChecks_6')
 
+        await products.clickProductFromSideNav()
+        await wait.setTimeoutwait(4);
+
          // search the product codes
          await products.searchProductCode(info.getProductId())
          await wait.setTimeoutwait(3);

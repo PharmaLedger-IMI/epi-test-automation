@@ -28,7 +28,7 @@ describe('104_Update a product via import of Json by deleting product code', () 
        
         let rawdata = JSON.parse(fs.readFileSync(testData.path.productImport, 'utf8'))
         const flagDisplayEPI_SNRecalledValue=rawdata.product.flagDisplayEPI_SNRecalled
-        rawdata.product.flagDisplayEPI_SNRecalled=true
+        rawdata.product.flagDisplayEPI_SNRecalled=!flagDisplayEPI_SNRecalledValue
         fs.writeFileSync(testData.path.productImport, JSON.stringify(rawdata))
 
         await wait.setTimeoutwait(2);
