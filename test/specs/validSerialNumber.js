@@ -38,7 +38,7 @@ describe('035_Create a batch and enable serial number verification and set valid
         await wait.setTimeoutwait(2);
         info.setBatchId(await batches.batchIdValue())
         await wait.setTimeoutwait(2);
-        await batches.siteName(testData[2]['newBatchDetails'].siteName);
+        await batches.siteName(testData.newBatchDetails.siteName);
         await wait.setTimeoutwait(2);
       
         info.setCurrentRandomDate()
