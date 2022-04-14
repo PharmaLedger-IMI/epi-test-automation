@@ -385,7 +385,7 @@ class batchesPage{
             async () => (await $('//label[normalize-space()="Select files"]').waitForEnabled()),
             {
                 timeout: 5000,
-                timeoutMsg: 'import button is active'
+                timeoutMsg: 'select button is not active'
             }
         );
     }

@@ -32,6 +32,28 @@ describe('005_Edit batch to set recall message', () => {
         allureReporter.startStep("Update any field on the batch and Save the changes")
         allureReporter.addTestId('ProdAndBatchSetup_4')
 
+
+    //     await products.clickProductFromSideNav()
+    //     await wait.setTimeoutwait(2);
+
+    //     console.log("prod to edit"+info.getProductId())
+    
+    //    //search the product codes
+    //     await products.searchProductCode(info.getProductId())
+    //     await wait.setTimeoutwait(3);
+    //     await browser.keys('Enter')
+    //     await wait.setTimeoutwait(4);
+    //     //click on edit button
+    //     await browser.execute('document.querySelector("button[data-tag=\'edit-product\']").click()')
+    //     await wait.setTimeoutwait(5);
+    //      //enable batch is recalled
+    //      await products.enableBatchIsRecalled(); 
+    //      await wait.setTimeoutwait(1);
+
+    //      //update product
+    //      await products.updateProduct()
+    //      await wait.setTimeoutwait(8);
+
          await batches.Batch(); 
         //await browser.execute('document.querySelector(`webc-app-menu-item:nth-child(4) stencil-route-link:nth-child(1) a:nth-child(1)`).click()')
 

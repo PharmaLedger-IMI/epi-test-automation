@@ -46,7 +46,7 @@ describe('051_Edit batch to update without decommissioned and recalled serial nu
         await wait.setTimeoutwait(2);
 
          //select recalled serial number
-         await batches.selectUpdateRecalledSerialFromDropdown(testData.newBatchDetails.updateDecommissioned)
+         await batches.selectUpdateDecommissionedFromDropdown(testData.newBatchDetails.updateDecommissioned)
          await wait.setTimeoutwait(2);
         
         //enable checkbox and remove 10 serial number

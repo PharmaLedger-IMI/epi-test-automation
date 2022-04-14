@@ -397,6 +397,11 @@ class productsPage {
     }
     async saveProduct(){
         await this.saveProductButton.click();
+        await browser.waitForVisible('//span[@slot="page-title"]', 3000);
+
+
+
+
     }
     async saveProductBtn(){
         await this.saveProductButton

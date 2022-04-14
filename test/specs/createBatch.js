@@ -99,7 +99,7 @@ describe('004_Create Batch', () => {
             await batches.acceptButton()
             await wait.setTimeoutwait(5);
 
-            await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber(), info.getBrandName(), "", "", "", "", await batches.epiDisplayed())
+            data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber(), info.getBrandName(), "", "", "", "", await batches.epiDisplayed())
             await wait.setTimeoutwait(6);
 
             //Create batch

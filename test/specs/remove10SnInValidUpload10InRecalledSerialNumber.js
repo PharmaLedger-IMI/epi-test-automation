@@ -58,7 +58,7 @@ describe('044_Edit batch to remove 10 serial numbers from valid and upload 10 in
 
 
         //select recalled serial number
-        await batches.selectUpdateValidSerialFromDropdown(testData.newBatchDetails.updateRecalled)
+        await batches.selectUpdateRecalledSerialFromDropdown(testData.newBatchDetails.updateRecalled)
         await wait.setTimeoutwait(2);
         // //enable checkbox
         // await batches.enableResetAllRecalledSerialNumber()

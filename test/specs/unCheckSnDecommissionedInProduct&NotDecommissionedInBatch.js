@@ -69,7 +69,7 @@ describe('086_Edit product to uncheck SN is decommissioned and edit batch to res
         await batches.selectUpdateDecommissionedFromDropdown(testData[2]['newBatchDetails'].updateDecommissioned)
         await wait.setTimeoutwait(5);
 
-        await batches.resetAllRecalledSerialNumberCheckbox()
+        await batches.enableResetAllDecommisionedSerialNumber()
         await wait.setTimeoutwait(2);
         // manage serial number accept 
         await batches.acceptSerialNumber()

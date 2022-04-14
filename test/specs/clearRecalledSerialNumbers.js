@@ -45,10 +45,10 @@ describe('039_Edit batch to reset recalled serial number and scan with recalled 
         await wait.setTimeoutwait(8);
 
         //select valid serial number
-        await batches.selectUpdateValidSerialFromDropdown(testData.newBatchDetails.updateRecalled)
+        await batches.selectUpdateRecalledSerialFromDropdown(testData.newBatchDetails.updateRecalled)
         await wait.setTimeoutwait(2);
         //enable checkbox
-        await batches.enableResetAllValidSerialNumber()
+        await batches.enableResetAllRecalledSerialNumber()()
         await wait.setTimeoutwait(2);
         
         //accept serial number

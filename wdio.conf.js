@@ -158,14 +158,18 @@ exports.config = {
             // 'test/specs/removeNameOfMedicinalProductInProductJson.js',
            // 'test/specs/removeInventedName&ProductCodeInProductJson.js',
            // 'test/specs/removeInventedNameProductCode&NameOfMedicinalProductInProductJson.js',
-        //    'test/specs/removeProductCode&NameOfMedicinalProductInProductJson.js',
+          // 'test/specs/removeProductCode&NameOfMedicinalProductInProductJson.js',
           //  'test/specs/removeInventedName&NameOfMedicinalProductInProductJson.js',
-          //    ''test/specs/batchImport.js
+          //    'test/specs/batchImport.js',
            //  'test/specs/removeProductCodeInBatchJson.js',
             // 'test/specs/removeBatchInBatchJson.js',
-             'test/specs/removeExpiryDateInBatchJson.js',
-           
-            //'test/specs/batchImport.js'
+            // 'test/specs/removeExpiryDateInBatchJson.js',
+            //'test/specs/removeProductCode&BatchInBatchJson.js',
+            // 'test/specs/removeProductCode&ExpiryDateInBatchJson.js',
+            // 'test/specs/removeBatch&ExpiryDateInBatchJson.js',
+            // 'test/specs/removeProductCodeBatch&ExpiryDateInBatchJson.js',
+            // 'test/specs/changeSNRecalledFlagInProductJson.js',
+            // 'test/specs/changeSNDecommissionedFlagInProductJson.js'
 
 
             
@@ -262,8 +266,8 @@ exports.config = {
     // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
     // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
     // gets prepended directly.
-    baseUrl: 'https://epiqa.westeurope.cloudapp.azure.com/',
-   // baseUrl:'http://localhost:3000',
+   // baseUrl: 'https://epiqa.westeurope.cloudapp.azure.com/',
+    baseUrl:'http://localhost:3000',
    //baseUrl:'https://plsmap.westeurope.cloudapp.azure.com/',
     //
     // Default timeout for all waitFor* commands.

@@ -58,7 +58,7 @@ describe('045_Edit batch to remove 10 serial numbers from valid and upload 10 in
 
 
          //select decommisioned serial number
-         await batches.selectUpdateValidSerialFromDropdown(testData.newBatchDetails.updateDecommissioned)
+         await batches.selectUpdateDecommissionedFromDropdown(testData.newBatchDetails.updateDecommissioned)
          await wait.setTimeoutwait(2);
         //  //enable checkbox
         //  await batches.enableResetAllDecommisionedSerialNumber()

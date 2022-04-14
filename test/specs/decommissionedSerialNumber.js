@@ -83,7 +83,7 @@ describe('040_Create a batch and enable serial number verification and set decom
         await batches.enableSerialNumberVerification()
         await wait.setTimeoutwait(2);
         //select decommisioned serial number
-        await batches.selectUpdateValidSerialFromDropdown(testData.newBatchDetails.updateDecommissioned)
+        await batches.selectUpdateDecommissionedFromDropdown(testData.newBatchDetails.updateDecommissioned)
         await wait.setTimeoutwait(2);
         // //enable checkbox
         // await batches.enableResetAllValidSerialNumber()

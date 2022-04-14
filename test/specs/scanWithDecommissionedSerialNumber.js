@@ -43,7 +43,7 @@ describe('043_Edit a batch to update decommissioned SN and scan with decommissio
         await wait.setTimeoutwait(8);
 
          //select decommisioned serial number
-        await batches.selectUpdateValidSerialFromDropdown(testData.newBatchDetails.updateDecommissioned)
+        await batches.selectUpdateDecommissionedFromDropdown(testData.newBatchDetails.updateDecommissioned)
         await wait.setTimeoutwait(2);
         // //enable checkbox
         // await batches.enableResetAllDecommisionedSerialNumber()
