@@ -90,7 +90,7 @@ describe('077_Edit product to check SN is recalled and edit batch to set recall 
 
         matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
         await wait.setTimeoutwait(8);
-
+        //update batch
         await batches.updateBatchForEdit()
         await wait.setTimeoutwait(10);   
        

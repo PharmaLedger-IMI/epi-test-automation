@@ -27,6 +27,7 @@
     "chai-webdriverio": "^1.0.0",
     "chromedriver": "^99.0.0",
     "moment": "^2.29.1",
+    "random-country": "^1.0.1",
     "webdriverio": "^7.16.14"
   }
 }

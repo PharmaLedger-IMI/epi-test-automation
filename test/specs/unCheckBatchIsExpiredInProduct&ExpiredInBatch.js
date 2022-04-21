@@ -6,6 +6,7 @@ const data=require('../utility/expectationFile')
 const testData=require('../testdata/config.json')
 const info=require('../utility/reusableFile')
 const wait=require('../utility/timeout')
+const path=require('path')
 const util = require('util');
 const exec = util.promisify(require('child_process').exec);
 

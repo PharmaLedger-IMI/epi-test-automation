@@ -7,8 +7,10 @@
     "messageDateTime": "2022-03-31T14:40:08.837Z",
     "token": "",
     "batch": {
+        "batch": "CG6707",
+        "expiryDate": "271231",
         "snValid": [
-            "234765"
+            234765
         ],
         "snRecalled": [],
         "snDecom": [],
@@ -25,8 +27,6 @@
         "snValidReset": false,
         "snRecalledReset": false,
         "snDecomReset": false,
-        "productCode": "50961159307905",
-        "batch": "CG6707",
-        "expiryDate": "271231"
+        "productCode": "50961159307905"
     }
 }

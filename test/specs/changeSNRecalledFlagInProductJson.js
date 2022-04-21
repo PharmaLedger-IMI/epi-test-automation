@@ -7,13 +7,13 @@ const wait=require('../utility/timeout')
 const path= require('path');
 const fs = require('fs');
 
-describe('104_Update a product via import of Json by deleting product code', () => {
+describe('122_Update a product via import of Json to change SNRecalled flag', () => {
 
     
 
     it('Browser - update a product via import of Json ', async() => { 
-        allureReporter.addTestId('ImportJson_2_2')
-        allureReporter.addDescription('Update a product via import of Json by deleting product code elemet and uploading modified file. View message and click on invalid field info')
+        allureReporter.addTestId('ImportJson_2_8')
+        allureReporter.addDescription('Update a product via import of Json to change SNRecalled flag and uploading modified file. View message and click on invalid field info')
         allureReporter.startStep('1. Use the standard template Json', 
         '2. Fill up the details on the json', 
         '3. Use the import functionality to select the file', 
@@ -44,14 +44,13 @@ describe('104_Update a product via import of Json by deleting product code', () 
          fs.writeFileSync(testData.path.productImport, JSON.stringify(rawdata))
          await wait.setTimeoutwait(8);
          
-        // //view message
-        // await products.viewMessage()
-        // await wait.setTimeoutwait(5); 
-        // await products.invalidFieldInfo()
-        // await wait.setTimeoutwait(5); 
-        // await products.invalidFieldInfoRequired()
-        // await wait.setTimeoutwait(5); 
+        //view message
+        await products.viewMessageInSuccessLogs()
+        await wait.setTimeoutwait(5); 
 
+        await products.downloadMsgInSuccessLogs()
+        await wait.setTimeoutwait(5); 
+        
         // await products.closeButtonInPopup()
         // await wait.setTimeoutwait(5); 
 

@@ -34,6 +34,7 @@ describe('047_Edit batch to update without serial number ', () => {
         allureReporter.addDescription('Edit batch and reset valid serial number')
         allureReporter.startStep('Update a batch without serial numbers')
         allureReporter.addTestId('SerialNumberChecks_11_1')
+
         await batches.Batch();
         await wait.setTimeoutwait(4);
         
@@ -60,12 +61,14 @@ describe('047_Edit batch to update without serial number ', () => {
         //generate expectation file 
         data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),"",info.getBrandName(), "","","", "" )
         await wait.setTimeoutwait(12);
-        //create batch
-        await batches.updateBatchForEdit()
-        await wait.setTimeoutwait(8);
+       
         //generate 2d matrix image
         matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),"")
         await wait.setTimeoutwait(5);
+
+         //update batch
+         await batches.updateBatchForEdit()
+         await wait.setTimeoutwait(8);
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");
        

@@ -54,7 +54,7 @@ describe('094_Edit product to check batch is unknown and delete smpc. Pass unkno
 
         //update products
         await products.updateProduct()
-        await wait.setTimeoutwait(8);  
+        await wait.setTimeoutwait(18);  
 
 
          //edit batch
@@ -90,7 +90,7 @@ describe('094_Edit product to check batch is unknown and delete smpc. Pass unkno
         await wait.setTimeoutwait(8);
 
         await batches.updateBatchForEdit()
-        await wait.setTimeoutwait(10);   
+        await wait.setTimeoutwait(18);   
        
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");

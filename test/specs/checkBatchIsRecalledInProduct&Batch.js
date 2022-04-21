@@ -1,5 +1,6 @@
 
 const batches= require('../pageobjects/batches.page.js');
+const products=require('../pageobjects/products.page.js')
 const allureReporter = require('@wdio/allure-reporter').default
 const matrix=require('../utility/2dMatrixPage')
 const data=require('../utility/expectationFile')
@@ -53,8 +54,7 @@ describe('062_Edit Product to check batch is recalled and edit batch to set reca
 
          //update products
          await products.updateProduct()
-         await wait.setTimeoutwait(8);  
-
+         await wait.setTimeoutwait(18);  
 
          //edit batch
          await batches.Batch(); 

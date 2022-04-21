@@ -5,7 +5,7 @@ const allureReporter = require('@wdio/allure-reporter').default
 const wait=require('../utility/timeout')
 const path= require('path');
 
-describe('106_Create a batch via import of Json', () => {
+describe('114_Create a batch via import of Json', () => {
 
 
     it('Browser - create a batch via import of Json ', async() => { 
@@ -26,7 +26,14 @@ describe('106_Create a batch via import of Json', () => {
         await wait.setTimeoutwait(5);
     
         await batches.import()
-        await wait.setTimeoutwait(10);  
+        await wait.setTimeoutwait(10); 
+        
+        //view message
+        await batches.viewMessageInSuccessLogs()
+        await wait.setTimeoutwait(5); 
+
+        await batches.downloadMsgInSuccessLogs()
+        await wait.setTimeoutwait(5); 
 
         allureReporter.endStep("passed");
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');

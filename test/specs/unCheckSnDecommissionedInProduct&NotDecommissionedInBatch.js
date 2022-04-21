@@ -66,7 +66,7 @@ describe('086_Edit product to uncheck SN is decommissioned and edit batch to res
         await browser.execute('document.querySelector("div:nth-child(' + await info.editBatchRow(editValue) + ') button:nth-child(1)").click()')
         await wait.setTimeoutwait(6);
         //
-        await batches.selectUpdateDecommissionedFromDropdown(testData[2]['newBatchDetails'].updateDecommissioned)
+        await batches.selectUpdateDecommissionedFromDropdown(testData.newBatchDetails.updateDecommissioned)
         await wait.setTimeoutwait(5);
 
         await batches.enableResetAllDecommisionedSerialNumber()

@@ -69,8 +69,8 @@ describe('046_Edit batch to upload 50K valid serial numbers ', () => {
         matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), serialNumber.split(',')[0])
         await wait.setTimeoutwait(5);
         //create batch
-        await batches.createBatch()
-        await wait.setTimeoutwait(8);
+        await batches.updateBatchForEdit()
+        await wait.setTimeoutwait(18);
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");
        

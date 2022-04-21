@@ -7,7 +7,7 @@ const wait=require('../utility/timeout')
 const path= require('path');
 const fs = require('fs');
 
-describe('109_Update a product via import of Json by deleting invented name & name of medicinal product elemet', () => {
+describe('107_Update a product via import of Json by deleting invented name & name of medicinal product elemet', () => {
 
     
 
@@ -49,15 +49,18 @@ describe('109_Update a product via import of Json by deleting invented name & na
           await wait.setTimeoutwait(8);
           
         //view message
-        await products.viewMessage()
+        await products.viewMessageInFailedLogs()
         await wait.setTimeoutwait(5); 
         await products.invalidFieldInfo()
         await wait.setTimeoutwait(5); 
         await products.invalidFieldInfoRequired()
         await wait.setTimeoutwait(5); 
 
-        await products.closeButtonInPopup()
+        await products.downloadMsgInFailedLogs()
         await wait.setTimeoutwait(5); 
+
+        // await products.closeButtonInPopup()
+        // await wait.setTimeoutwait(5); 
 
          
 

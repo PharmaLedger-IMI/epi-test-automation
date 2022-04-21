@@ -68,7 +68,7 @@ describe('057_Edit product to upload SMPC with another leaflet', () => {
 
           //Update product
           await products.updateProduct()
-          await wait.setTimeoutwait(8);
+          await wait.setTimeoutwait(18);
 
         await batches.Batch();
         //await browser.execute('document.querySelector(`webc-app-menu-item:nth-child(4) stencil-route-link:nth-child(1) a:nth-child(1)`).click()')
@@ -99,6 +99,10 @@ describe('057_Edit product to upload SMPC with another leaflet', () => {
         //generate 2d matrix image
         matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
         await wait.setTimeoutwait(5);
+
+        //update batch
+        await batches.updateBatchForEdit()
+        await wait.setTimeoutwait(18);
 
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");

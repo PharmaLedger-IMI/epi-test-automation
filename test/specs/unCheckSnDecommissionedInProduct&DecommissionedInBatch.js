@@ -6,6 +6,7 @@ const data=require('../utility/expectationFile')
 const testData=require('../testdata/config.json')
 const info=require('../utility/reusableFile')
 const wait=require('../utility/timeout')
+const path=require('path')
 const util = require('util');
 const exec = util.promisify(require('child_process').exec);
 
@@ -84,7 +85,7 @@ describe('085_Edit product to uncheck SN is decommissioned and edit batch to hav
         console.log("editValue is "+editValue)
         await browser.execute('document.querySelector("div:nth-child(' + await info.editBatchRow(editValue) + ') button:nth-child(1)").click()')
         await wait.setTimeoutwait(6);
-        await batches.selectUpdateDecommissionedFromDropdown(testData[2]['newBatchDetails'].updateDecommissioned)
+        await batches.selectUpdateDecommissionedFromDropdown(testData.newBatchDetails.updateDecommissioned)
         await wait.setTimeoutwait(5);
 
         //set serial number value

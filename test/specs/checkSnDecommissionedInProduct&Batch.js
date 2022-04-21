@@ -52,7 +52,7 @@ describe('082_Edit product to check SN is decommssioned and edit batch to update
 
          //update products
          await products.updateProduct()
-         await wait.setTimeoutwait(8);  
+         await wait.setTimeoutwait(18);  
 
 
          //edit batch
@@ -77,12 +77,12 @@ describe('082_Edit product to check SN is decommssioned and edit batch to update
         await batches.acceptSerialNumber()
         await wait.setTimeoutwait(1);
 
-        await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), info.getBatchRecall(),"","", info.getBatchRecallMsg(),info.getEpiDisplayed() )
+        data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), info.getBatchRecall(),"","", info.getBatchRecallMsg(),info.getEpiDisplayed() )
         await wait.setTimeoutwait(12);
 
         matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
         await wait.setTimeoutwait(8);
-
+        //update batch
         await batches.updateBatchForEdit()
         await wait.setTimeoutwait(10);   
        

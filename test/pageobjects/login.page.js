@@ -1,5 +1,6 @@
 
 
+
 const Page = require('./page');
 
 /**
@@ -13,6 +14,22 @@ class LoginPage extends Page {
 
     get enterpriseWallet(){
         return $('=Enterprise Wallet')
+    }
+    get microsoftUrl()
+    {
+        return browser.url('https://upm365.sharepoint.com/sites/PharmaLedger/Documentos%20compartidos/Forms/AllItems.aspx')
+    }
+    get enterMicrosoftEmail(){
+        return $('//input[@type=\'email\']')
+    }
+    get enterMicrosoftPassword(){
+        return $('//input[@type=\'password\']')
+    }
+    get microsoftNextButton(){
+        return $('//input[@type=\'submit\']')
+    }
+    get staySigninNo(){
+        return $('//input[@id=\'idBtn_Back\']')
     }
 
 
@@ -30,8 +47,22 @@ class LoginPage extends Page {
     async openEnterpriseWallet(){
         await this.enterpriseWallet.click();
     }
-
-    
+    async openMicrosoftUrl(){
+        await this.microsoftUrl;
+    }
+    async microsoftEmail(mail){
+        await this.enterMicrosoftEmail.setValue(mail);
+    }
+    async microsoftPassword(pwd){
+        await this.enterMicrosoftPassword.setValue(pwd);
+    }
+    async microsoftNext(){
+        await this.microsoftNextButton.click();
+    }
+    async stayNo(){
+        await this.staySigninNo.click();
+    }
+   
     
     /**
      * overwrite specific options to adapt it to page object

@@ -85,7 +85,7 @@ describe('074_Edit product to check batch is expired and delete smpc. Edit batch
         await wait.setTimeoutwait(8);
 
         await batches.updateBatchForEdit()
-        await wait.setTimeoutwait(10);   
+        await wait.setTimeoutwait(15);   
        
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");

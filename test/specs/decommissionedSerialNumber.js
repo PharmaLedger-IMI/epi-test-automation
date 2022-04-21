@@ -53,7 +53,7 @@ describe('040_Create a batch and enable serial number verification and set decom
  
          //update products
          await products.updateProduct()
-         await wait.setTimeoutwait(8);
+         await wait.setTimeoutwait(18);
        // create a batch 
         await batches.Batch();
         await wait.setTimeoutwait(2);

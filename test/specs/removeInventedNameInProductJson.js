@@ -45,15 +45,18 @@ describe('103_Update a product via import of Json by deleting an invented name e
         await wait.setTimeoutwait(8);
 
         //view message
-        await products.viewMessage()
+        await products.viewMessageInFailedLogs()
         await wait.setTimeoutwait(5); 
         await products.invalidFieldInfo()
         await wait.setTimeoutwait(5); 
         await products.invalidFieldInfoRequired()
         await wait.setTimeoutwait(5); 
 
-        await products.closeButtonInPopup()
+        await products.downloadMsgInFailedLogs()
         await wait.setTimeoutwait(5); 
+
+        // await products.closeButtonInPopup()
+        // await wait.setTimeoutwait(5); 
 
         
 

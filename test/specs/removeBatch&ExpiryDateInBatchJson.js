@@ -49,7 +49,7 @@ describe('113_Update a batch via import of Json by deleting batch and expiry dat
 
 
         //view message
-        await batches.viewMessage()
+        await batches.viewMessageInFailedLogs()
         await wait.setTimeoutwait(5);
         //click invalid field info 
         await batches.invalidFieldInfo()
@@ -57,9 +57,12 @@ describe('113_Update a batch via import of Json by deleting batch and expiry dat
         //Read invalid field info
         await batches.invalidFieldInfoRequired()
         await wait.setTimeoutwait(5); 
-        //close
-        await batches.closeButtonInPopup()
+
+        await batches.downloadMsgInFailedLogs()
         await wait.setTimeoutwait(5); 
+        //close
+        // await batches.closeButtonInPopup()
+        // await wait.setTimeoutwait(5); 
 
         allureReporter.endStep("passed");
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');

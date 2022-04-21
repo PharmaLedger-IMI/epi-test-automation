@@ -7,7 +7,7 @@ const wait=require('../utility/timeout')
 const path= require('path');
 const fs = require('fs');
 
-describe('111_Update a batch via import of Json by deleting expiry date ', () => {
+describe('117_Update a batch via import of Json by deleting expiry date ', () => {
 
     
 
@@ -46,7 +46,7 @@ describe('111_Update a batch via import of Json by deleting expiry date ', () =>
          await wait.setTimeoutwait(8);
          
         //view message
-        await batches.viewMessage()
+        await batches.viewMessageInFailedLogs()
         await wait.setTimeoutwait(5);
         //click invalid field info 
         await batches.invalidFieldInfo()
@@ -54,9 +54,12 @@ describe('111_Update a batch via import of Json by deleting expiry date ', () =>
         //Read invalid field info
         await batches.invalidFieldInfoRequired()
         await wait.setTimeoutwait(5); 
-        //close
-        await batches.closeButtonInPopup()
+
+        await batches.downloadMsgInFailedLogs()
         await wait.setTimeoutwait(5); 
+        //close
+        // await batches.closeButtonInPopup()
+        // await wait.setTimeoutwait(5); 
 
          
 

@@ -4,6 +4,7 @@ const matrix=require('../utility/2dMatrixPage')
 const data=require('../utility/expectationFile')
 const info=require('../utility/reusableFile')
 const wait=require('../utility/timeout')
+const testData=require('../testdata/config.json')
 const util = require('util');
 const exec = util.promisify(require('child_process').exec);
 
@@ -59,14 +60,16 @@ describe('059_Edit batch to delete ePI and SMPC file.', () => {
         await batches.deleteAllFile()
         await wait.setTimeoutwait(5);
 
-        await batches.updateBatchForEdit()
-        await wait.setTimeoutwait(15);
+       
         //generate expectation file
         data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(),"", await batches.checkBatchMessage(),"", "" )
         await wait.setTimeoutwait(12);
         //generate 2d matrix image
         matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
         await wait.setTimeoutwait(5);
+        //update batch
+        await batches.updateBatchForEdit()
+        await wait.setTimeoutwait(15);
        
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");

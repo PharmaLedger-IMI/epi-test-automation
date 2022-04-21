@@ -53,7 +53,7 @@ describe('095_Edit product to uncheck batch is unknown and edit batch to have va
 
         //update products
         await products.updateProduct()
-        await wait.setTimeoutwait(8);  
+        await wait.setTimeoutwait(18);  
 
 
          //edit batch
@@ -89,7 +89,7 @@ describe('095_Edit product to uncheck batch is unknown and edit batch to have va
         await wait.setTimeoutwait(8);
         //update batch
         await batches.updateBatchForEdit()
-        await wait.setTimeoutwait(10);   
+        await wait.setTimeoutwait(18);   
        
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");

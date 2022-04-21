@@ -7,7 +7,7 @@ const wait=require('../utility/timeout')
 const path= require('path');
 const fs = require('fs');
 
-describe('111_Update a batch via import of Json by deleting product code and batch', () => {
+describe('118_Update a batch via import of Json by deleting product code and batch', () => {
 
     
 
@@ -49,7 +49,7 @@ describe('111_Update a batch via import of Json by deleting product code and bat
 
 
         //view message
-        await batches.viewMessage()
+        await batches.viewMessageInFailedLogs()
         await wait.setTimeoutwait(5);
         //click invalid field info 
         await batches.invalidFieldInfo()
@@ -57,9 +57,12 @@ describe('111_Update a batch via import of Json by deleting product code and bat
         //Read invalid field info
         await batches.invalidFieldInfoRequired()
         await wait.setTimeoutwait(5); 
-        //close
-        await batches.closeButtonInPopup()
+
+        await batches.downloadMsgInFailedLogs()
         await wait.setTimeoutwait(5); 
+        //close
+        // await batches.closeButtonInPopup()
+        // await wait.setTimeoutwait(5); 
 
          
 

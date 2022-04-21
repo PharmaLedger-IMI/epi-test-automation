@@ -80,12 +80,14 @@ describe('050_Edit batch to update with decommissioned and recalled serial numbe
         //generate expectation file 
         data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), "","","", "" )
         await wait.setTimeoutwait(12);
-        //create batch
-        await batches.updateBatchForEdit()
-        await wait.setTimeoutwait(8);
+       
         //generate 2d matrix image
         matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
         await wait.setTimeoutwait(5);
+
+         //update batch
+         await batches.updateBatchForEdit()
+         await wait.setTimeoutwait(8);
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");
        

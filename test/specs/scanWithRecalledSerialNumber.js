@@ -44,6 +44,16 @@ describe('042_Edit a batch to update recalled SN and scan with recalled serial n
         await browser.execute('document.querySelector("div:nth-child(' + await info.editBatchRow(editValue) + ') button:nth-child(1)").click()')       
         await wait.setTimeoutwait(8);
 
+        //select valid to reset serial number
+        await batches.selectUpdateValidSerialFromDropdown(testData.newBatchDetails.updateValid)
+        await wait.setTimeoutwait(2);
+        //enable checkbox
+        await batches.enableResetAllValidSerialNumber()
+        await wait.setTimeoutwait(2);
+        //accept serial number
+        await batches.acceptSerialNumber()
+        await wait.setTimeoutwait(2); 
+
         //select recalled serial number
         await batches.selectUpdateRecalledSerialFromDropdown(testData.newBatchDetails.updateRecalled)
         await wait.setTimeoutwait(2);

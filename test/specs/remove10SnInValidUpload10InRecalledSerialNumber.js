@@ -73,6 +73,17 @@ describe('044_Edit batch to remove 10 serial numbers from valid and upload 10 in
         //accept serial number
         await batches.acceptSerialNumber()
         await wait.setTimeoutwait(2);
+
+        //  //select decommisioned serial number
+        //  await batches.selectUpdateDecommissionedFromDropdown(testData.newBatchDetails.updateDecommissioned)
+        //  await wait.setTimeoutwait(2);
+        //  //enable checkbox
+        //  await batches.enableResetAllDecommisionedSerialNumber()
+        //  await wait.setTimeoutwait(2);
+        //  //accept serial number
+        // await batches.acceptSerialNumber()
+        // await wait.setTimeoutwait(2);
+
         //generate expectation file     
         data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  serialNumber.split(',')[0],info.getBrandName(), "","","", "" )
         await wait.setTimeoutwait(12);
@@ -82,7 +93,7 @@ describe('044_Edit batch to remove 10 serial numbers from valid and upload 10 in
         await wait.setTimeoutwait(5);
         //create batch
         await batches.updateBatchForEdit()
-        await wait.setTimeoutwait(8);
+        await wait.setTimeoutwait(18);
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");
        

@@ -1,4 +1,5 @@
 const products= require('../pageobjects/products.page');
+const batches= require('../pageobjects/batches.page.js');
 const allureReporter = require('@wdio/allure-reporter').default
 const matrix=require('../utility/2dMatrixPage')
 const data=require('../utility/expectationFile')
@@ -48,7 +49,7 @@ describe('066_Edit product to uncheck batch recall and delete SMPC and edit batc
         info.setEpiDisplayed(await products.epiDisplayed())
         //update products
         await products.updateProduct()
-        await wait.setTimeoutwait(8);  
+        await wait.setTimeoutwait(18);  
 
 
         //edit batch
@@ -65,14 +66,16 @@ describe('066_Edit product to uncheck batch recall and delete SMPC and edit batc
          await batches.enableCheckToRecallThisBatch()
          await wait.setTimeoutwait(3);
          
-         await batches.updateBatchForEdit()
-         await wait.setTimeoutwait(3);
+        
         //generate expectation file 
         data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), info.getBatchRecall(),"","", info.getBatchRecallMsg(), info.getEpiDisplayed() )
         await wait.setTimeoutwait(12);
         //generate 2d matrix image
         matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
         await wait.setTimeoutwait(8);
+
+        await batches.updateBatchForEdit()
+        await wait.setTimeoutwait(18);
        
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");

@@ -78,7 +78,7 @@ describe('053_Edit product to upload a new version of the ePI ', () => {
 
         //Update product
         await products.updateProduct()
-        await wait.setTimeoutwait(8);
+        await wait.setTimeoutwait(18);
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");
         allureReporter.endStep("passed");

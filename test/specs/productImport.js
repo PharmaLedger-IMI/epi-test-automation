@@ -4,9 +4,10 @@ const allureReporter = require('@wdio/allure-reporter').default
 const wait=require('../utility/timeout')
 const path= require('path');
 
-describe('102_Import product', () => {
 
-    
+
+
+describe('102_Import product', () => {
 
     it('Browser - create a product via import of Json ', async() => { 
         allureReporter.addTestId('ImportJson_1_1')
@@ -26,8 +27,14 @@ describe('102_Import product', () => {
         await wait.setTimeoutwait(5);
     
         await products.import()
-        await wait.setTimeoutwait(10);  
+        await wait.setTimeoutwait(10); 
+        
+        //view message
+        await products.viewMessageInSuccessLogs()
+        await wait.setTimeoutwait(5); 
 
+         await products.downloadMsgInSuccessLogs()
+        await wait.setTimeoutwait(5); 
  
         allureReporter.endStep("passed");
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');

@@ -6,6 +6,7 @@ const data=require('../utility/expectationFile')
 const testData=require('../testdata/config.json')
 const info=require('../utility/reusableFile')
 const wait=require('../utility/timeout')
+const path=require('path')
 const util = require('util');
 const exec = util.promisify(require('child_process').exec);
 
@@ -52,13 +53,13 @@ describe('080_Edit product to uncheck SN is in recall and edit batch to update v
         await products.addEpi()
         await wait.setTimeoutwait(3);
         //select language	
-        await products.selectLanguage(testData[1]['newProductDetails'].selectLanguage)
+        await products.selectLanguage(testData.newProductDetails.selectLanguage)
         await wait.setTimeoutwait(1);
         // select type
-        await products.selectType(testData[1]['newProductDetails'].selectType)
+        await products.selectType(testData.newProductDetails.selectType)
         await wait.setTimeoutwait(2);
         //Video source
-        await products.videoSourceEpi(testData[1]['newProductDetails'].videoSource)
+        await products.videoSourceEpi(testData.newProductDetails.videoSource)
         await wait.setTimeoutwait(1);
         //Upload smpc 
         await products.uploadFile(path.join(__dirname, '/src/SMPC_ProductLevel'));
@@ -71,7 +72,7 @@ describe('080_Edit product to uncheck SN is in recall and edit batch to update v
 
          //update products
          await products.updateProduct()
-         await wait.setTimeoutwait(8);  
+         await wait.setTimeoutwait(18);  
 
 
          //edit batch
@@ -84,7 +85,7 @@ describe('080_Edit product to uncheck SN is in recall and edit batch to update v
         console.log("editValue is "+editValue)
         await browser.execute('document.querySelector("div:nth-child(' + await info.editBatchRow(editValue) + ') button:nth-child(1)").click()')
         await wait.setTimeoutwait(6);
-        await batches.selectUpdateRecalledSerialFromDropdown(testData[2]['newBatchDetails'].updateRecalled)
+        await batches.selectUpdateRecalledSerialFromDropdown(testData.newBatchDetails.updateRecalled)
         await wait.setTimeoutwait(5);
 
         //set serial number value
@@ -96,7 +97,7 @@ describe('080_Edit product to uncheck SN is in recall and edit batch to update v
         await batches.acceptSerialNumber()
         await wait.setTimeoutwait(1);
 
-        await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), info.getBatchRecall(),"","", info.getBatchRecallMsg(),info.getEpiDisplayed() )
+        data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), info.getBatchRecall(),"","", info.getBatchRecallMsg(),info.getEpiDisplayed() )
         await wait.setTimeoutwait(12);
 
         matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())

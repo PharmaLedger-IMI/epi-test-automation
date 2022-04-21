@@ -52,7 +52,7 @@ describe('089_Edit product to check SN is unknown and delete smpc. Pass unknown 
 
         //update products
         await products.updateProduct()
-        await wait.setTimeoutwait(8);  
+        await wait.setTimeoutwait(18);  
 
 
          //edit batch

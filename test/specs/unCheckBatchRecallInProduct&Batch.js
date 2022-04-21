@@ -1,4 +1,4 @@
-
+const products= require('../pageobjects/products.page');
 const batches= require('../pageobjects/batches.page.js');
 const allureReporter = require('@wdio/allure-reporter').default
 const matrix=require('../utility/2dMatrixPage')

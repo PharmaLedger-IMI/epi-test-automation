@@ -82,7 +82,7 @@ describe('083_Edit product to check SN is decommssioned and edit batch to reset 
 
         matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),"")
         await wait.setTimeoutwait(8);
-
+        //update batch
         await batches.updateBatchForEdit()
         await wait.setTimeoutwait(10);   
        

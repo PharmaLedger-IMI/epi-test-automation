@@ -55,12 +55,6 @@ describe('039_Edit batch to reset recalled serial number and scan with recalled 
         await batches.acceptSerialNumber()
         await wait.setTimeoutwait(2);
 
-         //update batch
-         await batches.updateBatchForEdit()
-         await wait.setTimeoutwait(10);
-       
-
-
     //      // search the product codes
     //    await products.searchProductCode(info.getProductId())
     //    await wait.setTimeoutwait(3);
@@ -84,6 +78,10 @@ describe('039_Edit batch to reset recalled serial number and scan with recalled 
        //generate 2d matrix image
         matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
         await wait.setTimeoutwait(5);
+
+         //update batch
+         await batches.updateBatchForEdit()
+         await wait.setTimeoutwait(10);
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");
        

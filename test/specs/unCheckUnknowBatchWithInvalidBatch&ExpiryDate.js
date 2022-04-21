@@ -76,7 +76,7 @@ after(async () => {
 
          //update products
          await products.updateProduct()
-         await wait.setTimeoutwait(8); 
+         await wait.setTimeoutwait(18); 
 
     // await batches.Batch(); 
     // await wait.setTimeoutwait(3);
@@ -106,7 +106,7 @@ after(async () => {
     await selectBox.selectByAttribute('value', info.getProductId());
     await wait.setTimeoutwait(2);
    
-    await batches.selectUpdateValidSerialFromDropdown(testData[2]['newBatchDetails'].updateValid)
+    await batches.selectUpdateValidSerialFromDropdown(testData.newBatchDetails.updateValid)
     await wait.setTimeoutwait(5);
     
     //set serial number value

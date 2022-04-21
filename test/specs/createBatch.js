@@ -30,15 +30,15 @@ describe('004_Create Batch', () => {
             allureReporter.addFeature('Create Batch')
             allureReporter.addSeverity('Critical');
             allureReporter.addTestId('ProdAndBatchSetup_1')
-            allureReporter.addDescription('No. of batches can be created by Adding batch')
+            //allureReporter.addDescription('No. of batches can be created by adding batch')
             allureReporter.startStep("Create a batch for the recent GTIN with all valid details.")
 
 
-            // await batches.Batch(); 
-            // await wait.setTimeoutwait(3);
+            await batches.Batch(); 
+            await wait.setTimeoutwait(4);
             //Created for QA environment
-            await browser.execute('document.querySelector(`webc-app-menu-item:nth-child(4) stencil-route-link:nth-child(1) a:nth-child(1)`).click()')
-            await wait.setTimeoutwait(6);
+            // await browser.execute('document.querySelector(`webc-app-menu-item:nth-child(4) stencil-route-link:nth-child(1) a:nth-child(1)`).click()')
+            // await wait.setTimeoutwait(6);
 
             await batches.addBatch();
             await wait.setTimeoutwait(3);
@@ -84,17 +84,14 @@ describe('004_Create Batch', () => {
 
             // add epi leaflet
             await batches.addEpi()
-            await wait.setTimeoutwait(2);
+            await wait.setTimeoutwait(5);
 
             // video source
             await batches.videoSourceEpi(testData.newBatchDetails.videoSource)
             await wait.setTimeoutwait(4);
-            //Upload epi
+            //upload epi
             await batches.uploadFile(path.join(__dirname, '/src/Leaflet_BatchLevel'));
-
-            // // upload leaflet folder
-            //await browser.$('//input[@type=\'file\']').addValue(path.join(__dirname, '/src/Leaflet_BatchLevel'));
-            await wait.setTimeoutwait(4);
+           await wait.setTimeoutwait(4);
             //scrollIntoView
             await batches.acceptButton()
             await wait.setTimeoutwait(5);
@@ -102,13 +99,13 @@ describe('004_Create Batch', () => {
             data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber(), info.getBrandName(), "", "", "", "", await batches.epiDisplayed())
             await wait.setTimeoutwait(6);
 
-            //Create batch
-            await batches.createBatch()
-            await wait.setTimeoutwait(15);
-
-            //Generate Image
+            //generate Image
             matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
             await wait.setTimeoutwait(8);
+
+             //create batch
+             await batches.createBatch()
+             await wait.setTimeoutwait(20);
 
 
             allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');

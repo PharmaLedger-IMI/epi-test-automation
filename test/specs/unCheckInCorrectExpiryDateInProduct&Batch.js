@@ -1,11 +1,12 @@
 const products= require('../pageobjects/products.page');
-//const batches= require('../pageobjects/batches.page.js');
+const batches= require('../pageobjects/batches.page.js');
 const allureReporter = require('@wdio/allure-reporter').default
 const matrix=require('../utility/2dMatrixPage')
 const data=require('../utility/expectationFile')
 const testData=require('../testdata/config.json')
 const info=require('../utility/reusableFile')
 const wait=require('../utility/timeout')
+const path=require('path')
 const util = require('util');
 const exec = util.promisify(require('child_process').exec);
 

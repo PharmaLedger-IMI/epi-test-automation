@@ -1,4 +1,11 @@
+
+
 const expectChai = require('chai').expect;
+const testData=require('../testdata/config.json')
+const path = require('path')
+const  {URL}  = require('url')
+const assert = require('assert');
+const fs = require('fs')
 
 
 class productsPage {
@@ -163,11 +170,17 @@ class productsPage {
     get importF(){
         return $('//button[normalize-space()="Import"]')
     }
-    get clickViewMessage(){
+    get clickViewMessageInFailedLogs(){
         return $('webc-datatable[datasource="@failedDataSource"] button[class="btn btn-link p-0 col align-self-center text-left"]')
     }
     get clickInvalidFieldInfo(){
         return $('psk-accordion-item[title="Invalid fields info"]')
+    }
+    get clickViewMessageInSuccessLogs(){
+        return $('div:nth-child(14) button:nth-child(1)')
+    }
+    get clickDownloadMsg(){
+        return $('//button[normalize-space()="Download message"]')
     }
     get requiredFields(){
         return $('ul[data-for="@actionModalModel.secondMessageData"]')
@@ -397,7 +410,13 @@ class productsPage {
     }
     async saveProduct(){
         await this.saveProductButton.click();
-        await browser.waitForVisible('//span[@slot="page-title"]', 3000);
+        await browser.waitUntil(
+            async () => (await $('//span[@slot="page-title"]').waitForVisible()),
+            {
+                timeout: 5000,
+                timeoutMsg: 'no title'
+            }
+        );
 
 
 
@@ -422,7 +441,7 @@ class productsPage {
         await browser.waitUntil(
             async () => (await $('//label[normalize-space()="Select files"]').waitForEnabled()),
             {
-                timeout: 5000,
+                timeout: 10000,
                 timeoutMsg: 'import button is not active'
             }
         );
@@ -442,10 +461,84 @@ class productsPage {
         //     }
         // );
     }
-    async viewMessage(){
+    async viewMessageInFailedLogs(){
         
-        await this.clickViewMessage.click()
+        await this.clickViewMessageInFailedLogs.click()
     }
+    async viewMessageInSuccessLogs(){
+        
+        await this.clickViewMessageInSuccessLogs.click()
+    }
+    async downloadMsgInSuccessLogs(){
+        
+       
+    const downloadHref = await browser.getUrl();
+     // pass through Node's `URL` class
+     // @see https://nodejs.org/dist/latest-v8.x/docs/api/url.html
+    const downloadUrl = new URL(downloadHref);
+     // get the 'pathname' off the url
+     // e.g. 'download/some-file.txt'
+     const fullPath = downloadUrl.pathname;
+     console.log("fullpath "+fullPath)
+     // split in to an array, so we can get just the filename
+     // e.g. ['download', 'some-file.txt']
+     const splitPath = fullPath.split('/')
+     // get just the filename at the end of the array
+     // e.g.  'some-file.txt'
+        const fileName = splitPath.splice(-1)[0]
+        // join the filename to the path where we're storing the downloads
+        // '/path/to/wdio/tests/tempDownload/some-file.txt'
+        const filePath = path.join(global.downloadDir, fileName)
+        console.log(filePath)
+        await this.clickDownloadMsg.click()
+        await browser.pause(5000)
+
+        let rawdata = JSON.parse(fs.readFileSync(testData.path.productImport, 'utf8'))
+        const file1 = filePath.concat("\\", "product_", rawdata.product.productCode, ".json")
+        console.log(file1)
+        let fileContents = JSON.parse(fs.readFileSync(file1, 'utf-8'))
+        // console.log(JSON.stringify(fileContents))
+        // console.log(JSON.stringify(rawdata))
+        console.log(JSON.stringify(fileContents) === JSON.stringify(rawdata))
+        await browser.pause(5000)
+        fs.unlinkSync(file1)
+        
+    }
+    async downloadMsgInFailedLogs(){
+
+        const downloadHref = await browser.getUrl();
+     // pass through Node's `URL` class
+     // @see https://nodejs.org/dist/latest-v8.x/docs/api/url.html
+    const downloadUrl = new URL(downloadHref);
+     // get the 'pathname' off the url
+     // e.g. 'download/some-file.txt'
+     const fullPath = downloadUrl.pathname;
+     console.log("fullpath "+fullPath)
+     // split in to an array, so we can get just the filename
+     // e.g. ['download', 'some-file.txt']
+     const splitPath = fullPath.split('/')
+     // get just the filename at the end of the array
+     // e.g.  'some-file.txt'
+        const fileName = splitPath.splice(-1)[0]
+      
+        // join the filename to the path where we're storing the downloads
+        // '/path/to/wdio/tests/tempDownload/some-file.txt'
+        const filePath = path.join(global.downloadDir, fileName)
+        console.log(filePath)
+        await this.clickDownloadMsg.click()
+        await browser.pause(5000)
+
+        let rawdata = JSON.parse(fs.readFileSync(testData.path.productImport, 'utf8'))
+        const file1 = filePath.concat("\\", "product_", rawdata.product.productCode, ".json")
+        console.log(file1)
+        let fileContents = JSON.parse(fs.readFileSync(file1, 'utf-8'))
+        // console.log(JSON.stringify(fileContents))
+        // console.log(JSON.stringify(rawdata))
+        console.log(JSON.stringify(fileContents) === JSON.stringify(rawdata))
+        await browser.pause(5000)
+        fs.unlinkSync(file1)
+    }
+    
     async invalidFieldInfo(){
         
         await this.clickInvalidFieldInfo.click()

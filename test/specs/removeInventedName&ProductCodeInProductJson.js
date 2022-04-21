@@ -42,15 +42,18 @@ describe('106_Update a product via import of Json by deleting invented name & pr
         await products.import()
         await wait.setTimeoutwait(20); 
         //view message
-        await products.viewMessage()
+        await products.viewMessageInFailedLogs()
         await wait.setTimeoutwait(5); 
         await products.invalidFieldInfo()
         await wait.setTimeoutwait(5); 
         await products.invalidFieldInfoRequired()
         await wait.setTimeoutwait(5); 
 
-        await products.closeButtonInPopup()
+        await products.downloadMsgInFailedLogs()
         await wait.setTimeoutwait(5); 
+
+        // await products.closeButtonInPopup()
+        // await wait.setTimeoutwait(5); 
 
          //update json file
          rawdata.product.productCode = productCodeValue

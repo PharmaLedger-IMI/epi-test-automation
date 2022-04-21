@@ -86,11 +86,11 @@ after(async () => {
     data.generateExpectationFile(info.getProductId(), info.getbatchId(), incorrectExpiryDate,  invalidSerialNumber, info.getBrandName(), "","","","", await batches.epiDisplayed())
     await wait.setTimeoutwait(6);
  
-    //Generate Image
+    //generate Image
     matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), incorrectExpiryDate, invalidSerialNumber)
     await wait.setTimeoutwait(8);
 
-    //Create batch
+    //update batch
     await batches.updateBatchForEdit()
     await wait.setTimeoutwait(15);
 

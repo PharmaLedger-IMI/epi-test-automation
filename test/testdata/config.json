@@ -3,11 +3,18 @@
         "login": 
         {
             "userName": "kpepiwdio",
+            "invalidUserName": "testq",
             "demiurgeUser":"testing",
             "enterpriseUser":"user12",
             "devUser":"devuser",
             "emailId":"dev@user.dev",
-            "password":"SuperUserSecurePassword1!"
+            "validPassword":"SuperUserSecurePassword1!",
+            "invalidPassword":"1234fefhf",
+            "ssoValidEmail":"testing.in123@outlook.com",
+            "ssoInvalidEmail":"test@gmail",
+            "ssoValidPassword":"test@TEST123"
+
+
 
         },
         "newProductDetails": 

@@ -49,7 +49,7 @@ describe('093_Edit Product to check batch is unknown and edit batch to have vali
 
         //update products
         await products.updateProduct()
-        await wait.setTimeoutwait(8);  
+        await wait.setTimeoutwait(18);  
 
 
          //edit batch
@@ -82,7 +82,7 @@ describe('093_Edit Product to check batch is unknown and edit batch to have vali
         await wait.setTimeoutwait(8);
 
         await batches.updateBatchForEdit()
-        await wait.setTimeoutwait(10);   
+        await wait.setTimeoutwait(18);   
        
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");

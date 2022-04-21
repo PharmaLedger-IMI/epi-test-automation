@@ -1,4 +1,4 @@
-
+//const products= require('../pageobjects/products.page');
 const batches= require('../pageobjects/batches.page.js');
 const matrix=require('../utility/2dMatrixPage')
 const data=require('../utility/expectationFile')
@@ -32,15 +32,48 @@ describe('043_Edit a batch to update decommissioned SN and scan with decommissio
         allureReporter.addDescription('Create a new batch and verify enable serial number verification and scan with decommissioned serial numbers')    
         allureReporter.startStep('Create a batch and enable serial number verification and set valid serial numbers, recalled and decommissioned')
         allureReporter.startStep('Scan with decommissioned serial number')
-
         allureReporter.addTestId('SerialNumberChecks_7_3')
+
+        // await products.clickProductFromSideNav()
+        // await wait.setTimeoutwait(4);
+
+        //  // search the product codes
+        //  await products.searchProductCode(info.getProductId())
+        //  await wait.setTimeoutwait(3);
+        //  await browser.keys('Enter')
+        //  await wait.setTimeoutwait(4);
+        //  //view or edits
+        //  await browser.execute('document.querySelector("button[data-tag=\'edit-product\']").click()')
+        //  await wait.setTimeoutwait(5);
+ 
+        //  // enable SN is in decommissioned list
+        //  await products.enableSnIsInDecommissionedList()
+        //  await wait.setTimeoutwait(4);
+ 
+        //  //update products
+        //  await products.updateProduct()
+        //  await wait.setTimeoutwait(18)
+
+
         await batches.Batch();
-        await wait.setTimeoutwait(3);
+        await wait.setTimeoutwait(4);
         //edit above batch
         let editValue = info.getbatchId()
         console.log("editValue is "+editValue)
         await browser.execute('document.querySelector("div:nth-child(' + await info.editBatchRow(editValue) + ') button:nth-child(1)").click()')       
         await wait.setTimeoutwait(8);
+
+
+        //select recalled serial number
+        await batches.selectUpdateRecalledSerialFromDropdown(testData.newBatchDetails.updateRecalled)
+        await wait.setTimeoutwait(2);
+        //enable checkbox
+        await batches.enableResetAllRecalledSerialNumber()
+        await wait.setTimeoutwait(2);
+       
+        //accept serial number
+        await batches.acceptSerialNumber()
+        await wait.setTimeoutwait(2); 
 
          //select decommisioned serial number
         await batches.selectUpdateDecommissionedFromDropdown(testData.newBatchDetails.updateDecommissioned)
@@ -68,7 +101,7 @@ describe('043_Edit a batch to update decommissioned SN and scan with decommissio
         await wait.setTimeoutwait(5);
         //update batch
         await batches.updateBatchForEdit()
-        await wait.setTimeoutwait(10);
+        await wait.setTimeoutwait(18);
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");
         allureReporter.endStep("passed");

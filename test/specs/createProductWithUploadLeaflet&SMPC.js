@@ -57,7 +57,7 @@ describe('056_SMPC update on the product Non- batch specific version', () => {
          await products.selectType(testData.newProductDetails.selectType)
          await wait.setTimeoutwait(2);
          //upload folder
-         await batches.uploadFile(path.join(__dirname, '/src/SMPC_ProductLevel'));
+         await products.uploadFile(path.join(__dirname, '/src/SMPC_ProductLevel'));
          await wait.setTimeoutwait(5);
 
          await products.acceptButton()
@@ -65,11 +65,11 @@ describe('056_SMPC update on the product Non- batch specific version', () => {
  
          //Update product
          await products.updateProduct()
-         await wait.setTimeoutwait(8);
+         await wait.setTimeoutwait(25);
  
         //create batch and scan
         await batches.Batch();
-        await browser.pause(4000)
+        await wait.setTimeoutwait(4);
         await batches.addBatch();
         await wait.setTimeoutwait(2);
         info.setBatchId(await batches.batchIdValue())

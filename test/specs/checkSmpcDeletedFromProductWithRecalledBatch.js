@@ -5,6 +5,7 @@ const matrix=require('../utility/2dMatrixPage')
 const data=require('../utility/expectationFile')
 const info=require('../utility/reusableFile')
 const wait=require('../utility/timeout')
+const testData=require('../testdata/config.json')
 const util = require('util');
 const exec = util.promisify(require('child_process').exec);
 

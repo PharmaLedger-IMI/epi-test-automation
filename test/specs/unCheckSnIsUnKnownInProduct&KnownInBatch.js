@@ -69,7 +69,7 @@ describe('091_Edit product to uncheck SN is unknown and edit batch to have valid
         await browser.execute('document.querySelector("div:nth-child(' + await info.editBatchRow(editValue) + ') button:nth-child(1)").click()')
         await wait.setTimeoutwait(6);
         //
-        await batches.selectUpdateValidSerialFromDropdown(testData[2]['newBatchDetails'].updateValid)
+        await batches.selectUpdateValidSerialFromDropdown(testData.newBatchDetails.updateValid)
         await wait.setTimeoutwait(5);
 
          //set serial number
@@ -90,7 +90,7 @@ describe('091_Edit product to uncheck SN is unknown and edit batch to have valid
         await wait.setTimeoutwait(8);
 
         await batches.updateBatchForEdit()
-        await wait.setTimeoutwait(10);   
+        await wait.setTimeoutwait(18);   
        
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");

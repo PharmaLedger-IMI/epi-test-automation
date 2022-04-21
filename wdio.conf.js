@@ -1,3 +1,9 @@
+const path = require('path')
+const fs = require('fs')
+
+// Store the directory path in a global, which allows us to access this path inside our tests
+global.downloadDir = path.join(__dirname, './test/Json_File');
+
 exports.config = {
     //
     // ====================
@@ -22,29 +28,29 @@ exports.config = {
     // will be called from there.
     //
     specs: [
-        [
-        //'./test/specs/**/*.js',
+        
+       [ //'./test/specs/**/*.js',
        
 
-            //   'test/specs/gtinPage.js',
+            //'test/specs/gtinPage.js',
            'test/specs/loginCredentials.js',
            
             //  'test/specs/createProduct.js',
             // 'test/specs/createBatch.js',
 
-            // 'test/specs/editBatchforRecallMsg.js',
+            //'test/specs/editBatchforRecallMsg.js',
             // 'test/specs/editProductforToggle_ePIFlag.js',
 
             // 'test/specs/enableSerialNumberCheckWithValidMatrix.js',
             // 'test/specs/enableSerialNumberCheckWithInValidMatrix.js',
             // 'test/specs/disableSerialNumberCheckWithSerialNumber.js',
            // 'test/specs/disableSerialNumberCheckWithOutSerialNumber.js',
-            
+
             // 'test/specs/enableExpiryDateCheckWithValidMatrix.js',
             // 'test/specs/enableExpiryDateCheckWithInValidMatrix.js',
             // 'test/specs/disableExpiryDateCheckWithInValidDate.js',
 
-            
+
             // 'test/specs/batchRecallForSerializedWithSN.js',
             // 'test/specs/batchRecallForSerializedUndoRecallFlag.js',
             // 'test/specs/batchRecallForNonSerializedWithoutSN.js',
@@ -78,9 +84,9 @@ exports.config = {
             //'test/specs/recalledSerialNumbers.js',
             //'test/specs/clearRecalledSerialNumbers.js',
             //'test/specs/decommissionedSerialNumber.js',
-            //'test/specs/createBatchWithValidRecalledDecommissioned.js',
+            //'test/specs/createBatchWithValidSNRecalledSNDecommissionedSN.js',
             //'test/specs/scanWithRecalledSerialNumber.js',
-            // 'test/specs/scanWithDecommissionedSerialNumberjs',
+            // 'test/specs/scanWithDecommissionedSerialNumber.js',
             // 'test/specs/remove10SnInValidUpload10InRecalledSerialNumber.js',
             // 'test/specs/remove10SnInValidUpload10InDecommissionedSerialNumber.js',
             // 'test/specs/upload50InValidSerialNumber.js',
@@ -99,11 +105,9 @@ exports.config = {
             // 'test/specs/createBatchWithUploadLeaflet&SMPC.js',
             //  'test/specs/deleteLeaflet&SMPCInBatch.js',
             // 'test/specs/scanPreviousBatch.js',
-            
 
-            
             //'test/specs/checkBatchRecallInProduct&NotRecalledInBatch.js',
-            //'test/specs/checkBatchIsRecalledInProduct&Batch.js',
+            'test/specs/checkBatchIsRecalledInProduct&Batch.js',
             //'test/specs/checkSmpcDeletedFromProductWithRecalledBatch.js',
             // 'test/specs/unCheckBatchRecallInProduct&RecalledInBatch.js',
             //'test/specs/unCheckBatchRecallInProduct&Batch.js',
@@ -152,31 +156,51 @@ exports.config = {
             //'test/specs/demiurgeAddAdmin.js',
             //'test/specs/demiurgeAddEnterpriseWalletUser.js',
 
-            //'test/specs/productImport.js',
-            // 'test/specs/removeInventedNameInProductJson.js',
-            // 'test/specs/removeProductCodeInProductJson.js',
-            // 'test/specs/removeNameOfMedicinalProductInProductJson.js',
-           // 'test/specs/removeInventedName&ProductCodeInProductJson.js',
-           // 'test/specs/removeInventedNameProductCode&NameOfMedicinalProductInProductJson.js',
-          // 'test/specs/removeProductCode&NameOfMedicinalProductInProductJson.js',
-          //  'test/specs/removeInventedName&NameOfMedicinalProductInProductJson.js',
-          //    'test/specs/batchImport.js',
-           //  'test/specs/removeProductCodeInBatchJson.js',
-            // 'test/specs/removeBatchInBatchJson.js',
-            // 'test/specs/removeExpiryDateInBatchJson.js',
-            //'test/specs/removeProductCode&BatchInBatchJson.js',
-            // 'test/specs/removeProductCode&ExpiryDateInBatchJson.js',
-            // 'test/specs/removeBatch&ExpiryDateInBatchJson.js',
-            // 'test/specs/removeProductCodeBatch&ExpiryDateInBatchJson.js',
-            // 'test/specs/changeSNRecalledFlagInProductJson.js',
-            // 'test/specs/changeSNDecommissionedFlagInProductJson.js'
-
-
-            
+           // 'test/specs/invalidLoginCredentials.js',
+           //'test/specs/inValidSsoLogin.js',
+           // 'test/specs/validSsoLogin.js',
+           // 'test/specs/reLoginSsoAndOpenEpiUrlInNewTab.js',
+           //'test/specs/reLoginSsoClearBrowserCookiesAndOpenEpiUrl.js',
+           //'test/specs/ssoLoginAndEnterpriseLogin.js'
+        ],
     ],
+      
+    suites: {
+        importJson: [
+         [
+           'test/specs/loginCredentials.js',
+         'test/specs/productImport.js',
+        // 'test/specs/removeInventedNameInProductJson.js',
+        // 'test/specs/removeProductCodeInProductJson.js',
+        // 'test/specs/removeNameOfMedicinalProductInProductJson.js',
+        // 'test/specs/removeInventedName&ProductCodeInProductJson.js',
+        // 'test/specs/removeInventedName&NameOfMedicinalProductInProductJson.js',
+        // 'test/specs/removeProductCode&NameOfMedicinalProductInProductJson.js',
+        // 'test/specs/removeInventedNameProductCode&NameOfMedicinalProductInProductJson.js',
 
-],
+        // 'test/specs/changeSNRecalledFlagInProductJson.js',
+        // 'test/specs/changeSNDecommissionedFlagInProductJson.js',
+        // 'test/specs/changeMarketIdInProductJson.js',
+        // 'test/specs/enterIncorrectBatchExpiredFlagInProductJson.js',
 
+        // 'test/specs/batchImport.js',
+        // 'test/specs/removeProductCodeInBatchJson.js',
+        // 'test/specs/removeBatchInBatchJson.js',
+        // 'test/specs/removeExpiryDateInBatchJson.js',
+        // 'test/specs/removeProductCode&BatchInBatchJson.js',
+        // 'test/specs/removeProductCode&ExpiryDateInBatchJson.js',
+        // 'test/specs/removeBatch&ExpiryDateInBatchJson.js',
+        // 'test/specs/removeProductCodeBatch&ExpiryDateInBatchJson.js',
+
+        // 'test/specs/changeBatchRecallMsgFlagInBatchJson.js',
+        // 'test/specs/enterSnRecalledInBatchJson.js',
+        // 'test/specs/enterSnDecommissionedInBatchJson.js',
+        // 'test/specs/enterSnValidInBatchJson.js'
+         ]
+
+              ]
+            
+            },  
 
     // Patterns to exclude.
     exclude: [
@@ -215,14 +239,18 @@ exports.config = {
         browserName: 'chrome',
         // acceptInsecureCerts: true,
         'goog:chromeOptions': {
-            args: [ 'disable-infobars', 'disable-popup-blocking', 'disable-notifications' ]
-            //args: ["--incognito"]
+            prefs: {
+              'directory_upgrade': true,
+              'prompt_for_download': false,
+              'download.default_directory': downloadDir
+            },
         }
         // If outputDir is provided WebdriverIO can capture driver session logs
         // it is possible to configure which logTypes to include/exclude.
         // excludeDriverLogs: ['*'], // pass '*' to exclude all driver session logs
         // excludeDriverLogs: ['bugreport', 'server'],
     },
+
     // {
     //     browserName: 'firefox',
     //     'moz:firefoxOptions': {
@@ -266,7 +294,8 @@ exports.config = {
     // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
     // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
     // gets prepended directly.
-   // baseUrl: 'https://epiqa.westeurope.cloudapp.azure.com/',
+    //
+    //baseUrl: 'https://epiqa.westeurope.cloudapp.azure.com/',
     baseUrl:'http://localhost:3000',
    //baseUrl:'https://plsmap.westeurope.cloudapp.azure.com/',
     //
@@ -337,8 +366,19 @@ exports.config = {
      * @param {Object} config wdio configuration object
      * @param {Array.<Object>} capabilities list of capabilities details
      */
-    // onPrepare: function (config, capabilities) {
-    // },
+   
+            // ... previous configs ...
+            // onPrepare: function (config, capabilities) {
+            //   // make sure download directory exists
+            //   if (!fs.existsSync(downloadDir)){
+            //       // if it doesn't exist, create it
+            //       fs.mkdirSync(downloadDir);
+            //   }
+            // },
+            // ... rest of configs ...
+          
+    
+    
     /**
      * Gets executed before a worker process is spawned and can be used to initialise specific service
      * for that worker as well as modify runtime environments in an async fashion.
@@ -458,8 +498,29 @@ exports.config = {
      * @param {Array.<Object>} capabilities list of capabilities details
      * @param {<Object>} results object containing test results
      */
-    // onComplete: function(exitCode, config, capabilities, results) {
+    // onComplete: function rmdir(dir) {
+       
+    //    // console.log(dir)
+    //         var list = fs.readdirSync(dir);
+    //         for(var i = 0; i < list.length; i++) {
+    //           var filename = path.join(dir, list[i]);
+    //           var stat = fs.statSync(filename);
+          
+    //           if(filename == "." || filename == "..") {
+    //             // pass these files
+    //           } else if(stat.isDirectory()) {
+    //             // rmdir recursively
+    //             rmdir(filename);
+    //           } else {
+    //             // rm fiilename
+    //             fs.unlinkSync(filename);
+    //           }
+    //         }
+    //         fs.rmdirSync(dir);      
     // },
+    // function() {
+    //   rmdir(downloadDir)
+    // }
     /**
     * Gets executed when a refresh happens.
     * @param {String} oldSessionId session ID of the old session

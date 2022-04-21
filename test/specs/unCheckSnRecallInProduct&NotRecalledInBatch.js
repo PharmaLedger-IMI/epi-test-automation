@@ -49,7 +49,7 @@ describe('081_Edit product to uncheck SN is in recall and edit batch to reset re
 
          //update products
          await products.updateProduct()
-         await wait.setTimeoutwait(8);  
+         await wait.setTimeoutwait(18);  
 
 
          //edit batch
@@ -63,10 +63,10 @@ describe('081_Edit product to uncheck SN is in recall and edit batch to reset re
         await browser.execute('document.querySelector("div:nth-child(' + await info.editBatchRow(editValue) + ') button:nth-child(1)").click()')
         await wait.setTimeoutwait(6);
         //
-        await batches.selectUpdateRecalledSerialFromDropdown(testData[2]['newBatchDetails'].updateRecalled)
+        await batches.selectUpdateRecalledSerialFromDropdown(testData.newBatchDetails.updateRecalled)
         await wait.setTimeoutwait(5);
 
-        await batches.resetAllRecalledSerialNumberCheckbox()
+        await batches.enableResetAllRecalledSerialNumber()
         await wait.setTimeoutwait(2);
         // manage serial number accept 
         await batches.acceptSerialNumber()

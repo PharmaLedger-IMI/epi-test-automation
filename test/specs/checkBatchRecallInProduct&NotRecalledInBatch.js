@@ -7,7 +7,7 @@ const matrix=require('../utility/2dMatrixPage')
 const data=require('../utility/expectationFile')
 const info=require('../utility/reusableFile')
 const wait=require('../utility/timeout')
-// const path=require('path')
+const path=require('path')
 const util = require('util');
 const exec = util.promisify(require('child_process').exec);
 
@@ -72,7 +72,7 @@ describe('061_Edit product to check batch is recalled and edit batch to uncheck 
 
          //update products
          await products.updateProduct()
-         await wait.setTimeoutwait(8);  
+         await wait.setTimeoutwait(18);  
 
 
         await batches.Batch();
@@ -98,10 +98,10 @@ describe('061_Edit product to check batch is recalled and edit batch to uncheck 
         }, info.getCurrentRandomDate());
 
         await wait.setTimeoutwait(2);
-        const selectBox = await browser.$('//psk-select[@class=\'default-select hydrated\']//select[@class=\'form-control\']');
-        await wait.setTimeoutwait(2);
-        await selectBox.selectByAttribute('value', info.getProductId());
-        await wait.setTimeoutwait(2);
+        // const selectBox = await browser.$('//psk-select[@class=\'default-select hydrated\']//select[@class=\'form-control\']');
+        // await wait.setTimeoutwait(2);
+        // await selectBox.selectByAttribute('value', info.getProductId());
+        // await wait.setTimeoutwait(2);
 
         await batches.selectUpdateValidSerialFromDropdown(testData.newBatchDetails.updateValid)
         await wait.setTimeoutwait(5);
@@ -125,10 +125,10 @@ describe('061_Edit product to check batch is recalled and edit batch to uncheck 
         await wait.setTimeoutwait(2);
 
         //generate expectation file
-        data.generateExpectationFile(info.getProductId(), await batches.batchIdValue(), info.getCurrentRandomDate(), info.getSerialNumber(), info.getBrandName(), info.getBatchRecall(), "", "", info.getBatchRecallMsg(), info.getEpiDisplayed())
+        data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber(), info.getBrandName(), info.getBatchRecall(), "", "", info.getBatchRecallMsg(), info.getEpiDisplayed())
         await wait.setTimeoutwait(12);
         //generate 2d matrix image
-        matrix.generate2dMatrixImage(info.getProductId(), await batches.batchIdValue(), info.getCurrentRandomDate(), info.getSerialNumber())
+        matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
         await wait.setTimeoutwait(8);
         //update batch
         await batches.updateBatchForEdit()

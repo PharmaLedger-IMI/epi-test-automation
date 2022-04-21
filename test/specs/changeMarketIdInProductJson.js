@@ -2,18 +2,19 @@
 const products= require('../pageobjects/products.page');
 const testData=require('../testdata/config.json')
 const allureReporter = require('@wdio/allure-reporter').default
+var randomCountry = require('random-country');
 
 const wait=require('../utility/timeout')
 const path= require('path');
 const fs = require('fs');
 
-describe('104_Update a product via import of Json by deleting product code ', () => {
+describe('112_Update a product via import of Json to change market id', () => {
 
     
 
     it('Browser - update a product via import of Json ', async() => { 
-        allureReporter.addTestId('ImportJson_2_2')
-        allureReporter.addDescription('Update a product via import of Json by deleting product code elemet and uploading modified file. View message and click on invalid field info')
+        allureReporter.addTestId('ImportJson_2_8')
+        allureReporter.addDescription('Update a product via import of Json to change market id and uploading modified file. View message and click on invalid field info')
         allureReporter.startStep('1. Use the standard template Json', 
         '2. Fill up the details on the json', 
         '3. Use the import functionality to select the file', 
@@ -23,12 +24,12 @@ describe('104_Update a product via import of Json by deleting product code ', ()
         await products.clickProductFromSideNav()
         await wait.setTimeoutwait(4);
         await products.clickImport()
-        await wait.setTimeoutwait(3);
+        // await wait.setTimeoutwait(3);
 
        
         let rawdata = JSON.parse(fs.readFileSync(testData.path.productImport, 'utf8'))
-        const productCodeValue=rawdata.product.productCode
-        delete rawdata.product.productCode
+        const marketIdValue=rawdata.product.markets[0].marketId
+        rawdata.product.markets[0].marketId= randomCountry({ full: true });
         fs.writeFileSync(testData.path.productImport, JSON.stringify(rawdata))
 
         await wait.setTimeoutwait(2);
@@ -40,21 +41,24 @@ describe('104_Update a product via import of Json by deleting product code ', ()
         await wait.setTimeoutwait(20);
         
          //update json file
-         rawdata.product.productCode = productCodeValue
+         rawdata.product.markets[0].marketId = marketIdValue
          fs.writeFileSync(testData.path.productImport, JSON.stringify(rawdata))
          await wait.setTimeoutwait(8);
          
         //view message
         await products.viewMessageInFailedLogs()
         await wait.setTimeoutwait(5); 
-        await products.invalidFieldInfo()
-        await wait.setTimeoutwait(5); 
-        await products.invalidFieldInfoRequired()
-        await wait.setTimeoutwait(5); 
 
-        await products.downloadMsgInFailedLogs()
-        await wait.setTimeoutwait(5);
-
+         //click invalid field info 
+         await products.invalidFieldInfo()
+         await wait.setTimeoutwait(5); 
+         //Read invalid field info
+         await products.invalidFieldInfoRequired()
+         await wait.setTimeoutwait(5); 
+ 
+         await products.downloadMsgInFailedLogs()
+         await wait.setTimeoutwait(5); 
+        
         // await products.closeButtonInPopup()
         // await wait.setTimeoutwait(5); 
 

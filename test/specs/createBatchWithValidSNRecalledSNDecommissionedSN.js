@@ -72,10 +72,10 @@ describe('041_Create a batch and enable serial number verification and set valid
         // await batches.enableResetAllValidSerialNumber()
         // await wait.setTimeoutwait(2);
         //set the serial number and enter
-        let validserialNumber=info.setSerialNumber(await batches.serialNum())
+        let validserialNumber=await batches.serialNum()
         console.log("validserialNumber is "+validserialNumber)
         await wait.setTimeoutwait(4);
-        await batches.enterSerialNumber(info.getSerialNumber())
+        await batches.enterSerialNumber(validserialNumber)
         await wait.setTimeoutwait(2);
         //accept serial number
         await batches.acceptSerialNumber()
