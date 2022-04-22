@@ -69,7 +69,7 @@ describe('064_Edit product to uncheck batch is recalled and edit batch to set re
         await browser.execute('document.querySelector("psk-button[disabled=\'@modalData.filesWereNotSelected\'] button[class=\'btn btn-primary\']").click();');
         await wait.setTimeoutwait(3);
 
-        info.setEpiDisplayed()
+        info.setEpiDisplayed(await products.epiDisplayed())
         await wait.setTimeoutwait(1);
 
         //update products

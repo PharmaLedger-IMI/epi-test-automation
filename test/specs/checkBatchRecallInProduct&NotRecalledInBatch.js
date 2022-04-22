@@ -132,7 +132,7 @@ describe('061_Edit product to check batch is recalled and edit batch to uncheck 
         await wait.setTimeoutwait(8);
         //update batch
         await batches.updateBatchForEdit()
-        await wait.setTimeoutwait(10);
+        await wait.setTimeoutwait(18);
 
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");

@@ -88,7 +88,7 @@ describe('094_Edit product to check batch is unknown and delete smpc. Pass unkno
 
         matrix.generate2dMatrixImage(info.getProductId(), unKnownBatch, info.getCurrentRandomDate(), info.getSerialNumber())
         await wait.setTimeoutwait(8);
-
+        //update batch
         await batches.updateBatchForEdit()
         await wait.setTimeoutwait(18);   
        

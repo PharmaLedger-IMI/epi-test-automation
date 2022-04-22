@@ -34,7 +34,7 @@ describe('065_Edit product to uncheck batch is recalled and edit batch to unchec
         allureReporter.addTestId('ProductDisplayEpiFlag_1_5')
 
         await products.clickProductFromSideNav()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(4);
         console.log("prod to edit" + info.getProductId())
        // search the product codes
         await products.searchProductCode(info.getProductId())
@@ -49,12 +49,12 @@ describe('065_Edit product to uncheck batch is recalled and edit batch to unchec
         // await products.enableBatchIsRecalled(); 
         // await wait.setTimeoutwait(1);
 
-        info.setEpiDisplayed()
-        await wait.setTimeoutwait(1);
+        info.setEpiDisplayed(await products.epiDisplayed())
+        await wait.setTimeoutwait(3);
 
         //update products
         await products.updateProduct()
-        await wait.setTimeoutwait(8);
+        await wait.setTimeoutwait(18);
 
 
 
@@ -73,15 +73,15 @@ describe('065_Edit product to uncheck batch is recalled and edit batch to unchec
 
          //clear recall message
          await batches.clearRecallMessage()
-         await wait.setTimeoutwait(3);
+         await wait.setTimeoutwait(4);
          info.setBatchRecallMsg(await batches.checkBatchRecallMessage())
-         await wait.setTimeoutwait(2);
+         await wait.setTimeoutwait(4);
  
         //uncheck batch recall
          await batches.enableCheckToRecallThisBatch()
-         await wait.setTimeoutwait(3);
+         await wait.setTimeoutwait(4);
          info.setBatchRecall(await batches.checkBatchRecall())
-         await wait.setTimeoutwait(2);
+         await wait.setTimeoutwait(4);
           
         //generate expectation file 
         data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), info.getBatchRecall(),"","", info.getBatchRecallMsg(), info.getEpiDisplayed() )
@@ -91,7 +91,7 @@ describe('065_Edit product to uncheck batch is recalled and edit batch to unchec
         await wait.setTimeoutwait(8);
         //update batch
         await batches.updateBatchForEdit()
-        await wait.setTimeoutwait(3);
+        await wait.setTimeoutwait(22);
        
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");

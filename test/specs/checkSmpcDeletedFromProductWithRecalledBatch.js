@@ -54,14 +54,14 @@ describe('063_Edit product to check batch is recalled and delete smpc. Edit batc
         await wait.setTimeoutwait(2);
         //update products
         await products.updateProduct()
-        await wait.setTimeoutwait(8); 
+        await wait.setTimeoutwait(18); 
 
         //edit batch
         
-        await batches.Batch();
+        //await batches.Batch();
         // await wait.setTimeoutwait(3);
         //Created for QA environment
-        // await browser.execute('document.querySelector(`webc-app-menu-item:nth-child(4) stencil-route-link:nth-child(1) a:nth-child(1)`).click()')
+        await browser.execute('document.querySelector(`webc-app-menu-item:nth-child(4) stencil-route-link:nth-child(1) a:nth-child(1)`).click()')
         await wait.setTimeoutwait(6);
 
         let editValue = info.getbatchId()
@@ -80,10 +80,6 @@ describe('063_Edit product to check batch is recalled and delete smpc. Edit batc
             })();
         }, info.getCurrentRandomDate());
 
-        await wait.setTimeoutwait(2);
-        const selectBox = await browser.$('//psk-select[@class=\'default-select hydrated\']//select[@class=\'form-control\']');
-        await wait.setTimeoutwait(2);
-        await selectBox.selectByAttribute('value', info.getProductId());
         await wait.setTimeoutwait(2);
 
         await batches.selectUpdateValidSerialFromDropdown(testData.newBatchDetails.updateValid)
@@ -112,7 +108,7 @@ describe('063_Edit product to check batch is recalled and delete smpc. Edit batc
 
         info.setBatchRecall(await batches.checkBatchRecall())
         await wait.setTimeoutwait(2);
-         info.setBatchRecall(await batches.checkBatchRecall())
+         info.setBatchRecallMsg(await batches.checkBatchRecallMessage())
         await wait.setTimeoutwait(2);
 
         
@@ -125,7 +121,7 @@ describe('063_Edit product to check batch is recalled and delete smpc. Edit batc
 
         //update batch
         await batches.updateBatchForEdit()
-        await wait.setTimeoutwait(10);
+        await wait.setTimeoutwait(18);
        
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");

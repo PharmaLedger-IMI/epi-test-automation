@@ -122,8 +122,9 @@ class productsPage {
     get clickDeleteLanguageButton(){
         return $("//button[@class='delete-language']")
     }
-    get clickdeleteSecondLanguage(){
-        return  $('//li[2]//div[1]//button[1]//i[1]')
+    get clickDeleteSecondLanguage(){
+       // return  $('//li[2]//div[1]//button[1]//i[1]')
+        return  $("(//button[@class='delete-language'])[2]")
     }
     get marketManagementButtonClick(){
         return $("div:nth-child(2) > div:nth-child(1) > psk-button:nth-child(2) > button:nth-child(1)")
@@ -372,7 +373,7 @@ class productsPage {
         await this.clickDeleteLanguageButton.click()
     }
     async deleteSecondLanguage(){
-        await this.clickdeleteSecondLanguage.click()
+        await this.clickDeleteSecondLanguage.click()
     }
 
    
