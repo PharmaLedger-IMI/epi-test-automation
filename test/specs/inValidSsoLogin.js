@@ -7,12 +7,13 @@ const testData=require('../testdata/config.json')
 const wait=require('../utility/timeout');
 
 
-describe('_', () => {
-it('Browser - should open microsoft signin page', async () => {
+describe('126_Verify invalid SSO login', () => {
+it('Browser - should verify invalid SSO login', async () => {
 
-    // allureReporter.addFeature('Landing Page');
-    // allureReporter.addSeverity('Critical');
-    allureReporter.addTestId('SSO_Tests_1')
+    allureReporter.startStep('1. Open ePI url in browser')
+    allureReporter.startStep('2. ePI home page is shown momentarily and then redirect to SSO login page.')    
+    allureReporter.startStep('3. Provide Invalid credentails in SSO login screens.')
+    allureReporter.addTestId('SSOTests_1')
    //Open ePI url in browser
     await LoginPage.open();
     await wait.setTimeoutwait(4);
@@ -30,6 +31,10 @@ it('Browser - should open microsoft signin page', async () => {
     // await wait.setTimeoutwait(4);
     // await LoginPage.microsoftNext();
     // await wait.setTimeoutwait(3);
+
+    allureReporter.endStep("passed");
+    allureReporter.endStep("passed");
+    allureReporter.endStep("passed");
   
 
 });

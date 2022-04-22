@@ -7,12 +7,14 @@ const testData=require('../testdata/config.json')
 const wait=require('../utility/timeout');
 
 
-describe('_', () => {
-it('Browser - should open microsoft signin page', async () => {
+describe('130_Verify SSO relogin and login to the Enterprise Wallet', () => {
+it('Browser - should verify SSO relogin and login to the Enterprise Wallet', async () => {
 
-   // allureReporter.addFeature('Landing Page');
-   // allureReporter.addSeverity('Critical');
-    allureReporter.addTestId('SSO_Tests_5')
+    allureReporter.startStep('1. Provide valid credentails in SSO login screens.')
+    allureReporter.startStep('2. Open the ePI  URL  and navigate to the Enterprise Wallet')
+    allureReporter.startStep('3. Login to the Enterprise Wallet successfully ')
+
+    allureReporter.addTestId('SSOTests_5')
    //Open ePI url in browser
     await LoginPage.open();
     await wait.setTimeoutwait(4);
@@ -38,7 +40,7 @@ it('Browser - should open microsoft signin page', async () => {
     
     await LoginPage.openEnterpriseWallet();
     await wait.setTimeoutwait(3);
-    allureReporter.endStep("passed");
+   
     const handles = await browser.getWindowHandles();
     await browser.switchToWindow(handles[1]);
 
@@ -50,6 +52,10 @@ it('Browser - should open microsoft signin page', async () => {
      await wait.setTimeoutwait(2);
      await accessAccount.Enterbutton();
      await wait.setTimeoutwait(15);
+
+     allureReporter.endStep("passed");
+     allureReporter.endStep("passed");
+     allureReporter.endStep("passed");
   
 
 });

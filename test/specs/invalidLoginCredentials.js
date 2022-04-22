@@ -1,17 +1,15 @@
 
 const LoginPage = require('../pageobjects/login.page');
-//const products= require('../pageobjects/products.page');
 const accessAccount= require('../pageobjects/access.Account');
 const allureReporter = require('@wdio/allure-reporter').default
 const testData=require('../testdata/config.json')
 const wait=require('../utility/timeout')
 
-describe('_Access ePI portal', () => {
+describe('125_Verify invalid login', () => {
 it('Browser - should open ePI landing page', async () => {
 
-    allureReporter.addFeature('Landing Page');
-    allureReporter.addSeverity('Critical');
-    allureReporter.startStep('Open the ePI  URL')
+    allureReporter.addTestId('Login_1')
+    allureReporter.startStep('Open the ePI URL')
     await LoginPage.open();
     await wait.setTimeoutwait(3);
     allureReporter.endStep("passed");
@@ -20,7 +18,7 @@ it('Browser - should open ePI landing page', async () => {
 });
 
 it('Browser - should open Enterprise Wallet', async() => {
-   // allureReporter.addFeature('Enterprise Wallet Login');
+   
     allureReporter.startStep('Navigate to the Enterprise Wallet')
     await LoginPage.openEnterpriseWallet();
     await wait.setTimeoutwait(3);
@@ -31,9 +29,9 @@ it('Browser - should open Enterprise Wallet', async() => {
 });
 it('Browser - should open Access Account', async() => {
      
-     allureReporter.addSeverity('Critical');
-     allureReporter.addDescription('Valid Login with UserName and Password')
-     allureReporter.startStep("Enter user name and password");
+    
+     allureReporter.addDescription('Invalid username and password ')
+     allureReporter.startStep("Enter invalid username and password");
      await accessAccount.clickAccessAccount();
      await wait.setTimeoutwait(4);
      await accessAccount.clearUserName();

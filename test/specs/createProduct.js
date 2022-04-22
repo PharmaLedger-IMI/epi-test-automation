@@ -83,7 +83,7 @@ it('Browser - should verify product page', async() => {
 
      //Save product
      await products.saveProduct()
-    //  await wait.setTimeoutwait(50);
+    await wait.setTimeoutwait(50);
     
      allureReporter.endStep("passed");
      allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');

@@ -32,13 +32,13 @@ exports.config = {
        [ //'./test/specs/**/*.js',
        
 
-            //'test/specs/gtinPage.js',
+            'test/specs/gtinPage.js',
            'test/specs/loginCredentials.js',
            
-            //  'test/specs/createProduct.js',
-            // 'test/specs/createBatch.js',
+              'test/specs/createProduct.js',
+             'test/specs/createBatch.js',
 
-            //'test/specs/editBatchforRecallMsg.js',
+            'test/specs/editBatchforRecallMsg.js',
             // 'test/specs/editProductforToggle_ePIFlag.js',
 
             // 'test/specs/enableSerialNumberCheckWithValidMatrix.js',
@@ -107,7 +107,7 @@ exports.config = {
             // 'test/specs/scanPreviousBatch.js',
 
             //'test/specs/checkBatchRecallInProduct&NotRecalledInBatch.js',
-            'test/specs/checkBatchIsRecalledInProduct&Batch.js',
+            //'test/specs/checkBatchIsRecalledInProduct&Batch.js',
             //'test/specs/checkSmpcDeletedFromProductWithRecalledBatch.js',
             // 'test/specs/unCheckBatchRecallInProduct&RecalledInBatch.js',
             //'test/specs/unCheckBatchRecallInProduct&Batch.js',
@@ -169,7 +169,7 @@ exports.config = {
         importJson: [
          [
            'test/specs/loginCredentials.js',
-         'test/specs/productImport.js',
+        // 'test/specs/productImport.js',
         // 'test/specs/removeInventedNameInProductJson.js',
         // 'test/specs/removeProductCodeInProductJson.js',
         // 'test/specs/removeNameOfMedicinalProductInProductJson.js',

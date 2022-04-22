@@ -7,12 +7,12 @@ const testData=require('../testdata/config.json')
 const wait=require('../utility/timeout');
 
 
-describe('_', () => {
-it('Browser - should open microsoft signin page', async () => {
+describe('128_Verify SSO relogin and open ePI in new tab', () => {
+it('Browser - should verify SSO relogin and open ePI in new tab', async () => {
 
-    // allureReporter.addFeature('Landing Page');
-    // allureReporter.addSeverity('Critical');
-    allureReporter.addTestId('SSO_Tests_3')
+    allureReporter.startStep('1. Provide valid credentails in SSO login screens.')
+    allureReporter.startStep('2. Open ePI url in new tab')
+    allureReporter.addTestId('SSOTests_3')
    //Open ePI url in browser
     await LoginPage.open();
     await wait.setTimeoutwait(4);
@@ -37,6 +37,9 @@ it('Browser - should open microsoft signin page', async () => {
     await wait.setTimeoutwait(4);
     await LoginPage.open()
     await wait.setTimeoutwait(4);
+
+    allureReporter.endStep("passed");
+    allureReporter.endStep("passed");
   
 
 });

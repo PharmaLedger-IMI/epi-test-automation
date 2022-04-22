@@ -33,10 +33,10 @@ describe('124_Update a product via import of Json to enter valid serial number f
         const snValidValue= rawdata.batch.snValid
         if( rawdata.batch.snValid==''){
             rawdata.batch.snValid=[parseInt(testData.incrementalTest.serialNumber)]
-            console.log("new Valid serial number is "+ rawdata.batch.snValid)
+            console.log("valid serial number is "+ rawdata.batch.snValid)
     }
     else{
-        console.log("old valid serial number is "+ rawdata.batch.snValid)
+        console.log("serial number exists in json"+ rawdata.batch.snValid)
     }
       
         fs.writeFileSync(testData.path.batchImport, JSON.stringify(rawdata))

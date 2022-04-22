@@ -410,13 +410,13 @@ class productsPage {
     }
     async saveProduct(){
         await this.saveProductButton.click();
-        await browser.waitUntil(
-            async () => (await $('//span[@slot="page-title"]').waitForVisible()),
-            {
-                timeout: 5000,
-                timeoutMsg: 'no title'
-            }
-        );
+        // await browser.waitUntil(
+        //     async () => (await $('//span[@slot="page-title"]').waitForVisible()),
+        //     {
+        //         timeout: 5000,
+        //         timeoutMsg: 'no title'
+        //     }
+        // );
 
 
 

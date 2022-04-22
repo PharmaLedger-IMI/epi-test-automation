@@ -1,18 +1,18 @@
 
 const LoginPage = require('../pageobjects/login.page');
-//const products= require('../pageobjects/products.page');
-const accessAccount= require('../pageobjects/access.Account');
+//const accessAccount= require('../pageobjects/access.Account');
 const allureReporter = require('@wdio/allure-reporter').default
 const testData=require('../testdata/config.json')
 const wait=require('../utility/timeout');
 
 
-describe('_', () => {
-it('Browser - should open microsoft signin page', async () => {
+describe('127_Verify valid SSO login', () => {
+it('Browser - should verify valid SSO login', async () => {
 
-    // allureReporter.addFeature('Landing Page');
-    // allureReporter.addSeverity('Critical');
-    allureReporter.addTestId('SSO_Tests_2')
+    allureReporter.startStep('1. Open ePI url in browser')
+    allureReporter.startStep('2. ePI home page is shown momentarily and then redirect to SSO login page.')    
+    allureReporter.startStep('3. Provide valid credentails in SSO login screens.')
+    allureReporter.addTestId('SSOTests_2')
    //Open ePI url in browser
     await LoginPage.open();
     await wait.setTimeoutwait(4);
@@ -32,6 +32,9 @@ it('Browser - should open microsoft signin page', async () => {
     await wait.setTimeoutwait(3);
     await LoginPage.stayNo();
     await wait.setTimeoutwait(6);
+    allureReporter.endStep("passed");
+    allureReporter.endStep("passed");
+    allureReporter.endStep("passed");
   
 
 });

@@ -28,6 +28,12 @@ Run for existing product and existing batch in browser
 ```sh
 $ npm run test --incremental --browserOnly
 ``` 
+
+To run suite
+```sh
+$ npx wdio run wdio.conf.js --suite importJson
+``` 
+
 Created config.json file
 
 ### Step 3: Generate test report
