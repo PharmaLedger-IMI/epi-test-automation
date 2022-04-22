@@ -67,7 +67,7 @@ describe('061_Edit product to check batch is recalled and edit batch to uncheck 
         info.setEpiDisplayed(await products.epiDisplayed())
         await wait.setTimeoutwait(2);
         //scrollIntoView
-        await batches.acceptButton()
+        await products.acceptButton()
         await wait.setTimeoutwait(5);
 
          //update products
