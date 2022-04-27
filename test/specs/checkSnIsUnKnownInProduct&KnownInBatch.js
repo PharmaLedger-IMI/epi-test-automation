@@ -32,7 +32,7 @@ describe('088_Edit product to check SN is unknown and edit batch to update valid
         allureReporter.addTestId('ProductDisplayEpiFlag_6_2')
 
         await products.clickProductFromSideNav()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(4);
         console.log("prod to edit" + info.getProductId())
        // search the product codes
         await products.searchProductCode(info.getProductId())
@@ -44,11 +44,11 @@ describe('088_Edit product to check SN is unknown and edit batch to update valid
         await wait.setTimeoutwait(5);
        
         info.setEpiDisplayed(await products.epiDisplayed())
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
 
         //update products
         await products.updateProduct()
-        await wait.setTimeoutwait(8);  
+        await wait.setTimeoutwait(18);  
 
 
          //edit batch
@@ -68,21 +68,21 @@ describe('088_Edit product to check SN is unknown and edit batch to update valid
          //set serial number
          info.setSerialNumber(await batches.serialNum())
          await batches.enterSerialNumber(info.getSerialNumber())
-         await wait.setTimeoutwait(2);
+         await wait.setTimeoutwait(4);
 
          // manage serial number accept 
         await batches.acceptSerialNumber()
-        await wait.setTimeoutwait(1);
+        await wait.setTimeoutwait(4);
         
 
         data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), info.getBatchRecall(),"","", info.getBatchRecallMsg(),info.getEpiDisplayed() )
         await wait.setTimeoutwait(12);
 
         matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
-        await wait.setTimeoutwait(8);
+        await wait.setTimeoutwait(12);
         //update batch
         await batches.updateBatchForEdit()
-        await wait.setTimeoutwait(10);   
+        await wait.setTimeoutwait(18);   
        
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");

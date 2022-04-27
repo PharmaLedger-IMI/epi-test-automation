@@ -44,17 +44,17 @@ describe('049_Edit batch to reset the serial Numbers', () => {
 
         //check enable serial number verification
         await batches.enableSerialNumberVerification()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         //select valid serial number
         await batches.selectUpdateValidSerialFromDropdown(testData.newBatchDetails.updateValid)
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         //enable checkbox and remove 10 serial number
         await batches.enableResetAllValidSerialNumber()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
     
         //accept serial number
         await batches.acceptSerialNumber()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         //generate expectation file       
         data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),"",info.getBrandName(), "","","", "" )
         await wait.setTimeoutwait(12);
@@ -64,7 +64,7 @@ describe('049_Edit batch to reset the serial Numbers', () => {
         await wait.setTimeoutwait(5);
         //update batch
         await batches.updateBatchForEdit()
-        await wait.setTimeoutwait(8);
+        await wait.setTimeoutwait(18);
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");
        

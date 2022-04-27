@@ -33,7 +33,7 @@ describe('077_Edit product to check SN is recalled and edit batch to set recall 
         allureReporter.addTestId('ProductDisplayEpiFlag_4_1')
 
         await products.clickProductFromSideNav()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(4);
         console.log("prod to edit" + info.getProductId())
        // search the product codes
         await products.searchProductCode(info.getProductId())
@@ -49,7 +49,7 @@ describe('077_Edit product to check SN is recalled and edit batch to set recall 
 
          //update products
          await products.updateProduct()
-         await wait.setTimeoutwait(8);  
+         await wait.setTimeoutwait(18);  
 
 
          //edit batch
@@ -72,7 +72,7 @@ describe('077_Edit product to check SN is recalled and edit batch to set recall 
         await wait.setTimeoutwait(5);
         // manage serial number accept 
         await batches.acceptSerialNumber()
-        await wait.setTimeoutwait(1);
+        await wait.setTimeoutwait(4);
 
         //  //enable checkbox for batch recall
         //  await batches.enableCheckToRecallThisBatch()
@@ -92,7 +92,7 @@ describe('077_Edit product to check SN is recalled and edit batch to set recall 
         await wait.setTimeoutwait(8);
         //update batch
         await batches.updateBatchForEdit()
-        await wait.setTimeoutwait(10);   
+        await wait.setTimeoutwait(18);   
        
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");

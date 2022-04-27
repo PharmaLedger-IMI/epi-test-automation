@@ -2,17 +2,17 @@
     {
         "login": 
         {
-            "userName": "kpepiwdio",
+            "existingUserName": "kpepiwdio",
             "invalidUserName": "testq",
             "demiurgeUser":"testing",
-            "enterpriseUser":"user12",
+            "enterpriseUser":"user22",
             "devUser":"devuser",
             "emailId":"dev@user.dev",
             "validPassword":"SuperUserSecurePassword1!",
             "invalidPassword":"1234fefhf",
-            "ssoValidEmail":"testing.in123@outlook.com",
+            "ssoValidEmail":"",
             "ssoInvalidEmail":"test@gmail",
-            "ssoValidPassword":"test@TEST123"
+            "ssoValidPassword":""
 
 
 
@@ -47,9 +47,9 @@
         },
         "incrementalTest":
         {
-            "prodId": "50961159307905",
-            "batchId": "LS0471",
-            "expiryDate":"2027-12-31",
+            "prodId": "97348567123623",
+            "batchId": "MC3965",
+            "expiryDate":"2026-11-22",
             "serialNumber":"234765",
             "prodName":"Dolo-650"     
         },

@@ -34,7 +34,7 @@ describe('058_Leaflet updates on the product Batch specific version', () => {
         allureReporter.startStep('Scan the batch 2 and you should be able to see the leaflet that was uploaded at batch level')
         allureReporter.addTestId('ProductInfoUpdate_4_1')
         await batches.Batch();
-        await browser.pause(4000)
+        await wait.setTimeoutwait(4);
         await batches.addBatch();
         await wait.setTimeoutwait(2);
         info.setBatchId(await batches.batchIdValue())
@@ -73,7 +73,7 @@ describe('058_Leaflet updates on the product Batch specific version', () => {
         await wait.setTimeoutwait(2);
 
         await batches.addEpi()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         
         //upload epi
         await batches.uploadFile(path.join(__dirname, '/src/Leaflet_BatchLevel'));
@@ -83,11 +83,11 @@ describe('058_Leaflet updates on the product Batch specific version', () => {
         await wait.setTimeoutwait(5);
         //upload smpc
         await batches.addEpi()
-        await wait.setTimeoutwait(1);
+        await wait.setTimeoutwait(3);
         await batches.selectLanguage(testData.newBatchDetails.selectLanguage)
-        await wait.setTimeoutwait(1);
+        await wait.setTimeoutwait(3);
         await batches.selectType(testData.newBatchDetails.selectType)
-        await wait.setTimeoutwait(1);
+        await wait.setTimeoutwait(3);
         //upload epi
         await batches.uploadFile(path.join(__dirname, '/src/SMPC_BatchLevel'));
         await wait.setTimeoutwait(3);
@@ -102,7 +102,7 @@ describe('058_Leaflet updates on the product Batch specific version', () => {
         await wait.setTimeoutwait(8);
        // create batch
         await batches.createBatch()
-        await wait.setTimeoutwait(15);
+        await wait.setTimeoutwait(40);
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");
         allureReporter.endStep("passed");

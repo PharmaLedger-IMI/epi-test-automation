@@ -82,8 +82,8 @@ describe('052_Update product information ', () => {
         await batches.acceptSerialNumber()
         await wait.setTimeoutwait(2);
 
-        info.setEpiDisplayed()
-        await wait.setTimeoutwait(2);
+        // info.setEpiDisplayed()
+        // await wait.setTimeoutwait(2);
         //generate expectation file 
         const expectationFile = data.generateExpectationFile(info.getProductId(), await batches.batchIdValue(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), "","","", "", info.getEpiDisplayed() )
         info.setExpectationFile(expectationFile)

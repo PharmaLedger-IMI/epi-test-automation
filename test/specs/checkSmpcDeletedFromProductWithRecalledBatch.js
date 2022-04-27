@@ -34,7 +34,7 @@ describe('063_Edit product to check batch is recalled and delete smpc. Edit batc
         allureReporter.addTestId('ProductDisplayEpiFlag_1_3')
 
         await products.clickProductFromSideNav()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(4);
         console.log("prod to edit" + info.getProductId())
        // search the product codes
         await products.searchProductCode(info.getProductId())
@@ -58,10 +58,10 @@ describe('063_Edit product to check batch is recalled and delete smpc. Edit batc
 
         //edit batch
         
-        //await batches.Batch();
+        await batches.Batch();
         // await wait.setTimeoutwait(3);
         //Created for QA environment
-        await browser.execute('document.querySelector(`webc-app-menu-item:nth-child(4) stencil-route-link:nth-child(1) a:nth-child(1)`).click()')
+       // await browser.execute('document.querySelector(`webc-app-menu-item:nth-child(4) stencil-route-link:nth-child(1) a:nth-child(1)`).click()')
         await wait.setTimeoutwait(6);
 
         let editValue = info.getbatchId()
@@ -92,7 +92,7 @@ describe('063_Edit product to check batch is recalled and delete smpc. Edit batc
         await wait.setTimeoutwait(5);
         // manage serial number accept 
         await batches.acceptSerialNumber()
-        await wait.setTimeoutwait(1);
+        await wait.setTimeoutwait(3);
 
         
         //check batch recall
@@ -107,9 +107,9 @@ describe('063_Edit product to check batch is recalled and delete smpc. Edit batc
         //  await wait.setTimeoutwait(2);
 
         info.setBatchRecall(await batches.checkBatchRecall())
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
          info.setBatchRecallMsg(await batches.checkBatchRecallMessage())
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
 
         
         //generate expectation file 

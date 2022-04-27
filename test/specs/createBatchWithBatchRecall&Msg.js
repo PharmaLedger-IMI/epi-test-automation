@@ -35,18 +35,17 @@ describe('020_Create a batch to set batch recall and recall message', () => {
         await batches.Batch();
         await wait.setTimeoutwait(4);
         await batches.addBatch();
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         // await browser.execute('document.querySelector(`a[href="/batches"]`).click()')
         // await browser.pause(6000)   
         // await browser.execute('document.querySelector(`button[data-tag="add-batch"]`).click()') 
         
         info.setBatchId(await batches.batchIdValue())
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         await batches.siteName(testData.newBatchDetails.siteName);
         await wait.setTimeoutwait(5);
         info.setCurrentRandomDate()
-        
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         await browser.execute((date) => {
             (function () {
                 let event = new Event('change');
@@ -63,14 +62,14 @@ describe('020_Create a batch to set batch recall and recall message', () => {
         await wait.setTimeoutwait(5);
         //set serial number
         await batches.selectUpdateValidSerialFromDropdown(testData.newBatchDetails.updateValid)
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         // await batches.enableResetAllValidSerialNumber()
         // await wait.setTimeoutwait(2);
         info.setSerialNumber(await batches.serialNum())
         await batches.enterSerialNumber(info.getSerialNumber())
         await wait.setTimeoutwait(4);
         await batches.acceptSerialNumber()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
 
         //check batch recall
         await batches.enableCheckToRecallThisBatch()
@@ -79,17 +78,16 @@ describe('020_Create a batch to set batch recall and recall message', () => {
         await batches.enterRecallMessage(testData.newBatchDetails.recallMsg)
         await wait.setTimeoutwait(3);
         
-
         info.setBatchRecall(await batches.checkBatchRecall())
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         info.setBatchRecallMsg(await batches.checkBatchRecallMessage()) 
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         //generate expectation file 
         data.generateExpectationFile(info.getProductId(), await batches.batchIdValue(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(),info.getBatchRecall()," ","", info.getBatchRecallMsg() )
         await wait.setTimeoutwait(12);
         //generate 2d matrix image
         matrix.generate2dMatrixImage(info.getProductId(), await batches.batchIdValue(), info.getCurrentRandomDate(), info.getSerialNumber())
-        await wait.setTimeoutwait(5);
+        await wait.setTimeoutwait(12);
         //create batch
         await batches.createBatch()
         await wait.setTimeoutwait(40);

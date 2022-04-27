@@ -17,20 +17,30 @@ it('Browser - should open ePI landing page', async () => {
     allureReporter.startStep('Go back and login with dev user and add member in admin group')
     allureReporter.startStep('go to enterprise wallet and login with new user')
     allureReporter.addTestId('DemiurgeWallet_1')
+    
+    // await browser.switchToWindow(handles[0]);
+    // await wait.setTimeoutwait(4);
+    // await browser.closeWindow();
+    // await wait.setTimeoutwait(5);
+
     await LoginPage.open();
     await wait.setTimeoutwait(3);
     
-    await browser.maximizeWindow();
+     await browser.maximizeWindow();
       
     //open demiurge wallet
+
     await demiurge.openDemiurgeWallet();
     await wait.setTimeoutwait(3);
-   
+
     const handles = await browser.getWindowHandles();
     await browser.switchToWindow(handles[1]);
+
+   //const tab = await browser.getWindowHandles();
+   // await browser.switchToWindow(tab[2]);
     //click on new account
     await demiurge.newAccount();
-    await wait.setTimeoutwait(2);
+    await wait.setTimeoutwait(4);
     //clear username
     await demiurge.clearUserName();
     await wait.setTimeoutwait(2);
@@ -56,9 +66,9 @@ it('Browser - should open ePI landing page', async () => {
     await demiurge.clickCurrentIdentity()
     await wait.setTimeoutwait(2);
     await browser.keys(['\ue009', 'a'])
-    await wait.setTimeoutwait(2);
+    await wait.setTimeoutwait(3);
     await browser.keys(['\ue009', 'c'])
-    await wait.setTimeoutwait(2);
+    await wait.setTimeoutwait(3);
      //go back and login with devuser
     await browser.back();
     await wait.setTimeoutwait(5); 
@@ -68,13 +78,13 @@ it('Browser - should open ePI landing page', async () => {
     await accessAccount.clickAccessAccount();
     await wait.setTimeoutwait(5);
     await demiurge.clearUserName();
-    await wait.setTimeoutwait(2);
+    await wait.setTimeoutwait(3);
     await demiurge.enterUserName(testData.login.devUser);
-    await wait.setTimeoutwait(2);
+    await wait.setTimeoutwait(3);
     //  await demiurge.emailId();
-    //  await wait.setTimeoutwait(2);
+    //  await wait.setTimeoutwait(3);
     //  await demiurge.password();
-    //  await wait.setTimeoutwait(2);
+    //  await wait.setTimeoutwait(3);
     await demiurge.enterButton()
     await wait.setTimeoutwait(5);
     //swicth to frame 
@@ -85,10 +95,10 @@ it('Browser - should open ePI landing page', async () => {
     await wait.setTimeoutwait(5);
     // click on admin group
     await demiurge.adminGroup()
-    await wait.setTimeoutwait(2);
+    await wait.setTimeoutwait(3);
     //click on memeber id textbox and paste the id
     await demiurge.memeberId()
-    await wait.setTimeoutwait(2);
+    await wait.setTimeoutwait(3);
     await browser.keys(['\ue009', 'v'])
     await wait.setTimeoutwait(4);
     //Add member
@@ -103,11 +113,17 @@ it('Browser - should open ePI landing page', async () => {
     await accessAccount.clickAccessAccount();
     await wait.setTimeoutwait(5);
     // await demiurge.clearUserName();
-    // await wait.setTimeoutwait(2);
+    // await wait.setTimeoutwait(3);
     // await demiurge.enterUserName(testData.login.demiurgeUser);
-    // await wait.setTimeoutwait(2);
+    // await wait.setTimeoutwait(3);
     await demiurge.enterButton()
     await wait.setTimeoutwait(15);
+
+    await browser.switchToWindow(handles[0]);
+
+    // await browser.quit()
+    //await browser.closeWindow()
+     await wait.setTimeoutwait(2);
     allureReporter.endStep("passed");
     allureReporter.endStep("passed");
     allureReporter.endStep("passed");

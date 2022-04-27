@@ -66,7 +66,7 @@ describe('022_Create a batch with valid SN, expiry date and recall message', () 
         await batches.enterSerialNumber(info.getSerialNumber())
         await wait.setTimeoutwait(2);
         await batches.acceptSerialNumber()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
 
         //enable recall checkbox
         await batches.enableCheckToRecallThisBatch()

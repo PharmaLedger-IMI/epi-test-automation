@@ -36,7 +36,7 @@ describe('071_Edit product to uncheck expiration date in incorrect and edit batc
         allureReporter.addTestId('ProductDisplayEpiFlag_2_5')
 
         await products.clickProductFromSideNav()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         console.log("prod to edit" + info.getProductId())
        // search the product codes
         await products.searchProductCode(info.getProductId())
@@ -52,7 +52,7 @@ describe('071_Edit product to uncheck expiration date in incorrect and edit batc
         // await wait.setTimeoutwait(1);
         
         info.setEpiDisplayed(await products.epiDisplayed())
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
 
          //update products
          await products.updateProduct()
@@ -71,7 +71,7 @@ describe('071_Edit product to uncheck expiration date in incorrect and edit batc
         await wait.setTimeoutwait(6);
 
         info.setCurrentRandomDate()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         await browser.execute((date) => {
           (function () {
               let event = new Event('change');
@@ -90,7 +90,7 @@ describe('071_Edit product to uncheck expiration date in incorrect and edit batc
         await wait.setTimeoutwait(8);
 
          await batches.updateBatchForEdit()
-        await wait.setTimeoutwait(10); 
+        await wait.setTimeoutwait(18); 
        
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");

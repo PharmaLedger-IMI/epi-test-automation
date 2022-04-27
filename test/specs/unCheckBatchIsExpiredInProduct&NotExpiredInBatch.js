@@ -34,7 +34,7 @@ describe('076_Edit product to uncheck batch is expired and edit batch to have va
         allureReporter.addTestId('ProductDisplayEpiFlag_3_5')
 
         await products.clickProductFromSideNav()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         console.log("prod to edit" + info.getProductId())
        // search the product codes
         await products.searchProductCode(info.getProductId())
@@ -50,11 +50,11 @@ describe('076_Edit product to uncheck batch is expired and edit batch to have va
         // await wait.setTimeoutwait(5);
 
         info.setEpiDisplayed(await products.epiDisplayed())
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
 
          //update products
          await products.updateProduct()
-         await wait.setTimeoutwait(8);  
+         await wait.setTimeoutwait(18);  
 
 
          //edit batch
@@ -68,7 +68,7 @@ describe('076_Edit product to uncheck batch is expired and edit batch to have va
         await browser.execute('document.querySelector("div:nth-child(' + await info.editBatchRow(editValue) + ') button:nth-child(1)").click()')       
         await wait.setTimeoutwait(6);
         info.setCurrentRandomDate()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         await browser.execute((date) => {
             (function () {
                 let event = new Event('change');
@@ -77,16 +77,16 @@ describe('076_Edit product to uncheck batch is expired and edit batch to have va
                 datePicker.dispatchEvent(event);
             })();
         }, info.getCurrentRandomDate());
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
 
         data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), info.getBatchRecall(),"","", info.getBatchRecallMsg(),info.getEpiDisplayed() )
-        await wait.setTimeoutwait(12);
+        await wait.setTimeoutwait(13);
 
         matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
-        await wait.setTimeoutwait(8);
+        await wait.setTimeoutwait(9);
 
         await batches.updateBatchForEdit()
-        await wait.setTimeoutwait(10);   
+        await wait.setTimeoutwait(18);   
        
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");

@@ -44,25 +44,25 @@ describe('036_Edit batch to reset serial number and scan with valid serial numbe
 
         //select valid serial number
         await batches.selectUpdateValidSerialFromDropdown(testData.newBatchDetails.updateValid)
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         //enable checkbox
         await batches.enableResetAllValidSerialNumber()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         
         //accept serial number
         await batches.acceptSerialNumber()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(4);
        
        //generate expectation file 
         data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), "","","", "" )
         await wait.setTimeoutwait(12);
        //generate 2d matrix image
         matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
-        await wait.setTimeoutwait(5);
+        await wait.setTimeoutwait(8);
 
          //update batch
          await batches.updateBatchForEdit()
-         await wait.setTimeoutwait(10);
+         await wait.setTimeoutwait(18);
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");
        

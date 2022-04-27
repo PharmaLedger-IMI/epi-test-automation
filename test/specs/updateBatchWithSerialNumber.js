@@ -42,22 +42,22 @@ describe('048_Edit batch to update valid serial number ', () => {
 
         //check enable serial number verification
         await batches.enableSerialNumberVerification()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         //select valid serial number
         await batches.selectUpdateValidSerialFromDropdown(testData.newBatchDetails.updateValid)
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         //enable checkbox 
         // await batches.enableResetAllValidSerialNumber()
-        // await wait.setTimeoutwait(2);
+        // await wait.setTimeoutwait(3);
 
         //set serial number
         info.setSerialNumber(await batches.serialNum())
         await batches.enterSerialNumber(info.getSerialNumber())
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
     
         //accept serial number
         await batches.acceptSerialNumber()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
               
         //generate expectation file 
         data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), "","","", "" )
@@ -65,10 +65,10 @@ describe('048_Edit batch to update valid serial number ', () => {
     
         //generate 2d matrix image
         matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
-        await wait.setTimeoutwait(5);
+        await wait.setTimeoutwait(9);
         //update batch
         await batches.updateBatchForEdit()
-        await wait.setTimeoutwait(8);
+        await wait.setTimeoutwait(18);
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");
        

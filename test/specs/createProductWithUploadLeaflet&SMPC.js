@@ -36,13 +36,13 @@ describe('056_SMPC update on the product Non- batch specific version', () => {
 
          //click product from sidenav
          await products.clickProductFromSideNav()
-         await wait.setTimeoutwait(2);
+         await wait.setTimeoutwait(4);
  
          //search the product code
          await products.searchProductCode(info.getProductId())
          await wait.setTimeoutwait(5);
          await browser.keys('Enter')
-         await wait.setTimeoutwait(2);
+         await wait.setTimeoutwait(3);
          //view or edit
          //await products.clickViewEdit()
          await browser.execute('document.querySelector("button[data-tag=\'edit-product\']").click()')
@@ -52,16 +52,16 @@ describe('056_SMPC update on the product Non- batch specific version', () => {
          await wait.setTimeoutwait(3);
          //select language	
          await products.selectLanguage(testData.newProductDetails.selectLanguage)
-         await wait.setTimeoutwait(1);
+         await wait.setTimeoutwait(4);
          //select SMPC type
          await products.selectType(testData.newProductDetails.selectType)
-         await wait.setTimeoutwait(2);
+         await wait.setTimeoutwait(4);
          //upload folder
          await products.uploadFile(path.join(__dirname, '/src/SMPC_ProductLevel'));
          await wait.setTimeoutwait(5);
 
          await products.acceptButton()
-         await wait.setTimeoutwait(2);
+         await wait.setTimeoutwait(3);
  
          //Update product
          await products.updateProduct()
@@ -71,13 +71,13 @@ describe('056_SMPC update on the product Non- batch specific version', () => {
         await batches.Batch();
         await wait.setTimeoutwait(4);
         await batches.addBatch();
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         info.setBatchId(await batches.batchIdValue())
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         await batches.siteName(testData.newBatchDetails.siteName);
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         info.setCurrentRandomDate()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         await browser.execute((date) => {
             (function () {
                 let event = new Event('change');
@@ -100,7 +100,7 @@ describe('056_SMPC update on the product Non- batch specific version', () => {
         //set the serial number and enter
         info.setSerialNumber(await batches.serialNum())
         await batches.enterSerialNumber(info.getSerialNumber())
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         //accept serial number
         await batches.acceptSerialNumber()
         await wait.setTimeoutwait(2);
@@ -111,10 +111,10 @@ describe('056_SMPC update on the product Non- batch specific version', () => {
         //generate 2d matrix image
         const batch=  matrix.generate2dMatrixImage(info.getProductId(), await batches.batchIdValue(), info.getCurrentRandomDate(), info.getSerialNumber())
         info.setImage(batch)
-        await wait.setTimeoutwait(5);
+        await wait.setTimeoutwait(15);
        //create batch
         await batches.createBatch()
-        await wait.setTimeoutwait(5);
+        await wait.setTimeoutwait(40);
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");
         allureReporter.endStep("passed");

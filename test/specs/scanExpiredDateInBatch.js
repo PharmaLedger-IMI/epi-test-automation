@@ -44,7 +44,7 @@ describe('023_Edit batch to select expired date', () => {
         await wait.setTimeoutwait(6);
 
         const expiredDate=info.randomDateExpired()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         await browser.execute((date) => {
             (function () {
                 let event = new Event('change');
@@ -56,20 +56,20 @@ describe('023_Edit batch to select expired date', () => {
 
         // //enable recall checkbox
         // await batches.enableCheckToRecallThisBatch()
-        // await wait.setTimeoutwait(2);
+        // await wait.setTimeoutwait(3);
         // //set batch recall
         // info.setBatchRecall(await batches.checkBatchRecall())
-        // await wait.setTimeoutwait(2);
+        // await wait.setTimeoutwait(3);
         // await batches.enterRecallMessage(testData.newBatchDetails.recallMsg)
-        // await wait.setTimeoutwait(2);
+        // await wait.setTimeoutwait(3);
         // //set batch recall msg
         // info.setBatchRecallMsg(await batches.checkBatchRecallMessage())
-        // await wait.setTimeoutwait(2);
+        // await wait.setTimeoutwait(3);
 
         
         //generate expectation file 
         data.generateExpectationFile(info.getProductId(), info.getbatchId(), expiredDate,  info.getSerialNumber(),info.getBrandName(), info.getBatchRecall(),"","", info.getBatchRecallMsg())
-        await wait.setTimeoutwait(12);
+        await wait.setTimeoutwait(13);
         //generate 2d matrix image
         matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), expiredDate, info.getSerialNumber())
         await wait.setTimeoutwait(8);

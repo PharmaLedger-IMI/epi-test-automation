@@ -33,7 +33,7 @@ describe('113_Update a batch via import of Json by deleting batch and expiry dat
         delete rawdata.batch.expiryDate
         fs.writeFileSync(testData.path.batchImport, JSON.stringify(rawdata))
 
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         await batches.selectFile(path.join(__dirname,'../testdata/sampleBatchImport.json'));
         await wait.setTimeoutwait(8);
 

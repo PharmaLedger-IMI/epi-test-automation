@@ -1,5 +1,6 @@
 
 const LoginPage = require('../pageobjects/login.page');
+const info=require('../utility/reusableFile')
 const accessAccount= require('../pageobjects/access.Account');
 const allureReporter = require('@wdio/allure-reporter').default
 const testData=require('../testdata/config.json')
@@ -24,7 +25,19 @@ it('Browser - should open Enterprise Wallet', async() => {
     await wait.setTimeoutwait(3);
     allureReporter.endStep("passed");
     const handles = await browser.getWindowHandles();
+
+    if( handles.length!=2){
+        console.log( "length is "+handles.length)
+          if(info.getUser()) { 
+        await browser.switchToWindow(handles[4]);
+          }
+          else{
+            await browser.switchToWindow(handles[3]);
+          }
+ }
+ else{
     await browser.switchToWindow(handles[1]);
+ }
     
 });
 it('Browser - should open Access Account', async() => {

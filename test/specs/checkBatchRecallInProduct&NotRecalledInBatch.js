@@ -35,7 +35,7 @@ describe('061_Edit product to check batch is recalled and edit batch to uncheck 
         allureReporter.addTestId('ProductDisplayEpiFlag_1_1')
 
         await products.clickProductFromSideNav()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(4);
         console.log("prod to edit" + info.getProductId())
        // search the product codes
         await products.searchProductCode(info.getProductId())
@@ -53,13 +53,13 @@ describe('061_Edit product to check batch is recalled and edit batch to uncheck 
         await wait.setTimeoutwait(5);
         
         // add smpc
-        await batches.addEpi()
-        await wait.setTimeoutwait(1);
+        await products.addEpi()
+        await wait.setTimeoutwait(3);
 
-        await batches.selectLanguage(testData.newBatchDetails.selectLanguage)
-        await wait.setTimeoutwait(2);
-        await batches.selectType(testData.newBatchDetails.selectType)
-        await wait.setTimeoutwait(2);
+        await products.selectLanguage(testData.newBatchDetails.selectLanguage)
+        await wait.setTimeoutwait(3);
+        await products.selectType(testData.newBatchDetails.selectType)
+        await wait.setTimeoutwait(3);
         
         // upload leaflet folder
         await products.uploadFile(path.join(__dirname, '/src/SMPC_ProductLevel'));
@@ -113,7 +113,7 @@ describe('061_Edit product to check batch is recalled and edit batch to uncheck 
         await wait.setTimeoutwait(5);
         // manage serial number accept 
         await batches.acceptSerialNumber()
-        await wait.setTimeoutwait(1);
+        await wait.setTimeoutwait(3);
 
         // await batches.clearRecallMessage()
         // await wait.setTimeoutwait(2);

@@ -33,8 +33,8 @@ describe('059_Edit batch to delete ePI and SMPC file.', () => {
         allureReporter.startStep("Delete the ePI and SMPC at Batch 2 - scan the product - you should be able to see the product level leaflet and same when you scan Batch 1 ")
         allureReporter.addTestId('ProductInfoUpdate_4_2')
 
-        // await batches.Batch(); 
-        await browser.execute('document.querySelector(`webc-app-menu-item:nth-child(4) stencil-route-link:nth-child(1) a:nth-child(1)`).click()')
+        await batches.Batch(); 
+        //await browser.execute('document.querySelector(`webc-app-menu-item:nth-child(4) stencil-route-link:nth-child(1) a:nth-child(1)`).click()')
 
         await wait.setTimeoutwait(8);
         let editValue = info.getbatchId()
@@ -44,17 +44,17 @@ describe('059_Edit batch to delete ePI and SMPC file.', () => {
 
         //select valid serial number
         await batches.selectUpdateValidSerialFromDropdown(testData.newBatchDetails.updateValid)
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         // //enable checkbox
         // await batches.enableResetAllValidSerialNumber()
         // await wait.setTimeoutwait(2);
         //set the serial number and enter
         info.setSerialNumber(await batches.serialNum())
         await batches.enterSerialNumber(info.getSerialNumber())
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         //accept serial number
         await batches.acceptSerialNumber()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
 
         //delete epi and SMPC 
         await batches.deleteAllFile()
@@ -66,7 +66,7 @@ describe('059_Edit batch to delete ePI and SMPC file.', () => {
         await wait.setTimeoutwait(12);
         //generate 2d matrix image
         matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
-        await wait.setTimeoutwait(5);
+        await wait.setTimeoutwait(8);
         //update batch
         await batches.updateBatchForEdit()
         await wait.setTimeoutwait(15);

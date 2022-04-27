@@ -36,7 +36,7 @@ after(async () => {
     allureReporter.startStep("Display ePI when Batch# is unknown flag is un-checked, ePI should not be displayed with message Batch number in barcode could not be found")
    
         await products.clickProductFromSideNav()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         console.log("prod to edit" + info.getProductId())
        // search the product codes
         await products.searchProductCode(info.getProductId())
@@ -59,7 +59,7 @@ after(async () => {
         // await wait.setTimeoutwait(1);
         // // select type
         // await products.selectType(testData.newProductDetails.selectType)
-        // await wait.setTimeoutwait(2);
+        // await wait.setTimeoutwait(3);
         // //Video source
         // await products.videoSourceEpi(testData.newProductDetails.videoSource)
         // await wait.setTimeoutwait(1);
@@ -72,16 +72,16 @@ after(async () => {
 
 
         info.setEpiDisplayed(await products.epiDisplayed())
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
 
          //update products
          await products.updateProduct()
          await wait.setTimeoutwait(18); 
 
-    // await batches.Batch(); 
+     await batches.Batch(); 
     // await wait.setTimeoutwait(3);
     //Created for QA environment
-    await browser.execute('document.querySelector(`webc-app-menu-item:nth-child(4) stencil-route-link:nth-child(1) a:nth-child(1)`).click()')
+    //await browser.execute('document.querySelector(`webc-app-menu-item:nth-child(4) stencil-route-link:nth-child(1) a:nth-child(1)`).click()')
     await browser.pause(6000)   
       
       let editValue = info.getbatchId()
@@ -100,11 +100,11 @@ after(async () => {
         })();
     }, info.getCurrentRandomDate());
 
-    await wait.setTimeoutwait(2);
-    const selectBox = await browser.$('//psk-select[@class=\'default-select hydrated\']//select[@class=\'form-control\']');
-    await wait.setTimeoutwait(2); 
-    await selectBox.selectByAttribute('value', info.getProductId());
-    await wait.setTimeoutwait(2);
+    await wait.setTimeoutwait(3);
+    // const selectBox = await browser.$('//psk-select[@class=\'default-select hydrated\']//select[@class=\'form-control\']');
+    // await wait.setTimeoutwait(3); 
+    // await selectBox.selectByAttribute('value', info.getProductId());
+    // await wait.setTimeoutwait(3);
    
     await batches.selectUpdateValidSerialFromDropdown(testData.newBatchDetails.updateValid)
     await wait.setTimeoutwait(5);
@@ -116,20 +116,20 @@ after(async () => {
     await wait.setTimeoutwait(5);
     // manage serial number accept 
     await batches.acceptSerialNumber()
-    await wait.setTimeoutwait(1);
+    await wait.setTimeoutwait(3);
 
     const unknownBatch= info.unKnownBatch()
     await wait.setTimeoutwait(2);
 
     const incorrectExpiryDate=info.randomDateExpired()
-    await wait.setTimeoutwait(2);
+    await wait.setTimeoutwait(3);
     //generate expectation file 
     data.generateExpectationFile(info.getProductId(), unknownBatch, incorrectExpiryDate,  info.getSerialNumber(), info.getBrandName(), "","","","", await batches.epiDisplayed())
-    await wait.setTimeoutwait(6);
+    await wait.setTimeoutwait(12);
  
     //generate 2d matrix image
     matrix.generate2dMatrixImage(info.getProductId(), unknownBatch, incorrectExpiryDate, info.getSerialNumber())
-    await wait.setTimeoutwait(8);
+    await wait.setTimeoutwait(9);
 
     //update batch
     await batches.updateBatchForEdit()

@@ -36,7 +36,7 @@ describe('060_Scan previous batch to see the leaflet at product level', () => {
         info.getExpectationFile()
         await wait.setTimeoutwait(12);
         info.getImage() 
-        await wait.setTimeoutwait(5);
+        await wait.setTimeoutwait(9);
        
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");

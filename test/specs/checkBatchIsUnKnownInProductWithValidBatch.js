@@ -33,7 +33,7 @@ describe('093_Edit Product to check batch is unknown and edit batch to have vali
         allureReporter.addTestId('ProductDisplayEpiFlag_7_2')
 
         await products.clickProductFromSideNav()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(4);
         console.log("prod to edit" + info.getProductId())
        // search the product codes
         await products.searchProductCode(info.getProductId())
@@ -69,11 +69,11 @@ describe('093_Edit Product to check batch is unknown and edit batch to have vali
         //set serial number
         info.setSerialNumber(await batches.serialNum())
         await batches.enterSerialNumber(info.getSerialNumber())
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
 
         // manage serial number accept 
         await batches.acceptSerialNumber()
-        await wait.setTimeoutwait(1);
+        await wait.setTimeoutwait(3);
 
         data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), info.getBatchRecall(),"","", info.getBatchRecallMsg(),info.getEpiDisplayed() )
         await wait.setTimeoutwait(12);

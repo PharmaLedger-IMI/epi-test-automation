@@ -43,39 +43,39 @@ describe('050_Edit batch to update with decommissioned and recalled serial numbe
 
         //check enable serial number verification
         await batches.enableSerialNumberVerification()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         //select decommisioned serial number
         await batches.selectUpdateDecommissionedFromDropdown(testData.newBatchDetails.updateDecommissioned)
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         // //enable checkbox 
         // await batches.enableResetAllDecommisionedSerialNumber()
-        // await wait.setTimeoutwait(2);
+        // await wait.setTimeoutwait(3);
         //set serial number
         info.setSerialNumber(await batches.serialNum())
         await batches.enterSerialNumber(info.getSerialNumber())
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         //Enter reason
         await batches.selectLostReasonFromDropdown(testData.newBatchDetails.updateDecommissionedWithLostReason)
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         //accept serial number
         await batches.acceptSerialNumber()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
 
          //select recalled serial number
          await batches.selectUpdateRecalledSerialFromDropdown(testData.newBatchDetails.updateRecalled)
-         await wait.setTimeoutwait(2);
+         await wait.setTimeoutwait(3);
          //enable checkbox
         //  await batches.enableResetAllRecalledSerialNumber()
-        //  await wait.setTimeoutwait(2);
+        //  await wait.setTimeoutwait(3);
          //set the serial number and enter
          info.setSerialNumber(await batches.serialNum())
-         await wait.setTimeoutwait(2);
+         await wait.setTimeoutwait(3);
          await batches.enterSerialNumber(info.getSerialNumber())
-         await wait.setTimeoutwait(2);
+         await wait.setTimeoutwait(3);
                
          //accept serial number
          await batches.acceptSerialNumber()
-         await wait.setTimeoutwait(2);
+         await wait.setTimeoutwait(3);
               
         //generate expectation file 
         data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), "","","", "" )
@@ -83,11 +83,11 @@ describe('050_Edit batch to update with decommissioned and recalled serial numbe
        
         //generate 2d matrix image
         matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
-        await wait.setTimeoutwait(5);
+        await wait.setTimeoutwait(9);
 
          //update batch
          await batches.updateBatchForEdit()
-         await wait.setTimeoutwait(8);
+         await wait.setTimeoutwait(18);
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");
        

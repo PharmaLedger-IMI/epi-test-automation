@@ -34,7 +34,7 @@ describe('073_Edit Product to check batch is expired and edit batch to check bat
         allureReporter.addTestId('ProductDisplayEpiFlag_3_2')
 
         await products.clickProductFromSideNav()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(4);
         console.log("prod to edit" + info.getProductId())
        // search the product codes
         await products.searchProductCode(info.getProductId())
@@ -66,7 +66,7 @@ describe('073_Edit Product to check batch is expired and edit batch to check bat
 
 
         info.setEpiDisplayed(await products.epiDisplayed())
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
 
          //update products
          await products.updateProduct()
@@ -102,7 +102,7 @@ describe('073_Edit Product to check batch is expired and edit batch to check bat
         await wait.setTimeoutwait(8);
 
         await batches.updateBatchForEdit()
-        await wait.setTimeoutwait(10);   
+        await wait.setTimeoutwait(18);   
        
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");

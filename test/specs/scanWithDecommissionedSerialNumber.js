@@ -66,31 +66,31 @@ describe('043_Edit a batch to update decommissioned SN and scan with decommissio
 
         //select recalled serial number
         await batches.selectUpdateRecalledSerialFromDropdown(testData.newBatchDetails.updateRecalled)
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         //enable checkbox
         await batches.enableResetAllRecalledSerialNumber()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
        
         //accept serial number
         await batches.acceptSerialNumber()
-        await wait.setTimeoutwait(2); 
+        await wait.setTimeoutwait(3); 
 
          //select decommisioned serial number
         await batches.selectUpdateDecommissionedFromDropdown(testData.newBatchDetails.updateDecommissioned)
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         // //enable checkbox
         // await batches.enableResetAllDecommisionedSerialNumber()
-        // await wait.setTimeoutwait(2);
+        // await wait.setTimeoutwait(3);
         //set the serial number and enter
         info.setSerialNumber(await batches.serialNum())
         await batches.enterSerialNumber(info.getSerialNumber())
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         //enter reason
         await batches.selectLostReasonFromDropdown(testData.newBatchDetails.updateDecommissionedWithLostReason)
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         //accept serial number
         await batches.acceptSerialNumber()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
  
         //generate expectation file 
         data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), "","","", "" )
@@ -98,7 +98,7 @@ describe('043_Edit a batch to update decommissioned SN and scan with decommissio
        
         //generate 2d matrix image
         matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
-        await wait.setTimeoutwait(5);
+        await wait.setTimeoutwait(9);
         //update batch
         await batches.updateBatchForEdit()
         await wait.setTimeoutwait(18);

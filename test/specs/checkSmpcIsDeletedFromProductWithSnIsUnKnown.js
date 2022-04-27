@@ -34,7 +34,7 @@ describe('089_Edit product to check SN is unknown and delete smpc. Pass unknown 
         allureReporter.addTestId('ProductDisplayEpiFlag_6_3')
 
         await products.clickProductFromSideNav()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(4);
         console.log("prod to edit" + info.getProductId())
        // search the product codes
         await products.searchProductCode(info.getProductId())
@@ -60,7 +60,7 @@ describe('089_Edit product to check SN is unknown and delete smpc. Pass unknown 
          //created for QA
         //await browser.execute('document.querySelector(`webc-app-menu-item:nth-child(4) stencil-route-link:nth-child(1) a:nth-child(1)`).click()')
 
-        await wait.setTimeoutwait(8);
+        await wait.setTimeoutwait(9);
         let editValue = info.getbatchId()
         console.log("editValue is "+editValue)
         await browser.execute('document.querySelector("div:nth-child(' + await info.editBatchRow(editValue) + ') button:nth-child(1)").click()')
@@ -71,26 +71,27 @@ describe('089_Edit product to check SN is unknown and delete smpc. Pass unknown 
 
          //set serial number
          info.setSerialNumber(await batches.serialNum())
+         await wait.setTimeoutwait(3);
          await batches.enterSerialNumber(info.getSerialNumber())
-         await wait.setTimeoutwait(2);
+         await wait.setTimeoutwait(3);
 
          // manage serial number accept 
         await batches.acceptSerialNumber()
-        await wait.setTimeoutwait(1);
+        await wait.setTimeoutwait(3);
 
-        const unKnownSerialNumber = await batches.serialNum()
-        console.log('unknown serial number ' + unKnownSerialNumber)
+        const unknownSerialNumber = await batches.serialNum()
+        console.log('unknown serial number ' + unknownSerialNumber)
         await wait.setTimeoutwait(2);
         
 
-        data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  unKnownSerialNumber,info.getBrandName(), info.getBatchRecall(),"","", info.getBatchRecallMsg(),info.getEpiDisplayed() )
+        data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  unknownSerialNumber,info.getBrandName(), "","","", "",info.getEpiDisplayed() )
+        await wait.setTimeoutwait(15);
+
+        matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), unknownSerialNumber)
         await wait.setTimeoutwait(12);
 
-        matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), unKnownSerialNumber)
-        await wait.setTimeoutwait(8);
-
         await batches.updateBatchForEdit()
-        await wait.setTimeoutwait(10);   
+        await wait.setTimeoutwait(18);   
        
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");

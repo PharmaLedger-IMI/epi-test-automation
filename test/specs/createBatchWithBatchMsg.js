@@ -35,7 +35,7 @@ describe('019_Create a batch with batch message', () => {
         await batches.Batch();
         await wait.setTimeoutwait(4);
         await batches.addBatch();
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         // await browser.execute('document.querySelector(`a[href="/batches"]`).click()')
         // await browser.pause(6000)   
         // await browser.execute('document.querySelector(`button[data-tag="add-batch"]`).click()') 
@@ -43,7 +43,7 @@ describe('019_Create a batch with batch message', () => {
         await batches.siteName(testData.newBatchDetails.siteName);
         await wait.setTimeoutwait(5);
         info.setCurrentRandomDate()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         await browser.execute((date) => {
             (function () {
                 let event = new Event('change');
@@ -67,10 +67,10 @@ describe('019_Create a batch with batch message', () => {
         await batches.enterSerialNumber(info.getSerialNumber())
         await wait.setTimeoutwait(4);
         await batches.acceptSerialNumber()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         //enter batch msg
         await batches.batchMessage(testData.newBatchDetails.batchMsg)
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         info.setBatchMsg(await batches.checkBatchMessage())
         await wait.setTimeoutwait(3);
         //generate expectation file 
@@ -81,7 +81,7 @@ describe('019_Create a batch with batch message', () => {
         await wait.setTimeoutwait(12);
        // create batch
         await batches.createBatch()
-        await wait.setTimeoutwait(15);
+        await wait.setTimeoutwait(19);
 
        
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');

@@ -37,7 +37,7 @@ describe('010_Edit batch and disable serial number check without SN ', () => {
         allureReporter.addTestId('BasicAuthFeatureTest_1_4')
 
         await batches.Batch();
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         
         //Edit batch
         let editValue = info.getbatchId()
@@ -47,23 +47,23 @@ describe('010_Edit batch and disable serial number check without SN ', () => {
 
         //Select valid serial number
         await batches.selectUpdateValidSerialFromDropdown(testData.newBatchDetails.updateValid)
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         //Enable checkbox and don't pass serial number
         await batches.enableResetAllValidSerialNumber()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         //Accept serial number
         await batches.acceptSerialNumber()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
 
         //Generate expectation file                    
         data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),"",info.getBrandName(), "","","", "" )
         await wait.setTimeoutwait(12);
         //Generate 2d matrix image 
         matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),"")
-        await wait.setTimeoutwait(5);
+        await wait.setTimeoutwait(9);
         //Update batch
         await batches.updateBatchForEdit()
-        await wait.setTimeoutwait(8);
+        await wait.setTimeoutwait(18);
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");
         allureReporter.endStep("passed");

@@ -145,8 +145,15 @@ async clickCurrentIdentity(){
    
 }
 async doubleClickUserIdentity(){
+
+    if( await this.userIdentity.isExisting()==true){
     
     await this.userIdentity.doubleClick();
+    return true
+    }
+    else{
+        return false
+    }
    
 }
 async adminGroup(){

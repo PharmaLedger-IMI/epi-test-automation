@@ -34,7 +34,7 @@ describe('095_Edit product to uncheck batch is unknown and edit batch to have va
         allureReporter.addTestId('ProductDisplayEpiFlag_7_4')
 
         await products.clickProductFromSideNav()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         console.log("prod to edit" + info.getProductId())
        // search the product codes
         await products.searchProductCode(info.getProductId())
@@ -46,10 +46,10 @@ describe('095_Edit product to uncheck batch is unknown and edit batch to have va
         await wait.setTimeoutwait(5);
         //uncheck batch is unknown
         await products.disableBatchNumberUnknown()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
        
         info.setEpiDisplayed(await products.epiDisplayed())
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
 
         //update products
         await products.updateProduct()
@@ -73,11 +73,11 @@ describe('095_Edit product to uncheck batch is unknown and edit batch to have va
         //set serial number
         info.setSerialNumber(await batches.serialNum())
         await batches.enterSerialNumber(info.getSerialNumber())
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
 
         // manage serial number accept 
         await batches.acceptSerialNumber()
-        await wait.setTimeoutwait(1);
+        await wait.setTimeoutwait(3);
 
         const unKnownBatch=info.unKnownBatch()
         console.log('unKnownBatch '+unKnownBatch)

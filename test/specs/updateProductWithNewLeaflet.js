@@ -35,36 +35,36 @@ describe('057_Edit product to upload SMPC with another leaflet', () => {
 
          //click product from sidenav
          await products.clickProductFromSideNav()
-         await wait.setTimeoutwait(2);
+         await wait.setTimeoutwait(4);
  
          //search the product code
          await products.searchProductCode(info.getProductId())
          await wait.setTimeoutwait(5);
          await browser.keys('Enter')
-         await wait.setTimeoutwait(2);
+         await wait.setTimeoutwait(3);
          //view or edit
          //await products.clickViewEdit()
          await browser.execute('document.querySelector("button[data-tag=\'edit-product\']").click()')
-         await wait.setTimeoutwait(5);
+         await wait.setTimeoutwait(10);
 
          //delete smpc
          await products.deleteSecondLanguage()
-         await wait.setTimeoutwait(2);
+         await wait.setTimeoutwait(3);
          //add new version epi
          await products.addEpi()
          await wait.setTimeoutwait(3);
          //select language	
          await products.selectLanguage(testData.newProductDetails.selectLanguage)
-         await wait.setTimeoutwait(1);
+         await wait.setTimeoutwait(3);
          //select SMPC type
          await products.selectType(testData.newProductDetails.selectType)
-         await wait.setTimeoutwait(2);
+         await wait.setTimeoutwait(3);
          //upload folder
          await products.uploadFile(path.join(__dirname, '/src/SMPC_UpdatedAtProductLevel'));
          await wait.setTimeoutwait(5);
 
          await products.acceptButton()
-         await wait.setTimeoutwait(2);
+         await wait.setTimeoutwait(3);
 
           //Update product
           await products.updateProduct()
@@ -81,24 +81,24 @@ describe('057_Edit product to upload SMPC with another leaflet', () => {
 
         //select valid serial number
         await batches.selectUpdateValidSerialFromDropdown(testData.newBatchDetails.updateValid)
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         // //enable checkbox
         // await batches.enableResetAllValidSerialNumber()
-        // await wait.setTimeoutwait(2);
+        // await wait.setTimeoutwait(3);
         //set the serial number and enter
         info.setSerialNumber(await batches.serialNum())
         await batches.enterSerialNumber(info.getSerialNumber())
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         //accept serial number
         await batches.acceptSerialNumber()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
 
         //generate expectation file 
         data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber(), info.getBrandName(), "", "", "", "", info.getEpiDisplayed())
         await wait.setTimeoutwait(12);
         //generate 2d matrix image
         matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
-        await wait.setTimeoutwait(5);
+        await wait.setTimeoutwait(9);
 
         //update batch
         await batches.updateBatchForEdit()

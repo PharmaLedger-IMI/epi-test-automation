@@ -43,41 +43,41 @@ describe('051_Edit batch to update without decommissioned and recalled serial nu
 
         //check enable serial number verification
         await batches.enableSerialNumberVerification()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
 
          //select recalled serial number
          await batches.selectUpdateDecommissionedFromDropdown(testData.newBatchDetails.updateDecommissioned)
-         await wait.setTimeoutwait(2);
+         await wait.setTimeoutwait(3);
         
         //enable checkbox and remove 10 serial number
         await batches.enableResetAllDecommisionedSerialNumber()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         
         //accept serial number
         await batches.acceptSerialNumber()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
 
         //select recalled serial number
         await batches.selectUpdateRecalledSerialFromDropdown(testData.newBatchDetails.updateRecalled)
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         //enable checkbox
         await batches.enableResetAllRecalledSerialNumber()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
 
         //accept serial number
         await batches.acceptSerialNumber()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         //generate expectation file              
         data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), "",info.getBrandName(), "","","", "" )
         await wait.setTimeoutwait(12);
         
         //generate 2d matrix image
         matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), "")
-        await wait.setTimeoutwait(5);
+        await wait.setTimeoutwait(9);
 
         //update batch
         await batches.updateBatchForEdit()
-        await wait.setTimeoutwait(8);
+        await wait.setTimeoutwait(18);
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");
        

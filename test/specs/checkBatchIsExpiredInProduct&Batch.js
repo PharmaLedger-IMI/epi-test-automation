@@ -35,7 +35,7 @@ describe('072_Edit Product to check batch is expired and edit batch to set expir
         allureReporter.addTestId('ProductDisplayEpiFlag_3_1')
 
         await products.clickProductFromSideNav()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(4);
         console.log("prod to edit" + info.getProductId())
        // search the product codes
         await products.searchProductCode(info.getProductId())
@@ -67,7 +67,7 @@ describe('072_Edit Product to check batch is expired and edit batch to set expir
 
 
         info.setEpiDisplayed(await products.epiDisplayed())
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
 
          //update products
          await products.updateProduct()
@@ -85,7 +85,7 @@ describe('072_Edit Product to check batch is expired and edit batch to set expir
         await browser.execute('document.querySelector("div:nth-child(' + await info.editBatchRow(editValue) + ') button:nth-child(1)").click()')       
         await wait.setTimeoutwait(6);
         const expiredDate=info.randomDateExpired()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         await browser.execute((date) => {
             (function () {
                 let event = new Event('change');
@@ -103,7 +103,7 @@ describe('072_Edit Product to check batch is expired and edit batch to set expir
         await wait.setTimeoutwait(8);
 
         await batches.updateBatchForEdit()
-        await wait.setTimeoutwait(10);   
+        await wait.setTimeoutwait(18);   
        
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");

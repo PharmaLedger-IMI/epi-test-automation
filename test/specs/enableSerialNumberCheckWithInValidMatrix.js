@@ -37,7 +37,7 @@ describe('008_Edit batch and enable serial number check with invalid SN ', () =>
         allureReporter.startStep('Scan an invalid data matrix code to verify that the serial number check fails.')
         allureReporter.addTestId('BasicAuthFeatureTest_1_2')
         await batches.Batch();
-        await wait.setTimeoutwait(1_2);
+        await wait.setTimeoutwait(3);
         
         //edit Batch
         let editValue = info.getbatchId()
@@ -47,32 +47,32 @@ describe('008_Edit batch and enable serial number check with invalid SN ', () =>
 
         //check enable serial number verification
         await batches.enableSerialNumberVerification()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         
         //select valid serial number
         await batches.selectUpdateValidSerialFromDropdown(testData.newBatchDetails.updateValid)
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         //set serial number
         info.setSerialNumber(await batches.serialNum())
         await batches.enterSerialNumber(info.getSerialNumber())
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
 
         //accept serial number
         await batches.acceptSerialNumber()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         //store invalid serial number
         const invalidSerialNumber=await batches.serialNum()
         console.log('invalid serial number '+invalidSerialNumber)
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         //generate expectation file               
         data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  invalidSerialNumber,info.getBrandName(), "","","", "" )
         await wait.setTimeoutwait(12);
         //generate 2d matrix image 
         matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), invalidSerialNumber)
-        await wait.setTimeoutwait(5);
+        await wait.setTimeoutwait(9);
          //update batch
         await batches.updateBatchForEdit()
-        await wait.setTimeoutwait(8);
+        await wait.setTimeoutwait(18);
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");
         allureReporter.endStep("passed");

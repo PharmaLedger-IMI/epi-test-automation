@@ -343,6 +343,7 @@ class batchesPage{
     async clearRecallMessage(){
        
         await this.enterRecallMessageInTextbox.click()
+        await browser.pause(3000)
         await this.enterRecallMessageInTextbox.clearValue()
         
     }
@@ -370,25 +371,7 @@ class batchesPage{
     async createBatch(){
 
         await this.createBatchButton.click()
-       // await browser.waitUntil(() => $('.modal-title').waitForDisplayed({ reverse: true }))
-        // await browser.waitUntil(
-        //     () => browser.execute(() => document.readyState === 'complete'),
-        //     {
-        //       timeout: 80 * 1000, // 60 seconds
-        //       //timeoutMsg: 'Message on failure'
-        //     }
-        // )
-       // const frameGroup = await browser.$('iframe[frameborder=\'0\']');
-        // await browser.waitUntil(
-            
-        //    // await browser.switchToFrame(frameGroup)
-        //     async () => (await $('//h6[@slot="page-content"]').waitForDisplayed()),
-        //     {
-        //         timeout: 5000,
-        //         timeoutMsg: 'no title'
-        //     }
-            
-        // );
+       
     }
 
     async  deleteAllFile(){
@@ -431,8 +414,20 @@ class batchesPage{
         await this.clickViewMessageInFailedLogs.click()
     }
     async viewMessageInSuccessLogs(){
-        
-        await this.clickViewMessageInSuccessLogs.click()
+        // if(this.clickViewMessageInSuccessLogs.isExisting()==true){
+
+        try{
+            await this.clickViewMessageInSuccessLogs.click()
+        }
+        catch(e){
+            console.log("failed logs")
+        }
+            // return true
+        // }
+        // else{
+        //     return false
+        // }
+       
     }
     async downloadMsgInSuccessLogs(){
         

@@ -35,7 +35,7 @@ describe('091_Edit product to uncheck SN is unknown and edit batch to have valid
         allureReporter.addTestId('ProductDisplayEpiFlag_6_5')
 
         await products.clickProductFromSideNav()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(4);
         console.log("prod to edit" + info.getProductId())
        // search the product codes
         await products.searchProductCode(info.getProductId())
@@ -55,7 +55,7 @@ describe('091_Edit product to uncheck SN is unknown and edit batch to have valid
 
         //update products
         await products.updateProduct()
-        await wait.setTimeoutwait(8);  
+        await wait.setTimeoutwait(18);  
 
 
          //edit batch
@@ -75,16 +75,16 @@ describe('091_Edit product to uncheck SN is unknown and edit batch to have valid
          //set serial number
          info.setSerialNumber(await batches.serialNum())
          await batches.enterSerialNumber(info.getSerialNumber())
-         await wait.setTimeoutwait(2);
+         await wait.setTimeoutwait(3);
 
          // manage serial number accept 
         await batches.acceptSerialNumber()
-        await wait.setTimeoutwait(1);
+        await wait.setTimeoutwait(3);
 
        
         //generate expectation file 
         data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), info.getBatchRecall(),"","", info.getBatchRecallMsg(),info.getEpiDisplayed() )
-        await wait.setTimeoutwait(12);
+        await wait.setTimeoutwait(13);
         //generate 2d matrix image
         matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
         await wait.setTimeoutwait(8);

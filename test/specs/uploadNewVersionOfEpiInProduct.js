@@ -1,5 +1,6 @@
 
 const products= require('../pageobjects/products.page');
+//const batches= require('../pageobjects/batches.page.js');
 const matrix=require('../utility/2dMatrixPage')
 const data=require('../utility/expectationFile')
 const info=require('../utility/reusableFile')
@@ -37,13 +38,13 @@ describe('053_Edit product to upload a new version of the ePI ', () => {
 
         //click product from sidenav
         await products.clickProductFromSideNav()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(4);
 
         //search the product code
         await products.searchProductCode(info.getProductId())
         await wait.setTimeoutwait(5);
         await browser.keys('Enter')
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         //view or edit
         //await products.clickViewEdit()
         await browser.execute('document.querySelector("button[data-tag=\'edit-product\']").click()')
@@ -59,22 +60,22 @@ describe('053_Edit product to upload a new version of the ePI ', () => {
         // await wait.setTimeoutwait(1);
         // //select type
         // await products.selectType(testData.newProductDetails.selectType)
-        // await wait.setTimeoutwait(2);
+        // await wait.setTimeoutwait(3);
         //upload folder
-        await batches.uploadFile(path.join(__dirname, '/src/Leaflet_UpdatedAtProductLevel'));
+        await products.uploadFile(path.join(__dirname, '/src/Leaflet_UpdatedAtProductLevel'));
         await wait.setTimeoutwait(5);
         
         //add epi accept
         await browser.execute('document.querySelector("psk-button[disabled=\'@modalData.filesWereNotSelected\'] button[class=\'btn btn-primary\']").click();');
         await wait.setTimeoutwait(5);
-        info.setEpiDisplayed()
-        await wait.setTimeoutwait(4);
+        info.setEpiDisplayed(await products.epiDisplayed())
+        await wait.setTimeoutwait(2);
         //generate expectation file 
         data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), "","","", "", info.getEpiDisplayed() )
-        await wait.setTimeoutwait(12);    
+        await wait.setTimeoutwait(13);    
         //generate 2d matrix image
-        matrix.generateImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
-        await wait.setTimeoutwait(5);
+        matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
+        await wait.setTimeoutwait(9);
 
         //Update product
         await products.updateProduct()

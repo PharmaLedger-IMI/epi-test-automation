@@ -58,8 +58,8 @@ describe('109_Update a product via import of Json by deleting invented name, pro
         await products.invalidFieldInfoRequired()
         await wait.setTimeoutwait(5); 
 
-        await products.downloadMsgInFaliedLogs()
-        await wait.setTimeoutwait(5); 
+        await products.downloadMsgInFailedLogs()
+        await wait.setTimeoutwait(10); 
 
         // await products.closeButtonInPopup()
         // await wait.setTimeoutwait(5); 

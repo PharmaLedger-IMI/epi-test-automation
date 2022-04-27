@@ -1,6 +1,6 @@
 
 const LoginPage = require('../pageobjects/login.page');
-//const products= require('../pageobjects/products.page');
+const info=require('../utility/reusableFile')
 const accessAccount= require('../pageobjects/access.Account');
 const allureReporter = require('@wdio/allure-reporter').default
 const testData=require('../testdata/config.json')
@@ -26,7 +26,17 @@ it('Browser - should open Enterprise Wallet', async() => {
     await wait.setTimeoutwait(3);
     allureReporter.endStep("passed");
     const handles = await browser.getWindowHandles();
+    if( handles.length!=2){
+        console.log( "length is "+handles.length)
+         if(info.getUser()){   
+        await browser.switchToWindow(handles[5]);
+         }
+         else{
+            await browser.switchToWindow(handles[4]);
+         }
+ }else{
     await browser.switchToWindow(handles[1]);
+ }
     
 });
 it('Browser - should open Access Account', async() => {
@@ -38,7 +48,12 @@ it('Browser - should open Access Account', async() => {
      await wait.setTimeoutwait(4);
      await accessAccount.clearUserName();
      await wait.setTimeoutwait(2);
-     await accessAccount.enterUserName(testData.login.userName);
+if(info.getUser()){
+     await accessAccount.enterUserName(testData.login.enterpriseUser);
+}
+else{
+     await accessAccount.enterUserName(testData.login.existingUserName);
+}
      await wait.setTimeoutwait(2);
     //  await accessAccount.emailId();
     //  await wait.setTimeoutwait(2);

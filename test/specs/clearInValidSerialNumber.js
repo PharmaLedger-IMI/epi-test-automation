@@ -4,6 +4,8 @@ const matrix=require('../utility/2dMatrixPage')
 const data=require('../utility/expectationFile')
 const info=require('../utility/reusableFile')
 const wait=require('../utility/timeout')
+const testData=require('../testdata/config.json')
+
 const allureReporter = require('@wdio/allure-reporter').default
 const util = require('util');
 const exec = util.promisify(require('child_process').exec);
@@ -46,16 +48,17 @@ describe('037_Edit batch to reset serial number and scan with invalid serial num
 
         //select valid serial number
         await batches.selectUpdateValidSerialFromDropdown(testData.newBatchDetails.updateValid)
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         //enable checkbox
         await batches.enableResetAllValidSerialNumber()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         
         //accept serial number
         await batches.acceptSerialNumber()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(4);
 
         const invalidSerialNumber=await batches.serialNum()
+        await wait.setTimeoutwait(3);
         //generate expectation file 
         data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),invalidSerialNumber, " ",info.getBrandName(), "","","", "" )
         await wait.setTimeoutwait(12);
@@ -64,7 +67,7 @@ describe('037_Edit batch to reset serial number and scan with invalid serial num
         await wait.setTimeoutwait(5);
         //update batch
         await batches.updateBatchForEdit()
-        await wait.setTimeoutwait(10);
+        await wait.setTimeoutwait(18);
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");
        

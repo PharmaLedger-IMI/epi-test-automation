@@ -35,7 +35,7 @@ describe('068_Edit product to check expiration date is incorrect and edit batch 
         allureReporter.addTestId('ProductDisplayEpiFlag_2_2')
 
         await products.clickProductFromSideNav()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(4);
         console.log("prod to edit" + info.getProductId())
        // search the product codes
         await products.searchProductCode(info.getProductId())
@@ -82,6 +82,7 @@ describe('068_Edit product to check expiration date is incorrect and edit batch 
         await wait.setTimeoutwait(2);
         
         const incorrectExpiryDate=info.randomDateExpired()
+        await wait.setTimeoutwait(2);
         data.generateExpectationFile(info.getProductId(), info.getbatchId(), incorrectExpiryDate,  info.getSerialNumber(),info.getBrandName(), info.getBatchRecall(),"","", info.getBatchRecallMsg(),info.getEpiDisplayed() )
         await wait.setTimeoutwait(12);  
        
@@ -89,7 +90,7 @@ describe('068_Edit product to check expiration date is incorrect and edit batch 
         await wait.setTimeoutwait(8);
         //update batch
         await batches.updateBatchForEdit()
-        await wait.setTimeoutwait(10); 
+        await wait.setTimeoutwait(18); 
        
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");

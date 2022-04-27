@@ -6,14 +6,17 @@ const moment = require('moment');
         
     exports.generate2dMatrixImage = function(gtin, batchNumber, expiryDate, serialNumber){
 
-        const expdate=moment( expiryDate, 'YYYY-MM-DD').format("YYMMDD");
+        // const expdate=moment( expiryDate, 'YYYY-MM-DD').format("YYMMDD");
+    const expdate = expiryDate.replace('-', '')
+    const expdated = expdate.replace('-', '')
+    var expiryDateR = expdated.slice(2);
         let barcode=''
         
         if(serialNumber==""){
-             barcode='(01)'+gtin+'(17)'+expdate+'(10)'+batchNumber   
+             barcode='(01)'+gtin+'(17)'+expiryDateR+'(10)'+batchNumber   
         } 
         else{
-            barcode='(01)'+gtin+'(17)'+expdate+'(10)'+batchNumber +'(21)'+serialNumber
+            barcode='(01)'+gtin+'(17)'+expiryDateR+'(10)'+batchNumber +'(21)'+serialNumber
            
         }  
         console.log("barcode "+barcode)

@@ -34,7 +34,7 @@ describe('074_Edit product to check batch is expired and delete smpc. Edit batch
         allureReporter.addTestId('ProductDisplayEpiFlag_3_3')
 
         await products.clickProductFromSideNav()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(4);
         console.log("prod to edit" + info.getProductId())
        // search the product codes
         await products.searchProductCode(info.getProductId())
@@ -53,7 +53,7 @@ describe('074_Edit product to check batch is expired and delete smpc. Edit batch
 
          //update products
          await products.updateProduct()
-         await wait.setTimeoutwait(8);  
+         await wait.setTimeoutwait(18);  
 
 
          //edit batch

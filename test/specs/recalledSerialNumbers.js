@@ -35,16 +35,16 @@ describe('038_Create a batch and enable serial number verification and set recal
         allureReporter.startStep('Create a batch and enable serial number verification and set recalled serial numbers')
         allureReporter.addTestId('SerialNumberChecks_4')
         await batches.Batch();
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         await batches.addBatch();
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         info.setBatchId(await batches.batchIdValue())
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         await batches.siteName(testData.newBatchDetails.siteName);
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
       
         info.setCurrentRandomDate()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         await browser.execute((date) => {
             (function () {
                 let event = new Event('change');
@@ -55,38 +55,38 @@ describe('038_Create a batch and enable serial number verification and set recal
         }, info.getCurrentRandomDate());
         
         console.log("different date is"+ info.randomDate())
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
        
         //select product from dropdown
         const selectBox = await browser.$('//psk-select[@class=\'default-select hydrated\']//select[@class=\'form-control\']'); 
         await selectBox.selectByAttribute('value', info.getProductId());
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         //check enable serial number verification
         await batches.enableSerialNumberVerification()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         //select recalled serial number
         await batches.selectUpdateValidSerialFromDropdown(testData.newBatchDetails.updateRecalled)
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         // //enable checkbox
         // await batches.enableResetAllValidSerialNumber()
-        // await wait.setTimeoutwait(2);
+        // await wait.setTimeoutwait(3);
         //set the serial number and enter
         info.setSerialNumber(await batches.serialNum())
         await batches.enterSerialNumber(info.getSerialNumber())
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         //accept serial number
         await batches.acceptSerialNumber()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
        
        //generate expectation file 
         data.generateExpectationFile(info.getProductId(), await batches.batchIdValue(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), "","","", "" )
         await wait.setTimeoutwait(12);
         //generate 2d matrix image
         matrix.generate2dMatrixImage(info.getProductId(), await batches.batchIdValue(), info.getCurrentRandomDate(), info.getSerialNumber())
-        await wait.setTimeoutwait(5);
+        await wait.setTimeoutwait(9);
          //create batch
          await batches.createBatch()
-         await wait.setTimeoutwait(8);
+         await wait.setTimeoutwait(40);
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");
        

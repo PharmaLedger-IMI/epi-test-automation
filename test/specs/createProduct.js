@@ -26,41 +26,41 @@ it('Browser - should verify product page', async() => {
     allureReporter.startStep("Create new product with a valid GTIN, and add the ePI");
 
     await products.clickProduct();
-    await wait.setTimeoutwait(2);
+    await wait.setTimeoutwait(4);
     await products.addProduct();
     await wait.setTimeoutwait(5);
     await products.enterGtinCode(info.getProductId());
-    await wait.setTimeoutwait(2);
+    await wait.setTimeoutwait(3);
 
     // var dateStringWithTime = moment().format('DD-MM-YY h:mm:ss');
     // console.log(dateStringWithTime)
     await products.brandName(testData.newProductDetails.brandName + moment().format('DD-MM-YY h:mm:ss')) 
-    await wait.setTimeoutwait(3);
+    await wait.setTimeoutwait(4);
     info.setBrandName(await products.checkBrandName()) 
     await wait.setTimeoutwait(2);
     await products.productDescription(testData.newProductDetails.medicinalProductName); 
     await wait.setTimeoutwait(4);
     //Upload product photo
     await products.productPhoto(path.join(__dirname, '/src/entresto.jpg'));
-    await wait.setTimeoutwait(1);
+    await wait.setTimeoutwait(3);
     //internal material code
     await products.internalMaterialCode(testData.newProductDetails.internalMaterialCode)
-    await wait.setTimeoutwait(1);
+    await wait.setTimeoutwait(3);
     //strength
     await products.addStrength(testData.newProductDetails.addStrength)
-    await wait.setTimeoutwait(1);
+    await wait.setTimeoutwait(3);
     // video source
     await products.videoSource(testData.newProductDetails.videoSource)
-    await wait.setTimeoutwait(2);
+    await wait.setTimeoutwait(3);
     //enable batch is recalled
     await products.enableBatchIsRecalled(); 
-    await wait.setTimeoutwait(1);
+    await wait.setTimeoutwait(3);
     //
     await products.enableExpirationDateIsIncorrect(); 
-    await wait.setTimeoutwait(1);
+    await wait.setTimeoutwait(3);
     //
     await products.enableSnIsUnknown(); 
-    await wait.setTimeoutwait(1);
+    await wait.setTimeoutwait(3);
      //add epi
      await products.addEpi()
      await wait.setTimeoutwait(3);
@@ -72,7 +72,7 @@ it('Browser - should verify product page', async() => {
     //  await wait.setTimeoutwait(2);
      //Video source
      await products.videoSourceEpi(testData.newProductDetails.videoSource)
-     await wait.setTimeoutwait(1);
+     await wait.setTimeoutwait(3);
      //Upload epi
      const uploadEpiFile=path.join(__dirname, '/src/Leaflet_ProductLevel')
      await products.uploadFile(uploadEpiFile);
@@ -83,7 +83,7 @@ it('Browser - should verify product page', async() => {
 
      //Save product
      await products.saveProduct()
-    await wait.setTimeoutwait(50);
+    await wait.setTimeoutwait(45);
     
      allureReporter.endStep("passed");
      allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');

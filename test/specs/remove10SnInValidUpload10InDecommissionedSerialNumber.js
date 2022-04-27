@@ -35,59 +35,58 @@ describe('045_Edit batch to remove 10 serial numbers from valid and upload 10 in
         allureReporter.startStep('Remove 10 serial numbers from valid and upload 10 in decommissioned serial numbers')
         allureReporter.addTestId('SerialNumberChecks_9')
         await batches.Batch();
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         //edit above batch
         let editValue = info.getbatchId()
+        await wait.setTimeoutwait(3);
         console.log("editValue is " + editValue)
         await browser.execute('document.querySelector("div:nth-child(' + await info.editBatchRow(editValue) + ') button:nth-child(1)").click()')
         await wait.setTimeoutwait(8);
 
         //check enable serial number verification
         await batches.enableSerialNumberVerification()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         //select valid serial number
         await batches.selectUpdateValidSerialFromDropdown(testData.newBatchDetails.updateValid)
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         //enable checkbox and remove 10 serial number
         await batches.enableResetAllValidSerialNumber()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
     
         //accept serial number
         await batches.acceptSerialNumber()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
 
 
          //select decommisioned serial number
          await batches.selectUpdateDecommissionedFromDropdown(testData.newBatchDetails.updateDecommissioned)
-         await wait.setTimeoutwait(2);
+         await wait.setTimeoutwait(3);
         //  //enable checkbox
         //  await batches.enableResetAllDecommisionedSerialNumber()
-        //  await wait.setTimeoutwait(2);
+        //  await wait.setTimeoutwait(3);
          //set the serial number and enter
         const serialNumber=info.serialNum10()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         await batches.enterSerialNumber(serialNumber)
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
          //Enter reason
          await batches.selectLostReasonFromDropdown(testData.newBatchDetails.updateDecommissionedWithLostReason)
-         await wait.setTimeoutwait(2);
+         await wait.setTimeoutwait(3);
          //accept serial number
          await batches.acceptSerialNumber()
-         await wait.setTimeoutwait(2);
+         await wait.setTimeoutwait(3);
        
        
         //generate expectation file
         data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  serialNumber.split(',')[0],info.getBrandName(), "","","", "" )
         await wait.setTimeoutwait(12);
-        //create batch
-        await batches.createBatch()
-        await wait.setTimeoutwait(8);
+        
         //generate 2d matrix image
         matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), serialNumber.split(',')[0])
-        await wait.setTimeoutwait(5);
-         //create batch
-         await batches.createBatch()
-         await wait.setTimeoutwait(8);
+        await wait.setTimeoutwait(12);
+         //update batch
+         await batches.updateBatchForEdit()
+         await wait.setTimeoutwait(40);
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");
        

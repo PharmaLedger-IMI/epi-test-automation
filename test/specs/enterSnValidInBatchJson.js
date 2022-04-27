@@ -8,7 +8,7 @@ const path= require('path');
 const fs = require('fs');
 
 
-describe('124_Update a product via import of Json to enter valid serial number flag  ', () => {
+describe('124_Update a product via import of Json to enter valid serial number   ', () => {
 
     
 
@@ -41,7 +41,7 @@ describe('124_Update a product via import of Json to enter valid serial number f
       
         fs.writeFileSync(testData.path.batchImport, JSON.stringify(rawdata))
 
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         await batches.selectFile(path.join(__dirname,'../testdata/sampleBatchImport.json'));
         await wait.setTimeoutwait(8);
        
@@ -56,17 +56,24 @@ describe('124_Update a product via import of Json to enter valid serial number f
          await wait.setTimeoutwait(8);
          
         //view message
-        await batches.viewMessageInSuccessLogs()
-        await wait.setTimeoutwait(5); 
+        // let isValid = await batches.viewMessageInSuccessLogs()
+        // if(isValid){
+            await batches.viewMessageInSuccessLogs()
+            await wait.setTimeoutwait(5); 
          
-        await batches.downloadMsgInSuccessLogs()
-        await wait.setTimeoutwait(5); 
+            await batches.downloadMsgInSuccessLogs()
+            await wait.setTimeoutwait(5); 
+    
+            // await batches.closeButtonInPopup()
+            // await wait.setTimeoutwait(5); 
+    
+            allureReporter.endStep("passed");
+            allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
+        // }
+        // else{
 
-        // await batches.closeButtonInPopup()
-        // await wait.setTimeoutwait(5); 
-
-        allureReporter.endStep("passed");
-        allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
+        // }
+       
 
     })
 })

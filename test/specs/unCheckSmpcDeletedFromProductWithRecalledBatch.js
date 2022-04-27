@@ -33,7 +33,7 @@ describe('066_Edit product to uncheck batch recall and delete SMPC and edit batc
         allureReporter.addTestId('ProductDisplayEpiFlag_1_6')
 
         await products.clickProductFromSideNav()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         console.log("prod to edit" + info.getProductId())
        // search the product codes
         await products.searchProductCode(info.getProductId())
@@ -53,8 +53,8 @@ describe('066_Edit product to uncheck batch recall and delete SMPC and edit batc
 
 
         //edit batch
-         // await batches.Batch(); 
-         await browser.execute('document.querySelector(`webc-app-menu-item:nth-child(4) stencil-route-link:nth-child(1) a:nth-child(1)`).click()')
+         await batches.Batch(); 
+         //await browser.execute('document.querySelector(`webc-app-menu-item:nth-child(4) stencil-route-link:nth-child(1) a:nth-child(1)`).click()')
 
          await wait.setTimeoutwait(8);
          let editValue = info.getbatchId()
@@ -69,7 +69,7 @@ describe('066_Edit product to uncheck batch recall and delete SMPC and edit batc
         
         //generate expectation file 
         data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), info.getBatchRecall(),"","", info.getBatchRecallMsg(), info.getEpiDisplayed() )
-        await wait.setTimeoutwait(12);
+        await wait.setTimeoutwait(13);
         //generate 2d matrix image
         matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
         await wait.setTimeoutwait(8);

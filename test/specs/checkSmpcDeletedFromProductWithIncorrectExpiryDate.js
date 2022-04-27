@@ -32,7 +32,7 @@ describe('069_Edit product to check expiration date is incorrect and delete smpc
         allureReporter.addTestId('ProductDisplayEpiFlag_2_3')
 
         await products.clickProductFromSideNav()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(4);
         console.log("prod to edit" + info.getProductId())
        // search the product codes
         await products.searchProductCode(info.getProductId())
@@ -47,16 +47,19 @@ describe('069_Edit product to check expiration date is incorrect and delete smpc
         await wait.setTimeoutwait(4);
         info.setEpiDisplayed(await products.epiDisplayed())
         await wait.setTimeoutwait(2);
-        //update products
-        await products.updateProduct()
-        await wait.setTimeoutwait(8);  
+       
 
         const incorrectExpiryDate=info.randomDateExpired()
+        await wait.setTimeoutwait(2);
 
         data.generateExpectationFile(info.getProductId(), info.getbatchId(), incorrectExpiryDate,  info.getSerialNumber(),info.getBrandName(), info.getBatchRecall(),"","", info.getBatchRecallMsg(), info.getEpiDisplayed())
         await wait.setTimeoutwait(12);
         matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), incorrectExpiryDate, info.getSerialNumber())
         await wait.setTimeoutwait(8);
+
+         //update products
+         await products.updateProduct()
+         await wait.setTimeoutwait(18);  
        
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");

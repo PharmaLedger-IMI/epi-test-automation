@@ -33,7 +33,7 @@ describe('046_Edit batch to upload 50K valid serial numbers ', () => {
         allureReporter.startStep('Upload 50K serial numbers and scan with valid serial number')
         allureReporter.addTestId('SerialNumberChecks_10')
         await batches.Batch();
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         
         //edit above batch
         let editValue = info.getbatchId()
@@ -43,27 +43,27 @@ describe('046_Edit batch to upload 50K valid serial numbers ', () => {
 
         //check enable serial number verification
         await batches.enableSerialNumberVerification()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         //select valid serial number
         await batches.selectUpdateValidSerialFromDropdown(testData.newBatchDetails.updateValid)
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         //enable checkbox and remove 10 serial number
         await batches.enableResetAllValidSerialNumber()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
 
         //set the serial number and enter
         const serialNumber=info.serialNum50K()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         await batches.enterSerialNumber(serialNumber)
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
     
         //accept serial number
         await batches.acceptSerialNumber()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
        
         //generate expectation file 
         data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  serialNumber.split(',')[0],info.getBrandName(), "","","", "" )
-        await wait.setTimeoutwait(12);
+        await wait.setTimeoutwait(13);
         
         //generate 2d matrix image
         matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), serialNumber.split(',')[0])

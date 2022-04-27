@@ -7,12 +7,15 @@
     "messageDateTime": "2022-03-31T14:40:08.837Z",
     "token": "",
     "batch": {
+        "productCode": "50961159307905",
         "batch": "CG6707",
         "expiryDate": "271231",
         "snValid": [
-            234765
+           234567 
         ],
-        "snRecalled": [],
+        "snRecalled": [
+	
+],
         "snDecom": [],
         "flagEnableBatchRecallMessage": false,
         "flagEnableSNVerification": true,
@@ -26,7 +29,6 @@
         "acfBatchCheckURL": false,
         "snValidReset": false,
         "snRecalledReset": false,
-        "snDecomReset": false,
-        "productCode": "50961159307905"
+        "snDecomReset": false
     }
 }

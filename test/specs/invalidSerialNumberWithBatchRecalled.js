@@ -1,4 +1,5 @@
 const batches= require('../pageobjects/batches.page.js');
+const products= require('../pageobjects/products.page');
 //const path= require('path');
 const wait=require('../utility/timeout')
 const testData=require('../testdata/config.json')
@@ -11,7 +12,7 @@ const exec = util.promisify(require('child_process').exec);
 
 
 
-describe('099_Other tests', () => {
+describe('099_Edit product and verify epi displayed. Edit batch and pass invalid serial number in matrix', () => {
    
    
   if(!process.env.npm_config_browserOnly){
@@ -37,7 +38,7 @@ after(async () => {
     allureReporter.startStep("Add serial numbers to the batch and Save")
 
         await products.clickProductFromSideNav()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         console.log("prod to edit" + info.getProductId())
        // search the product codes
         await products.searchProductCode(info.getProductId())
@@ -49,17 +50,17 @@ after(async () => {
       await wait.setTimeoutwait(5);
 
       info.setEpiDisplayed(await products.epiDisplayed())
-      await wait.setTimeoutwait(2);
+      await wait.setTimeoutwait(3);
 
       //update products
       await products.updateProduct()
-      await wait.setTimeoutwait(8);
+      await wait.setTimeoutwait(18);
 
-      // await batches.Batch(); 
+       await batches.Batch(); 
       // await wait.setTimeoutwait(3);
       //Created for QA environment
-      await browser.execute('document.querySelector(`webc-app-menu-item:nth-child(4) stencil-route-link:nth-child(1) a:nth-child(1)`).click()')
-      await browser.pause(6000)
+      //await browser.execute('document.querySelector(`webc-app-menu-item:nth-child(4) stencil-route-link:nth-child(1) a:nth-child(1)`).click()')
+      await wait.setTimeoutwait(6);
 
       let editValue = info.getbatchId()
       console.log("editValue is " + editValue)
@@ -67,7 +68,7 @@ after(async () => {
       await wait.setTimeoutwait(6);
 
       info.setCurrentRandomDate()
-      await wait.setTimeoutwait(2);
+      await wait.setTimeoutwait(3);
       await browser.execute((date) => {
         (function () {
             let event = new Event('change');
@@ -77,11 +78,8 @@ after(async () => {
         })();
     }, info.getCurrentRandomDate());
 
-    await wait.setTimeoutwait(2);
-    const selectBox = await browser.$('//psk-select[@class=\'default-select hydrated\']//select[@class=\'form-control\']');
-    await wait.setTimeoutwait(2); 
-    await selectBox.selectByAttribute('value', info.getProductId());
-    await wait.setTimeoutwait(2);
+    await wait.setTimeoutwait(3);
+   
    
     await batches.selectUpdateValidSerialFromDropdown(testData.newBatchDetails.updateValid)
     await wait.setTimeoutwait(5);
@@ -93,7 +91,7 @@ after(async () => {
     await wait.setTimeoutwait(5);
     // manage serial number accept 
     await batches.acceptSerialNumber()
-    await wait.setTimeoutwait(1);
+    await wait.setTimeoutwait(3);
 
          //enable recall checkbox
         // await batches.enableCheckToRecallThisBatch()
@@ -112,7 +110,7 @@ after(async () => {
     await wait.setTimeoutwait(2);
     //generate expectation file 
     data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  invalidSerialNumber, info.getBrandName(), "","","","", info.getEpiDisplayed())
-    await wait.setTimeoutwait(6);
+    await wait.setTimeoutwait(12);
  
     //generate 2d matrix image
     matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), invalidSerialNumber)

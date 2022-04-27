@@ -33,22 +33,22 @@ describe('031_Create a batch with MonthYear as expiry date and disable day selec
         allureReporter.startStep('Create a batch and disable day selection, enable incorrect and disable expired date')
         allureReporter.addTestId('ExpiryDateChecks_3_4')
         await batches.Batch();
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         await batches.addBatch();
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         info.setBatchId(await batches.batchIdValue())
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         await batches.siteName(testData.newBatchDetails.siteName);
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         //click on day selection
         await batches.enableDaySelectionClick()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         //set the date
         let expiryDate = info.setCurrentRandomDate()
         let mmYYYY=expiryDate.substring(0, expiryDate.length - 3);
         let ddMMYYYY=mmYYYY+("-00")
         console.log("dayMonthYear "+ddMMYYYY)
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         await browser.execute((date) => {
             (function () {
                 let event = new Event('change');
@@ -57,18 +57,18 @@ describe('031_Create a batch with MonthYear as expiry date and disable day selec
                 datePicker.dispatchEvent(event);
             })();
         }, mmYYYY);
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         //click on Enable Expired Expiration Date Verification
         await batches.expirationDateVerificationClick()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         const selectBox = await browser.$('//psk-select[@class=\'default-select hydrated\']//select[@class=\'form-control\']'); 
         await selectBox.selectByAttribute('value', info.getProductId());
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         await batches.videoSource(testData.newBatchDetails.videoSource)
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         //update serial number
         await batches.selectUpdateValidSerialFromDropdown(testData.newBatchDetails.updateValid)
-        await wait.setTimeoutwait(5);
+        await wait.setTimeoutwait(3);
 
         //set serial number value
         info.setSerialNumber(await batches.serialNum())
@@ -77,16 +77,16 @@ describe('031_Create a batch with MonthYear as expiry date and disable day selec
         await wait.setTimeoutwait(5);
         // manage serial number accept 
         await batches.acceptSerialNumber()
-        await wait.setTimeoutwait(1);
+        await wait.setTimeoutwait(3);
         //generate expectation file 
         data.generateExpectationFile(info.getProductId(), await batches.batchIdValue(), ddMMYYYY,  info.getSerialNumber(),info.getBrandName(), "","","", "" )
         await wait.setTimeoutwait(12);
         //generate 2d matrix image
         matrix.generate2dMatrixImage(info.getProductId(), await batches.batchIdValue(), ddMMYYYY, info.getSerialNumber())
-        await wait.setTimeoutwait(5);
+        await wait.setTimeoutwait(8);
         //create batch
         await batches.createBatch()
-        await wait.setTimeoutwait(8);
+        await wait.setTimeoutwait(40);
        
 
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');

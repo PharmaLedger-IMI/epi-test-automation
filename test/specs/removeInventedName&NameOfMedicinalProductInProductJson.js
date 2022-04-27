@@ -33,7 +33,7 @@ describe('107_Update a product via import of Json by deleting invented name & na
         delete rawdata.product.nameMedicinalProducts
         fs.writeFileSync(testData.path.productImport, JSON.stringify(rawdata))
 
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         await products.selectFile(path.join(__dirname,'../testdata/sampleProductImport.json'));
         await wait.setTimeoutwait(8);
 

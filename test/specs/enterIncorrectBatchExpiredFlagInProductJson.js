@@ -32,7 +32,7 @@ describe('113_Update a product via import of Json to enter incorrect batch expir
         rawdata.product.flagDisplayEPI_BatchExpired=  Math.random().toString(36).substring(2, 5)
         fs.writeFileSync(testData.path.productImport, JSON.stringify(rawdata))
 
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         await products.selectFile(path.join(__dirname,'../testdata/sampleProductImport.json'));
         await wait.setTimeoutwait(8);
        

@@ -123,7 +123,7 @@ class productsPage {
         return $("//button[@class='delete-language']")
     }
     get clickDeleteSecondLanguage(){
-       // return  $('//li[2]//div[1]//button[1]//i[1]')
+        //return  $('//li[2]//div[1]//button[1]//i[1]')
         return  $("(//button[@class='delete-language'])[2]")
     }
     get marketManagementButtonClick(){
@@ -495,8 +495,9 @@ class productsPage {
         await browser.pause(5000)
 
         let rawdata = JSON.parse(fs.readFileSync(testData.path.productImport, 'utf8'))
-        const file1 = filePath.concat("\\", "product_", rawdata.product.productCode, ".json")
-        console.log(file1)
+       
+            const file1 = filePath.concat("\\", "product_", rawdata.product.productCode, ".json")
+            console.log(file1)
         let fileContents = JSON.parse(fs.readFileSync(file1, 'utf-8'))
         // console.log(JSON.stringify(fileContents))
         // console.log(JSON.stringify(rawdata))
@@ -532,12 +533,25 @@ class productsPage {
         let rawdata = JSON.parse(fs.readFileSync(testData.path.productImport, 'utf8'))
         const file1 = filePath.concat("\\", "product_", rawdata.product.productCode, ".json")
         console.log(file1)
-        let fileContents = JSON.parse(fs.readFileSync(file1, 'utf-8'))
-        // console.log(JSON.stringify(fileContents))
-        // console.log(JSON.stringify(rawdata))
-        console.log(JSON.stringify(fileContents) === JSON.stringify(rawdata))
         await browser.pause(5000)
-        fs.unlinkSync(file1)
+       
+     
+        try{
+            const file2 = filePath.concat("\\", "product_", "undefined", ".json")
+            fs.unlinkSync(file2)
+            
+            let fileContents = JSON.parse(fs.readFileSync(file1, 'utf-8'))
+            fs.unlinkSync(file1)
+            // console.log(JSON.stringify(fileContents))
+            // console.log(JSON.stringify(rawdata))
+            console.log(JSON.stringify(fileContents) === JSON.stringify(rawdata))
+            await browser.pause(5000)
+            
+        }
+        catch(e){
+            console.log("undefined file")
+        }
+      
     }
     
     async invalidFieldInfo(){

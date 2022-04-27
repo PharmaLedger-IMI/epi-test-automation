@@ -36,17 +36,17 @@ describe('Expiry date Checks ', () => {
         allureReporter.startStep(' create a batch with X expiry date that has already passed… choose a date from the past ')
         allureReporter.addTestId('Expiry date Checks_C2')
         await batches.Batch();
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         await batches.addBatch();
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         info.setBatchId(await batches.batchIdValue())
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         await batches.siteName(testData.newBatchDetails.siteName);
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
        
       
         info.setCurrentRandomDate()
-        await browser.pause(2000)
+        await wait.setTimeoutwait(3);
         await browser.execute((date) => {
             (function () {
                 let event = new Event('change');
@@ -57,24 +57,24 @@ describe('Expiry date Checks ', () => {
         }, info.getCurrentRandomDate());
         //
         console.log("different date is"+ info.randomDate())
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         const selectBox = await browser.$('//psk-select[@class=\'default-select hydrated\']//select[@class=\'form-control\']'); 
         await selectBox.selectByAttribute('value', info.getProductId());
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         await batches.videoSource(testData.newBatchDetails.videoSource)
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         info.setSerialNumber(await batches.serialNum())
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
        
-        await data.generateExpectationFile(info.getProductId(), await batches.batchIdValue(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), "","","", "" )
+        data.generateExpectationFile(info.getProductId(), await batches.batchIdValue(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), "","","", "" )
         await wait.setTimeoutwait(12);
        
         matrix.generate2dMatrixImage(info.getProductId(), await batches.batchIdValue(), info.randomDateExpired(), info.getSerialNumber())
-        await wait.setTimeoutwait(5);
+        await wait.setTimeoutwait(8);
 
         //create batch
         await batches.createBatch()
-        await wait.setTimeoutwait(8);
+        await wait.setTimeoutwait(40);
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");
        

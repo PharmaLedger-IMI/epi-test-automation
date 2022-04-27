@@ -40,7 +40,7 @@ after(async () => {
     // await wait.setTimeoutwait(3);
     //Created for QA environment
     // await browser.execute('document.querySelector(`webc-app-menu-item:nth-child(4) stencil-route-link:nth-child(1) a:nth-child(1)`).click()')
-    await wait.setTimeoutwait(6); 
+    await wait.setTimeoutwait(8); 
       
       let editValue = info.getbatchId()
       console.log("editValue is " + editValue)
@@ -48,7 +48,7 @@ after(async () => {
       await wait.setTimeoutwait(6);
 
       info.setCurrentRandomDate()
-      await wait.setTimeoutwait(2);
+      await wait.setTimeoutwait(3);
       await browser.execute((date) => {
         (function () {
             let event = new Event('change');
@@ -58,11 +58,8 @@ after(async () => {
         })();
     }, info.getCurrentRandomDate());
 
-    await wait.setTimeoutwait(2);
-    const selectBox = await browser.$('//psk-select[@class=\'default-select hydrated\']//select[@class=\'form-control\']');
-    await wait.setTimeoutwait(2); 
-    await selectBox.selectByAttribute('value', info.getProductId());
-    await wait.setTimeoutwait(2);
+    await wait.setTimeoutwait(3);
+    
    
     await batches.selectUpdateValidSerialFromDropdown(testData.newBatchDetails.updateValid)
     await wait.setTimeoutwait(5);
@@ -78,10 +75,10 @@ after(async () => {
 
     const invalidSerialNumber=await batches.serialNum()
     console.log('invalid serial number '+invalidSerialNumber)
-    await wait.setTimeoutwait(2);
+    await wait.setTimeoutwait(3);
 
     const incorrectExpiryDate=info.randomDateExpired()
-    await wait.setTimeoutwait(2);
+    await wait.setTimeoutwait(3);
 
     data.generateExpectationFile(info.getProductId(), info.getbatchId(), incorrectExpiryDate,  invalidSerialNumber, info.getBrandName(), "","","","", await batches.epiDisplayed())
     await wait.setTimeoutwait(6);

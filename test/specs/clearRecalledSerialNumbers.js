@@ -33,10 +33,10 @@ describe('039_Edit batch to reset recalled serial number and scan with recalled 
         allureReporter.startStep('In the batch created above - clear the recalled serial numbers ')
         allureReporter.addTestId('SerialNumberChecks_5')
 
-        // await batches.Batch(); 
+         await batches.Batch(); 
         // await wait.setTimeoutwait(3);
         //Created for QA environment
-        await browser.execute('document.querySelector(`webc-app-menu-item:nth-child(4) stencil-route-link:nth-child(1) a:nth-child(1)`).click()')
+        //await browser.execute('document.querySelector(`webc-app-menu-item:nth-child(4) stencil-route-link:nth-child(1) a:nth-child(1)`).click()')
         await wait.setTimeoutwait(6);
 
         let editValue = info.getbatchId()
@@ -46,14 +46,14 @@ describe('039_Edit batch to reset recalled serial number and scan with recalled 
 
         //select valid serial number
         await batches.selectUpdateRecalledSerialFromDropdown(testData.newBatchDetails.updateRecalled)
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         //enable checkbox
-        await batches.enableResetAllRecalledSerialNumber()()
-        await wait.setTimeoutwait(2);
+        await batches.enableResetAllRecalledSerialNumber()
+        await wait.setTimeoutwait(3);
         
         //accept serial number
         await batches.acceptSerialNumber()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
 
     //      // search the product codes
     //    await products.searchProductCode(info.getProductId())
@@ -77,11 +77,11 @@ describe('039_Edit batch to reset recalled serial number and scan with recalled 
         await wait.setTimeoutwait(12);
        //generate 2d matrix image
         matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
-        await wait.setTimeoutwait(5);
+        await wait.setTimeoutwait(8);
 
          //update batch
          await batches.updateBatchForEdit()
-         await wait.setTimeoutwait(10);
+         await wait.setTimeoutwait(18);
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");
        

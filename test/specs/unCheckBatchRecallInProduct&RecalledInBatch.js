@@ -35,7 +35,7 @@ describe('064_Edit product to uncheck batch is recalled and edit batch to set re
         allureReporter.addTestId('ProductDisplayEpiFlag_1_4')
 
         await products.clickProductFromSideNav()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(4);
         console.log("prod to edit" + info.getProductId())
        // search the product codes
         await products.searchProductCode(info.getProductId())
@@ -48,20 +48,20 @@ describe('064_Edit product to uncheck batch is recalled and edit batch to set re
         
         //uncheck batch is recalled
         await products.enableBatchIsRecalled(); 
-        await wait.setTimeoutwait(1);
+        await wait.setTimeoutwait(3);
 
         //add epi
         await products.addEpi()
         await wait.setTimeoutwait(3);
         //select language	
         await products.selectLanguage(testData.newProductDetails.selectLanguage)
-        await wait.setTimeoutwait(1);
+        await wait.setTimeoutwait(3);
         // select type
         await products.selectType(testData.newProductDetails.selectType)
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         //Video source
         await products.videoSourceEpi(testData.newProductDetails.videoSource)
-        await wait.setTimeoutwait(1);
+        await wait.setTimeoutwait(3);
         //Upload smpc 
         await products.uploadFile(path.join(__dirname, '/src/SMPC_ProductLevel'));
         await wait.setTimeoutwait(3);
@@ -70,7 +70,7 @@ describe('064_Edit product to uncheck batch is recalled and edit batch to set re
         await wait.setTimeoutwait(3);
 
         info.setEpiDisplayed(await products.epiDisplayed())
-        await wait.setTimeoutwait(1);
+        await wait.setTimeoutwait(3);
 
         //update products
         await products.updateProduct()
@@ -78,8 +78,8 @@ describe('064_Edit product to uncheck batch is recalled and edit batch to set re
 
 
         //edit batch
-        // await batches.Batch(); 
-        await browser.execute('document.querySelector(`webc-app-menu-item:nth-child(4) stencil-route-link:nth-child(1) a:nth-child(1)`).click()')
+         await batches.Batch(); 
+        //await browser.execute('document.querySelector(`webc-app-menu-item:nth-child(4) stencil-route-link:nth-child(1) a:nth-child(1)`).click()')
 
         await wait.setTimeoutwait(8);
         let editValue = info.getbatchId()
@@ -91,23 +91,23 @@ describe('064_Edit product to uncheck batch is recalled and edit batch to set re
         // await batches.enableCheckToRecallThisBatch()
         // await wait.setTimeoutwait(3);
         info.setBatchRecall(await batches.checkBatchRecall())
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         // //enter recall msg
         // await batches.enterRecallMessage(testData.newBatchDetails.recallMsg)
         // await wait.setTimeoutwait(4);
         info.setBatchRecallMsg(await batches.checkBatchRecallMessage())
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         //generate expectation file 
         data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), info.getBatchRecall(),"","", info.getBatchRecallMsg(), info.getEpiDisplayed() )
         await wait.setTimeoutwait(12);
          
        //generate 2d matrix image
         matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
-        await wait.setTimeoutwait(8);
+        await wait.setTimeoutwait(9);
 
          //update batch
          await batches.updateBatchForEdit()
-         await wait.setTimeoutwait(10); 
+         await wait.setTimeoutwait(18); 
        
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");

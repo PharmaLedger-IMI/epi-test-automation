@@ -36,7 +36,7 @@ describe('070_Edit product to uncheck incorrect expiry date and edit batch to ha
         allureReporter.addTestId('ProductDisplayEpiFlag_2_4')
 
         await products.clickProductFromSideNav()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         console.log("prod to edit" + info.getProductId())
        // search the product codes
         await products.searchProductCode(info.getProductId())
@@ -56,16 +56,16 @@ describe('070_Edit product to uncheck incorrect expiry date and edit batch to ha
         await wait.setTimeoutwait(3);
         //select language	
         await products.selectLanguage(testData.newProductDetails.selectLanguage)
-        await wait.setTimeoutwait(1);
+        await wait.setTimeoutwait(3);
         // select type
         await products.selectType(testData.newProductDetails.selectType)
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         //Video source
         await products.videoSourceEpi(testData.newProductDetails.videoSource)
-        await wait.setTimeoutwait(1);
+        await wait.setTimeoutwait(5);
         //Upload smpc 
         await products.uploadFile(path.join(__dirname, '/src/SMPC_ProductLevel'));
-        await wait.setTimeoutwait(3);
+        await wait.setTimeoutwait(5);
         //add epi accept
         await browser.execute('document.querySelector("psk-button[disabled=\'@modalData.filesWereNotSelected\'] button[class=\'btn btn-primary\']").click();');
         await wait.setTimeoutwait(3);
@@ -75,7 +75,7 @@ describe('070_Edit product to uncheck incorrect expiry date and edit batch to ha
 
          //update products
          await products.updateProduct()
-         await wait.setTimeoutwait(8);  
+         await wait.setTimeoutwait(18);  
 
 
          //edit batch
@@ -108,7 +108,7 @@ describe('070_Edit product to uncheck incorrect expiry date and edit batch to ha
         matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), incorrectExpiryDate, info.getSerialNumber())
         await wait.setTimeoutwait(8);
         await batches.updateBatchForEdit()
-        await wait.setTimeoutwait(10); 
+        await wait.setTimeoutwait(18); 
        
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");

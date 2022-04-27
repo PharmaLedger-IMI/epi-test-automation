@@ -36,7 +36,7 @@ describe('075_Edit product to uncheck batch is expired and edit batch to set exp
         allureReporter.addTestId('ProductDisplayEpiFlag_3_4')
 
         await products.clickProductFromSideNav()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         console.log("prod to edit" + info.getProductId())
        // search the product codes
         await products.searchProductCode(info.getProductId())
@@ -56,10 +56,10 @@ describe('075_Edit product to uncheck batch is expired and edit batch to set exp
         await wait.setTimeoutwait(3);
         //select language	
         await products.selectLanguage(testData.newProductDetails.selectLanguage)
-        await wait.setTimeoutwait(1);
+        await wait.setTimeoutwait(3);
         // select type
         await products.selectType(testData.newProductDetails.selectType)
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         //Video source
         await products.videoSourceEpi(testData.newProductDetails.videoSource)
         await wait.setTimeoutwait(1);
@@ -72,11 +72,11 @@ describe('075_Edit product to uncheck batch is expired and edit batch to set exp
 
 
         info.setEpiDisplayed(await products.epiDisplayed())
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
 
          //update products
          await products.updateProduct()
-         await wait.setTimeoutwait(8);  
+         await wait.setTimeoutwait(18);  
 
 
          //edit batch
@@ -90,7 +90,7 @@ describe('075_Edit product to uncheck batch is expired and edit batch to set exp
         await browser.execute('document.querySelector("div:nth-child(' + await info.editBatchRow(editValue) + ') button:nth-child(1)").click()')       
         await wait.setTimeoutwait(6);
         const expiredDate=info.randomDateExpired()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         await browser.execute((date) => {
             (function () {
                 let event = new Event('change');
@@ -99,7 +99,7 @@ describe('075_Edit product to uncheck batch is expired and edit batch to set exp
                 datePicker.dispatchEvent(event);
             })();
         }, expiredDate);
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
 
         data.generateExpectationFile(info.getProductId(), info.getbatchId(), expiredDate,  info.getSerialNumber(),info.getBrandName(), info.getBatchRecall(),"","", info.getBatchRecallMsg(),info.getEpiDisplayed() )
         await wait.setTimeoutwait(12);
@@ -108,7 +108,7 @@ describe('075_Edit product to uncheck batch is expired and edit batch to set exp
         await wait.setTimeoutwait(8);
 
         await batches.updateBatchForEdit()
-        await wait.setTimeoutwait(10);   
+        await wait.setTimeoutwait(18);   
        
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");

@@ -34,16 +34,16 @@ describe('024_Create a batch with X expiry date and pass different date Y in mat
         allureReporter.startStep('create a batch with X expiry date and Create a 2D data matrix with details of above batch but different expiration date Y')
         allureReporter.addTestId('ExpiryDateChecks_1_1')
         await batches.Batch();
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         await batches.addBatch();
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         info.setBatchId(await batches.batchIdValue())
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         await batches.siteName(testData.newBatchDetails.siteName);
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
       
         info.setCurrentRandomDate()
-        await browser.pause(2000)
+        await wait.setTimeoutwait(3);
         await browser.execute((date) => {
             (function () {
                 let event = new Event('change');
@@ -52,14 +52,14 @@ describe('024_Create a batch with X expiry date and pass different date Y in mat
                 datePicker.dispatchEvent(event);
             })();
         }, info.getCurrentRandomDate());
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         console.log("different date is"+ info.randomDate())
 
         const selectBox = await browser.$('//psk-select[@class=\'default-select hydrated\']//select[@class=\'form-control\']'); 
         await selectBox.selectByAttribute('value', info.getProductId());
         await wait.setTimeoutwait(2);
         await batches.videoSource(testData.newBatchDetails.videoSource)
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         //valid serial number
         await batches.selectUpdateValidSerialFromDropdown(testData.newBatchDetails.updateValid)
         await wait.setTimeoutwait(5);
@@ -71,7 +71,7 @@ describe('024_Create a batch with X expiry date and pass different date Y in mat
         await wait.setTimeoutwait(5);
         // manage serial number accept 
         await batches.acceptSerialNumber()
-        await wait.setTimeoutwait(1);
+        await wait.setTimeoutwait(3);
         //generate future date
         const futureDate=info.randomDate()
         console.log("future date is "+futureDate)
@@ -84,11 +84,11 @@ describe('024_Create a batch with X expiry date and pass different date Y in mat
         
          //generate 2d matrix image
         matrix.generate2dMatrixImage(info.getProductId(), await batches.batchIdValue(), futureDate, info.getSerialNumber())
-        await wait.setTimeoutwait(5);
+        await wait.setTimeoutwait(15);
 
          //create batch
          await batches.createBatch()
-         await wait.setTimeoutwait(8);
+         await wait.setTimeoutwait(40);
       
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");

@@ -34,7 +34,7 @@ describe('094_Edit product to check batch is unknown and delete smpc. Pass unkno
         allureReporter.addTestId('ProductDisplayEpiFlag_7_3')
 
         await products.clickProductFromSideNav()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(4);
         console.log("prod to edit" + info.getProductId())
        // search the product codes
         await products.searchProductCode(info.getProductId())
@@ -74,14 +74,15 @@ describe('094_Edit product to check batch is unknown and delete smpc. Pass unkno
         //set serial number
         info.setSerialNumber(await batches.serialNum())
         await batches.enterSerialNumber(info.getSerialNumber())
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
 
         // manage serial number accept 
         await batches.acceptSerialNumber()
-        await wait.setTimeoutwait(1);
+        await wait.setTimeoutwait(3);
 
         const unKnownBatch=info.unKnownBatch()
         console.log('unKnownBatch '+unKnownBatch)
+        await wait.setTimeoutwait(3);
 
         data.generateExpectationFile(info.getProductId(), unKnownBatch, info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), info.getBatchRecall(),"","", info.getBatchRecallMsg(),info.getEpiDisplayed() )
         await wait.setTimeoutwait(12);

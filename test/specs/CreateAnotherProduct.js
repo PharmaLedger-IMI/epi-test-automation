@@ -32,7 +32,7 @@ it('Browser - should verify product page', async() => {
     allureReporter.startStep("Create new product with a valid GTIN, and add the ePI");
 
     await products.clickProduct();
-    await wait.setTimeoutwait(2);
+    await wait.setTimeoutwait(4);
     await products.addProduct();
     await wait.setTimeoutwait(5);
     await products.enterGtinCode(info.getProductId());
@@ -47,38 +47,38 @@ it('Browser - should verify product page', async() => {
     await wait.setTimeoutwait(4);
     //Upload product photo
     await products.productPhoto(path.join(__dirname, '/src/entresto.jpg'));
-    await wait.setTimeoutwait(1);
+    await wait.setTimeoutwait(4);
     //internal material code
     await products.internalMaterialCode(testData.newProductDetails.internalMaterialCode)
-    await wait.setTimeoutwait(1);
+    await wait.setTimeoutwait(4);
     //strength
     await products.addStrength(testData.newProductDetails.addStrength)
-    await wait.setTimeoutwait(1);
+    await wait.setTimeoutwait(4);
     // video source
     await products.videoSource(testData.newProductDetails.videoSource)
-    await wait.setTimeoutwait(2);
+    await wait.setTimeoutwait(3);
     //enable batch is recalled
     await products.enableBatchIsRecalled(); 
-    await wait.setTimeoutwait(1);
+    await wait.setTimeoutwait(4);
     //
     await products.enableExpirationDateIsIncorrect(); 
-    await wait.setTimeoutwait(1);
+    await wait.setTimeoutwait(3);
     //
     await products.enableSnIsInRecallList(); 
-    await wait.setTimeoutwait(1);
+    await wait.setTimeoutwait(3);
     //
     await products.enableSnIsInDecommissionedList(); 
-    await wait.setTimeoutwait(1);
+    await wait.setTimeoutwait(3);
     //
     await products.enableSnIsUnknown(); 
-    await wait.setTimeoutwait(1);
+    await wait.setTimeoutwait(3);
      //add english leaflet
      await products.addEpi()
      await wait.setTimeoutwait(3);
      
      //Video source
      await products.videoSourceEpi(testData.newProductDetails.videoSource)
-     await wait.setTimeoutwait(1);
+     await wait.setTimeoutwait(3);
      //Upload epi
      const uploadEpiFile=path.join(__dirname, '/src/Leaflet_ProductLevel')
      await products.uploadFile(uploadEpiFile);
@@ -91,13 +91,13 @@ it('Browser - should verify product page', async() => {
      await wait.setTimeoutwait(3);
      //select language	
      await products.selectLanguage(testData.newProductDetails.selectLanguage)
-     await wait.setTimeoutwait(1);
+     await wait.setTimeoutwait(3);
       // select type
      await products.selectType(testData.newProductDetails.selectType)
      await wait.setTimeoutwait(2);
      //Video source
      await products.videoSourceEpi(testData.newProductDetails.videoSource)
-     await wait.setTimeoutwait(1);
+     await wait.setTimeoutwait(3);
      //Upload smpc 
      await products.uploadFile(path.join(__dirname, '/src/Leaflet_ProductLevel'));
      await wait.setTimeoutwait(3);

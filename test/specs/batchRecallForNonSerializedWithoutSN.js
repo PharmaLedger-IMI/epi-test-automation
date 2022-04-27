@@ -39,25 +39,26 @@ describe('016_Edit batch to set batch recall without SN ', () => {
         await wait.setTimeoutwait(8);
 
         let editValue = info.getbatchId()
+        await wait.setTimeoutwait(3);
         //click on edit 
         await browser.execute('document.querySelector("div:nth-child(' + await info.editBatchRow(editValue) + ') button:nth-child(1)").click()')       
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
 
         await batches.selectUpdateValidSerialFromDropdown(testData.newBatchDetails.updateValid)
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         //without serial number
         await batches.enableResetAllValidSerialNumber()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         
         await batches.acceptSerialNumber()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
        
         //click on checkbox
         await batches.enableCheckToRecallThisBatch()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         //display recall msg
         await batches.enterRecallMessage(testData.newBatchDetails.recallMsg)
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
 
         //generate expectation file
         data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), "", info.getBrandName(), await batches.checkBatchRecall(), await batches.checkBatchMessage(), "", await batches.checkBatchRecallMessage())

@@ -26,6 +26,7 @@ describe('004_Create Batch', () => {
             console.log('stderr:', stderr1);
         })
     }
+}
         it('Browser - should verify batch page ', async () => {
             allureReporter.addFeature('Create Batch')
             allureReporter.addSeverity('Critical');
@@ -79,7 +80,7 @@ describe('004_Create Batch', () => {
             await wait.setTimeoutwait(5);
             // manage serial number accept 
             await batches.acceptSerialNumber()
-            await wait.setTimeoutwait(1);
+            await wait.setTimeoutwait(3);
 
 
             // add epi leaflet
@@ -97,15 +98,15 @@ describe('004_Create Batch', () => {
             await wait.setTimeoutwait(5);
 
             data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber(), info.getBrandName(), "", "", "", "", await batches.epiDisplayed())
-            await wait.setTimeoutwait(6);
+            await wait.setTimeoutwait(12);
 
             //generate Image
             matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
-            await wait.setTimeoutwait(8);
+            await wait.setTimeoutwait(12);
 
              //create batch
              await batches.createBatch()
-             await wait.setTimeoutwait(20);
+             await wait.setTimeoutwait(40);
 
 
             allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
@@ -114,7 +115,7 @@ describe('004_Create Batch', () => {
         });
     
 
-    }
+    
 
 
 })

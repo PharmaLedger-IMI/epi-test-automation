@@ -67,7 +67,7 @@ describe('018_Create a batch with no batch message', () => {
         
          //set serial number
          await batches.selectUpdateValidSerialFromDropdown(testData.newBatchDetails.updateValid)
-         await wait.setTimeoutwait(2);
+         await wait.setTimeoutwait(3);
          // await batches.enableResetAllValidSerialNumber()
          // await wait.setTimeoutwait(2);
          info.setSerialNumber(await batches.serialNum())

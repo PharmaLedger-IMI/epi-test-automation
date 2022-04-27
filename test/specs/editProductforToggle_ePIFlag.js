@@ -35,7 +35,7 @@ describe('006_Edit product to check SN is in recalled list', () => {
         allureReporter.startStep("Update Product information in the products page. ")
 
         await products.clickProductFromSideNav()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
 
         console.log("prod to edit"+info.getProductId())
     
@@ -92,7 +92,7 @@ describe('006_Edit product to check SN is in recalled list', () => {
         await wait.setTimeoutwait(8);
         //update batch
         await batches.updateBatchForEdit()
-        await wait.setTimeoutwait(10);
+        await wait.setTimeoutwait(18);
          
         allureReporter.endStep("passed");
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');

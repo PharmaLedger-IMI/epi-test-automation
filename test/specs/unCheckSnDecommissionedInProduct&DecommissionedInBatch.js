@@ -35,7 +35,7 @@ describe('085_Edit product to uncheck SN is decommissioned and edit batch to hav
         allureReporter.addTestId('ProductDisplayEpiFlag_5_4')
 
         await products.clickProductFromSideNav()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         console.log("prod to edit" + info.getProductId())
        // search the product codes
         await products.searchProductCode(info.getProductId())
@@ -48,19 +48,19 @@ describe('085_Edit product to uncheck SN is decommissioned and edit batch to hav
        
         //uncheck SN is in recall list
         await products.enableSnIsInDecommissionedList()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         // //add epi
         await products.addEpi()
         await wait.setTimeoutwait(3);
         //select language	
         await products.selectLanguage(testData.newProductDetails.selectLanguage)
-        await wait.setTimeoutwait(1);
+        await wait.setTimeoutwait(3);
         // select type
         await products.selectType(testData.newProductDetails.selectType)
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         //Video source
         await products.videoSourceEpi(testData.newProductDetails.videoSource)
-        await wait.setTimeoutwait(1);
+        await wait.setTimeoutwait(3);
         //Upload smpc 
         await products.uploadFile(path.join(__dirname, '/src/SMPC_ProductLevel'));
         await wait.setTimeoutwait(3);
@@ -68,11 +68,11 @@ describe('085_Edit product to uncheck SN is decommissioned and edit batch to hav
         await browser.execute('document.querySelector("psk-button[disabled=\'@modalData.filesWereNotSelected\'] button[class=\'btn btn-primary\']").click();');
         await wait.setTimeoutwait(3);
         info.setEpiDisplayed(await products.epiDisplayed())
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
 
          //update products
          await products.updateProduct()
-         await wait.setTimeoutwait(8);  
+         await wait.setTimeoutwait(18);  
 
 
          //edit batch
@@ -95,7 +95,7 @@ describe('085_Edit product to uncheck SN is decommissioned and edit batch to hav
         await wait.setTimeoutwait(5);
         // manage serial number accept 
         await batches.acceptSerialNumber()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
 
         data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), info.getBatchRecall(),"","", info.getBatchRecallMsg(),info.getEpiDisplayed() )
         await wait.setTimeoutwait(12);
@@ -104,7 +104,7 @@ describe('085_Edit product to uncheck SN is decommissioned and edit batch to hav
         await wait.setTimeoutwait(8);
 
         await batches.updateBatchForEdit()
-        await wait.setTimeoutwait(10);   
+        await wait.setTimeoutwait(18);   
        
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");

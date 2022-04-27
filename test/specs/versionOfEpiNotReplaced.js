@@ -35,9 +35,9 @@ describe('055_Update product information that the version of ePI is not impacted
         // await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(),"", await batches.checkBatchMessage(),"", "" )
         // await wait.setTimeoutwait(12);
         info.getExpectationFile()
-        await wait.setTimeoutwait(3);
+        await wait.setTimeoutwait(12);
         info.getImage()
-        await wait.setTimeoutwait(3);
+        await wait.setTimeoutwait(9);
        
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");

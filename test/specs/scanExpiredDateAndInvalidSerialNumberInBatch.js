@@ -4,7 +4,7 @@ const matrix=require('../utility/2dMatrixPage')
 const data=require('../utility/expectationFile')
 const info=require('../utility/reusableFile')
 const wait=require('../utility/timeout')
-
+const testData=require('../testdata/config.json')
 const allureReporter = require('@wdio/allure-reporter').default
 const util = require('util');
 const exec = util.promisify(require('child_process').exec);
@@ -36,8 +36,8 @@ describe('023_Edit batch to set expired date and invalid serial number ', () => 
         '7. Scan the "Wrong" serial number')
         allureReporter.addTestId('BatchRecallAndBatchMessage_12_3')        
 
-        // await batches.Batch(); 
-        await browser.execute('document.querySelector(`webc-app-menu-item:nth-child(4) stencil-route-link:nth-child(1) a:nth-child(1)`).click()')
+         await batches.Batch(); 
+       // await browser.execute('document.querySelector(`webc-app-menu-item:nth-child(4) stencil-route-link:nth-child(1) a:nth-child(1)`).click()')
 
         await wait.setTimeoutwait(8);
         let editValue = info.getbatchId()
@@ -46,7 +46,7 @@ describe('023_Edit batch to set expired date and invalid serial number ', () => 
         await wait.setTimeoutwait(6);
 
         const expiredDate=info.randomDateExpired()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         await browser.execute((date) => {
             (function () {
                 let event = new Event('change');
@@ -59,33 +59,33 @@ describe('023_Edit batch to set expired date and invalid serial number ', () => 
 
         // //enable recall checkbox
         // await batches.enableCheckToRecallThisBatch()
-        // await wait.setTimeoutwait(2);
+        // await wait.setTimeoutwait(3);
         // //set batch recall
         // info.setBatchRecall(await batches.checkBatchRecall())
-        // await wait.setTimeoutwait(2);
+        // await wait.setTimeoutwait(3);
         // await batches.enterRecallMessage(testData.newBatchDetails.recallMsg)
-        // await wait.setTimeoutwait(2);
+        // await wait.setTimeoutwait(3);
         // //set batch recall msg
         // info.setBatchRecallMsg(await batches.checkBatchRecallMessage())
-        // await wait.setTimeoutwait(2);
+        // await wait.setTimeoutwait(3);
 
         //select valid serial number
         await batches.selectUpdateValidSerialFromDropdown(testData.newBatchDetails.updateValid)
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         // //enable checkbox
         // await batches.enableResetAllValidSerialNumber()
-        // await wait.setTimeoutwait(2);
+        // await wait.setTimeoutwait(3);
         //set the serial number and enter
         info.setSerialNumber(await batches.serialNum())
         await batches.enterSerialNumber(info.getSerialNumber())
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         //accept serial number
         await batches.acceptSerialNumber()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
 
         const invalidSerialNumber=await batches.serialNum()
         console.log('invalid serial number '+invalidSerialNumber)
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
 
          //generate expectation file
         data.generateExpectationFile(info.getProductId(), info.getbatchId(), expiredDate,  invalidSerialNumber,info.getBrandName(), info.getBatchRecall(),"","", info.getBatchRecallMsg())
@@ -95,7 +95,7 @@ describe('023_Edit batch to set expired date and invalid serial number ', () => 
         await wait.setTimeoutwait(12);
         //update batch
         await batches.updateBatchForEdit()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(18);
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");
        

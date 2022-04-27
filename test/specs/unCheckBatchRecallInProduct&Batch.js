@@ -62,8 +62,8 @@ describe('065_Edit product to uncheck batch is recalled and edit batch to unchec
 
 
           //edit batch
-         // await batches.Batch(); 
-         await browser.execute('document.querySelector(`webc-app-menu-item:nth-child(4) stencil-route-link:nth-child(1) a:nth-child(1)`).click()')
+          await batches.Batch(); 
+         //await browser.execute('document.querySelector(`webc-app-menu-item:nth-child(4) stencil-route-link:nth-child(1) a:nth-child(1)`).click()')
 
          await wait.setTimeoutwait(8);
          let editValue = info.getbatchId()

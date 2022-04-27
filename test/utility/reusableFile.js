@@ -16,11 +16,20 @@ let currentYear=''
 let currentImage=''
 let currentData=''
 let GTIN=''
+let user=''
 const incrementalValue=process.argv
 const incrementalArg=incrementalValue.length-1
 //const newbatch=incrementalValue.length-1
 
 class reuseFile{
+
+
+    setUser(userName){
+        user=userName
+    }
+    getUser(){
+        return user
+    }
 
     setProductId(id) {
         GTIN = id

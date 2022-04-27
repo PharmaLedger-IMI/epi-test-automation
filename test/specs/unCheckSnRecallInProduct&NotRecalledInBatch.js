@@ -33,7 +33,7 @@ describe('081_Edit product to uncheck SN is in recall and edit batch to reset re
         allureReporter.addTestId('ProductDisplayEpiFlag_4_5')
 
         await products.clickProductFromSideNav()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         console.log("prod to edit" + info.getProductId())
        // search the product codes
         await products.searchProductCode(info.getProductId())
@@ -45,7 +45,7 @@ describe('081_Edit product to uncheck SN is in recall and edit batch to reset re
         await wait.setTimeoutwait(5);
        
         info.setEpiDisplayed(await products.epiDisplayed())
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
 
          //update products
          await products.updateProduct()
@@ -67,10 +67,10 @@ describe('081_Edit product to uncheck SN is in recall and edit batch to reset re
         await wait.setTimeoutwait(5);
 
         await batches.enableResetAllRecalledSerialNumber()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         // manage serial number accept 
         await batches.acceptSerialNumber()
-        await wait.setTimeoutwait(1);
+        await wait.setTimeoutwait(3);
 
         data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  "",info.getBrandName(), info.getBatchRecall(),"","", info.getBatchRecallMsg(),info.getEpiDisplayed() )
         await wait.setTimeoutwait(12);
@@ -79,7 +79,7 @@ describe('081_Edit product to uncheck SN is in recall and edit batch to reset re
         await wait.setTimeoutwait(8);
 
         await batches.updateBatchForEdit()
-        await wait.setTimeoutwait(10);   
+        await wait.setTimeoutwait(18);   
        
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");

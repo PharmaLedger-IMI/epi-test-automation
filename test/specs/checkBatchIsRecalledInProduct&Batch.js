@@ -34,7 +34,7 @@ describe('062_Edit Product to check batch is recalled and edit batch to set reca
         allureReporter.addTestId('ProductDisplayEpiFlag_1_2')
 
         await products.clickProductFromSideNav()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(4);
         console.log("prod to edit" + info.getProductId())
        // search the product codes
         await products.searchProductCode(info.getProductId())

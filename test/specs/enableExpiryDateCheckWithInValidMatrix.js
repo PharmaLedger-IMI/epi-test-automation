@@ -36,7 +36,7 @@ describe('012_Edit batch and enable expiry date check with invalid expiry date '
         allureReporter.addTestId('BasicAuthFeatureTest_2_2')
         
         await batches.Batch();
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         
         //edit batch
         let editValue = info.getbatchId()
@@ -46,18 +46,18 @@ describe('012_Edit batch and enable expiry date check with invalid expiry date '
         
         //check expiry date is in enabled state
         await batches.expirationDateVerification()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         const incorrectExpiryDate=info.randomDateExpired()
         //generate expectation file 
         data.generateExpectationFile(info.getProductId(), info.getbatchId(), incorrectExpiryDate,  info.getSerialNumber(),info.getBrandName(), "","","", "" )
-        await wait.setTimeoutwait(12);
+        await wait.setTimeoutwait(13);
         //generate 2d matrix image 
         matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), incorrectExpiryDate, info.getSerialNumber())
         await wait.setTimeoutwait(5);
 
         //update batch
         await batches.updateBatchForEdit()
-        await wait.setTimeoutwait(8);
+        await wait.setTimeoutwait(18);
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");
         allureReporter.endStep("passed");

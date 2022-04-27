@@ -34,16 +34,16 @@ describe('054_Update product information -Batch specific', () => {
         allureReporter.addTestId('ProductInfoUpdate_2_1')
 
         await batches.Batch();
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         
         await batches.addBatch();
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         info.setBatchId(await batches.batchIdValue())
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         await batches.siteName(testData.newBatchDetails.siteName);
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         info.setCurrentRandomDate()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         await browser.execute((date) => {
             (function () {
                 let event = new Event('change');
@@ -52,12 +52,12 @@ describe('054_Update product information -Batch specific', () => {
                 datePicker.dispatchEvent(event);
             })();
         }, info.getCurrentRandomDate());
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         const selectBox = await browser.$('//psk-select[@class=\'default-select hydrated\']//select[@class=\'form-control\']');  
         await selectBox.selectByAttribute('value', info.getProductId());
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         await batches.videoSource(testData.newBatchDetails.videoSource)
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
 
 
         //  // await batches.Batch(); 
@@ -74,22 +74,23 @@ describe('054_Update product information -Batch specific', () => {
         // await batches.enableResetAllValidSerialNumber()
         // await wait.setTimeoutwait(2);
         info.setSerialNumber(await batches.serialNum())
+        await wait.setTimeoutwait(3);
         await batches.enterSerialNumber(info.getSerialNumber())
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         await batches.acceptSerialNumber()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
 
         await batches.addEpi()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(5);
         // video source
         await batches.videoSourceEpi(testData.newBatchDetails.videoSource)
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         //upload epi
         await batches.uploadFile(path.join(__dirname, '/src/Leaflet_BatchLevel'));
         await wait.setTimeoutwait(4);
         //accept upload
         await batches.acceptButton()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         // await batches.batchMessage(testData.newBatchDetails.batchMsg)
         // await wait.setTimeoutwait(2);
         
@@ -98,10 +99,10 @@ describe('054_Update product information -Batch specific', () => {
         await wait.setTimeoutwait(12);
         //generate 2d matrix image
         matrix.generate2dMatrixImage(info.getProductId(), await batches.batchIdValue(), info.getCurrentRandomDate(), info.getSerialNumber())
-        await wait.setTimeoutwait(6);
+        await wait.setTimeoutwait(12);
         //create batch
         await batches.createBatch()
-        await wait.setTimeoutwait(5);
+        await wait.setTimeoutwait(40);
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");
        

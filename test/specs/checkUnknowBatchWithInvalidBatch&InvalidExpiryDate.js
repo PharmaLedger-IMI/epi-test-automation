@@ -36,7 +36,7 @@ describe('098_Edit product to check batch is unknown and pass invalid batch and 
     allureReporter.addTestId('OtherTests_2') 
 
         await products.clickProductFromSideNav()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(4);
         console.log("prod to edit" + info.getProductId())
        // search the product codes
         await products.searchProductCode(info.getProductId())
@@ -47,7 +47,7 @@ describe('098_Edit product to check batch is unknown and pass invalid batch and 
         await browser.execute('document.querySelector("button[data-tag=\'edit-product\']").click()')
         await wait.setTimeoutwait(5);
        
-        // //check batch is unknow
+        // //check batch is unknown
         // await products.disableBatchNumberUnknown()
         // await wait.setTimeoutwait(5);
 
@@ -72,16 +72,16 @@ describe('098_Edit product to check batch is unknown and pass invalid batch and 
 
 
       info.setEpiDisplayed(await products.epiDisplayed())
-      await wait.setTimeoutwait(2);
+      await wait.setTimeoutwait(3);
 
       //update products
       await products.updateProduct()
-      await wait.setTimeoutwait(8);
+      await wait.setTimeoutwait(18);
 
-      // await batches.Batch(); 
+       await batches.Batch(); 
       // await wait.setTimeoutwait(3);
       //Created for QA environment
-      await browser.execute('document.querySelector(`webc-app-menu-item:nth-child(4) stencil-route-link:nth-child(1) a:nth-child(1)`).click()')
+     // await browser.execute('document.querySelector(`webc-app-menu-item:nth-child(4) stencil-route-link:nth-child(1) a:nth-child(1)`).click()')
       await wait.setTimeoutwait(6);
 
       let editValue = info.getbatchId()
@@ -101,10 +101,7 @@ describe('098_Edit product to check batch is unknown and pass invalid batch and 
     }, info.getCurrentRandomDate());
 
     await wait.setTimeoutwait(2);
-    const selectBox = await browser.$('//psk-select[@class=\'default-select hydrated\']//select[@class=\'form-control\']');
-    await wait.setTimeoutwait(2); 
-    await selectBox.selectByAttribute('value', info.getProductId());
-    await wait.setTimeoutwait(2);
+   
    
     await batches.selectUpdateValidSerialFromDropdown(testData.newBatchDetails.updateValid)
     await wait.setTimeoutwait(5);
@@ -116,13 +113,13 @@ describe('098_Edit product to check batch is unknown and pass invalid batch and 
     await wait.setTimeoutwait(5);
     // manage serial number accept 
     await batches.acceptSerialNumber()
-    await wait.setTimeoutwait(1);
+    await wait.setTimeoutwait(4);
 
     const unknownBatch= info.unKnownBatch()
-    await wait.setTimeoutwait(2);
+    await wait.setTimeoutwait(3);
 
     const incorrectExpiryDate=info.randomDateExpired()
-    await wait.setTimeoutwait(2);
+    await wait.setTimeoutwait(3);
 
     //generate expectation file 
     data.generateExpectationFile(info.getProductId(), unknownBatch, incorrectExpiryDate,  info.getSerialNumber(), info.getBrandName(), "","","","", await batches.epiDisplayed())

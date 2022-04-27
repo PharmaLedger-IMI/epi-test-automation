@@ -31,11 +31,11 @@ describe('090_Edit product to uncheck SN is unknown and edit batch to have valid
 
     it('Browser - should uncheck Serial number on the batch is unknown', async() => {
         
-        allureReporter.startStep("uncheck Serial number on the batch is unknown")
+        allureReporter.startStep("uncheck Serial number and SN on the batch is unknown")
         allureReporter.addTestId('ProductDisplayEpiFlag_6_4')
 
         await products.clickProductFromSideNav()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(4);
         console.log("prod to edit" + info.getProductId())
        // search the product codes
         await products.searchProductCode(info.getProductId())
@@ -55,25 +55,25 @@ describe('090_Edit product to uncheck SN is unknown and edit batch to have valid
         await wait.setTimeoutwait(3);
         //select language	
         await products.selectLanguage(testData.newProductDetails.selectLanguage)
-        await wait.setTimeoutwait(1);
+        await wait.setTimeoutwait(3);
         // select type
         await products.selectType(testData.newProductDetails.selectType)
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         //Video source
         await products.videoSourceEpi(testData.newProductDetails.videoSource)
-        await wait.setTimeoutwait(1);
+        await wait.setTimeoutwait(3);
         //Upload smpc 
         await products.uploadFile(path.join(__dirname, '/src/SMPC_ProductLevel'));
-        await wait.setTimeoutwait(3);
+        await wait.setTimeoutwait(4);
         //add epi accept
         await browser.execute('document.querySelector("psk-button[disabled=\'@modalData.filesWereNotSelected\'] button[class=\'btn btn-primary\']").click();');
         await wait.setTimeoutwait(3);
         info.setEpiDisplayed(await products.epiDisplayed())
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
 
         //update products
         await products.updateProduct()
-        await wait.setTimeoutwait(8);  
+        await wait.setTimeoutwait(18);  
 
 
          //edit batch
@@ -93,11 +93,11 @@ describe('090_Edit product to uncheck SN is unknown and edit batch to have valid
          //set serial number
          info.setSerialNumber(await batches.serialNum())
          await batches.enterSerialNumber(info.getSerialNumber())
-         await wait.setTimeoutwait(2);
+         await wait.setTimeoutwait(3);
 
          // manage serial number accept 
         await batches.acceptSerialNumber()
-        await wait.setTimeoutwait(1);
+        await wait.setTimeoutwait(3);
 
         const unKnownSerialNumber = await batches.serialNum()
         console.log('unknown serial number ' + unKnownSerialNumber)
@@ -111,7 +111,7 @@ describe('090_Edit product to uncheck SN is unknown and edit batch to have valid
         await wait.setTimeoutwait(8);
 
         await batches.updateBatchForEdit()
-        await wait.setTimeoutwait(10);   
+        await wait.setTimeoutwait(18);   
        
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");
