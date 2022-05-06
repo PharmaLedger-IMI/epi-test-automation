@@ -14,8 +14,8 @@ it('Browser - should verify SSO relogin and open ePI in new tab', async () => {
     allureReporter.startStep('2. Open ePI url in new tab')
     allureReporter.addTestId('SSOTests_3')
    //Open ePI url in browser
-    await LoginPage.open();
-    await wait.setTimeoutwait(4);
+    // await LoginPage.open();
+    // await wait.setTimeoutwait(4);
     await browser.maximizeWindow();
 
     await LoginPage.openMicrosoftUrl();

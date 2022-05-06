@@ -14,8 +14,8 @@ it('Browser - should verify SSO relogin and Clear Browser cookies and history an
     allureReporter.startStep('2. Clear Browser cookies and history and open ePI url in browser')
     allureReporter.addTestId('SSOTests_4')
    //Open ePI url in browser
-    await LoginPage.open();
-    await wait.setTimeoutwait(4);
+    // await LoginPage.open();
+    // await wait.setTimeoutwait(4);
     await browser.maximizeWindow();
 
     await LoginPage.openMicrosoftUrl();
