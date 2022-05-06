@@ -1,13 +1,13 @@
 
 const LoginPage = require('../pageobjects/login.page');
 //const products= require('../pageobjects/products.page');
-const accessAccount= require('../pageobjects/access.Account');
+//const accessAccount= require('../pageobjects/access.Account');
 const allureReporter = require('@wdio/allure-reporter').default
 const testData=require('../testdata/config.json')
 const wait=require('../utility/timeout');
 
 
-describe('129_Verify SSO relogin and Clear Browser cookies and history and open ePI url in browser', () => {
+describe('130_Verify SSO relogin and Clear Browser cookies and history and open ePI url in browser', () => {
 it('Browser - should verify SSO relogin and Clear Browser cookies and history and open ePI url in browser', async () => {
 
     allureReporter.startStep('1. Provide valid credentails in SSO login screens.')

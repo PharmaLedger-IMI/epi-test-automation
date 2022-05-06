@@ -66,6 +66,7 @@ describe('020_Create a batch to set batch recall and recall message', () => {
         // await batches.enableResetAllValidSerialNumber()
         // await wait.setTimeoutwait(2);
         info.setSerialNumber(await batches.serialNum())
+        await wait.setTimeoutwait(3);
         await batches.enterSerialNumber(info.getSerialNumber())
         await wait.setTimeoutwait(4);
         await batches.acceptSerialNumber()
@@ -84,7 +85,7 @@ describe('020_Create a batch to set batch recall and recall message', () => {
         await wait.setTimeoutwait(3);
         //generate expectation file 
         data.generateExpectationFile(info.getProductId(), await batches.batchIdValue(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(),info.getBatchRecall()," ","", info.getBatchRecallMsg() )
-        await wait.setTimeoutwait(12);
+        await wait.setTimeoutwait(18);
         //generate 2d matrix image
         matrix.generate2dMatrixImage(info.getProductId(), await batches.batchIdValue(), info.getCurrentRandomDate(), info.getSerialNumber())
         await wait.setTimeoutwait(12);

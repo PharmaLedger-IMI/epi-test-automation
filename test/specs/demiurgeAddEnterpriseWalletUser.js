@@ -48,7 +48,7 @@ it('Browser - should open eneterprise wallet ', async() => {
     await wait.setTimeoutwait(4);
     await enterprise.clearUserName();
     await wait.setTimeoutwait(2);
-    await enterprise.enterUserName(testData.login.enterpriseUser);
+    await enterprise.enterUserName(testData.login.newEnterpriseUser);
     
     await wait.setTimeoutwait(2);
     await enterprise.register();
@@ -101,7 +101,7 @@ it('Browser - should open eneterprise wallet ', async() => {
     //clear and enter dev user
     await enterprise.clearUserName();
     await wait.setTimeoutwait(2);
-    await enterprise.enterUserName(testData.login.devUser);
+    await enterprise.enterUserName(testData.login.registeredDemiurgeUser);
     await wait.setTimeoutwait(2);
     await enterprise.enterButton()
     await wait.setTimeoutwait(5);
@@ -123,7 +123,7 @@ it('Browser - should open eneterprise wallet ', async() => {
     await enterprise.addMember()
     await wait.setTimeoutwait(7);
 
-    const newUser= testData.login.enterpriseUser
+    const newUser= testData.login.newEnterpriseUser
     info.setUser(newUser)
 
     

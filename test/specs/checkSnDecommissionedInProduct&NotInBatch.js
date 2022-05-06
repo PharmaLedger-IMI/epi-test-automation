@@ -28,9 +28,9 @@ describe('083_Edit product to check SN is decommssioned and edit batch to reset 
 
     }
 
-    it('Browser - should check serial number is not recalled', async() => {
+    it('Browser - should edit product to check SN is decommssioned and edit batch to reset decommissioned SN ', async() => {
         
-        allureReporter.startStep("Check serial number is not recalled")
+        allureReporter.startStep("Edit product to check SN is decommssioned and edit batch to reset decommissioned SN")
         allureReporter.addTestId('ProductDisplayEpiFlag_5_2')
 
         await products.clickProductFromSideNav()

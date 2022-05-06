@@ -39,11 +39,17 @@ get clickOpenWallet(){
 get Enter() {
     return $("#open-wallet-btn")
 }
+get adminIdentity(){
+    return $("//sl-input[@type='text']")
+}
+get title(){
+    return $('webc-container[id="booting-page"] dw-title')
+}
 get clickGroups(){
     return $('=Groups')
 }
 get myIdentityTab(){
-    return $('=My Identities')
+    return $('//webc-app-menu[@class="slot-before slot-after hydrated"]//a[@class="link-active"][normalize-space()="My Identities"]')
 }
 get clickMyIdentity(){
     return $("//sl-icon[@slot='suffix']")
@@ -125,8 +131,21 @@ async enterButton(){
     
     await this.Enter.click();
 }
-async groups(){
+async copyAdminIdentity(){
     
+    await this.adminIdentity.click();
+}
+async bootingTitle(){
+    if( await this.title.isExisting()==true){
+        console.log(await this.title.getText())
+
+        return true
+    }
+    else{
+        return false
+    }
+}
+async groups(){ 
     await this.clickGroups.click();
 }
 async myIdentity(){

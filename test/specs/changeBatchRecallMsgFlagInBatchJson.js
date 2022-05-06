@@ -8,13 +8,13 @@ const path= require('path');
 const fs = require('fs');
 
 
-describe('121_Update a product via import of Json to change batch recall message flag  ', () => {
+describe('122_Update a batch via import of Json to change batch recall message flag  ', () => {
 
     
 
-    it('Browser - update a product via import of Json ', async() => { 
+    it('Browser - update a batch via import of Json ', async() => { 
         allureReporter.addTestId('ImportJson_4_8')
-        allureReporter.addDescription('Update a product via import of Json to change batch recall message flag and uploading modified file. View message and click on invalid field info')
+        allureReporter.addDescription('Update a batch via import of Json to change batch recall message flag and uploading modified file. View message and click on invalid field info')
         allureReporter.startStep('1. Use the standard template Json', 
         '2. Fill up the details on the json', 
         '3. Use the import functionality to select the file', 
@@ -22,9 +22,9 @@ describe('121_Update a product via import of Json to change batch recall message
         '5. Check the log for the import operation ')
 
         await batches.Batch()
-        await wait.setTimeoutwait(4);
+        await wait.setTimeoutwait(10);
         await batches.clickImport()
-        // await wait.setTimeoutwait(3);
+        await wait.setTimeoutwait(3);
 
        
         let rawdata = JSON.parse(fs.readFileSync(testData.path.productImport, 'utf8'))
@@ -32,9 +32,9 @@ describe('121_Update a product via import of Json to change batch recall message
         rawdata.product.flagEnableBatchRecallMessage=!flagEnableBatchRecallMessageValue
         fs.writeFileSync(testData.path.productImport, JSON.stringify(rawdata))
 
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         await batches.selectFile(path.join(__dirname,'../testdata/sampleBatchImport.json'));
-        await wait.setTimeoutwait(8);
+        await wait.setTimeoutwait(10);
        
         //click on import
         await batches.import()
@@ -47,10 +47,10 @@ describe('121_Update a product via import of Json to change batch recall message
          
         //view message
         await batches.viewMessageInSuccessLogs()
-        await wait.setTimeoutwait(5); 
+        await wait.setTimeoutwait(10); 
 
         await batches.downloadMsgInSuccessLogs()
-        await wait.setTimeoutwait(5); 
+        await wait.setTimeoutwait(10); 
 
         // await batches.closeButtonInPopup()
         // await wait.setTimeoutwait(5); 

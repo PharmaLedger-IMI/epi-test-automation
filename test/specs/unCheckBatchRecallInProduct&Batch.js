@@ -5,6 +5,7 @@ const matrix=require('../utility/2dMatrixPage')
 const data=require('../utility/expectationFile')
 const info=require('../utility/reusableFile')
 const wait=require('../utility/timeout')
+const testData=require('../testdata/config.json')
 const util = require('util');
 const exec = util.promisify(require('child_process').exec);
 
@@ -70,6 +71,21 @@ describe('065_Edit product to uncheck batch is recalled and edit batch to unchec
          console.log("editValue is "+editValue)
          await browser.execute('document.querySelector("div:nth-child(' + await info.editBatchRow(editValue) + ') button:nth-child(1)").click()')       
          await wait.setTimeoutwait(6);
+
+
+         await batches.selectUpdateValidSerialFromDropdown(testData.newBatchDetails.updateValid)
+         await wait.setTimeoutwait(3);
+         // //enable checkbox
+         // await batches.enableResetAllValidSerialNumber()
+         // await wait.setTimeoutwait(3);
+         //set the serial number and enter
+         info.setSerialNumber(await batches.serialNum())
+         await wait.setTimeoutwait(3);
+         await batches.enterSerialNumber(info.getSerialNumber())
+         await wait.setTimeoutwait(3);
+         //accept serial number
+         await batches.acceptSerialNumber()
+         await wait.setTimeoutwait(3);
 
          //clear recall message
          await batches.clearRecallMessage()

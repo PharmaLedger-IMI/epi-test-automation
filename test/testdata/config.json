@@ -2,11 +2,11 @@
     {
         "login": 
         {
-            "existingUserName": "kpepiwdio",
-            "invalidUserName": "testq",
-            "demiurgeUser":"testing",
-            "enterpriseUser":"user22",
-            "devUser":"devuser",
+            "automationUserName": "kpepiwdio",
+            "invalidUserName": "testing",
+            "newDemiurgeUser":"testing10",
+            "newEnterpriseUser":"user22",
+            "registeredDemiurgeUser":"devuser",
             "emailId":"dev@user.dev",
             "validPassword":"SuperUserSecurePassword1!",
             "invalidPassword":"1234fefhf",
@@ -14,13 +14,11 @@
             "ssoInvalidEmail":"test@gmail",
             "ssoValidPassword":""
 
-
-
         },
         "newProductDetails": 
         {
             "brandName": "epi-auto-",
-            "medicinalProductName":"It is a mild analgesic and fever reducer",
+            "medicinalProductName":"Sample medicinal product name",
             "internalMaterialCode":"IMC1234",
             "addStrength":"50mg",
             "videoSource":"<iframe id='kaltura_player' src=https://cdnapisec.kaltura.com/p/2076321/sp/207632100/embedIframeJs/uiconf_id/46847003/partner_id/2076321?iframeembed=true&playerId=kaltura_player&entry_id=1_cuq6u28l&flashvars[streamerType]=auto&amp;flashvars[localizationCode]=en&amp;flashvars[leadWithHTML5]=true&amp;flashvars[sideBarContainer.plugin]=true&amp;flashvars[sideBarContainer.position]=left&amp;flashvars[sideBarContainer.clickToClose]=true&amp;flashvars[chapters.plugin]=true&amp;flashvars[chapters.layout]=vertical&amp;flashvars[chapters.thumbnailRotator]=false&amp;flashvars[streamSelector.plugin]=true&amp;flashvars[EmbedPlayer.SpinnerTarget]=videoHolder&amp;flashvars[dualScreen.plugin]=true&amp;flashvars[hotspots.plugin]=1&amp;flashvars[Kaltura.addCrossoriginToIframe]=true&amp;&wid=1_iueede1twidth='640' height='360' allowfullscreen webkitallowfullscreen mozAllowFullScreen allow='autoplay *; fullscreen *; encrypted-media *' sandbox='allow-forms allow-same-origin allow-scripts allow-top-navigation allow-pointer-lock allow-popups allow-modals allow-orientation-lock allow-popups-to-escape-sandbox allow-presentation allow-top-navigation-by-user-activation' frameborder='0' title='Kaltura Player'></iframe>",

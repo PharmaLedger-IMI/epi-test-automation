@@ -7,7 +7,7 @@ const testData=require('../testdata/config.json')
 const wait=require('../utility/timeout');
 
 
-describe('126_Verify invalid SSO login', () => {
+describe('127_Verify invalid SSO login', () => {
 it('Browser - should verify invalid SSO login', async () => {
 
     allureReporter.startStep('1. Open ePI url in browser')
@@ -15,8 +15,8 @@ it('Browser - should verify invalid SSO login', async () => {
     allureReporter.startStep('3. Provide Invalid credentails in SSO login screens.')
     allureReporter.addTestId('SSOTests_1')
    //Open ePI url in browser
-    await LoginPage.open();
-    await wait.setTimeoutwait(4);
+    // await LoginPage.open();
+    // await wait.setTimeoutwait(4);
     await browser.maximizeWindow();
 
     await LoginPage.openMicrosoftUrl();

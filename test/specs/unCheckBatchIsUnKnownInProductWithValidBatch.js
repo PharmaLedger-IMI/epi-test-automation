@@ -53,7 +53,7 @@ describe('096_Edit product to uncheck batch is unknown and edit batch to have va
 
         //update products
         await products.updateProduct()
-        await wait.setTimeoutwait(8);  
+        await wait.setTimeoutwait(18);  
 
 
          //edit batch
@@ -73,6 +73,7 @@ describe('096_Edit product to uncheck batch is unknown and edit batch to have va
 
         //set serial number
         info.setSerialNumber(await batches.serialNum())
+        await wait.setTimeoutwait(3);
         await batches.enterSerialNumber(info.getSerialNumber())
         await wait.setTimeoutwait(3);
 
@@ -84,7 +85,7 @@ describe('096_Edit product to uncheck batch is unknown and edit batch to have va
         await wait.setTimeoutwait(12);
         //generate 2d matrix image
         matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
-        await wait.setTimeoutwait(8);
+        await wait.setTimeoutwait(12);
 
         await batches.updateBatchForEdit()
         await wait.setTimeoutwait(18);   

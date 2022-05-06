@@ -7,7 +7,7 @@ const wait=require('../utility/timeout')
 const path= require('path');
 const fs = require('fs');
 
-describe('123_Update a product via import of Json to change SN decommissioned flag  ', () => {
+describe('111_Update a product via import of Json to change SN decommissioned flag  ', () => {
 
     
 
@@ -21,9 +21,9 @@ describe('123_Update a product via import of Json to change SN decommissioned fl
         '5. Check the log for the import operation ')
 
         await products.clickProductFromSideNav()
-        await wait.setTimeoutwait(4);
+        await wait.setTimeoutwait(8);
         await products.clickImport()
-        // await wait.setTimeoutwait(3);
+        await wait.setTimeoutwait(3);
 
        
         let rawdata = JSON.parse(fs.readFileSync(testData.path.productImport, 'utf8'))
@@ -31,12 +31,13 @@ describe('123_Update a product via import of Json to change SN decommissioned fl
         rawdata.product.flagDisplayEPI_SNDecommissioned=!flagDisplayEPI_SNDecommissionedValue
         fs.writeFileSync(testData.path.productImport, JSON.stringify(rawdata))
 
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(4);
         await products.selectFile(path.join(__dirname,'../testdata/sampleProductImport.json'));
         await wait.setTimeoutwait(8);
        
         //click on import
-        await products.import()
+        // await products.import()
+        await browser.execute('document.querySelector(`psk-button[data-tag="import"] button[class="btn btn-primary"]`).click()')
         await wait.setTimeoutwait(20);
         
          //update json file
@@ -49,7 +50,7 @@ describe('123_Update a product via import of Json to change SN decommissioned fl
         await wait.setTimeoutwait(5); 
 
         await products.downloadMsgInSuccessLogs()
-        await wait.setTimeoutwait(5); 
+        await wait.setTimeoutwait(10); 
 
         // await products.closeButtonInPopup()
         // await wait.setTimeoutwait(5); 

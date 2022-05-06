@@ -50,6 +50,7 @@ describe('059_Edit batch to delete ePI and SMPC file.', () => {
         // await wait.setTimeoutwait(2);
         //set the serial number and enter
         info.setSerialNumber(await batches.serialNum())
+        await wait.setTimeoutwait(3);
         await batches.enterSerialNumber(info.getSerialNumber())
         await wait.setTimeoutwait(3);
         //accept serial number
@@ -62,14 +63,14 @@ describe('059_Edit batch to delete ePI and SMPC file.', () => {
 
        
         //generate expectation file
-        data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(),"", await batches.checkBatchMessage(),"", "" )
+        data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(),"", "","", "" )
         await wait.setTimeoutwait(12);
         //generate 2d matrix image
         matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
         await wait.setTimeoutwait(8);
         //update batch
         await batches.updateBatchForEdit()
-        await wait.setTimeoutwait(15);
+        await wait.setTimeoutwait(30);
        
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");

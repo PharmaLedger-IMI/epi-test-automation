@@ -1,7 +1,7 @@
 
 const demiurge = require('../pageobjects/demiurge.page');
 const LoginPage = require('../pageobjects/login.page');
-const accessAccount= require('../pageobjects/access.Account');
+//const accessAccount= require('../pageobjects/access.Account');
 const testData=require('../testdata/config.json')
 const wait=require('../utility/timeout');
 const allureReporter = require('@wdio/allure-reporter').default
@@ -43,44 +43,128 @@ it('Browser - should open ePI landing page', async () => {
     await wait.setTimeoutwait(4);
     //clear username
     await demiurge.clearUserName();
-    await wait.setTimeoutwait(2);
+    await wait.setTimeoutwait(3);
     //enter user name
-    await demiurge.enterUserName(testData.login.demiurgeUser);
-    await wait.setTimeoutwait(2);
+    await demiurge.enterUserName(testData.login.newDemiurgeUser);
+    await wait.setTimeoutwait(3);
     //click register
     await demiurge.register();
     await wait.setTimeoutwait(5);
     //open wallet
     await demiurge.openWallet()
-    await wait.setTimeoutwait(2);
+    await wait.setTimeoutwait(3);
     //login
     await demiurge.enterButton()
-    await wait.setTimeoutwait(8);  
+    await wait.setTimeoutwait(10);  
    //switch to frame
     const frame = await browser.$('iframe[frameborder=\'0\']');
     await browser.switchToFrame(frame); 
-    //click on my identity tab
-    await demiurge.myIdentity()
-    await wait.setTimeoutwait(4); 
-    //click on current identity and copy
-    await demiurge.clickCurrentIdentity()
-    await wait.setTimeoutwait(2);
-    await browser.keys(['\ue009', 'a'])
-    await wait.setTimeoutwait(3);
-    await browser.keys(['\ue009', 'c'])
-    await wait.setTimeoutwait(3);
-     //go back and login with devuser
-    await browser.back();
-    await wait.setTimeoutwait(5); 
-    await browser.back();
+
+    let isNewUser = await demiurge.bootingTitle()
     await wait.setTimeoutwait(5);
-    //login with dev user
-    await accessAccount.clickAccessAccount();
-    await wait.setTimeoutwait(5);
+    if(isNewUser){
+
+    //click on tab
+    await browser.keys(['\ue004']);
+    await wait.setTimeoutwait(3);
+    await browser.keys(['\ue004']);
+    await wait.setTimeoutwait(3);
+    await browser.keys(['\ue004']);
+    await wait.setTimeoutwait(3);
+    await browser.keys(['\ue004']);
+    await wait.setTimeoutwait(3);
+    await browser.keys(['\ue004']);
+    await wait.setTimeoutwait(3);
+    await browser.keys(['\ue004']);
+    await wait.setTimeoutwait(3);
+
+    //create identity
+    await browser.keys('Enter')
+    await wait.setTimeoutwait(8)
+    //copy the admin identity
+    // await demiurge.copyAdminIdentity()
+    // await wait.setTimeoutwait(4);
+
+    // await browser.keys(['\ue009', 'a'])
+    // await wait.setTimeoutwait(3);
+    // await browser.keys(['\ue009', 'c'])
+    // await wait.setTimeoutwait(3);
+
+    //on popup
+    await browser.keys(['\ue004']);
+    await wait.setTimeoutwait(3);
+    await browser.keys(['\ue004']);
+    await wait.setTimeoutwait(3);
+    await browser.keys(['\ue004']);
+    await wait.setTimeoutwait(3);
+    await browser.keys(['\ue004']);
+    await wait.setTimeoutwait(3);
+
+    //save identity in popup
+    await browser.keys('Enter')
+    await wait.setTimeoutwait(8)
+
+    await browser.refresh();
+    await wait.setTimeoutwait(4);
+
     await demiurge.clearUserName();
     await wait.setTimeoutwait(3);
-    await demiurge.enterUserName(testData.login.devUser);
+    //enter user name
+    await demiurge.enterUserName(testData.login.newDemiurgeUser);
     await wait.setTimeoutwait(3);
+
+    await demiurge.enterButton()
+    await wait.setTimeoutwait(15);
+
+}
+
+    //click on my identity tab
+
+    await browser.keys(['\ue004']);
+    await wait.setTimeoutwait(3);
+    await browser.keys(['\ue004']);
+    await wait.setTimeoutwait(3);
+    //click on my identities
+    await browser.keys('Enter')
+    await wait.setTimeoutwait(8)
+
+
+    // await demiurge.myIdentity()
+    // await wait.setTimeoutwait(4); 
+    //click on current identity and copy
+    // await demiurge.clickCurrentIdentity()
+    // await wait.setTimeoutwait(5);
+    await browser.keys(['\ue004']);
+    await wait.setTimeoutwait(3);
+    await browser.keys(['\ue004']);
+    await wait.setTimeoutwait(3);
+    await browser.keys(['\ue004']);
+    await wait.setTimeoutwait(3);
+    await browser.keys(['\ue004']);
+    await wait.setTimeoutwait(3);
+    await browser.keys(['\ue004']);
+    await wait.setTimeoutwait(3);
+    await browser.keys(['\ue004']);
+    await wait.setTimeoutwait(3);
+    //copy the user
+    await browser.keys(['\ue009', 'a'])
+    await wait.setTimeoutwait(5);
+    await browser.keys(['\ue009', 'c'])
+    await wait.setTimeoutwait(5);
+     //go back and login with devuser
+    await browser.refresh();
+    await wait.setTimeoutwait(3); 
+    // await browser.back();
+    // await wait.setTimeoutwait(2);
+    //login with dev user
+    // await accessAccount.clickAccessAccount();
+    // await wait.setTimeoutwait(5);
+    await demiurge.clearUserName();
+    await wait.setTimeoutwait(3);
+
+    await demiurge.enterUserName(testData.login.registeredDemiurgeUser);
+    
+    await wait.setTimeoutwait(6);
     //  await demiurge.emailId();
     //  await wait.setTimeoutwait(3);
     //  await demiurge.password();
@@ -106,29 +190,29 @@ it('Browser - should open ePI landing page', async () => {
     await wait.setTimeoutwait(4);
 
     //go to demiurge wallet and login with new user
-    await browser.back();
-    await wait.setTimeoutwait(5);
-    await browser.back();
-    await wait.setTimeoutwait(5);
-    await accessAccount.clickAccessAccount();
-    await wait.setTimeoutwait(5);
-    // await demiurge.clearUserName();
-    // await wait.setTimeoutwait(3);
-    // await demiurge.enterUserName(testData.login.demiurgeUser);
-    // await wait.setTimeoutwait(3);
-    await demiurge.enterButton()
-    await wait.setTimeoutwait(15);
+    // await browser.back();
+    // await wait.setTimeoutwait(5);
+    // await browser.back();
+    // await wait.setTimeoutwait(5);
+    // await accessAccount.clickAccessAccount();
+    // await wait.setTimeoutwait(5);
+        // await demiurge.clearUserName();
+        // await wait.setTimeoutwait(3);
+        // await demiurge.enterUserName(testData.login.demiurgeUser);
+        // await wait.setTimeoutwait(3);
+    // await demiurge.enterButton()
+    // await wait.setTimeoutwait(15);
 
-    await browser.switchToWindow(handles[0]);
+    // await browser.switchToWindow(handles[0]);
 
     // await browser.quit()
     //await browser.closeWindow()
-     await wait.setTimeoutwait(2);
+     await wait.setTimeoutwait(3);
     allureReporter.endStep("passed");
     allureReporter.endStep("passed");
     allureReporter.endStep("passed");
     allureReporter.endStep("passed");
-       
+    
     
 });
 

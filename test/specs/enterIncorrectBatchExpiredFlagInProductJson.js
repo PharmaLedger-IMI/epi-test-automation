@@ -22,9 +22,9 @@ describe('113_Update a product via import of Json to enter incorrect batch expir
         '5. Check the log for the import operation ')
 
         await products.clickProductFromSideNav()
-        await wait.setTimeoutwait(4);
+        await wait.setTimeoutwait(8);
         await products.clickImport()
-        // await wait.setTimeoutwait(3);
+        await wait.setTimeoutwait(3);
 
        
         let rawdata = JSON.parse(fs.readFileSync(testData.path.productImport, 'utf8'))
@@ -32,12 +32,14 @@ describe('113_Update a product via import of Json to enter incorrect batch expir
         rawdata.product.flagDisplayEPI_BatchExpired=  Math.random().toString(36).substring(2, 5)
         fs.writeFileSync(testData.path.productImport, JSON.stringify(rawdata))
 
-        await wait.setTimeoutwait(3);
+        await wait.setTimeoutwait(4);
         await products.selectFile(path.join(__dirname,'../testdata/sampleProductImport.json'));
         await wait.setTimeoutwait(8);
        
         //click on import
-        await products.import()
+        // await products.import()
+        await browser.execute('document.querySelector(`psk-button[data-tag="import"] button[class="btn btn-primary"]`).click()')
+
         await wait.setTimeoutwait(20);
         
          //update json file
@@ -57,7 +59,7 @@ describe('113_Update a product via import of Json to enter incorrect batch expir
          await wait.setTimeoutwait(5); 
  
          await products.downloadMsgInFailedLogs()
-         await wait.setTimeoutwait(5); 
+         await wait.setTimeoutwait(10); 
         
         // await products.closeButtonInPopup()
         // await wait.setTimeoutwait(5); 

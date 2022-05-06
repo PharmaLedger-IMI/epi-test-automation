@@ -28,9 +28,9 @@ describe('023_Edit batch to select expired date', () => {
     }
     it('Browser - should verify Combination checks ', async () => {
         allureReporter.addDescription("Edit batch and check batch recall, enter recall message and select expired date")
-        allureReporter.startStep('2. Create a batch',
-        '3. Choose a expiry date such that the batch is expired', 
-        '4. Make the batch recalled check flag ')
+        allureReporter.startStep('1. Edit a batch')
+        allureReporter.startStep('2. Choose a expiry date such that the batch is expired') 
+        allureReporter.startStep('3. Make the batch recalled check flag ')
         allureReporter.addTestId('BatchRecallAndBatchMessage_12_2')
         
         
@@ -77,6 +77,8 @@ describe('023_Edit batch to select expired date', () => {
         await batches.updateBatchForEdit()
         await wait.setTimeoutwait(18);
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
+        allureReporter.endStep("passed");
+        allureReporter.endStep("passed");
         allureReporter.endStep("passed");
        
     })

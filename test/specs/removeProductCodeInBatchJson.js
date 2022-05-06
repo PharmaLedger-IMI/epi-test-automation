@@ -21,9 +21,9 @@ describe('115_Update a batch via import of Json by deleting product code', () =>
         '5. Check the log for the import operation ')
 
         await batches.Batch(); 
-        await wait.setTimeoutwait(4);
+        await wait.setTimeoutwait(8);
         await batches.clickImport()
-        await wait.setTimeoutwait(3);
+        await wait.setTimeoutwait(10);
 
        
         let rawdata = JSON.parse(fs.readFileSync(testData.path.batchImport, 'utf8'))
@@ -36,7 +36,9 @@ describe('115_Update a batch via import of Json by deleting product code', () =>
         await wait.setTimeoutwait(8);
 
         //click on import
-        await batches.import()
+        //await batches.import()
+        await browser.execute('document.querySelector(`psk-button[data-tag="import"] button[class="btn btn-primary"]`).click()')
+
         await wait.setTimeoutwait(20); 
 
         //update json file
@@ -56,7 +58,7 @@ describe('115_Update a batch via import of Json by deleting product code', () =>
         await wait.setTimeoutwait(5); 
 
         await batches.downloadMsgInFailedLogs()
-        await wait.setTimeoutwait(5);
+        await wait.setTimeoutwait(10);
         //close
         // await batches.closeButtonInPopup()
         // await wait.setTimeoutwait(5); 

@@ -29,7 +29,7 @@ describe('064_Edit product to uncheck batch is recalled and edit batch to set re
 
     }
 
-    it('PBrowser - should unCheck batch is recalled', async() => {
+    it('Browser - should unCheck batch is recalled', async() => {
         allureReporter.addDescription('Edit product and uncheck batch is recalled flag. Edit batch and check batch is recalled ')
         allureReporter.startStep("unCheck batch is recalled")
         allureReporter.addTestId('ProductDisplayEpiFlag_1_4')
@@ -44,7 +44,7 @@ describe('064_Edit product to uncheck batch is recalled and edit batch to set re
         await wait.setTimeoutwait(4);
         //view or edits
         await browser.execute('document.querySelector("button[data-tag=\'edit-product\']").click()')
-        await wait.setTimeoutwait(5);
+        await wait.setTimeoutwait(8);
         
         //uncheck batch is recalled
         await products.enableBatchIsRecalled(); 
@@ -83,6 +83,7 @@ describe('064_Edit product to uncheck batch is recalled and edit batch to set re
 
         await wait.setTimeoutwait(8);
         let editValue = info.getbatchId()
+        await wait.setTimeoutwait(3);
         console.log("editValue is "+editValue)
         await browser.execute('document.querySelector("div:nth-child(' + await info.editBatchRow(editValue) + ') button:nth-child(1)").click()')       
         await wait.setTimeoutwait(6);
@@ -99,7 +100,7 @@ describe('064_Edit product to uncheck batch is recalled and edit batch to set re
         await wait.setTimeoutwait(3);
         //generate expectation file 
         data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), info.getBatchRecall(),"","", info.getBatchRecallMsg(), info.getEpiDisplayed() )
-        await wait.setTimeoutwait(12);
+        await wait.setTimeoutwait(18);
          
        //generate 2d matrix image
         matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())

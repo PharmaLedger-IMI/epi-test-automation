@@ -47,6 +47,7 @@ describe('056_SMPC update on the product Non- batch specific version', () => {
          //await products.clickViewEdit()
          await browser.execute('document.querySelector("button[data-tag=\'edit-product\']").click()')
          await wait.setTimeoutwait(5);
+       
          //add new version epi
          await products.addEpi()
          await wait.setTimeoutwait(3);

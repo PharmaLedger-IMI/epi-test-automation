@@ -61,6 +61,19 @@ it('Browser - should verify product page', async() => {
     //
     await products.enableSnIsUnknown(); 
     await wait.setTimeoutwait(3);
+
+    // await products.enableSnIsInRecallList() 
+    // await wait.setTimeoutwait(3);
+
+    // await products.enableSnIsInDecommissionedList()
+    // await wait.setTimeoutwait(3);
+    // await products.batchIsExpired()
+    // await wait.setTimeoutwait(3);
+    // await products.disableBatchNumberUnknown()
+    // await wait.setTimeoutwait(3);
+
+
+
      //add epi
      await products.addEpi()
      await wait.setTimeoutwait(3);
@@ -82,7 +95,7 @@ it('Browser - should verify product page', async() => {
      await wait.setTimeoutwait(3);
 
      //Save product
-     await products.saveProduct()
+    await products.saveProduct()
     await wait.setTimeoutwait(45);
     
      allureReporter.endStep("passed");

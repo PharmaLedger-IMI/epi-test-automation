@@ -28,12 +28,12 @@ describe('023_Edit batch to set expired date and invalid serial number ', () => 
     }
     it('Browser - should verify Combination checks ', async () => {
         allureReporter.addDescription("Edit batch and check batch recall, enter recall message and pass wrong serial number in matrix")
-        allureReporter.startStep('2. Create a batch',
-        '3. Choose a expiry date such that the batch is expired', 
-        '4. Make the batch recalled check flag ',
-        '5. Enter a serial number',
-        '6. Save the batch',
-        '7. Scan the "Wrong" serial number')
+        allureReporter.startStep('1. Edit a batch')
+        allureReporter.startStep('2. Choose a expiry date such that the batch is expired') 
+        allureReporter.startStep('3. Make the batch recalled check flag ')
+        allureReporter.startStep('4. Enter a serial number')
+        allureReporter.startStep('5. Save the batch')
+        allureReporter.startStep('6. Scan the "Wrong" serial number')
         allureReporter.addTestId('BatchRecallAndBatchMessage_12_3')        
 
          await batches.Batch(); 
@@ -97,6 +97,11 @@ describe('023_Edit batch to set expired date and invalid serial number ', () => 
         await batches.updateBatchForEdit()
         await wait.setTimeoutwait(18);
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
+        allureReporter.endStep("passed");
+        allureReporter.endStep("passed");
+        allureReporter.endStep("passed");
+        allureReporter.endStep("passed");
+        allureReporter.endStep("passed");
         allureReporter.endStep("passed");
        
     })

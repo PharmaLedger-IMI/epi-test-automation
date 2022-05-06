@@ -43,7 +43,7 @@ describe('074_Edit product to check batch is expired and delete smpc. Edit batch
         await wait.setTimeoutwait(4);
         //view or edits
         await browser.execute('document.querySelector("button[data-tag=\'edit-product\']").click()')
-        await wait.setTimeoutwait(5);
+        await wait.setTimeoutwait(8);
        
         await products.deleteSecondLanguage()
         await wait.setTimeoutwait(4);

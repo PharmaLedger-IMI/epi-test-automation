@@ -11,7 +11,7 @@ const exec = util.promisify(require('child_process').exec);
 
 
 
-describe('097_Other tests', () => {
+describe('097_Edit batch to verify serial number invalid and expiry date invalid', () => {
    
    
   if(!process.env.npm_config_browserOnly){
@@ -71,7 +71,7 @@ after(async () => {
     await wait.setTimeoutwait(5);
     // manage serial number accept 
     await batches.acceptSerialNumber()
-    await wait.setTimeoutwait(1);
+    await wait.setTimeoutwait(3);
 
     const invalidSerialNumber=await batches.serialNum()
     console.log('invalid serial number '+invalidSerialNumber)
@@ -80,16 +80,16 @@ after(async () => {
     const incorrectExpiryDate=info.randomDateExpired()
     await wait.setTimeoutwait(3);
 
-    data.generateExpectationFile(info.getProductId(), info.getbatchId(), incorrectExpiryDate,  invalidSerialNumber, info.getBrandName(), "","","","", await batches.epiDisplayed())
-    await wait.setTimeoutwait(6);
+    data.generateExpectationFile(info.getProductId(), info.getbatchId(), incorrectExpiryDate,  invalidSerialNumber, info.getBrandName(), "","","","", "")
+    await wait.setTimeoutwait(12);
  
     //generate Image
     matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), incorrectExpiryDate, invalidSerialNumber)
-    await wait.setTimeoutwait(8);
+    await wait.setTimeoutwait(12);
 
     //update batch
     await batches.updateBatchForEdit()
-    await wait.setTimeoutwait(15);
+    await wait.setTimeoutwait(18);
 
 
     

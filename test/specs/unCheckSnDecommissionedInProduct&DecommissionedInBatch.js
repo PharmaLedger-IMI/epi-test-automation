@@ -59,8 +59,8 @@ describe('085_Edit product to uncheck SN is decommissioned and edit batch to hav
         await products.selectType(testData.newProductDetails.selectType)
         await wait.setTimeoutwait(3);
         //Video source
-        await products.videoSourceEpi(testData.newProductDetails.videoSource)
-        await wait.setTimeoutwait(3);
+        // await products.videoSourceEpi(testData.newProductDetails.videoSource)
+        // await wait.setTimeoutwait(3);
         //Upload smpc 
         await products.uploadFile(path.join(__dirname, '/src/SMPC_ProductLevel'));
         await wait.setTimeoutwait(3);
@@ -82,6 +82,7 @@ describe('085_Edit product to uncheck SN is decommissioned and edit batch to hav
 
         await wait.setTimeoutwait(8);
         let editValue = info.getbatchId()
+        await wait.setTimeoutwait(3);
         console.log("editValue is "+editValue)
         await browser.execute('document.querySelector("div:nth-child(' + await info.editBatchRow(editValue) + ') button:nth-child(1)").click()')
         await wait.setTimeoutwait(6);
@@ -97,14 +98,14 @@ describe('085_Edit product to uncheck SN is decommissioned and edit batch to hav
         await batches.acceptSerialNumber()
         await wait.setTimeoutwait(3);
 
-        data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), info.getBatchRecall(),"","", info.getBatchRecallMsg(),info.getEpiDisplayed() )
+        data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), "","","", "",info.getEpiDisplayed() )
         await wait.setTimeoutwait(12);
 
         matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
-        await wait.setTimeoutwait(8);
+        await wait.setTimeoutwait(10);
 
         await batches.updateBatchForEdit()
-        await wait.setTimeoutwait(18);   
+        await wait.setTimeoutwait(20);   
        
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         allureReporter.endStep("passed");

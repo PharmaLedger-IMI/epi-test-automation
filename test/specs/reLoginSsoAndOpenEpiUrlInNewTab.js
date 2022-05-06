@@ -7,7 +7,7 @@ const testData=require('../testdata/config.json')
 const wait=require('../utility/timeout');
 
 
-describe('128_Verify SSO relogin and open ePI in new tab', () => {
+describe('129_Verify SSO relogin and open ePI in new tab', () => {
 it('Browser - should verify SSO relogin and open ePI in new tab', async () => {
 
     allureReporter.startStep('1. Provide valid credentails in SSO login screens.')

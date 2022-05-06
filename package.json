@@ -9,7 +9,7 @@
     "importFeatureOnly": "npx wdio run wdio.conf.js --suite importJson"
   },
   "keywords": [],
-  "author": "",
+  "author": "Novartis",
   "license": "ISC",
   "devDependencies": {
     "@wdio/allure-reporter": "^7.16.14",
@@ -24,9 +24,7 @@
     "wdio-lambdatest-service": "^1.0.6"
   },
   "dependencies": {
-    "chai": "^4.3.6",
-    "chai-webdriverio": "^1.0.0",
-    "chromedriver": "^100.0.0",
+    "chromedriver": "^101.0.0",
     "moment": "^2.29.1",
     "random-country": "^1.0.1",
     "webdriverio": "^7.16.14"

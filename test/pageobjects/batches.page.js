@@ -1,5 +1,5 @@
 
-const expectChai = require('chai').expect;
+//const expectChai = require('chai').expect;
 const testData=require('../testdata/config.json')
 const path = require('path')
 const  {URL}  = require('url')
@@ -37,13 +37,13 @@ class batchesPage{
         return $("//textarea[@placeholder='Add video source']")
     }
     get enableIncorrectExpirationDateVerificationCheckbox(){
-        return $("//label[normalize-space()='Enable Incorrect Expiration Date Verification']")
+        return $("(//div[@class='checkbox-container featureCode-07'])[1]//input[@type='checkbox']")
     }
     get expirationDateVerificationCheckbox(){
-        return $("//label[normalize-space()='Enable Expired Expiration Date Verification']")
+        return $("(//div[@class='checkbox-container featureCode-02'])[1]//input[@type='checkbox']")
     }
     get enableSerialNumberVerificationCheckbox(){
-        return $("//label[normalize-space()='Enable Serial Number Verification']")
+        return $("(//div[@class='checkbox-container featureCode-07'])[3]//input[@type='checkbox']")
     }
     get selectOptionFromDropdown(){
         return $('//psk-select[@class=\'hydrated\']//select[@class=\'form-control\']')
@@ -83,7 +83,7 @@ class batchesPage{
         return $('//select[@id=\'language\']')
     }
     get selectTypeDropdown(){
-        return $('//select[@id=\'type\']')
+        return $('//select[@class="document-type-select dsu-select"]')
     }
     get videoSourceEpiEnter(){
         return $("//textarea[@value='@modalData.product.videoSource']")
@@ -99,7 +99,9 @@ class batchesPage{
     }
     get enableRecallThisBatch(){
         //return $("//input[@id='recalled']")
-        return $("//input[@type='checkbox'][@id='recalled']")
+        //return $("//input[@type='checkbox'][@id='recalled']")
+        return $("(//div[@class='checkbox-container featureCode-08'])[1]//input[@type='checkbox']")
+
     }
     get enterRecallMessageInTextbox(){
         return $("//textarea[@placeholder='This text will be displayed to user after Barcode is scanned if batch is recalled']")
@@ -410,8 +412,14 @@ class batchesPage{
         await this.importF.click()
     }
     async viewMessageInFailedLogs(){
-        
+
+        try{
         await this.clickViewMessageInFailedLogs.click()
+        }
+
+        catch(e){
+            console.log("success logs")
+        }
     }
     async viewMessageInSuccessLogs(){
         // if(this.clickViewMessageInSuccessLogs.isExisting()==true){
@@ -450,19 +458,37 @@ class batchesPage{
         // '/path/to/wdio/tests/tempDownload/some-file.txt'
         const filePath = path.join(global.downloadDir, fileName)
         console.log(filePath)
+        try{
         await this.clickDownloadMsg.click()
         await browser.pause(5000)
-
+        } catch(e){console.log("failed logs")}
+        
         let rawdata = JSON.parse(fs.readFileSync(testData.path.batchImport, 'utf8'))
-        const file1 = filePath.concat("\\", "batch_", rawdata.batch.batch, ".json")
+        const file1 = filePath.concat(path.sep, "batch_", rawdata.batch.batch, ".json")
         console.log(file1)
+        try{
+            if(fs.existsSync(file1)){ 
         let fileContents = JSON.parse(fs.readFileSync(file1, 'utf-8'))
         // console.log(JSON.stringify(fileContents))
         // console.log(JSON.stringify(rawdata))
         console.log(JSON.stringify(fileContents) === JSON.stringify(rawdata))
         await browser.pause(5000)
         fs.unlinkSync(file1)
+
+            }
+            else{
+                console.log("no file")
+            }
+        }
+
+        catch(e){
+            console.log("error")
+        }
+
+
     }
+       
+    
     async downloadMsgInFailedLogs(){
         
         const downloadHref = await browser.getUrl();
@@ -485,27 +511,59 @@ class batchesPage{
         const filePath = path.join(global.downloadDir, fileName)
         console.log(filePath)
         //Click on download button
+        try{
         await this.clickDownloadMsg.click()
         await browser.pause(5000)
+        }
+        catch(e){
+            console.log("success logs")
+        }
 
         let rawdata = JSON.parse(fs.readFileSync(testData.path.batchImport, 'utf8'))
-        const file1 = filePath.concat("\\", "batch_", rawdata.batch.batch, ".json")
+        const file1 = filePath.concat(path.sep, "batch_", rawdata.batch.batch, ".json")
         console.log(file1)
+
+        try{
+            if(fs.existsSync(file1)){ 
+
         let fileContents = JSON.parse(fs.readFileSync(file1, 'utf-8'))
+        fs.unlinkSync(file1)
         // console.log(JSON.stringify(fileContents))
         // console.log(JSON.stringify(rawdata))
         console.log(JSON.stringify(fileContents) === JSON.stringify(rawdata))
         await browser.pause(5000)
-        fs.unlinkSync(file1)
+            }
+        else{
+            const file2 = filePath.concat(path.sep, "batch_", "undefined", ".json")
+            fs.unlinkSync(file2) 
+        }
+    }
+        catch(e){
+            console.log("success logs")
+        }
+            
+           
+               
+        
     }
     async invalidFieldInfo(){
-        
+        try{
         await this.clickInvalidFieldInfo.click()
+        }
+        catch(e){
+            console.log("success logs")
+        }
     }
     async invalidFieldInfoRequired(){
 
+        try{
+
         const allFields= await this.requiredFields.getText()
-        console.log('required fields are '+allFields)   
+        console.log('required fields are '+allFields)
+        } 
+        catch(e){
+            console.log("success logs")
+        }  
     
 }
 async closeButtonInPopup(){

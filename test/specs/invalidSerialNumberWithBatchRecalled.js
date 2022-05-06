@@ -114,11 +114,11 @@ after(async () => {
  
     //generate 2d matrix image
     matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), invalidSerialNumber)
-    await wait.setTimeoutwait(8);
+    await wait.setTimeoutwait(12);
 
     //update batch
     await batches.updateBatchForEdit()
-    await wait.setTimeoutwait(15);
+    await wait.setTimeoutwait(18);
 
 
     

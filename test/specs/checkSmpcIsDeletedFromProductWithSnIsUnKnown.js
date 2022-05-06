@@ -81,7 +81,7 @@ describe('089_Edit product to check SN is unknown and delete smpc. Pass unknown 
 
         const unknownSerialNumber = await batches.serialNum()
         console.log('unknown serial number ' + unknownSerialNumber)
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         
 
         data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  unknownSerialNumber,info.getBrandName(), "","","", "",info.getEpiDisplayed() )

@@ -10,7 +10,7 @@ const path= require('path');
 const util = require('util');
 const exec = util.promisify(require('child_process').exec);
 
-describe('054_Update product information -Batch specific', () => {
+describe('054_verify that the batch specific version is displayed correctly', () => {
 
     if(!process.env.npm_config_browserOnly){
         
@@ -34,7 +34,7 @@ describe('054_Update product information -Batch specific', () => {
         allureReporter.addTestId('ProductInfoUpdate_2_1')
 
         await batches.Batch();
-        await wait.setTimeoutwait(3);
+        await wait.setTimeoutwait(4);
         
         await batches.addBatch();
         await wait.setTimeoutwait(3);
@@ -74,7 +74,7 @@ describe('054_Update product information -Batch specific', () => {
         // await batches.enableResetAllValidSerialNumber()
         // await wait.setTimeoutwait(2);
         info.setSerialNumber(await batches.serialNum())
-        await wait.setTimeoutwait(3);
+        await wait.setTimeoutwait(4);
         await batches.enterSerialNumber(info.getSerialNumber())
         await wait.setTimeoutwait(3);
         await batches.acceptSerialNumber()
@@ -95,7 +95,7 @@ describe('054_Update product information -Batch specific', () => {
         // await wait.setTimeoutwait(2);
         
         //generate expectation file 
-        data.generateExpectationFile(info.getProductId(), await batches.batchIdValue(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(),"", await batches.checkBatchMessage(),"", "" )
+        data.generateExpectationFile(info.getProductId(), await batches.batchIdValue(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(),"", "","", "" )
         await wait.setTimeoutwait(12);
         //generate 2d matrix image
         matrix.generate2dMatrixImage(info.getProductId(), await batches.batchIdValue(), info.getCurrentRandomDate(), info.getSerialNumber())

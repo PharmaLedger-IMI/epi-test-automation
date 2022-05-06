@@ -73,6 +73,7 @@ describe('094_Edit product to check batch is unknown and delete smpc. Pass unkno
 
         //set serial number
         info.setSerialNumber(await batches.serialNum())
+        await wait.setTimeoutwait(3);
         await batches.enterSerialNumber(info.getSerialNumber())
         await wait.setTimeoutwait(3);
 
@@ -84,7 +85,7 @@ describe('094_Edit product to check batch is unknown and delete smpc. Pass unkno
         console.log('unKnownBatch '+unKnownBatch)
         await wait.setTimeoutwait(3);
 
-        data.generateExpectationFile(info.getProductId(), unKnownBatch, info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), info.getBatchRecall(),"","", info.getBatchRecallMsg(),info.getEpiDisplayed() )
+        data.generateExpectationFile(info.getProductId(), unKnownBatch, info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), "","","", "",info.getEpiDisplayed() )
         await wait.setTimeoutwait(12);
 
         matrix.generate2dMatrixImage(info.getProductId(), unKnownBatch, info.getCurrentRandomDate(), info.getSerialNumber())

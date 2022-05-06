@@ -122,16 +122,16 @@ describe('098_Edit product to check batch is unknown and pass invalid batch and 
     await wait.setTimeoutwait(3);
 
     //generate expectation file 
-    data.generateExpectationFile(info.getProductId(), unknownBatch, incorrectExpiryDate,  info.getSerialNumber(), info.getBrandName(), "","","","", await batches.epiDisplayed())
-    await wait.setTimeoutwait(6);
+    data.generateExpectationFile(info.getProductId(), unknownBatch, incorrectExpiryDate,  info.getSerialNumber(), info.getBrandName(), "","","","", info.getEpiDisplayed())
+    await wait.setTimeoutwait(12);
  
     ////generate 2d matrix image
     matrix.generate2dMatrixImage(info.getProductId(), unknownBatch, incorrectExpiryDate, info.getSerialNumber())
-    await wait.setTimeoutwait(8);
+    await wait.setTimeoutwait(10);
 
     //update batch
     await batches.updateBatchForEdit()
-    await wait.setTimeoutwait(15);
+    await wait.setTimeoutwait(18);
 
     allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
     allureReporter.endStep("passed");

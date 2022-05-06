@@ -49,10 +49,10 @@ it('Browser - should open Access Account', async() => {
      await accessAccount.clearUserName();
      await wait.setTimeoutwait(2);
 if(info.getUser()){
-     await accessAccount.enterUserName(testData.login.enterpriseUser);
+     await accessAccount.enterUserName(testData.login.newEnterpriseUser);
 }
 else{
-     await accessAccount.enterUserName(testData.login.existingUserName);
+     await accessAccount.enterUserName(testData.login.automationUserName);
 }
      await wait.setTimeoutwait(2);
     //  await accessAccount.emailId();
@@ -60,7 +60,7 @@ else{
     //  await accessAccount.password();
     //  await wait.setTimeoutwait(2);
      await accessAccount.Enterbutton();
-     await wait.setTimeoutwait(15);
+     await wait.setTimeoutwait(18);
      
      //home page screenshot
      const frame = await browser.$('iframe[frameborder=\'0\']');

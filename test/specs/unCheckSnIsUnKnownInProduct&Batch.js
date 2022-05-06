@@ -60,8 +60,8 @@ describe('090_Edit product to uncheck SN is unknown and edit batch to have valid
         await products.selectType(testData.newProductDetails.selectType)
         await wait.setTimeoutwait(3);
         //Video source
-        await products.videoSourceEpi(testData.newProductDetails.videoSource)
-        await wait.setTimeoutwait(3);
+        // await products.videoSourceEpi(testData.newProductDetails.videoSource)
+        // await wait.setTimeoutwait(3);
         //Upload smpc 
         await products.uploadFile(path.join(__dirname, '/src/SMPC_ProductLevel'));
         await wait.setTimeoutwait(4);
@@ -73,7 +73,7 @@ describe('090_Edit product to uncheck SN is unknown and edit batch to have valid
 
         //update products
         await products.updateProduct()
-        await wait.setTimeoutwait(18);  
+        await wait.setTimeoutwait(25);  
 
 
          //edit batch
@@ -92,6 +92,7 @@ describe('090_Edit product to uncheck SN is unknown and edit batch to have valid
 
          //set serial number
          info.setSerialNumber(await batches.serialNum())
+         await wait.setTimeoutwait(3);
          await batches.enterSerialNumber(info.getSerialNumber())
          await wait.setTimeoutwait(3);
 
@@ -101,14 +102,14 @@ describe('090_Edit product to uncheck SN is unknown and edit batch to have valid
 
         const unKnownSerialNumber = await batches.serialNum()
         console.log('unknown serial number ' + unKnownSerialNumber)
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         
 
-        data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  unKnownSerialNumber,info.getBrandName(), info.getBatchRecall(),"","", info.getBatchRecallMsg(),info.getEpiDisplayed() )
+        data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  unKnownSerialNumber,info.getBrandName(), "","","", "",info.getEpiDisplayed() )
         await wait.setTimeoutwait(12);
 
         matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), unKnownSerialNumber)
-        await wait.setTimeoutwait(8);
+        await wait.setTimeoutwait(10);
 
         await batches.updateBatchForEdit()
         await wait.setTimeoutwait(18);   

@@ -16,8 +16,8 @@ it('Browser - should verify SSO relogin and login to the Enterprise Wallet', asy
 
     allureReporter.addTestId('SSOTests_5')
    //Open ePI url in browser
-    await LoginPage.open();
-    await wait.setTimeoutwait(4);
+    // await LoginPage.open();
+    // await wait.setTimeoutwait(4);
     await browser.maximizeWindow();
 
     await LoginPage.openMicrosoftUrl();

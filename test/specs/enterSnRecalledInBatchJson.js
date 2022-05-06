@@ -10,13 +10,13 @@ const fs = require('fs');
 
 
 
-describe('104_Update a product via import of Json to enter recalled serial number flag  ', () => {
+describe('123_Update a batch via import of Json to enter recalled serial number flag  ', () => {
 
     
 
-    it('Browser - update a product via import of Json ', async() => { 
+    it('Browser - update a batch via import of Json ', async() => { 
         allureReporter.addTestId('ImportJson_4_9')
-        allureReporter.addDescription('Update a product via import of Json to enter recalled serial number and uploading modified file. View message and click on invalid field info')
+        allureReporter.addDescription('Update a batch via import of Json to enter recalled serial number and uploading modified file. View message and click on invalid field info')
         allureReporter.startStep('1. Use the standard template Json', 
         '2. Fill up the details on the json', 
         '3. Use the import functionality to select the file', 
@@ -24,7 +24,7 @@ describe('104_Update a product via import of Json to enter recalled serial numbe
         '5. Check the log for the import operation ')
 
         await batches.Batch()
-        await wait.setTimeoutwait(4);
+        await wait.setTimeoutwait(8);
 
        
         await batches.clickImport()
@@ -44,7 +44,9 @@ describe('104_Update a product via import of Json to enter recalled serial numbe
         await wait.setTimeoutwait(8);
        
         //click on import
-        await batches.import()
+        //await batches.import()
+        await browser.execute('document.querySelector(`psk-button[data-tag="import"] button[class="btn btn-primary"]`).click()')
+
         await wait.setTimeoutwait(20);
         
          //update json file
@@ -58,7 +60,7 @@ describe('104_Update a product via import of Json to enter recalled serial numbe
         await wait.setTimeoutwait(5); 
          
         await batches.downloadMsgInSuccessLogs()
-        await wait.setTimeoutwait(5); 
+        await wait.setTimeoutwait(10); 
 
         // await batches.closeButtonInPopup()
         // await wait.setTimeoutwait(5); 
