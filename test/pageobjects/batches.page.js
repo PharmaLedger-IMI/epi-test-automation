@@ -1,173 +1,172 @@
 
 //const expectChai = require('chai').expect;
-const testData=require('../testdata/config.json')
+const testData = require('../testdata/config.json')
 const path = require('path')
-const  {URL}  = require('url')
+const { URL } = require('url')
 const assert = require('assert');
 const fs = require('fs')
 
-let isChecked=false
-class batchesPage{
+let isChecked = false
+class batchesPage {
 
-   
 
-    get batchFromSideNav(){
+
+    get batchFromSideNav() {
         //return  $("=Batches")
         return $("//a[normalize-space()='Batches']")
     }
-    get addbatchbutton(){
+    get addbatchbutton() {
         return $("//button[normalize-space()='ADD BATCH']")
     }
-    get batchIdValue1(){
+    get batchIdValue1() {
         return $('//input[@placeholder=\'Add batch id\']')
     }
-    
-    
-    get addsitename(){
+
+
+    get addsitename() {
         return $("//input[@placeholder='Add site name']")
     }
-    get brand()
-    {
+    get brand() {
         return $("//input[@placeholder='Add site name']")
     }
-    get enableDaySelectionCheckbox(){
+    get enableDaySelectionCheckbox() {
         return $("//label[normalize-space()='Enable day selection']")
     }
-    get videoSourceEnter(){
+    get videoSourceEnter() {
         return $("//textarea[@placeholder='Add video source']")
     }
-    get enableIncorrectExpirationDateVerificationCheckbox(){
+    get enableIncorrectExpirationDateVerificationCheckbox() {
         return $("(//div[@class='checkbox-container featureCode-07'])[1]//input[@type='checkbox']")
     }
-    get expirationDateVerificationCheckbox(){
+    get expirationDateVerificationCheckbox() {
         return $("(//div[@class='checkbox-container featureCode-02'])[1]//input[@type='checkbox']")
     }
-    get enableSerialNumberVerificationCheckbox(){
+    get enableSerialNumberVerificationCheckbox() {
         return $("(//div[@class='checkbox-container featureCode-07'])[3]//input[@type='checkbox']")
     }
-    get selectOptionFromDropdown(){
+    get selectOptionFromDropdown() {
         return $('//psk-select[@class=\'hydrated\']//select[@class=\'form-control\']')
     }
-    get resetAllValidSerialNumberCheckbox(){
+    get resetAllValidSerialNumberCheckbox() {
         return $('//input[@id=\'update-valid-serial\']')
     }
-    get resetAllRecalledSerialNumberCheckbox(){
+    get resetAllRecalledSerialNumberCheckbox() {
         return $("//input[@id='update-recalled-serial']")
     }
-    get resetAllDecommisionedSerialNumberCheckbox(){
+    get resetAllDecommisionedSerialNumberCheckbox() {
         return $("//input[@id='update-decommissioned-serial']")
     }
-    get enterSerialNumberField(){
-        return $('//textarea[@value=\'@actionModalModel.serialNumbers\']')         
+    get enterSerialNumberField() {
+        return $('//textarea[@value=\'@actionModalModel.serialNumbers\']')
     }
-    get selectReasonFromDropdown(){
+    get selectReasonFromDropdown() {
         return $("//psk-select[@view-model='@actionModalModel.reason']//select[@class='form-control']")
-        
+
     }
     // get selectUpdateRecalledSerial(){
     //     return $("//option[@value='update-recalled-serial']")
     // }
-    get serialNumberAcceptButton(){
+    get serialNumberAcceptButton() {
         return $("//button[normalize-space()='Accept']")
     }
-    get serialNumberCancelButton(){
+    get serialNumberCancelButton() {
         return $("//psk-button[@class='marketplace-manager-button hydrated']//button[@class='btn btn-primary'][normalize-space()='Cancel']")
     }
-    get batchMessageEnter(){
+    get batchMessageEnter() {
         return $("//textarea[@placeholder='This text will be displayed to user after Barcode is scanned']")
     }
-    get addEpiButton(){
+    get addEpiButton() {
         return $("//button[normalize-space()='+ Add ePI']")
     }
-    get selectLanguageDropdown(){
+    get selectLanguageDropdown() {
         return $('//select[@id=\'language\']')
     }
-    get selectTypeDropdown(){
+    get selectTypeDropdown() {
         return $('//select[@class="document-type-select dsu-select"]')
     }
-    get videoSourceEpiEnter(){
+    get videoSourceEpiEnter() {
         return $("//textarea[@value='@modalData.product.videoSource']")
     }
-    get uploadEpiFile(){
+    get uploadEpiFile() {
         return $('//input[@type=\'file\']')
     }
-    get epiFileDisplayed(){
+    get epiFileDisplayed() {
         return $("//li[@class='d-flex flex-row overflow-auto']")
     }
-    get addEpiAcceptButton(){
+    get addEpiAcceptButton() {
         return $("//button[normalize-space()='Accept']")
     }
-    get enableRecallThisBatch(){
+    get enableRecallThisBatch() {
         //return $("//input[@id='recalled']")
         //return $("//input[@type='checkbox'][@id='recalled']")
         return $("(//div[@class='checkbox-container featureCode-08'])[1]//input[@type='checkbox']")
 
     }
-    get enterRecallMessageInTextbox(){
+    get enterRecallMessageInTextbox() {
         return $("//textarea[@placeholder='This text will be displayed to user after Barcode is scanned if batch is recalled']")
     }
-    get updateBatchForEditButton(){
+    get updateBatchForEditButton() {
         return $("//button[normalize-space()='Update batch']")
     }
-    get cancelButtonForBatch(){
-        return $("//button[normalize-space()='Cancel']")       
+    get cancelButtonForBatch() {
+        return $("//button[normalize-space()='Cancel']")
     }
 
-    get createBatchButton(){
+    get createBatchButton() {
         return $("//button[normalize-space()='Add batch']")
     }
-    get importButton(){
+    get importButton() {
         return $('//button[normalize-space()="IMPORT"]')
     }
-    get importFile(){
+    get importFile() {
         return $('//input[@type="file"]')
     }
-    get importF(){
+    get importF() {
         return $('//button[normalize-space()="Import"]')
     }
-    get clickViewMessageInFailedLogs(){
+    get clickViewMessageInFailedLogs() {
         return $("(//button[@class='btn btn-link p-0 col align-self-center text-left'][contains(text(),'View')])[16]")
     }
-    get clickViewMessageInSuccessLogs(){
+    get clickViewMessageInSuccessLogs() {
         return $('div:nth-child(14) button:nth-child(1)')
     }
-    get clickDownloadMsg(){
+    get clickDownloadMsg() {
         return $('//button[normalize-space()="Download message"]')
     }
-    get clickInvalidFieldInfo(){
+    get clickInvalidFieldInfo() {
         return $('psk-accordion-item[title="Invalid fields info"]')
     }
-    get requiredFields(){
+    get requiredFields() {
         return $('ul[data-for="@actionModalModel.secondMessageData"]')
     }
-    get closeButtonInPopupClick(){
+    get closeButtonInPopupClick() {
         return $("//button[normalize-space()='Close']")
     }
-    
+
 
     ///////
-    async Batch(){
-        
+    async Batch() {
+
         await this.batchFromSideNav.click();
     }
-    async addBatch(){
+    async addBatch() {
 
         await this.addbatchbutton.click();
-        
+
     }
-    async batchIdValue(){
-       
+    async batchIdValue() {
+
         const batchId = await this.batchIdValue1.getValue();
-        
+
         console.log(batchId)
         return batchId
 
     }
-   
 
-    async serialNum(){
-      const  SerialNumber=  (Math.floor(100000 + Math.random() * 900000)).toString()
-      return SerialNumber
+
+    async serialNum() {
+        const SerialNumber = (Math.floor(100000 + Math.random() * 900000)).toString()
+        return SerialNumber
     }
 
 
@@ -181,218 +180,218 @@ class batchesPage{
             return brandDisplayed
         }
     }
-    async siteName(site){
-        
+    async siteName(site) {
+
         await this.addsitename.click();
         await this.addsitename.setValue(site)
     }
-    async enableDaySelection(){
+    async enableDaySelection() {
         await this.enableDaySelectionCheckbox.isEnabled()
         await expect(this.enableDaySelectionCheckbox).toBeEnabled();
     }
-    async enableDaySelectionClick(){
+    async enableDaySelectionClick() {
         await this.enableDaySelectionCheckbox.click()
     }
 
-    async videoSource(link1){
+    async videoSource(link1) {
         await this.videoSourceEnter.setValue(link1)
     }
-    async enableIncorrectExpirationDateVerification(){
+    async enableIncorrectExpirationDateVerification() {
         await this.enableIncorrectExpirationDateVerificationCheckbox.isEnabled()
         await expect(this.enableIncorrectExpirationDateVerificationCheckbox).toBeEnabled();
     }
-    async enableIncorrectExpirationDateVerificationClick(){
+    async enableIncorrectExpirationDateVerificationClick() {
         await this.enableIncorrectExpirationDateVerificationCheckbox.click()
     }
-    async expirationDateVerification(){
+    async expirationDateVerification() {
         await this.expirationDateVerificationCheckbox.isEnabled()
         await expect(this.expirationDateVerificationCheckbox).toBeEnabled();
     }
-    
-    async expirationDateVerificationClick(){
+
+    async expirationDateVerificationClick() {
         await this.expirationDateVerificationCheckbox.click()
     }
-    async enableSerialNumberVerification(){
+    async enableSerialNumberVerification() {
 
         await this.enableSerialNumberVerificationCheckbox.isEnabled()
         await expect(this.enableSerialNumberVerificationCheckbox).toBeEnabled();
     }
-    async disableSerialNumberVerification(){
+    async disableSerialNumberVerification() {
 
         await this.enableSerialNumberVerificationCheckbox.click()
-       
+
     }
-    async selectUpdateValidSerialFromDropdown(updateValidSerialValue){
+    async selectUpdateValidSerialFromDropdown(updateValidSerialValue) {
         await this.selectOptionFromDropdown.selectByVisibleText(updateValidSerialValue)
-    } 
-    async enableResetAllValidSerialNumber(){
+    }
+    async enableResetAllValidSerialNumber() {
         await this.resetAllValidSerialNumberCheckbox.click()
     }
-    async enableResetAllRecalledSerialNumber(){
+    async enableResetAllRecalledSerialNumber() {
         await this.resetAllRecalledSerialNumberCheckbox.click()
     }
-    async enableResetAllDecommisionedSerialNumber(){
+    async enableResetAllDecommisionedSerialNumber() {
         await this.resetAllDecommisionedSerialNumberCheckbox.click()
     }
-    async selectUpdateRecalledSerialFromDropdown(updateRecalledSerialValue){
+    async selectUpdateRecalledSerialFromDropdown(updateRecalledSerialValue) {
         await this.selectOptionFromDropdown.selectByVisibleText(updateRecalledSerialValue)
     }
-    async selectUpdateDecommissionedFromDropdown(updateDecommissionedValue){
+    async selectUpdateDecommissionedFromDropdown(updateDecommissionedValue) {
         await this.selectOptionFromDropdown.selectByVisibleText(updateDecommissionedValue)
     }
-    async selectLostReasonFromDropdown(Lost){
+    async selectLostReasonFromDropdown(Lost) {
         await this.selectReasonFromDropdown.selectByVisibleText(Lost)
     }
-    async selectStolenReasonFromDropdown(Stolen){
+    async selectStolenReasonFromDropdown(Stolen) {
         await this.selectReasonFromDropdown.selectByVisibleText(Stolen)
     }
-    async selectDamagedReasonFromDropdown(Damaged){
+    async selectDamagedReasonFromDropdown(Damaged) {
         await this.selectReasonFromDropdown.selectByVisibleText(Damaged)
     }
 
-    
+
     // async serialNumber(){
 
-       
+
     //     const  SerialNumber=Math.floor(100000 + Math.random() * 900000)
     //     return SerialNumber
 
     // }
 
-    async enterSerialNumber(serialNumber){
+    async enterSerialNumber(serialNumber) {
         await this.enterSerialNumberField.setValue(serialNumber)
     }
-    async acceptSerialNumber(){
+    async acceptSerialNumber() {
         await this.serialNumberAcceptButton.click()
     }
-    async cancelSerialNumber(){
+    async cancelSerialNumber() {
         await this.serialNumberCancelButton.click()
     }
-    async batchMessage(message){
+    async batchMessage(message) {
         await this.batchMessageEnter.setValue(message)
     }
 
-    async checkBatchMessage()  {   
-        if(await this.batchMessageEnter.isDisplayed()==true){
-           let batchMessageDisplayed="Sample"
-           return batchMessageDisplayed
+    async checkBatchMessage() {
+        if (await this.batchMessageEnter.isDisplayed() == true) {
+            let batchMessageDisplayed = "Sample"
+            return batchMessageDisplayed
         }
-        else{
-            let batchMessageDisplayed="No Message"
-           return batchMessageDisplayed
+        else {
+            let batchMessageDisplayed = "No Message"
+            return batchMessageDisplayed
         }
     }
-    async addEpi(){
+    async addEpi() {
         await this.addEpiButton.click()
     }
-    async selectLanguage(country){
+    async selectLanguage(country) {
         await this.selectLanguageDropdown.selectByVisibleText(country)
     }
-    async selectType(type){
+    async selectType(type) {
         await this.selectTypeDropdown.selectByVisibleText(type)
     }
-    async videoSourceEpi(link){
+    async videoSourceEpi(link) {
         await this.videoSourceEpiEnter.setValue(link)
     }
-    async uploadFile(uploadEpi){
+    async uploadFile(uploadEpi) {
         await this.uploadEpiFile.addValue(uploadEpi);
     }
-    async epiDisplayed(){
-        if(await this.epiFileDisplayed.isExisting()==true){
-            let epiDisplayed="true"
-            console.log("epiDisplayed is "+epiDisplayed)
-            return epiDisplayed 
+    async epiDisplayed() {
+        if (await this.epiFileDisplayed.isExisting() == true) {
+            let epiDisplayed = "true"
+            console.log("epiDisplayed is " + epiDisplayed)
+            return epiDisplayed
         }
-        else{
-            let epiDisplayed="false"
-            console.log("epiDisplayed is "+epiDisplayed)
-            return epiDisplayed 
+        else {
+            let epiDisplayed = "false"
+            console.log("epiDisplayed is " + epiDisplayed)
+            return epiDisplayed
         }
     }
-    async enableCheckToRecallThisBatch(){
+    async enableCheckToRecallThisBatch() {
 
 
-     //   isChecked=!isChecked
-      
+        //   isChecked=!isChecked
+
         await this.enableRecallThisBatch.scrollIntoView()
-       await this.enableRecallThisBatch.click()  
-       if(isChecked == false){
-        isChecked = true
+        await this.enableRecallThisBatch.click()
+        if (isChecked == false) {
+            isChecked = true
         }
-        else{
+        else {
             isChecked = false
         }
-       // console.log("check value is "+await this.enableRecallThisBatch.isDisabled())
+        // console.log("check value is "+await this.enableRecallThisBatch.isDisabled())
         await expect(this.enableRecallThisBatch).toBeEnabled()
 
     }
-    async checkBatchRecall()  {   
-        if(isChecked){
-           let batchRecall='true'
-           return batchRecall
+    async checkBatchRecall() {
+        if (isChecked) {
+            let batchRecall = 'true'
+            return batchRecall
         }
-        else{
-            let batchRecall='false'
-           return batchRecall
+        else {
+            let batchRecall = 'false'
+            return batchRecall
         }
-           }
-    async enterRecallMessage(RecallMessage){
+    }
+    async enterRecallMessage(RecallMessage) {
         //await this.enterRecallMessageInTextbox.scrollIntoView()
         await this.enterRecallMessageInTextbox.click()
         //await this.enterRecallMessageInTextbox.clearValue()
         await this.enterRecallMessageInTextbox.setValue(RecallMessage)
     }
-    async clearRecallMessage(){
-       
+    async clearRecallMessage() {
+
         await this.enterRecallMessageInTextbox.click()
         await browser.pause(3000)
         await this.enterRecallMessageInTextbox.clearValue()
-        
+
     }
-    async checkBatchRecallMessage()  {   
-        if(await this.enterRecallMessageInTextbox.isDisplayed()==true){
-           let recallMessage="This is a sample recall message"
-           return recallMessage
+    async checkBatchRecallMessage() {
+        if (await this.enterRecallMessageInTextbox.isDisplayed() == true) {
+            let recallMessage = "This is a sample recall message"
+            return recallMessage
         }
-        else{
-            let recallMessage="No Message"
-           return recallMessage
+        else {
+            let recallMessage = "No Message"
+            return recallMessage
         }
-           }
-    async updateBatchForEdit(){
+    }
+    async updateBatchForEdit() {
         await this.updateBatchForEditButton.click()
     }
-    async cancelButton(){
+    async cancelButton() {
         await cancelButtonForBatch.click()
     }
-   
-    async acceptButton(){
+
+    async acceptButton() {
         await this.addEpiAcceptButton.scrollIntoView()
         await this.addEpiAcceptButton.click()
     }
-    async createBatch(){
+    async createBatch() {
 
         await this.createBatchButton.click()
-       
+
     }
 
-    async  deleteAllFile(){
-       
+    async deleteAllFile() {
+
         var i = 1
 
-        for (;  await browser.$("//li["+i+"]//div[1]//button[1]//i[1]").isExisting();) {
+        for (; await browser.$("//li[" + i + "]//div[1]//button[1]//i[1]").isExisting();) {
             console.log(i)
-            await browser.$("//li["+i+"]//div[1]//button[1]//i[1]").click()  
+            await browser.$("//li[" + i + "]//div[1]//button[1]//i[1]").click()
         }
-        if(await browser.$('//i[@class="fa fa-trash-o"]').isExisting()){
+        if (await browser.$('//i[@class="fa fa-trash-o"]').isExisting()) {
             await browser.$('//i[@class="fa fa-trash-o"]').click()
         }
-               
+
     }
 
 
-    async clickImport(){
-        
+    async clickImport() {
+
         await this.importButton.click()
 
         await browser.waitUntil(
@@ -403,42 +402,42 @@ class batchesPage{
             }
         );
     }
-    async selectFile(file){
-        
+    async selectFile(file) {
+
         await this.importFile.addValue(file)
     }
-    async import(){
-        
+    async import() {
+
         await this.importF.click()
     }
-    async viewMessageInFailedLogs(){
+    async viewMessageInFailedLogs() {
 
-        try{
-        await this.clickViewMessageInFailedLogs.click()
+        try {
+            await this.clickViewMessageInFailedLogs.click()
         }
 
-        catch(e){
+        catch (e) {
             console.log("success logs")
         }
     }
-    async viewMessageInSuccessLogs(){
+    async viewMessageInSuccessLogs() {
         // if(this.clickViewMessageInSuccessLogs.isExisting()==true){
 
-        try{
+        try {
             await this.clickViewMessageInSuccessLogs.click()
         }
-        catch(e){
+        catch (e) {
             console.log("failed logs")
         }
-            // return true
+        // return true
         // }
         // else{
         //     return false
         // }
-       
+
     }
-    async downloadMsgInSuccessLogs(){
-        
+    async downloadMsgInSuccessLogs() {
+
         const downloadHref = await browser.getUrl();
         // pass through Node's `URL` class
         // @see https://nodejs.org/dist/latest-v8.x/docs/api/url.html
@@ -453,44 +452,44 @@ class batchesPage{
         // get just the filename at the end of the array
         // e.g.  'some-file.txt'
         const fileName = splitPath.splice(-1)[0]
-       
+
         // join the filename to the path where we're storing the downloads
         // '/path/to/wdio/tests/tempDownload/some-file.txt'
         const filePath = path.join(global.downloadDir, fileName)
         console.log(filePath)
-        try{
-        await this.clickDownloadMsg.click()
-        await browser.pause(5000)
-        } catch(e){console.log("failed logs")}
-        
+        try {
+            await this.clickDownloadMsg.click()
+            await browser.pause(5000)
+        } catch (e) { console.log("failed logs") }
+
         let rawdata = JSON.parse(fs.readFileSync(testData.path.batchImport, 'utf8'))
-        const file1 = filePath.concat(path.sep, "batch_", rawdata.batch.batch, ".json")
-        console.log(file1)
-        try{
-            if(fs.existsSync(file1)){ 
-        let fileContents = JSON.parse(fs.readFileSync(file1, 'utf-8'))
-        // console.log(JSON.stringify(fileContents))
-        // console.log(JSON.stringify(rawdata))
-        console.log(JSON.stringify(fileContents) === JSON.stringify(rawdata))
-        await browser.pause(5000)
-        fs.unlinkSync(file1)
+        const batchFile = filePath.concat(path.sep, "batch_", rawdata.batch.batch, ".json")
+        console.log(batchFile)
+        try {
+            if (fs.existsSync(batchFile)) {
+                let fileContents = JSON.parse(fs.readFileSync(batchFile, 'utf-8'))
+                // console.log(JSON.stringify(fileContents))
+                // console.log(JSON.stringify(rawdata))
+                console.log(JSON.stringify(fileContents) === JSON.stringify(rawdata))
+                await browser.pause(5000)
+                fs.unlinkSync(batchFile)
 
             }
-            else{
+            else {
                 console.log("no file")
             }
         }
 
-        catch(e){
+        catch (e) {
             console.log("error")
         }
 
 
     }
-       
-    
-    async downloadMsgInFailedLogs(){
-        
+
+
+    async downloadMsgInFailedLogs() {
+
         const downloadHref = await browser.getUrl();
         // pass through Node's `URL` class
         // @see https://nodejs.org/dist/latest-v8.x/docs/api/url.html
@@ -505,75 +504,75 @@ class batchesPage{
         // get just the filename at the end of the array
         // e.g.  'some-file.txt'
         const fileName = splitPath.splice(-1)[0]
-        
+
         // join the filename to the path where we're storing the downloads
         // '/path/to/wdio/tests/tempDownload/some-file.txt'
         const filePath = path.join(global.downloadDir, fileName)
         console.log(filePath)
         //Click on download button
-        try{
-        await this.clickDownloadMsg.click()
-        await browser.pause(5000)
+        try {
+            await this.clickDownloadMsg.click()
+            await browser.pause(5000)
         }
-        catch(e){
+        catch (e) {
             console.log("success logs")
         }
 
         let rawdata = JSON.parse(fs.readFileSync(testData.path.batchImport, 'utf8'))
-        const file1 = filePath.concat(path.sep, "batch_", rawdata.batch.batch, ".json")
-        console.log(file1)
+        const batchFile = filePath.concat(path.sep, "batch_", rawdata.batch.batch, ".json")
+        console.log(batchFile)
 
-        try{
-            if(fs.existsSync(file1)){ 
+        try {
+            if (fs.existsSync(batchFile)) {
 
-        let fileContents = JSON.parse(fs.readFileSync(file1, 'utf-8'))
-        fs.unlinkSync(file1)
-        // console.log(JSON.stringify(fileContents))
-        // console.log(JSON.stringify(rawdata))
-        console.log(JSON.stringify(fileContents) === JSON.stringify(rawdata))
-        await browser.pause(5000)
+                let fileContents = JSON.parse(fs.readFileSync(batchFile, 'utf-8'))
+                fs.unlinkSync(batchFile)
+                // console.log(JSON.stringify(fileContents))
+                // console.log(JSON.stringify(rawdata))
+                console.log(JSON.stringify(fileContents) === JSON.stringify(rawdata))
+                await browser.pause(5000)
             }
-        else{
-            const file2 = filePath.concat(path.sep, "batch_", "undefined", ".json")
-            fs.unlinkSync(file2) 
+            else {
+                const undefinedFile = filePath.concat(path.sep, "batch_", "undefined", ".json")
+                fs.unlinkSync(undefinedFile)
+            }
         }
-    }
-        catch(e){
+        catch (e) {
             console.log("success logs")
         }
-            
-           
-               
-        
-    }
-    async invalidFieldInfo(){
-        try{
-        await this.clickInvalidFieldInfo.click()
-        }
-        catch(e){
-            console.log("success logs")
-        }
-    }
-    async invalidFieldInfoRequired(){
 
-        try{
 
-        const allFields= await this.requiredFields.getText()
-        console.log('required fields are '+allFields)
-        } 
-        catch(e){
+
+
+    }
+    async invalidFieldInfo() {
+        try {
+            await this.clickInvalidFieldInfo.click()
+        }
+        catch (e) {
             console.log("success logs")
-        }  
-    
+        }
+    }
+    async invalidFieldInfoRequired() {
+
+        try {
+
+            const allFields = await this.requiredFields.getText()
+            console.log('required fields are ' + allFields)
+        }
+        catch (e) {
+            console.log("success logs")
+        }
+
+    }
+    async closeButtonInPopup() {
+        await this.closeButtonInPopupClick.click()
+    }
+
+
+
 }
-async closeButtonInPopup(){
-    await this.closeButtonInPopupClick.click()
-}
 
 
+module.exports = new batchesPage();
 
-        }
-
-    
-    module.exports = new batchesPage();
- 

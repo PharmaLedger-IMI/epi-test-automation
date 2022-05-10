@@ -1,9 +1,9 @@
 
 
 //const expectChai = require('chai').expect;
-const testData=require('../testdata/config.json')
+const testData = require('../testdata/config.json')
 const path = require('path')
-const  {URL}  = require('url')
+const { URL } = require('url')
 const assert = require('assert');
 const fs = require('fs')
 
@@ -11,180 +11,172 @@ const fs = require('fs')
 class productsPage {
 
 
-    get openProduct(){
-       //return  $('//a[@href=\'/products\']//span')
-       return $("//p[normalize-space()='Manage Products']")
+    get openProduct() {
+        //return  $('//a[@href=\'/products\']//span')
+        return $("//p[normalize-space()='Manage Products']")
     }
-    get clickProductFromleftsideNav(){
+    get clickProductFromleftsideNav() {
         return $("=Products")
     }
-    get addProductButton(){
+    get addProductButton() {
         return $('//button[normalize-space()=\'+ ADD PRODUCT\']')
     }
-    get gtin()
-    {
+    get gtin() {
         return $("#productcode-input")
     }
-    get brand()
-    {
+    get brand() {
         return $("(//input[@placeholder='Add product name'])[1]")
     }
-    get productdescription()
-    {
+    get productdescription() {
         return $("//div//textarea[@placeholder='Add product description']")
     }
-    get uploadphoto()
-    {
+    get uploadphoto() {
         return $("//input[@type=\'file\']")
     }
-    get uploadEpiFile(){
+    get uploadEpiFile() {
         return $('(//input[@type=\'file\'])[2]')
     }
-    get epiFileDisplayed(){
+    get epiFileDisplayed() {
         return $("//li[@class='d-flex flex-row overflow-auto']")
     }
-    get internalMaterialCodeEnter(){
+    get internalMaterialCodeEnter() {
         return $("//input[@placeholder='Add internal material code']")
     }
-    get addStrengthEnter(){
+    get addStrengthEnter() {
         return $("//input[@placeholder='Add product strength']")
     }
-    get videoSourceEnter(){
+    get videoSourceEnter() {
         return $("//textarea[@placeholder='Add video source']")
     }
-    get adverseE(){
+    get adverseE() {
         return $("//label[normalize-space()='Enable Anti-Counterfeiting check for this product']")
     }
-    get adverseEventUrl(){
+    get adverseEventUrl() {
         return $("//input[@placeholder='Add Adverse Events Reporting URL']")
     }
-    get antiCounterfeitingUrl(){
+    get antiCounterfeitingUrl() {
         return $("//input[@placeholder='Add Anti-Counterfeiting End Point URL']")
     }
-    get adverseEtext(){
+    get adverseEtext() {
         return $("//input[@placeholder='Add Adverse Events Reporting URL'][@type='text']")
     }
-    get anticounter(){
+    get anticounter() {
         return $("//label[normalize-space()='Enable Anti-Counterfeiting check for this product']")
     }
-    get batchIsRecalledClick()
-    {
+    get batchIsRecalledClick() {
         return $("(//div[@class='checkbox-container featureCode-08'])//input[@type='checkbox']")
     }
-    get expirationDateIsIncorrectClick(){
+    get expirationDateIsIncorrectClick() {
         return $("(//div[@class='checkbox-container featureCode-07'])[1]//input[@type='checkbox'][1]")
     }
-    get batchenabled()
-    {
+    get batchenabled() {
         return $('div[class="checkbox-container featureCode-02"] input[value="true"]')
     }
-    get batchIsExpiredCheckbox(){
+    get batchIsExpiredCheckbox() {
         return $("(//div[@class='checkbox-container featureCode-02'])//input[@type='checkbox']")
     }
-    get snIsInRecallListClick()
-    {
+    get snIsInRecallListClick() {
         return $("(//div[@class='checkbox-container featureCode-07'])[2]//input[@type='checkbox'][1]")
     }
-    get snIsInDecommissionedListClick(){
+    get snIsInDecommissionedListClick() {
         return $("(//div[@class='checkbox-container featureCode-07'])[3]//input[@type='checkbox'][1]")
     }
-    get snIsUnknownClick(){
+    get snIsUnknownClick() {
         return $("(//div[@class='checkbox-container featureCode-07'])[4]//input[@type='checkbox'][1]")
     }
-    get batchNumberUnknownEnabled(){
+    get batchNumberUnknownEnabled() {
         return $("(//div[@class='checkbox-container featureCode-03'])[1]//input[@type='checkbox'][1]")
     }
-    get disableBatchNumberUnknownCheckbox(){
+    get disableBatchNumberUnknownCheckbox() {
         return $("(//div[@class='checkbox-container featureCode-03'])[1]//input[@type='checkbox'][1]")
     }
-    get patientInformation()
-    {
+    get patientInformation() {
         return $("//div[contains(text(),'Patient Specific Information Leaflet')]")
     }
-    get healthcareInformation(){
+    get healthcareInformation() {
         return $("//div[contains(text(),'Healthcare practitioner information')]")
     }
-    get addEpiButton(){
+    get addEpiButton() {
         return $('//button[normalize-space()=\'+ Add ePI\']')
     }
-    get selectLanguageDropdown(){
+    get selectLanguageDropdown() {
         return $('//select[@id=\'language\']')
     }
-    get selectTypeDropdown(){
+    get selectTypeDropdown() {
         // return $('//select[@id=\'type\']')
         return $('//select[@class="document-type-select dsu-select"]')
     }
-    get videoSourceEpiEnter(){
+    get videoSourceEpiEnter() {
         return $("//textarea[@value='@modalData.product.videoSource']")
     }
-    get addEpiAcceptButton(){
+    get addEpiAcceptButton() {
         return $("//button[normalize-space()='Accept']")
     }
-    get clickDeleteLanguageButton(){
+    get clickDeleteLanguageButton() {
         return $("//button[@class='delete-language']")
     }
-    get clickDeleteSecondLanguage(){
+    get clickDeleteSecondLanguage() {
         //return  $('//li[2]//div[1]//button[1]//i[1]')
-        return  $("(//button[@class='delete-language'])[2]")
+        return $("(//button[@class='delete-language'])[2]")
     }
-    get marketManagementButtonClick(){
+    get marketManagementButtonClick() {
         return $("div:nth-child(2) > div:nth-child(1) > psk-button:nth-child(2) > button:nth-child(1)")
     }
-    get addMarketButtonClick(){
+    get addMarketButtonClick() {
         return $("//button[normalize-space()='Add Market']")
     }
-    get selectLanguageInMarketPageDropdown(){
+    get selectLanguageInMarketPageDropdown() {
         return $("//select[@id='selectcountry']")
     }
-    get enterNationalCodeInTextbox(){
+    get enterNationalCodeInTextbox() {
         return $("//input[@placeholder='Enter national code']")
     }
-    get enterMAHNameInTextbox(){
+    get enterMAHNameInTextbox() {
         return $("//input[@placeholder='Enter MAH name']")
     }
-    get enterLegalEntityNameInTextbox(){
+    get enterLegalEntityNameInTextbox() {
         return $("//input[@placeholder='Enter legal entity name']")
     }
-    get addMarketButtonInPopupClick(){
+    get addMarketButtonInPopupClick() {
         return ('document.querySelector("body > webc-app-root:nth-child(1) > webc-app-container:nth-child(3) > div:nth-child(1) > webc-app-router:nth-child(1) > stencil-router:nth-child(1) > stencil-route-switch:nth-child(1) > stencil-route:nth-child(9) > webc-app-loader:nth-child(1) > psk-page:nth-child(1) > h6:nth-child(1) > webc-container:nth-child(1) > webc-modal:nth-child(3) > footer:nth-child(3) > psk-button:nth-child(2) > button:nth-child(1)").click()')
     }
-    get closeButtonInPopupClick(){
+    get closeButtonInPopupClick() {
         return $("//button[normalize-space()='Close']")
     }
 
-    
-    get saveProductButton(){
+
+    get saveProductButton() {
         return $("//button[normalize-space()='Save Product']")
         //return document.querySelector(`psk-button[data-tag="add-product"] button[class="btn btn-primary"]`)
     }
-    get searchProduct(){
+    get searchProduct() {
         return $("//input[@id='code-search']")
     }
-    get updateProductButton(){
+    get updateProductButton() {
         return $("//button[normalize-space()='Update Product']")
     }
-    get importButton(){
+    get importButton() {
         return $('button[data-tag="import"]')
     }
-    get importFile(){
+    get importFile() {
         return $('//input[@type="file"]')
     }
-    get importF(){
+    get importF() {
         return $('//button[normalize-space()="Import"]')
     }
-    get clickViewMessageInFailedLogs(){
+    get clickViewMessageInFailedLogs() {
         return $('webc-datatable[datasource="@failedDataSource"] button[class="btn btn-link p-0 col align-self-center text-left"]')
     }
-    get clickInvalidFieldInfo(){
+    get clickInvalidFieldInfo() {
         return $('psk-accordion-item[title="Invalid fields info"]')
     }
-    get clickViewMessageInSuccessLogs(){
+    get clickViewMessageInSuccessLogs() {
         return $('div:nth-child(14) button:nth-child(1)')
     }
-    get clickDownloadMsg(){
+    get clickDownloadMsg() {
         return $('//button[normalize-space()="Download message"]')
     }
-    get requiredFields(){
+    get requiredFields() {
         return $('ul[data-for="@actionModalModel.secondMessageData"]')
     }
     // get inventedNameField(){
@@ -196,221 +188,220 @@ class productsPage {
     // get nameMedicinalProductField(){
     //     return $('//h6[normalize-space()="nameMedicinalProduct - Required field"]')
     // }
-    
-   
-    get cancelButton()
-    {
+
+
+    get cancelButton() {
         return $("//button[normalize-space()='Cancel']")
-       
+
     }
-    get clickViewEditButton(){
+    get clickViewEditButton() {
         return browser.execute('document.querySelector("button[data-tag=\'edit-product\']").click()')
     }
-    
 
 
-    
-    async clickProduct(){
-       
+
+
+    async clickProduct() {
+
         await this.openProduct.click();
-        
+
     }
-    async clickProductFromSideNav(){
+    async clickProductFromSideNav() {
         await this.clickProductFromleftsideNav.click()
     }
-    async addProduct(){
-       
+    async addProduct() {
+
         await this.addProductButton.click();
     }
-    async enterGtinCode(gtinNumber){
-       
+    async enterGtinCode(gtinNumber) {
+
         await this.gtin.click();
         await this.gtin.clearValue();
         await this.gtin.setValue(gtinNumber);
     }
-    async brandName(brandName){
-       
-       await this.brand.setValue(brandName);
+    async brandName(brandName) {
+
+        await this.brand.setValue(brandName);
         //const prodName=await this.brand.setValue(brandName);
         //console.log("prodName"+prodName)
     }
-    async checkBrandName()  {   
-        if(await this.brand.isDisplayed()==true){
-           let brandDisplayed=(await this.brand.getValue()).toString()
-           console.log("ProductName is "+brandDisplayed)
-           return brandDisplayed
+    async checkBrandName() {
+        if (await this.brand.isDisplayed() == true) {
+            let brandDisplayed = (await this.brand.getValue()).toString()
+            console.log("ProductName is " + brandDisplayed)
+            return brandDisplayed
         }
-        else{
-            let brandDisplayed="No Message"
-           return brandDisplayed
+        else {
+            let brandDisplayed = "No Message"
+            return brandDisplayed
         }
     }
-    async productDescription(description){
-       
+    async productDescription(description) {
+
         await this.productdescription.setValue(description);
     }
-    async productPhoto(uploadProductPhoto){
-                             
+    async productPhoto(uploadProductPhoto) {
+
         console.log(uploadProductPhoto)
         await this.uploadphoto.addValue(uploadProductPhoto);
-       
+
     }
-    async uploadFile(uploadEpi){
+    async uploadFile(uploadEpi) {
         await this.uploadEpiFile.addValue(uploadEpi);
     }
-    async epiDisplayed(){
-        if(await this.epiFileDisplayed.isExisting()==true){
-            let epiDisplayed="true"
-            console.log("epiDisplayed is "+epiDisplayed)
-            return epiDisplayed 
+    async epiDisplayed() {
+        if (await this.epiFileDisplayed.isExisting() == true) {
+            let epiDisplayed = "true"
+            console.log("epiDisplayed is " + epiDisplayed)
+            return epiDisplayed
         }
-        else{
-            let epiDisplayed="false"
-            console.log("epiDisplayed is "+epiDisplayed)
-            return epiDisplayed 
+        else {
+            let epiDisplayed = "false"
+            console.log("epiDisplayed is " + epiDisplayed)
+            return epiDisplayed
         }
     }
-    async internalMaterialCode(code){
+    async internalMaterialCode(code) {
         await this.internalMaterialCodeEnter.setValue(code)
     }
-    async addStrength(strength){
+    async addStrength(strength) {
         await this.addStrengthEnter.setValue(strength)
     }
-    async videoSource(link1){
+    async videoSource(link1) {
         await this.videoSourceEnter.setValue(link1)
     }
-    async adverseEvents(){
-       
+    async adverseEvents() {
+
         await this.adverseE.isEnabled();
-        await expect(this.adverseE).toBeEnabled()  
-        const adverseEvent=await this.adverseEventUrl.getValue()
-        console.log(adverseEvent)  
-        
-        }
-    async antiCounterfeiting(){
-       
-        await this.anticounter.isEnabled();
-        await expect(this.anticounter).toBeEnabled();  
-        const antiCounterfieting= await this.antiCounterfeitingUrl.getValue()
-        console.log(antiCounterfieting)    
-        
+        await expect(this.adverseE).toBeEnabled()
+        const adverseEvent = await this.adverseEventUrl.getValue()
+        console.log(adverseEvent)
+
     }
-    async enableBatchIsRecalled(){
-       
+    async antiCounterfeiting() {
+
+        await this.anticounter.isEnabled();
+        await expect(this.anticounter).toBeEnabled();
+        const antiCounterfieting = await this.antiCounterfeitingUrl.getValue()
+        console.log(antiCounterfieting)
+
+    }
+    async enableBatchIsRecalled() {
+
         await this.batchIsRecalledClick.click();
         //await expect(this.batchIsRecalledClick).toBeEnabled();
-        
+
     }
-    async enableExpirationDateIsIncorrect(){
+    async enableExpirationDateIsIncorrect() {
         await this.expirationDateIsIncorrectClick.click()
-       // await expect(this.batchIsRecalledClick).toBeEnabled();
+        // await expect(this.batchIsRecalledClick).toBeEnabled();
     }
-    async batchExpired(){
-              
+    async batchExpired() {
+
         await this.batchenabled.isEnabled();
         //await expect(this.batchenabled).toBeEnabled(); 
     }
-    async batchIsExpired(){
+    async batchIsExpired() {
         await this.batchIsExpiredCheckbox.click();
     }
-    async enableSnIsInRecallList(){
+    async enableSnIsInRecallList() {
         await this.snIsInRecallListClick.scrollIntoView()
         await this.snIsInRecallListClick.click();
-        
+
     }
-    async checkSnIsInRecallList()  {   
-        if(await this.snIsInRecallListClick.isEnabled()==true){
-           let snIsInRecallList='true'
-           return snIsInRecallList
+    async checkSnIsInRecallList() {
+        if (await this.snIsInRecallListClick.isEnabled() == true) {
+            let snIsInRecallList = 'true'
+            return snIsInRecallList
         }
-        else{
-            let snIsInRecallList='false'
-           return snIsInRecallList
+        else {
+            let snIsInRecallList = 'false'
+            return snIsInRecallList
         }
-           }
-    async enableSnIsInDecommissionedList(){
+    }
+    async enableSnIsInDecommissionedList() {
         await this.snIsInDecommissionedListClick.click()
-       // await expect(this.snIsInDecommissionedListClick).toBeSelected(); 
+        // await expect(this.snIsInDecommissionedListClick).toBeSelected(); 
     }
-    async enableSnIsUnknown(){
+    async enableSnIsUnknown() {
         await this.snIsUnknownClick.click()
         //await expect(this.snIsUnknownClick).toBeSelected(); 
     }
-    async batchNumberUnknown(){
+    async batchNumberUnknown() {
         await this.batchNumberUnknownEnabled.isEnabled()
         //await expect(this.batchNumberUnknownEnabled).toBeEnabled(); 
     }
-    async disableBatchNumberUnknown(){
+    async disableBatchNumberUnknown() {
         await this.disableBatchNumberUnknownCheckbox.click()
     }
 
-    
-    async patientInfo(){
-              
-        const patientinfo= await this.patientInformation.getText();
-        console.log(""+patientinfo);
-        const healthinfo= await this.healthcareInformation.getText();
-        console.log(""+healthinfo)
+
+    async patientInfo() {
+
+        const patientinfo = await this.patientInformation.getText();
+        console.log("" + patientinfo);
+        const healthinfo = await this.healthcareInformation.getText();
+        console.log("" + healthinfo)
     }
-    async addEpi(){
+    async addEpi() {
         await this.addEpiButton.click()
     }
-    async selectLanguage(country){
+    async selectLanguage(country) {
         await this.selectLanguageDropdown.selectByVisibleText(country)
     }
-    async selectType(type){
+    async selectType(type) {
         await this.selectTypeDropdown.selectByVisibleText(type)
     }
-    async videoSourceEpi(link2){
+    async videoSourceEpi(link2) {
         await this.videoSourceEpiEnter.setValue(link2)
     }
 
-    async acceptButton(){
+    async acceptButton() {
         await this.addEpiAcceptButton.scrollIntoView()
-         await this.addEpiAcceptButton.click()
-     }
+        await this.addEpiAcceptButton.click()
+    }
 
-    async clickDeleteLanguage(){
+    async clickDeleteLanguage() {
         await this.clickDeleteLanguageButton.click()
     }
-    async deleteSecondLanguage(){
+    async deleteSecondLanguage() {
         await this.clickDeleteSecondLanguage.click()
     }
 
-   
 
-   
 
-    async marketManagementButton(){
+
+
+    async marketManagementButton() {
         await this.marketManagementButtonClick.scrollIntoView()
         await this.marketManagementButtonClick.click()
     }
-    async addMarketButton(){
+    async addMarketButton() {
         await this.addMarketButtonClick.click()
     }
-   async selectLanguageInMarketPage(country1){
-       await this.selectLanguageInMarketPageDropdown.selectByVisibleText(country1)
-   }
-   async enterNationalCode(NationalCode){
-       await this.enterNationalCodeInTextbox.setValue(NationalCode)
-   }
-   async enterMAHName(MAHName){
-       await this.enterMAHNameInTextbox.setValue(MAHName)
-   }
-   async enterLegalEntityName(LegalEntityName){
-       await this.enterLegalEntityNameInTextbox.setValue(LegalEntityName)
-   }
-   async addMarketButtonInPopup(){
-       await this.addMarketButtonInPopupClick.execute()
-   }
-   async closeButtonInPopup(){
-       await this.closeButtonInPopupClick.click()
-   }
-    async Cancel(){
-    
+    async selectLanguageInMarketPage(country1) {
+        await this.selectLanguageInMarketPageDropdown.selectByVisibleText(country1)
+    }
+    async enterNationalCode(NationalCode) {
+        await this.enterNationalCodeInTextbox.setValue(NationalCode)
+    }
+    async enterMAHName(MAHName) {
+        await this.enterMAHNameInTextbox.setValue(MAHName)
+    }
+    async enterLegalEntityName(LegalEntityName) {
+        await this.enterLegalEntityNameInTextbox.setValue(LegalEntityName)
+    }
+    async addMarketButtonInPopup() {
+        await this.addMarketButtonInPopupClick.execute()
+    }
+    async closeButtonInPopup() {
+        await this.closeButtonInPopupClick.click()
+    }
+    async Cancel() {
+
         await this.cancelButton.click();
     }
-    async saveProduct(){
+    async saveProduct() {
         await this.saveProductButton.click();
         // await browser.waitUntil(
         //     async () => (await $('//span[@slot="page-title"]').waitForVisible()),
@@ -424,20 +415,20 @@ class productsPage {
 
 
     }
-    async saveProductBtn(){
+    async saveProductBtn() {
         await this.saveProductButton
     }
 
     ///edit
-    async searchProductCode(code){
+    async searchProductCode(code) {
         await this.searchProduct.setValue(code)
     }
-    async updateProduct(){
+    async updateProduct() {
         await this.updateProductButton.scrollIntoView()
         await this.updateProductButton.click()
     }
-    async clickImport(){
-        
+    async clickImport() {
+
         await this.importButton.click()
         await browser.pause(5000)
         await browser.waitUntil(
@@ -448,12 +439,12 @@ class productsPage {
             }
         );
     }
-    async selectFile(file){
-        
+    async selectFile(file) {
+
         await this.importFile.addValue(file)
     }
-    async import(){
-        
+    async import() {
+
         await this.importF.click()
         // await browser.waitUntil(
         //     async () => (await $("(//div[@class='circle circle-8'])[1]").waitForDisplayed({ reverse: true })),
@@ -463,134 +454,134 @@ class productsPage {
         //     }
         // );
     }
-    async viewMessageInFailedLogs(){
+    async viewMessageInFailedLogs() {
 
-        try{
-        
-        await this.clickViewMessageInFailedLogs.click()
+        try {
+
+            await this.clickViewMessageInFailedLogs.click()
         }
-        catch(e){
+        catch (e) {
             console.log("Success logs")
         }
     }
-    async viewMessageInSuccessLogs(){
-        
+    async viewMessageInSuccessLogs() {
+
         await this.clickViewMessageInSuccessLogs.click()
     }
-    async downloadMsgInSuccessLogs(){
-        
-       
-    const downloadHref = await browser.getUrl();
-     // pass through Node's `URL` class
-     // @see https://nodejs.org/dist/latest-v8.x/docs/api/url.html
-    const downloadUrl = new URL(downloadHref);
-     // get the 'pathname' off the url
-     // e.g. 'download/some-file.txt'
-     const fullPath = downloadUrl.pathname;
-     console.log("fullpath "+fullPath)
-     // split in to an array, so we can get just the filename
-     // e.g. ['download', 'some-file.txt']
-     const splitPath = fullPath.split('/')
-     // get just the filename at the end of the array
-     // e.g.  'some-file.txt'
+    async downloadMsgInSuccessLogs() {
+
+
+        const downloadHref = await browser.getUrl();
+        // pass through Node's `URL` class
+        // @see https://nodejs.org/dist/latest-v8.x/docs/api/url.html
+        const downloadUrl = new URL(downloadHref);
+        // get the 'pathname' off the url
+        // e.g. 'download/some-file.txt'
+        const fullPath = downloadUrl.pathname;
+        console.log("fullpath " + fullPath)
+        // split in to an array, so we can get just the filename
+        // e.g. ['download', 'some-file.txt']
+        const splitPath = fullPath.split('/')
+        // get just the filename at the end of the array
+        // e.g.  'some-file.txt'
         const fileName = splitPath.splice(-1)[0]
         // join the filename to the path where we're storing the downloads
         // '/path/to/wdio/tests/tempDownload/some-file.txt'
         const filePath = path.join(global.downloadDir, fileName)
         console.log(filePath)
-        try{
-        await this.clickDownloadMsg.click()
-        await browser.pause(5000)
+        try {
+            await this.clickDownloadMsg.click()
+            await browser.pause(5000)
         }
-        catch(e){
+        catch (e) {
             console.log("Success logs")
         }
 
         let rawdata = JSON.parse(fs.readFileSync(testData.path.productImport, 'utf8'))
 
-        const file1 = filePath.concat(path.sep, "product_", rawdata.product.productCode, ".json")
-        console.log(file1)
-        let fileContents = JSON.parse(fs.readFileSync(file1, 'utf-8'))
+        const productFile = filePath.concat(path.sep, "product_", rawdata.product.productCode, ".json")
+        console.log(productFile)
+        let fileContents = JSON.parse(fs.readFileSync(productFile, 'utf-8'))
         // console.log(JSON.stringify(fileContents))
         // console.log(JSON.stringify(rawdata))
         console.log(JSON.stringify(fileContents) === JSON.stringify(rawdata))
         await browser.pause(5000)
-        fs.unlinkSync(file1)
-        
+        fs.unlinkSync(productFile)
+
     }
-    async downloadMsgInFailedLogs(){
+    async downloadMsgInFailedLogs() {
 
         const downloadHref = await browser.getUrl();
-     // pass through Node's `URL` class
-     // @see https://nodejs.org/dist/latest-v8.x/docs/api/url.html
-    const downloadUrl = new URL(downloadHref);
-     // get the 'pathname' off the url
-     // e.g. 'download/some-file.txt'
-     const fullPath = downloadUrl.pathname;
-     console.log("fullpath "+fullPath)
-     // split in to an array, so we can get just the filename
-     // e.g. ['download', 'some-file.txt']
-     const splitPath = fullPath.split('/')
-     // get just the filename at the end of the array
-     // e.g.  'some-file.txt'
+        // pass through Node's `URL` class
+        // @see https://nodejs.org/dist/latest-v8.x/docs/api/url.html
+        const downloadUrl = new URL(downloadHref);
+        // get the 'pathname' off the url
+        // e.g. 'download/some-file.txt'
+        const fullPath = downloadUrl.pathname;
+        console.log("fullpath " + fullPath)
+        // split in to an array, so we can get just the filename
+        // e.g. ['download', 'some-file.txt']
+        const splitPath = fullPath.split('/')
+        // get just the filename at the end of the array
+        // e.g.  'some-file.txt'
         const fileName = splitPath.splice(-1)[0]
-      
+
         // join the filename to the path where we're storing the downloads
         // '/path/to/wdio/tests/tempDownload/some-file.txt'
         const filePath = path.join(global.downloadDir, fileName)
         console.log(filePath)
-        try{
-        await this.clickDownloadMsg.click()
-        }catch(e){
+        try {
+            await this.clickDownloadMsg.click()
+        } catch (e) {
             console.log("success logs")
         }
         await browser.pause(5000)
 
         let rawdata = JSON.parse(fs.readFileSync(testData.path.productImport, 'utf8'))
-        const file1 = filePath.concat(path.sep, "product_", rawdata.product.productCode, ".json")
-        console.log(file1)
+        const productFile = filePath.concat(path.sep, "product_", rawdata.product.productCode, ".json")
+        console.log(productFile)
         await browser.pause(5000)
-        try{
-        if(fs.existsSync(file1)){ 
+        try {
+            if (fs.existsSync(productFile)) {
 
-        let fileContents = JSON.parse(fs.readFileSync(file1, 'utf-8'))
-        fs.unlinkSync(file1)
-        // console.log(JSON.stringify(fileContents))
-        // console.log(JSON.stringify(rawdata))
-        console.log(JSON.stringify(fileContents) === JSON.stringify(rawdata))
-        await browser.pause(5000)
-    }
-else{
-            const file2 = filePath.concat(path.sep, "product_", "undefined", ".json")
-            console.log(file2)
-            fs.unlinkSync(file2)
-        } 
-    }
-        catch(e){
+                let fileContents = JSON.parse(fs.readFileSync(productFile, 'utf-8'))
+                fs.unlinkSync(productFile)
+                // console.log(JSON.stringify(fileContents))
+                // console.log(JSON.stringify(rawdata))
+                console.log(JSON.stringify(fileContents) === JSON.stringify(rawdata))
+                await browser.pause(5000)
+            }
+            else {
+                const undefinedFile = filePath.concat(path.sep, "product_", "undefined", ".json")
+                console.log(undefinedFile)
+                fs.unlinkSync(undefinedFile)
+            }
+        }
+        catch (e) {
             console.log("undefined file")
         }
-           
+
     }
-    
-    async invalidFieldInfo(){
-        try{
-        await this.clickInvalidFieldInfo.click()
+
+    async invalidFieldInfo() {
+        try {
+            await this.clickInvalidFieldInfo.click()
         }
-        catch(e){
+        catch (e) {
             console.log("success logs")
         }
     }
-    async invalidFieldInfoRequired(){
+    async invalidFieldInfoRequired() {
 
-            try{
-            const allFields= await this.requiredFields.getText()
-            console.log('required fields are '+allFields) 
-            }  
-            catch(e){
-                console.log("success logs")
-            }        
+        try {
+            const allFields = await this.requiredFields.getText()
+            console.log('required fields are ' + allFields)
+        }
+        catch (e) {
+            console.log("success logs")
+        }
     }
-        
+
 }
 
 module.exports = new productsPage();

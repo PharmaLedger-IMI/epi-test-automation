@@ -1,24 +1,23 @@
-const batches= require('../pageobjects/batches.page.js');
-const info=require('../utility/reusableFile')
-const matrix=require('../utility/2dMatrixPage')
-const data=require('../utility/expectationFile')
-
-const wait=require('../utility/timeout')
-const testData=require('../testdata/config.json')
+const batches = require('../pageobjects/batches.page.js');
+const info = require('../utility/reusableFile')
+const matrix = require('../utility/2dMatrixPage')
+const data = require('../utility/expectationFile')
+const wait = require('../utility/timeout')
+const testData = require('../testdata/config.json')
 const allureReporter = require('@wdio/allure-reporter').default
 const util = require('util');
 const exec = util.promisify(require('child_process').exec);
 
 describe('019_Create a batch with batch message', () => {
 
-    if(!process.env.npm_config_browserOnly){
-        
+    if (!process.env.npm_config_browserOnly) {
 
-    after(async () => {
-        console.log("Starting Mobile Execution");
-        const { stdout1, stderr1 } =await exec('cd ../epi-mobileapp-test-automation && npm run test');
-        console.log('stdout:', stdout1);
-        console.log('stderr:', stderr1);
+
+        after(async () => {
+            console.log("Starting Mobile Execution");
+            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npm run createTheBatchWithBatchMsgTest');
+            console.log('stdout:', stdout1);
+            console.log('stderr:', stderr1);
         })
         console.log("Running test suite in incremental mode and browser tests only")
     } else {
@@ -29,8 +28,9 @@ describe('019_Create a batch with batch message', () => {
 
 
     it('Browser - should create a batch with a batch message', async () => {
-        allureReporter.addDescription("create new batch and enter batch message and update valid serial number")
-        allureReporter.startStep(' Create a batch with a batch message.')
+        allureReporter.addDescription("Create new batch and enter batch message and update valid serial number")
+        allureReporter.addStep('Create a batch with a batch message.')
+        allureReporter.addStep('Scan the batch')
         allureReporter.addTestId('BatchRecallAndBatchMessage_11_2')
         await batches.Batch();
         await wait.setTimeoutwait(4);
@@ -53,7 +53,7 @@ describe('019_Create a batch with batch message', () => {
             })();
         }, info.getCurrentRandomDate());
         await wait.setTimeoutwait(4);
-        const selectBox = await browser.$('//psk-select[@class=\'default-select hydrated\']//select[@class=\'form-control\']');  
+        const selectBox = await browser.$('//psk-select[@class=\'default-select hydrated\']//select[@class=\'form-control\']');
         await selectBox.selectByAttribute('value', info.getProductId());
         await wait.setTimeoutwait(3);
         await batches.videoSource(testData.newBatchDetails.videoSource)
@@ -74,19 +74,19 @@ describe('019_Create a batch with batch message', () => {
         info.setBatchMsg(await batches.checkBatchMessage())
         await wait.setTimeoutwait(3);
         //generate expectation file 
-        data.generateExpectationFile(info.getProductId(), await batches.batchIdValue(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), "",info.getBatchMsg(),"", "" )
+        data.generateExpectationFile(info.getProductId(), await batches.batchIdValue(), info.getCurrentRandomDate(), info.getSerialNumber(), info.getBrandName(), "", info.getBatchMsg(), "", "")
         await wait.setTimeoutwait(12);
         //generate 2d matrix image
         matrix.generate2dMatrixImage(info.getProductId(), await batches.batchIdValue(), info.getCurrentRandomDate(), info.getSerialNumber())
         await wait.setTimeoutwait(12);
-       // create batch
+        // create batch
         await batches.createBatch()
         await wait.setTimeoutwait(19);
 
-       
-        allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
-        allureReporter.endStep("passed");
-       
+
+        allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
+        // allureReporter.endStep("passed");
+
     })
 
 })    

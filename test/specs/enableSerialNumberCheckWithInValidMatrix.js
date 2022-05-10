@@ -1,10 +1,10 @@
 
-const batches= require('../pageobjects/batches.page.js');
-const matrix=require('../utility/2dMatrixPage')
-const data=require('../utility/expectationFile')
-const info=require('../utility/reusableFile')
-const wait=require('../utility/timeout')
-const testData=require('../testdata/config.json')
+const batches = require('../pageobjects/batches.page.js');
+const matrix = require('../utility/2dMatrixPage')
+const data = require('../utility/expectationFile')
+const info = require('../utility/reusableFile')
+const wait = require('../utility/timeout')
+const testData = require('../testdata/config.json')
 
 const allureReporter = require('@wdio/allure-reporter').default
 const util = require('util');
@@ -13,32 +13,32 @@ const exec = util.promisify(require('child_process').exec);
 
 describe('008_Edit batch and enable serial number check with invalid SN ', () => {
 
-    if(!process.env.npm_config_browserOnly){
-        
+    if (!process.env.npm_config_browserOnly) {
 
 
-    after(async () => {
-        console.log("Starting Mobile Execution");
-        const { stdout1, stderr1 } =await exec('cd ../epi-mobileapp-test-automation && npm run enableSnCheckSnIsInValidTest');
-        console.log('stdout:', stdout1);
-        console.log('stderr:', stderr1);
-        }) 
-    console.log("Running test suite in incremental mode and browser tests only")
-        
-        } else {
-        
+
+        after(async () => {
+            console.log("Starting Mobile Execution");
+            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npm run enableTheSnCheckSnIsInValidTest');
+            console.log('stdout:', stdout1);
+            console.log('stderr:', stderr1);
+        })
+        console.log("Running test suite in incremental mode and browser tests only")
+
+    } else {
+
         console.log("different flag")
-        
-        }  
+
+    }
 
     it('Browser - should verify that the serial number check is enabled by default ', async () => {
         allureReporter.addDescription('Edit batch and verify enable serial number verification and update valid serial number. Pass invalid serial number in matrix')
-        allureReporter.startStep('Verify that the serial number check is enabled by default in batch')
-        allureReporter.startStep('Scan an invalid data matrix code to verify that the serial number check fails.')
+        allureReporter.addStep('Verify that the serial number check is enabled by default in batch')
+        allureReporter.addStep('Scan an invalid data matrix code to verify that the serial number check fails.')
         allureReporter.addTestId('BasicAuthFeatureTest_1_2')
         await batches.Batch();
         await wait.setTimeoutwait(3);
-        
+
         //edit Batch
         let editValue = info.getbatchId()
         console.log("editValue is " + editValue)
@@ -48,7 +48,7 @@ describe('008_Edit batch and enable serial number check with invalid SN ', () =>
         //check enable serial number verification
         await batches.enableSerialNumberVerification()
         await wait.setTimeoutwait(3);
-        
+
         //select valid serial number
         await batches.selectUpdateValidSerialFromDropdown(testData.newBatchDetails.updateValid)
         await wait.setTimeoutwait(3);
@@ -61,22 +61,22 @@ describe('008_Edit batch and enable serial number check with invalid SN ', () =>
         await batches.acceptSerialNumber()
         await wait.setTimeoutwait(3);
         //store invalid serial number
-        const invalidSerialNumber=await batches.serialNum()
-        console.log('invalid serial number '+invalidSerialNumber)
+        const invalidSerialNumber = await batches.serialNum()
+        console.log('invalid serial number ' + invalidSerialNumber)
         await wait.setTimeoutwait(3);
         //generate expectation file               
-        data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  invalidSerialNumber,info.getBrandName(), "","","", "" )
+        data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), invalidSerialNumber, info.getBrandName(), "", "", "", "")
         await wait.setTimeoutwait(12);
         //generate 2d matrix image 
         matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), invalidSerialNumber)
         await wait.setTimeoutwait(9);
-         //update batch
+        //update batch
         await batches.updateBatchForEdit()
         await wait.setTimeoutwait(18);
-        allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
-        allureReporter.endStep("passed");
-        allureReporter.endStep("passed");
-       
-  
+        allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
+        // allureReporter.endStep("passed");
+        // allureReporter.endStep("passed");
+
+
     })
 })    

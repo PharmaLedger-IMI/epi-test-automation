@@ -12,23 +12,22 @@ class LoginPage extends Page {
      */
 
 
-    get enterpriseWallet(){
+    get enterpriseWallet() {
         return $('=Enterprise Wallet')
     }
-    get microsoftUrl()
-    {
+    get microsoftUrl() {
         return browser.url('https://upm365.sharepoint.com/sites/PharmaLedger/Documentos%20compartidos/Forms/AllItems.aspx')
     }
-    get enterMicrosoftEmail(){
+    get enterMicrosoftEmail() {
         return $('//input[@type=\'email\']')
     }
-    get enterMicrosoftPassword(){
+    get enterMicrosoftPassword() {
         return $('//input[@type=\'password\']')
     }
-    get microsoftNextButton(){
+    get microsoftNextButton() {
         return $('//input[@type=\'submit\']')
     }
-    get staySigninNo(){
+    get staySigninNo() {
         return $('//input[@id=\'idBtn_Back\']')
     }
 
@@ -44,26 +43,26 @@ class LoginPage extends Page {
     //     await this.btnSubmit.click();
     // }
 
-    async openEnterpriseWallet(){
+    async openEnterpriseWallet() {
         await this.enterpriseWallet.click();
     }
-    async openMicrosoftUrl(){
+    async openMicrosoftUrl() {
         await this.microsoftUrl;
     }
-    async microsoftEmail(mail){
+    async microsoftEmail(mail) {
         await this.enterMicrosoftEmail.setValue(mail);
     }
-    async microsoftPassword(pwd){
+    async microsoftPassword(pwd) {
         await this.enterMicrosoftPassword.setValue(pwd);
     }
-    async microsoftNext(){
+    async microsoftNext() {
         await this.microsoftNextButton.click();
     }
-    async stayNo(){
+    async stayNo() {
         await this.staySigninNo.click();
     }
-   
-    
+
+
     /**
      * overwrite specific options to adapt it to page object
      */

@@ -1,37 +1,37 @@
 
-const batches= require('../pageobjects/batches.page.js');
-const matrix=require('../utility/2dMatrixPage')
-const data=require('../utility/expectationFile')
-const info=require('../utility/reusableFile')
-const wait=require('../utility/timeout')
-const testData=require('../testdata/config.json')
+const batches = require('../pageobjects/batches.page.js');
+const matrix = require('../utility/2dMatrixPage')
+const data = require('../utility/expectationFile')
+const info = require('../utility/reusableFile')
+const wait = require('../utility/timeout')
+const testData = require('../testdata/config.json')
 const allureReporter = require('@wdio/allure-reporter').default
 const util = require('util');
 const exec = util.promisify(require('child_process').exec);
 
 describe('011_Edit batch and enable expiry date check with valid expiry date ', () => {
 
-    if(!process.env.npm_config_browserOnly){
-        
+    if (!process.env.npm_config_browserOnly) {
 
-    after(async () => {
-        console.log("Starting Mobile Execution");
-        const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npm run test');
-        console.log('stdout:', stdout1);
-        console.log('stderr:', stderr1);
-    })
+
+        after(async () => {
+            console.log("Starting Mobile Execution");
+            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npm run enableTheExpiryDateCheckValidExpiryDateTest');
+            console.log('stdout:', stdout1);
+            console.log('stderr:', stderr1);
+        })
 
         console.log("Running test suite in incremental mode and browser tests only")
 
     } else {
 
         console.log("different flag")
-        } 
+    }
 
     it('Browser - should verify that the expiry date check is enabled by default', async () => {
         allureReporter.addDescription('Edit batch and verify that the expiry date check is enabled. Pass valid expiry date in matrix')
-        allureReporter.startStep(' Verify that the expiry date check is enabled by default in batch ')
-        allureReporter.startStep(' Scan the valid data matrix code and verify that the expiry date is valid. ')
+        allureReporter.addStep(' Verify that the expiry date check is enabled by default in batch ')
+        allureReporter.addStep(' Scan the valid data matrix code and verify that the expiry date is valid. ')
         allureReporter.addTestId('BasicAuthFeatureTest_2_1')
 
         await batches.Batch();
@@ -58,9 +58,9 @@ describe('011_Edit batch and enable expiry date check with valid expiry date ', 
         //accept serial number
         await batches.acceptSerialNumber()
         await wait.setTimeoutwait(3);
-        
+
         //generate expectation file 
-        data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), "","","", "" )
+        data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber(), info.getBrandName(), "", "", "", "")
         await wait.setTimeoutwait(12);
         //generate 2d matrix image 
         matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
@@ -69,10 +69,10 @@ describe('011_Edit batch and enable expiry date check with valid expiry date ', 
         //update batch
         await batches.updateBatchForEdit()
         await wait.setTimeoutwait(18);
-        allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
-        allureReporter.endStep("passed");
-        allureReporter.endStep("passed");
-       
-  
+        allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
+        // allureReporter.endStep("passed");
+        // allureReporter.endStep("passed");
+
+
     })
 })    

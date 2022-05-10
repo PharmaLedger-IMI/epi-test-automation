@@ -2,7 +2,6 @@
 const products= require('../pageobjects/products.page');
 const testData=require('../testdata/config.json')
 const allureReporter = require('@wdio/allure-reporter').default
-
 const wait=require('../utility/timeout')
 const path= require('path');
 const fs = require('fs');
@@ -13,12 +12,12 @@ describe('110_Update a product via import of Json to change SNRecalled flag', ()
 
     it('Browser - update a product via import of Json ', async() => { 
         allureReporter.addTestId('ImportJson_2_8')
-        allureReporter.addDescription('Update a product via import of Json to change SNRecalled flag and uploading modified file. View message and click on invalid field info')
-        allureReporter.startStep('1. Use the standard template Json', 
-        '2. Fill up the details on the json', 
-        '3. Use the import functionality to select the file', 
-        '4. Click on import', 
-        '5. Check the log for the import operation ')
+        allureReporter.addDescription('Update a product via import of Json to change SNRecalled flag and upload modified file. View message and click on invalid field info')
+        allureReporter.addStep('1. Use the standard template Json') 
+        allureReporter.addStep('2. change SNRecalled flag on the json') 
+        allureReporter.addStep('3. Use the import functionality to select the file') 
+        allureReporter.addStep('4. Click on import') 
+        allureReporter.addStep('5. Check the log for the import operation ')
 
         await products.clickProductFromSideNav()
         await wait.setTimeoutwait(8);
@@ -56,7 +55,7 @@ describe('110_Update a product via import of Json to change SNRecalled flag', ()
         // await products.closeButtonInPopup()
         // await wait.setTimeoutwait(5); 
 
-        allureReporter.endStep("passed");
+        //allureReporter.endStep("passed");
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
 
     })

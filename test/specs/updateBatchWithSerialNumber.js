@@ -1,24 +1,24 @@
 
-const batches= require('../pageobjects/batches.page.js');
-const matrix=require('../utility/2dMatrixPage')
-const data=require('../utility/expectationFile')
-const info=require('../utility/reusableFile')
-const wait=require('../utility/timeout')
-const testData=require('../testdata/config.json')
+const batches = require('../pageobjects/batches.page.js');
+const matrix = require('../utility/2dMatrixPage')
+const data = require('../utility/expectationFile')
+const info = require('../utility/reusableFile')
+const wait = require('../utility/timeout')
+const testData = require('../testdata/config.json')
 const allureReporter = require('@wdio/allure-reporter').default
 const util = require('util');
 const exec = util.promisify(require('child_process').exec);
 
 describe('048_Edit batch to update valid serial number ', () => {
 
-    if(!process.env.npm_config_browserOnly){
-        
+    if (!process.env.npm_config_browserOnly) {
 
-    after(async () => {
-        console.log("Starting Mobile Execution");
-        const { stdout1, stderr1 } =await exec('cd ../epi-mobileapp-test-automation && npm run test');
-        console.log('stdout:', stdout1);
-        console.log('stderr:', stderr1);
+
+        after(async () => {
+            console.log("Starting Mobile Execution");
+            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npm run updateTheBatchWithSerialNumberTest');
+            console.log('stdout:', stdout1);
+            console.log('stderr:', stderr1);
         })
         console.log("Running test suite in incremental mode and browser tests only")
     } else {
@@ -29,11 +29,11 @@ describe('048_Edit batch to update valid serial number ', () => {
 
     it('Browser - should update batch to have serial numbers ', async () => {
         allureReporter.addDescription('Edit batch and update valid serial number')
-        allureReporter.startStep('Update batch to have serial numbers')
+        allureReporter.addStep('Update batch to have serial numbers')
         allureReporter.addTestId('SerialNumberChecks_11_2')
         await batches.Batch();
         await wait.setTimeoutwait(4);
-        
+
         //edit above batch
         let editValue = info.getbatchId()
         console.log("editValue is " + editValue)
@@ -54,24 +54,24 @@ describe('048_Edit batch to update valid serial number ', () => {
         info.setSerialNumber(await batches.serialNum())
         await batches.enterSerialNumber(info.getSerialNumber())
         await wait.setTimeoutwait(3);
-    
+
         //accept serial number
         await batches.acceptSerialNumber()
         await wait.setTimeoutwait(3);
-              
+
         //generate expectation file 
-        data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(), "","","", "" )
+        data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber(), info.getBrandName(), "", "", "", "")
         await wait.setTimeoutwait(12);
-    
+
         //generate 2d matrix image
         matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
         await wait.setTimeoutwait(9);
         //update batch
         await batches.updateBatchForEdit()
         await wait.setTimeoutwait(18);
-        allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
-        allureReporter.endStep("passed");
-       
-  
+        allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
+        // allureReporter.endStep("passed");
+
+
     })
 })    

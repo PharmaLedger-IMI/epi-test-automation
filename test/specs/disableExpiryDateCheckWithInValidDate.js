@@ -4,7 +4,6 @@ const matrix=require('../utility/2dMatrixPage')
 const data=require('../utility/expectationFile')
 const info=require('../utility/reusableFile')
 const wait=require('../utility/timeout')
-
 const allureReporter = require('@wdio/allure-reporter').default
 const util = require('util');
 const exec = util.promisify(require('child_process').exec);
@@ -18,7 +17,7 @@ describe('013_Edit batch and disable expiry date check with valid expiry date ',
 
     after(async () => {
         console.log("Starting Mobile Execution");
-        const { stdout1, stderr1 } =await exec('cd ../epi-mobileapp-test-automation && npm run test');
+        const { stdout1, stderr1 } =await exec('cd ../epi-mobileapp-test-automation && npm run disableTheExpiryDateCheckInValidExpiryDateTest');
         console.log('stdout:', stdout1);
         console.log('stderr:', stderr1);
         })
@@ -31,8 +30,8 @@ describe('013_Edit batch and disable expiry date check with valid expiry date ',
 
     it('Browser - should update the setting and disable expiry date check', async () => {
         allureReporter.addDescription('Edit batch and disable expiry date check. Pass wrong expiry date in matrix')
-        allureReporter.startStep(' Update the setting and disable expiry date check ')
-        allureReporter.startStep(' Scan a data matrix code with wrong expiry date and verify that expiration check doesnt occur')
+        allureReporter.addStep('Update the setting and disable expiry date check ')
+        allureReporter.addStep('Scan a data matrix code with wrong expiry date and verify that expiration check doesnt occur')
         allureReporter.addTestId('BasicAuthFeatureTest_2_3')
         await batches.Batch();
         await wait.setTimeoutwait(3);
@@ -57,8 +56,8 @@ describe('013_Edit batch and disable expiry date check with valid expiry date ',
         await batches.updateBatchForEdit()
         await wait.setTimeoutwait(18);
         allureReporter.addAttachment('img',Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
-        allureReporter.endStep("passed");
-        allureReporter.endStep("passed");
+        // allureReporter.endStep("passed");
+        // allureReporter.endStep("passed");
        
   
     })

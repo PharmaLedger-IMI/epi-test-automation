@@ -9,7 +9,7 @@ exports.config = {
     // ====================
     // Runner Configuration
     // ====================
-    
+
     // user: process.env.USERNAME,
     // key: process.env.ACCESS_KEY,   
     // ==================
@@ -28,11 +28,11 @@ exports.config = {
     // will be called from there.
     //
     specs: [
-        
-       [ //'./test/specs/**/*.js',
-       
 
-     
+        [
+
+
+
             'test/specs/demiurgeAddAdmin.js',
             'test/specs/demiurgeAddEnterpriseWalletUser.js',
 
@@ -64,8 +64,8 @@ exports.config = {
 
             'test/specs/createBatchWithNoBatchMsg.js',
             'test/specs/createBatchWithBatchMsg.js',
-            'test/specs/createBatchWithBatchRecall&Msg.js',
-            'test/specs/createBatchWithBatchMsgAndRecall&Msg.js',
+            'test/specs/createBatchWithBatchRecallAndMsg.js',
+            'test/specs/createBatchWithBatchMsgAndRecallMsg.js',
 
             'test/specs/createBatchWithValidSnExpiryDateRecallMsg.js',
             'test/specs/scanExpiredDateInBatch.js',
@@ -77,7 +77,7 @@ exports.config = {
             'test/specs/changeYearOnDateBatchMatrixY.js',
 
             'test/specs/createBatchWithMonthYearExpiryDate.js',
-           'test/specs/disableDaySelectionIncorrectAndExpiredDateFlag.js',
+            'test/specs/disableDaySelectionIncorrectAndExpiredDateFlag.js',
             'test/specs/disableDaySelectionIncorrectAndEnableExpiredDateFlag.js',
             'test/specs/disableDaySelectionExpiredDateAndEnableIncorrectFlag.js',
             'test/specs/enableDaySelectionAndDisableIncorrectExpiredDateFlag.js',
@@ -86,7 +86,7 @@ exports.config = {
 
             'test/specs/validSerialNumber.js',
             'test/specs/clearValidSerialNumber.js',
-            'test/specs/clearInValidSerialNumber.js',
+            'test/specs/clearInvalidSerialNumber.js',
             'test/specs/recalledSerialNumbers.js',
             'test/specs/clearRecalledSerialNumbers.js',
             'test/specs/decommissionedSerialNumber.js',
@@ -95,145 +95,145 @@ exports.config = {
             'test/specs/scanWithDecommissionedSerialNumber.js',
             'test/specs/remove10SnInValidUpload10InRecalledSerialNumber.js',
             'test/specs/remove10SnInValidUpload10InDecommissionedSerialNumber.js',
-            
+
             'test/specs/updateBatchWithoutSerialNumber.js',
             'test/specs/updateBatchWithSerialNumber.js',
             'test/specs/updateBatchToResetSerialNumber.js',
-            'test/specs/updateBatchWithDecommissioned&RecalledSerialNumber.js',
-            'test/specs/updateBatchWithNoDecommissioned&RecalledSerialNumber.js',
+            'test/specs/updateBatchWithDecommissionedAndRecalledSerialNumber.js',
+            'test/specs/updateBatchWithNoDecommissionedAndRecalledSerialNumber.js',
 
             'test/specs/createBatchWithoutanyFile.js',
             'test/specs/uploadNewVersionOfEpiInProduct.js',
             'test/specs/createBatchWithUploadLeaflet.js',
             'test/specs/versionOfEpiNotReplaced.js',
-            'test/specs/createProductWithUploadLeaflet&SMPC.js',
+            'test/specs/createProductWithUploadLeafletAndSMPC.js',
             'test/specs/updateProductWithNewLeaflet.js',
-            'test/specs/createBatchWithUploadLeaflet&SMPC.js',
-            'test/specs/deleteLeaflet&SMPCInBatch.js',
+            'test/specs/createBatchWithUploadLeafletAndSMPC.js',
+            'test/specs/deleteLeafletAndSMPCInBatch.js',
             'test/specs/scanPreviousBatch.js',
 
-            'test/specs/checkBatchRecallInProduct&NotRecalledInBatch.js',
-            'test/specs/checkBatchIsRecalledInProduct&Batch.js',
+            'test/specs/checkBatchRecallInProductAndNotRecalledInBatch.js',
+            'test/specs/checkBatchIsRecalledInProductAndBatch.js',
             'test/specs/checkSmpcDeletedFromProductWithRecalledBatch.js',
-            'test/specs/unCheckBatchRecallInProduct&RecalledInBatch.js',
-            'test/specs/unCheckBatchRecallInProduct&Batch.js',
-            'test/specs/unCheckSmpcDeletedFromProductWithRecalledBatch.js',
+            'test/specs/uncheckBatchRecallInProductAndRecalledInBatch.js',
+            'test/specs/uncheckBatchRecallInProductAndBatch.js',
+            'test/specs/uncheckSmpcDeletedFromProductWithRecalledBatch.js',
 
-            'test/specs/checkExpirationDateInProduct&BatchWithCorrectExpiryDate.js',
-            'test/specs/checkInCorrectExpiryDateInProduct&Batch.js',
+            'test/specs/checkExpirationDateInProductAndBatchWithCorrectExpiryDate.js',
+            'test/specs/checkInCorrectExpiryDateInProductAndBatch.js',
             'test/specs/checkSmpcDeletedFromProductWithIncorrectExpiryDate.js',
-            'test/specs/unCheckInCorrectExpiryDateInProduct&Batch.js',
-            'test/specs/unCheckExpirationDateInProduct&BatchWithCorrectExpiryDate.js',
+            'test/specs/uncheckInCorrectExpiryDateInProductAndBatch.js',
+            'test/specs/uncheckExpirationDateInProductAndBatchWithCorrectExpiryDate.js',
 
-            'test/specs/checkBatchIsExpiredInProduct&Batch.js',
-            'test/specs/checkBatchIsExpiredInProduct&NotExpiredInBatch.js',
+            'test/specs/checkBatchIsExpiredInProductAndBatch.js',
+            'test/specs/checkBatchIsExpiredInProductAndNotExpiredInBatch.js',
             'test/specs/checkSmpcDeletedFromProductWithExpiredBatch.js',
-            'test/specs/unCheckBatchIsExpiredInProduct&ExpiredInBatch.js',
-            'test/specs/unCheckBatchIsExpiredInProduct&NotExpiredInBatch.js',
+            'test/specs/uncheckBatchIsExpiredInProductAndExpiredInBatch.js',
+            'test/specs/uncheckBatchIsExpiredInProductAndNotExpiredInBatch.js',
 
-            'test/specs/checkSnRecallInProduct&Batch.js',
-            'test/specs/checkSnRecallInProduct&NotRecalledInBatch.js',
+            'test/specs/checkSnRecallInProductAndBatch.js',
+            'test/specs/checkSnRecallInProductAndNotRecalledInBatch.js',
             'test/specs/checkSmpcIsDeletedFromProductWithSnRecalled.js',
-            'test/specs/unCheckSnRecallInProduct&UpdateSnInBatch.js',
-            'test/specs/unCheckSnRecallInProduct&NotRecalledInBatch.js',
+            'test/specs/uncheckSnRecallInProductAndUpdateSnInBatch.js',
+            'test/specs/uncheckSnRecallInProductAndNotRecalledInBatch.js',
 
-            'test/specs/checkSnDecommissionedInProduct&Batch.js',
-            'test/specs/checkSnDecommissionedInProduct&NotInBatch.js',
+            'test/specs/checkSnDecommissionedInProductAndBatch.js',
+            'test/specs/checkSnDecommissionedInProductAndNotInBatch.js',
             'test/specs/checkSmpcIsDeletedFromProductWithSnDecommissioned.js',
-            'test/specs/unCheckSnDecommissionedInProduct&DecommissionedInBatch.js',
-            'test/specs/unCheckSnDecommissionedInProduct&NotDecommissionedInBatch.js',
+            'test/specs/uncheckSnDecommissionedInProductAndDecommissionedInBatch.js',
+            'test/specs/uncheckSnDecommissionedInProductAndNotDecommissionedInBatch.js',
 
-            'test/specs/checkSnIsUnKnownInProduct&Batch.js',
-            'test/specs/checkSnIsUnKnownInProduct&KnownInBatch.js',
-            'test/specs/checkSmpcIsDeletedFromProductWithSnIsUnKnown.js',
-            'test/specs/unCheckSnIsUnKnownInProduct&Batch.js',
-            'test/specs/unCheckSnIsUnKnownInProduct&KnownInBatch.js',
+            'test/specs/checkSnIsUnknownInProductAndBatch.js',
+            'test/specs/checkSnIsUnknownInProductAndknownInBatch.js',
+            'test/specs/checkSmpcIsDeletedFromProductWithSnIsUnknown.js',
+            'test/specs/uncheckSnIsUnknownInProductAndBatch.js',
+            'test/specs/uncheckSnIsUnknownInProductAndknownInBatch.js',
 
-            'test/specs/checkBatchIsUnKnownInProductWithInvalidBatch.js',
-            'test/specs/checkBatchIsUnKnownInProductWithValidBatch.js',
-            'test/specs/checkSmpcIsDeletedFromProductWithBatchIsUnKnown.js',
-            'test/specs/unCheckBatchIsUnKnownInProductWithInvalidBatch.js',
-            'test/specs/unCheckBatchIsUnKnownInProductWithValidBatch.js',
+            'test/specs/checkBatchIsUnknownInProductWithInvalidBatch.js',
+            'test/specs/checkBatchIsUnknownInProductWithValidBatch.js',
+            'test/specs/checkSmpcIsDeletedFromProductWithBatchIsUnknown.js',
+            'test/specs/uncheckBatchIsUnknownInProductWithInvalidBatch.js',
+            'test/specs/uncheckBatchIsUnknownInProductWithValidBatch.js',
 
-            'test/specs/invalidSerialNumber&InvalidExpiryDate.js',
-            'test/specs/checkUnknowBatchWithInvalidBatch&InvalidExpiryDate.js',
+            'test/specs/invalidSerialNumberAndInvalidExpiryDate.js',
+            'test/specs/checkUnknowBatchWithInvalidBatchAndInvalidExpiryDate.js',
             'test/specs/invalidSerialNumberWithBatchRecalled.js',
 
             'test/specs/productImport.js',
-        'test/specs/removeInventedNameInProductJson.js',
-        'test/specs/removeProductCodeInProductJson.js',
-        'test/specs/removeNameOfMedicinalProductInProductJson.js',
-        'test/specs/removeInventedName&ProductCodeInProductJson.js',
-        'test/specs/removeInventedName&NameOfMedicinalProductInProductJson.js',
-        'test/specs/removeProductCode&NameOfMedicinalProductInProductJson.js',
-        'test/specs/removeInventedNameProductCode&NameOfMedicinalProductInProductJson.js',
+            'test/specs/removeInventedNameInProductJson.js',
+            'test/specs/removeProductCodeInProductJson.js',
+            'test/specs/removeNameOfMedicinalProductInProductJson.js',
+            'test/specs/removeInventedNameAndProductCodeInProductJson.js',
+            'test/specs/removeInventedNameAndNameOfMedicinalProductInProductJson.js',
+            'test/specs/removeProductCodeAndNameOfMedicinalProductInProductJson.js',
+            'test/specs/removeInventedNameProductCodeAndNameOfMedicinalProductInProductJson.js',
 
-        'test/specs/changeSNRecalledFlagInProductJson.js',
-        'test/specs/changeSNDecommissionedFlagInProductJson.js',
-        'test/specs/changeMarketIdInProductJson.js',
-        'test/specs/enterIncorrectBatchExpiredFlagInProductJson.js',
+            'test/specs/changeSNRecalledFlagInProductJson.js',
+            'test/specs/changeSNDecommissionedFlagInProductJson.js',
+            'test/specs/changeMarketIdInProductJson.js',
+            'test/specs/enterIncorrectBatchExpiredFlagInProductJson.js',
 
-        'test/specs/batchImport.js',
-        'test/specs/removeProductCodeInBatchJson.js',
-        'test/specs/removeBatchInBatchJson.js',
-        'test/specs/removeExpiryDateInBatchJson.js',
-        'test/specs/removeProductCode&BatchInBatchJson.js',
-        'test/specs/removeProductCode&ExpiryDateInBatchJson.js',
-        'test/specs/removeBatch&ExpiryDateInBatchJson.js',
-        'test/specs/removeProductCodeBatch&ExpiryDateInBatchJson.js',
+            'test/specs/batchImport.js',
+            'test/specs/removeProductCodeInBatchJson.js',
+            'test/specs/removeBatchInBatchJson.js',
+            'test/specs/removeExpiryDateInBatchJson.js',
+            'test/specs/removeProductCodeAndBatchInBatchJson.js',
+            'test/specs/removeProductCodeAndExpiryDateInBatchJson.js',
+            'test/specs/removeBatchAndExpiryDateInBatchJson.js',
+            'test/specs/removeProductCodeBatchAndExpiryDateInBatchJson.js',
 
-        'test/specs/changeBatchRecallMsgFlagInBatchJson.js',
-        'test/specs/enterSnRecalledInBatchJson.js',
-        'test/specs/enterSnDecommissionedInBatchJson.js',
-        'test/specs/enterSnValidInBatchJson.js',
+            'test/specs/changeBatchRecallMsgFlagInBatchJson.js',
+            'test/specs/enterSnRecalledInBatchJson.js',
+            'test/specs/enterSnDecommissionedInBatchJson.js',
+            'test/specs/enterSnValidInBatchJson.js',
 
-       
 
-           
-         //  'test/specs/invalidSsoLogin.js',
-        //    'test/specs/validSsoLogin.js',
-        //    'test/specs/reloginSsoAndOpenEpiUrlInNewTab.js',
-        //    'test/specs/reloginSsoClearBrowserCookiesAndOpenEpiUrl.js',
-        //    'test/specs/ssoLoginAndEnterpriseLogin.js'
+
+
+            //  'test/specs/invalidSsoLogin.js',
+            //    'test/specs/validSsoLogin.js',
+            //    'test/specs/reloginSsoAndOpenEpiUrlInNewTab.js',
+            //    'test/specs/reloginSsoClearBrowserCookiesAndOpenEpiUrl.js',
+            //    'test/specs/ssoLoginAndEnterpriseLogin.js'
         ],
     ],
-      
+
     suites: {
         importJson: [
-         [
-        'test/specs/loginCredentials.js',
-        // 'test/specs/productImport.js',
-        // 'test/specs/removeInventedNameInProductJson.js',
-        // 'test/specs/removeProductCodeInProductJson.js',
-        // 'test/specs/removeNameOfMedicinalProductInProductJson.js',
-        // 'test/specs/removeInventedName&ProductCodeInProductJson.js',
-        //'test/specs/removeInventedName&NameOfMedicinalProductInProductJson.js',
-        //'test/specs/removeProductCode&NameOfMedicinalProductInProductJson.js',
-        // 'test/specs/removeInventedNameProductCode&NameOfMedicinalProductInProductJson.js',
+            [
+                'test/specs/loginCredentials.js',
+                // 'test/specs/productImport.js',
+                // 'test/specs/removeInventedNameInProductJson.js',
+                // 'test/specs/removeProductCodeInProductJson.js',
+                // 'test/specs/removeNameOfMedicinalProductInProductJson.js',
+                // 'test/specs/removeInventedNameAndProductCodeInProductJson.js',
+                //'test/specs/removeInventedNameAndNameOfMedicinalProductInProductJson.js',
+                //'test/specs/removeProductCodeAndNameOfMedicinalProductInProductJson.js',
+                // 'test/specs/removeInventedNameProductCodeAndNameOfMedicinalProductInProductJson.js',
 
-        // 'test/specs/changeSNRecalledFlagInProductJson.js',
-        // 'test/specs/changeSNDecommissionedFlagInProductJson.js',
-        // 'test/specs/changeMarketIdInProductJson.js',
-        // 'test/specs/enterIncorrectBatchExpiredFlagInProductJson.js',
+                // 'test/specs/changeSNRecalledFlagInProductJson.js',
+                // 'test/specs/changeSNDecommissionedFlagInProductJson.js',
+                // 'test/specs/changeMarketIdInProductJson.js',
+                // 'test/specs/enterIncorrectBatchExpiredFlagInProductJson.js',
 
-        // 'test/specs/batchImport.js',
-        'test/specs/removeProductCodeInBatchJson.js',
-        'test/specs/removeBatchInBatchJson.js',
-        'test/specs/removeExpiryDateInBatchJson.js',
-        'test/specs/removeProductCode&BatchInBatchJson.js',
-        'test/specs/removeProductCode&ExpiryDateInBatchJson.js',
-        'test/specs/removeBatch&ExpiryDateInBatchJson.js',
-        'test/specs/removeProductCodeBatch&ExpiryDateInBatchJson.js',
+                // 'test/specs/batchImport.js',
+                'test/specs/removeProductCodeInBatchJson.js',
+                'test/specs/removeBatchInBatchJson.js',
+                'test/specs/removeExpiryDateInBatchJson.js',
+                'test/specs/removeProductCodeAndBatchInBatchJson.js',
+                'test/specs/removeProductCodeAndExpiryDateInBatchJson.js',
+                'test/specs/removeBatchAndExpiryDateInBatchJson.js',
+                'test/specs/removeProductCodeBatchAndExpiryDateInBatchJson.js',
 
-        'test/specs/changeBatchRecallMsgFlagInBatchJson.js',
-        'test/specs/enterSnRecalledInBatchJson.js',
-        'test/specs/enterSnDecommissionedInBatchJson.js',
-        'test/specs/enterSnValidInBatchJson.js',
-         ]
+                'test/specs/changeBatchRecallMsgFlagInBatchJson.js',
+                'test/specs/enterSnRecalledInBatchJson.js',
+                'test/specs/enterSnDecommissionedInBatchJson.js',
+                'test/specs/enterSnValidInBatchJson.js',
+            ]
 
-              ]
-            
-            },  
+        ]
+
+    },
 
     // Patterns to exclude.
     exclude: [
@@ -264,36 +264,36 @@ exports.config = {
     capabilities: [
         {
 
-        // maxInstances can get overwritten per capability. So if you have an in-house Selenium
-        // grid with only 5 firefox instances available you can make sure that not more than
-        // 5 instances get started at a time.
-        maxInstances: 5,
-        //
-        browserName: 'chrome',
-        // acceptInsecureCerts: true,
-        'goog:chromeOptions': {
-            prefs: {
-              'directory_upgrade': true,
-              'prompt_for_download': false,
-              'download.default_directory': downloadDir
-            },
-        }
-        // If outputDir is provided WebdriverIO can capture driver session logs
-        // it is possible to configure which logTypes to include/exclude.
-        // excludeDriverLogs: ['*'], // pass '*' to exclude all driver session logs
-        // excludeDriverLogs: ['bugreport', 'server'],
-    },
+            // maxInstances can get overwritten per capability. So if you have an in-house Selenium
+            // grid with only 5 firefox instances available you can make sure that not more than
+            // 5 instances get started at a time.
+            maxInstances: 5,
+            //
+            browserName: 'chrome',
+            // acceptInsecureCerts: true,
+            'goog:chromeOptions': {
+                prefs: {
+                    'directory_upgrade': true,
+                    'prompt_for_download': false,
+                    'download.default_directory': downloadDir
+                },
+            }
+            // If outputDir is provided WebdriverIO can capture driver session logs
+            // it is possible to configure which logTypes to include/exclude.
+            // excludeDriverLogs: ['*'], // pass '*' to exclude all driver session logs
+            // excludeDriverLogs: ['bugreport', 'server'],
+        },
 
-    // {
-    //     browserName: 'firefox',
-    //     'moz:firefoxOptions': {
-    //         args: ['-private']
-    //       },
-    // }
-    //,
-    // {
-    //     browserName: 'safari'
-    // }
+        // {
+        //     browserName: 'firefox',
+        //     'moz:firefoxOptions': {
+        //         args: ['-private']
+        //       },
+        // }
+        //,
+        // {
+        //     browserName: 'safari'
+        // }
     ],
     //
     // ===================
@@ -321,7 +321,7 @@ exports.config = {
     // If you only want to run your tests until a specific amount of tests have failed use
     // bail (default is 0 - don't bail, run all tests).
     bail: 0,
-   
+
     //
     // Set a base URL in order to shorten url command calls. If your `url` parameter starts
     // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
@@ -329,8 +329,8 @@ exports.config = {
     // gets prepended directly.
     //
     //baseUrl: 'https://epiqa.westeurope.cloudapp.azure.com/',
-    baseUrl:'http://localhost:3000',
-   //baseUrl:'https://plsmap.westeurope.cloudapp.azure.com/',
+    baseUrl: 'http://localhost:3000',
+    //baseUrl:'https://plsmap.westeurope.cloudapp.azure.com/',
     //
     // Default timeout for all waitFor* commands.
     waitforTimeout: 10000,
@@ -346,11 +346,11 @@ exports.config = {
     // Services take over a specific job you don't want to take care of. They enhance
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
-    
-   // services: ['selenium-standalone'],
+
+    // services: ['selenium-standalone'],
     services: ['chromedriver'],
     //services: ['browserstack'],
-    
+
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
     // see also: https://webdriver.io/docs/frameworks
@@ -378,7 +378,7 @@ exports.config = {
     }]],
 
 
-    
+
     //
     // Options to be passed to Mocha.
     // See the full list at http://mochajs.org/
@@ -399,19 +399,19 @@ exports.config = {
      * @param {Object} config wdio configuration object
      * @param {Array.<Object>} capabilities list of capabilities details
      */
-   
-            // ... previous configs ...
-            // onPrepare: function (config, capabilities) {
-            //   // make sure download directory exists
-            //   if (!fs.existsSync(downloadDir)){
-            //       // if it doesn't exist, create it
-            //       fs.mkdirSync(downloadDir);
-            //   }
-            // },
-            // ... rest of configs ...
-          
-    
-    
+
+    // ... previous configs ...
+    // onPrepare: function (config, capabilities) {
+    //   // make sure download directory exists
+    //   if (!fs.existsSync(downloadDir)){
+    //       // if it doesn't exist, create it
+    //       fs.mkdirSync(downloadDir);
+    //   }
+    // },
+    // ... rest of configs ...
+
+
+
     /**
      * Gets executed before a worker process is spawned and can be used to initialise specific service
      * for that worker as well as modify runtime environments in an async fashion.
@@ -483,11 +483,11 @@ exports.config = {
      * @param {Boolean} result.passed    true if test has passed, otherwise false
      * @param {Object}  result.retries   informations to spec related retries, e.g. `{ attempts: 0, limit: 0 }`
      */
-    afterTest: function(test, context, { error, result, duration, passed, retries }) {
-        if(error){
+    afterTest: function (test, context, { error, result, duration, passed, retries }) {
+        if (error) {
             browser.takeScreenshot();
         }
-        
+
     },
 
 
@@ -532,13 +532,13 @@ exports.config = {
      * @param {<Object>} results object containing test results
      */
     // onComplete: function rmdir(dir) {
-       
+
     //    // console.log(dir)
     //         var list = fs.readdirSync(dir);
     //         for(var i = 0; i < list.length; i++) {
     //           var filename = path.join(dir, list[i]);
     //           var stat = fs.statSync(filename);
-          
+
     //           if(filename == "." || filename == "..") {
     //             // pass these files
     //           } else if(stat.isDirectory()) {
