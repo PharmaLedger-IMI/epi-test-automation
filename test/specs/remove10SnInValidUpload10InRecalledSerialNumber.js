@@ -19,7 +19,7 @@ describe('044_Edit batch to remove 10 serial numbers from valid and upload 10 in
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npm run updateWith10SNInRecalledSNTest');
+            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npx kill-port 4723 && npm run updateWith10SNInRecalledSNTest');
             console.log('stdout:', stdout1);
             console.log('stderr:', stderr1);
         })
@@ -32,11 +32,13 @@ describe('044_Edit batch to remove 10 serial numbers from valid and upload 10 in
 
     it('Browser - should remove 10 serial numbers from valid and upload 10 in recalled serial numbers ', async () => {
         allureReporter.addDescription('Edit batch by resetting valid serial number and uploading 10 in recalled serial number')
-        allureReporter.addStep('Remove 10 serial numbers from valid and upload 10 in recalled serial numbers in batch')
+        allureReporter.addStep('Remove 10 serial numbers from valid')
+        allureReporter.addStep('Upload 10 serial numbers in recalled in batch')
         allureReporter.addTestId('SerialNumberChecks_8')
-        await batches.Batch();
+        //click batch
+        await batches.clickBatchFromSideNav();
         await wait.setTimeoutwait(5);
-        //edit above batch
+        //edit  batch
         let editValue = info.getbatchId()
         console.log("editValue is " + editValue)
         await browser.execute('document.querySelector("div:nth-child(' + await info.editBatchRow(editValue) + ') button:nth-child(1)").click()')
@@ -57,14 +59,10 @@ describe('044_Edit batch to remove 10 serial numbers from valid and upload 10 in
         await wait.setTimeoutwait(3);
 
 
-        //select recalled serial number
+        //update recalled serial number
         await batches.selectUpdateRecalledSerialFromDropdown(testData.newBatchDetails.updateRecalled)
         await wait.setTimeoutwait(3);
-        // //enable checkbox
-        // await batches.enableResetAllRecalledSerialNumber()
-        // await wait.setTimeoutwait(3);
-        //set the serial number and enter
-        //info.setSerialNumber(info.serialNum10())
+      
         const serialNumber = info.serialNum10()
         await wait.setTimeoutwait(3);
         await batches.enterSerialNumber(serialNumber)
@@ -95,8 +93,6 @@ describe('044_Edit batch to remove 10 serial numbers from valid and upload 10 in
         await batches.updateBatchForEdit()
         await wait.setTimeoutwait(18);
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
-        // allureReporter.endStep("passed");
-
-
+        
     })
 })    

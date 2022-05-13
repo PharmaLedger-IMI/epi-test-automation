@@ -17,7 +17,7 @@ describe('059_Edit batch to delete ePI and SMPC file.', () => {
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npm run deleteLeafletSMPCInBatchTest');
+            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npx kill-port 4723 && npm run deleteLeafletSMPCInBatchTest');
             console.log('stdout:', stdout1);
             console.log('stderr:', stderr1);
         })
@@ -32,11 +32,10 @@ describe('059_Edit batch to delete ePI and SMPC file.', () => {
         allureReporter.addDescription('Edit batch and delete ePI and SMPC file. Update valid serial number and scan batch')
         allureReporter.addStep("Delete the ePI and SMPC at Batch 2 - scan the product - you should be able to see the product level leaflet and same when you scan Batch 1 ")
         allureReporter.addTestId('ProductInfoUpdate_4_2')
-
-        await batches.Batch();
-        //await browser.execute('document.querySelector(`webc-app-menu-item:nth-child(4) stencil-route-link:nth-child(1) a:nth-child(1)`).click()')
-
+        //click batch
+        await batches.clickBatchFromSideNav();
         await wait.setTimeoutwait(8);
+        //edit batch
         let editValue = info.getbatchId()
         console.log("editValue is " + editValue)
         await browser.execute('document.querySelector("div:nth-child(' + await info.editBatchRow(editValue) + ') button:nth-child(1)").click()')
@@ -45,9 +44,7 @@ describe('059_Edit batch to delete ePI and SMPC file.', () => {
         //select valid serial number
         await batches.selectUpdateValidSerialFromDropdown(testData.newBatchDetails.updateValid)
         await wait.setTimeoutwait(3);
-        // //enable checkbox
-        // await batches.enableResetAllValidSerialNumber()
-        // await wait.setTimeoutwait(2);
+       
         //set the serial number and enter
         info.setSerialNumber(await batches.serialNum())
         await wait.setTimeoutwait(3);
@@ -61,7 +58,6 @@ describe('059_Edit batch to delete ePI and SMPC file.', () => {
         await batches.deleteAllFile()
         await wait.setTimeoutwait(5);
 
-
         //generate expectation file
         data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber(), info.getBrandName(), "", "", "", "")
         await wait.setTimeoutwait(12);
@@ -73,7 +69,7 @@ describe('059_Edit batch to delete ePI and SMPC file.', () => {
         await wait.setTimeoutwait(30);
 
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
-        // allureReporter.endStep("passed");
+        
 
 
 

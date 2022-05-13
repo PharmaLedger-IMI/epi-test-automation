@@ -1,21 +1,16 @@
 
-
-
-
 class digits {
 
-    get cookie123() {
+    get acceptCookies() {
+
         return $("//div//button[@id='onetrust-accept-btn-handler']")
 
     }
-    get digitinput() {
+    get digitInputField() {
         return $("//input[@id='digit']")
     }
-    get calculate() {
+    get calculateButton() {
         return $("//button[@id='edit-submit']")
-    }
-    get copy() {
-        return $("(//span[@data-toggle='tooltip'])[1]")
     }
     get number() {
         return $("//span[@id='check_digit_result_gtinoriginal-number']")
@@ -24,46 +19,24 @@ class digits {
         return $("div[id='check_digit_result_gtinoriginal'] div[class='check-digit-size size-lg']")
     }
 
-
-
     async clickCookie() {
 
-        await this.cookie123.click();
+        await this.acceptCookies.click();
     }
-    async digitenter(gtn) {
+    async enterDigits(gtn) {
 
-        await this.digitinput.click();
-        await this.digitinput.setValue(gtn);
-
-
+        await this.digitInputField.click();
+        await this.digitInputField.setValue(gtn);
     }
-    async caldigit() {
-        await this.calculate.click();
-        await this.calculate.scrollIntoView()
+    async clickCalculate() {
+        await this.calculateButton.click();
+        await this.calculateButton.scrollIntoView()
     }
-    async copydigit() {
-        await this.copy.click();
+    async copyGtin() {
 
-    }
-    async numbercopy() {
-
-        const value1 = await this.number.getText();
-        console.log("value1 is " + value1);
-
-    }
-    async codeCopy() {
-
-        const value2 = await this.code.getText();
-        console.log("value2 is " + value2);
-
-    }
-
-
-    async concat1() {
-
-        const checkdigit = await this.number.getText() + await this.code.getText();
+        const checkDigit = await this.number.getText() + await this.code.getText();
         //console.log("concat is "+checkdigit);
-        return checkdigit
+        return checkDigit
     }
 
 }

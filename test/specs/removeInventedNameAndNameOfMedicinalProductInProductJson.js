@@ -13,15 +13,16 @@ describe('107_Update a product via import of Json by deleting invented name & na
 
   it('Browser - update a product via import of Json ', async () => {
     allureReporter.addTestId('ImportJson_2_7')
-    allureReporter.addDescription('Update a product via import of Json by deleting invented name & name of medicinal product elemet and uploading modified file. View message and click on invalid field info')
+    allureReporter.addDescription('Update a product via import of Json by deleting invented name and name of medicinal product element and upload modified file. View message and click on invalid field info')
     allureReporter.addStep('1. Use the standard template Json')
-    allureReporter.addStep('2. Fill up the details on the json')
+    allureReporter.addStep('2. Delete invented name and name of medicinal product elemet on the json')
     allureReporter.addStep('3. Use the import functionality to select the file')
     allureReporter.addStep('4. Click on import')
     allureReporter.addStep('5. Check the log for the import operation')
-
+    //click product
     await products.clickProductFromSideNav()
     await wait.setTimeoutwait(8);
+    //click import
     await products.clickImport()
     await wait.setTimeoutwait(4);
 
@@ -32,16 +33,15 @@ describe('107_Update a product via import of Json by deleting invented name & na
     delete rawdata.product.inventedName
     delete rawdata.product.nameMedicinalProducts
     fs.writeFileSync(testData.path.productImport, JSON.stringify(rawdata))
-
     await wait.setTimeoutwait(3);
+    //select file
     await products.selectFile(path.join(__dirname, '../testdata/sampleProductImport.json'));
     await wait.setTimeoutwait(8);
 
 
     //click on import
-    //await products.import()
+    //await products.clickImportFile()
     await browser.execute('document.querySelector(`psk-button[data-tag="import"] button[class="btn btn-primary"]`).click()')
-
     await wait.setTimeoutwait(20);
 
     //update json file
@@ -51,23 +51,18 @@ describe('107_Update a product via import of Json by deleting invented name & na
     await wait.setTimeoutwait(8);
 
     //view message
-    await products.viewMessageInFailedLogs()
+    await products.clickViewMessageInFailedLog()
     await wait.setTimeoutwait(5);
+    //click invalid field info 
     await products.invalidFieldInfo()
     await wait.setTimeoutwait(5);
+    //read invalid field info 
     await products.invalidFieldInfoRequired()
     await wait.setTimeoutwait(5);
-
-    await products.downloadMsgInFailedLogs()
+    //download message
+    await products.clickDownloadMsgInFailedLog()
     await wait.setTimeoutwait(10);
 
-    // await products.closeButtonInPopup()
-    // await wait.setTimeoutwait(5); 
-
-
-
-
-    // allureReporter.endStep("passed");
     allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
 
   })

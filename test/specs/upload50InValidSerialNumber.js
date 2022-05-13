@@ -17,7 +17,7 @@ describe('046_Edit batch to upload 50K valid serial numbers ', () => {
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npm run test');
+            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npx kill-port 4723 && npm run test');
             console.log('stdout:', stdout1);
             console.log('stderr:', stderr1);
         })
@@ -32,7 +32,7 @@ describe('046_Edit batch to upload 50K valid serial numbers ', () => {
         allureReporter.addDescription('Edit batch and upload 50k serial numbers')
         allureReporter.addStep('Upload 50K serial numbers and scan with valid serial number')
         allureReporter.addTestId('SerialNumberChecks_10')
-        await batches.Batch();
+        await batches.clickBatchFromSideNav();
         await wait.setTimeoutwait(3);
 
         //edit above batch
@@ -72,7 +72,7 @@ describe('046_Edit batch to upload 50K valid serial numbers ', () => {
         await batches.updateBatchForEdit()
         await wait.setTimeoutwait(18);
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
-        // allureReporter.endStep("passed");
+       
 
 
     })

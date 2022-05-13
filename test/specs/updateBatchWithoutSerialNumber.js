@@ -18,7 +18,7 @@ describe('047_Edit batch to update without serial number ', () => {
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npm run updateTheBatchWithoutSerialNumberTest');
+            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npx kill-port 4723 && npm run updateTheBatchWithoutSerialNumberTest');
             console.log('stdout:', stdout1);
             console.log('stderr:', stderr1);
         })
@@ -32,13 +32,13 @@ describe('047_Edit batch to update without serial number ', () => {
     it('Browser - should update a batch without serial numbers ', async () => {
 
         allureReporter.addDescription('Edit batch and reset valid serial number')
-        allureReporter.addStep('Update a batch without serial numbers')
+        allureReporter.addStep('Update a batch without serial number')
         allureReporter.addTestId('SerialNumberChecks_11_1')
-
-        await batches.Batch();
+        //click batch
+        await batches.clickBatchFromSideNav();
         await wait.setTimeoutwait(4);
 
-        //edit above batch
+        //edit batch
         let editValue = info.getbatchId()
         console.log("editValue is " + editValue)
         await browser.execute('document.querySelector("div:nth-child(' + await info.editBatchRow(editValue) + ') button:nth-child(1)").click()')
@@ -70,8 +70,6 @@ describe('047_Edit batch to update without serial number ', () => {
         await batches.updateBatchForEdit()
         await wait.setTimeoutwait(18);
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
-        // allureReporter.endStep("passed");
-
-
+        
     })
 })    

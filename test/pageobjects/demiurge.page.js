@@ -6,22 +6,22 @@ class DemiurgePage {
     get demiurgeWallet() {
         return $('=Demiurge Wallet')
     }
-    get clickNewAccount() {
+    get newAccountButton() {
         return $('//a[@id="new-wallet"]')
     }
     get userName() {
         return $('//input[@id="username"]')
     }
-    get email() {
+    get emailIdField() {
         return $('//input[@id="email"]')
     }
-    get enterPassword() {
+    get passwordField() {
         return $('//input[@id="password"]')
     }
-    get enterCompanyName() {
+    get companyNameField() {
         return $('//input[@id="company"]')
     }
-    get enterConfirmPassword() {
+    get confirmPasswordField() {
         return $('//input[@id="confirm-password"]')
     }
     get registerButton() {
@@ -36,7 +36,7 @@ class DemiurgePage {
     get clickOpenWallet() {
         return $("//button[@id='access-wallet']")
     }
-    get Enter() {
+    get enterButton() {
         return $("#open-wallet-btn")
     }
     get adminIdentity() {
@@ -45,7 +45,7 @@ class DemiurgePage {
     get title() {
         return $('webc-container[id="booting-page"] dw-title')
     }
-    get clickGroups() {
+    get groupsLink() {
         return $('=Groups')
     }
     get myIdentityTab() {
@@ -55,19 +55,19 @@ class DemiurgePage {
         return $("//sl-icon[@slot='suffix']")
     }
     get currentIdentity() {
-        return $("//sl-input[@type='text']")
+        return $('//dw-clipboard-input[@value="@did"]')
     }
     get userIdentity() {
         return $('psk-label[id="did"] label[class="col-form-label"]')
     }
-    get clickAdminGroup() {
+    get adminGroupButton() {
         return $('//strong[normalize-space()="ePI Administration Group"]')
     }
     get memeberIdTextbox() {
         return $("//sl-input[@name='did']")
 
     }
-    get clickWriteGroup() {
+    get writeGroupButton() {
         return $('//strong[normalize-space()="ePI Write Group"]')
     }
     get addMemberButton() {
@@ -77,36 +77,42 @@ class DemiurgePage {
     async openDemiurgeWallet() {
         await this.demiurgeWallet.click();
     }
-    async newAccount() {
-        await this.clickNewAccount.click();
+    async clickNewAccount() {
+        await this.newAccountButton.click();
     }
-    async clearUserName() {
+    // async clearUserName() {
+
+    //     await this.userName.click();
+    //     await this.userName.clearValue();
+    // }
+    async enterUserName(userName) {
 
         await this.userName.click();
         await this.userName.clearValue();
-    }
-    async enterUserName(userName) {
-
         await this.userName.setValue(userName);
 
     }
-    async emailId() {
-        await this.email.click();
-        await this.email.clearValue();
+    async enterEmailId(email) {
+        await this.emailIdField.click();
+        await this.emailIdField.clearValue();
+        await this.emailIdField.setValue(email);
     }
-    async password() {
-        await this.enterPassword.click();
-        await this.enterPassword.clearValue();
+    async enterPassword(password) {
+        await this.passwordField.click();
+        await this.passwordField.clearValue();
+        await this.passwordField.setValue(password);
     }
-    async confirmPassword() {
-        await this.enterConfirmPassword.click();
-        await this.enterConfirmPassword.clearValue();
+    async enterConfirmPassword(password) {
+        await this.confirmPasswordField.click();
+        await this.confirmPasswordField.clearValue();
+        await this.confirmPasswordField.setValue(password);
     }
-    async companyName() {
-        await this.enterCompanyName.click();
-        await this.enterCompanyName.clearValue();
+    async enterCompanyName(companyName) {
+        await this.companyNameField.click();
+        await this.companyNameField.clearValue();
+        await this.companyNameField.setValue(companyName);
     }
-    async register() {
+    async clickRegister() {
 
         await this.registerButton.click();
 
@@ -127,9 +133,9 @@ class DemiurgePage {
 
         await this.clickOpenWallet.click();
     }
-    async enterButton() {
+    async clickEnter() {
 
-        await this.Enter.click();
+        await this.enterButton.click();
     }
     async copyAdminIdentity() {
 
@@ -145,8 +151,8 @@ class DemiurgePage {
             return false
         }
     }
-    async groups() {
-        await this.clickGroups.click();
+    async clickGroups() {
+        await this.groupsLink.click();
     }
     async myIdentity() {
 
@@ -175,19 +181,19 @@ class DemiurgePage {
         }
 
     }
-    async adminGroup() {
-        await this.clickAdminGroup.click();
+    async clickAdminGroup() {
+        await this.adminGroupButton.click();
 
     }
     async memeberId() {
         await this.memeberIdTextbox.click();
 
     }
-    async writeGroup() {
-        await this.clickWriteGroup.click();
+    async clickWriteGroup() {
+        await this.writeGroupButton.click();
 
     }
-    async addMember() {
+    async clickAddMember() {
         await this.addMemberButton.click();
 
     }

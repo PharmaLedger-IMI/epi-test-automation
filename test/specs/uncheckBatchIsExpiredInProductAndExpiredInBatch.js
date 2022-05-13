@@ -19,7 +19,7 @@ describe('075_Edit product to uncheck batch is expired and edit batch to set exp
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npm run uncheckTheBatchIsExpiredInProductAndExpiredInBatchTest');
+            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npx kill-port 4723 && npm run uncheckTheBatchIsExpiredInProductAndExpiredInBatchTest');
             console.log('stdout:', stdout1);
             console.log('stderr:', stderr1);
         })
@@ -32,13 +32,14 @@ describe('075_Edit product to uncheck batch is expired and edit batch to set exp
 
     it('Browser - should edit product to uncheck batch is expired and edit batch to set expired date', async () => {
 
-        allureReporter.addStep("Edit product to uncheck batch is expired and edit batch to set expired date")
+        allureReporter.addStep("Edit product to uncheck batch is expired flag in product")
+        allureReporter.addStep("Edit batch to set expired date")
         allureReporter.addTestId('ProductDisplayEpiFlag_3_4')
-
+        //click product
         await products.clickProductFromSideNav()
         await wait.setTimeoutwait(3);
         console.log("prod to edit" + info.getProductId())
-        // search the product codes
+        //search the product code
         await products.searchProductCode(info.getProductId())
         await wait.setTimeoutwait(3);
         await browser.keys('Enter')
@@ -73,17 +74,15 @@ describe('075_Edit product to uncheck batch is expired and edit batch to set exp
         info.setEpiDisplayed(await products.epiDisplayed())
         await wait.setTimeoutwait(4);
 
-        //update products
+        //update product
         await products.updateProduct()
         await wait.setTimeoutwait(20);
 
 
-        //edit batch
-        await batches.Batch();
-        //created for QA
-        //await browser.execute('document.querySelector(`webc-app-menu-item:nth-child(4) stencil-route-link:nth-child(1) a:nth-child(1)`).click()')
-
+        //click batch
+        await batches.clickBatchFromSideNav();
         await wait.setTimeoutwait(8);
+        //edit batch
         let editValue = info.getbatchId()
         await wait.setTimeoutwait(3);
         console.log("editValue is " + editValue)
@@ -100,18 +99,17 @@ describe('075_Edit product to uncheck batch is expired and edit batch to set exp
             })();
         }, expiredDate);
         await wait.setTimeoutwait(3);
-
+        //generate expectation file 
         data.generateExpectationFile(info.getProductId(), info.getbatchId(), expiredDate, info.getSerialNumber(), info.getBrandName(), "", "", "", "", info.getEpiDisplayed())
         await wait.setTimeoutwait(12);
-
+        //generate 2d matrix image
         matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), expiredDate, info.getSerialNumber())
         await wait.setTimeoutwait(12);
-
+        //update batch
         await batches.updateBatchForEdit()
         await wait.setTimeoutwait(18);
 
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
-        // allureReporter.endStep("passed");
 
 
     })

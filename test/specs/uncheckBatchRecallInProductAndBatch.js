@@ -18,7 +18,7 @@ describe('065_Edit product to uncheck batch is recalled and edit batch to unchec
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npm run unCheckBatchRecallInProductAndBatchTest');
+            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npx kill-port 4723 && npm run unCheckBatchRecallInProductAndBatchTest');
             console.log('stdout:', stdout1);
             console.log('stderr:', stderr1);
         })
@@ -31,13 +31,14 @@ describe('065_Edit product to uncheck batch is recalled and edit batch to unchec
 
     it('Browser - same recalled batch is updated for not recalled now', async () => {
         allureReporter.addDescription('Edit product and uncheck batch is recalled flag. Edit batch and check batch is not recalled ')
-        allureReporter.addStep("Uncheck batch is not recalled")
+        allureReporter.addStep("Uncheck batch is recalled flag in product")
+        allureReporter.addStep("Batch is not recalled in batch")
         allureReporter.addTestId('ProductDisplayEpiFlag_1_5')
-
+        //click product
         await products.clickProductFromSideNav()
         await wait.setTimeoutwait(4);
         console.log("prod to edit" + info.getProductId())
-        // search the product codes
+        //search the product code
         await products.searchProductCode(info.getProductId())
         await wait.setTimeoutwait(3);
         await browser.keys('Enter')
@@ -53,7 +54,7 @@ describe('065_Edit product to uncheck batch is recalled and edit batch to unchec
         info.setEpiDisplayed(await products.epiDisplayed())
         await wait.setTimeoutwait(3);
 
-        //update products
+        //update product
         await products.updateProduct()
         await wait.setTimeoutwait(18);
 
@@ -62,22 +63,19 @@ describe('065_Edit product to uncheck batch is recalled and edit batch to unchec
         //unchecked the batch is recalled in product level in above testcase  
 
 
-        //edit batch
-        await batches.Batch();
-        //await browser.execute('document.querySelector(`webc-app-menu-item:nth-child(4) stencil-route-link:nth-child(1) a:nth-child(1)`).click()')
-
+        //click batch
+        await batches.clickBatchFromSideNav();
         await wait.setTimeoutwait(8);
+        //edit batch
         let editValue = info.getbatchId()
         console.log("editValue is " + editValue)
         await browser.execute('document.querySelector("div:nth-child(' + await info.editBatchRow(editValue) + ') button:nth-child(1)").click()')
         await wait.setTimeoutwait(6);
 
-
-        await batches.selectUpdateValidSerialFromDropdown(testData.newBatchDetails.updateValid)
+        //update recalled serial number
+        await batches.selectUpdateRecalledSerialFromDropdown(testData.newBatchDetails.updateRecalled)
         await wait.setTimeoutwait(3);
-        // //enable checkbox
-        // await batches.enableResetAllValidSerialNumber()
-        // await wait.setTimeoutwait(3);
+        
         //set the serial number and enter
         info.setSerialNumber(await batches.serialNum())
         await wait.setTimeoutwait(3);
@@ -110,8 +108,6 @@ describe('065_Edit product to uncheck batch is recalled and edit batch to unchec
         await wait.setTimeoutwait(22);
 
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
-        // allureReporter.endStep("passed");
-
-
+       
     })
 })

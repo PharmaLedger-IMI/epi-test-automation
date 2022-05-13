@@ -17,7 +17,7 @@ describe('043_Edit a batch to update decommissioned SN and scan with decommissio
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npm run scanUpdateWithDecommssionedSNTest');
+            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npx kill-port 4723 && npm run scanUpdateWithDecommssionedSNTest');
             console.log('stdout:', stdout1);
             console.log('stderr:', stderr1);
         })
@@ -33,31 +33,10 @@ describe('043_Edit a batch to update decommissioned SN and scan with decommissio
         allureReporter.addStep('Create a batch and enable serial number verification and set valid serial numbers, recalled and decommissioned')
         allureReporter.addStep('Scan with decommissioned serial number')
         allureReporter.addTestId('SerialNumberChecks_7_3')
-
-        // await products.clickProductFromSideNav()
-        // await wait.setTimeoutwait(4);
-
-        //  // search the product codes
-        //  await products.searchProductCode(info.getProductId())
-        //  await wait.setTimeoutwait(3);
-        //  await browser.keys('Enter')
-        //  await wait.setTimeoutwait(4);
-        //  //view or edits
-        //  await browser.execute('document.querySelector("button[data-tag=\'edit-product\']").click()')
-        //  await wait.setTimeoutwait(5);
-
-        //  // enable SN is in decommissioned list
-        //  await products.enableSnIsInDecommissionedList()
-        //  await wait.setTimeoutwait(4);
-
-        //  //update products
-        //  await products.updateProduct()
-        //  await wait.setTimeoutwait(18)
-
-
-        await batches.Batch();
+        //click batch
+        await batches.clickBatchFromSideNav();
         await wait.setTimeoutwait(4);
-        //edit above batch
+        //edit batch
         let editValue = info.getbatchId()
         console.log("editValue is " + editValue)
         await browser.execute('document.querySelector("div:nth-child(' + await info.editBatchRow(editValue) + ') button:nth-child(1)").click()')
@@ -75,12 +54,10 @@ describe('043_Edit a batch to update decommissioned SN and scan with decommissio
         await batches.acceptSerialNumber()
         await wait.setTimeoutwait(3);
 
-        //select decommisioned serial number
+        //update decommisioned serial number
         await batches.selectUpdateDecommissionedFromDropdown(testData.newBatchDetails.updateDecommissioned)
         await wait.setTimeoutwait(3);
-        // //enable checkbox
-        // await batches.enableResetAllDecommisionedSerialNumber()
-        // await wait.setTimeoutwait(3);
+    
         //set the serial number and enter
         info.setSerialNumber(await batches.serialNum())
         await batches.enterSerialNumber(info.getSerialNumber())
@@ -103,9 +80,6 @@ describe('043_Edit a batch to update decommissioned SN and scan with decommissio
         await batches.updateBatchForEdit()
         await wait.setTimeoutwait(18);
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
-        // allureReporter.endStep("passed");
-        // allureReporter.endStep("passed");
-
-
+       
     })
 })    

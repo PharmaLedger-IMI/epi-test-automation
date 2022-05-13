@@ -16,7 +16,7 @@ describe('021_Create a batch to set batch recall and batch message', () => {
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npm run createTheBatchWithBatchMsgAndRecallMsgTest');
+            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npx kill-port 4723 && npm run createTheBatchWithBatchMsgAndRecallMsgTest');
             console.log('stdout:', stdout1);
             console.log('stderr:', stderr1);
         })
@@ -32,13 +32,16 @@ describe('021_Create a batch to set batch recall and batch message', () => {
         allureReporter.addStep('Create a batch with a batch message and batch recall and recall message.')
         allureReporter.addStep('Scan the batch')
         allureReporter.addTestId('BatchRecallAndBatchMessage_11_4')
-        await batches.Batch();
+        //click batch
+        await batches.clickBatchFromSideNav();
         await wait.setTimeoutwait(4);
+        //add batch
         await batches.addBatch();
         await wait.setTimeoutwait(3);
         info.setBatchId(await batches.batchIdValue())
         await batches.siteName(testData.newBatchDetails.siteName);
         await wait.setTimeoutwait(5);
+        //select date
         info.setCurrentRandomDate()
         await wait.setTimeoutwait(3);
         await browser.execute((date) => {
@@ -50,24 +53,24 @@ describe('021_Create a batch to set batch recall and batch message', () => {
             })();
         }, info.getCurrentRandomDate());
         await wait.setTimeoutwait(4);
+        //select product
         const selectBox = await browser.$('//psk-select[@class=\'default-select hydrated\']//select[@class=\'form-control\']');
         await selectBox.selectByAttribute('value', info.getProductId());
         await wait.setTimeoutwait(3);
         await batches.videoSource(testData.newBatchDetails.videoSource)
         await wait.setTimeoutwait(4);
 
-        //set serial number
+        //update valid serial number
         await batches.selectUpdateValidSerialFromDropdown(testData.newBatchDetails.updateValid)
         await wait.setTimeoutwait(3);
-        // await batches.enableResetAllValidSerialNumber()
-        // await wait.setTimeoutwait(3);
+        //enter serial number
         info.setSerialNumber(await batches.serialNum())
         await wait.setTimeoutwait(3);
         await batches.enterSerialNumber(info.getSerialNumber())
         await wait.setTimeoutwait(4);
+        //click accept
         await batches.acceptSerialNumber()
         await wait.setTimeoutwait(3);
-
 
         //enter batch message
         await batches.batchMessage(testData.newBatchDetails.batchMsg)
@@ -98,7 +101,6 @@ describe('021_Create a batch to set batch recall and batch message', () => {
         await wait.setTimeoutwait(40);
 
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
-        // allureReporter.endStep("passed");
 
     })
 })    

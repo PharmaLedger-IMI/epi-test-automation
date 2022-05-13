@@ -16,13 +16,14 @@ describe('113_Update a product via import of Json to enter incorrect batch expir
         allureReporter.addTestId('ImportJson_2_8')
         allureReporter.addDescription('Update a product via import of Json to enter incorrect batch expired flag and uploading modified file. View message and click on invalid field info')
         allureReporter.addStep('1. Use the standard template Json')
-        allureReporter.addStep('2. Fill up the details on the json')
+        allureReporter.addStep('2. Enter incorrect batch expired flag in the json')
         allureReporter.addStep('3. Use the import functionality to select the file')
         allureReporter.addStep('4. Click on import')
         allureReporter.addStep('5. Check the log for the import operation ')
-
+        //click product
         await products.clickProductFromSideNav()
         await wait.setTimeoutwait(8);
+        //click import
         await products.clickImport()
         await wait.setTimeoutwait(3);
 
@@ -31,15 +32,14 @@ describe('113_Update a product via import of Json to enter incorrect batch expir
         const flagDisplayEPI_BatchExpiredValue = rawdata.product.flagDisplayEPI_BatchExpired
         rawdata.product.flagDisplayEPI_BatchExpired = Math.random().toString(36).substring(2, 5)
         fs.writeFileSync(testData.path.productImport, JSON.stringify(rawdata))
-
         await wait.setTimeoutwait(4);
+        //select file
         await products.selectFile(path.join(__dirname, '../testdata/sampleProductImport.json'));
         await wait.setTimeoutwait(8);
 
         //click on import
-        // await products.import()
+        // await products.clickImportFile()
         await browser.execute('document.querySelector(`psk-button[data-tag="import"] button[class="btn btn-primary"]`).click()')
-
         await wait.setTimeoutwait(20);
 
         //update json file
@@ -48,23 +48,19 @@ describe('113_Update a product via import of Json to enter incorrect batch expir
         await wait.setTimeoutwait(8);
 
         //view message
-        await products.viewMessageInFailedLogs()
+        await products.clickViewMessageInFailedLog()
         await wait.setTimeoutwait(5);
 
         //click invalid field info 
         await products.invalidFieldInfo()
         await wait.setTimeoutwait(5);
-        //Read invalid field info
+        //read invalid field info
         await products.invalidFieldInfoRequired()
         await wait.setTimeoutwait(5);
-
-        await products.downloadMsgInFailedLogs()
+        //download message
+        await products.clickDownloadMsgInFailedLog()
         await wait.setTimeoutwait(10);
 
-        // await products.closeButtonInPopup()
-        // await wait.setTimeoutwait(5); 
-
-        // allureReporter.endStep("passed");
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
 
     })

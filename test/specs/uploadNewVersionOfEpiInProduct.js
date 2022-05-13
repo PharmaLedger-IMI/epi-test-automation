@@ -18,7 +18,7 @@ describe('053_Edit product to upload a new version of the ePI ', () => {
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npm run uploadTheNewVersionEpiInProductTest');
+            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npx kill-port 4723 && npm run uploadTheNewVersionEpiInProductTest');
             console.log('stdout:', stdout1);
             console.log('stderr:', stderr1);
         })
@@ -31,10 +31,9 @@ describe('053_Edit product to upload a new version of the ePI ', () => {
 
     it('Browser - should verify if the new ePI is displayed in product level  ', async () => {
         allureReporter.addDescription('Edit product and delete existing version and upload new version of epi ')
-        allureReporter.addStep('Visit the Enterprise wallet and upload a new version of the ePI for the same product at the product level')
+        allureReporter.addStep('Visit the enterprise wallet and upload a new version of the ePI for the same product at the product level')
         allureReporter.addStep('Scan the batch')
         allureReporter.addTestId('ProductInfoUpdate_1_2')
-
 
         //click product from sidenav
         await products.clickProductFromSideNav()
@@ -81,10 +80,6 @@ describe('053_Edit product to upload a new version of the ePI ', () => {
         await products.updateProduct()
         await wait.setTimeoutwait(18);
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
-        // allureReporter.endStep("passed");
-        // allureReporter.endStep("passed");
-
-
 
     })
 })    

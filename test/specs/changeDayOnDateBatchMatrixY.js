@@ -18,7 +18,7 @@ describe('025_change only the day on the new data matrix ', () => {
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npm run changeDayOnDateInBatchTest');
+            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npx kill-port 4723 && npm run changeDayOnDateInBatchTest');
             console.log('stdout:', stdout1);
             console.log('stderr:', stderr1);
         })
@@ -32,7 +32,7 @@ describe('025_change only the day on the new data matrix ', () => {
     if (process.env.npm_config_incremental) {
 
         it('Browser - should Retest above by changing only the day on the new data matrix Y ', async () => {
-            //     await batches.Batch(); 
+            //     await batches.clickBatchFromSideNav(); 
             //     //await browser.execute('document.querySelector(`webc-app-menu-item:nth-child(4) stencil-route-link:nth-child(1) a:nth-child(1)`).click()')
 
             //     await wait.setTimeoutwait(8);
@@ -91,7 +91,7 @@ describe('025_change only the day on the new data matrix ', () => {
             matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getDateChange("day"), info.getSerialNumber())
             await wait.setTimeoutwait(12);
             allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
-            //allureReporter.endStep("passed");
+           
 
 
         })

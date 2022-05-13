@@ -17,7 +17,7 @@ describe('024_Create a batch with X expiry date and pass different date Y in mat
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npm run createTheBatchWithExpiredDateTest');
+            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npx kill-port 4723 && npm run createTheBatchWithExpiredDateTest');
             console.log('stdout:', stdout1);
             console.log('stderr:', stderr1);
         })
@@ -33,15 +33,18 @@ describe('024_Create a batch with X expiry date and pass different date Y in mat
         allureReporter.addStep('Create a batch with X expiry date')
         allureReporter.addStep('Create a 2D data matrix with details of above batch but different expiration date Y')
         allureReporter.addTestId('ExpiryDateChecks_1_1')
-        await batches.Batch();
+        //click batch
+        await batches.clickBatchFromSideNav();
         await wait.setTimeoutwait(3);
+        //add batch
         await batches.addBatch();
         await wait.setTimeoutwait(3);
         info.setBatchId(await batches.batchIdValue())
         await wait.setTimeoutwait(3);
+        //enter site name
         await batches.siteName(testData.newBatchDetails.siteName);
         await wait.setTimeoutwait(3);
-
+        //select site name
         info.setCurrentRandomDate()
         await wait.setTimeoutwait(3);
         await browser.execute((date) => {
@@ -54,13 +57,14 @@ describe('024_Create a batch with X expiry date and pass different date Y in mat
         }, info.getCurrentRandomDate());
         await wait.setTimeoutwait(3);
         console.log("different date is" + info.randomDate())
-
+        //select product
         const selectBox = await browser.$('//psk-select[@class=\'default-select hydrated\']//select[@class=\'form-control\']');
         await selectBox.selectByAttribute('value', info.getProductId());
         await wait.setTimeoutwait(2);
+        //video source
         await batches.videoSource(testData.newBatchDetails.videoSource)
         await wait.setTimeoutwait(3);
-        //valid serial number
+        //update valid serial number
         await batches.selectUpdateValidSerialFromDropdown(testData.newBatchDetails.updateValid)
         await wait.setTimeoutwait(5);
 
@@ -69,7 +73,7 @@ describe('024_Create a batch with X expiry date and pass different date Y in mat
         //enter serial number
         await batches.enterSerialNumber(info.getSerialNumber())
         await wait.setTimeoutwait(5);
-        // manage serial number accept 
+        //manage serial number accept 
         await batches.acceptSerialNumber()
         await wait.setTimeoutwait(3);
         //generate future date
@@ -91,8 +95,6 @@ describe('024_Create a batch with X expiry date and pass different date Y in mat
         await wait.setTimeoutwait(40);
 
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
-        // allureReporter.endStep("passed");
-
-
+    
     })
 })    

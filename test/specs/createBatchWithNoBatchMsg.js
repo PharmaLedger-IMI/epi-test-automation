@@ -16,7 +16,7 @@ describe('018_Create a batch with no batch message', () => {
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npm run createTheBatchWithNoBatchMsgTest"');
+            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npx kill-port 4723 && npm run createTheBatchWithNoBatchMsgTest"');
             console.log('stdout:', stdout1);
             console.log('stderr:', stderr1);
         })
@@ -32,23 +32,19 @@ describe('018_Create a batch with no batch message', () => {
         allureReporter.addStep('Create a batch with no batch message.')
         allureReporter.addStep('Scan the batch')
         allureReporter.addTestId('BatchRecallAndBatchMessage_11_1')
-        await batches.Batch();
+        //click batch
+        await batches.clickBatchFromSideNav();
         await wait.setTimeoutwait(4);
         //add batch
         await batches.addBatch();
         await wait.setTimeoutwait(2);
-
-        // await browser.execute('document.querySelector(`a[href="/batches"]`).click()')
-        // await browser.pause(6000)   
-        // await browser.execute('document.querySelector(`button[data-tag="add-batch"]`).click()') 
-        // await browser.pause(3000)
 
         info.setBatchId(await batches.batchIdValue())
         await wait.setTimeoutwait(2);
         //enter site name
         await batches.siteName(testData.newBatchDetails.siteName);
         await wait.setTimeoutwait(5);
-        //enter date
+        //select date
         info.setCurrentRandomDate()
         await browser.execute((date) => {
             (function () {
@@ -59,17 +55,18 @@ describe('018_Create a batch with no batch message', () => {
             })();
         }, info.getCurrentRandomDate());
         await wait.setTimeoutwait(4);
+        //select product
         const selectBox = await browser.$('//psk-select[@class=\'default-select hydrated\']//select[@class=\'form-control\']');
         await selectBox.selectByAttribute('value', info.getProductId());
         await wait.setTimeoutwait(3);
+        //video source
         await batches.videoSource(testData.newBatchDetails.videoSource)
         await wait.setTimeoutwait(5);
 
         //set serial number
         await batches.selectUpdateValidSerialFromDropdown(testData.newBatchDetails.updateValid)
         await wait.setTimeoutwait(3);
-        // await batches.enableResetAllValidSerialNumber()
-        // await wait.setTimeoutwait(2);
+        //enter serial number
         info.setSerialNumber(await batches.serialNum())
         await batches.enterSerialNumber(info.getSerialNumber())
         await wait.setTimeoutwait(4);
@@ -89,10 +86,6 @@ describe('018_Create a batch with no batch message', () => {
         await wait.setTimeoutwait(40);
 
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
-        // allureReporter.endStep("passed");
-
-
-
-
+       
     })
 })    

@@ -31,29 +31,26 @@ describe('004_Create Batch', () => {
         allureReporter.addFeature('Create Batch')
         allureReporter.addSeverity('Critical');
         allureReporter.addTestId('ProdAndBatchSetup_1')
-        //allureReporter.addDescription('No. of batches can be created by adding batch')
         allureReporter.addStep('Click on batch')
         allureReporter.addStep("Click on add batch and create for the recent GTIN with all valid details.")
 
-
-        await batches.Batch();
+        //click batch
+        await batches.clickBatchFromSideNav();
         await wait.setTimeoutwait(4);
-        //Created for QA environment
-        // await browser.execute('document.querySelector(`webc-app-menu-item:nth-child(4) stencil-route-link:nth-child(1) a:nth-child(1)`).click()')
-        // await wait.setTimeoutwait(6);
 
+        //add batch
         await batches.addBatch();
         await wait.setTimeoutwait(3);
-
+        //set batch value
         info.setBatchId(await batches.batchIdValue())
         await wait.setTimeoutwait(3);
-
+        //enter site name
         await batches.siteName(testData.newBatchDetails.siteName);
         await wait.setTimeoutwait(5);
-
+        //set brand name
         info.setBrandName(await batches.checkBrandName())
         await wait.setTimeoutwait(3);
-
+        //select date
         info.setCurrentRandomDate()
         await wait.setTimeoutwait(2);
         await browser.execute((date) => {
@@ -64,13 +61,13 @@ describe('004_Create Batch', () => {
                 datePicker.dispatchEvent(event);
             })();
         }, info.getCurrentRandomDate());
-
         await wait.setTimeoutwait(2);
+        //select product
         const selectBox = await browser.$('//psk-select[@class=\'default-select hydrated\']//select[@class=\'form-control\']');
         await wait.setTimeoutwait(2);
         await selectBox.selectByAttribute('value', info.getProductId());
         await wait.setTimeoutwait(2);
-
+        //update valid serial number
         await batches.selectUpdateValidSerialFromDropdown(testData.newBatchDetails.updateValid)
         await wait.setTimeoutwait(5);
 
@@ -79,16 +76,15 @@ describe('004_Create Batch', () => {
         //enter serial number
         await batches.enterSerialNumber(info.getSerialNumber())
         await wait.setTimeoutwait(5);
-        // manage serial number accept 
+        //manage serial number accept 
         await batches.acceptSerialNumber()
         await wait.setTimeoutwait(3);
 
-
-        // add epi leaflet
+        //add epi leaflet
         await batches.addEpi()
         await wait.setTimeoutwait(5);
 
-        // video source
+        //video source
         await batches.videoSourceEpi(testData.newBatchDetails.videoSource)
         await wait.setTimeoutwait(4);
         //upload epi
@@ -97,11 +93,11 @@ describe('004_Create Batch', () => {
         //scrollIntoView
         await batches.acceptButton()
         await wait.setTimeoutwait(5);
-
+        //generate expectation file
         data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber(), info.getBrandName(), "", "", "", "", await batches.epiDisplayed())
         await wait.setTimeoutwait(12);
 
-        //generate Image
+        //generate 2d matrix Image
         matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
         await wait.setTimeoutwait(12);
 
@@ -109,9 +105,7 @@ describe('004_Create Batch', () => {
         await batches.createBatch()
         await wait.setTimeoutwait(40);
 
-
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
-        // allureReporter.endStep("passed");
 
     });
 

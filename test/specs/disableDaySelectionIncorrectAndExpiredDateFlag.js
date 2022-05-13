@@ -18,7 +18,7 @@ describe('029_Create a batch with MonthYear as expiry date and disable day selec
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npm run disableDaySelectionIncorrectAndExpiryDateTest');
+            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npx kill-port 4723 && npm run disableDaySelectionIncorrectAndExpiryDateTest');
             console.log('stdout:', stdout1);
             console.log('stderr:', stderr1);
         })
@@ -34,12 +34,15 @@ describe('029_Create a batch with MonthYear as expiry date and disable day selec
         allureReporter.addStep('Create a batch with MonthYear as expiry date')
         allureReporter.addStep('Disable day selection, incorrect and expired date')
         allureReporter.addTestId('ExpiryDateChecks_3_2')
-        await batches.Batch();
+        //click batch
+        await batches.clickBatchFromSideNav();
         await wait.setTimeoutwait(3);
         await batches.addBatch();
+        //add batch
         await wait.setTimeoutwait(3);
         info.setBatchId(await batches.batchIdValue())
         await wait.setTimeoutwait(3);
+        //enter site name
         await batches.siteName(testData.newBatchDetails.siteName);
         await wait.setTimeoutwait(3);
         //click on day selection
@@ -93,10 +96,7 @@ describe('029_Create a batch with MonthYear as expiry date and disable day selec
         await batches.createBatch()
         await wait.setTimeoutwait(40);
 
-
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
-        // allureReporter.endStep("passed");
-
-
+      
     })
 })    

@@ -18,7 +18,7 @@ describe('061_Edit product to check batch is recalled and edit batch to uncheck 
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npm run checkBatchRecallInProductAndNotRecallInBatchTest');
+            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npx kill-port 4723 && npm run checkBatchRecallInProductAndNotRecallInBatchTest');
             console.log('stdout:', stdout1);
             console.log('stderr:', stderr1);
         })
@@ -34,11 +34,11 @@ describe('061_Edit product to check batch is recalled and edit batch to uncheck 
         allureReporter.addStep("Check batch is recalled flag in product")
         allureReporter.addStep("Check batch is not recalled in batch")
         allureReporter.addTestId('ProductDisplayEpiFlag_1_1')
-
+        //click product
         await products.clickProductFromSideNav()
         await wait.setTimeoutwait(4);
         console.log("prod to edit" + info.getProductId())
-        // search the product codes
+        //search the product code
         await products.searchProductCode(info.getProductId())
         await wait.setTimeoutwait(3);
         await browser.keys('Enter')
@@ -46,14 +46,14 @@ describe('061_Edit product to check batch is recalled and edit batch to uncheck 
         //view or edits
         await browser.execute('document.querySelector("button[data-tag=\'edit-product\']").click()')
         await wait.setTimeoutwait(5);
-        // //check batch is recalled
-        // await products.enableBatchIsRecalled()
-        // await wait.setTimeoutwait(5);
+        //check batch is recalled
+        //await products.enableBatchIsRecalled()
+        //await wait.setTimeoutwait(5);
 
         info.setEpiDisplayed(await products.epiDisplayed())
         await wait.setTimeoutwait(5);
 
-        // add smpc
+        //add smpc
         await products.addEpi()
         await wait.setTimeoutwait(3);
 
@@ -62,7 +62,7 @@ describe('061_Edit product to check batch is recalled and edit batch to uncheck 
         await products.selectType(testData.newBatchDetails.selectType)
         await wait.setTimeoutwait(3);
 
-        // upload leaflet folder
+        //upload leaflet 
         await products.uploadFile(path.join(__dirname, '/src/SMPC_ProductLevel'));
         await wait.setTimeoutwait(4);
         info.setEpiDisplayed(await products.epiDisplayed())
@@ -71,12 +71,12 @@ describe('061_Edit product to check batch is recalled and edit batch to uncheck 
         await products.acceptButton()
         await wait.setTimeoutwait(5);
 
-        //update products
+        //update product
         await products.updateProduct()
         await wait.setTimeoutwait(18);
 
 
-        await batches.Batch();
+        await batches.clickBatchFromSideNav();
         // await wait.setTimeoutwait(3);
         //Created for QA environment
         // await browser.execute('document.querySelector(`webc-app-menu-item:nth-child(4) stencil-route-link:nth-child(1) a:nth-child(1)`).click()')
@@ -99,12 +99,9 @@ describe('061_Edit product to check batch is recalled and edit batch to uncheck 
         }, info.getCurrentRandomDate());
 
         await wait.setTimeoutwait(2);
-        // const selectBox = await browser.$('//psk-select[@class=\'default-select hydrated\']//select[@class=\'form-control\']');
-        // await wait.setTimeoutwait(2);
-        // await selectBox.selectByAttribute('value', info.getProductId());
-        // await wait.setTimeoutwait(2);
-
-        await batches.selectUpdateValidSerialFromDropdown(testData.newBatchDetails.updateValid)
+        
+        //update recalled serial number
+        await batches.selectUpdateRecalledSerialFromDropdown(testData.newBatchDetails.updateRecalled)
         await wait.setTimeoutwait(5);
 
         //set serial number value
@@ -136,7 +133,6 @@ describe('061_Edit product to check batch is recalled and edit batch to uncheck 
         await wait.setTimeoutwait(18);
 
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
-        // allureReporter.endStep("passed");
-
+      
     })
 })

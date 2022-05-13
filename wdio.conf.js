@@ -187,7 +187,7 @@ exports.config = {
             'test/specs/enterSnDecommissionedInBatchJson.js',
             'test/specs/enterSnValidInBatchJson.js',
 
-
+            //'test/specs/disableFeatures.js'
 
 
             //  'test/specs/invalidSsoLogin.js',
@@ -268,6 +268,8 @@ exports.config = {
             // grid with only 5 firefox instances available you can make sure that not more than
             // 5 instances get started at a time.
             maxInstances: 5,
+
+            
             //
             browserName: 'chrome',
             // acceptInsecureCerts: true,

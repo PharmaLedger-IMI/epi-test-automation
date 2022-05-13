@@ -17,27 +17,28 @@ describe('102_Import product', () => {
         allureReporter.addStep('3. Use the import functionality to select the file')
         allureReporter.addStep('4. Click on import')
         allureReporter.addStep('5. Check the log for the import operation ')
-
+        //click product
         await products.clickProductFromSideNav()
         await wait.setTimeoutwait(8);
+        //click import
         await products.clickImport()
         await wait.setTimeoutwait(10);
-
+        //select file
         await products.selectFile(path.join(__dirname, '../testdata/sampleProductImport.json'));
         await wait.setTimeoutwait(5);
 
-        // await products.import()
+        //await products.import()
         await browser.execute('document.querySelector(`psk-button[data-tag="import"] button[class="btn btn-primary"]`).click()')
         await wait.setTimeoutwait(10);
 
         //view message
-        await products.viewMessageInSuccessLogs()
+        await products.clickViewMessageInSuccessLog()
+        await wait.setTimeoutwait(10);
+        //downlaod message
+        await products.clickDownloadMsgInSuccessLog()
         await wait.setTimeoutwait(10);
 
-        await products.downloadMsgInSuccessLogs()
-        await wait.setTimeoutwait(10);
-
-        // allureReporter.endStep("passed");
+      
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
 
     })

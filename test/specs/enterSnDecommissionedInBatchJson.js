@@ -7,23 +7,22 @@ const path = require('path');
 const fs = require('fs');
 
 
-describe('124_Update a batch via import of Json to enter decommissioned serial number flag  ', () => {
+describe('124_Update a batch via import of Json to enter decommissioned serial number  ', () => {
 
 
 
     it('Browser - update a batch via import of Json ', async () => {
         allureReporter.addTestId('ImportJson_4_10')
-        allureReporter.addDescription('Update a batch via import of Json to enter decommissioned serial number and uploading modified file. View message and click on invalid field info')
+        allureReporter.addDescription('Update a batch via import of Json to enter decommissioned serial number and upload modified file. View message and click on invalid field info')
         allureReporter.addStep('1. Use the standard template Json')
-        allureReporter.addStep('2. Fill up the details on the json')
+        allureReporter.addStep('2. Enter decommissioned serial number flag in the json')
         allureReporter.addStep('3. Use the import functionality to select the file')
         allureReporter.addStep('4. Click on import')
         allureReporter.addStep('5. Check the log for the import operation ')
-
-        await batches.Batch()
+        //click batch
+        await batches.clickBatchFromSideNav()
         await wait.setTimeoutwait(8);
-
-
+        //click import
         await batches.clickImport()
         await wait.setTimeoutwait(3);
 
@@ -34,17 +33,15 @@ describe('124_Update a batch via import of Json to enter decommissioned serial n
         rawdata.batch.snValid = []
         //enter decommissioned SN
         rawdata.batch.snDecom = [parseInt(testData.incrementalTest.serialNumber)]
-
         fs.writeFileSync(testData.path.batchImport, JSON.stringify(rawdata))
-
         await wait.setTimeoutwait(3);
+        //select file
         await batches.selectFile(path.join(__dirname, '../testdata/sampleBatchImport.json'));
         await wait.setTimeoutwait(8);
 
         //click on import
-        //await batches.import()
+        //await batches.clickImportFile()
         await browser.execute('document.querySelector(`psk-button[data-tag="import"] button[class="btn btn-primary"]`).click()')
-
         await wait.setTimeoutwait(20);
 
         //update json file
@@ -54,16 +51,12 @@ describe('124_Update a batch via import of Json to enter decommissioned serial n
         await wait.setTimeoutwait(8);
 
         //view message
-        await batches.viewMessageInSuccessLogs()
+        await batches.clickViewMessageInSuccessLog()
         await wait.setTimeoutwait(5);
-
-        await batches.downloadMsgInSuccessLogs()
+        //download message
+        await batches.clickDownloadMsgInSuccessLog()
         await wait.setTimeoutwait(10);
 
-        // await batches.closeButtonInPopup()
-        // await wait.setTimeoutwait(5); 
-
-        // allureReporter.endStep("passed");
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
 
     })

@@ -29,18 +29,16 @@ describe('055_Update product information that the version of ePI is not impacted
 
         it('Browser - should verify that the version of ePI is not impacted / not replaced by  the batch specific version.', async () => {
             allureReporter.addDescription('Scan previous batch and check version of epi not replaced ')
-            allureReporter.addStep('Scan the data matrix of the old  batch created in the previous test case and verify that the version of ePI is not impacted / not replaced by  the batch specific version. ')
+            allureReporter.addStep('Scan the data matrix of the old batch created in the previous test case and verify that the version of ePI is not impacted / not replaced by  the batch specific version. ')
             allureReporter.addTestId('ProductInfoUpdate_2_2')
 
-            // await data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(),  info.getSerialNumber(),info.getBrandName(),"", await batches.checkBatchMessage(),"", "" )
-            // await wait.setTimeoutwait(12);
             info.getExpectationFile()
             await wait.setTimeoutwait(12);
             info.getImage()
             await wait.setTimeoutwait(9);
 
             allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
-            // allureReporter.endStep("passed");
+
 
         })
     }

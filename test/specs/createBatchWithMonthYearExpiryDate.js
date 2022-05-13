@@ -18,7 +18,7 @@ describe('028_create a batch with only MonthYear as expiry date', () => {
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npm run batchWithMonthAndYearAndExpiredDateTest');
+            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npx kill-port 4723 && npm run batchWithMonthAndYearAndExpiredDateTest');
             console.log('stdout:', stdout1);
             console.log('stderr:', stderr1);
         })
@@ -34,12 +34,15 @@ describe('028_create a batch with only MonthYear as expiry date', () => {
         allureReporter.addStep('Create a batch with only MonthYear as expiry date ')
         allureReporter.addStep('Scan the batch')
         allureReporter.addTestId('ExpiryDateChecks_3_1')
-        await batches.Batch();
+        //click batch
+        await batches.clickBatchFromSideNav();
         await wait.setTimeoutwait(4);
+        //add batch
         await batches.addBatch();
         await wait.setTimeoutwait(3);
         info.setBatchId(await batches.batchIdValue())
         await wait.setTimeoutwait(3);
+        //enter site name
         await batches.siteName(testData.newBatchDetails.siteName);
         await wait.setTimeoutwait(3);
         //enable day selection
@@ -60,12 +63,14 @@ describe('028_create a batch with only MonthYear as expiry date', () => {
             })();
         }, mmYYYY);
         await wait.setTimeoutwait(2);
+        //select product
         const selectBox = await browser.$('//psk-select[@class=\'default-select hydrated\']//select[@class=\'form-control\']');
         await selectBox.selectByAttribute('value', info.getProductId());
         await wait.setTimeoutwait(2);
+        //video source
         await batches.videoSource(testData.newBatchDetails.videoSource)
         await wait.setTimeoutwait(3);
-
+        //update serial number
         await batches.selectUpdateValidSerialFromDropdown(testData.newBatchDetails.updateValid)
         await wait.setTimeoutwait(5);
 
@@ -74,7 +79,7 @@ describe('028_create a batch with only MonthYear as expiry date', () => {
         //enter serial number
         await batches.enterSerialNumber(info.getSerialNumber())
         await wait.setTimeoutwait(5);
-        // manage serial number accept 
+        //manage serial number accept 
         await batches.acceptSerialNumber()
         await wait.setTimeoutwait(3);
         //generate expectation file 
@@ -87,9 +92,8 @@ describe('028_create a batch with only MonthYear as expiry date', () => {
         await batches.createBatch()
         await wait.setTimeoutwait(40);
 
-
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
-        // allureReporter.endStep("passed");
+      
 
 
     })

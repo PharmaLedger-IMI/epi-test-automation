@@ -1,5 +1,5 @@
 
-//const expectChai = require('chai').expect;
+
 const testData = require('../testdata/config.json')
 const path = require('path')
 const { URL } = require('url')
@@ -18,21 +18,21 @@ class batchesPage {
     get addbatchbutton() {
         return $("//button[normalize-space()='ADD BATCH']")
     }
-    get batchIdValue1() {
+    get batchIdValueTextbox() {
         return $('//input[@placeholder=\'Add batch id\']')
     }
 
 
-    get addsitename() {
+    get addSiteNameField() {
         return $("//input[@placeholder='Add site name']")
     }
-    get brand() {
+    get brandField() {
         return $("//input[@placeholder='Add site name']")
     }
     get enableDaySelectionCheckbox() {
         return $("//label[normalize-space()='Enable day selection']")
     }
-    get videoSourceEnter() {
+    get videoSourceEnterField() {
         return $("//textarea[@placeholder='Add video source']")
     }
     get enableIncorrectExpirationDateVerificationCheckbox() {
@@ -63,16 +63,14 @@ class batchesPage {
         return $("//psk-select[@view-model='@actionModalModel.reason']//select[@class='form-control']")
 
     }
-    // get selectUpdateRecalledSerial(){
-    //     return $("//option[@value='update-recalled-serial']")
-    // }
+
     get serialNumberAcceptButton() {
         return $("//button[normalize-space()='Accept']")
     }
     get serialNumberCancelButton() {
         return $("//psk-button[@class='marketplace-manager-button hydrated']//button[@class='btn btn-primary'][normalize-space()='Cancel']")
     }
-    get batchMessageEnter() {
+    get batchMessageField() {
         return $("//textarea[@placeholder='This text will be displayed to user after Barcode is scanned']")
     }
     get addEpiButton() {
@@ -84,7 +82,7 @@ class batchesPage {
     get selectTypeDropdown() {
         return $('//select[@class="document-type-select dsu-select"]')
     }
-    get videoSourceEpiEnter() {
+    get videoSourceEpiField() {
         return $("//textarea[@value='@modalData.product.videoSource']")
     }
     get uploadEpiFile() {
@@ -102,7 +100,7 @@ class batchesPage {
         return $("(//div[@class='checkbox-container featureCode-08'])[1]//input[@type='checkbox']")
 
     }
-    get enterRecallMessageInTextbox() {
+    get recallMessageTextbox() {
         return $("//textarea[@placeholder='This text will be displayed to user after Barcode is scanned if batch is recalled']")
     }
     get updateBatchForEditButton() {
@@ -118,34 +116,34 @@ class batchesPage {
     get importButton() {
         return $('//button[normalize-space()="IMPORT"]')
     }
-    get importFile() {
+    get selectFileButton() {
         return $('//input[@type="file"]')
     }
-    get importF() {
+    get importFileButton() {
         return $('//button[normalize-space()="Import"]')
     }
-    get clickViewMessageInFailedLogs() {
+    get viewMessageInFailedLogs() {
         return $("(//button[@class='btn btn-link p-0 col align-self-center text-left'][contains(text(),'View')])[16]")
     }
-    get clickViewMessageInSuccessLogs() {
+    get viewMessageInSuccessLogs() {
         return $('div:nth-child(14) button:nth-child(1)')
     }
-    get clickDownloadMsg() {
+    get downloadMsgButton() {
         return $('//button[normalize-space()="Download message"]')
     }
-    get clickInvalidFieldInfo() {
+    get invalidFieldInfoButton() {
         return $('psk-accordion-item[title="Invalid fields info"]')
     }
-    get requiredFields() {
+    get requiredFieldsText() {
         return $('ul[data-for="@actionModalModel.secondMessageData"]')
     }
-    get closeButtonInPopupClick() {
+    get closeButton() {
         return $("//button[normalize-space()='Close']")
     }
 
 
     ///////
-    async Batch() {
+    async clickBatchFromSideNav() {
 
         await this.batchFromSideNav.click();
     }
@@ -156,7 +154,7 @@ class batchesPage {
     }
     async batchIdValue() {
 
-        const batchId = await this.batchIdValue1.getValue();
+        const batchId = await this.batchIdValueTextbox.getValue();
 
         console.log(batchId)
         return batchId
@@ -171,8 +169,8 @@ class batchesPage {
 
 
     async checkBrandName() {
-        if (await this.brand.isDisplayed() == true) {
-            let brandDisplayed = (await this.brand.getValue()).toString()
+        if (await this.brandField.isDisplayed() == true) {
+            let brandDisplayed = (await this.brandField.getValue()).toString()
             return brandDisplayed
         }
         else {
@@ -182,8 +180,8 @@ class batchesPage {
     }
     async siteName(site) {
 
-        await this.addsitename.click();
-        await this.addsitename.setValue(site)
+        await this.addSiteNameField.click();
+        await this.addSiteNameField.setValue(site)
     }
     async enableDaySelection() {
         await this.enableDaySelectionCheckbox.isEnabled()
@@ -194,7 +192,7 @@ class batchesPage {
     }
 
     async videoSource(link1) {
-        await this.videoSourceEnter.setValue(link1)
+        await this.videoSourceEnterField.setValue(link1)
     }
     async enableIncorrectExpirationDateVerification() {
         await this.enableIncorrectExpirationDateVerificationCheckbox.isEnabled()
@@ -268,11 +266,11 @@ class batchesPage {
         await this.serialNumberCancelButton.click()
     }
     async batchMessage(message) {
-        await this.batchMessageEnter.setValue(message)
+        await this.batchMessageField.setValue(message)
     }
 
     async checkBatchMessage() {
-        if (await this.batchMessageEnter.isDisplayed() == true) {
+        if (await this.batchMessageField.isDisplayed() == true) {
             let batchMessageDisplayed = "Sample"
             return batchMessageDisplayed
         }
@@ -291,7 +289,7 @@ class batchesPage {
         await this.selectTypeDropdown.selectByVisibleText(type)
     }
     async videoSourceEpi(link) {
-        await this.videoSourceEpiEnter.setValue(link)
+        await this.videoSourceEpiField.setValue(link)
     }
     async uploadFile(uploadEpi) {
         await this.uploadEpiFile.addValue(uploadEpi);
@@ -337,19 +335,19 @@ class batchesPage {
     }
     async enterRecallMessage(RecallMessage) {
         //await this.enterRecallMessageInTextbox.scrollIntoView()
-        await this.enterRecallMessageInTextbox.click()
+        await this.recallMessageTextbox.click()
         //await this.enterRecallMessageInTextbox.clearValue()
-        await this.enterRecallMessageInTextbox.setValue(RecallMessage)
+        await this.recallMessageTextbox.setValue(RecallMessage)
     }
     async clearRecallMessage() {
 
-        await this.enterRecallMessageInTextbox.click()
+        await this.recallMessageTextbox.click()
         await browser.pause(3000)
-        await this.enterRecallMessageInTextbox.clearValue()
+        await this.recallMessageTextbox.clearValue()
 
     }
     async checkBatchRecallMessage() {
-        if (await this.enterRecallMessageInTextbox.isDisplayed() == true) {
+        if (await this.recallMessageTextbox.isDisplayed() == true) {
             let recallMessage = "This is a sample recall message"
             return recallMessage
         }
@@ -404,27 +402,27 @@ class batchesPage {
     }
     async selectFile(file) {
 
-        await this.importFile.addValue(file)
+        await this.selectFileButton.addValue(file)
     }
-    async import() {
+    async clickImportFile() {
 
-        await this.importF.click()
+        await this.importFileButton.click()
     }
-    async viewMessageInFailedLogs() {
+    async clickViewMessageInFailedLog() {
 
         try {
-            await this.clickViewMessageInFailedLogs.click()
+            await this.viewMessageInFailedLogs.click()
         }
 
         catch (e) {
             console.log("success logs")
         }
     }
-    async viewMessageInSuccessLogs() {
+    async clickViewMessageInSuccessLog() {
         // if(this.clickViewMessageInSuccessLogs.isExisting()==true){
 
         try {
-            await this.clickViewMessageInSuccessLogs.click()
+            await this.viewMessageInSuccessLogs.click()
         }
         catch (e) {
             console.log("failed logs")
@@ -436,7 +434,7 @@ class batchesPage {
         // }
 
     }
-    async downloadMsgInSuccessLogs() {
+    async clickDownloadMsgInSuccessLog() {
 
         const downloadHref = await browser.getUrl();
         // pass through Node's `URL` class
@@ -458,7 +456,7 @@ class batchesPage {
         const filePath = path.join(global.downloadDir, fileName)
         console.log(filePath)
         try {
-            await this.clickDownloadMsg.click()
+            await this.downloadMsgButton.click()
             await browser.pause(5000)
         } catch (e) { console.log("failed logs") }
 
@@ -488,7 +486,7 @@ class batchesPage {
     }
 
 
-    async downloadMsgInFailedLogs() {
+    async clickDownloadMsgInFailedLog() {
 
         const downloadHref = await browser.getUrl();
         // pass through Node's `URL` class
@@ -511,7 +509,7 @@ class batchesPage {
         console.log(filePath)
         //Click on download button
         try {
-            await this.clickDownloadMsg.click()
+            await this.downloadMsgButton.click()
             await browser.pause(5000)
         }
         catch (e) {
@@ -547,7 +545,7 @@ class batchesPage {
     }
     async invalidFieldInfo() {
         try {
-            await this.clickInvalidFieldInfo.click()
+            await this.invalidFieldInfoButton.click()
         }
         catch (e) {
             console.log("success logs")
@@ -557,7 +555,7 @@ class batchesPage {
 
         try {
 
-            const allFields = await this.requiredFields.getText()
+            const allFields = await this.requiredFieldsText.getText()
             console.log('required fields are ' + allFields)
         }
         catch (e) {
@@ -566,7 +564,7 @@ class batchesPage {
 
     }
     async closeButtonInPopup() {
-        await this.closeButtonInPopupClick.click()
+        await this.closeButton.click()
     }
 
 

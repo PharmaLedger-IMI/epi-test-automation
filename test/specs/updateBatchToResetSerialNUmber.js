@@ -18,7 +18,7 @@ describe('049_Edit batch to reset the serial Numbers', () => {
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npm run updateTheBatchToResetSerialNumberTest');
+            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npx kill-port 4723 && npm run updateTheBatchToResetSerialNumberTest');
             console.log('stdout:', stdout1);
             console.log('stderr:', stderr1);
         })
@@ -33,10 +33,11 @@ describe('049_Edit batch to reset the serial Numbers', () => {
         allureReporter.addDescription('Edit batch and reset valid serial number')
         allureReporter.addStep('Update the above batch to reset the serial Numbers ')
         allureReporter.addTestId('SerialNumberChecks_11_3')
-        await batches.Batch();
+        //click batch
+        await batches.clickBatchFromSideNav();
         await wait.setTimeoutwait(4);
 
-        //edit above batch
+        //edit batch
         let editValue = info.getbatchId()
         console.log("editValue is " + editValue)
         await browser.execute('document.querySelector("div:nth-child(' + await info.editBatchRow(editValue) + ') button:nth-child(1)").click()')
@@ -66,8 +67,6 @@ describe('049_Edit batch to reset the serial Numbers', () => {
         await batches.updateBatchForEdit()
         await wait.setTimeoutwait(18);
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
-        // allureReporter.endStep("passed");
-
 
     })
 })    

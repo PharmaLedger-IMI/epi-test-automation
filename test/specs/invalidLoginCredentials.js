@@ -1,6 +1,5 @@
 
 const LoginPage = require('../pageobjects/login.page');
-const info = require('../utility/reusableFile')
 const accessAccount = require('../pageobjects/access.Account');
 const allureReporter = require('@wdio/allure-reporter').default
 const testData = require('../testdata/config.json')
@@ -11,59 +10,41 @@ describe('126_Verify invalid login', () => {
 
     allureReporter.addTestId('Login_1')
     allureReporter.addStep('Open the ePI URL')
+    allureReporter.addStep('Navigate to the Enterprise Wallet')
+    allureReporter.addStep("Enter invalid username and password");
+    //open epi url
     await LoginPage.open();
     await wait.setTimeoutwait(3);
-    // allureReporter.endStep("passed");
     await browser.maximizeWindow();
+    const parentWindow = await browser.getWindowHandle()
+    console.log("parentWindow " + parentWindow)
 
-  });
-
-  it('Browser - should open Enterprise Wallet', async () => {
-
-    allureReporter.addStep('Navigate to the Enterprise Wallet')
+    //open enterprise wallet
     await LoginPage.openEnterpriseWallet();
     await wait.setTimeoutwait(3);
-    // allureReporter.endStep("passed");
+
     const handles = await browser.getWindowHandles();
-
-    if (handles.length != 2) {
-      console.log("length is " + handles.length)
-      if (info.getUser()) {
-        await browser.switchToWindow(handles[4]);
-      }
-      else {
-        await browser.switchToWindow(handles[3]);
-      }
-    }
-    else {
-      await browser.switchToWindow(handles[1]);
-    }
-
-  });
-  it('Browser - should open Access Account', async () => {
-
-
-    allureReporter.addDescription('Invalid username and password ')
-    allureReporter.addStep("Enter invalid username and password");
+    await browser.switchToWindow(handles[1]);
+    await wait.setTimeoutwait(3);
+    //click access account
     await accessAccount.clickAccessAccount();
     await wait.setTimeoutwait(4);
-    await accessAccount.clearUserName();
-    await wait.setTimeoutwait(2);
+    //enter invalid username
     await accessAccount.enterUserName(testData.login.invalidUserName);
     await wait.setTimeoutwait(2);
-    //  await accessAccount.emailId();
-    //  await wait.setTimeoutwait(2);
-    await accessAccount.password(testData.login.invalidPassword);
+    //enter invalid password
+    await accessAccount.enterPassword(testData.login.invalidPassword);
     await wait.setTimeoutwait(2);
-    await accessAccount.Enterbutton();
+    //click enter button
+    await accessAccount.clickEnter();
     await wait.setTimeoutwait(15);
+    //close tab
+    await browser.closeWindow()
+    await wait.setTimeoutwait(4);
+    await browser.switchToWindow(parentWindow)
+    await wait.setTimeoutwait(4);
 
-    //  //home page screenshot
-    //  const frame = await browser.$('iframe[frameborder=\'0\']');
-    //  await browser.switchToFrame(frame);
     allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
-
-    //  allureReporter.endStep("passed");
 
   });
 })

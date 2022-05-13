@@ -35,7 +35,7 @@ describe('Expiry date Checks ', () => {
 
         allureReporter.startStep(' create a batch with X expiry date that has already passed… choose a date from the past ')
         allureReporter.addTestId('Expiry date Checks_C2')
-        await batches.Batch();
+        await batches.clickBatchFromSideNav();
         await wait.setTimeoutwait(3);
         await batches.addBatch();
         await wait.setTimeoutwait(3);

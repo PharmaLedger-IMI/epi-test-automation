@@ -17,7 +17,7 @@ describe('056_SMPC update on the product Non- batch specific version', () => {
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npm run createProductWithUploadLeafletAndSMPCTest');
+            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npx kill-port 4723 && npm run createProductWithUploadLeafletAndSMPCTest');
             console.log('stdout:', stdout1);
             console.log('stderr:', stderr1);
         })
@@ -60,23 +60,26 @@ describe('056_SMPC update on the product Non- batch specific version', () => {
         //upload folder
         await products.uploadFile(path.join(__dirname, '/src/SMPC_ProductLevel'));
         await wait.setTimeoutwait(5);
-
+        //click accept
         await products.acceptButton()
         await wait.setTimeoutwait(3);
 
-        //Update product
+        //update product
         await products.updateProduct()
         await wait.setTimeoutwait(25);
 
         //create batch and scan
-        await batches.Batch();
+        await batches.clickBatchFromSideNav();
         await wait.setTimeoutwait(4);
+        //add batch
         await batches.addBatch();
         await wait.setTimeoutwait(3);
         info.setBatchId(await batches.batchIdValue())
         await wait.setTimeoutwait(3);
+        //enter site name
         await batches.siteName(testData.newBatchDetails.siteName);
         await wait.setTimeoutwait(3);
+        //select date
         info.setCurrentRandomDate()
         await wait.setTimeoutwait(3);
         await browser.execute((date) => {
@@ -88,6 +91,7 @@ describe('056_SMPC update on the product Non- batch specific version', () => {
             })();
         }, info.getCurrentRandomDate());
         await wait.setTimeoutwait(2);
+        //select dropdown
         const selectBox = await browser.$('//psk-select[@class=\'default-select hydrated\']//select[@class=\'form-control\']');
         await selectBox.selectByAttribute('value', info.getProductId());
         await wait.setTimeoutwait(2);
@@ -95,13 +99,11 @@ describe('056_SMPC update on the product Non- batch specific version', () => {
         //select valid serial number
         await batches.selectUpdateValidSerialFromDropdown(testData.newBatchDetails.updateValid)
         await wait.setTimeoutwait(2);
-        // //enable checkbox
-        // await batches.enableResetAllValidSerialNumber()
-        // await wait.setTimeoutwait(2);
+       
         //set the serial number and enter
         info.setSerialNumber(await batches.serialNum())
         await batches.enterSerialNumber(info.getSerialNumber())
-        await wait.setTimeoutwait(3);
+        await wait.setTimeoutwait(4);
         //accept serial number
         await batches.acceptSerialNumber()
         await wait.setTimeoutwait(2);
@@ -117,7 +119,6 @@ describe('056_SMPC update on the product Non- batch specific version', () => {
         await batches.createBatch()
         await wait.setTimeoutwait(40);
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
-
 
     })
 })    

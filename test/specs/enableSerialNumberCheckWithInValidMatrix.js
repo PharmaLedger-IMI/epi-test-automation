@@ -19,7 +19,7 @@ describe('008_Edit batch and enable serial number check with invalid SN ', () =>
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npm run enableTheSnCheckSnIsInValidTest');
+            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npx kill-port 4723 && npm run enableTheSnCheckSnIsInValidTest');
             console.log('stdout:', stdout1);
             console.log('stderr:', stderr1);
         })
@@ -36,7 +36,8 @@ describe('008_Edit batch and enable serial number check with invalid SN ', () =>
         allureReporter.addStep('Verify that the serial number check is enabled by default in batch')
         allureReporter.addStep('Scan an invalid data matrix code to verify that the serial number check fails.')
         allureReporter.addTestId('BasicAuthFeatureTest_1_2')
-        await batches.Batch();
+        //click batch
+        await batches.clickBatchFromSideNav();
         await wait.setTimeoutwait(3);
 
         //edit Batch
@@ -54,6 +55,7 @@ describe('008_Edit batch and enable serial number check with invalid SN ', () =>
         await wait.setTimeoutwait(3);
         //set serial number
         info.setSerialNumber(await batches.serialNum())
+        await wait.setTimeoutwait(3);
         await batches.enterSerialNumber(info.getSerialNumber())
         await wait.setTimeoutwait(3);
 
@@ -74,8 +76,6 @@ describe('008_Edit batch and enable serial number check with invalid SN ', () =>
         await batches.updateBatchForEdit()
         await wait.setTimeoutwait(18);
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
-        // allureReporter.endStep("passed");
-        // allureReporter.endStep("passed");
 
 
     })

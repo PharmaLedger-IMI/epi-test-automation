@@ -16,7 +16,7 @@ describe('023_Edit batch to set expired date and invalid serial number ', () => 
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npm run batchWithTheExpiredDateRecallMsgAndInvalidSnTest');
+            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npx kill-port 4723 && npm run batchWithTheExpiredDateRecallMsgAndInvalidSnTest');
             console.log('stdout:', stdout1);
             console.log('stderr:', stderr1);
         })
@@ -35,16 +35,14 @@ describe('023_Edit batch to set expired date and invalid serial number ', () => 
         allureReporter.addStep('5. Save the batch')
         allureReporter.addStep('6. Scan the "Wrong" serial number')
         allureReporter.addTestId('BatchRecallAndBatchMessage_12_3')
-
-        await batches.Batch();
-        // await browser.execute('document.querySelector(`webc-app-menu-item:nth-child(4) stencil-route-link:nth-child(1) a:nth-child(1)`).click()')
-
+        //click batch
+        await batches.clickBatchFromSideNav();
         await wait.setTimeoutwait(8);
         let editValue = info.getbatchId()
         console.log("editValue is " + editValue)
         await browser.execute('document.querySelector("div:nth-child(' + await info.editBatchRow(editValue) + ') button:nth-child(1)").click()')
         await wait.setTimeoutwait(6);
-
+        //select date
         const expiredDate = info.randomDateExpired()
         await wait.setTimeoutwait(3);
         await browser.execute((date) => {
@@ -57,24 +55,10 @@ describe('023_Edit batch to set expired date and invalid serial number ', () => 
         }, expiredDate);
 
 
-        // //enable recall checkbox
-        // await batches.enableCheckToRecallThisBatch()
-        // await wait.setTimeoutwait(3);
-        // //set batch recall
-        // info.setBatchRecall(await batches.checkBatchRecall())
-        // await wait.setTimeoutwait(3);
-        // await batches.enterRecallMessage(testData.newBatchDetails.recallMsg)
-        // await wait.setTimeoutwait(3);
-        // //set batch recall msg
-        // info.setBatchRecallMsg(await batches.checkBatchRecallMessage())
-        // await wait.setTimeoutwait(3);
-
-        //select valid serial number
+        //update valid serial number
         await batches.selectUpdateValidSerialFromDropdown(testData.newBatchDetails.updateValid)
         await wait.setTimeoutwait(3);
-        // //enable checkbox
-        // await batches.enableResetAllValidSerialNumber()
-        // await wait.setTimeoutwait(3);
+
         //set the serial number and enter
         info.setSerialNumber(await batches.serialNum())
         await batches.enterSerialNumber(info.getSerialNumber())
@@ -88,7 +72,7 @@ describe('023_Edit batch to set expired date and invalid serial number ', () => 
         await wait.setTimeoutwait(3);
 
         //generate expectation file
-        data.generateExpectationFile(info.getProductId(), info.getbatchId(), expiredDate, invalidSerialNumber, info.getBrandName(), info.getBatchRecall(), "", "", info.getBatchRecallMsg())
+        data.generateExpectationFile(info.getProductId(), info.getbatchId(), expiredDate, invalidSerialNumber, info.getBrandName(), "", "", "", "")
         await wait.setTimeoutwait(12);
         //generate 2d matrix image
         matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), expiredDate, invalidSerialNumber)
@@ -97,12 +81,7 @@ describe('023_Edit batch to set expired date and invalid serial number ', () => 
         await batches.updateBatchForEdit()
         await wait.setTimeoutwait(18);
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
-        // allureReporter.endStep("passed");
-        // allureReporter.endStep("passed");
-        // allureReporter.endStep("passed");
-        // allureReporter.endStep("passed");
-        // allureReporter.endStep("passed");
-        // allureReporter.endStep("passed");
+        
 
     })
 })    

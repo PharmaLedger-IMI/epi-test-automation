@@ -19,7 +19,7 @@ let GTIN = ''
 let user = ''
 const incrementalValue = process.argv
 const incrementalArg = incrementalValue.length - 1
-//const newbatch=incrementalValue.length-1
+
 
 class reuseFile {
 
@@ -174,49 +174,49 @@ class reuseFile {
         return expiredDate
     }
 
-    setDayChange(randomDate) {
+    // setDayChange(randomDate) {
 
-        return currentDay = randomDay(randomDate)
-    }
+    //     return currentDay = randomDay(randomDate)
+    // }
 
-    getDayChange() {
+    // getDayChange() {
 
-        if (process.env.npm_config_incremental) {
-            console.log("date value is " + testData.incrementalTest.expiryDate)
-            return testData.incrementalTest.expiryDate
-        }
-        else {
-            return currentDay
-        }
-    }
+    //     if (process.env.npm_config_incremental) {
+    //         console.log("date value is " + testData.incrementalTest.expiryDate)
+    //         return testData.incrementalTest.expiryDate
+    //     }
+    //     else {
+    //         return currentDay
+    //     }
+    // }
     // setMonthChange(randomDate){
 
     //     return currentMonth=randomMonth(randomDate)
     // }
-    getMonthChange() {
+    // getMonthChange() {
 
-        if (process.env.npm_config_incremental) {
-            console.log("date value is " + testData.incrementalTest.expiryDate)
-            return testData.incrementalTest.expiryDate
-        }
-        else {
-            return currentMonth
-        }
-    }
-    setYearChange(randomDate) {
+    //     if (process.env.npm_config_incremental) {
+    //         console.log("date value is " + testData.incrementalTest.expiryDate)
+    //         return testData.incrementalTest.expiryDate
+    //     }
+    //     else {
+    //         return currentMonth
+    //     }
+    // }
+    // setYearChange(randomDate) {
 
-        return currentYear = randomYear(randomDate)
-    }
-    getYearChange() {
+    //     return currentYear = randomYear(randomDate)
+    // }
+    // getYearChange() {
 
-        if (process.env.npm_config_incremental) {
-            console.log("date value is " + testData.incrementalTest.expiryDate)
-            return testData.incrementalTest.expiryDate
-        }
-        else {
-            return currentYear
-        }
-    }
+    //     if (process.env.npm_config_incremental) {
+    //         console.log("date value is " + testData.incrementalTest.expiryDate)
+    //         return testData.incrementalTest.expiryDate
+    //     }
+    //     else {
+    //         return currentYear
+    //     }
+    // }
 
     setDateChange(randomDate, type) {
 

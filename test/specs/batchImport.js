@@ -17,7 +17,7 @@ describe('114_Create a batch via import of Json', () => {
         allureReporter.addStep('4. Click on import')
         allureReporter.addStep('5. Check the log for the import operation')
 
-        await batches.Batch();
+        await batches.clickBatchFromSideNav();
         await wait.setTimeoutwait(8);
         await batches.clickImport()
         await wait.setTimeoutwait(3);
@@ -25,16 +25,16 @@ describe('114_Create a batch via import of Json', () => {
         await batches.selectFile(path.join(__dirname, '../testdata/sampleBatchImport.json'));
         await wait.setTimeoutwait(5);
 
-        //await batches.import()
+        //await batches.clickImportFile()
         await browser.execute('document.querySelector(`psk-button[data-tag="import"] button[class="btn btn-primary"]`).click()')
 
         await wait.setTimeoutwait(10);
 
         //view message
-        await batches.viewMessageInSuccessLogs()
+        await batches.clickViewMessageInSuccessLog()
         await wait.setTimeoutwait(5);
 
-        await batches.downloadMsgInSuccessLogs()
+        await batches.clickDownloadMsgInSuccessLog()
         await wait.setTimeoutwait(10);
 
         //allureReporter.endStep("passed");

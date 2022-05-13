@@ -17,7 +17,7 @@ describe('096_Edit product to uncheck batch is unknown and edit batch to have va
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npm run unCheckTheBatchIsUnknownInProductWithValidBatchTest');
+            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npx kill-port 4723 && npm run unCheckTheBatchIsUnknownInProductWithValidBatchTest');
             console.log('stdout:', stdout1);
             console.log('stderr:', stderr1);
         })
@@ -28,15 +28,16 @@ describe('096_Edit product to uncheck batch is unknown and edit batch to have va
 
     }
 
-    it('Browser - should uncheck batch is known and Batch  on the barcode is known', async () => {
+    it('Browser - should uncheck batch is known and batch  on the barcode is known', async () => {
         allureReporter.addDescription("Edit product and verify epi displayed. Edit batch and pass valid batch on matrix")
-        allureReporter.addStep("uncheck batch is known and Batch  on the barcode is known")
+        allureReporter.addStep("Uncheck batch is unknown flag in product")
+        allureReporter.addStep("Batch on the barcode is known")
         allureReporter.addTestId('ProductDisplayEpiFlag_7_5')
-
+        //click product
         await products.clickProductFromSideNav()
         await wait.setTimeoutwait(3);
         console.log("prod to edit" + info.getProductId())
-        // search the product codes
+        //search the product code
         await products.searchProductCode(info.getProductId())
         await wait.setTimeoutwait(3);
         await browser.keys('Enter')
@@ -44,30 +45,28 @@ describe('096_Edit product to uncheck batch is unknown and edit batch to have va
         //view or edits
         await browser.execute('document.querySelector("button[data-tag=\'edit-product\']").click()')
         await wait.setTimeoutwait(5);
-        // //uncheck batch is unknown
+        //uncheck batch is unknown
         // await products.disableBatchNumberUnknown()
         // await wait.setTimeoutwait(3);
 
         info.setEpiDisplayed(await products.epiDisplayed())
         await wait.setTimeoutwait(3);
 
-        //update products
+        //update product
         await products.updateProduct()
         await wait.setTimeoutwait(18);
 
 
-        //edit batch
-        await batches.Batch();
-        //created for QA
-        //await browser.execute('document.querySelector(`webc-app-menu-item:nth-child(4) stencil-route-link:nth-child(1) a:nth-child(1)`).click()')
-
+        //click batch
+        await batches.clickBatchFromSideNav();
         await wait.setTimeoutwait(8);
+        //edit batch
         let editValue = info.getbatchId()
         await wait.setTimeoutwait(3);
         console.log("editValue is " + editValue)
         await browser.execute('document.querySelector("div:nth-child(' + await info.editBatchRow(editValue) + ') button:nth-child(1)").click()')
         await wait.setTimeoutwait(6);
-        //
+        //update valid serial number
         await batches.selectUpdateValidSerialFromDropdown(testData.newBatchDetails.updateValid)
         await wait.setTimeoutwait(5);
 
@@ -77,7 +76,7 @@ describe('096_Edit product to uncheck batch is unknown and edit batch to have va
         await batches.enterSerialNumber(info.getSerialNumber())
         await wait.setTimeoutwait(3);
 
-        // manage serial number accept 
+        //manage serial number accept 
         await batches.acceptSerialNumber()
         await wait.setTimeoutwait(3);
         //generate expectation file 
@@ -86,12 +85,11 @@ describe('096_Edit product to uncheck batch is unknown and edit batch to have va
         //generate 2d matrix image
         matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
         await wait.setTimeoutwait(12);
-
+        //update batch
         await batches.updateBatchForEdit()
         await wait.setTimeoutwait(18);
 
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
-        // allureReporter.endStep("passed");
 
     })
 })

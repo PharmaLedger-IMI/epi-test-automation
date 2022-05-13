@@ -15,7 +15,7 @@ describe('015_Edit batch to undo batch recall with valid SN ', () => {
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npm run editBatchUncheckRecallWithSerializedTest');
+            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npx kill-port 4723 && npm run editBatchUncheckRecallWithSerializedTest');
             console.log('stdout:', stdout1);
             console.log('stderr:', stderr1);
         })
@@ -36,7 +36,7 @@ describe('015_Edit batch to undo batch recall with valid SN ', () => {
         allureReporter.addStep('Undo the batch recall flag for above batch. ')
         allureReporter.addTestId('BatchRecallAndBatchMessage_9_2')
 
-        await batches.Batch();
+        await batches.clickBatchFromSideNav();
         await wait.setTimeoutwait(8);
         let editValue = info.getbatchId()
         await wait.setTimeoutwait(3);
@@ -82,7 +82,7 @@ describe('015_Edit batch to undo batch recall with valid SN ', () => {
         await batches.updateBatchForEdit()
         await wait.setTimeoutwait(16);
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
-        //allureReporter.endStep("passed");
+       
 
 
     })

@@ -17,36 +17,27 @@ describe('002_Access ePI portal', () => {
           await browser.maximizeWindow();
 
      });
-
      it('Browser - should open Enterprise Wallet', async () => {
 
           allureReporter.addStep('Navigate to the Enterprise Wallet')
+          //click enterprise wallet
           await LoginPage.openEnterpriseWallet();
           await wait.setTimeoutwait(3);
           const handles = await browser.getWindowHandles();
-          if (handles.length != 2) {
-               console.log("length is " + handles.length)
-               if (info.getUser()) {
-                    await browser.switchToWindow(handles[5]);
-               }
-               else {
-                    await browser.switchToWindow(handles[4]);
-               }
-          } else {
-               await browser.switchToWindow(handles[1]);
-          }
+          await browser.switchToWindow(handles[1]);
+
 
      });
      it('Browser - should open Access Account', async () => {
 
           allureReporter.addSeverity('Critical');
-          allureReporter.addDescription('Valid Login with UserName and Password')
+          allureReporter.addDescription('Valid login with username and password')
           allureReporter.addStep("Enter username ");
           allureReporter.addStep("Enter password");
+          //click access account
           await accessAccount.clickAccessAccount();
           await wait.setTimeoutwait(4);
-          await accessAccount.clearUserName();
-          await wait.setTimeoutwait(2);
+
           if (info.getUser()) {
                await accessAccount.enterUserName(testData.login.newEnterpriseUser);
           }
@@ -54,11 +45,8 @@ describe('002_Access ePI portal', () => {
                await accessAccount.enterUserName(testData.login.automationUserName);
           }
           await wait.setTimeoutwait(2);
-          //  await accessAccount.emailId();
-          //  await wait.setTimeoutwait(2);
-          //  await accessAccount.password();
-          //  await wait.setTimeoutwait(2);
-          await accessAccount.Enterbutton();
+          //click enter
+          await accessAccount.clickEnter();
           await wait.setTimeoutwait(18);
 
           //home page screenshot

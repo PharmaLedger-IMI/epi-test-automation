@@ -18,7 +18,7 @@ describe('012_Edit batch and enable expiry date check with invalid expiry date '
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npm run enableTheExpiryDateCheckInValidExpiryDateTest');
+            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npx kill-port 4723 && npm run enableTheExpiryDateCheckInValidExpiryDateTest');
             console.log('stdout:', stdout1);
             console.log('stderr:', stderr1);
         })
@@ -33,8 +33,8 @@ describe('012_Edit batch and enable expiry date check with invalid expiry date '
         allureReporter.addStep(' Verify that the expiry date check is enabled by default in batch')
         allureReporter.addStep(' Scan a data matrix code  with wrong expiry date to verify that the expiry date check fails. ')
         allureReporter.addTestId('BasicAuthFeatureTest_2_2')
-
-        await batches.Batch();
+        //click batch
+        await batches.clickBatchFromSideNav();
         await wait.setTimeoutwait(3);
 
         //edit batch
@@ -58,8 +58,7 @@ describe('012_Edit batch and enable expiry date check with invalid expiry date '
         await batches.updateBatchForEdit()
         await wait.setTimeoutwait(18);
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
-        // allureReporter.endStep("passed");
-        // allureReporter.endStep("passed");
+        
 
 
     })

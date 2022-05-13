@@ -16,7 +16,7 @@ describe('057_Edit product to upload SMPC with another leaflet', () => {
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npm run updateTheProductWithNewLeafletTest');
+            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npx kill-port 4723 && npm run updateTheProductWithNewLeafletTest');
             console.log('stdout:', stdout1);
             console.log('stderr:', stderr1);
         })
@@ -62,29 +62,28 @@ describe('057_Edit product to upload SMPC with another leaflet', () => {
         //upload folder
         await products.uploadFile(path.join(__dirname, '/src/SMPC_UpdatedAtProductLevel'));
         await wait.setTimeoutwait(5);
-
+        //click accept
         await products.acceptButton()
         await wait.setTimeoutwait(3);
 
-        //Update product
+        //update product
         await products.updateProduct()
         await wait.setTimeoutwait(18);
 
-        await batches.Batch();
+        //click batch
+        await batches.clickBatchFromSideNav();
         //await browser.execute('document.querySelector(`webc-app-menu-item:nth-child(4) stencil-route-link:nth-child(1) a:nth-child(1)`).click()')
-
         await wait.setTimeoutwait(8);
+        //edit batch
         let editValue = info.getbatchId()
         console.log("editValue is " + editValue)
         await browser.execute('document.querySelector("div:nth-child(' + await info.editBatchRow(editValue) + ') button:nth-child(1)").click()')
         await wait.setTimeoutwait(6);
 
-        //select valid serial number
+        //update valid serial number
         await batches.selectUpdateValidSerialFromDropdown(testData.newBatchDetails.updateValid)
         await wait.setTimeoutwait(3);
-        // //enable checkbox
-        // await batches.enableResetAllValidSerialNumber()
-        // await wait.setTimeoutwait(3);
+
         //set the serial number and enter
         info.setSerialNumber(await batches.serialNum())
         await batches.enterSerialNumber(info.getSerialNumber())
@@ -105,9 +104,6 @@ describe('057_Edit product to upload SMPC with another leaflet', () => {
         await wait.setTimeoutwait(18);
 
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
-        // allureReporter.endStep("passed");
-        // allureReporter.endStep("passed");
-
 
     })
 })    

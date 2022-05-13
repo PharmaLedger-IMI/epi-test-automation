@@ -33,13 +33,12 @@ describe('006_Edit product to check SN is in recalled list', () => {
         allureReporter.addDescription('Go to product page and search product code and enter. Edit product by enabling SN is in recall list flag.',
             'Edit batch by entering recalled serial number')
         allureReporter.addStep("Update Product information in the products page.")
-
+        //click product
         await products.clickProductFromSideNav()
         await wait.setTimeoutwait(3);
-
         console.log("prod to edit" + info.getProductId())
 
-        //search the product codes
+        //search the product code
         await products.searchProductCode(info.getProductId())
         await wait.setTimeoutwait(3);
         await browser.keys('Enter')
@@ -62,11 +61,9 @@ describe('006_Edit product to check SN is in recalled list', () => {
         await wait.setTimeoutwait(8);
 
         //click on batch
-        await batches.Batch();
-        // created for QA environment
-        //await browser.execute('document.querySelector(`webc-app-menu-item:nth-child(4) stencil-route-link:nth-child(1) a:nth-child(1)`).click()')
-
+        await batches.clickBatchFromSideNav();
         await wait.setTimeoutwait(8);
+        //edit batch
         let editValue = info.getbatchId()
         console.log("editValue is " + editValue)
         await browser.execute('document.querySelector("div:nth-child(' + await info.editBatchRow(editValue) + ') button:nth-child(1)").click()')
@@ -94,7 +91,6 @@ describe('006_Edit product to check SN is in recalled list', () => {
         await batches.updateBatchForEdit()
         await wait.setTimeoutwait(18);
 
-        // allureReporter.endStep("passed");
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
 
     })

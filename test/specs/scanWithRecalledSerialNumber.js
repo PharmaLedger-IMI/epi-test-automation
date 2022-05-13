@@ -19,7 +19,7 @@ describe('042_Edit a batch to update recalled SN and scan with recalled serial n
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npm run scanUpdateWithRecalledSNTest');
+            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npx kill-port 4723 && npm run scanUpdateWithRecalledSNTest');
             console.log('stdout:', stdout1);
             console.log('stderr:', stderr1);
         })
@@ -34,17 +34,17 @@ describe('042_Edit a batch to update recalled SN and scan with recalled serial n
         allureReporter.addDescription('Create a new batch and verify enable serial number verification and scan with recalled serial numbers')
         allureReporter.addStep('Create a batch and enable serial number verification and set valid serial numbers, recalled and decommissioned')
         allureReporter.addStep('Scan with recalled serial number')
-
         allureReporter.addTestId('SerialNumberChecks_7_2')
-        await batches.Batch();
+        //click batch
+        await batches.clickBatchFromSideNav();
         await wait.setTimeoutwait(3);
-        //edit above batch
+        //edit batch
         let editValue = info.getbatchId()
         console.log("editValue is " + editValue)
         await browser.execute('document.querySelector("div:nth-child(' + await info.editBatchRow(editValue) + ') button:nth-child(1)").click()')
         await wait.setTimeoutwait(8);
 
-        //select valid to reset serial number
+        //update valid serial number
         await batches.selectUpdateValidSerialFromDropdown(testData.newBatchDetails.updateValid)
         await wait.setTimeoutwait(3);
         //enable checkbox
@@ -78,9 +78,6 @@ describe('042_Edit a batch to update recalled SN and scan with recalled serial n
         await batches.updateBatchForEdit()
         await wait.setTimeoutwait(18);
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
-        // allureReporter.endStep("passed");
-        // allureReporter.endStep("passed");
-
-
+        
     })
 })    

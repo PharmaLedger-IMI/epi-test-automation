@@ -13,15 +13,16 @@ describe('117_Update a batch via import of Json by deleting expiry date ', () =>
 
     it('Browser - update a batch via import of Json ', async () => {
         allureReporter.addTestId('ImportJson_4_3')
-        allureReporter.addDescription('Update a batch via import of Json by deleting expiry date elemet and uploading modified file. View message and click on invalid field info')
+        allureReporter.addDescription('Update a batch via import of Json by deleting expiry date element and upload modified file. View message and click on invalid field info')
         allureReporter.addStep('1. Use the standard template Json')
-        allureReporter.addStep('2. Fill up the details on the json')
+        allureReporter.addStep('2. Delete expiry date in the json')
         allureReporter.addStep('3. Use the import functionality to select the file')
         allureReporter.addStep('4. Click on import')
         allureReporter.addStep('5. Check the log for the import operation')
-
-        await batches.Batch();
+        //click batch
+        await batches.clickBatchFromSideNav();
         await wait.setTimeoutwait(8);
+        //click import
         await batches.clickImport()
         await wait.setTimeoutwait(3);
 
@@ -30,16 +31,15 @@ describe('117_Update a batch via import of Json by deleting expiry date ', () =>
         const expiryDateValue = rawdata.batch.expiryDate
         delete rawdata.batch.expiryDate
         fs.writeFileSync(testData.path.batchImport, JSON.stringify(rawdata))
-
         await wait.setTimeoutwait(3);
+        //select fiel
         await batches.selectFile(path.join(__dirname, '../testdata/sampleBatchImport.json'));
         await wait.setTimeoutwait(8);
 
 
         //click on import
-        //await batches.import()
+        //await batches.clickImportFile()
         await browser.execute('document.querySelector(`psk-button[data-tag="import"] button[class="btn btn-primary"]`).click()')
-
         await wait.setTimeoutwait(20);
 
         //update json file
@@ -48,25 +48,18 @@ describe('117_Update a batch via import of Json by deleting expiry date ', () =>
         await wait.setTimeoutwait(8);
 
         //view message
-        await batches.viewMessageInFailedLogs()
+        await batches.clickViewMessageInFailedLog()
         await wait.setTimeoutwait(5);
         //click invalid field info 
         await batches.invalidFieldInfo()
         await wait.setTimeoutwait(5);
-        //Read invalid field info
+        //read invalid field info
         await batches.invalidFieldInfoRequired()
         await wait.setTimeoutwait(5);
-
-        await batches.downloadMsgInFailedLogs()
+        //downlaod message
+        await batches.clickDownloadMsgInFailedLog()
         await wait.setTimeoutwait(10);
-        //close
-        // await batches.closeButtonInPopup()
-        // await wait.setTimeoutwait(5); 
-
-
-
-
-        // allureReporter.endStep("passed");
+       
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
 
     })

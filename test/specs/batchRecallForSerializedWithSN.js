@@ -15,7 +15,7 @@ describe('014_Edit batch to set batch recall with valid SN', () => {
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npm run editBatchRecallWithSerializedSNTest');
+            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npx kill-port 4723 && npm run editBatchRecallWithSerializedSNTest');
             console.log('stdout:', stdout1);
             console.log('stderr:', stderr1);
         })
@@ -34,7 +34,7 @@ describe('014_Edit batch to set batch recall with valid SN', () => {
         allureReporter.addTestId('BatchRecallAndBatchMessage_9_1')
 
 
-        await batches.Batch();
+        await batches.clickBatchFromSideNav();
         //created for QA 
         //await browser.execute('document.querySelector(`webc-app-menu-item:nth-child(4) stencil-route-link:nth-child(1) a:nth-child(1)`).click()')
         await wait.setTimeoutwait(8);
@@ -77,7 +77,7 @@ describe('014_Edit batch to set batch recall with valid SN', () => {
         await wait.setTimeoutwait(12);
 
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
-        //allureReporter.endStep("passed");
+      
 
 
     })

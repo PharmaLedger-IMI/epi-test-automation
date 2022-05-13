@@ -1,29 +1,28 @@
 
 
-// let userNameclt="kpepiwdio"
-
 class accessAccount {
+
     get accessAccount() {
         return $("(//div/descendant::a[@id='access-wallet'][text()='Access Account'])")
     }
 
-    get userName() {
+    get userNameField() {
         return $("(//div/descendant::input[@id='username'][@placeholder='Enter your username'])")
     }
-    get email() {
+    get emailIdField() {
         return $('//input[@id="email"]')
     }
-    get enterPassword() {
+    get passwordField() {
         return $('//input[@id="password"]')
     }
-    get enterCompanyName() {
+    get companyNameField() {
         return $('//input[@id="company"]')
     }
-    get enterConfirmPassword() {
+    get confirmPasswordField() {
         return $('//input[@id="confirm-password"]')
     }
 
-    get Enter() {
+    get enterButton() {
         return $("#open-wallet-btn")
     }
 
@@ -32,42 +31,45 @@ class accessAccount {
         await this.accessAccount.click();
     }
 
-    async clearUserName() {
-        await this.userName.click();
-        await this.userName.clearValue();
-    }
 
     async enterUserName(userName) {
+        await this.userNameField.click();
+        await this.userNameField.clearValue();
         await browser.waitUntil(
-            async () => (await this.userName),
+            async () => (await this.userNameField),
             {
                 timeout: 5000,
                 timeoutMsg: 'expected text to be different after 5s'
             }
         );
 
-        await this.userName.setValue(userName);
+        await this.userNameField.setValue(userName);
 
     }
-    async emailId() {
-        await this.email.click();
-        await this.email.clearValue();
+    async enterEmailId(email) {
+        await this.emailIdField.click();
+        await this.emailIdField.clearValue();
+        await this.emailIdField.setValue(email);
     }
-    async password() {
-        await this.enterPassword.click();
-        await this.enterPassword.clearValue();
+    async enterPassword(password) {
+        await this.passwordField.click();
+        await this.passwordField.clearValue();
+        await this.passwordField.setValue(password);
     }
-    async confirmPassword() {
-        await this.enterConfirmPassword.click();
-        await this.enterConfirmPassword.clearValue();
+    async enterConfirmPassword(password) {
+        await this.confirmPasswordField.click();
+        await this.confirmPasswordField.clearValue();
+        await this.confirmPasswordField.setValue(password);
     }
-    async companyName() {
-        await this.enterCompanyName.click();
-        await this.enterCompanyName.clearValue();
-    }
-    async Enterbutton() {
 
-        await this.Enter.click();
+    async enterCompanyName(companyName) {
+        await this.companyNameField.click();
+        await this.companyNameField.clearValue();
+        await this.companyNameField.setValue(companyName);
+    }
+    async clickEnter() {
+
+        await this.enterButton.click();
     }
 
 }

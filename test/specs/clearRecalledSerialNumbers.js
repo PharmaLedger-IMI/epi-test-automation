@@ -16,7 +16,7 @@ describe('039_Edit batch to reset recalled serial number and scan with recalled 
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npm run checkClearRecalledSerialNumberTest');
+            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npx kill-port 4723 && npm run checkClearRecalledSerialNumberTest');
             console.log('stdout:', stdout1);
             console.log('stderr:', stderr1);
         })
@@ -33,13 +33,10 @@ describe('039_Edit batch to reset recalled serial number and scan with recalled 
         allureReporter.addStep('Clear the recalled serial numbers in batch')
         allureReporter.addStep('Scan with recalled serial number')
         allureReporter.addTestId('SerialNumberChecks_5')
-
-        await batches.Batch();
-        // await wait.setTimeoutwait(3);
-        //Created for QA environment
-        //await browser.execute('document.querySelector(`webc-app-menu-item:nth-child(4) stencil-route-link:nth-child(1) a:nth-child(1)`).click()')
+        //click batch
+        await batches.clickBatchFromSideNav();
         await wait.setTimeoutwait(6);
-
+        //edit batch
         let editValue = info.getbatchId()
         console.log("editValue is " + editValue)
         await browser.execute('document.querySelector("div:nth-child(' + await info.editBatchRow(editValue) + ') button:nth-child(1)").click()')
@@ -56,23 +53,6 @@ describe('039_Edit batch to reset recalled serial number and scan with recalled 
         await batches.acceptSerialNumber()
         await wait.setTimeoutwait(3);
 
-        //      // search the product codes
-        //    await products.searchProductCode(info.getProductId())
-        //    await wait.setTimeoutwait(3);
-        //    await browser.keys('Enter')
-        //    await wait.setTimeoutwait(4);
-        //    //view or edits
-        //    await browser.execute('document.querySelector("button[data-tag=\'edit-product\']").click()')
-        //    await wait.setTimeoutwait(5);
-
-        //    // enable SN is in recall list
-        //    await products.enableSnIsInRecallList()
-        //    await wait.setTimeoutwait(4);
-
-        //    //update products
-        //    await products.updateProduct()
-        //    await wait.setTimeoutwait(8);
-
         //generate expectation file 
         data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber(), info.getBrandName(), "", "", "", "")
         await wait.setTimeoutwait(12);
@@ -84,7 +64,7 @@ describe('039_Edit batch to reset recalled serial number and scan with recalled 
         await batches.updateBatchForEdit()
         await wait.setTimeoutwait(18);
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
-        // allureReporter.endStep("passed");
+       
 
 
     })

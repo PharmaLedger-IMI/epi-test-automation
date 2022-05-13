@@ -17,7 +17,7 @@ describe('067_Edit product to check expiration date is incorrect and edit batch 
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npm run checkExpirationDateInProductAndBatchWithCorrectExpiryDateTest');
+            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npx kill-port 4723 && npm run checkExpirationDateInProductAndBatchWithCorrectExpiryDateTest');
             console.log('stdout:', stdout1);
             console.log('stderr:', stderr1);
         })
@@ -33,7 +33,7 @@ describe('067_Edit product to check expiration date is incorrect and edit batch 
         allureReporter.addStep("Check expiration date is incorrect flag in product")
         allureReporter.addStep("Scan the code with correct expiry date ")
         allureReporter.addTestId('ProductDisplayEpiFlag_2_1')
-
+        //click product
         await products.clickProductFromSideNav()
         await wait.setTimeoutwait(4);
         console.log("prod to edit" + info.getProductId())
@@ -46,7 +46,7 @@ describe('067_Edit product to check expiration date is incorrect and edit batch 
         await browser.execute('document.querySelector("button[data-tag=\'edit-product\']").click()')
         await wait.setTimeoutwait(5);
 
-        // //enable 
+        //enable ExpirationDateIsIncorrect
         // await products.enableExpirationDateIsIncorrect(); 
         // await wait.setTimeoutwait(1);
         //add epi
@@ -55,13 +55,13 @@ describe('067_Edit product to check expiration date is incorrect and edit batch 
         //select language	
         await products.selectLanguage(testData.newProductDetails.selectLanguage)
         await wait.setTimeoutwait(3);
-        // select type
+        //select type
         await products.selectType(testData.newProductDetails.selectType)
         await wait.setTimeoutwait(4);
-        //Video source
+        //video source
         await products.videoSourceEpi(testData.newProductDetails.videoSource)
         await wait.setTimeoutwait(4);
-        //Upload smpc 
+        //upload smpc 
         await products.uploadFile(path.join(__dirname, '/src/SMPC_ProductLevel'));
         await wait.setTimeoutwait(4);
         //add epi accept
@@ -72,17 +72,18 @@ describe('067_Edit product to check expiration date is incorrect and edit batch 
         info.setEpiDisplayed(await products.epiDisplayed())
         await wait.setTimeoutwait(3);
 
-        //update products
+        //update product
         await products.updateProduct()
         await wait.setTimeoutwait(18);
 
 
-        //edit batch
-        await batches.Batch();
+        //click batch
+        await batches.clickBatchFromSideNav();
         //created for QA
         //await browser.execute('document.querySelector(`webc-app-menu-item:nth-child(4) stencil-route-link:nth-child(1) a:nth-child(1)`).click()')
 
         await wait.setTimeoutwait(8);
+        //edit batch
         let editValue = info.getbatchId()
         console.log("editValue is " + editValue)
         await browser.execute('document.querySelector("div:nth-child(' + await info.editBatchRow(editValue) + ') button:nth-child(1)").click()')
@@ -90,6 +91,7 @@ describe('067_Edit product to check expiration date is incorrect and edit batch 
 
         info.setCurrentRandomDate()
         await wait.setTimeoutwait(2);
+        //select date
         await browser.execute((date) => {
             (function () {
                 let event = new Event('change');
@@ -100,20 +102,21 @@ describe('067_Edit product to check expiration date is incorrect and edit batch 
         }, info.getCurrentRandomDate());
         await wait.setTimeoutwait(3);
 
+        //uncheck batch recall
+        await batches.enableCheckToRecallThisBatch()
+        await wait.setTimeoutwait(3);
+        //generate expectation file 
         data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber(), info.getBrandName(), info.getBatchRecall(), "", "", info.getBatchRecallMsg(), info.getEpiDisplayed())
         await wait.setTimeoutwait(12);
-
-
-
+        //generate 2d matrix image
         matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
         await wait.setTimeoutwait(9);
-
+        //update batch
         await batches.updateBatchForEdit()
         await wait.setTimeoutwait(18);
 
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
-        // allureReporter.endStep("passed");
-        // allureReporter.endStep("passed");
+
 
     })
 })

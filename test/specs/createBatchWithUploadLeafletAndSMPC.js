@@ -17,7 +17,7 @@ describe('058_Leaflet updates on the product Batch specific version', () => {
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npm run createBatchWithUploadLeafletAndSMPCTest');
+            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npx kill-port 4723 && npm run createBatchWithUploadLeafletAndSMPCTest');
             console.log('stdout:', stdout1);
             console.log('stderr:', stderr1);
         })
@@ -33,14 +33,18 @@ describe('058_Leaflet updates on the product Batch specific version', () => {
         allureReporter.addStep('Create a new batch 2 and upload ePI and SMPC at Batch level ')
         allureReporter.addStep('Scan the batch 2 and you should be able to see the leaflet that was uploaded at batch level')
         allureReporter.addTestId('ProductInfoUpdate_4_1')
-        await batches.Batch();
+        //click batch
+        await batches.clickBatchFromSideNav();
         await wait.setTimeoutwait(4);
+        //add batch
         await batches.addBatch();
         await wait.setTimeoutwait(2);
         info.setBatchId(await batches.batchIdValue())
         await wait.setTimeoutwait(2);
+        //enter site name
         await batches.siteName(testData.newBatchDetails.siteName);
         await wait.setTimeoutwait(2);
+        //select date
         info.setCurrentRandomDate()
         await wait.setTimeoutwait(2);
         await browser.execute((date) => {
@@ -52,18 +56,18 @@ describe('058_Leaflet updates on the product Batch specific version', () => {
             })();
         }, info.getCurrentRandomDate());
         await wait.setTimeoutwait(4);
+        //select product
         const selectBox = await browser.$('//psk-select[@class=\'default-select hydrated\']//select[@class=\'form-control\']');
         await selectBox.selectByAttribute('value', info.getProductId());
         await wait.setTimeoutwait(2);
+        //video source
         await batches.videoSource(testData.newBatchDetails.videoSource)
         await wait.setTimeoutwait(2);
 
-        //select valid serial number
+        //update valid serial number
         await batches.selectUpdateValidSerialFromDropdown(testData.newBatchDetails.updateValid)
         await wait.setTimeoutwait(2);
-        // //enable checkbox
-        // await batches.enableResetAllValidSerialNumber()
-        // await wait.setTimeoutwait(2);
+       
         //set the serial number and enter
         info.setSerialNumber(await batches.serialNum())
         await batches.enterSerialNumber(info.getSerialNumber())
@@ -71,7 +75,7 @@ describe('058_Leaflet updates on the product Batch specific version', () => {
         //accept serial number
         await batches.acceptSerialNumber()
         await wait.setTimeoutwait(2);
-
+        //add epi
         await batches.addEpi()
         await wait.setTimeoutwait(3);
 
@@ -81,6 +85,7 @@ describe('058_Leaflet updates on the product Batch specific version', () => {
         //accept upload
         await batches.acceptButton()
         await wait.setTimeoutwait(5);
+
         //upload smpc
         await batches.addEpi()
         await wait.setTimeoutwait(3);
@@ -104,11 +109,6 @@ describe('058_Leaflet updates on the product Batch specific version', () => {
         await batches.createBatch()
         await wait.setTimeoutwait(40);
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
-        // allureReporter.endStep("passed");
-        // allureReporter.endStep("passed");
-
-
-
-
+        
     })
 })    

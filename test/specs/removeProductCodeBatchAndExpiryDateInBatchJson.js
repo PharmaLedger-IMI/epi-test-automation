@@ -13,15 +13,16 @@ describe('121_Update a batch via import of Json by deleting product code, batch 
 
     it('Browser - update a batch via import of Json ', async () => {
         allureReporter.addTestId('ImportJson_4_7')
-        allureReporter.addDescription('Update a batch via import of Json by deleting product code, batch and expiry date elemet and uploading modified file. View message and click on invalid field info')
+        allureReporter.addDescription('Update a batch via import of Json by deleting product code, batch and expiry date element and upload modified file. View message and click on invalid field info')
         allureReporter.addStep('1. Use the standard template Json')
-        allureReporter.addStep('2. Fill up the details on the json')
+        allureReporter.addStep('2. Delete product code, batch and expiry date in the json')
         allureReporter.addStep('3. Use the import functionality to select the file')
         allureReporter.addStep('4. Click on import')
         allureReporter.addStep('5. Check the log for the import operation')
-
-        await batches.Batch();
+        //click batch
+        await batches.clickBatchFromSideNav();
         await wait.setTimeoutwait(8);
+        //click import
         await batches.clickImport()
         await wait.setTimeoutwait(3);
 
@@ -34,15 +35,14 @@ describe('121_Update a batch via import of Json by deleting product code, batch 
         delete rawdata.batch.batch
         delete rawdata.batch.expiryDate
         fs.writeFileSync(testData.path.batchImport, JSON.stringify(rawdata))
-
         await wait.setTimeoutwait(2);
+        //select file
         await batches.selectFile(path.join(__dirname, '../testdata/sampleBatchImport.json'));
         await wait.setTimeoutwait(8);
 
         //click on import
-        //await batches.import()
+        //await batches.clickImportFile()
         await browser.execute('document.querySelector(`psk-button[data-tag="import"] button[class="btn btn-primary"]`).click()')
-
         await wait.setTimeoutwait(20);
 
         //update json file
@@ -54,25 +54,18 @@ describe('121_Update a batch via import of Json by deleting product code, batch 
 
 
         //view message
-        await batches.viewMessageInFailedLogs()
+        await batches.clickViewMessageInFailedLog()
         await wait.setTimeoutwait(5);
         //click invalid field info 
         await batches.invalidFieldInfo()
         await wait.setTimeoutwait(5);
-        //Read invalid field info
+        //read invalid field info
         await batches.invalidFieldInfoRequired()
         await wait.setTimeoutwait(5);
-
-        await batches.downloadMsgInFailedLogs()
+        //download message
+        await batches.clickDownloadMsgInFailedLog()
         await wait.setTimeoutwait(10);
-        //close
-        // await batches.closeButtonInPopup()
-        // await wait.setTimeoutwait(5); 
-
-
-
-
-        // allureReporter.endStep("passed");
+        
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
 
     })

@@ -17,7 +17,7 @@ describe('063_Edit product to check batch is recalled and delete smpc. Edit batc
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npm run checkTheSmpcDeletedFromProductWithRecalledBatchTest');
+            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npx kill-port 4723 && npm run checkTheSmpcDeletedFromProductWithRecalledBatchTest');
             console.log('stdout:', stdout1);
             console.log('stderr:', stderr1);
         })
@@ -33,13 +33,14 @@ describe('063_Edit product to check batch is recalled and delete smpc. Edit batc
         allureReporter.addStep("Check batch is recalled flag in product")
         allureReporter.addStep("check If SMPC is deleted from the product with recalled batch")
         allureReporter.addTestId('ProductDisplayEpiFlag_1_3')
-
+        //click product
         await products.clickProductFromSideNav()
         await wait.setTimeoutwait(4);
         console.log("prod to edit" + info.getProductId())
-        // search the product codes
+        //search the product code
         await products.searchProductCode(info.getProductId())
         await wait.setTimeoutwait(3);
+        //click enter
         await browser.keys('Enter')
         await wait.setTimeoutwait(4);
         //view or edits
@@ -48,23 +49,23 @@ describe('063_Edit product to check batch is recalled and delete smpc. Edit batc
 
         // await products.enableBatchIsRecalled()
         // await wait.setTimeoutwait(4);
-        //delete SMPC
+
+        //delete file
         await products.deleteSecondLanguage()
         await wait.setTimeoutwait(4);
         info.setEpiDisplayed(await products.epiDisplayed())
         await wait.setTimeoutwait(2);
-        //update products
+        //update product
         await products.updateProduct()
         await wait.setTimeoutwait(18);
 
-        //edit batch
-
-        await batches.Batch();
+        //click batch
+        await batches.clickBatchFromSideNav();
         // await wait.setTimeoutwait(3);
         //Created for QA environment
         // await browser.execute('document.querySelector(`webc-app-menu-item:nth-child(4) stencil-route-link:nth-child(1) a:nth-child(1)`).click()')
         await wait.setTimeoutwait(6);
-
+        //edit batch
         let editValue = info.getbatchId()
         console.log("editValue is " + editValue)
         await browser.execute('document.querySelector("div:nth-child(' + await info.editBatchRow(editValue) + ') button:nth-child(1)").click()')
@@ -72,6 +73,7 @@ describe('063_Edit product to check batch is recalled and delete smpc. Edit batc
 
         info.setCurrentRandomDate()
         await wait.setTimeoutwait(2);
+        //select date
         await browser.execute((date) => {
             (function () {
                 let event = new Event('change');
@@ -82,8 +84,8 @@ describe('063_Edit product to check batch is recalled and delete smpc. Edit batc
         }, info.getCurrentRandomDate());
 
         await wait.setTimeoutwait(2);
-
-        await batches.selectUpdateValidSerialFromDropdown(testData.newBatchDetails.updateValid)
+        //update recalled serial number
+        await batches.selectUpdateRecalledSerialFromDropdown(testData.newBatchDetails.updateRecalled)
         await wait.setTimeoutwait(5);
 
         //set serial number value
@@ -91,7 +93,7 @@ describe('063_Edit product to check batch is recalled and delete smpc. Edit batc
         //enter serial number
         await batches.enterSerialNumber(info.getSerialNumber())
         await wait.setTimeoutwait(5);
-        // manage serial number accept 
+        //manage serial number accept 
         await batches.acceptSerialNumber()
         await wait.setTimeoutwait(3);
 
@@ -125,10 +127,6 @@ describe('063_Edit product to check batch is recalled and delete smpc. Edit batc
         await wait.setTimeoutwait(18);
 
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
-        // allureReporter.endStep("passed");
-
-
-
 
 
     })

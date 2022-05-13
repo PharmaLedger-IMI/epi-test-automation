@@ -18,7 +18,7 @@ describe('017_Edit batch to undo batch recall without SN ', () => {
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npm run editBatchUncheckRecallMsgNonSerializedWithoutSNTest');
+            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npx kill-port 4723 && npm run editBatchUncheckRecallMsgNonSerializedWithoutSNTest');
             console.log('stdout:', stdout1);
             console.log('stderr:', stderr1);
         })
@@ -36,7 +36,7 @@ describe('017_Edit batch to undo batch recall without SN ', () => {
         allureReporter.addStep('Undo the batch recall flag.')
         allureReporter.addTestId('BatchRecallAndBatchMessage_10_2')
 
-        await batches.Batch();
+        await batches.clickBatchFromSideNav();
         await wait.setTimeoutwait(8);
         let editValue = info.getbatchId()
         await wait.setTimeoutwait(2);
@@ -75,7 +75,7 @@ describe('017_Edit batch to undo batch recall without SN ', () => {
         await wait.setTimeoutwait(18);
 
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
-        //allureReporter.endStep("passed");
+       
 
 
     })

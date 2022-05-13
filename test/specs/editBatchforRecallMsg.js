@@ -15,7 +15,7 @@ describe('005_Edit batch to set recall message', () => {
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npm run editBatchRecallMsgTest');
+            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npx kill-port 4723 && npm run editBatchRecallMsgTest');
             console.log('stdout:', stdout1);
             console.log('stderr:', stderr1);
         })
@@ -31,34 +31,10 @@ describe('005_Edit batch to set recall message', () => {
         allureReporter.addStep("Update any field on the batch and Save the changes")
         allureReporter.addTestId('ProdAndBatchSetup_4')
 
-
-        //     await products.clickProductFromSideNav()
-        //     await wait.setTimeoutwait(2);
-
-        //     console.log("prod to edit"+info.getProductId())
-
-        //    //search the product codes
-        //     await products.searchProductCode(info.getProductId())
-        //     await wait.setTimeoutwait(3);
-        //     await browser.keys('Enter')
-        //     await wait.setTimeoutwait(4);
-        //     //click on edit button
-        //     await browser.execute('document.querySelector("button[data-tag=\'edit-product\']").click()')
-        //     await wait.setTimeoutwait(5);
-        //      //enable batch is recalled
-        //      await products.enableBatchIsRecalled(); 
-        //      await wait.setTimeoutwait(1);
-
-        //      //update product
-        //      await products.updateProduct()
-        //      await wait.setTimeoutwait(8);
-
         //click on batch
-        await batches.Batch();
-        // created for QA environment
-        //await browser.execute('document.querySelector(`webc-app-menu-item:nth-child(4) stencil-route-link:nth-child(1) a:nth-child(1)`).click()')
-
+        await batches.clickBatchFromSideNav();
         await wait.setTimeoutwait(8);
+        //edit batch
         let editValue = info.getbatchId()
         await wait.setTimeoutwait(8);
         console.log("editValue is " + editValue)
@@ -80,12 +56,11 @@ describe('005_Edit batch to set recall message', () => {
         //generate 2d matrix image 
         matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
         await wait.setTimeoutwait(8);
-        //update the batch
+        //update batch
         await batches.updateBatchForEdit()
         await wait.setTimeoutwait(18);
 
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
-        // allureReporter.endStep("passed");
 
     })
 })

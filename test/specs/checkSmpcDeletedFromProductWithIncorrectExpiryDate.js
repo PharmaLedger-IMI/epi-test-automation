@@ -15,7 +15,7 @@ describe('069_Edit product to check expiration date is incorrect and delete smpc
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npm run checkTheSmpcDeletedInProductWithIncorrectExpiryDateTest');
+            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npx kill-port 4723 && npm run checkTheSmpcDeletedInProductWithIncorrectExpiryDateTest');
             console.log('stdout:', stdout1);
             console.log('stderr:', stderr1);
         })
@@ -31,11 +31,11 @@ describe('069_Edit product to check expiration date is incorrect and delete smpc
         allureReporter.addStep("Check If SMPC is deleted from the product")
         allureReporter.addStep("Pass incorrect expiry date in matrix")
         allureReporter.addTestId('ProductDisplayEpiFlag_2_3')
-
+        //click product
         await products.clickProductFromSideNav()
         await wait.setTimeoutwait(4);
         console.log("prod to edit" + info.getProductId())
-        // search the product codes
+        //search the product code
         await products.searchProductCode(info.getProductId())
         await wait.setTimeoutwait(3);
         await browser.keys('Enter')
@@ -43,7 +43,7 @@ describe('069_Edit product to check expiration date is incorrect and delete smpc
         //view or edits
         await browser.execute('document.querySelector("button[data-tag=\'edit-product\']").click()')
         await wait.setTimeoutwait(5);
-
+        //delete second language
         await products.deleteSecondLanguage()
         await wait.setTimeoutwait(4);
         info.setEpiDisplayed(await products.epiDisplayed())
@@ -52,21 +52,18 @@ describe('069_Edit product to check expiration date is incorrect and delete smpc
 
         const incorrectExpiryDate = info.randomDateExpired()
         await wait.setTimeoutwait(2);
-
+        //generate expectation file 
         data.generateExpectationFile(info.getProductId(), info.getbatchId(), incorrectExpiryDate, info.getSerialNumber(), info.getBrandName(), info.getBatchRecall(), "", "", info.getBatchRecallMsg(), info.getEpiDisplayed())
         await wait.setTimeoutwait(12);
+        //generate 2d matrix image
         matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), incorrectExpiryDate, info.getSerialNumber())
         await wait.setTimeoutwait(8);
 
-        //update products
+        //update product
         await products.updateProduct()
         await wait.setTimeoutwait(18);
 
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
-        // allureReporter.endStep("passed");
-
-
-
         //scan same batch
 
     })

@@ -5,7 +5,6 @@ const data = require('../utility/expectationFile')
 const info = require('../utility/reusableFile')
 const wait = require('../utility/timeout')
 const testData = require('../testdata/config.json')
-
 const allureReporter = require('@wdio/allure-reporter').default
 const util = require('util');
 const exec = util.promisify(require('child_process').exec);
@@ -19,7 +18,7 @@ describe('045_Edit batch to remove 10 serial numbers from valid and upload 10 in
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npm run updateWith10SNInDecommissionedSNTest');
+            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npx kill-port 4723 && npm run updateWith10SNInDecommissionedSNTest');
             console.log('stdout:', stdout1);
             console.log('stderr:', stderr1);
         })
@@ -32,11 +31,13 @@ describe('045_Edit batch to remove 10 serial numbers from valid and upload 10 in
 
     it('Browser - should remove 10 serial numbers from valid and upload 10 in decommissioned serial numbers ', async () => {
         allureReporter.addDescription('Edit batch by resetting valid serial number and uploading 10 in decommissioned serial number')
-        allureReporter.addStep('Remove 10 serial numbers from valid and upload 10 in decommissioned serial numbers')
+        allureReporter.addStep('Remove 10 serial numbers from valid')
+        allureReporter.addStep('Upload 10 serial numbers in decommissioned in batch')
         allureReporter.addTestId('SerialNumberChecks_9')
-        await batches.Batch();
+        //click batch
+        await batches.clickBatchFromSideNav();
         await wait.setTimeoutwait(3);
-        //edit above batch
+        //edit batch
         let editValue = info.getbatchId()
         await wait.setTimeoutwait(3);
         console.log("editValue is " + editValue)
@@ -61,9 +62,7 @@ describe('045_Edit batch to remove 10 serial numbers from valid and upload 10 in
         //select decommisioned serial number
         await batches.selectUpdateDecommissionedFromDropdown(testData.newBatchDetails.updateDecommissioned)
         await wait.setTimeoutwait(3);
-        //  //enable checkbox
-        //  await batches.enableResetAllDecommisionedSerialNumber()
-        //  await wait.setTimeoutwait(3);
+        
         //set the serial number and enter
         const serialNumber = info.serialNum10()
         await wait.setTimeoutwait(3);
@@ -88,8 +87,6 @@ describe('045_Edit batch to remove 10 serial numbers from valid and upload 10 in
         await batches.updateBatchForEdit()
         await wait.setTimeoutwait(40);
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
-        // allureReporter.endStep("passed");
-
-
+        
     })
 })    

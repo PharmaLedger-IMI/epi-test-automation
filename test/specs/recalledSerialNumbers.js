@@ -19,7 +19,7 @@ describe('038_Create a batch and enable serial number verification and set recal
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npm run checkRecalledSerialNumberTest');
+            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npx kill-port 4723 && npm run checkRecalledSerialNumberTest');
             console.log('stdout:', stdout1);
             console.log('stderr:', stderr1);
         })
@@ -32,17 +32,22 @@ describe('038_Create a batch and enable serial number verification and set recal
 
     it('Browser - should create a batch and enable serial number verification and set recalled serial numbers ', async () => {
         allureReporter.addDescription('Edit batch and update recalled serial number and scan with recalled serial number')
-        allureReporter.addStep('Create a batch and enable serial number verification and set recalled serial numbers')
+        allureReporter.addStep('Create a batch')
+        allureReporter.addStep('Enable serial number verification')
+        allureReporter.addStep('Set recalled serial numbers')
         allureReporter.addTestId('SerialNumberChecks_4')
-        await batches.Batch();
+        //click batch
+        await batches.clickBatchFromSideNav();
         await wait.setTimeoutwait(3);
+        //add batch
         await batches.addBatch();
         await wait.setTimeoutwait(3);
         info.setBatchId(await batches.batchIdValue())
         await wait.setTimeoutwait(3);
+        //enter site name
         await batches.siteName(testData.newBatchDetails.siteName);
         await wait.setTimeoutwait(3);
-
+        //select date
         info.setCurrentRandomDate()
         await wait.setTimeoutwait(3);
         await browser.execute((date) => {
@@ -67,9 +72,7 @@ describe('038_Create a batch and enable serial number verification and set recal
         //select recalled serial number
         await batches.selectUpdateValidSerialFromDropdown(testData.newBatchDetails.updateRecalled)
         await wait.setTimeoutwait(3);
-        // //enable checkbox
-        // await batches.enableResetAllValidSerialNumber()
-        // await wait.setTimeoutwait(3);
+        
         //set the serial number and enter
         info.setSerialNumber(await batches.serialNum())
         await batches.enterSerialNumber(info.getSerialNumber())
@@ -88,8 +91,7 @@ describe('038_Create a batch and enable serial number verification and set recal
         await batches.createBatch()
         await wait.setTimeoutwait(40);
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
-        // allureReporter.endStep("passed");
-
+        
 
     })
 })    

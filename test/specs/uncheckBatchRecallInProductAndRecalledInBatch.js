@@ -18,7 +18,7 @@ describe('064_Edit product to uncheck batch is recalled and edit batch to set re
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npm run uncheckBatchIsRecallInProductAndRecalledInBatchTest');
+            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npx kill-port 4723 && npm run uncheckBatchIsRecallInProductAndRecalledInBatchTest');
             console.log('stdout:', stdout1);
             console.log('stderr:', stderr1);
         })
@@ -31,13 +31,14 @@ describe('064_Edit product to uncheck batch is recalled and edit batch to set re
 
     it('Browser - should unCheck batch is recalled', async () => {
         allureReporter.addDescription('Edit product and uncheck batch is recalled flag. Edit batch and check batch is recalled ')
-        allureReporter.addStep("unCheck batch is recalled")
+        allureReporter.addStep("Uncheck batch is recalled flag in product")
+        allureReporter.addStep("Check batch is recalled in batch")
         allureReporter.addTestId('ProductDisplayEpiFlag_1_4')
-
+        //click product
         await products.clickProductFromSideNav()
         await wait.setTimeoutwait(4);
         console.log("prod to edit" + info.getProductId())
-        // search the product codes
+        //search the product code
         await products.searchProductCode(info.getProductId())
         await wait.setTimeoutwait(3);
         await browser.keys('Enter')
@@ -56,13 +57,13 @@ describe('064_Edit product to uncheck batch is recalled and edit batch to set re
         //select language	
         await products.selectLanguage(testData.newProductDetails.selectLanguage)
         await wait.setTimeoutwait(3);
-        // select type
+        //select type
         await products.selectType(testData.newProductDetails.selectType)
         await wait.setTimeoutwait(3);
-        //Video source
+        //video source
         await products.videoSourceEpi(testData.newProductDetails.videoSource)
         await wait.setTimeoutwait(3);
-        //Upload smpc 
+        //upload smpc 
         await products.uploadFile(path.join(__dirname, '/src/SMPC_ProductLevel'));
         await wait.setTimeoutwait(3);
         //add epi accept
@@ -72,16 +73,15 @@ describe('064_Edit product to uncheck batch is recalled and edit batch to set re
         info.setEpiDisplayed(await products.epiDisplayed())
         await wait.setTimeoutwait(3);
 
-        //update products
+        //update product
         await products.updateProduct()
         await wait.setTimeoutwait(18);
 
 
-        //edit batch
-        await batches.Batch();
-        //await browser.execute('document.querySelector(`webc-app-menu-item:nth-child(4) stencil-route-link:nth-child(1) a:nth-child(1)`).click()')
-
+        //click batch
+        await batches.clickBatchFromSideNav();
         await wait.setTimeoutwait(8);
+        //edit batch
         let editValue = info.getbatchId()
         await wait.setTimeoutwait(3);
         console.log("editValue is " + editValue)
@@ -111,7 +111,7 @@ describe('064_Edit product to uncheck batch is recalled and edit batch to set re
         await wait.setTimeoutwait(18);
 
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
-        // allureReporter.endStep("passed");
+        
 
     })
 })

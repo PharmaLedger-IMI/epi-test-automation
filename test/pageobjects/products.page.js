@@ -1,6 +1,4 @@
 
-
-//const expectChai = require('chai').expect;
 const testData = require('../testdata/config.json')
 const path = require('path')
 const { URL } = require('url')
@@ -15,22 +13,22 @@ class productsPage {
         //return  $('//a[@href=\'/products\']//span')
         return $("//p[normalize-space()='Manage Products']")
     }
-    get clickProductFromleftsideNav() {
+    get productFromleftsideNav() {
         return $("=Products")
     }
     get addProductButton() {
         return $('//button[normalize-space()=\'+ ADD PRODUCT\']')
     }
-    get gtin() {
+    get gtinField() {
         return $("#productcode-input")
     }
-    get brand() {
+    get brandField() {
         return $("(//input[@placeholder='Add product name'])[1]")
     }
-    get productdescription() {
+    get productDescriptionField() {
         return $("//div//textarea[@placeholder='Add product description']")
     }
-    get uploadphoto() {
+    get uploadPhoto() {
         return $("//input[@type=\'file\']")
     }
     get uploadEpiFile() {
@@ -39,17 +37,17 @@ class productsPage {
     get epiFileDisplayed() {
         return $("//li[@class='d-flex flex-row overflow-auto']")
     }
-    get internalMaterialCodeEnter() {
+    get internalMaterialCodeField() {
         return $("//input[@placeholder='Add internal material code']")
     }
-    get addStrengthEnter() {
+    get addStrengthField() {
         return $("//input[@placeholder='Add product strength']")
     }
-    get videoSourceEnter() {
+    get videoSourceField() {
         return $("//textarea[@placeholder='Add video source']")
     }
-    get adverseE() {
-        return $("//label[normalize-space()='Enable Anti-Counterfeiting check for this product']")
+    get adverseEventsCheckbox() {
+        return $('div[class="featureCode-06"] input[type="checkbox"]')
     }
     get adverseEventUrl() {
         return $("//input[@placeholder='Add Adverse Events Reporting URL']")
@@ -57,31 +55,28 @@ class productsPage {
     get antiCounterfeitingUrl() {
         return $("//input[@placeholder='Add Anti-Counterfeiting End Point URL']")
     }
-    get adverseEtext() {
+    get adverseEventText() {
         return $("//input[@placeholder='Add Adverse Events Reporting URL'][@type='text']")
     }
-    get anticounter() {
+    get anticounterCheckbox() {
         return $("//label[normalize-space()='Enable Anti-Counterfeiting check for this product']")
     }
-    get batchIsRecalledClick() {
+    get batchIsRecalledCheckbox() {
         return $("(//div[@class='checkbox-container featureCode-08'])//input[@type='checkbox']")
     }
-    get expirationDateIsIncorrectClick() {
+    get expirationDateIsIncorrectCheckbox() {
         return $("(//div[@class='checkbox-container featureCode-07'])[1]//input[@type='checkbox'][1]")
-    }
-    get batchenabled() {
-        return $('div[class="checkbox-container featureCode-02"] input[value="true"]')
     }
     get batchIsExpiredCheckbox() {
         return $("(//div[@class='checkbox-container featureCode-02'])//input[@type='checkbox']")
     }
-    get snIsInRecallListClick() {
+    get snIsInRecallListCheckbox() {
         return $("(//div[@class='checkbox-container featureCode-07'])[2]//input[@type='checkbox'][1]")
     }
-    get snIsInDecommissionedListClick() {
+    get snIsInDecommissionedListCheckbox() {
         return $("(//div[@class='checkbox-container featureCode-07'])[3]//input[@type='checkbox'][1]")
     }
-    get snIsUnknownClick() {
+    get snIsUnknownCheckbox() {
         return $("(//div[@class='checkbox-container featureCode-07'])[4]//input[@type='checkbox'][1]")
     }
     get batchNumberUnknownEnabled() {
@@ -93,7 +88,7 @@ class productsPage {
     get patientInformation() {
         return $("//div[contains(text(),'Patient Specific Information Leaflet')]")
     }
-    get healthcareInformation() {
+    get healthCareInformation() {
         return $("//div[contains(text(),'Healthcare practitioner information')]")
     }
     get addEpiButton() {
@@ -106,48 +101,47 @@ class productsPage {
         // return $('//select[@id=\'type\']')
         return $('//select[@class="document-type-select dsu-select"]')
     }
-    get videoSourceEpiEnter() {
+    get videoSourceEpiField() {
         return $("//textarea[@value='@modalData.product.videoSource']")
     }
     get addEpiAcceptButton() {
         return $("//button[normalize-space()='Accept']")
     }
-    get clickDeleteLanguageButton() {
+    get deleteLanguageButton() {
         return $("//button[@class='delete-language']")
     }
-    get clickDeleteSecondLanguage() {
+    get deleteSecondLanguageButton() {
         //return  $('//li[2]//div[1]//button[1]//i[1]')
         return $("(//button[@class='delete-language'])[2]")
     }
-    get marketManagementButtonClick() {
+    get marketManagementButton() {
         return $("div:nth-child(2) > div:nth-child(1) > psk-button:nth-child(2) > button:nth-child(1)")
     }
-    get addMarketButtonClick() {
+    get addMarketButton() {
         return $("//button[normalize-space()='Add Market']")
     }
     get selectLanguageInMarketPageDropdown() {
         return $("//select[@id='selectcountry']")
     }
-    get enterNationalCodeInTextbox() {
+    get nationalCodeTextbox() {
         return $("//input[@placeholder='Enter national code']")
     }
-    get enterMAHNameInTextbox() {
+    get mahNameTextbox() {
         return $("//input[@placeholder='Enter MAH name']")
     }
-    get enterLegalEntityNameInTextbox() {
+    get legalEntityNameTextbox() {
         return $("//input[@placeholder='Enter legal entity name']")
     }
-    get addMarketButtonInPopupClick() {
+    get addMarketButtonInPopup() {
         return ('document.querySelector("body > webc-app-root:nth-child(1) > webc-app-container:nth-child(3) > div:nth-child(1) > webc-app-router:nth-child(1) > stencil-router:nth-child(1) > stencil-route-switch:nth-child(1) > stencil-route:nth-child(9) > webc-app-loader:nth-child(1) > psk-page:nth-child(1) > h6:nth-child(1) > webc-container:nth-child(1) > webc-modal:nth-child(3) > footer:nth-child(3) > psk-button:nth-child(2) > button:nth-child(1)").click()')
     }
-    get closeButtonInPopupClick() {
+    get closeButton() {
         return $("//button[normalize-space()='Close']")
     }
 
 
     get saveProductButton() {
         return $("//button[normalize-space()='Save Product']")
-        //return document.querySelector(`psk-button[data-tag="add-product"] button[class="btn btn-primary"]`)
     }
     get searchProduct() {
         return $("//input[@id='code-search']")
@@ -158,36 +152,30 @@ class productsPage {
     get importButton() {
         return $('button[data-tag="import"]')
     }
-    get importFile() {
+    get selectFileButton() {
         return $('//input[@type="file"]')
     }
-    get importF() {
+    get importFileButton() {
         return $('//button[normalize-space()="Import"]')
     }
-    get clickViewMessageInFailedLogs() {
+    get viewMessageInFailedLogs() {
         return $('webc-datatable[datasource="@failedDataSource"] button[class="btn btn-link p-0 col align-self-center text-left"]')
     }
-    get clickInvalidFieldInfo() {
+    get invalidFieldInfoButton() {
         return $('psk-accordion-item[title="Invalid fields info"]')
     }
-    get clickViewMessageInSuccessLogs() {
+    get viewMessageInSuccessLogs() {
         return $('div:nth-child(14) button:nth-child(1)')
     }
-    get clickDownloadMsg() {
+    get downloadMsgButton() {
         return $('//button[normalize-space()="Download message"]')
     }
-    get requiredFields() {
+    get requiredFieldsText() {
         return $('ul[data-for="@actionModalModel.secondMessageData"]')
     }
-    // get inventedNameField(){
-    //     return $('//h6[normalize-space()="inventedName - Required field"]')
-    // }
-    // get inventedNameField(){
-    //     return $('//h6[normalize-space()="productCode - Required field"]')
-    // }
-    // get nameMedicinalProductField(){
-    //     return $('//h6[normalize-space()="nameMedicinalProduct - Required field"]')
-    // }
+    get homeText() {
+        return $('//a[normalize-space()="Home"]')
+    }
 
 
     get cancelButton() {
@@ -207,7 +195,7 @@ class productsPage {
 
     }
     async clickProductFromSideNav() {
-        await this.clickProductFromleftsideNav.click()
+        await this.productFromleftsideNav.click()
     }
     async addProduct() {
 
@@ -215,19 +203,17 @@ class productsPage {
     }
     async enterGtinCode(gtinNumber) {
 
-        await this.gtin.click();
-        await this.gtin.clearValue();
-        await this.gtin.setValue(gtinNumber);
+        await this.gtinField.click();
+        await this.gtinField.clearValue();
+        await this.gtinField.setValue(gtinNumber);
     }
     async brandName(brandName) {
 
-        await this.brand.setValue(brandName);
-        //const prodName=await this.brand.setValue(brandName);
-        //console.log("prodName"+prodName)
+        await this.brandField.setValue(brandName);
     }
     async checkBrandName() {
-        if (await this.brand.isDisplayed() == true) {
-            let brandDisplayed = (await this.brand.getValue()).toString()
+        if (await this.brandField.isDisplayed() == true) {
+            let brandDisplayed = (await this.brandField.getValue()).toString()
             console.log("ProductName is " + brandDisplayed)
             return brandDisplayed
         }
@@ -238,12 +224,12 @@ class productsPage {
     }
     async productDescription(description) {
 
-        await this.productdescription.setValue(description);
+        await this.productDescriptionField.setValue(description);
     }
     async productPhoto(uploadProductPhoto) {
 
         console.log(uploadProductPhoto)
-        await this.uploadphoto.addValue(uploadProductPhoto);
+        await this.uploadPhoto.addValue(uploadProductPhoto);
 
     }
     async uploadFile(uploadEpi) {
@@ -262,55 +248,52 @@ class productsPage {
         }
     }
     async internalMaterialCode(code) {
-        await this.internalMaterialCodeEnter.setValue(code)
+        await this.internalMaterialCodeField.setValue(code)
     }
     async addStrength(strength) {
-        await this.addStrengthEnter.setValue(strength)
+        await this.addStrengthField.setValue(strength)
     }
     async videoSource(link1) {
-        await this.videoSourceEnter.setValue(link1)
+        await this.videoSourceField.setValue(link1)
     }
     async adverseEvents() {
 
-        await this.adverseE.isEnabled();
-        await expect(this.adverseE).toBeEnabled()
+        await this.adverseEventsCheckbox.isEnabled();
+        await expect(this.adverseEventsCheckbox).toBeEnabled()
         const adverseEvent = await this.adverseEventUrl.getValue()
         console.log(adverseEvent)
 
     }
     async antiCounterfeiting() {
 
-        await this.anticounter.isEnabled();
-        await expect(this.anticounter).toBeEnabled();
+        await this.anticounterCheckbox.isEnabled();
+        await expect(this.anticounterCheckbox).toBeEnabled();
         const antiCounterfieting = await this.antiCounterfeitingUrl.getValue()
         console.log(antiCounterfieting)
 
     }
     async enableBatchIsRecalled() {
 
-        await this.batchIsRecalledClick.click();
-        //await expect(this.batchIsRecalledClick).toBeEnabled();
+        await this.batchIsRecalledCheckbox.click();
 
     }
     async enableExpirationDateIsIncorrect() {
-        await this.expirationDateIsIncorrectClick.click()
-        // await expect(this.batchIsRecalledClick).toBeEnabled();
+        await this.expirationDateIsIncorrectCheckbox.click()
     }
     async batchExpired() {
 
-        await this.batchenabled.isEnabled();
-        //await expect(this.batchenabled).toBeEnabled(); 
+        await this.batchIsExpiredCheckbox.isEnabled();
     }
     async batchIsExpired() {
         await this.batchIsExpiredCheckbox.click();
     }
     async enableSnIsInRecallList() {
-        await this.snIsInRecallListClick.scrollIntoView()
-        await this.snIsInRecallListClick.click();
+        await this.snIsInRecallListCheckbox.scrollIntoView()
+        await this.snIsInRecallListCheckbox.click();
 
     }
     async checkSnIsInRecallList() {
-        if (await this.snIsInRecallListClick.isEnabled() == true) {
+        if (await this.snIsInRecallListCheckbox.isEnabled() == true) {
             let snIsInRecallList = 'true'
             return snIsInRecallList
         }
@@ -320,16 +303,13 @@ class productsPage {
         }
     }
     async enableSnIsInDecommissionedList() {
-        await this.snIsInDecommissionedListClick.click()
-        // await expect(this.snIsInDecommissionedListClick).toBeSelected(); 
+        await this.snIsInDecommissionedListCheckbox.click()
     }
     async enableSnIsUnknown() {
-        await this.snIsUnknownClick.click()
-        //await expect(this.snIsUnknownClick).toBeSelected(); 
+        await this.snIsUnknownCheckbox.click()
     }
     async batchNumberUnknown() {
         await this.batchNumberUnknownEnabled.isEnabled()
-        //await expect(this.batchNumberUnknownEnabled).toBeEnabled(); 
     }
     async disableBatchNumberUnknown() {
         await this.disableBatchNumberUnknownCheckbox.click()
@@ -340,7 +320,7 @@ class productsPage {
 
         const patientinfo = await this.patientInformation.getText();
         console.log("" + patientinfo);
-        const healthinfo = await this.healthcareInformation.getText();
+        const healthinfo = await this.healthCareInformation.getText();
         console.log("" + healthinfo)
     }
     async addEpi() {
@@ -352,8 +332,8 @@ class productsPage {
     async selectType(type) {
         await this.selectTypeDropdown.selectByVisibleText(type)
     }
-    async videoSourceEpi(link2) {
-        await this.videoSourceEpiEnter.setValue(link2)
+    async videoSourceEpi(link) {
+        await this.videoSourceEpiField.setValue(link)
     }
 
     async acceptButton() {
@@ -362,62 +342,45 @@ class productsPage {
     }
 
     async clickDeleteLanguage() {
-        await this.clickDeleteLanguageButton.click()
+        await this.deleteLanguageButton.click()
     }
     async deleteSecondLanguage() {
-        await this.clickDeleteSecondLanguage.click()
+        await this.deleteSecondLanguageButton.click()
     }
 
-
-
-
-
-    async marketManagementButton() {
-        await this.marketManagementButtonClick.scrollIntoView()
-        await this.marketManagementButtonClick.click()
+    async clickMarketManagement() {
+        await this.marketManagementButton.scrollIntoView()
+        await this.marketManagementButton.click()
     }
-    async addMarketButton() {
-        await this.addMarketButtonClick.click()
+    async addMarket() {
+        await this.addMarketButton.click()
     }
-    async selectLanguageInMarketPage(country1) {
-        await this.selectLanguageInMarketPageDropdown.selectByVisibleText(country1)
+    async selectLanguageInMarketPage(country) {
+        await this.selectLanguageInMarketPageDropdown.selectByVisibleText(country)
     }
     async enterNationalCode(NationalCode) {
-        await this.enterNationalCodeInTextbox.setValue(NationalCode)
+        await this.nationalCodeTextbox.setValue(NationalCode)
     }
     async enterMAHName(MAHName) {
-        await this.enterMAHNameInTextbox.setValue(MAHName)
+        await this.mahNameTextbox.setValue(MAHName)
     }
     async enterLegalEntityName(LegalEntityName) {
-        await this.enterLegalEntityNameInTextbox.setValue(LegalEntityName)
+        await this.legalEntityNameTextbox.setValue(LegalEntityName)
     }
-    async addMarketButtonInPopup() {
-        await this.addMarketButtonInPopupClick.execute()
+    async clickAddMarketButtonInPopup() {
+        await this.addMarketButtonInPopup.execute()
     }
     async closeButtonInPopup() {
-        await this.closeButtonInPopupClick.click()
+        await this.closeButton.click()
     }
-    async Cancel() {
+    async clickCancel() {
 
         await this.cancelButton.click();
     }
     async saveProduct() {
         await this.saveProductButton.click();
-        // await browser.waitUntil(
-        //     async () => (await $('//span[@slot="page-title"]').waitForVisible()),
-        //     {
-        //         timeout: 5000,
-        //         timeoutMsg: 'no title'
-        //     }
-        // );
-
-
-
-
     }
-    async saveProductBtn() {
-        await this.saveProductButton
-    }
+
 
     ///edit
     async searchProductCode(code) {
@@ -441,34 +404,34 @@ class productsPage {
     }
     async selectFile(file) {
 
-        await this.importFile.addValue(file)
+        await this.selectFileButton.addValue(file)
     }
-    async import() {
+    async clickImportFile() {
 
-        await this.importF.click()
-        // await browser.waitUntil(
-        //     async () => (await $("(//div[@class='circle circle-8'])[1]").waitForDisplayed({ reverse: true })),
-        //     {
-        //         timeout: 5000,
-        //         timeoutMsg: ''
-        //     }
-        // );
+        await this.importFileButton.click()
+
     }
-    async viewMessageInFailedLogs() {
+    async clickViewMessageInFailedLog() {
 
         try {
 
-            await this.clickViewMessageInFailedLogs.click()
+            await this.viewMessageInFailedLogs.click()
         }
         catch (e) {
             console.log("Success logs")
         }
     }
-    async viewMessageInSuccessLogs() {
+    async clickViewMessageInSuccessLog() {
 
-        await this.clickViewMessageInSuccessLogs.click()
+        try{
+
+        await this.viewMessageInSuccessLogs.click()
+        }
+        catch(e){
+            console.log("Failed logs")
+        }
     }
-    async downloadMsgInSuccessLogs() {
+    async clickDownloadMsgInSuccessLog() {
 
 
         const downloadHref = await browser.getUrl();
@@ -490,26 +453,33 @@ class productsPage {
         const filePath = path.join(global.downloadDir, fileName)
         console.log(filePath)
         try {
-            await this.clickDownloadMsg.click()
+            await this.downloadMsgButton.click()
             await browser.pause(5000)
         }
         catch (e) {
-            console.log("Success logs")
+            console.log("Failed logs")
         }
 
         let rawdata = JSON.parse(fs.readFileSync(testData.path.productImport, 'utf8'))
 
         const productFile = filePath.concat(path.sep, "product_", rawdata.product.productCode, ".json")
         console.log(productFile)
-        let fileContents = JSON.parse(fs.readFileSync(productFile, 'utf-8'))
-        // console.log(JSON.stringify(fileContents))
-        // console.log(JSON.stringify(rawdata))
-        console.log(JSON.stringify(fileContents) === JSON.stringify(rawdata))
-        await browser.pause(5000)
-        fs.unlinkSync(productFile)
+        try {
+            if (fs.existsSync(productFile)) {
+                let fileContents = JSON.parse(fs.readFileSync(productFile, 'utf-8'))
+                // console.log(JSON.stringify(fileContents))
+                // console.log(JSON.stringify(rawdata))
+                console.log(JSON.stringify(fileContents) === JSON.stringify(rawdata))
+                await browser.pause(5000)
+                fs.unlinkSync(productFile)
+            }
+        }
+        catch (e) {
+            console.log("No file")
+        }
 
     }
-    async downloadMsgInFailedLogs() {
+    async clickDownloadMsgInFailedLog() {
 
         const downloadHref = await browser.getUrl();
         // pass through Node's `URL` class
@@ -531,7 +501,7 @@ class productsPage {
         const filePath = path.join(global.downloadDir, fileName)
         console.log(filePath)
         try {
-            await this.clickDownloadMsg.click()
+            await this.downloadMsgButton.click()
         } catch (e) {
             console.log("success logs")
         }
@@ -565,7 +535,7 @@ class productsPage {
 
     async invalidFieldInfo() {
         try {
-            await this.clickInvalidFieldInfo.click()
+            await this.invalidFieldInfoButton.click()
         }
         catch (e) {
             console.log("success logs")
@@ -574,11 +544,22 @@ class productsPage {
     async invalidFieldInfoRequired() {
 
         try {
-            const allFields = await this.requiredFields.getText()
+            const allFields = await this.requiredFieldsText.getText()
             console.log('required fields are ' + allFields)
         }
         catch (e) {
             console.log("success logs")
+        }
+    }
+
+    async homePage() {
+        if (await this.homeText.isExisting() == true) {
+            console.log(await this.homeText.getText())
+            return true
+
+        }
+        else {
+            return false
         }
     }
 

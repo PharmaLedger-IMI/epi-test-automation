@@ -18,7 +18,7 @@ describe('040_Create a batch and enable serial number verification and set decom
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npm run checkDecommissionedSerialNumberTest');
+            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npx kill-port 4723 && npm run checkDecommissionedSerialNumberTest');
             console.log('stdout:', stdout1);
             console.log('stderr:', stderr1);
         })
@@ -34,11 +34,11 @@ describe('040_Create a batch and enable serial number verification and set decom
         allureReporter.addStep('Create a batch and enable serial number verification')
         allureReporter.addStep('Set decommissioned serial numbers and reason code')
         allureReporter.addTestId('SerialNumberChecks_6')
-
+        //click product
         await products.clickProductFromSideNav()
         await wait.setTimeoutwait(4);
 
-        // search the product codes
+        //search the product code
         await products.searchProductCode(info.getProductId())
         await wait.setTimeoutwait(3);
         await browser.keys('Enter')
@@ -51,16 +51,19 @@ describe('040_Create a batch and enable serial number verification and set decom
         await products.enableSnIsInDecommissionedList()
         await wait.setTimeoutwait(4);
 
-        //update products
+        //update product
         await products.updateProduct()
         await wait.setTimeoutwait(18);
-        // create a batch 
-        await batches.Batch();
+
+        //click batch 
+        await batches.clickBatchFromSideNav();
         await wait.setTimeoutwait(4);
+        //add batch
         await batches.addBatch();
         await wait.setTimeoutwait(3);
         info.setBatchId(await batches.batchIdValue())
         await wait.setTimeoutwait(3);
+        //enter site name
         await batches.siteName(testData.newBatchDetails.siteName);
         await wait.setTimeoutwait(3);
 
@@ -88,9 +91,7 @@ describe('040_Create a batch and enable serial number verification and set decom
         //select decommisioned serial number
         await batches.selectUpdateDecommissionedFromDropdown(testData.newBatchDetails.updateDecommissioned)
         await wait.setTimeoutwait(3);
-        // //enable checkbox
-        // await batches.enableResetAllValidSerialNumber()
-        // await wait.setTimeoutwait(2);
+
         //set the serial number and enter
         info.setSerialNumber(await batches.serialNum())
         await batches.enterSerialNumber(info.getSerialNumber())
@@ -112,8 +113,6 @@ describe('040_Create a batch and enable serial number verification and set decom
         await batches.createBatch()
         await wait.setTimeoutwait(40);
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
-        // allureReporter.endStep("passed");
-
 
     })
 })    

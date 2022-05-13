@@ -17,7 +17,7 @@ describe('041_Create a batch and enable serial number verification and set valid
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npm run createBatchWithValidSNRecalledSNDecommissionedSNTest');
+            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npx kill-port 4723 && npm run createBatchWithValidSNRecalledSNDecommissionedSNTest');
             console.log('stdout:', stdout1);
             console.log('stderr:', stderr1);
         })
@@ -34,17 +34,19 @@ describe('041_Create a batch and enable serial number verification and set valid
         allureReporter.addStep('Enable serial number verification')
         allureReporter.addStep('Set valid, recalled and decommissioned serial number')
         allureReporter.addStep('Scan with valid serial number')
-
         allureReporter.addTestId('SerialNumberChecks_7_1')
-        await batches.Batch();
+        //click batch
+        await batches.clickBatchFromSideNav();
         await wait.setTimeoutwait(3);
+        //add batch
         await batches.addBatch();
         await wait.setTimeoutwait(3);
         info.setBatchId(await batches.batchIdValue())
         await wait.setTimeoutwait(3);
+        //enter site name
         await batches.siteName(testData.newBatchDetails.siteName);
         await wait.setTimeoutwait(3);
-
+        //select date
         info.setCurrentRandomDate()
         await wait.setTimeoutwait(3);
         await browser.execute((date) => {
@@ -82,12 +84,10 @@ describe('041_Create a batch and enable serial number verification and set valid
         await batches.acceptSerialNumber()
         await wait.setTimeoutwait(4);
 
-        //select recalled serial number
+        //update recalled serial number
         await batches.selectUpdateRecalledSerialFromDropdown(testData.newBatchDetails.updateRecalled)
         await wait.setTimeoutwait(3);
-        // //enable checkbox
-        // await batches.enableResetAllRecalledSerialNumber()
-        // await wait.setTimeoutwait(2);
+        
         //set the serial number and enter
         info.setSerialNumber(await batches.serialNum())
         await wait.setTimeoutwait(3);
@@ -98,18 +98,16 @@ describe('041_Create a batch and enable serial number verification and set valid
         await wait.setTimeoutwait(3);
 
 
-        //select decommisioned serial number
+        //update decommissioned serial number
         await batches.selectUpdateDecommissionedFromDropdown(testData.newBatchDetails.updateDecommissioned)
         await wait.setTimeoutwait(3);
-        // //enable checkbox
-        // await batches.enableResetAllDecommisionedSerialNumber()
-        // await wait.setTimeoutwait(2);
+       
         //set the serial number and enter
         info.setSerialNumber(await batches.serialNum())
         await wait.setTimeoutwait(2);
         await batches.enterSerialNumber(info.getSerialNumber())
         await wait.setTimeoutwait(3);
-        //Enter reason
+        //enter reason
         await batches.selectLostReasonFromDropdown(testData.newBatchDetails.updateDecommissionedWithLostReason)
         await wait.setTimeoutwait(3);
         //accept serial number
@@ -126,9 +124,6 @@ describe('041_Create a batch and enable serial number verification and set valid
         await batches.createBatch()
         await wait.setTimeoutwait(40);
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
-        // allureReporter.endStep("passed");
-        // allureReporter.endStep("passed");
-
-
+     
     })
 })    

@@ -16,7 +16,7 @@ describe('022_Create a batch with valid SN, expiry date and recall message', () 
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npm run createBatchWithValidSnExpiryDateRecallMsgTest');
+            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npx kill-port 4723 && npm run createBatchWithValidSnExpiryDateRecallMsgTest');
             console.log('stdout:', stdout1);
             console.log('stderr:', stderr1);
         })
@@ -35,14 +35,18 @@ describe('022_Create a batch with valid SN, expiry date and recall message', () 
         allureReporter.addStep('4. Add a recall message')
         allureReporter.addStep('5. Scan the batch')
         allureReporter.addTestId('BatchRecallAndBatchMessage_12_1')
-        await batches.Batch();
+        //click batch
+        await batches.clickBatchFromSideNav();
         await wait.setTimeoutwait(4);
+        //add batch
         await batches.addBatch();
         await wait.setTimeoutwait(2);
         info.setBatchId(await batches.batchIdValue())
         await wait.setTimeoutwait(2);
+        //enter site name
         await batches.siteName(testData.newBatchDetails.siteName);
         await wait.setTimeoutwait(2);
+        //select date
         info.setCurrentRandomDate()
         await wait.setTimeoutwait(2);
         await browser.execute((date) => {
@@ -54,17 +58,18 @@ describe('022_Create a batch with valid SN, expiry date and recall message', () 
             })();
         }, info.getCurrentRandomDate());
         await wait.setTimeoutwait(4);
+        //select product
         const selectBox = await browser.$('//psk-select[@class=\'default-select hydrated\']//select[@class=\'form-control\']');
         await selectBox.selectByAttribute('value', info.getProductId());
         await wait.setTimeoutwait(2);
+        //video source
         await batches.videoSource(testData.newBatchDetails.videoSource)
         await wait.setTimeoutwait(2);
 
-        //add valid serial number
+        //update valid serial number
         await batches.selectUpdateValidSerialFromDropdown(testData.newBatchDetails.updateValid)
         await wait.setTimeoutwait(5);
-        // await batches.enableResetAllValidSerialNumber()
-        // await wait.setTimeoutwait(2);
+        //enter serial number
         info.setSerialNumber(await batches.serialNum())
         await batches.enterSerialNumber(info.getSerialNumber())
         await wait.setTimeoutwait(2);
@@ -77,6 +82,7 @@ describe('022_Create a batch with valid SN, expiry date and recall message', () 
         //set batch recall
         info.setBatchRecall(await batches.checkBatchRecall())
         await wait.setTimeoutwait(2);
+        //enter recall message
         await batches.enterRecallMessage(testData.newBatchDetails.recallMsg)
         await wait.setTimeoutwait(2);
         //set batch recall msg
@@ -92,7 +98,6 @@ describe('022_Create a batch with valid SN, expiry date and recall message', () 
         await batches.createBatch()
         await wait.setTimeoutwait(40);
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
-        // allureReporter.endStep("passed");
-
+      
     })
 })    
