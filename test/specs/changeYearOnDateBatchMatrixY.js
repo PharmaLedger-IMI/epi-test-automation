@@ -47,7 +47,7 @@ describe('027_change only the year on the new data matrix ', () => {
             allureReporter.addDescription("Change only year on the date in matrix Y")
             allureReporter.addStep('Retest above by changing only the year on the new data matrix Y')
             allureReporter.addTestId('ExpiryDateChecks_1_4')
-
+            //generate expectation file
             data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getDateChange("year"), info.getSerialNumber(), info.getBrandName(), "", "", "", "")
             await wait.setTimeoutwait(12);
             //generate 2d matrix image     

@@ -48,7 +48,7 @@ describe('110_Update a product via import of Json to change SNRecalled flag', ()
         //view message
         await products.clickViewMessageInSuccessLog()
         await wait.setTimeoutwait(5);
-        //download msg
+        //download message
         await products.clickDownloadMsgInSuccessLog()
         await wait.setTimeoutwait(10);
 

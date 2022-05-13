@@ -34,24 +34,24 @@ describe('016_Edit batch to set batch recall without SN ', () => {
         allureReporter.addStep('Add a display message for the same.')
         allureReporter.addTestId('BatchRecallAndBatchMessage_10_1')
 
-
+        //click batch
         await batches.clickBatchFromSideNav();
         //created for QA
         //await browser.execute('document.querySelector(`webc-app-menu-item:nth-child(4) stencil-route-link:nth-child(1) a:nth-child(1)`).click()')
         await wait.setTimeoutwait(8);
-
+        //edit batch
         let editValue = info.getbatchId()
         await wait.setTimeoutwait(3);
         //click on edit 
         await browser.execute('document.querySelector("div:nth-child(' + await info.editBatchRow(editValue) + ') button:nth-child(1)").click()')
         await wait.setTimeoutwait(3);
-
+        //update valid serial number
         await batches.selectUpdateValidSerialFromDropdown(testData.newBatchDetails.updateValid)
         await wait.setTimeoutwait(3);
         //without serial number
         await batches.enableResetAllValidSerialNumber()
         await wait.setTimeoutwait(3);
-
+        //click accept
         await batches.acceptSerialNumber()
         await wait.setTimeoutwait(3);
 

@@ -43,8 +43,7 @@
         "batchId": "MC3965",
         "expiryDate": "2026-11-22",
         "serialNumber": "234765",
-        "prodName": "Dolo-650",
-        "disabledFeatures": "01,02,03,04,05,06,07,08,09"
+        "prodName": "Dolo-650"
     },
     "path": {
         "matrixImage": "/Users/snehav/AppData/Local/Android/Sdk/emulator/resources/custom.png",

@@ -20,7 +20,7 @@ describe('112_Update a product via import of Json to change market id', () => {
         allureReporter.addStep('3. Use the import functionality to select the file')
         allureReporter.addStep('4. Click on import')
         allureReporter.addStep('5. Check the log for the import operation ')
-
+        //click product
         await products.clickProductFromSideNav()
         await wait.setTimeoutwait(8);
         //click import
@@ -57,7 +57,7 @@ describe('112_Update a product via import of Json to change market id', () => {
         //Read invalid field info
         await products.invalidFieldInfoRequired()
         await wait.setTimeoutwait(5);
-        //download msg
+        //download message
         await products.clickDownloadMsgInFailedLog()
         await wait.setTimeoutwait(10);
 

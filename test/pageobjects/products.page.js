@@ -515,15 +515,18 @@ class productsPage {
             if (fs.existsSync(productFile)) {
 
                 let fileContents = JSON.parse(fs.readFileSync(productFile, 'utf-8'))
-                fs.unlinkSync(productFile)
+                
                 // console.log(JSON.stringify(fileContents))
                 // console.log(JSON.stringify(rawdata))
                 console.log(JSON.stringify(fileContents) === JSON.stringify(rawdata))
                 await browser.pause(5000)
+                fs.unlinkSync(productFile)
             }
             else {
                 const undefinedFile = filePath.concat(path.sep, "product_", "undefined", ".json")
                 console.log(undefinedFile)
+                console.log(JSON.stringify(undefinedFile) === JSON.stringify(rawdata))
+                await browser.pause(5000)
                 fs.unlinkSync(undefinedFile)
             }
         }

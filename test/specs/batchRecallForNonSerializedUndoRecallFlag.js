@@ -35,7 +35,7 @@ describe('017_Edit batch to undo batch recall without SN ', () => {
         allureReporter.addStep('Go back to the Batch on the Enterprise Wallet')
         allureReporter.addStep('Undo the batch recall flag.')
         allureReporter.addTestId('BatchRecallAndBatchMessage_10_2')
-
+        //click batch
         await batches.clickBatchFromSideNav();
         await wait.setTimeoutwait(8);
         let editValue = info.getbatchId()

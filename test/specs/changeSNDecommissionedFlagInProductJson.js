@@ -18,7 +18,7 @@ describe('111_Update a product via import of Json to change SN decommissioned fl
         allureReporter.addStep('3. Use the import functionality to select the file')
         allureReporter.addStep('4. Click on import')
         allureReporter.addStep('5. Check the log for the import operation ')
-
+        //click product
         await products.clickProductFromSideNav()
         await wait.setTimeoutwait(8);
         //click import
@@ -48,7 +48,7 @@ describe('111_Update a product via import of Json to change SN decommissioned fl
         //view message
         await products.clickViewMessageInSuccessLog()
         await wait.setTimeoutwait(5);
-        //downlaod msg
+        //downlaod message
         await products.clickDownloadMsgInSuccessLog()
         await wait.setTimeoutwait(10);
 

@@ -524,14 +524,16 @@ class batchesPage {
             if (fs.existsSync(batchFile)) {
 
                 let fileContents = JSON.parse(fs.readFileSync(batchFile, 'utf-8'))
-                fs.unlinkSync(batchFile)
                 // console.log(JSON.stringify(fileContents))
                 // console.log(JSON.stringify(rawdata))
                 console.log(JSON.stringify(fileContents) === JSON.stringify(rawdata))
                 await browser.pause(5000)
+                fs.unlinkSync(batchFile)
             }
             else {
                 const undefinedFile = filePath.concat(path.sep, "batch_", "undefined", ".json")
+                console.log(JSON.stringify(undefinedFile) === JSON.stringify(rawdata))
+                await browser.pause(5000)
                 fs.unlinkSync(undefinedFile)
             }
         }

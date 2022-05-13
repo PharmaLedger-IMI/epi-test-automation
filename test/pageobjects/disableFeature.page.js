@@ -1,4 +1,3 @@
-const { default: $ } = require("webdriverio/build/commands/browser/$");
 
 class userAsHolder {
 
@@ -35,12 +34,14 @@ class userAsHolder {
     get disableBatchMessageCheckbox(){
         return $('//input[@type="checkbox"][@name="09"]')
     }
+    get acceptButton(){
+        return $('//button[normalize-space()="Accept"]')
+    }
 
     async clickUserAsHolder() {
         await this.userAsHolderLink.click();
         
     }
-    
     async clickWalletSettingsEditButton(){
         await this.walletSettingsEditButton.click()
     }
@@ -72,8 +73,20 @@ class userAsHolder {
         await this.disableAntiCounterfeitingFunctionsCheckbox.click();
         
     }
+    async clickDisableRecallFunctionsCheckbox() {
+        await this.disableRecallFunctionsCheckbox.click();
+        
+    }
     async clickDisableBatchMessage() {
         await this.disableBatchMessageCheckbox.click();
+        
+    }
+    async clickAccept() {
+        await this.acceptButton.click();
+        
+    }
+    async clickCancel() {
+        await this.cancelButton.click();
         
     }
 

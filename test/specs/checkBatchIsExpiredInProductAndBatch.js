@@ -34,11 +34,11 @@ describe('072_Edit product to check batch is expired and edit batch to set expir
         allureReporter.addStep("Check batch is expired flag in product")
         allureReporter.addStep("Set expired date in batch")
         allureReporter.addTestId('ProductDisplayEpiFlag_3_1')
-
+        //click product
         await products.clickProductFromSideNav()
         await wait.setTimeoutwait(4);
         console.log("prod to edit" + info.getProductId())
-        // search the product codes
+        //search the product code
         await products.searchProductCode(info.getProductId())
         await wait.setTimeoutwait(3);
         await browser.keys('Enter')
@@ -50,7 +50,7 @@ describe('072_Edit product to check batch is expired and edit batch to set expir
         info.setEpiDisplayed(await products.epiDisplayed())
         await wait.setTimeoutwait(3);
 
-        //update products
+        //update product
         await products.updateProduct()
         await wait.setTimeoutwait(8);
 
@@ -65,6 +65,7 @@ describe('072_Edit product to check batch is expired and edit batch to set expir
         console.log("editValue is " + editValue)
         await browser.execute('document.querySelector("div:nth-child(' + await info.editBatchRow(editValue) + ') button:nth-child(1)").click()')
         await wait.setTimeoutwait(6);
+        //select date
         const expiredDate = info.randomDateExpired()
         await wait.setTimeoutwait(3);
         await browser.execute((date) => {

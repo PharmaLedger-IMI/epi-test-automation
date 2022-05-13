@@ -49,7 +49,7 @@ describe('122_Update a batch via import of Json to change batch recall message f
         //view message
         await batches.clickViewMessageInSuccessLog()
         await wait.setTimeoutwait(10);
-        //download msg
+        //download message
         await batches.clickDownloadMsgInSuccessLog()
         await wait.setTimeoutwait(10);
        

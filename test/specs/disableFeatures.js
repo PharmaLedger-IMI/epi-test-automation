@@ -1,21 +1,34 @@
-
-const feature = require('../pageobjects/userAsHolder');
+const products = require('../pageobjects/products.page');
+const feature = require('../pageobjects/disableFeature.page');
+const info = require('../utility/reusableFile')
+const LoginPage = require('../pageobjects/login.page');
+const accessAccount = require('../pageobjects/access.Account');
+const testData = require('../testdata/config.json')
+const wait = require('../utility/timeout')
+const allureReporter = require('@wdio/allure-reporter').default
 
 describe('Disable feature', () => {
-    if (process.argv[incrementalArg].split('=')[1] == "true") {
+    if (!process.env.npm_config_browserOnly) {
 
-        console.log("This testcase is running for existing product")
 
-    }
-    else {
+        after(async () => {
+            console.log("Starting Mobile Execution");
+            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npx kill-port 4723 && npm run test');
+            console.log('stdout:', stdout1);
+            console.log('stderr:', stderr1);
+        })
+        console.log("Running test suite in incremental mode and browser tests only")
+    } else {
+
+        console.log("different flag")
+
+    }   
 
         it('Browser - should verify product page', async () => {
 
-            allureReporter.addFeature('Create Product')
+            allureReporter.addFeature('Disable feature')
             allureReporter.addSeverity('Critical');
-            allureReporter.addTestId('ProdAndBatchSetup_1')
-            allureReporter.addDescription('No. of products can be created by Adding Product')
-            allureReporter.startStep("Create new product with a valid GTIN, and add the ePI");
+            allureReporter.startStep("");
 
 
             await LoginPage.open();
@@ -47,36 +60,68 @@ describe('Disable feature', () => {
             await browser.switchToFrame(frame);
 
             await feature.clickUserAsHolder();
-            await wait.setTimeoutwait(4);
+            await wait.setTimeoutwait(3);
 
             await feature.clickWalletSettingsEditButton();
-            await wait.setTimeoutwait(4);
+            await wait.setTimeoutwait(3);
+
 
             await feature.clickDisablePatientLeaflet();
-            await wait.setTimeoutwait(4);
+            await wait.setTimeoutwait(3);
 
             await feature.clickDisableShowleafletIfBatchExpired();
-            await wait.setTimeoutwait(4);
+            await wait.setTimeoutwait(3);
 
-            await feature.clickDisableShowLeafletIfBatchUnknown();
-            await wait.setTimeoutwait(4);
+            await feature.clickAccept()
+            await wait.setTimeoutwait(3);
 
-            await feature.clickDisableHealthcarePractitionerInfo();
-            await wait.setTimeoutwait(4);
 
-            await feature.clickDisableVideoSource();
-            await wait.setTimeoutwait(4);
+            await products.clickProductFromSideNav();
+            await wait.setTimeoutwait(3);
+            //add product
+            await products.addProduct();
+            await wait.setTimeoutwait(5);
+            //enter gtin
+            await products.enterGtinCode(info.getProductId());
+            await wait.setTimeoutwait(3);
 
-            await feature.clickDisableAdverseEventsReporting();
-            await wait.setTimeoutwait(4);
+            //enable batch is recalled
+            await products.batchIsExpired();
+            await wait.setTimeoutwait(3);
 
-            await feature.clickDisableAntiCounterfeitingFunctions();
-            await wait.setTimeoutwait(4);
+            //add epi
+            await products.addEpi()
+            await wait.setTimeoutwait(3);
 
-            await feature.clickDisableBatchMessage();
-            await wait.setTimeoutwait(4);
+            await products.selectType(testData.newProductDetails.selectType)
+            await wait.setTimeoutwait(3);
+
+            await products.acceptButton()
+            await wait.setTimeoutwait(3);
+
+            // await products.saveProduct()
+            // await wait.setTimeoutwait(3);
+
+
+
+            // await feature.clickDisableShowLeafletIfBatchUnknown();
+            // await wait.setTimeoutwait(4);
+
+            // await feature.clickDisableHealthcarePractitionerInfo();
+            // await wait.setTimeoutwait(4);
+
+            // await feature.clickDisableVideoSource();
+            // await wait.setTimeoutwait(4);
+
+            // await feature.clickDisableAdverseEventsReporting();
+            // await wait.setTimeoutwait(4);
+
+            // await feature.clickDisableAntiCounterfeitingFunctions();
+            // await wait.setTimeoutwait(4);
+
+            // await feature.clickDisableBatchMessage();
+            // await wait.setTimeoutwait(4);
 
         });
-    }
+    })
 
-})

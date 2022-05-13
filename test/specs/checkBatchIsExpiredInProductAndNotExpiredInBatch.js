@@ -37,7 +37,7 @@ describe('073_Edit product to check batch is expired and edit batch to check bat
         await products.clickProductFromSideNav()
         await wait.setTimeoutwait(4);
         console.log("prod to edit" + info.getProductId())
-        // search the product code
+        //search the product code
         await products.searchProductCode(info.getProductId())
         await wait.setTimeoutwait(3);
         await browser.keys('Enter')
@@ -56,8 +56,6 @@ describe('073_Edit product to check batch is expired and edit batch to check bat
 
         //click batch
         await batches.clickBatchFromSideNav();
-        //created for QA
-        //await browser.execute('document.querySelector(`webc-app-menu-item:nth-child(4) stencil-route-link:nth-child(1) a:nth-child(1)`).click()')
         await wait.setTimeoutwait(8);
         //edit batch
         let editValue = info.getbatchId()

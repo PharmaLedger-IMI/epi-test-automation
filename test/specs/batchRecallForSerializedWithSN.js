@@ -33,7 +33,7 @@ describe('014_Edit batch to set batch recall with valid SN', () => {
         allureReporter.addStep('Add a display message in the batch.')
         allureReporter.addTestId('BatchRecallAndBatchMessage_9_1')
 
-
+        //click batch
         await batches.clickBatchFromSideNav();
         //created for QA 
         //await browser.execute('document.querySelector(`webc-app-menu-item:nth-child(4) stencil-route-link:nth-child(1) a:nth-child(1)`).click()')
@@ -77,8 +77,6 @@ describe('014_Edit batch to set batch recall with valid SN', () => {
         await wait.setTimeoutwait(12);
 
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
-      
-
 
     })
 })    

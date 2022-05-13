@@ -19,20 +19,21 @@ $ git checkout <version>
 ```
 ### Step 3: To setup project
 1. Download visual studio: "https://code.visualstudio.com/download" and install
-2. Add epi-test-automation and epi-workspace folder to your workspace
+2. Got to Visual studio-->File-->Add folder to your workspace
+import epi-test-automation and epi-workspace folder to your workspace
 
 ### Step 4: Do following changes in epi-test-automation folder
 ```
 Go to config.json file in testdata folder and change dir path for matrixImage and testExpectation
 //To scan barcode using mobile generate image in below path
 1. matrixImage: <system user>/AppData/Local/Android/Sdk/emulator/resources/custom.png
-//To validate assertions, store all assertions in json file
+//To validate assertions, store all expected data in json file
 2. testExpectation: <system user>/epi-mobileapp-test-automation/test/testdata/testExpectations.json
 ```
 Go to wdio.conf.js and change baseUrl as per local or QA
 
-QA baseUrl: 'https://epiqa.westeurope.cloudapp.azure.com/',
-Local baseUrl: 'http://localhost:<port number>'
+1. QA baseUrl: 'https://epiqa.westeurope.cloudapp.azure.com/',
+2. Local baseUrl: 'http://localhost:<port number>'
 //example: port number=3000 or 8080(default)
 
 if you want to change port number

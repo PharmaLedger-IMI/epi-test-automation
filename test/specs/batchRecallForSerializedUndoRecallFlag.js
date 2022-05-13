@@ -35,16 +35,16 @@ describe('015_Edit batch to undo batch recall with valid SN ', () => {
         allureReporter.addStep('Go back to the Batch on the Enterprise Wallet')
         allureReporter.addStep('Undo the batch recall flag for above batch. ')
         allureReporter.addTestId('BatchRecallAndBatchMessage_9_2')
-
+        //click batch
         await batches.clickBatchFromSideNav();
         await wait.setTimeoutwait(8);
+        //edit batch
         let editValue = info.getbatchId()
         await wait.setTimeoutwait(3);
-        //edit batch
         await browser.execute('document.querySelector("div:nth-child(' + await info.editBatchRow(editValue) + ') button:nth-child(1)").click()')
         await wait.setTimeoutwait(4);
 
-        //select valid serial number
+        //update valid serial number
         await batches.selectUpdateValidSerialFromDropdown(testData.newBatchDetails.updateValid)
         await wait.setTimeoutwait(3);
         //set the serial number and enter
@@ -60,10 +60,7 @@ describe('015_Edit batch to undo batch recall with valid SN ', () => {
         //clear recall msg
         await batches.clearRecallMessage()
         await wait.setTimeoutwait(3);
-        //set batch recall msg
-        // info.setBatchRecallMsg(await batches.checkBatchRecallMessage())
-        // await wait.setTimeoutwait(3);
-
+        
         //undo the batch recall
         await batches.enableCheckToRecallThisBatch()
         await wait.setTimeoutwait(3);
