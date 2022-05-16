@@ -19,8 +19,8 @@ $ git checkout <version>
 ```
 ### Step 3: To setup project
 1. Download visual studio: "https://code.visualstudio.com/download" and install
-2. Got to Visual studio-->File-->Add folder to your workspace
-import epi-test-automation and epi-workspace folder to your workspace
+2. Go to Visual studio-->File-->Add folder to your workspace
+   -import epi-test-automation and epi-workspace folder to your workspace
 
 ### Step 4: Do following changes in epi-test-automation folder
 ```

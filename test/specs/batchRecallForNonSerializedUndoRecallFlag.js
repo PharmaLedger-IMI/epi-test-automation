@@ -45,7 +45,7 @@ describe('017_Edit batch to undo batch recall without SN ', () => {
         await wait.setTimeoutwait(2);
 
 
-        //select valid serial number
+        //update valid serial number
         await batches.selectUpdateValidSerialFromDropdown(testData.newBatchDetails.updateValid)
         await wait.setTimeoutwait(3);
         //reset the serial number

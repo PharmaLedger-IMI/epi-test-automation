@@ -28,7 +28,6 @@ describe('114_Create a batch via import of Json', () => {
 
         //await batches.clickImportFile()
         await browser.execute('document.querySelector(`psk-button[data-tag="import"] button[class="btn btn-primary"]`).click()')
-
         await wait.setTimeoutwait(10);
 
         //view message
