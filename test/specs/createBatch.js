@@ -47,9 +47,7 @@ describe('004_Create Batch', () => {
         //enter site name
         await batches.siteName(testData.newBatchDetails.siteName);
         await wait.setTimeoutwait(5);
-        //set brand name
-        info.setBrandName(await batches.checkBrandName())
-        await wait.setTimeoutwait(3);
+        
         //select date
         info.setCurrentRandomDate()
         await wait.setTimeoutwait(2);

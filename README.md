@@ -31,15 +31,15 @@ Go to config.json file in testdata folder and change dir path for matrixImage an
 2. testExpectation: <system user>/epi-mobileapp-test-automation/test/testdata/testExpectations.json
 ```
 Go to wdio.conf.js and change baseUrl as per local or QA
-
+```
 1. QA baseUrl: 'https://epiqa.westeurope.cloudapp.azure.com/',
 2. Local baseUrl: 'http://localhost:<port number>'
 //example: port number=3000 or 8080(default)
-
+```
 if you want to change port number
 1. Go to epi-workspace-->external-volume-->apihub.json-->port=3000
 2. Go to epi-workspace-->env.json
-   add "BDNS_ROOT_HOSTS" :"http://localhost:3000"
+   ->add "BDNS_ROOT_HOSTS" :"http://localhost:3000"
 ```
 Go to ePI application and register devuser
 

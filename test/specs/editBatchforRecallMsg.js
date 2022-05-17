@@ -40,6 +40,7 @@ describe('005_Edit batch to set recall message', () => {
         console.log("editValue is " + editValue)
         await browser.execute('document.querySelector("div:nth-child(' + await info.editBatchRow(editValue) + ') button:nth-child(1)").click()')
         await wait.setTimeoutwait(6);
+
         //enable checkbox for batch recall
         await batches.enableCheckToRecallThisBatch()
         await wait.setTimeoutwait(3);

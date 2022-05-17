@@ -51,6 +51,7 @@ describe('053_Edit product to upload a new version of the ePI ', () => {
 
         //delete previous version file
         await products.clickDeleteLanguage()
+        await wait.setTimeoutwait(3);
         //add new version epi
         await products.addEpi()
         await wait.setTimeoutwait(3);
@@ -67,6 +68,7 @@ describe('053_Edit product to upload a new version of the ePI ', () => {
         //add epi accept
         await browser.execute('document.querySelector("psk-button[disabled=\'@modalData.filesWereNotSelected\'] button[class=\'btn btn-primary\']").click();');
         await wait.setTimeoutwait(5);
+        //check file exists or not
         info.setEpiDisplayed(await products.epiDisplayed())
         await wait.setTimeoutwait(2);
         //generate expectation file 

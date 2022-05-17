@@ -68,6 +68,10 @@ describe('051_Edit batch to update without decommissioned and recalled serial nu
         //accept serial number
         await batches.acceptSerialNumber()
         await wait.setTimeoutwait(3);
+
+        // info.setEpiDisplayed(await batches.epiDisplayed())
+        // await wait.setTimeoutwait(2);
+
         //generate expectation file              
         data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), "", info.getBrandName(), "", "", "", "")
         await wait.setTimeoutwait(12);

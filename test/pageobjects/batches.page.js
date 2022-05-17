@@ -26,9 +26,7 @@ class batchesPage {
     get addSiteNameField() {
         return $("//input[@placeholder='Add site name']")
     }
-    get brandField() {
-        return $("//input[@placeholder='Add site name']")
-    }
+   
     get enableDaySelectionCheckbox() {
         return $("//label[normalize-space()='Enable day selection']")
     }
@@ -168,14 +166,15 @@ class batchesPage {
     }
 
 
-    async checkBrandName() {
-        if (await this.brandField.isDisplayed() == true) {
-            let brandDisplayed = (await this.brandField.getValue()).toString()
-            return brandDisplayed
+    async checkSiteName() {
+        if (await this.addSiteNameField.isDisplayed() == true) {
+            let siteNameDisplayed = (await this.addSiteNameField.getValue()).toString()
+            console.log("Site name is " + brandDisplayed)
+            return siteNameDisplayed
         }
         else {
-            let brandDisplayed = "No Message"
-            return brandDisplayed
+            let siteNameDisplayed = "No site name"
+            return siteNameDisplayed
         }
     }
     async siteName(site) {
@@ -248,13 +247,7 @@ class batchesPage {
     }
 
 
-    // async serialNumber(){
 
-
-    //     const  SerialNumber=Math.floor(100000 + Math.random() * 900000)
-    //     return SerialNumber
-
-    // }
 
     async enterSerialNumber(serialNumber) {
         await this.enterSerialNumberField.setValue(serialNumber)
@@ -319,7 +312,6 @@ class batchesPage {
         else {
             isChecked = false
         }
-        // console.log("check value is "+await this.enableRecallThisBatch.isDisabled())
         await expect(this.enableRecallThisBatch).toBeEnabled()
 
     }
@@ -334,9 +326,8 @@ class batchesPage {
         }
     }
     async enterRecallMessage(RecallMessage) {
-        //await this.enterRecallMessageInTextbox.scrollIntoView()
+      
         await this.recallMessageTextbox.click()
-        //await this.enterRecallMessageInTextbox.clearValue()
         await this.recallMessageTextbox.setValue(RecallMessage)
     }
     async clearRecallMessage() {

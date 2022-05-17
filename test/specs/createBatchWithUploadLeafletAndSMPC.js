@@ -59,22 +59,22 @@ describe('058_Leaflet updates on the product Batch specific version', () => {
         //select product
         const selectBox = await browser.$('//psk-select[@class=\'default-select hydrated\']//select[@class=\'form-control\']');
         await selectBox.selectByAttribute('value', info.getProductId());
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         //video source
         await batches.videoSource(testData.newBatchDetails.videoSource)
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
 
         //update valid serial number
         await batches.selectUpdateValidSerialFromDropdown(testData.newBatchDetails.updateValid)
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
        
         //set the serial number and enter
         info.setSerialNumber(await batches.serialNum())
         await batches.enterSerialNumber(info.getSerialNumber())
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         //accept serial number
         await batches.acceptSerialNumber()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         //add epi
         await batches.addEpi()
         await wait.setTimeoutwait(3);
@@ -99,9 +99,13 @@ describe('058_Leaflet updates on the product Batch specific version', () => {
         //scrollIntoView
         await batches.acceptButton()
         await wait.setTimeoutwait(5);
+
+        info.setEpiDisplayed(await batches.epiDisplayed())
+        await wait.setTimeoutwait(3);
+
         //generate expectation file 
         data.generateExpectationFile(info.getProductId(), await batches.batchIdValue(), info.getCurrentRandomDate(), info.getSerialNumber(), info.getBrandName(), "", await batches.checkBatchMessage(), "", "")
-        await wait.setTimeoutwait(12);
+        await wait.setTimeoutwait(13);
         //generate 2d matrix image
         matrix.generate2dMatrixImage(info.getProductId(), await batches.batchIdValue(), info.getCurrentRandomDate(), info.getSerialNumber())
         await wait.setTimeoutwait(8);

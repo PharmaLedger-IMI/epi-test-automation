@@ -42,7 +42,7 @@ describe('052_Update product information ', () => {
         await wait.setTimeoutwait(4);
         //add batch
         await batches.addBatch();
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         info.setBatchId(await batches.batchIdValue())
         await wait.setTimeoutwait(3);
         //enter site name
@@ -60,30 +60,33 @@ describe('052_Update product information ', () => {
             })();
         }, info.getCurrentRandomDate());
 
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         //select product
         const selectBox = await browser.$('//psk-select[@class=\'default-select hydrated\']//select[@class=\'form-control\']');
         await selectBox.selectByAttribute('value', info.getProductId());
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
 
         //update valid serial number
         await batches.selectUpdateValidSerialFromDropdown(testData.newBatchDetails.updateValid)
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
       
         //set the serial number and enter
         info.setSerialNumber(await batches.serialNum())
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         await batches.enterSerialNumber(info.getSerialNumber())
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         //accept serial number
         await batches.acceptSerialNumber()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
+
+        // info.setEpiDisplayed(await batches.epiDisplayed())
+        // await wait.setTimeoutwait(3);
 
         //generate expectation file 
         const expectationFile = data.generateExpectationFile(info.getProductId(), await batches.batchIdValue(), info.getCurrentRandomDate(), info.getSerialNumber(), info.getBrandName(), "", "", "", "", info.getEpiDisplayed())
         info.setExpectationFile(expectationFile)
         console.log("expectationFile is " + expectationFile)
-        await wait.setTimeoutwait(12);
+        await wait.setTimeoutwait(13);
         //generate 2d matrix image
         const batch = matrix.generate2dMatrixImage(info.getProductId(), await batches.batchIdValue(), info.getCurrentRandomDate(), info.getSerialNumber())
         info.setImage(batch)

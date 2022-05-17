@@ -39,11 +39,12 @@ describe('017_Edit batch to undo batch recall without SN ', () => {
         await batches.clickBatchFromSideNav();
         await wait.setTimeoutwait(8);
         let editValue = info.getbatchId()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         //click on edit batch
         await browser.execute('document.querySelector("div:nth-child(' + await info.editBatchRow(editValue) + ') button:nth-child(1)").click()')
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
 
+        
 
         //update valid serial number
         await batches.selectUpdateValidSerialFromDropdown(testData.newBatchDetails.updateValid)

@@ -182,13 +182,7 @@ class productsPage {
         return $("//button[normalize-space()='Cancel']")
 
     }
-    get clickViewEditButton() {
-        return browser.execute('document.querySelector("button[data-tag=\'edit-product\']").click()')
-    }
-
-
-
-
+   
     async clickProduct() {
 
         await this.openProduct.click();
@@ -304,6 +298,7 @@ class productsPage {
     }
     async enableSnIsInDecommissionedList() {
         await this.snIsInDecommissionedListCheckbox.click()
+        //await expect(this.snIsInDecommissionedListClick).toBeEnabled(); 
     }
     async enableSnIsUnknown() {
         await this.snIsUnknownCheckbox.click()

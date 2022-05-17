@@ -70,7 +70,7 @@ describe('038_Create a batch and enable serial number verification and set recal
         await batches.enableSerialNumberVerification()
         await wait.setTimeoutwait(3);
         //select recalled serial number
-        await batches.selectUpdateValidSerialFromDropdown(testData.newBatchDetails.updateRecalled)
+        await batches.selectUpdateRecalledSerialFromDropdown(testData.newBatchDetails.updateRecalled)
         await wait.setTimeoutwait(3);
         
         //set the serial number and enter

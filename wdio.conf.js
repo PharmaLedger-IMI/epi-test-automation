@@ -160,8 +160,8 @@ exports.config = {
             // 'test/specs/invalidSerialNumberWithBatchRecalled.js',
 
             // 'test/specs/productImport.js',
-            'test/specs/removeInventedNameInProductJson.js',
-            'test/specs/removeProductCodeInProductJson.js',
+            // 'test/specs/removeInventedNameInProductJson.js',
+            // 'test/specs/removeProductCodeInProductJson.js',
             // 'test/specs/removeNameOfMedicinalProductInProductJson.js',
             // 'test/specs/removeInventedNameAndProductCodeInProductJson.js',
             // 'test/specs/removeInventedNameAndNameOfMedicinalProductInProductJson.js',
