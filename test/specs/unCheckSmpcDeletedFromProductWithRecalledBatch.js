@@ -5,6 +5,7 @@ const matrix = require('../utility/2dMatrixPage')
 const data = require('../utility/expectationFile')
 const info = require('../utility/reusableFile')
 const wait = require('../utility/timeout')
+const testData = require('../testdata/config.json')
 const util = require('util');
 const exec = util.promisify(require('child_process').exec);
 
@@ -63,10 +64,28 @@ describe('066_Edit product to uncheck batch recall and delete SMPC and edit batc
         await browser.execute('document.querySelector("div:nth-child(' + await info.editBatchRow(editValue) + ') button:nth-child(1)").click()')
         await wait.setTimeoutwait(6);
 
+        await batches.selectUpdateRecalledSerialFromDropdown(testData.newBatchDetails.updateRecalled)
+        await wait.setTimeoutwait(5);
+
+        //set serial number value
+        info.setSerialNumber(await batches.serialNum())
+        //enter serial number
+        await batches.enterSerialNumber(info.getSerialNumber())
+        await wait.setTimeoutwait(5);
+        // manage serial number accept 
+        await batches.acceptSerialNumber()
+        await wait.setTimeoutwait(3);
+
         //check batch recall
         await batches.enableCheckToRecallThisBatch()
         await wait.setTimeoutwait(3);
-
+        info.setBatchRecall(await batches.checkBatchRecall())
+        await wait.setTimeoutwait(3);
+        //enter recall message
+        await batches.enterRecallMessage(testData.newBatchDetails.recallMsg)
+        await wait.setTimeoutwait(3);
+        info.setBatchRecallMsg(await batches.checkBatchRecallMessage())
+        await wait.setTimeoutwait(3);
 
         //generate expectation file 
         data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber(), info.getBrandName(), info.getBatchRecall(), "", "", info.getBatchRecallMsg(), info.getEpiDisplayed())
@@ -79,6 +98,6 @@ describe('066_Edit product to uncheck batch recall and delete SMPC and edit batc
         await wait.setTimeoutwait(18);
 
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
-       
+
     })
 })

@@ -88,6 +88,19 @@ describe('064_Edit product to uncheck batch is recalled and edit batch to set re
         await browser.execute('document.querySelector("div:nth-child(' + await info.editBatchRow(editValue) + ') button:nth-child(1)").click()')
         await wait.setTimeoutwait(6);
 
+        //update recalled serial number
+        await batches.selectUpdateRecalledSerialFromDropdown(testData.newBatchDetails.updateRecalled)
+        await wait.setTimeoutwait(3);
+        
+        //set the serial number and enter
+        info.setSerialNumber(await batches.serialNum())
+        await wait.setTimeoutwait(3);
+        await batches.enterSerialNumber(info.getSerialNumber())
+        await wait.setTimeoutwait(3);
+        //accept serial number
+        await batches.acceptSerialNumber()
+        await wait.setTimeoutwait(3);
+
         // //enable checkbox for batch recall
         // await batches.enableCheckToRecallThisBatch()
         // await wait.setTimeoutwait(3);

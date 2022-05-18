@@ -49,6 +49,26 @@ describe('095_Edit product to uncheck batch is unknown and edit batch to have va
         await products.disableBatchNumberUnknown()
         await wait.setTimeoutwait(3);
 
+
+        //add epi
+        await products.addEpi()
+        await wait.setTimeoutwait(4);
+        //select language	
+        await products.selectLanguage(testData.newProductDetails.selectLanguage)
+        await wait.setTimeoutwait(4);
+        // select type
+        await products.selectType(testData.newProductDetails.selectType)
+        await wait.setTimeoutwait(4);
+        //Video source
+        await products.videoSourceEpi(testData.newProductDetails.videoSource)
+        await wait.setTimeoutwait(4);
+        //Upload smpc 
+        await products.uploadFile(path.join(__dirname, '/src/SMPC_ProductLevel'));
+        await wait.setTimeoutwait(4);
+        //add epi accept
+        await browser.execute('document.querySelector("psk-button[disabled=\'@modalData.filesWereNotSelected\'] button[class=\'btn btn-primary\']").click();');
+        await wait.setTimeoutwait(4);
+
         info.setEpiDisplayed(await products.epiDisplayed())
         await wait.setTimeoutwait(3);
 
