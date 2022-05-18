@@ -38,14 +38,14 @@ exports.config = {
 
             // 'test/specs/invalidLoginCredentials.js',
 
-            // 'test/specs/gtinPage.js',
+             'test/specs/gtinPage.js',
              'test/specs/loginCredentials.js',
 
-            // 'test/specs/createProduct.js',
-            // 'test/specs/createBatch.js',
+            'test/specs/createProduct.js',
+            'test/specs/createBatch.js',
 
-            // 'test/specs/editBatchforRecallMsg.js',
-            // 'test/specs/editProductforToggle_ePIFlag.js',
+            'test/specs/editBatchforRecallMsg.js',
+            'test/specs/editProductforToggle_ePIFlag.js',
 
             // 'test/specs/enableSerialNumberCheckWithValidMatrix.js',
             // 'test/specs/enableSerialNumberCheckWithInValidMatrix.js',
@@ -331,8 +331,8 @@ exports.config = {
     // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
     // gets prepended directly.
     //
-    //baseUrl: 'https://epiqa.westeurope.cloudapp.azure.com/',
-    baseUrl: 'http://localhost:3000',
+    baseUrl: 'https://epiqa.westeurope.cloudapp.azure.com/',
+   // baseUrl: 'http://localhost:3000',
     //baseUrl:'https://plsmap.westeurope.cloudapp.azure.com/',
     //
     // Default timeout for all waitFor* commands.

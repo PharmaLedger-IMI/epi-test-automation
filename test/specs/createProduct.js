@@ -80,7 +80,7 @@ describe('003_Create Product', () => {
 
             //save product
             await products.saveProduct()
-            await wait.setTimeoutwait(45);
+            await wait.setTimeoutwait(60);
 
             allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
 
