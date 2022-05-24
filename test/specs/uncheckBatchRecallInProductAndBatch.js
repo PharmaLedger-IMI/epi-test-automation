@@ -3,13 +3,9 @@ const batches = require('../pageobjects/batches.page.js');
 const allureReporter = require('@wdio/allure-reporter').default
 const matrix = require('../utility/2dMatrixPage')
 const data = require('../utility/expectationFile')
-const info = require('../utility/reusableFile')
+const info = require('../utility/reusableFunctions')
 const wait = require('../utility/timeout')
 const testData = require('../testdata/config.json')
-const util = require('util');
-const exec = util.promisify(require('child_process').exec);
-
-
 
 describe('065_Edit product to uncheck batch is recalled and edit batch to uncheck batch recall', () => {
 
@@ -18,9 +14,7 @@ describe('065_Edit product to uncheck batch is recalled and edit batch to unchec
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npx kill-port 4723 && npm run unCheckBatchRecallInProductAndBatchTest');
-            console.log('stdout:', stdout1);
-            console.log('stderr:', stderr1);
+            await info.runAppium("unCheckBatchRecallInProductAndBatchTest")
         })
         console.log("Running test suite in incremental mode and browser tests only")
     } else {
@@ -48,7 +42,7 @@ describe('065_Edit product to uncheck batch is recalled and edit batch to unchec
         await wait.setTimeoutwait(5);
 
         // //uncheck batch is recalled
-        // await products.enableBatchIsRecalled(); 
+        // await products.enableBatchIsRecalled();
         // await wait.setTimeoutwait(1);
 
         info.setEpiDisplayed(await products.epiDisplayed())
@@ -60,7 +54,7 @@ describe('065_Edit product to uncheck batch is recalled and edit batch to unchec
 
 
 
-        //unchecked the batch is recalled in product level in above testcase  
+        //unchecked the batch is recalled in product level in above testcase
 
 
         //click batch
@@ -68,6 +62,7 @@ describe('065_Edit product to uncheck batch is recalled and edit batch to unchec
         await wait.setTimeoutwait(8);
         //edit batch
         let editValue = info.getbatchId()
+        await wait.setTimeoutwait(3);
         console.log("editValue is " + editValue)
         await browser.execute('document.querySelector("div:nth-child(' + await info.editBatchRow(editValue) + ') button:nth-child(1)").click()')
         await wait.setTimeoutwait(6);
@@ -75,7 +70,7 @@ describe('065_Edit product to uncheck batch is recalled and edit batch to unchec
         //update recalled serial number
         await batches.selectUpdateRecalledSerialFromDropdown(testData.newBatchDetails.updateRecalled)
         await wait.setTimeoutwait(3);
-        
+
         //set the serial number and enter
         info.setSerialNumber(await batches.serialNum())
         await wait.setTimeoutwait(3);
@@ -97,7 +92,7 @@ describe('065_Edit product to uncheck batch is recalled and edit batch to unchec
         info.setBatchRecall(await batches.checkBatchRecall())
         await wait.setTimeoutwait(4);
 
-        //generate expectation file 
+        //generate expectation file
         data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber(), info.getBrandName(), info.getBatchRecall(), "", "", info.getBatchRecallMsg(), info.getEpiDisplayed())
         await wait.setTimeoutwait(12);
         //generate 2d matrix image
@@ -108,6 +103,6 @@ describe('065_Edit product to uncheck batch is recalled and edit batch to unchec
         await wait.setTimeoutwait(22);
 
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
-       
+
     })
 })

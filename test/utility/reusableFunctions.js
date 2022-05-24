@@ -19,9 +19,23 @@ let GTIN = ''
 let user = ''
 const incrementalValue = process.argv
 const incrementalArg = incrementalValue.length - 1
+const { spawn } = require("child_process");
 
 
-class reuseFile {
+class reuseFunctions {
+
+    async runAppium(cmd) {
+        let ls = spawn(`cd ../epi-mobileapp-test-automation && npx kill-port 4723 && npm run ${cmd}`, {
+            shell: true
+        });
+        for await (const data of ls.stdout) {
+            console.log(`Appium Execution Logs: ${data}`);
+        };
+        for await (const data of ls.stderr) {
+            console.log(`Appium Execution Error Logs: ${data}`);
+        };
+
+    }
 
 
     setUser(userName) {
@@ -39,7 +53,6 @@ class reuseFile {
         console.log("increment test value" + process.argv)
         console.log("incrementalArg value is " + process.argv[incrementalArg])
         console.log("arg value is " + process.argv[incrementalArg].split('=')[1])
-        // console.log("arg newbatch value is " + process.argv[newbatch].split('=')[1])
         if (process.env.npm_config_incremental) {
 
             console.log("incremental product value is " + testData.incrementalTest.prodId)
@@ -58,7 +71,7 @@ class reuseFile {
     }
     getbatchId() {
         if (process.env.npm_config_incremental) {
-            console.log("value iss   " + process.env.npm_config_incremental)
+            console.log("batch value is   " + process.env.npm_config_incremental)
             console.log("incremental batch value is " + testData.incrementalTest.batchId)
             return testData.incrementalTest.batchId
         }
@@ -174,50 +187,6 @@ class reuseFile {
         return expiredDate
     }
 
-    // setDayChange(randomDate) {
-
-    //     return currentDay = randomDay(randomDate)
-    // }
-
-    // getDayChange() {
-
-    //     if (process.env.npm_config_incremental) {
-    //         console.log("date value is " + testData.incrementalTest.expiryDate)
-    //         return testData.incrementalTest.expiryDate
-    //     }
-    //     else {
-    //         return currentDay
-    //     }
-    // }
-    // setMonthChange(randomDate){
-
-    //     return currentMonth=randomMonth(randomDate)
-    // }
-    // getMonthChange() {
-
-    //     if (process.env.npm_config_incremental) {
-    //         console.log("date value is " + testData.incrementalTest.expiryDate)
-    //         return testData.incrementalTest.expiryDate
-    //     }
-    //     else {
-    //         return currentMonth
-    //     }
-    // }
-    // setYearChange(randomDate) {
-
-    //     return currentYear = randomYear(randomDate)
-    // }
-    // getYearChange() {
-
-    //     if (process.env.npm_config_incremental) {
-    //         console.log("date value is " + testData.incrementalTest.expiryDate)
-    //         return testData.incrementalTest.expiryDate
-    //     }
-    //     else {
-    //         return currentYear
-    //     }
-    // }
-
     setDateChange(randomDate, type) {
 
         if (type == "day") {
@@ -324,7 +293,7 @@ class reuseFile {
 function randomDateF() {
 
     let end = new Date("2029-05-28")
-    let start = new Date("2023-01-01")
+    let start = new Date("2025-01-01")
     var date1 = new Date(+start + Math.random() * (end - start));
     finalD = date1
     console.log(finalD)
@@ -339,7 +308,7 @@ function randomDateF() {
 
     }
     var date2 = finalD.getFullYear() + "-" + month + "-" + date
-    console.log("date2 is " + date2)
+    console.log("expiry date is " + date2)
     return date2
 }
 
@@ -407,4 +376,4 @@ function dateChange(randomDate, type) {
 }
 
 
-module.exports = new reuseFile();
+module.exports = new reuseFunctions();

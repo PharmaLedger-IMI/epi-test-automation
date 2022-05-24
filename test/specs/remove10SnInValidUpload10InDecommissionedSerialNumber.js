@@ -2,25 +2,19 @@
 const batches = require('../pageobjects/batches.page.js');
 const matrix = require('../utility/2dMatrixPage')
 const data = require('../utility/expectationFile')
-const info = require('../utility/reusableFile')
+const info = require('../utility/reusableFunctions')
 const wait = require('../utility/timeout')
 const testData = require('../testdata/config.json')
 const allureReporter = require('@wdio/allure-reporter').default
-const util = require('util');
-const exec = util.promisify(require('child_process').exec);
-
 
 
 describe('045_Edit batch to remove 10 serial numbers from valid and upload 10 in decommissioned serial numbers ', () => {
 
     if (!process.env.npm_config_browserOnly) {
 
-
         after(async () => {
             console.log("Starting Mobile Execution");
-            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npx kill-port 4723 && npm run updateWith10SNInDecommissionedSNTest');
-            console.log('stdout:', stdout1);
-            console.log('stderr:', stderr1);
+            await info.runAppium("updateWith10SNInDecommissionedSNTest")
         })
         console.log("Running test suite in incremental mode and browser tests only")
     } else {
@@ -36,7 +30,7 @@ describe('045_Edit batch to remove 10 serial numbers from valid and upload 10 in
         allureReporter.addTestId('SerialNumberChecks_9')
         //click batch
         await batches.clickBatchFromSideNav();
-        await wait.setTimeoutwait(3);
+        await wait.setTimeoutwait(5);
         //edit batch
         let editValue = info.getbatchId()
         await wait.setTimeoutwait(3);
@@ -62,12 +56,12 @@ describe('045_Edit batch to remove 10 serial numbers from valid and upload 10 in
         //select decommisioned serial number
         await batches.selectUpdateDecommissionedFromDropdown(testData.newBatchDetails.updateDecommissioned)
         await wait.setTimeoutwait(3);
-        
+
         //set the serial number and enter
         const serialNumber = info.serialNum10()
-        await wait.setTimeoutwait(3);
+        await wait.setTimeoutwait(4);
         await batches.enterSerialNumber(serialNumber)
-        await wait.setTimeoutwait(3);
+        await wait.setTimeoutwait(4);
         //Enter reason
         await batches.selectLostReasonFromDropdown(testData.newBatchDetails.updateDecommissionedWithLostReason)
         await wait.setTimeoutwait(3);
@@ -87,6 +81,6 @@ describe('045_Edit batch to remove 10 serial numbers from valid and upload 10 in
         await batches.updateBatchForEdit()
         await wait.setTimeoutwait(40);
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
-        
+
     })
-})    
+})

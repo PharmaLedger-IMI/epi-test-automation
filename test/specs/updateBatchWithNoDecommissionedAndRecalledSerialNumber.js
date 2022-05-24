@@ -2,13 +2,10 @@
 const batches = require('../pageobjects/batches.page.js');
 const matrix = require('../utility/2dMatrixPage')
 const data = require('../utility/expectationFile')
-const info = require('../utility/reusableFile')
+const info = require('../utility/reusableFunctions')
 const wait = require('../utility/timeout')
 const testData = require('../testdata/config.json')
-
 const allureReporter = require('@wdio/allure-reporter').default
-const util = require('util');
-const exec = util.promisify(require('child_process').exec);
 
 describe('051_Edit batch to update without decommissioned and recalled serial number', () => {
 
@@ -17,9 +14,7 @@ describe('051_Edit batch to update without decommissioned and recalled serial nu
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npx kill-port 4723 && npm run updateTheBatchWithoutDecommissionedRecalledSNTest');
-            console.log('stdout:', stdout1);
-            console.log('stderr:', stderr1);
+            await info.runAppium("updateBatchWithoutDecommissionedRecalledSNTestRun")
         })
         console.log("Running test suite in incremental mode and browser tests only")
     } else {
@@ -38,6 +33,7 @@ describe('051_Edit batch to update without decommissioned and recalled serial nu
 
         //edit batch
         let editValue = info.getbatchId()
+        await wait.setTimeoutwait(3);
         console.log("editValue is " + editValue)
         await browser.execute('document.querySelector("div:nth-child(' + await info.editBatchRow(editValue) + ') button:nth-child(1)").click()')
         await wait.setTimeoutwait(8);
@@ -72,7 +68,7 @@ describe('051_Edit batch to update without decommissioned and recalled serial nu
         // info.setEpiDisplayed(await batches.epiDisplayed())
         // await wait.setTimeoutwait(2);
 
-        //generate expectation file              
+        //generate expectation file
         data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), "", info.getBrandName(), "", "", "", "")
         await wait.setTimeoutwait(12);
 
@@ -86,4 +82,4 @@ describe('051_Edit batch to update without decommissioned and recalled serial nu
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
 
     })
-})    
+})

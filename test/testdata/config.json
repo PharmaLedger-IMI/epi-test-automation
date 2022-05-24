@@ -2,15 +2,28 @@
     "login": {
         "automationUserName": "kpepiwdio",
         "invalidUserName": "testing",
-        "newDemiurgeUser": "testing1",
-        "newEnterpriseUser": "user10",
-        "registeredDemiurgeUser": "devuser",
-        "emailId": "dev@user.dev",
-        "validPassword": "SuperUserSecurePassword1!",
         "invalidPassword": "1234fefhf",
+        "demiurgeLoginDetails": {
+
+            "registeredDemiurgeUser": "testing2",
+            "newDemiurgeUser": "testing12",
+            "emailId": "dev@user.dev",
+            "companyName": "Company Inc",
+            "validPassword": "SuperUserSecurePassword1!",
+            "confirmPassword": "SuperUserSecurePassword1!"
+        },
+        "enterpriseLoginDetails": {
+
+            "newEnterpriseUser": "user14",
+            "emailId": "dev@user.dev",
+            "validPassword": "SuperUserSecurePassword1!",
+            "confirmPassword": "SuperUserSecurePassword1!"
+        },
+
         "ssoValidEmail": "",
         "ssoInvalidEmail": "test@gmail",
-        "ssoValidPassword": ""
+        "ssoValidPassword": "",
+        "vault": "vault"
     },
     "newProductDetails": {
         "brandName": "epi-auto-",
@@ -39,9 +52,9 @@
         "recallMsg": "This is a sample recall message"
     },
     "incrementalTest": {
-        "prodId": "97348567123623",
-        "batchId": "MC3965",
-        "expiryDate": "2026-11-22",
+        "prodId": "89124541410931",
+        "batchId": "EI2049",
+        "expiryDate": "2022-05-31",
         "serialNumber": "234765",
         "prodName": "epi-auto-"
     },

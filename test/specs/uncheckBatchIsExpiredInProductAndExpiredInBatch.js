@@ -4,12 +4,11 @@ const allureReporter = require('@wdio/allure-reporter').default
 const matrix = require('../utility/2dMatrixPage')
 const data = require('../utility/expectationFile')
 const testData = require('../testdata/config.json')
-const info = require('../utility/reusableFile')
+const info = require('../utility/reusableFunctions')
 const wait = require('../utility/timeout')
 const path = require('path')
 const util = require('util');
 const exec = util.promisify(require('child_process').exec);
-
 
 
 describe('075_Edit product to uncheck batch is expired and edit batch to set expired date', () => {
@@ -19,9 +18,7 @@ describe('075_Edit product to uncheck batch is expired and edit batch to set exp
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npx kill-port 4723 && npm run uncheckTheBatchIsExpiredInProductAndExpiredInBatchTest');
-            console.log('stdout:', stdout1);
-            console.log('stderr:', stderr1);
+            await info.runAppium("uncheckBatchIsExpiredInProductAndExpiredInBatchTestRun")
         })
         console.log("Running test suite in incremental mode and browser tests only")
     } else {
@@ -55,7 +52,7 @@ describe('075_Edit product to uncheck batch is expired and edit batch to set exp
         //add epi
         await products.addEpi()
         await wait.setTimeoutwait(4);
-        //select language	
+        //select language
         await products.selectLanguage(testData.newProductDetails.selectLanguage)
         await wait.setTimeoutwait(4);
         // select type
@@ -64,7 +61,7 @@ describe('075_Edit product to uncheck batch is expired and edit batch to set exp
         //Video source
         await products.videoSourceEpi(testData.newProductDetails.videoSource)
         await wait.setTimeoutwait(4);
-        //Upload smpc 
+        //Upload smpc
         await products.uploadFile(path.join(__dirname, '/src/SMPC_ProductLevel'));
         await wait.setTimeoutwait(4);
         //add epi accept
@@ -99,7 +96,7 @@ describe('075_Edit product to uncheck batch is expired and edit batch to set exp
             })();
         }, expiredDate);
         await wait.setTimeoutwait(3);
-        //generate expectation file 
+        //generate expectation file
         data.generateExpectationFile(info.getProductId(), info.getbatchId(), expiredDate, info.getSerialNumber(), info.getBrandName(), "", "", "", "", info.getEpiDisplayed())
         await wait.setTimeoutwait(12);
         //generate 2d matrix image

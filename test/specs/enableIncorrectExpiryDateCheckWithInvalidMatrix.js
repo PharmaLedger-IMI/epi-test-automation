@@ -4,33 +4,33 @@ const matrix = require('../utility/2dMatrixPage')
 const data = require('../utility/expectationFile')
 const info = require('../utility/reusableFunctions')
 const wait = require('../utility/timeout')
-const testData = require('../testdata/config.json')
+
 const allureReporter = require('@wdio/allure-reporter').default
 
 
-describe('047_Edit batch to update without serial number ', () => {
+describe('012_Edit batch and enable incorrect expiry date check with invalid expiry date ', () => {
 
     if (!process.env.npm_config_browserOnly) {
 
+
         after(async () => {
             console.log("Starting Mobile Execution");
-            await info.runAppium("updateBatchWithoutSerialNumberTestRun")
+            await info.runAppium("enableIncorrectExpiryDateCheckInValidExpiryDateTest")
         })
         console.log("Running test suite in incremental mode and browser tests only")
     } else {
 
         console.log("different flag")
-
     }
 
-    it('Browser - should update a batch without serial numbers ', async () => {
-
-        allureReporter.addDescription('Edit batch and reset valid serial number')
-        allureReporter.addStep('Update a batch without serial number')
-        allureReporter.addTestId('SerialNumberChecks_11_1')
+    it('Browser - should verify that the incorrect expiry date check is enabled by default', async () => {
+        allureReporter.addDescription('Edit batch and verify that the incorrect expiry date check is enabled. Pass invalid expiry date in matrix')
+        allureReporter.addStep(' Verify that the incorrect expiry date check is enabled by default in batch')
+        allureReporter.addStep(' Scan a data matrix code  with wrong expiry date to verify that the expiry date check fails. ')
+        allureReporter.addTestId('BasicAuthFeatureTest_2_2')
         //click batch
         await batches.clickBatchFromSideNav();
-        await wait.setTimeoutwait(4);
+        await wait.setTimeoutwait(3);
 
         //edit batch
         let editValue = info.getbatchId()
@@ -39,33 +39,25 @@ describe('047_Edit batch to update without serial number ', () => {
         await browser.execute('document.querySelector("div:nth-child(' + await info.editBatchRow(editValue) + ') button:nth-child(1)").click()')
         await wait.setTimeoutwait(8);
 
-        //check enable serial number verification
-        await batches.enableSerialNumberVerification()
+        //check incorrect expiry date is in enabled state
+        await batches.enableIncorrectExpirationDateVerification()
         await wait.setTimeoutwait(3);
-
-        //select valid serial number
-        await batches.selectUpdateValidSerialFromDropdown(testData.newBatchDetails.updateValid)
+        const incorrectExpiryDate = info.randomDate()
         await wait.setTimeoutwait(3);
-        //enable checkbox
-        await batches.enableResetAllValidSerialNumber()
-        await wait.setTimeoutwait(3);
-
-        //accept serial number
-        await batches.acceptSerialNumber()
-        await wait.setTimeoutwait(3);
-
+        console.log("incorrectExpiryDate is " + incorrectExpiryDate)
         //generate expectation file
-        data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), "", info.getBrandName(), "", "", "", "")
+        data.generateExpectationFile(info.getProductId(), info.getbatchId(), incorrectExpiryDate, info.getSerialNumber(), info.getBrandName(), "", "", "", "")
         await wait.setTimeoutwait(13);
-
         //generate 2d matrix image
-        matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), "")
-        await wait.setTimeoutwait(9);
+        matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), incorrectExpiryDate, info.getSerialNumber())
+        await wait.setTimeoutwait(5);
 
         //update batch
         await batches.updateBatchForEdit()
         await wait.setTimeoutwait(18);
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
+
+
 
     })
 })

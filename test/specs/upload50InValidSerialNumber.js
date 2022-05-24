@@ -2,24 +2,19 @@
 const batches = require('../pageobjects/batches.page.js');
 const matrix = require('../utility/2dMatrixPage')
 const data = require('../utility/expectationFile')
-const info = require('../utility/reusableFile')
+const info = require('../utility/reusableFunctions')
 const wait = require('../utility/timeout')
 const testData = require('../testdata/config.json')
-
 const allureReporter = require('@wdio/allure-reporter').default
-const util = require('util');
-const exec = util.promisify(require('child_process').exec);
+
 
 describe('046_Edit batch to upload 50K valid serial numbers ', () => {
 
     if (!process.env.npm_config_browserOnly) {
 
-
         after(async () => {
             console.log("Starting Mobile Execution");
-            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npx kill-port 4723 && npm run test');
-            console.log('stdout:', stdout1);
-            console.log('stderr:', stderr1);
+            await info.runAppium("editBatchUncheckRecallWithSerializedTest")
         })
         console.log("Running test suite in incremental mode and browser tests only")
     } else {
@@ -61,7 +56,7 @@ describe('046_Edit batch to upload 50K valid serial numbers ', () => {
         await batches.acceptSerialNumber()
         await wait.setTimeoutwait(3);
 
-        //generate expectation file 
+        //generate expectation file
         data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), serialNumber.split(',')[0], info.getBrandName(), "", "", "", "")
         await wait.setTimeoutwait(13);
 
@@ -72,8 +67,8 @@ describe('046_Edit batch to upload 50K valid serial numbers ', () => {
         await batches.updateBatchForEdit()
         await wait.setTimeoutwait(18);
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
-       
+
 
 
     })
-})    
+})

@@ -2,7 +2,7 @@ const products = require('../pageobjects/products.page');
 const batches = require('../pageobjects/batches.page.js');
 const matrix = require('../utility/2dMatrixPage')
 const data = require('../utility/expectationFile')
-const info = require('../utility/reusableFile')
+const info = require('../utility/reusableFunctions')
 const wait = require('../utility/timeout')
 const testData = require('../testdata/config.json')
 const allureReporter = require('@wdio/allure-reporter').default
@@ -17,9 +17,7 @@ describe('056_SMPC update on the product Non- batch specific version', () => {
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npx kill-port 4723 && npm run createProductWithUploadLeafletAndSMPCTest');
-            console.log('stdout:', stdout1);
-            console.log('stderr:', stderr1);
+            await info.runAppium("createProductWithUploadLeafletAndSMPCTest")
         })
         console.log("Running test suite in incremental mode and browser tests only")
     } else {
@@ -51,7 +49,7 @@ describe('056_SMPC update on the product Non- batch specific version', () => {
         //add new version epi
         await products.addEpi()
         await wait.setTimeoutwait(3);
-        //select language	
+        //select language
         await products.selectLanguage(testData.newProductDetails.selectLanguage)
         await wait.setTimeoutwait(4);
         //select SMPC type
@@ -99,7 +97,7 @@ describe('056_SMPC update on the product Non- batch specific version', () => {
         //select valid serial number
         await batches.selectUpdateValidSerialFromDropdown(testData.newBatchDetails.updateValid)
         await wait.setTimeoutwait(2);
-       
+
         //set the serial number and enter
         info.setSerialNumber(await batches.serialNum())
         await batches.enterSerialNumber(info.getSerialNumber())
@@ -107,7 +105,7 @@ describe('056_SMPC update on the product Non- batch specific version', () => {
         //accept serial number
         await batches.acceptSerialNumber()
         await wait.setTimeoutwait(2);
-        //generate expectation file 
+        //generate expectation file
         const expectationFile = data.generateExpectationFile(info.getProductId(), await batches.batchIdValue(), info.getCurrentRandomDate(), info.getSerialNumber(), info.getBrandName(), "", await batches.checkBatchMessage(), "", "")
         info.setExpectationFile(expectationFile)
         await wait.setTimeoutwait(12);
@@ -121,4 +119,4 @@ describe('056_SMPC update on the product Non- batch specific version', () => {
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
 
     })
-})    
+})

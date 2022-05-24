@@ -3,12 +3,10 @@ const batches = require('../pageobjects/batches.page.js');
 const allureReporter = require('@wdio/allure-reporter').default
 const matrix = require('../utility/2dMatrixPage')
 const data = require('../utility/expectationFile')
-const info = require('../utility/reusableFile')
+const info = require('../utility/reusableFunctions')
 const wait = require('../utility/timeout')
 const testData = require('../testdata/config.json')
 const path = require('path')
-const util = require('util');
-const exec = util.promisify(require('child_process').exec);
 
 
 describe('064_Edit product to uncheck batch is recalled and edit batch to set recall message', () => {
@@ -18,9 +16,7 @@ describe('064_Edit product to uncheck batch is recalled and edit batch to set re
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npx kill-port 4723 && npm run uncheckBatchIsRecallInProductAndRecalledInBatchTest');
-            console.log('stdout:', stdout1);
-            console.log('stderr:', stderr1);
+            await info.runAppium("uncheckBatchIsRecallInProductAndRecalledInBatchTest")
         })
         console.log("Running test suite in incremental mode and browser tests only")
     } else {
@@ -54,7 +50,7 @@ describe('064_Edit product to uncheck batch is recalled and edit batch to set re
         //add epi
         await products.addEpi()
         await wait.setTimeoutwait(3);
-        //select language	
+        //select language
         await products.selectLanguage(testData.newProductDetails.selectLanguage)
         await wait.setTimeoutwait(3);
         //select type
@@ -63,7 +59,7 @@ describe('064_Edit product to uncheck batch is recalled and edit batch to set re
         //video source
         await products.videoSourceEpi(testData.newProductDetails.videoSource)
         await wait.setTimeoutwait(3);
-        //upload smpc 
+        //upload smpc
         await products.uploadFile(path.join(__dirname, '/src/SMPC_ProductLevel'));
         await wait.setTimeoutwait(3);
         //add epi accept
@@ -91,7 +87,7 @@ describe('064_Edit product to uncheck batch is recalled and edit batch to set re
         //update recalled serial number
         await batches.selectUpdateRecalledSerialFromDropdown(testData.newBatchDetails.updateRecalled)
         await wait.setTimeoutwait(3);
-        
+
         //set the serial number and enter
         info.setSerialNumber(await batches.serialNum())
         await wait.setTimeoutwait(3);
@@ -111,7 +107,7 @@ describe('064_Edit product to uncheck batch is recalled and edit batch to set re
         // await wait.setTimeoutwait(4);
         info.setBatchRecallMsg(await batches.checkBatchRecallMessage())
         await wait.setTimeoutwait(3);
-        //generate expectation file 
+        //generate expectation file
         data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber(), info.getBrandName(), info.getBatchRecall(), "", "", info.getBatchRecallMsg(), info.getEpiDisplayed())
         await wait.setTimeoutwait(18);
 
@@ -124,7 +120,7 @@ describe('064_Edit product to uncheck batch is recalled and edit batch to set re
         await wait.setTimeoutwait(18);
 
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
-        
+
 
     })
 })

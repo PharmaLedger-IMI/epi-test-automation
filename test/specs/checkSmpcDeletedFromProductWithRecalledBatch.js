@@ -3,11 +3,9 @@ const batches = require('../pageobjects/batches.page.js');
 const allureReporter = require('@wdio/allure-reporter').default
 const matrix = require('../utility/2dMatrixPage')
 const data = require('../utility/expectationFile')
-const info = require('../utility/reusableFile')
+const info = require('../utility/reusableFunctions')
 const wait = require('../utility/timeout')
 const testData = require('../testdata/config.json')
-const util = require('util');
-const exec = util.promisify(require('child_process').exec);
 
 
 describe('063_Edit product to check batch is recalled and delete smpc. Edit batch to have recall message', () => {
@@ -17,9 +15,7 @@ describe('063_Edit product to check batch is recalled and delete smpc. Edit batc
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npx kill-port 4723 && npm run checkTheSmpcDeletedFromProductWithRecalledBatchTest');
-            console.log('stdout:', stdout1);
-            console.log('stderr:', stderr1);
+            await info.runAppium("checkSmpcDeletedFromProductWithRecalledBatchTestRun")
         })
         console.log("Running test suite in incremental mode and browser tests only")
     } else {
@@ -93,7 +89,7 @@ describe('063_Edit product to check batch is recalled and delete smpc. Edit batc
         //enter serial number
         await batches.enterSerialNumber(info.getSerialNumber())
         await wait.setTimeoutwait(5);
-        //manage serial number accept 
+        //manage serial number accept
         await batches.acceptSerialNumber()
         await wait.setTimeoutwait(3);
 
@@ -115,7 +111,7 @@ describe('063_Edit product to check batch is recalled and delete smpc. Edit batc
         await wait.setTimeoutwait(3);
 
 
-        //generate expectation file 
+        //generate expectation file
         data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber(), info.getBrandName(), info.getBatchRecall(), "", "", info.getBatchRecallMsg(), info.getEpiDisplayed())
         await wait.setTimeoutwait(12);
         //generate 2d matrix image

@@ -1,11 +1,8 @@
 
 
-const info = require('../utility/reusableFile')
+const info = require('../utility/reusableFunctions')
 const wait = require('../utility/timeout')
-
 const allureReporter = require('@wdio/allure-reporter').default
-const util = require('util');
-const exec = util.promisify(require('child_process').exec);
 
 describe('055_Update product information that the version of ePI is not impacted / not replaced by  the batch specific', () => {
 
@@ -17,12 +14,9 @@ describe('055_Update product information that the version of ePI is not impacted
     else {
         if (!process.env.npm_config_browserOnly) {
 
-
             after(async () => {
                 console.log("Starting Mobile Execution");
-                const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npx kill-port 4723 && npm run versionOfTheEpiNotReplacedTest');
-                console.log('stdout:', stdout1);
-                console.log('stderr:', stderr1);
+                await info.runAppium("versionOfTheEpiNotReplacedTest")
             })
         }
 
@@ -42,4 +36,4 @@ describe('055_Update product information that the version of ePI is not impacted
 
         })
     }
-})    
+})

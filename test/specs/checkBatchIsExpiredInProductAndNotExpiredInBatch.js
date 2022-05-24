@@ -4,10 +4,9 @@ const allureReporter = require('@wdio/allure-reporter').default
 const matrix = require('../utility/2dMatrixPage')
 const data = require('../utility/expectationFile')
 //const testData=require('../testdata/config.json')
-const info = require('../utility/reusableFile')
+const info = require('../utility/reusableFunctions')
 const wait = require('../utility/timeout')
-const util = require('util');
-const exec = util.promisify(require('child_process').exec);
+
 
 
 describe('073_Edit product to check batch is expired and edit batch to check batch is not expired', () => {
@@ -17,9 +16,7 @@ describe('073_Edit product to check batch is expired and edit batch to check bat
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npx kill-port 4723 && npm run checkTheBatchIsExpiredInProductNotExpiredInBatchTest');
-            console.log('stdout:', stdout1);
-            console.log('stderr:', stderr1);
+            await info.runAppium("checkBatchIsExpiredInProductNotExpiredInBatchTestRun")
         })
         console.log("Running test suite in incremental mode and browser tests only")
     } else {
@@ -59,6 +56,7 @@ describe('073_Edit product to check batch is expired and edit batch to check bat
         await wait.setTimeoutwait(8);
         //edit batch
         let editValue = info.getbatchId()
+        await wait.setTimeoutwait(3);
         console.log("editValue is " + editValue)
         await browser.execute('document.querySelector("div:nth-child(' + await info.editBatchRow(editValue) + ') button:nth-child(1)").click()')
         await wait.setTimeoutwait(6);
@@ -74,7 +72,7 @@ describe('073_Edit product to check batch is expired and edit batch to check bat
             })();
         }, info.getCurrentRandomDate());
         await wait.setTimeoutwait(2);
-        //generate expectation file 
+        //generate expectation file
         data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber(), info.getBrandName(), info.getBatchRecall(), "", "", info.getBatchRecallMsg(), info.getEpiDisplayed())
         await wait.setTimeoutwait(12);
         //generate 2d matrix image

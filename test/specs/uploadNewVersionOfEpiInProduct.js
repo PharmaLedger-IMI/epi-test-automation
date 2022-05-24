@@ -1,16 +1,12 @@
 
 const products = require('../pageobjects/products.page');
-//const batches= require('../pageobjects/batches.page.js');
 const matrix = require('../utility/2dMatrixPage')
 const data = require('../utility/expectationFile')
-const info = require('../utility/reusableFile')
+const info = require('../utility/reusableFunctions')
 const wait = require('../utility/timeout')
-//const testData=require('../testdata/config.json')
-
 const allureReporter = require('@wdio/allure-reporter').default
 const path = require('path');
-const util = require('util');
-const exec = util.promisify(require('child_process').exec);
+
 
 describe('053_Edit product to upload a new version of the ePI ', () => {
 
@@ -18,9 +14,7 @@ describe('053_Edit product to upload a new version of the ePI ', () => {
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npx kill-port 4723 && npm run uploadTheNewVersionEpiInProductTest');
-            console.log('stdout:', stdout1);
-            console.log('stderr:', stderr1);
+            await info.runAppium("uploadNewVersionEpiInProductTestRun")
         })
         console.log("Running test suite in incremental mode and browser tests only")
     } else {
@@ -55,12 +49,6 @@ describe('053_Edit product to upload a new version of the ePI ', () => {
         //add new version epi
         await products.addEpi()
         await wait.setTimeoutwait(3);
-        // //select language	
-        // await products.selectLanguage(testData.newProductDetails.selectLanguage)
-        // await wait.setTimeoutwait(1);
-        // //select type
-        // await products.selectType(testData.newProductDetails.selectType)
-        // await wait.setTimeoutwait(3);
         //upload folder
         await products.uploadFile(path.join(__dirname, '/src/Leaflet_UpdatedAtProductLevel'));
         await wait.setTimeoutwait(5);
@@ -71,7 +59,7 @@ describe('053_Edit product to upload a new version of the ePI ', () => {
         //check file exists or not
         info.setEpiDisplayed(await products.epiDisplayed())
         await wait.setTimeoutwait(2);
-        //generate expectation file 
+        //generate expectation file
         data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber(), info.getBrandName(), "", "", "", "", info.getEpiDisplayed())
         await wait.setTimeoutwait(13);
         //generate 2d matrix image
@@ -84,4 +72,4 @@ describe('053_Edit product to upload a new version of the ePI ', () => {
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
 
     })
-})    
+})

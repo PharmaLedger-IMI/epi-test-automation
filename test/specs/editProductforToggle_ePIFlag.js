@@ -1,14 +1,12 @@
 
 const products = require('../pageobjects/products.page');
 const batches = require('../pageobjects/batches.page.js');
-const testData = require('../testdata/config.json')
+const testData = require('../testData/config.json')
 const allureReporter = require('@wdio/allure-reporter').default
 const matrix = require('../utility/2dMatrixPage')
 const data = require('../utility/expectationFile')
-const info = require('../utility/reusableFile')
+const info = require('../utility/reusableFunctions')
 const wait = require('../utility/timeout')
-const util = require('util');
-const exec = util.promisify(require('child_process').exec);
 
 describe('006_Edit product to check SN is in recalled list', () => {
 
@@ -16,9 +14,7 @@ describe('006_Edit product to check SN is in recalled list', () => {
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npx kill-port 4723 && npm run updateProductSnRecallTest');
-            console.log('stdout:', stdout1);
-            console.log('stderr:', stderr1);
+            await info.runAppium("updateProductSnRecallTest")
         })
 
         console.log("Running test suite in incremental mode and browser tests only")
@@ -84,7 +80,7 @@ describe('006_Edit product to check SN is in recalled list', () => {
         //generate expectation file
         data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber(), info.getBrandName(), " ", " ", info.getSnIsinRecallList(), " ", info.getEpiDisplayed())
         await wait.setTimeoutwait(15);
-        //generate 2d matrix image 
+        //generate 2d matrix image
         matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
         await wait.setTimeoutwait(8);
         //update batch

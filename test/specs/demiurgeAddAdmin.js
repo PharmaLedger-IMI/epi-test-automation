@@ -1,4 +1,5 @@
 
+const accessAccount = require('../pageObjects/access.Account');
 const demiurge = require('../pageobjects/demiurge.page');
 const LoginPage = require('../pageobjects/login.page');
 const testData = require('../testdata/config.json')
@@ -34,8 +35,25 @@ describe('100_Demiurge - Add administrator - for a specific company', () => {
         await demiurge.clickNewAccount();
         await wait.setTimeoutwait(4);
         //enter user name
-        await demiurge.enterUserName(testData.login.newDemiurgeUser);
+        await demiurge.enterUserName(testData.login.demiurgeLoginDetails.newDemiurgeUser);
         await wait.setTimeoutwait(3);
+
+        //enter email id
+        await demiurge.enterEmailId(testData.login.demiurgeLoginDetails.emailId);
+        await wait.setTimeoutwait(2);
+
+        //enter company name
+        await demiurge.enterCompanyName(testData.login.demiurgeLoginDetails.companyName);
+        await wait.setTimeoutwait(2);
+
+        //enter password
+        await demiurge.enterPassword(testData.login.demiurgeLoginDetails.validPassword);
+        await wait.setTimeoutwait(2);
+
+        //enter conifrm password
+        await demiurge.enterConfirmPassword(testData.login.demiurgeLoginDetails.confirmPassword);
+        await wait.setTimeoutwait(2);
+
         //click register
         await demiurge.clickRegister();
         await wait.setTimeoutwait(5);
@@ -81,78 +99,38 @@ describe('100_Demiurge - Add administrator - for a specific company', () => {
             await browser.keys(['\ue004']);
             await wait.setTimeoutwait(3);
 
-            //save identity in popup
+            //save identity 
             await browser.keys('Enter')
             await wait.setTimeoutwait(8)
 
-            await browser.refresh();
-            await wait.setTimeoutwait(4);
-
-            //enter user name
-            await demiurge.enterUserName(testData.login.newDemiurgeUser);
-            await wait.setTimeoutwait(3);
-
-            await demiurge.clickEnter()
-            await wait.setTimeoutwait(15);
-
         }
 
-        //click on my identity tab
-        await browser.keys(['\ue004']);
+        await browser.switchToWindow(handles[0]);
         await wait.setTimeoutwait(3);
-        await browser.keys(['\ue004']);
-        await wait.setTimeoutwait(3);
-        //click on my identities
-        await browser.keys('Enter')
-        await wait.setTimeoutwait(9)
-
-
-        //click on tab
-        await browser.keys(['\ue004']);
-        await wait.setTimeoutwait(3);
-        await browser.keys(['\ue004']);
-        await wait.setTimeoutwait(3);
-        await browser.keys(['\ue004']);
-        await wait.setTimeoutwait(3);
-        await browser.keys(['\ue004']);
-        await wait.setTimeoutwait(3);
-        await browser.keys(['\ue004']);
-        await wait.setTimeoutwait(3);
-        await browser.keys(['\ue004']);
+        //open demiurge wallet
+        await demiurge.openDemiurgeWallet();
         await wait.setTimeoutwait(3);
 
-        //copy the user
-
-        const OS = process.platform
-
-        if (OS.includes('win32')) {
-            await browser.keys(['\ue009', 'a'])
-            await wait.setTimeoutwait(5);
-            await browser.keys(['\ue009', 'c'])
-            await wait.setTimeoutwait(5);
-        }
-        else if (OS.includes('darwin')) {
-            await browser.keys(['\ue03D', 'a'])
-            await wait.setTimeoutwait(5);
-            await browser.keys(['\ue03D', 'c'])
-            await wait.setTimeoutwait(5);
-        }
-        else {
-            await browser.keys(['\ue009', 'a'])
-            await wait.setTimeoutwait(5);
-            await browser.keys(['\ue009', 'c'])
-            await wait.setTimeoutwait(5);
-        }
-
-        //go back and login with devuser
-        await browser.refresh();
+        const tab = await browser.getWindowHandles();
+        console.log(tab + "tab ")
+        await browser.switchToWindow(tab[2]);
         await wait.setTimeoutwait(3);
 
-        await demiurge.enterUserName(testData.login.registeredDemiurgeUser);
-        await wait.setTimeoutwait(6);
+        const childWindow = await browser.getWindowHandle()
+        console.log("childWindow " + childWindow)
 
+        //click access account
+        await accessAccount.clickAccessAccount();
+        await wait.setTimeoutwait(4);
+
+        //enter registered demiurge user name
+        await demiurge.enterUserName(testData.login.demiurgeLoginDetails.registeredDemiurgeUser);
+        await wait.setTimeoutwait(3);
+
+        //login
         await demiurge.clickEnter()
-        await wait.setTimeoutwait(8);
+        await wait.setTimeoutwait(10);
+
         //swicth to frame 
         const frameGroup = await browser.$('iframe[frameborder=\'0\']');
         await browser.switchToFrame(frameGroup);
@@ -166,27 +144,25 @@ describe('100_Demiurge - Add administrator - for a specific company', () => {
         await demiurge.memeberId()
         await wait.setTimeoutwait(3);
         //paste user
-        if (OS.includes('win32')) {
-            console.log("platform window " + OS)
-            await browser.keys(['\ue009', 'v'])
-            await wait.setTimeoutwait(4);
-        }
-        else if (OS.includes('darwin')) {
-            await browser.keys(['\ue03D', 'v'])
-            await wait.setTimeoutwait(4);
-        }
-        else {
-            await browser.keys(['\ue009', 'v'])
-            await wait.setTimeoutwait(4);
-        }
+
+        let didString = "did:ssi:name:" + testData.login.vault + ":" + testData.login.demiurgeLoginDetails.newDemiurgeUser
+        console.log(didString + "  didString")
+        await wait.setTimeoutwait(3);
+        await browser.keys([didString])
+        await wait.setTimeoutwait(4);
 
         //Add member
         await demiurge.clickAddMember()
         await wait.setTimeoutwait(4);
 
-        //close currect window
+        await browser.switchToWindow(handles[1]);
         await browser.closeWindow()
         await wait.setTimeoutwait(4);
+
+        await browser.switchToWindow(childWindow);
+        await browser.closeWindow()
+        await wait.setTimeoutwait(4);
+
         await browser.switchToWindow(parentWindow)
         await wait.setTimeoutwait(4);
 

@@ -2,12 +2,11 @@
 const batches = require('../pageobjects/batches.page.js');
 const matrix = require('../utility/2dMatrixPage')
 const data = require('../utility/expectationFile')
-const info = require('../utility/reusableFile')
+const info = require('../utility/reusableFunctions')
 const wait = require('../utility/timeout')
 const testData = require('../testdata/config.json')
 const allureReporter = require('@wdio/allure-reporter').default
-const util = require('util');
-const exec = util.promisify(require('child_process').exec);
+
 
 
 
@@ -18,27 +17,24 @@ describe('030_Create a batch with MonthYear as expiry date and disable day selec
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npx kill-port 4723 && npm run disableDaySelectionIncorrectCheckExpiryDateTest');
-            console.log('stdout:', stdout1);
-            console.log('stderr:', stderr1);
+            await info.runAppium("disableDaySelectionIncorrectCheckExpiryDateTest")
+
         })
         console.log("Running test suite in incremental mode and browser tests only")
     } else {
-
         console.log("different flag")
-
     }
 
-    it('Browser - should create a batch and disable day selection, incorrect and enable expired date ', async () => {
-        allureReporter.addDescription("create new batch and disable day selection, incorrect and enable expired date")
+    it('Browser - should create a batch and disable day selection, incorrect and enable expired date flag ', async () => {
+        allureReporter.addDescription("create new batch and disable day selection, incorrect and enable expired date flag")
         allureReporter.addStep('Create a batch with MonthYear as expiry date')
         allureReporter.addStep('Disable day selection, incorrect and enable expired date')
         allureReporter.addTestId('ExpiryDateChecks_3_3')
         //click batch
         await batches.clickBatchFromSideNav();
         await wait.setTimeoutwait(3);
-        await batches.addBatch();
         //add batch
+        await batches.addBatch();
         await wait.setTimeoutwait(3);
         info.setBatchId(await batches.batchIdValue())
         await wait.setTimeoutwait(3);
@@ -49,7 +45,7 @@ describe('030_Create a batch with MonthYear as expiry date and disable day selec
         await batches.enableDaySelectionClick()
         await wait.setTimeoutwait(3);
         //set the date
-        let expiryDate = info.setCurrentRandomDate()
+        let expiryDate = info.randomDateExpired()
         let mmYYYY = expiryDate.substring(0, expiryDate.length - 3);
         let ddMMYYYY = mmYYYY + ("-00")
         console.log("dayMonthYear " + ddMMYYYY)
@@ -81,10 +77,10 @@ describe('030_Create a batch with MonthYear as expiry date and disable day selec
         //enter serial number
         await batches.enterSerialNumber(info.getSerialNumber())
         await wait.setTimeoutwait(5);
-        //manage serial number accept 
+        //manage serial number accept
         await batches.acceptSerialNumber()
         await wait.setTimeoutwait(3);
-        //generate expectation file 
+        //generate expectation file
         data.generateExpectationFile(info.getProductId(), await batches.batchIdValue(), ddMMYYYY, info.getSerialNumber(), info.getBrandName(), "", "", "", "")
         await wait.setTimeoutwait(13);
         //generate 2d matrix image
@@ -95,8 +91,8 @@ describe('030_Create a batch with MonthYear as expiry date and disable day selec
         await wait.setTimeoutwait(40);
 
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
-       
+
 
 
     })
-})    
+})

@@ -1,7 +1,7 @@
 
 const LoginPage = require('../pageobjects/login.page');
 const info = require('../utility/reusableFile')
-const accessAccount = require('../pageobjects/access.Account');
+const accessAccount = require('../pageObjects/access.Account');
 const allureReporter = require('@wdio/allure-reporter').default
 const testData = require('../testdata/config.json')
 const wait = require('../utility/timeout')
@@ -39,12 +39,13 @@ describe('002_Access ePI portal', () => {
           await wait.setTimeoutwait(4);
 
           if (info.getUser()) {
-               await accessAccount.enterUserName(testData.login.newEnterpriseUser);
+               await accessAccount.enterUserName(testData.login.enterpriseLoginDetails.newEnterpriseUser);
           }
           else {
                await accessAccount.enterUserName(testData.login.automationUserName);
           }
           await wait.setTimeoutwait(2);
+
           //click enter
           await accessAccount.clickEnter();
           await wait.setTimeoutwait(18);

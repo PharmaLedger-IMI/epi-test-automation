@@ -2,12 +2,11 @@
 const batches = require('../pageobjects/batches.page.js');
 const matrix = require('../utility/2dMatrixPage')
 const data = require('../utility/expectationFile')
-const info = require('../utility/reusableFile')
+const info = require('../utility/reusableFunctions')
 const wait = require('../utility/timeout')
 const testData = require('../testdata/config.json')
 const allureReporter = require('@wdio/allure-reporter').default
-const util = require('util');
-const exec = util.promisify(require('child_process').exec);
+
 
 describe('014_Edit batch to set batch recall with valid SN', () => {
 
@@ -15,9 +14,7 @@ describe('014_Edit batch to set batch recall with valid SN', () => {
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npx kill-port 4723 && npm run editBatchRecallWithSerializedSNTest');
-            console.log('stdout:', stdout1);
-            console.log('stderr:', stderr1);
+            await info.runAppium("editBatchUncheckRecallWithSerializedTest")
         })
 
         console.log("Running test suite in incremental mode and browser tests only")
@@ -35,11 +32,10 @@ describe('014_Edit batch to set batch recall with valid SN', () => {
 
         //click batch
         await batches.clickBatchFromSideNav();
-        //created for QA 
-        //await browser.execute('document.querySelector(`webc-app-menu-item:nth-child(4) stencil-route-link:nth-child(1) a:nth-child(1)`).click()')
         await wait.setTimeoutwait(8);
         //edit batch
         let editValue = info.getbatchId()
+        await wait.setTimeoutwait(3);
         await browser.execute('document.querySelector("div:nth-child(' + await info.editBatchRow(editValue) + ') button:nth-child(1)").click()')
         await wait.setTimeoutwait(5);
         //update valid serial number
@@ -65,7 +61,7 @@ describe('014_Edit batch to set batch recall with valid SN', () => {
         //check and set batch Recall Msg is displayed
         info.setBatchRecallMsg(await batches.checkBatchRecallMessage())
         await wait.setTimeoutwait(2);
-        //generate expectation file 
+        //generate expectation file
         data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber(), info.getBrandName(), info.getBatchRecall(), "", "", info.getBatchRecallMsg())
         await wait.setTimeoutwait(12);
         //generate 2d matrix image
@@ -79,4 +75,4 @@ describe('014_Edit batch to set batch recall with valid SN', () => {
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
 
     })
-})    
+})

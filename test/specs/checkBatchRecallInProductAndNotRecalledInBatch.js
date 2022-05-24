@@ -5,11 +5,9 @@ const testData = require('../testdata/config.json')
 const allureReporter = require('@wdio/allure-reporter').default
 const matrix = require('../utility/2dMatrixPage')
 const data = require('../utility/expectationFile')
-const info = require('../utility/reusableFile')
+const info = require('../utility/reusableFunctions')
 const wait = require('../utility/timeout')
 const path = require('path')
-const util = require('util');
-const exec = util.promisify(require('child_process').exec);
 
 describe('061_Edit product to check batch is recalled and edit batch to uncheck batch recall ', () => {
 
@@ -18,9 +16,7 @@ describe('061_Edit product to check batch is recalled and edit batch to uncheck 
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npx kill-port 4723 && npm run checkBatchRecallInProductAndNotRecallInBatchTest');
-            console.log('stdout:', stdout1);
-            console.log('stderr:', stderr1);
+            await info.runAppium("checkBatchRecallInProductAndNotRecallInBatchTestRun")
         })
         console.log("Running test suite in incremental mode and browser tests only")
     } else {
@@ -62,7 +58,7 @@ describe('061_Edit product to check batch is recalled and edit batch to uncheck 
         await products.selectType(testData.newBatchDetails.selectType)
         await wait.setTimeoutwait(3);
 
-        //upload leaflet 
+        //upload leaflet
         await products.uploadFile(path.join(__dirname, '/src/SMPC_ProductLevel'));
         await wait.setTimeoutwait(4);
         info.setEpiDisplayed(await products.epiDisplayed())
@@ -77,12 +73,10 @@ describe('061_Edit product to check batch is recalled and edit batch to uncheck 
 
 
         await batches.clickBatchFromSideNav();
-        // await wait.setTimeoutwait(3);
-        //Created for QA environment
-        // await browser.execute('document.querySelector(`webc-app-menu-item:nth-child(4) stencil-route-link:nth-child(1) a:nth-child(1)`).click()')
         await wait.setTimeoutwait(6);
 
         let editValue = info.getbatchId()
+        await wait.setTimeoutwait(3);
         console.log("editValue is " + editValue)
         await browser.execute('document.querySelector("div:nth-child(' + await info.editBatchRow(editValue) + ') button:nth-child(1)").click()')
         await wait.setTimeoutwait(6);
@@ -99,7 +93,7 @@ describe('061_Edit product to check batch is recalled and edit batch to uncheck 
         }, info.getCurrentRandomDate());
 
         await wait.setTimeoutwait(2);
-        
+
         //update recalled serial number
         await batches.selectUpdateRecalledSerialFromDropdown(testData.newBatchDetails.updateRecalled)
         await wait.setTimeoutwait(5);
@@ -109,7 +103,7 @@ describe('061_Edit product to check batch is recalled and edit batch to uncheck 
         //enter serial number
         await batches.enterSerialNumber(info.getSerialNumber())
         await wait.setTimeoutwait(5);
-        // manage serial number accept 
+        // manage serial number accept
         await batches.acceptSerialNumber()
         await wait.setTimeoutwait(3);
 
@@ -133,6 +127,6 @@ describe('061_Edit product to check batch is recalled and edit batch to uncheck 
         await wait.setTimeoutwait(18);
 
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
-      
+
     })
 })

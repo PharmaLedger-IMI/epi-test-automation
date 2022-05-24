@@ -187,7 +187,6 @@ class DemiurgePage {
     }
     async memeberId() {
         await this.memeberIdTextbox.click();
-
     }
     async clickWriteGroup() {
         await this.writeGroupButton.click();

@@ -2,10 +2,8 @@ const products = require('../pageobjects/products.page');
 const allureReporter = require('@wdio/allure-reporter').default
 const matrix = require('../utility/2dMatrixPage')
 const data = require('../utility/expectationFile')
-const info = require('../utility/reusableFile')
+const info = require('../utility/reusableFunctions')
 const wait = require('../utility/timeout')
-const util = require('util');
-const exec = util.promisify(require('child_process').exec);
 
 
 describe('069_Edit product to check expiration date is incorrect and delete smpc. Pass incorrect expiry date in matrix', () => {
@@ -15,9 +13,7 @@ describe('069_Edit product to check expiration date is incorrect and delete smpc
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            const { stdout1, stderr1 } = await exec('cd ../epi-mobileapp-test-automation && npx kill-port 4723 && npm run checkTheSmpcDeletedInProductWithIncorrectExpiryDateTest');
-            console.log('stdout:', stdout1);
-            console.log('stderr:', stderr1);
+            await info.runAppium("checkSmpcDeletedInProductWithIncorrectExpiryDateTestRun")
         })
         console.log("Running test suite in incremental mode and browser tests only")
     } else {
@@ -52,7 +48,7 @@ describe('069_Edit product to check expiration date is incorrect and delete smpc
 
         const incorrectExpiryDate = info.randomDateExpired()
         await wait.setTimeoutwait(2);
-        //generate expectation file 
+        //generate expectation file
         data.generateExpectationFile(info.getProductId(), info.getbatchId(), incorrectExpiryDate, info.getSerialNumber(), info.getBrandName(), info.getBatchRecall(), "", "", info.getBatchRecallMsg(), info.getEpiDisplayed())
         await wait.setTimeoutwait(12);
         //generate 2d matrix image

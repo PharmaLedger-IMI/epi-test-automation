@@ -34,7 +34,18 @@ describe('101_Demiurge - Add Read and write user   for specific company', () => 
         await enterprise.clickNewAccount()
         await wait.setTimeoutwait(4);
         //enter username
-        await enterprise.enterUserName(testData.login.newEnterpriseUser);
+        await enterprise.enterUserName(testData.login.enterpriseLoginDetails.newEnterpriseUser);
+        await wait.setTimeoutwait(2);
+        //enter email id
+        await enterprise.enterEmailId(testData.login.enterpriseLoginDetails.emailId);
+        await wait.setTimeoutwait(2);
+
+        //enter password
+        await enterprise.enterPassword(testData.login.enterpriseLoginDetails.validPassword);
+        await wait.setTimeoutwait(2);
+
+        //enter conifrm password
+        await enterprise.enterConfirmPassword(testData.login.enterpriseLoginDetails.confirmPassword);
         await wait.setTimeoutwait(2);
         //click register
         await enterprise.clickRegister();
@@ -50,29 +61,12 @@ describe('101_Demiurge - Add Read and write user   for specific company', () => 
         const frame = await browser.$('iframe[frameborder=\'0\']');
         await browser.switchToFrame(frame);
 
-        const OS = process.platform
 
         //double click on user identity
         let isNewUser = await enterprise.doubleClickUserIdentity()
         console.log("dfsdfsdf", isNewUser)
         if (isNewUser) {
             await wait.setTimeoutwait(2);
-            //copy user identity
-            if (OS.includes('win32')||OS.includes('win64')) {
-                await browser.keys(['\ue009', 'c'])
-                await wait.setTimeoutwait(4);
-            }
-            else if (OS.includes('darwin')) {
-                await browser.keys(['\ue03D', 'c'])
-                await wait.setTimeoutwait(4);
-            }
-            else {
-                await browser.keys(['\ue009', 'c'])
-                await wait.setTimeoutwait(4);
-            }
-            //go back to authorization page
-            await browser.back();
-            await wait.setTimeoutwait(5);
 
             //go to ePI landing page
             await browser.switchToWindow(handles[0]);
@@ -85,6 +79,7 @@ describe('101_Demiurge - Add Read and write user   for specific company', () => 
             //go to 2nd window
             const tab = await browser.getWindowHandles();
             await browser.switchToWindow(tab[2]);
+            await wait.setTimeoutwait(3);
 
             const childWindow = await browser.getWindowHandle()
             console.log("childWindow " + childWindow)
@@ -93,10 +88,11 @@ describe('101_Demiurge - Add Read and write user   for specific company', () => 
             // click on access account
             await accessAccount.clickAccessAccount();
             await wait.setTimeoutwait(5);
-            //clear and enter dev user
 
-            await enterprise.enterUserName(testData.login.registeredDemiurgeUser);
+            //clear and enter new demiurge user
+            await enterprise.enterUserName(testData.login.demiurgeLoginDetails.newDemiurgeUser);
             await wait.setTimeoutwait(2);
+            //click enter
             await enterprise.clickEnter()
             await wait.setTimeoutwait(5);
             //swicth to frame 
@@ -112,19 +108,12 @@ describe('101_Demiurge - Add Read and write user   for specific company', () => 
             await enterprise.memeberId()
             await wait.setTimeoutwait(5);
 
-            if (OS.includes('win32')) {
-                await browser.keys(['\ue009', 'v'])
-                await wait.setTimeoutwait(4);
-            }
-            else if (OS.includes('darwin')) {
-                await browser.keys(['\ue03D', 'v'])
-                await wait.setTimeoutwait(4);
-            }
-            else {
-                await browser.keys(['\ue009', 'v'])
-                await wait.setTimeoutwait(4);
-            }
-
+            let didString = "did:ssi:name:" + testData.login.vault + ":" + testData.login.enterpriseLoginDetails.newEnterpriseUser
+            console.log(didString + "  didString ")
+            await wait.setTimeoutwait(3);
+            //paste user
+            await browser.keys([didString])
+            await wait.setTimeoutwait(4);
 
             //add member
             await enterprise.clickAddMember()
@@ -142,14 +131,18 @@ describe('101_Demiurge - Add Read and write user   for specific company', () => 
             await browser.switchToWindow(parentWindow)
             await wait.setTimeoutwait(4);
 
-            const newUser = testData.login.newEnterpriseUser
+            const newUser = testData.login.enterpriseLoginDetails.newEnterpriseUser
+            await wait.setTimeoutwait(3);
             info.setUser(newUser)
 
 
         }
-        const newUser = testData.login.newEnterpriseUser
+        const newUser = testData.login.enterpriseLoginDetails.newEnterpriseUser
+        await wait.setTimeoutwait(3);
         info.setUser(newUser)
+        await wait.setTimeoutwait(3);
         let productPage = await products.homePage()
+        await wait.setTimeoutwait(4);
         console.log("productPage" + productPage)
         if (productPage) {
             await browser.closeWindow()
