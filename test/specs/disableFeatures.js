@@ -1,6 +1,6 @@
 const products = require('../pageobjects/products.page');
 const feature = require('../pageobjects/disableFeature.page');
-const info = require('../utility/reusableFile')
+const utilityFunction = require('../utility/reusableFile')
 const LoginPage = require('../pageobjects/login.page');
 const accessAccount = require('../pageobjects/access.Account');
 const testData = require('../testdata/config.json')
@@ -22,7 +22,7 @@ describe('Disable feature', () => {
 
         console.log("different flag")
 
-    }   
+    }
 
         it('Browser - should verify product page', async () => {
 
@@ -44,7 +44,7 @@ describe('Disable feature', () => {
             await accessAccount.clickAccessAccount();
             await wait.setTimeoutwait(4);
 
-            if (info.getUser()) {
+            if (utilityFunction.getUser()) {
                 await accessAccount.enterUserName(testData.login.newEnterpriseUser);
             }
             else {
@@ -82,7 +82,7 @@ describe('Disable feature', () => {
             await products.addProduct();
             await wait.setTimeoutwait(5);
             //enter gtin
-            await products.enterGtinCode(info.getProductId());
+            await products.enterGtinCode(utilityFunction.getProductId());
             await wait.setTimeoutwait(3);
 
             //enable batch is recalled
