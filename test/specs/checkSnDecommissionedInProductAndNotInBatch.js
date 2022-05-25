@@ -4,7 +4,7 @@ const allureReporter = require('@wdio/allure-reporter').default
 const matrix = require('../utility/2dMatrixPage')
 const data = require('../utility/expectationFile')
 const testData = require('../testdata/config.json')
-const info = require('../utility/reusableFunctions')
+const utilityFunction = require('../utility/reusableFunctions')
 const wait = require('../utility/timeout')
 
 
@@ -16,7 +16,7 @@ describe('083_Edit product to check SN is decommssioned and edit batch to reset 
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            await info.runAppium("checkSNDecommissionedInProductAndNotInBatchTestRun")
+            await utilityFunction.runAppium("checkSNDecommissionedInProductAndNotInBatchTestRun")
         })
         console.log("Running test suite in incremental mode and browser tests only")
     } else {
@@ -32,9 +32,9 @@ describe('083_Edit product to check SN is decommssioned and edit batch to reset 
         //click product
         await products.clickProductFromSideNav()
         await wait.setTimeoutwait(4);
-        console.log("prod to edit" + info.getProductId())
+        console.log("prod to edit" + utilityFunction.getProductId())
         //search the product code
-        await products.searchProductCode(info.getProductId())
+        await products.searchProductCode(utilityFunction.getProductId())
         await wait.setTimeoutwait(3);
         await browser.keys('Enter')
         await wait.setTimeoutwait(4);
@@ -46,7 +46,7 @@ describe('083_Edit product to check SN is decommssioned and edit batch to reset 
         // await products.enableSnIsInDecommissionedList()
         // await wait.setTimeoutwait(2);
 
-        info.setEpiDisplayed(await products.epiDisplayed())
+        utilityFunction.setEpiDisplayed(await products.epiDisplayed())
         await wait.setTimeoutwait(2);
 
         //update product
@@ -58,10 +58,10 @@ describe('083_Edit product to check SN is decommssioned and edit batch to reset 
         await batches.clickBatchFromSideNav();
         await wait.setTimeoutwait(8);
         //edit batch
-        let editValue = info.getbatchId()
+        let editValue = utilityFunction.getbatchId()
         await wait.setTimeoutwait(3);
         console.log("editValue is " + editValue)
-        await browser.execute('document.querySelector("div:nth-child(' + await info.editBatchRow(editValue) + ') button:nth-child(1)").click()')
+        await browser.execute('document.querySelector("div:nth-child(' + await utilityFunction.editBatchRow(editValue) + ') button:nth-child(1)").click()')
         await wait.setTimeoutwait(6);
         //update decommissioned serial number
         await batches.selectUpdateDecommissionedFromDropdown(testData.newBatchDetails.updateDecommissioned)
@@ -73,10 +73,10 @@ describe('083_Edit product to check SN is decommssioned and edit batch to reset 
         await batches.acceptSerialNumber()
         await wait.setTimeoutwait(4);
         //generate expectation file
-        data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), "", info.getBrandName(), info.getBatchRecall(), "", "", info.getBatchRecallMsg(), info.getEpiDisplayed())
+        data.generateExpectationFile(utilityFunction.getProductId(), utilityFunction.getbatchId(), utilityFunction.getCurrentRandomDate(), "", utilityFunction.getBrandName(), utilityFunction.getBatchRecall(), "", "", utilityFunction.getBatchRecallMsg(), utilityFunction.getEpiDisplayed())
         await wait.setTimeoutwait(12);
         //generate 2d matrix image
-        matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), "")
+        matrix.generate2dMatrixImage(utilityFunction.getProductId(), utilityFunction.getbatchId(), utilityFunction.getCurrentRandomDate(), "")
         await wait.setTimeoutwait(9);
         //update batch
         await batches.updateBatchForEdit()

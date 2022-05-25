@@ -1,7 +1,7 @@
 const products = require('../pageobjects/products.page');
 const enterprise = require('../pageobjects/demiurge.page');
 const LoginPage = require('../pageobjects/login.page');
-const info = require('../utility/reusableFile')
+const utilityFunction = require('../utility/reusableFunctions')
 const accessAccount = require('../pageobjects/access.Account');
 const testData = require('../testdata/config.json')
 const wait = require('../utility/timeout');
@@ -95,7 +95,7 @@ describe('101_Demiurge - Add Read and write user   for specific company', () => 
             //click enter
             await enterprise.clickEnter()
             await wait.setTimeoutwait(5);
-            //swicth to frame 
+            //swicth to frame
             const frameGroup = await browser.$('iframe[frameborder=\'0\']');
             await browser.switchToFrame(frameGroup);
             //click on groups
@@ -133,13 +133,13 @@ describe('101_Demiurge - Add Read and write user   for specific company', () => 
 
             const newUser = testData.login.enterpriseLoginDetails.newEnterpriseUser
             await wait.setTimeoutwait(3);
-            info.setUser(newUser)
+            utilityFunction.setUser(newUser)
 
 
         }
         const newUser = testData.login.enterpriseLoginDetails.newEnterpriseUser
         await wait.setTimeoutwait(3);
-        info.setUser(newUser)
+        utilityFunction.setUser(newUser)
         await wait.setTimeoutwait(3);
         let productPage = await products.homePage()
         await wait.setTimeoutwait(4);

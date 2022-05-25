@@ -1,7 +1,7 @@
 
 const matrix = require('../utility/2dMatrixPage')
 const data = require('../utility/expectationFile')
-const info = require('../utility/reusableFunctions')
+const utilityFunction = require('../utility/reusableFunctions')
 const wait = require('../utility/timeout')
 const testData = require('../testdata/config.json')
 
@@ -17,7 +17,7 @@ describe('025_change only the day on the new data matrix ', () => {
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            await info.runAppium("changeDayOnDateInBatchTest")
+            await utilityFunction.runAppium("changeDayOnDateInBatchTest")
         })
         console.log("Running test suite in incremental mode and browser tests only")
     } else {
@@ -31,12 +31,12 @@ describe('025_change only the day on the new data matrix ', () => {
         it('Browser - should Retest above by changing only the day on the new data matrix Y ', async () => {
 
             console.log("date value is " + testData.incrementalTest.expiryDate)
-            info.setDateChange(testData.incrementalTest.expiryDate, "day")
+            utilityFunction.setDateChange(testData.incrementalTest.expiryDate, "day")
             //generate expectation file
-            data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getDateChange("day"), info.getSerialNumber(), info.getBrandName(), "", "", "", "")
+            data.generateExpectationFile(utilityFunction.getProductId(), utilityFunction.getbatchId(), utilityFunction.getDateChange("day"), utilityFunction.getSerialNumber(), utilityFunction.getBrandName(), "", "", "", "")
             await wait.setTimeoutwait(12);
             //generate 2d matrix image
-            matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getDateChange("day"), info.getSerialNumber())
+            matrix.generate2dMatrixImage(utilityFunction.getProductId(), utilityFunction.getbatchId(), utilityFunction.getDateChange("day"), utilityFunction.getSerialNumber())
             await wait.setTimeoutwait(2);
         })
     } else {
@@ -47,10 +47,10 @@ describe('025_change only the day on the new data matrix ', () => {
             allureReporter.addTestId('ExpiryDateChecks_1_2')
 
             //generate expectation file
-            data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getDateChange("day"), info.getSerialNumber(), info.getBrandName(), "", "", "", "")
+            data.generateExpectationFile(utilityFunction.getProductId(), utilityFunction.getbatchId(), utilityFunction.getDateChange("day"), utilityFunction.getSerialNumber(), utilityFunction.getBrandName(), "", "", "", "")
             await wait.setTimeoutwait(12);
             //generate 2d matrix image
-            matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getDateChange("day"), info.getSerialNumber())
+            matrix.generate2dMatrixImage(utilityFunction.getProductId(), utilityFunction.getbatchId(), utilityFunction.getDateChange("day"), utilityFunction.getSerialNumber())
             await wait.setTimeoutwait(12);
             allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
 

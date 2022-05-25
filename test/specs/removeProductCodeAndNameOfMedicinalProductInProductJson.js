@@ -2,7 +2,6 @@
 const products = require('../pageobjects/products.page');
 const testData = require('../testdata/config.json')
 const allureReporter = require('@wdio/allure-reporter').default
-
 const wait = require('../utility/timeout')
 const path = require('path');
 const fs = require('fs');
@@ -52,7 +51,7 @@ describe('108_Update a product via import of Json by deleting product code & nam
         //view message
         await products.clickViewMessageInFailedLog()
         await wait.setTimeoutwait(5);
-        //click invalid field info 
+        //click invalid field info
         await products.invalidFieldInfo()
         await wait.setTimeoutwait(5);
         //read invalid field info

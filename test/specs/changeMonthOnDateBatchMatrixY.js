@@ -1,7 +1,7 @@
 
 const matrix = require('../utility/2dMatrixPage')
 const data = require('../utility/expectationFile')
-const info = require('../utility/reusableFunctions')
+const utilityFunction = require('../utility/reusableFunctions')
 const wait = require('../utility/timeout')
 const allureReporter = require('@wdio/allure-reporter').default
 const testData = require('../testdata/config.json')
@@ -15,7 +15,7 @@ describe('026_change only the month on the new data matrix ', () => {
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            await info.runAppium("changeMonthOnDateInBatchTest")
+            await utilityFunction.runAppium("changeMonthOnDateInBatchTest")
         })
         console.log("Running test suite in incremental mode and browser tests only")
     } else {
@@ -29,12 +29,12 @@ describe('026_change only the month on the new data matrix ', () => {
         it('Browser - should Retest above by changing only the month on the new data matrix Y ', async () => {
 
             console.log("date value is " + testData.incrementalTest.expiryDate)
-            info.setDateChange(testData.incrementalTest.expiryDate, "month")
+            utilityFunction.setDateChange(testData.incrementalTest.expiryDate, "month")
             //generate expectation file
-            data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getDateChange("month"), info.getSerialNumber(), info.getBrandName(), "", "", "", "")
+            data.generateExpectationFile(utilityFunction.getProductId(), utilityFunction.getbatchId(), utilityFunction.getDateChange("month"), utilityFunction.getSerialNumber(), utilityFunction.getBrandName(), "", "", "", "")
             await wait.setTimeoutwait(12);
             //generate 2d matrix image
-            matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getDateChange("month"), info.getSerialNumber())
+            matrix.generate2dMatrixImage(utilityFunction.getProductId(), utilityFunction.getbatchId(), utilityFunction.getDateChange("month"), utilityFunction.getSerialNumber())
             await wait.setTimeoutwait(2);
         })
     }
@@ -46,10 +46,10 @@ describe('026_change only the month on the new data matrix ', () => {
             allureReporter.addTestId('ExpiryDateChecks_1_3')
 
             //generate expectation file
-            data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getDateChange("month"), info.getSerialNumber(), info.getBrandName(), "", "", "", "")
+            data.generateExpectationFile(utilityFunction.getProductId(), utilityFunction.getbatchId(), utilityFunction.getDateChange("month"), utilityFunction.getSerialNumber(), utilityFunction.getBrandName(), "", "", "", "")
             await wait.setTimeoutwait(12);
             //generate 2d matrix image
-            matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getDateChange("month"), info.getSerialNumber())
+            matrix.generate2dMatrixImage(utilityFunction.getProductId(), utilityFunction.getbatchId(), utilityFunction.getDateChange("month"), utilityFunction.getSerialNumber())
             await wait.setTimeoutwait(5);
             allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
 

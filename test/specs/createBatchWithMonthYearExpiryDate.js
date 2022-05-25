@@ -2,7 +2,7 @@
 const batches = require('../pageobjects/batches.page.js');
 const matrix = require('../utility/2dMatrixPage')
 const data = require('../utility/expectationFile')
-const info = require('../utility/reusableFunctions')
+const utilityFunction = require('../utility/reusableFunctions')
 const wait = require('../utility/timeout')
 const testData = require('../testdata/config.json')
 const allureReporter = require('@wdio/allure-reporter').default
@@ -16,7 +16,7 @@ describe('028_create a batch with only MonthYear as expiry date', () => {
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            await info.runAppium("batchWithMonthAndYearAndExpiredDateTest")
+            await utilityFunction.runAppium("batchWithMonthAndYearAndExpiredDateTest")
         })
         console.log("Running test suite in incremental mode and browser tests only")
     } else {
@@ -36,7 +36,7 @@ describe('028_create a batch with only MonthYear as expiry date', () => {
         //add batch
         await batches.addBatch();
         await wait.setTimeoutwait(3);
-        info.setBatchId(await batches.batchIdValue())
+        utilityFunction.setBatchId(await batches.batchIdValue())
         await wait.setTimeoutwait(3);
         //enter site name
         await batches.siteName(testData.newBatchDetails.siteName);
@@ -45,7 +45,7 @@ describe('028_create a batch with only MonthYear as expiry date', () => {
         await batches.enableDaySelectionClick()
         await wait.setTimeoutwait(3);
         //set the date
-        let expiryDate = info.setCurrentRandomDate()//2023-05-13
+        let expiryDate = utilityFunction.setCurrentRandomDate()//2023-05-13
         let mmYYYY = expiryDate.substring(0, expiryDate.length - 3);
         let ddMMYYYY = mmYYYY + ("-00")
         console.log("dayMonthYear " + ddMMYYYY)
@@ -61,7 +61,7 @@ describe('028_create a batch with only MonthYear as expiry date', () => {
         await wait.setTimeoutwait(2);
         //select product
         const selectBox = await browser.$('//psk-select[@class=\'default-select hydrated\']//select[@class=\'form-control\']');
-        await selectBox.selectByAttribute('value', info.getProductId());
+        await selectBox.selectByAttribute('value', utilityFunction.getProductId());
         await wait.setTimeoutwait(2);
         //video source
         await batches.videoSource(testData.newBatchDetails.videoSource)
@@ -71,18 +71,18 @@ describe('028_create a batch with only MonthYear as expiry date', () => {
         await wait.setTimeoutwait(5);
 
         //set serial number value
-        info.setSerialNumber(await batches.serialNum())
+        utilityFunction.setSerialNumber(await batches.serialNum())
         //enter serial number
-        await batches.enterSerialNumber(info.getSerialNumber())
+        await batches.enterSerialNumber(utilityFunction.getSerialNumber())
         await wait.setTimeoutwait(5);
         //manage serial number accept
         await batches.acceptSerialNumber()
         await wait.setTimeoutwait(3);
         //generate expectation file
-        data.generateExpectationFile(info.getProductId(), await batches.batchIdValue(), ddMMYYYY, info.getSerialNumber(), info.getBrandName(), "", "", "", "")
+        data.generateExpectationFile(utilityFunction.getProductId(), await batches.batchIdValue(), ddMMYYYY, utilityFunction.getSerialNumber(), utilityFunction.getBrandName(), "", "", "", "")
         await wait.setTimeoutwait(12);
         //generate 2d matrix image
-        matrix.generate2dMatrixImage(info.getProductId(), await batches.batchIdValue(), ddMMYYYY, info.getSerialNumber())
+        matrix.generate2dMatrixImage(utilityFunction.getProductId(), await batches.batchIdValue(), ddMMYYYY, utilityFunction.getSerialNumber())
         await wait.setTimeoutwait(6);
         //create batch
         await batches.createBatch()

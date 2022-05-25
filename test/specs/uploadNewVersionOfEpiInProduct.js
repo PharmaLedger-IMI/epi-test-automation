@@ -2,7 +2,7 @@
 const products = require('../pageobjects/products.page');
 const matrix = require('../utility/2dMatrixPage')
 const data = require('../utility/expectationFile')
-const info = require('../utility/reusableFunctions')
+const utilityFunction = require('../utility/reusableFunctions')
 const wait = require('../utility/timeout')
 const allureReporter = require('@wdio/allure-reporter').default
 const path = require('path');
@@ -14,7 +14,7 @@ describe('053_Edit product to upload a new version of the ePI ', () => {
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            await info.runAppium("uploadNewVersionEpiInProductTestRun")
+            await utilityFunction.runAppium("uploadNewVersionEpiInProductTestRun")
         })
         console.log("Running test suite in incremental mode and browser tests only")
     } else {
@@ -34,7 +34,7 @@ describe('053_Edit product to upload a new version of the ePI ', () => {
         await wait.setTimeoutwait(4);
 
         //search the product code
-        await products.searchProductCode(info.getProductId())
+        await products.searchProductCode(utilityFunction.getProductId())
         await wait.setTimeoutwait(5);
         await browser.keys('Enter')
         await wait.setTimeoutwait(3);
@@ -57,13 +57,13 @@ describe('053_Edit product to upload a new version of the ePI ', () => {
         await browser.execute('document.querySelector("psk-button[disabled=\'@modalData.filesWereNotSelected\'] button[class=\'btn btn-primary\']").click();');
         await wait.setTimeoutwait(5);
         //check file exists or not
-        info.setEpiDisplayed(await products.epiDisplayed())
+        utilityFunction.setEpiDisplayed(await products.epiDisplayed())
         await wait.setTimeoutwait(2);
         //generate expectation file
-        data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber(), info.getBrandName(), "", "", "", "", info.getEpiDisplayed())
+        data.generateExpectationFile(utilityFunction.getProductId(), utilityFunction.getbatchId(), utilityFunction.getCurrentRandomDate(), utilityFunction.getSerialNumber(), utilityFunction.getBrandName(), "", "", "", "", utilityFunction.getEpiDisplayed())
         await wait.setTimeoutwait(13);
         //generate 2d matrix image
-        matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
+        matrix.generate2dMatrixImage(utilityFunction.getProductId(), utilityFunction.getbatchId(), utilityFunction.getCurrentRandomDate(), utilityFunction.getSerialNumber())
         await wait.setTimeoutwait(9);
 
         //Update product

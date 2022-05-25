@@ -2,7 +2,7 @@
 const batches = require('../pageobjects/batches.page.js');
 const matrix = require('../utility/2dMatrixPage')
 const data = require('../utility/expectationFile')
-const info = require('../utility/reusableFunctions')
+const utilityFunction = require('../utility/reusableFunctions')
 const wait = require('../utility/timeout')
 const testData = require('../testData/config.json')
 const allureReporter = require('@wdio/allure-reporter').default
@@ -13,7 +13,7 @@ describe('017_Edit batch to undo batch recall without SN ', () => {
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            await info.runAppium("editBatchUncheckRecallMsgNonSerializedWithoutSNTest")
+            await utilityFunction.runAppium("editBatchUncheckRecallMsgNonSerializedWithoutSNTest")
         })
         console.log("Running test suite in incremental mode and browser tests only")
 
@@ -30,10 +30,10 @@ describe('017_Edit batch to undo batch recall without SN ', () => {
         //click batch
         await batches.clickBatchFromSideNav();
         await wait.setTimeoutwait(8);
-        let editValue = info.getbatchId()
+        let editValue = utilityFunction.getbatchId()
         await wait.setTimeoutwait(3);
         //click on edit batch
-        await browser.execute('document.querySelector("div:nth-child(' + await info.editBatchRow(editValue) + ') button:nth-child(1)").click()')
+        await browser.execute('document.querySelector("div:nth-child(' + await utilityFunction.editBatchRow(editValue) + ') button:nth-child(1)").click()')
         await wait.setTimeoutwait(3);
 
 
@@ -54,13 +54,13 @@ describe('017_Edit batch to undo batch recall without SN ', () => {
         await batches.enableCheckToRecallThisBatch()
         await wait.setTimeoutwait(3);
         //set batch recall
-        info.setBatchRecall(await batches.checkBatchRecall())
+        utilityFunction.setBatchRecall(await batches.checkBatchRecall())
         await wait.setTimeoutwait(3);
         //generate expectation file
-        data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), "", info.getBrandName(), info.getBatchRecall(), await batches.checkBatchMessage(), "", "")
+        data.generateExpectationFile(utilityFunction.getProductId(), utilityFunction.getbatchId(), utilityFunction.getCurrentRandomDate(), "", utilityFunction.getBrandName(), utilityFunction.getBatchRecall(), await batches.checkBatchMessage(), "", "")
         await wait.setTimeoutwait(13);
         //generate 2d matrix image
-        matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), "")
+        matrix.generate2dMatrixImage(utilityFunction.getProductId(), utilityFunction.getbatchId(), utilityFunction.getCurrentRandomDate(), "")
         await wait.setTimeoutwait(8);
 
         //update batch

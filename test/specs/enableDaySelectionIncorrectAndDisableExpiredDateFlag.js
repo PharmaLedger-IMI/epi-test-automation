@@ -2,7 +2,7 @@
 const batches = require('../pageobjects/batches.page.js');
 const matrix = require('../utility/2dMatrixPage')
 const data = require('../utility/expectationFile')
-const info = require('../utility/reusableFunctions')
+const utilityFunction = require('../utility/reusableFunctions')
 const wait = require('../utility/timeout')
 const testData = require('../testdata/config.json')
 const allureReporter = require('@wdio/allure-reporter').default
@@ -13,7 +13,7 @@ describe('033_Create a batch with MonthYear as expiry date and enable day select
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            await info.runAppium("enableDaySelectionAndIncorrectAndDisableExpiredDateTest")
+            await utilityFunction.runAppium("enableDaySelectionAndIncorrectAndDisableExpiredDateTest")
         })
         console.log("Running test suite in incremental mode and browser tests only")
 
@@ -32,13 +32,13 @@ describe('033_Create a batch with MonthYear as expiry date and enable day select
         //add batch
         await batches.addBatch();
         await wait.setTimeoutwait(3);
-        info.setBatchId(await batches.batchIdValue())
+        utilityFunction.setBatchId(await batches.batchIdValue())
         await wait.setTimeoutwait(3);
         //enter site name
         await batches.siteName(testData.newBatchDetails.siteName);
         await wait.setTimeoutwait(3);
         //select date
-        info.setCurrentRandomDate()
+        utilityFunction.setCurrentRandomDate()
         await wait.setTimeoutwait(3);
         await browser.execute((date) => {
             (function () {
@@ -47,16 +47,16 @@ describe('033_Create a batch with MonthYear as expiry date and enable day select
                 datePicker.value = date;
                 datePicker.dispatchEvent(event);
             })();
-        }, info.getCurrentRandomDate());
+        }, utilityFunction.getCurrentRandomDate());
 
-        console.log("different date is" + info.randomDate())
+        console.log("different date is" + utilityFunction.randomDate())
         await wait.setTimeoutwait(3);
         //click on Enable Expired Expiration Date Verification
         await batches.expirationDateVerificationClick()
         await wait.setTimeoutwait(3);
         //select product from dropdown
         const selectBox = await browser.$('//psk-select[@class=\'default-select hydrated\']//select[@class=\'form-control\']');
-        await selectBox.selectByAttribute('value', info.getProductId());
+        await selectBox.selectByAttribute('value', utilityFunction.getProductId());
         await wait.setTimeoutwait(3);
         await batches.videoSource(testData.newBatchDetails.videoSource)
         await wait.setTimeoutwait(3);
@@ -65,20 +65,20 @@ describe('033_Create a batch with MonthYear as expiry date and enable day select
         await wait.setTimeoutwait(5);
 
         //set serial number value
-        info.setSerialNumber(await batches.serialNum())
+        utilityFunction.setSerialNumber(await batches.serialNum())
         //enter serial number
-        await batches.enterSerialNumber(info.getSerialNumber())
+        await batches.enterSerialNumber(utilityFunction.getSerialNumber())
         await wait.setTimeoutwait(5);
         //manage serial number accept
         await batches.acceptSerialNumber()
         await wait.setTimeoutwait(3);
-        const incorrectExpiryDate = info.randomDate()
+        const incorrectExpiryDate = utilityFunction.randomDate()
         await wait.setTimeoutwait(3);
         //generate expectation file
-        data.generateExpectationFile(info.getProductId(), await batches.batchIdValue(), incorrectExpiryDate, info.getSerialNumber(), info.getBrandName(), "", "", "", "")
+        data.generateExpectationFile(utilityFunction.getProductId(), await batches.batchIdValue(), incorrectExpiryDate, utilityFunction.getSerialNumber(), utilityFunction.getBrandName(), "", "", "", "")
         await wait.setTimeoutwait(12);
         //generate 2d matrix image
-        matrix.generate2dMatrixImage(info.getProductId(), await batches.batchIdValue(), incorrectExpiryDate, info.getSerialNumber())
+        matrix.generate2dMatrixImage(utilityFunction.getProductId(), await batches.batchIdValue(), incorrectExpiryDate, utilityFunction.getSerialNumber())
         await wait.setTimeoutwait(9);
         //create batch
         await batches.createBatch()

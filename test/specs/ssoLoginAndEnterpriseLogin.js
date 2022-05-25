@@ -1,6 +1,5 @@
 
 const LoginPage = require('../pageobjects/login.page');
-//const products= require('../pageobjects/products.page');
 const accessAccount = require('../pageobjects/access.Account');
 const allureReporter = require('@wdio/allure-reporter').default
 const testData = require('../testdata/config.json')

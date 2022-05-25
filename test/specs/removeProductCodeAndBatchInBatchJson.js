@@ -2,7 +2,6 @@
 const batches = require('../pageobjects/batches.page');
 const testData = require('../testdata/config.json')
 const allureReporter = require('@wdio/allure-reporter').default
-
 const wait = require('../utility/timeout')
 const path = require('path');
 const fs = require('fs');
@@ -53,7 +52,7 @@ describe('118_Update a batch via import of Json by deleting product code and bat
         //view message
         await batches.clickViewMessageInFailedLog()
         await wait.setTimeoutwait(5);
-        //click invalid field info 
+        //click invalid field info
         await batches.invalidFieldInfo()
         await wait.setTimeoutwait(5);
         //read invalid field info
@@ -62,7 +61,7 @@ describe('118_Update a batch via import of Json by deleting product code and bat
         //download message
         await batches.clickDownloadMsgInFailedLog()
         await wait.setTimeoutwait(10);
-        
+
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
 
     })

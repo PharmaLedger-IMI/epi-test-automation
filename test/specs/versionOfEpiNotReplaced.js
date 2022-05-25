@@ -1,6 +1,6 @@
 
 
-const info = require('../utility/reusableFunctions')
+const utilityFunction = require('../utility/reusableFunctions')
 const wait = require('../utility/timeout')
 const allureReporter = require('@wdio/allure-reporter').default
 
@@ -16,7 +16,7 @@ describe('055_Update product information that the version of ePI is not impacted
 
             after(async () => {
                 console.log("Starting Mobile Execution");
-                await info.runAppium("versionOfTheEpiNotReplacedTest")
+                await utilityFunction.runAppium("versionOfTheEpiNotReplacedTest")
             })
         }
 
@@ -26,9 +26,9 @@ describe('055_Update product information that the version of ePI is not impacted
             allureReporter.addStep('Scan the data matrix of the old batch created in the previous test case and verify that the version of ePI is not impacted / not replaced by  the batch specific version. ')
             allureReporter.addTestId('ProductInfoUpdate_2_2')
 
-            info.getExpectationFile()
+            utilityFunction.getExpectationFile()
             await wait.setTimeoutwait(12);
-            info.getImage()
+            utilityFunction.getImage()
             await wait.setTimeoutwait(9);
 
             allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');

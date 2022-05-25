@@ -2,7 +2,7 @@
 const batches = require('../pageobjects/batches.page.js');
 const matrix = require('../utility/2dMatrixPage')
 const data = require('../utility/expectationFile')
-const info = require('../utility/reusableFile')
+const utilityFunction = require('../utility/reusableFile')
 const wait = require('../utility/timeout')
 const testData = require('../testdata/config.json')
 
@@ -39,13 +39,13 @@ describe('Expiry date Checks ', () => {
         await wait.setTimeoutwait(3);
         await batches.addBatch();
         await wait.setTimeoutwait(3);
-        info.setBatchId(await batches.batchIdValue())
+        utilityFunction.setBatchId(await batches.batchIdValue())
         await wait.setTimeoutwait(3);
         await batches.siteName(testData.newBatchDetails.siteName);
         await wait.setTimeoutwait(3);
 
 
-        info.setCurrentRandomDate()
+        utilityFunction.setCurrentRandomDate()
         await wait.setTimeoutwait(3);
         await browser.execute((date) => {
             (function () {
@@ -54,22 +54,22 @@ describe('Expiry date Checks ', () => {
                 datePicker.value = date;
                 datePicker.dispatchEvent(event);
             })();
-        }, info.getCurrentRandomDate());
+        }, utilityFunction.getCurrentRandomDate());
         //
-        console.log("different date is" + info.randomDate())
+        console.log("different date is" + utilityFunction.randomDate())
         await wait.setTimeoutwait(3);
         const selectBox = await browser.$('//psk-select[@class=\'default-select hydrated\']//select[@class=\'form-control\']');
-        await selectBox.selectByAttribute('value', info.getProductId());
+        await selectBox.selectByAttribute('value', utilityFunction.getProductId());
         await wait.setTimeoutwait(3);
         await batches.videoSource(testData.newBatchDetails.videoSource)
         await wait.setTimeoutwait(3);
-        info.setSerialNumber(await batches.serialNum())
+        utilityFunction.setSerialNumber(await batches.serialNum())
         await wait.setTimeoutwait(3);
 
-        data.generateExpectationFile(info.getProductId(), await batches.batchIdValue(), info.getCurrentRandomDate(), info.getSerialNumber(), info.getBrandName(), "", "", "", "")
+        data.generateExpectationFile(utilityFunction.getProductId(), await batches.batchIdValue(), utilityFunction.getCurrentRandomDate(), utilityFunction.getSerialNumber(), utilityFunction.getBrandName(), "", "", "", "")
         await wait.setTimeoutwait(12);
 
-        matrix.generate2dMatrixImage(info.getProductId(), await batches.batchIdValue(), info.randomDateExpired(), info.getSerialNumber())
+        matrix.generate2dMatrixImage(utilityFunction.getProductId(), await batches.batchIdValue(), utilityFunction.randomDateExpired(), utilityFunction.getSerialNumber())
         await wait.setTimeoutwait(8);
 
         //create batch
@@ -80,4 +80,4 @@ describe('Expiry date Checks ', () => {
 
 
     })
-})    
+})

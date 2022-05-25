@@ -1,6 +1,6 @@
 const LoginPage = require('../pageobjects/login.page');
 const digits = require('../pageobjects/digit.cal.js');
-const info = require('../utility/reusableFile')
+const utilityFunction = require('../utility/reusableFunctions')
 const wait = require('../utility/timeout')
 const allureReporter = require('@wdio/allure-reporter').default
 
@@ -25,7 +25,7 @@ describe('001_Generate gtin', () => {
         await wait.setTimeoutwait(2);
         GTIN = await digits.copyGtin()
         await wait.setTimeoutwait(2);
-        info.setProductId(await digits.copyGtin())
+        utilityFunction.setProductId(await digits.copyGtin())
         await wait.setTimeoutwait(2);
         console.log("Generated GTIN code is " + GTIN)
 

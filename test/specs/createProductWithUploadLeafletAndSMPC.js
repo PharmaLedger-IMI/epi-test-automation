@@ -2,7 +2,7 @@ const products = require('../pageobjects/products.page');
 const batches = require('../pageobjects/batches.page.js');
 const matrix = require('../utility/2dMatrixPage')
 const data = require('../utility/expectationFile')
-const info = require('../utility/reusableFunctions')
+const utilityFunction = require('../utility/reusableFunctions')
 const wait = require('../utility/timeout')
 const testData = require('../testdata/config.json')
 const allureReporter = require('@wdio/allure-reporter').default
@@ -17,7 +17,7 @@ describe('056_SMPC update on the product Non- batch specific version', () => {
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            await info.runAppium("createProductWithUploadLeafletAndSMPCTest")
+            await utilityFunction.runAppium("createProductWithUploadLeafletAndSMPCTest")
         })
         console.log("Running test suite in incremental mode and browser tests only")
     } else {
@@ -37,7 +37,7 @@ describe('056_SMPC update on the product Non- batch specific version', () => {
         await wait.setTimeoutwait(4);
 
         //search the product code
-        await products.searchProductCode(info.getProductId())
+        await products.searchProductCode(utilityFunction.getProductId())
         await wait.setTimeoutwait(5);
         await browser.keys('Enter')
         await wait.setTimeoutwait(3);
@@ -72,13 +72,13 @@ describe('056_SMPC update on the product Non- batch specific version', () => {
         //add batch
         await batches.addBatch();
         await wait.setTimeoutwait(3);
-        info.setBatchId(await batches.batchIdValue())
+        utilityFunction.setBatchId(await batches.batchIdValue())
         await wait.setTimeoutwait(3);
         //enter site name
         await batches.siteName(testData.newBatchDetails.siteName);
         await wait.setTimeoutwait(3);
         //select date
-        info.setCurrentRandomDate()
+        utilityFunction.setCurrentRandomDate()
         await wait.setTimeoutwait(3);
         await browser.execute((date) => {
             (function () {
@@ -87,11 +87,11 @@ describe('056_SMPC update on the product Non- batch specific version', () => {
                 datePicker.value = date;
                 datePicker.dispatchEvent(event);
             })();
-        }, info.getCurrentRandomDate());
+        }, utilityFunction.getCurrentRandomDate());
         await wait.setTimeoutwait(2);
         //select dropdown
         const selectBox = await browser.$('//psk-select[@class=\'default-select hydrated\']//select[@class=\'form-control\']');
-        await selectBox.selectByAttribute('value', info.getProductId());
+        await selectBox.selectByAttribute('value', utilityFunction.getProductId());
         await wait.setTimeoutwait(2);
 
         //select valid serial number
@@ -99,19 +99,19 @@ describe('056_SMPC update on the product Non- batch specific version', () => {
         await wait.setTimeoutwait(2);
 
         //set the serial number and enter
-        info.setSerialNumber(await batches.serialNum())
-        await batches.enterSerialNumber(info.getSerialNumber())
+        utilityFunction.setSerialNumber(await batches.serialNum())
+        await batches.enterSerialNumber(utilityFunction.getSerialNumber())
         await wait.setTimeoutwait(4);
         //accept serial number
         await batches.acceptSerialNumber()
         await wait.setTimeoutwait(2);
         //generate expectation file
-        const expectationFile = data.generateExpectationFile(info.getProductId(), await batches.batchIdValue(), info.getCurrentRandomDate(), info.getSerialNumber(), info.getBrandName(), "", await batches.checkBatchMessage(), "", "")
-        info.setExpectationFile(expectationFile)
+        const expectationFile = data.generateExpectationFile(utilityFunction.getProductId(), await batches.batchIdValue(), utilityFunction.getCurrentRandomDate(), utilityFunction.getSerialNumber(), utilityFunction.getBrandName(), "", await batches.checkBatchMessage(), "", "")
+        utilityFunction.setExpectationFile(expectationFile)
         await wait.setTimeoutwait(12);
         //generate 2d matrix image
-        const batch = matrix.generate2dMatrixImage(info.getProductId(), await batches.batchIdValue(), info.getCurrentRandomDate(), info.getSerialNumber())
-        info.setImage(batch)
+        const batch = matrix.generate2dMatrixImage(utilityFunction.getProductId(), await batches.batchIdValue(), utilityFunction.getCurrentRandomDate(), utilityFunction.getSerialNumber())
+        utilityFunction.setImage(batch)
         await wait.setTimeoutwait(15);
         //create batch
         await batches.createBatch()

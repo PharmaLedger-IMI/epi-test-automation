@@ -2,7 +2,6 @@
 const products = require('../pageobjects/products.page');
 const testData = require('../testdata/config.json')
 const allureReporter = require('@wdio/allure-reporter').default
-
 const wait = require('../utility/timeout')
 const path = require('path');
 const fs = require('fs');

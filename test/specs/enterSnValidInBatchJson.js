@@ -2,7 +2,6 @@
 const batches = require('../pageobjects/batches.page');
 const testData = require('../testdata/config.json')
 const allureReporter = require('@wdio/allure-reporter').default
-
 const wait = require('../utility/timeout')
 const path = require('path');
 const fs = require('fs');
@@ -62,8 +61,8 @@ describe('125_Update a batch via import of Json to enter valid serial number', (
         await batches.clickDownloadMsgInSuccessLog()
         await wait.setTimeoutwait(10);
 
-       
+
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
-        
+
     })
 })

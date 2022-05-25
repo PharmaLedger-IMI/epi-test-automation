@@ -2,7 +2,7 @@
 const batches = require('../pageobjects/batches.page.js');
 const matrix = require('../utility/2dMatrixPage')
 const data = require('../utility/expectationFile')
-const info = require('../utility/reusableFunctions')
+const utilityFunction = require('../utility/reusableFunctions')
 const wait = require('../utility/timeout')
 const testData = require('../testdata/config.json')
 const allureReporter = require('@wdio/allure-reporter').default
@@ -14,7 +14,7 @@ describe('050_Edit batch to update with decommissioned and recalled serial numbe
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            await info.runAppium("updateBatchWithDecommissionedAndRecalledSNTest")
+            await utilityFunction.runAppium("updateBatchWithDecommissionedAndRecalledSNTest")
         })
         console.log("Running test suite in incremental mode and browser tests only")
     } else {
@@ -32,10 +32,10 @@ describe('050_Edit batch to update with decommissioned and recalled serial numbe
         await wait.setTimeoutwait(4);
 
         //edit batch
-        let editValue = info.getbatchId()
+        let editValue = utilityFunction.getbatchId()
         await wait.setTimeoutwait(3);
         console.log("editValue is " + editValue)
-        await browser.execute('document.querySelector("div:nth-child(' + await info.editBatchRow(editValue) + ') button:nth-child(1)").click()')
+        await browser.execute('document.querySelector("div:nth-child(' + await utilityFunction.editBatchRow(editValue) + ') button:nth-child(1)").click()')
         await wait.setTimeoutwait(8);
 
         //check enable serial number verification
@@ -59,8 +59,8 @@ describe('050_Edit batch to update with decommissioned and recalled serial numbe
         await wait.setTimeoutwait(3);
 
         //set serial number
-        info.setSerialNumber(await batches.serialNum())
-        await batches.enterSerialNumber(info.getSerialNumber())
+        utilityFunction.setSerialNumber(await batches.serialNum())
+        await batches.enterSerialNumber(utilityFunction.getSerialNumber())
         await wait.setTimeoutwait(3);
         //enter reason
         await batches.selectLostReasonFromDropdown(testData.newBatchDetails.updateDecommissionedWithLostReason)
@@ -74,9 +74,9 @@ describe('050_Edit batch to update with decommissioned and recalled serial numbe
         await wait.setTimeoutwait(3);
 
         //set the serial number and enter
-        info.setSerialNumber(await batches.serialNum())
+        utilityFunction.setSerialNumber(await batches.serialNum())
         await wait.setTimeoutwait(3);
-        await batches.enterSerialNumber(info.getSerialNumber())
+        await batches.enterSerialNumber(utilityFunction.getSerialNumber())
         await wait.setTimeoutwait(3);
 
         //accept serial number
@@ -84,11 +84,11 @@ describe('050_Edit batch to update with decommissioned and recalled serial numbe
         await wait.setTimeoutwait(3);
 
         //generate expectation file
-        data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber(), info.getBrandName(), "", "", "", "")
+        data.generateExpectationFile(utilityFunction.getProductId(), utilityFunction.getbatchId(), utilityFunction.getCurrentRandomDate(), utilityFunction.getSerialNumber(), utilityFunction.getBrandName(), "", "", "", "")
         await wait.setTimeoutwait(12);
 
         //generate 2d matrix image
-        matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
+        matrix.generate2dMatrixImage(utilityFunction.getProductId(), utilityFunction.getbatchId(), utilityFunction.getCurrentRandomDate(), utilityFunction.getSerialNumber())
         await wait.setTimeoutwait(9);
 
         //update batch

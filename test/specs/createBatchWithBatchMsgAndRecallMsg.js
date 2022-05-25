@@ -2,7 +2,7 @@
 const batches = require('../pageobjects/batches.page.js');
 const matrix = require('../utility/2dMatrixPage')
 const data = require('../utility/expectationFile')
-const info = require('../utility/reusableFunctions')
+const utilityFunction = require('../utility/reusableFunctions')
 const wait = require('../utility/timeout')
 const testData = require('../testdata/config.json')
 const allureReporter = require('@wdio/allure-reporter').default
@@ -14,7 +14,7 @@ describe('021_Create a batch to set batch recall and batch message', () => {
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            await info.runAppium("createBatchWithBatchMsgAndRecallMsgTestRun")
+            await utilityFunction.runAppium("createBatchWithBatchMsgAndRecallMsgTestRun")
         })
         console.log("Running test suite in incremental mode and browser tests only")
     } else {
@@ -34,11 +34,11 @@ describe('021_Create a batch to set batch recall and batch message', () => {
         //add batch
         await batches.addBatch();
         await wait.setTimeoutwait(3);
-        info.setBatchId(await batches.batchIdValue())
+        utilityFunction.setBatchId(await batches.batchIdValue())
         await batches.siteName(testData.newBatchDetails.siteName);
         await wait.setTimeoutwait(5);
         //select date
-        info.setCurrentRandomDate()
+        utilityFunction.setCurrentRandomDate()
         await wait.setTimeoutwait(3);
         await browser.execute((date) => {
             (function () {
@@ -47,11 +47,11 @@ describe('021_Create a batch to set batch recall and batch message', () => {
                 datePicker.value = date;
                 datePicker.dispatchEvent(event);
             })();
-        }, info.getCurrentRandomDate());
+        }, utilityFunction.getCurrentRandomDate());
         await wait.setTimeoutwait(4);
         //select product
         const selectBox = await browser.$('//psk-select[@class=\'default-select hydrated\']//select[@class=\'form-control\']');
-        await selectBox.selectByAttribute('value', info.getProductId());
+        await selectBox.selectByAttribute('value', utilityFunction.getProductId());
         await wait.setTimeoutwait(3);
         await batches.videoSource(testData.newBatchDetails.videoSource)
         await wait.setTimeoutwait(4);
@@ -60,9 +60,9 @@ describe('021_Create a batch to set batch recall and batch message', () => {
         await batches.selectUpdateValidSerialFromDropdown(testData.newBatchDetails.updateValid)
         await wait.setTimeoutwait(3);
         //enter serial number
-        info.setSerialNumber(await batches.serialNum())
+        utilityFunction.setSerialNumber(await batches.serialNum())
         await wait.setTimeoutwait(3);
-        await batches.enterSerialNumber(info.getSerialNumber())
+        await batches.enterSerialNumber(utilityFunction.getSerialNumber())
         await wait.setTimeoutwait(4);
         //click accept
         await batches.acceptSerialNumber()
@@ -71,26 +71,26 @@ describe('021_Create a batch to set batch recall and batch message', () => {
         //enter batch message
         await batches.batchMessage(testData.newBatchDetails.batchMsg)
         await wait.setTimeoutwait(3);
-        info.setBatchMsg(await batches.checkBatchMessage())
+        utilityFunction.setBatchMsg(await batches.checkBatchMessage())
         await wait.setTimeoutwait(3);
 
         //enable batch recall
         await batches.enableCheckToRecallThisBatch()
         await wait.setTimeoutwait(3);
-        info.setBatchRecall(await batches.checkBatchRecall())
+        utilityFunction.setBatchRecall(await batches.checkBatchRecall())
         await wait.setTimeoutwait(3);
 
         //enter recall message
         await batches.enterRecallMessage(testData.newBatchDetails.recallMsg)
         await wait.setTimeoutwait(3);
-        info.setBatchRecallMsg(await batches.checkBatchRecallMessage())
+        utilityFunction.setBatchRecallMsg(await batches.checkBatchRecallMessage())
         await wait.setTimeoutwait(3);
 
         //generate expectation file
-        data.generateExpectationFile(info.getProductId(), await batches.batchIdValue(), info.getCurrentRandomDate(), info.getSerialNumber(), info.getBrandName(), info.getBatchRecall(), info.getBatchMsg(), "", info.getBatchRecallMsg())
+        data.generateExpectationFile(utilityFunction.getProductId(), await batches.batchIdValue(), utilityFunction.getCurrentRandomDate(), utilityFunction.getSerialNumber(), utilityFunction.getBrandName(), utilityFunction.getBatchRecall(), utilityFunction.getBatchMsg(), "", utilityFunction.getBatchRecallMsg())
         await wait.setTimeoutwait(18);
         //generate 2d matrix image
-        matrix.generate2dMatrixImage(info.getProductId(), await batches.batchIdValue(), info.getCurrentRandomDate(), info.getSerialNumber())
+        matrix.generate2dMatrixImage(utilityFunction.getProductId(), await batches.batchIdValue(), utilityFunction.getCurrentRandomDate(), utilityFunction.getSerialNumber())
         await wait.setTimeoutwait(12);
         //create batch
         await batches.createBatch()

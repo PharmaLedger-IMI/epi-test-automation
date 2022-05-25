@@ -2,7 +2,7 @@
 const batches = require('../pageobjects/batches.page.js');
 const matrix = require('../utility/2dMatrixPage')
 const data = require('../utility/expectationFile')
-const info = require('../utility/reusableFunctions')
+const utilityFunction = require('../utility/reusableFunctions')
 const wait = require('../utility/timeout')
 const testData = require('../testdata/config.json')
 
@@ -14,7 +14,7 @@ describe('010_Edit batch and disable serial number check with invalid SN ', () =
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            await info.runAppium("enableTheSnCheckSnIsInValidTest")
+            await utilityFunction.runAppium("enableTheSnCheckSnIsInValidTest")
         })
         console.log("Running test suite in incremental mode and browser tests only")
 
@@ -34,10 +34,10 @@ describe('010_Edit batch and disable serial number check with invalid SN ', () =
         await wait.setTimeoutwait(3);
 
         //edit Batch
-        let editValue = info.getbatchId()
+        let editValue = utilityFunction.getbatchId()
         await wait.setTimeoutwait(3);
         console.log("editValue is " + editValue)
-        await browser.execute('document.querySelector("div:nth-child(' + await info.editBatchRow(editValue) + ') button:nth-child(1)").click()')
+        await browser.execute('document.querySelector("div:nth-child(' + await utilityFunction.editBatchRow(editValue) + ') button:nth-child(1)").click()')
         await wait.setTimeoutwait(8);
 
         //uncheck serial number verification
@@ -48,9 +48,9 @@ describe('010_Edit batch and disable serial number check with invalid SN ', () =
         await batches.selectUpdateValidSerialFromDropdown(testData.newBatchDetails.updateValid)
         await wait.setTimeoutwait(3);
         //set serial number
-        info.setSerialNumber(await batches.serialNum())
+        utilityFunction.setSerialNumber(await batches.serialNum())
         await wait.setTimeoutwait(3);
-        await batches.enterSerialNumber(info.getSerialNumber())
+        await batches.enterSerialNumber(utilityFunction.getSerialNumber())
         await wait.setTimeoutwait(3);
 
         //accept serial number
@@ -61,10 +61,10 @@ describe('010_Edit batch and disable serial number check with invalid SN ', () =
         console.log('invalid serial number ' + invalidSerialNumber)
         await wait.setTimeoutwait(3);
         //generate expectation file
-        data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), invalidSerialNumber, info.getBrandName(), "", "", "", "")
+        data.generateExpectationFile(utilityFunction.getProductId(), utilityFunction.getbatchId(), utilityFunction.getCurrentRandomDate(), invalidSerialNumber, utilityFunction.getBrandName(), "", "", "", "")
         await wait.setTimeoutwait(12);
         //generate 2d matrix image
-        matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), invalidSerialNumber)
+        matrix.generate2dMatrixImage(utilityFunction.getProductId(), utilityFunction.getbatchId(), utilityFunction.getCurrentRandomDate(), invalidSerialNumber)
         await wait.setTimeoutwait(9);
         //update batch
         await batches.updateBatchForEdit()

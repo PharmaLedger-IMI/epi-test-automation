@@ -3,7 +3,7 @@ const batches = require('../pageobjects/batches.page.js');
 const allureReporter = require('@wdio/allure-reporter').default
 const matrix = require('../utility/2dMatrixPage')
 const data = require('../utility/expectationFile')
-const info = require('../utility/reusableFunctions')
+const utilityFunction = require('../utility/reusableFunctions')
 const wait = require('../utility/timeout')
 const testData = require('../testdata/config.json')
 const path = require('path')
@@ -16,7 +16,7 @@ describe('064_Edit product to uncheck batch is recalled and edit batch to set re
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            await info.runAppium("uncheckBatchIsRecallInProductAndRecalledInBatchTest")
+            await utilityFunction.runAppium("uncheckBatchIsRecallInProductAndRecalledInBatchTest")
         })
         console.log("Running test suite in incremental mode and browser tests only")
     } else {
@@ -33,9 +33,9 @@ describe('064_Edit product to uncheck batch is recalled and edit batch to set re
         //click product
         await products.clickProductFromSideNav()
         await wait.setTimeoutwait(4);
-        console.log("prod to edit" + info.getProductId())
+        console.log("prod to edit" + utilityFunction.getProductId())
         //search the product code
-        await products.searchProductCode(info.getProductId())
+        await products.searchProductCode(utilityFunction.getProductId())
         await wait.setTimeoutwait(3);
         await browser.keys('Enter')
         await wait.setTimeoutwait(4);
@@ -66,7 +66,7 @@ describe('064_Edit product to uncheck batch is recalled and edit batch to set re
         await browser.execute('document.querySelector("psk-button[disabled=\'@modalData.filesWereNotSelected\'] button[class=\'btn btn-primary\']").click();');
         await wait.setTimeoutwait(3);
 
-        info.setEpiDisplayed(await products.epiDisplayed())
+        utilityFunction.setEpiDisplayed(await products.epiDisplayed())
         await wait.setTimeoutwait(3);
 
         //update product
@@ -78,10 +78,10 @@ describe('064_Edit product to uncheck batch is recalled and edit batch to set re
         await batches.clickBatchFromSideNav();
         await wait.setTimeoutwait(8);
         //edit batch
-        let editValue = info.getbatchId()
+        let editValue = utilityFunction.getbatchId()
         await wait.setTimeoutwait(3);
         console.log("editValue is " + editValue)
-        await browser.execute('document.querySelector("div:nth-child(' + await info.editBatchRow(editValue) + ') button:nth-child(1)").click()')
+        await browser.execute('document.querySelector("div:nth-child(' + await utilityFunction.editBatchRow(editValue) + ') button:nth-child(1)").click()')
         await wait.setTimeoutwait(6);
 
         //update recalled serial number
@@ -89,9 +89,9 @@ describe('064_Edit product to uncheck batch is recalled and edit batch to set re
         await wait.setTimeoutwait(3);
 
         //set the serial number and enter
-        info.setSerialNumber(await batches.serialNum())
+        utilityFunction.setSerialNumber(await batches.serialNum())
         await wait.setTimeoutwait(3);
-        await batches.enterSerialNumber(info.getSerialNumber())
+        await batches.enterSerialNumber(utilityFunction.getSerialNumber())
         await wait.setTimeoutwait(3);
         //accept serial number
         await batches.acceptSerialNumber()
@@ -100,19 +100,19 @@ describe('064_Edit product to uncheck batch is recalled and edit batch to set re
         // //enable checkbox for batch recall
         // await batches.enableCheckToRecallThisBatch()
         // await wait.setTimeoutwait(3);
-        info.setBatchRecall(await batches.checkBatchRecall())
+        utilityFunction.setBatchRecall(await batches.checkBatchRecall())
         await wait.setTimeoutwait(3);
         // //enter recall msg
         // await batches.enterRecallMessage(testData.newBatchDetails.recallMsg)
         // await wait.setTimeoutwait(4);
-        info.setBatchRecallMsg(await batches.checkBatchRecallMessage())
+        utilityFunction.setBatchRecallMsg(await batches.checkBatchRecallMessage())
         await wait.setTimeoutwait(3);
         //generate expectation file
-        data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber(), info.getBrandName(), info.getBatchRecall(), "", "", info.getBatchRecallMsg(), info.getEpiDisplayed())
+        data.generateExpectationFile(utilityFunction.getProductId(), utilityFunction.getbatchId(), utilityFunction.getCurrentRandomDate(), utilityFunction.getSerialNumber(), utilityFunction.getBrandName(), utilityFunction.getBatchRecall(), "", "", utilityFunction.getBatchRecallMsg(), utilityFunction.getEpiDisplayed())
         await wait.setTimeoutwait(18);
 
         //generate 2d matrix image
-        matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
+        matrix.generate2dMatrixImage(utilityFunction.getProductId(), utilityFunction.getbatchId(), utilityFunction.getCurrentRandomDate(), utilityFunction.getSerialNumber())
         await wait.setTimeoutwait(9);
 
         //update batch

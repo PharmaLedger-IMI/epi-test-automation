@@ -11,7 +11,7 @@ exports.config = {
     // ====================
 
     // user: process.env.USERNAME,
-    // key: process.env.ACCESS_KEY,   
+    // key: process.env.ACCESS_KEY,
     // ==================
     // Specify Test Files
     // ==================
@@ -38,7 +38,7 @@ exports.config = {
 
             // 'test/specs/invalidLoginCredentials.js',
 
-            // 'test/specs/gtinPage.js',
+             'test/specs/gtinPage.js',
             'test/specs/loginCredentials.js',
 
             // 'test/specs/createProduct.js',
@@ -557,7 +557,7 @@ exports.config = {
     //             fs.unlinkSync(filename);
     //           }
     //         }
-    //         fs.rmdirSync(dir);      
+    //         fs.rmdirSync(dir);
     // },
     // function() {
     //   rmdir(downloadDir)

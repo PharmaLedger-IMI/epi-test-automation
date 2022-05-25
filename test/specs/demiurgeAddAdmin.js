@@ -23,7 +23,7 @@ describe('100_Demiurge - Add administrator - for a specific company', () => {
 
         const parentWindow = await browser.getWindowHandle()
         console.log("parentWindow " + parentWindow)
-        //open demiurge wallet  
+        //open demiurge wallet
         await demiurge.openDemiurgeWallet();
         await wait.setTimeoutwait(3);
 
@@ -99,7 +99,7 @@ describe('100_Demiurge - Add administrator - for a specific company', () => {
             await browser.keys(['\ue004']);
             await wait.setTimeoutwait(3);
 
-            //save identity 
+            //save identity
             await browser.keys('Enter')
             await wait.setTimeoutwait(8)
 
@@ -131,7 +131,7 @@ describe('100_Demiurge - Add administrator - for a specific company', () => {
         await demiurge.clickEnter()
         await wait.setTimeoutwait(10);
 
-        //swicth to frame 
+        //swicth to frame
         const frameGroup = await browser.$('iframe[frameborder=\'0\']');
         await browser.switchToFrame(frameGroup);
         // go to groups

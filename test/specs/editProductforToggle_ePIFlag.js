@@ -5,7 +5,7 @@ const testData = require('../testData/config.json')
 const allureReporter = require('@wdio/allure-reporter').default
 const matrix = require('../utility/2dMatrixPage')
 const data = require('../utility/expectationFile')
-const info = require('../utility/reusableFunctions')
+const utilityFunction = require('../utility/reusableFunctions')
 const wait = require('../utility/timeout')
 
 describe('006_Edit product to check SN is in recalled list', () => {
@@ -14,7 +14,7 @@ describe('006_Edit product to check SN is in recalled list', () => {
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            await info.runAppium("updateProductSnRecallTest")
+            await utilityFunction.runAppium("updateProductSnRecallTest")
         })
 
         console.log("Running test suite in incremental mode and browser tests only")
@@ -32,10 +32,10 @@ describe('006_Edit product to check SN is in recalled list', () => {
         //click product
         await products.clickProductFromSideNav()
         await wait.setTimeoutwait(3);
-        console.log("prod to edit" + info.getProductId())
+        console.log("prod to edit" + utilityFunction.getProductId())
 
         //search the product code
-        await products.searchProductCode(info.getProductId())
+        await products.searchProductCode(utilityFunction.getProductId())
         await wait.setTimeoutwait(3);
         await browser.keys('Enter')
         await wait.setTimeoutwait(4);
@@ -46,10 +46,10 @@ describe('006_Edit product to check SN is in recalled list', () => {
         //enable SN is in recall list
         await products.enableSnIsInRecallList()
         await wait.setTimeoutwait(4);
-        info.setSnIsinRecallList(await products.checkSnIsInRecallList())
+        utilityFunction.setSnIsinRecallList(await products.checkSnIsInRecallList())
         await wait.setTimeoutwait(2);
         //check ePI is displayed
-        info.setEpiDisplayed(await products.epiDisplayed())
+        utilityFunction.setEpiDisplayed(await products.epiDisplayed())
         await wait.setTimeoutwait(2);
 
         //update product
@@ -60,28 +60,28 @@ describe('006_Edit product to check SN is in recalled list', () => {
         await batches.clickBatchFromSideNav();
         await wait.setTimeoutwait(8);
         //edit batch
-        let editValue = info.getbatchId()
+        let editValue = utilityFunction.getbatchId()
         console.log("editValue is " + editValue)
-        await browser.execute('document.querySelector("div:nth-child(' + await info.editBatchRow(editValue) + ') button:nth-child(1)").click()')
+        await browser.execute('document.querySelector("div:nth-child(' + await utilityFunction.editBatchRow(editValue) + ') button:nth-child(1)").click()')
         await wait.setTimeoutwait(6);
 
         //select recalled serial number
         await batches.selectUpdateRecalledSerialFromDropdown(testData.newBatchDetails.updateRecalled)
         await wait.setTimeoutwait(2);
         //set the serial number and enter
-        info.setSerialNumber(await batches.serialNum())
+        utilityFunction.setSerialNumber(await batches.serialNum())
         await wait.setTimeoutwait(2);
-        await batches.enterSerialNumber(info.getSerialNumber())
+        await batches.enterSerialNumber(utilityFunction.getSerialNumber())
         await wait.setTimeoutwait(2);
         //accept serial number
         await batches.acceptSerialNumber()
         await wait.setTimeoutwait(2);
 
         //generate expectation file
-        data.generateExpectationFile(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber(), info.getBrandName(), " ", " ", info.getSnIsinRecallList(), " ", info.getEpiDisplayed())
+        data.generateExpectationFile(utilityFunction.getProductId(), utilityFunction.getbatchId(), utilityFunction.getCurrentRandomDate(), utilityFunction.getSerialNumber(), utilityFunction.getBrandName(), " ", " ", utilityFunction.getSnIsinRecallList(), " ", utilityFunction.getEpiDisplayed())
         await wait.setTimeoutwait(15);
         //generate 2d matrix image
-        matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), info.getCurrentRandomDate(), info.getSerialNumber())
+        matrix.generate2dMatrixImage(utilityFunction.getProductId(), utilityFunction.getbatchId(), utilityFunction.getCurrentRandomDate(), utilityFunction.getSerialNumber())
         await wait.setTimeoutwait(8);
         //update batch
         await batches.updateBatchForEdit()

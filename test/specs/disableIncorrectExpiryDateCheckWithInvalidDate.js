@@ -2,7 +2,7 @@
 const batches = require('../pageobjects/batches.page.js');
 const matrix = require('../utility/2dMatrixPage')
 const data = require('../utility/expectationFile')
-const info = require('../utility/reusableFunctions')
+const utilityFunction = require('../utility/reusableFunctions')
 const wait = require('../utility/timeout')
 const allureReporter = require('@wdio/allure-reporter').default
 
@@ -14,7 +14,7 @@ describe('013_Edit batch and disable expiry date check with valid expiry date ',
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            await info.runAppium("disableTheExpiryDateCheckInValidExpiryDateTest")
+            await utilityFunction.runAppium("disableTheExpiryDateCheckInValidExpiryDateTest")
         })
         console.log("Running test suite in incremental mode and browser tests only")
     } else {
@@ -33,23 +33,23 @@ describe('013_Edit batch and disable expiry date check with valid expiry date ',
         await wait.setTimeoutwait(3);
 
         //edit batch
-        let editValue = info.getbatchId()
+        let editValue = utilityFunction.getbatchId()
         await wait.setTimeoutwait(3);
         console.log("editValue is " + editValue)
-        await browser.execute('document.querySelector("div:nth-child(' + await info.editBatchRow(editValue) + ') button:nth-child(1)").click()')
+        await browser.execute('document.querySelector("div:nth-child(' + await utilityFunction.editBatchRow(editValue) + ') button:nth-child(1)").click()')
         await wait.setTimeoutwait(8);
 
         //uncheck incorrect expiry date check
         await batches.enableIncorrectExpirationDateVerificationClick()
         await wait.setTimeoutwait(3);
-        const incorrectExpiryDate = info.randomDate()
+        const incorrectExpiryDate = utilityFunction.randomDate()
         await wait.setTimeoutwait(3);
         console.log("incorrectExpiryDate is " + incorrectExpiryDate)
         //generate expectation file
-        data.generateExpectationFile(info.getProductId(), info.getbatchId(), incorrectExpiryDate, info.getSerialNumber(), info.getBrandName(), "", "", "", "")
+        data.generateExpectationFile(utilityFunction.getProductId(), utilityFunction.getbatchId(), incorrectExpiryDate, utilityFunction.getSerialNumber(), utilityFunction.getBrandName(), "", "", "", "")
         await wait.setTimeoutwait(12);
         //generate 2d matrix image
-        matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), incorrectExpiryDate, info.getSerialNumber())
+        matrix.generate2dMatrixImage(utilityFunction.getProductId(), utilityFunction.getbatchId(), incorrectExpiryDate, utilityFunction.getSerialNumber())
         await wait.setTimeoutwait(9);
         //update batch
         await batches.updateBatchForEdit()

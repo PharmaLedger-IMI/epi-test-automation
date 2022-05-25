@@ -2,7 +2,7 @@ const products = require('../pageobjects/products.page');
 const allureReporter = require('@wdio/allure-reporter').default
 const matrix = require('../utility/2dMatrixPage')
 const data = require('../utility/expectationFile')
-const info = require('../utility/reusableFunctions')
+const utilityFunction = require('../utility/reusableFunctions')
 const wait = require('../utility/timeout')
 
 
@@ -13,7 +13,7 @@ describe('069_Edit product to check expiration date is incorrect and delete smpc
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            await info.runAppium("checkSmpcDeletedInProductWithIncorrectExpiryDateTestRun")
+            await utilityFunction.runAppium("checkSmpcDeletedInProductWithIncorrectExpiryDateTestRun")
         })
         console.log("Running test suite in incremental mode and browser tests only")
     } else {
@@ -30,9 +30,9 @@ describe('069_Edit product to check expiration date is incorrect and delete smpc
         //click product
         await products.clickProductFromSideNav()
         await wait.setTimeoutwait(4);
-        console.log("prod to edit" + info.getProductId())
+        console.log("prod to edit" + utilityFunction.getProductId())
         //search the product code
-        await products.searchProductCode(info.getProductId())
+        await products.searchProductCode(utilityFunction.getProductId())
         await wait.setTimeoutwait(3);
         await browser.keys('Enter')
         await wait.setTimeoutwait(4);
@@ -42,17 +42,17 @@ describe('069_Edit product to check expiration date is incorrect and delete smpc
         //delete second language
         await products.deleteSecondLanguage()
         await wait.setTimeoutwait(4);
-        info.setEpiDisplayed(await products.epiDisplayed())
+        utilityFunction.setEpiDisplayed(await products.epiDisplayed())
         await wait.setTimeoutwait(2);
 
 
-        const incorrectExpiryDate = info.randomDateExpired()
+        const incorrectExpiryDate = utilityFunction.randomDateExpired()
         await wait.setTimeoutwait(2);
         //generate expectation file
-        data.generateExpectationFile(info.getProductId(), info.getbatchId(), incorrectExpiryDate, info.getSerialNumber(), info.getBrandName(), info.getBatchRecall(), "", "", info.getBatchRecallMsg(), info.getEpiDisplayed())
+        data.generateExpectationFile(utilityFunction.getProductId(), utilityFunction.getbatchId(), incorrectExpiryDate, utilityFunction.getSerialNumber(), utilityFunction.getBrandName(), utilityFunction.getBatchRecall(), "", "", utilityFunction.getBatchRecallMsg(), utilityFunction.getEpiDisplayed())
         await wait.setTimeoutwait(12);
         //generate 2d matrix image
-        matrix.generate2dMatrixImage(info.getProductId(), info.getbatchId(), incorrectExpiryDate, info.getSerialNumber())
+        matrix.generate2dMatrixImage(utilityFunction.getProductId(), utilityFunction.getbatchId(), incorrectExpiryDate, utilityFunction.getSerialNumber())
         await wait.setTimeoutwait(8);
 
         //update product

@@ -3,7 +3,6 @@ const products = require('../pageobjects/products.page');
 const testData = require('../testdata/config.json')
 const allureReporter = require('@wdio/allure-reporter').default
 var randomCountry = require('random-country');
-
 const wait = require('../utility/timeout')
 const path = require('path');
 const fs = require('fs');
@@ -51,7 +50,7 @@ describe('112_Update a product via import of Json to change market id', () => {
         await products.clickViewMessageInFailedLog()
         await wait.setTimeoutwait(5);
 
-        //click invalid field info 
+        //click invalid field info
         await products.invalidFieldInfo()
         await wait.setTimeoutwait(5);
         //Read invalid field info

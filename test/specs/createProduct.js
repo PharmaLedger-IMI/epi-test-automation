@@ -1,6 +1,6 @@
 
 const products = require('../pageobjects/products.page');
-const info = require('../utility/reusableFile')
+const utilityFunction = require('../utility/reusableFile')
 const wait = require('../utility/timeout')
 const testData = require('../testdata/config.json')
 const allureReporter = require('@wdio/allure-reporter').default
@@ -31,12 +31,12 @@ describe('003_Create Product', () => {
             await products.addProduct();
             await wait.setTimeoutwait(5);
             //enter gtin
-            await products.enterGtinCode(info.getProductId());
+            await products.enterGtinCode(utilityFunction.getProductId());
             await wait.setTimeoutwait(3);
             //enter brand name
             await products.brandName(testData.newProductDetails.brandName + moment().format('DD-MM-YY h:mm:ss'))
             await wait.setTimeoutwait(4);
-            info.setBrandName(await products.checkBrandName())
+            utilityFunction.setBrandName(await products.checkBrandName())
             await wait.setTimeoutwait(2);
             //enter description
             await products.productDescription(testData.newProductDetails.medicinalProductName);
@@ -66,7 +66,7 @@ describe('003_Create Product', () => {
             //add epi
             await products.addEpi()
             await wait.setTimeoutwait(3);
-            
+
             //video source
             await products.videoSourceEpi(testData.newProductDetails.videoSource)
             await wait.setTimeoutwait(3);
