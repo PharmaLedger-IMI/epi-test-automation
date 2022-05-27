@@ -50,7 +50,7 @@ describe('065_Edit product to uncheck batch is recalled and edit batch to unchec
 
         //update product
         await products.updateProduct()
-        await wait.setTimeoutwait(18);
+        await wait.setTimeoutwait(40);
 
 
 
@@ -67,18 +67,18 @@ describe('065_Edit product to uncheck batch is recalled and edit batch to unchec
         await browser.execute('document.querySelector("div:nth-child(' + await utilityFunction.editBatchRow(editValue) + ') button:nth-child(1)").click()')
         await wait.setTimeoutwait(6);
 
-        //update recalled serial number
-        await batches.selectUpdateRecalledSerialFromDropdown(testData.newBatchDetails.updateRecalled)
-        await wait.setTimeoutwait(3);
+        // //update recalled serial number
+        // await batches.selectUpdateValidSerialFromDropdown(testData.newBatchDetails.updateValid)
+        // await wait.setTimeoutwait(3);
 
-        //set the serial number and enter
-        utilityFunction.setSerialNumber(await batches.serialNum())
-        await wait.setTimeoutwait(3);
-        await batches.enterSerialNumber(utilityFunction.getSerialNumber())
-        await wait.setTimeoutwait(3);
-        //accept serial number
-        await batches.acceptSerialNumber()
-        await wait.setTimeoutwait(3);
+        // //set the serial number and enter
+        // utilityFunction.setSerialNumber(await batches.serialNum())
+        // await wait.setTimeoutwait(3);
+        // await batches.enterSerialNumber(utilityFunction.getSerialNumber())
+        // await wait.setTimeoutwait(3);
+        // //accept serial number
+        // await batches.acceptSerialNumber()
+        // await wait.setTimeoutwait(3);
 
         //clear recall message
         await batches.clearRecallMessage()

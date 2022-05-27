@@ -52,12 +52,9 @@ describe('099_Edit product to uncheck batch is unknown and edit batch to update 
 
     //update product
     await products.updateProduct()
-    await wait.setTimeoutwait(18);
+    await wait.setTimeoutwait(40);
 
     await batches.clickBatchFromSideNav();
-    // await wait.setTimeoutwait(3);
-    //Created for QA environment
-    //await browser.execute('document.querySelector(`webc-app-menu-item:nth-child(4) stencil-route-link:nth-child(1) a:nth-child(1)`).click()')
     await wait.setTimeoutwait(6);
     //click batch
     let editValue = utilityFunction.getbatchId()
@@ -84,6 +81,7 @@ describe('099_Edit product to uncheck batch is unknown and edit batch to update 
 
     //set serial number value
     utilityFunction.setSerialNumber(await batches.serialNum())
+    await wait.setTimeoutwait(2);
     //enter serial number
     await batches.enterSerialNumber(utilityFunction.getSerialNumber())
     await wait.setTimeoutwait(5);

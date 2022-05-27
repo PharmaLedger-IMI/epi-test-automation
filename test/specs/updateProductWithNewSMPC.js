@@ -14,7 +14,7 @@ describe('057_Edit product to upload SMPC with another leaflet', () => {
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            await utilityFunction.runAppium("updateProductWithNewLeafletTestRun")
+            await utilityFunction.runAppium("updateProductWithNewSMPCTestRun")
         })
         console.log("Running test suite in incremental mode and browser tests only")
     } else {
@@ -35,9 +35,9 @@ describe('057_Edit product to upload SMPC with another leaflet', () => {
 
         //search the product code
         await products.searchProductCode(utilityFunction.getProductId())
-        await wait.setTimeoutwait(5);
+        await wait.setTimeoutwait(8);
         await browser.keys('Enter')
-        await wait.setTimeoutwait(3);
+        await wait.setTimeoutwait(8);
         //view or edit
         //await products.clickViewEdit()
         await browser.execute('document.querySelector("button[data-tag=\'edit-product\']").click()')
@@ -64,7 +64,7 @@ describe('057_Edit product to upload SMPC with another leaflet', () => {
 
         //update product
         await products.updateProduct()
-        await wait.setTimeoutwait(18);
+        await wait.setTimeoutwait(40);
 
         //click batch
         await batches.clickBatchFromSideNav();

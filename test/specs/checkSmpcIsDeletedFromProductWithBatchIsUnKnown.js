@@ -50,7 +50,7 @@ describe('094_Edit product to check batch is unknown and delete smpc. Pass unkno
 
         //update product
         await products.updateProduct()
-        await wait.setTimeoutwait(18);
+        await wait.setTimeoutwait(40);
 
 
         //click batch

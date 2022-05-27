@@ -46,7 +46,7 @@ describe('087_Edit product to check SN is unknown and pass unknown SN in matrix'
 
         //update product
         await products.updateProduct()
-        await wait.setTimeoutwait(18);
+        await wait.setTimeoutwait(40);
 
 
         //click batch
@@ -64,6 +64,7 @@ describe('087_Edit product to check SN is unknown and pass unknown SN in matrix'
 
         //set serial number
         utilityFunction.setSerialNumber(await batches.serialNum())
+        await wait.setTimeoutwait(2);
         await batches.enterSerialNumber(utilityFunction.getSerialNumber())
         await wait.setTimeoutwait(4);
 

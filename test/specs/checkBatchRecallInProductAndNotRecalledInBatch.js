@@ -46,7 +46,18 @@ describe('061_Edit product to check batch is recalled and edit batch to uncheck 
         //await products.enableBatchIsRecalled()
         //await wait.setTimeoutwait(5);
 
-        utilityFunction.setEpiDisplayed(await products.epiDisplayed())
+        //delete updated leaflet and SMPC
+        await products.deleteAllFile()
+        await wait.setTimeoutwait(5);
+
+        //add leaflet
+        await products.addEpi()
+        await wait.setTimeoutwait(3);
+        //upload leaflet
+        await products.uploadFile(path.join(__dirname, '/src/Leaflet_ProductLevel'));
+        await wait.setTimeoutwait(4);
+        //accept
+        await products.acceptButton()
         await wait.setTimeoutwait(5);
 
         //add smpc
@@ -58,18 +69,20 @@ describe('061_Edit product to check batch is recalled and edit batch to uncheck 
         await products.selectType(testData.newBatchDetails.selectType)
         await wait.setTimeoutwait(3);
 
-        //upload leaflet
+        //upload smpc
         await products.uploadFile(path.join(__dirname, '/src/SMPC_ProductLevel'));
         await wait.setTimeoutwait(4);
-        utilityFunction.setEpiDisplayed(await products.epiDisplayed())
-        await wait.setTimeoutwait(2);
+
         //scrollIntoView
         await products.acceptButton()
         await wait.setTimeoutwait(5);
 
+        utilityFunction.setEpiDisplayed(await products.epiDisplayed())
+        await wait.setTimeoutwait(3);
+
         //update product
         await products.updateProduct()
-        await wait.setTimeoutwait(18);
+        await wait.setTimeoutwait(40);
 
 
         await batches.clickBatchFromSideNav();
@@ -94,12 +107,13 @@ describe('061_Edit product to check batch is recalled and edit batch to uncheck 
 
         await wait.setTimeoutwait(2);
 
-        //update recalled serial number
-        await batches.selectUpdateRecalledSerialFromDropdown(testData.newBatchDetails.updateRecalled)
+        //update valid serial number
+        await batches.selectUpdateValidSerialFromDropdown(testData.newBatchDetails.updateValid)
         await wait.setTimeoutwait(5);
 
         //set serial number value
         utilityFunction.setSerialNumber(await batches.serialNum())
+        await wait.setTimeoutwait(2);
         //enter serial number
         await batches.enterSerialNumber(utilityFunction.getSerialNumber())
         await wait.setTimeoutwait(5);

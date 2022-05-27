@@ -51,14 +51,11 @@ describe('068_Edit product to check expiration date is incorrect and edit batch 
 
         //update product
         await products.updateProduct()
-        await wait.setTimeoutwait(18);
+        await wait.setTimeoutwait(40);
 
 
         //click batch
         await batches.clickBatchFromSideNav();
-        //created for QA
-        //await browser.execute('document.querySelector(`webc-app-menu-item:nth-child(4) stencil-route-link:nth-child(1) a:nth-child(1)`).click()')
-
         await wait.setTimeoutwait(8);
         //edit batch
         let editValue = utilityFunction.getbatchId()

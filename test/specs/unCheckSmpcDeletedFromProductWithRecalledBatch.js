@@ -46,7 +46,7 @@ describe('066_Edit product to uncheck batch recall and delete SMPC and edit batc
         utilityFunction.setEpiDisplayed(await products.epiDisplayed())
         //update product
         await products.updateProduct()
-        await wait.setTimeoutwait(18);
+        await wait.setTimeoutwait(40);
 
 
         //click batch
@@ -59,17 +59,17 @@ describe('066_Edit product to uncheck batch recall and delete SMPC and edit batc
         await browser.execute('document.querySelector("div:nth-child(' + await utilityFunction.editBatchRow(editValue) + ') button:nth-child(1)").click()')
         await wait.setTimeoutwait(6);
 
-        await batches.selectUpdateRecalledSerialFromDropdown(testData.newBatchDetails.updateRecalled)
-        await wait.setTimeoutwait(5);
+        // await batches.selectUpdateValidSerialFromDropdown(testData.newBatchDetails.updateValid)
+        // await wait.setTimeoutwait(5);
 
-        //set serial number value
-        utilityFunction.setSerialNumber(await batches.serialNum())
-        //enter serial number
-        await batches.enterSerialNumber(utilityFunction.getSerialNumber())
-        await wait.setTimeoutwait(5);
-        // manage serial number accept
-        await batches.acceptSerialNumber()
-        await wait.setTimeoutwait(3);
+        // //set serial number value
+        // utilityFunction.setSerialNumber(await batches.serialNum())
+        // //enter serial number
+        // await batches.enterSerialNumber(utilityFunction.getSerialNumber())
+        // await wait.setTimeoutwait(5);
+        // // manage serial number accept
+        // await batches.acceptSerialNumber()
+        // await wait.setTimeoutwait(3);
 
         //check batch recall
         await batches.enableCheckToRecallThisBatch()

@@ -24,7 +24,7 @@ describe('070_Edit product to uncheck incorrect expiry date and edit batch to ha
 
     }
 
-    it('Browser - should check Expiration Date is incorrect', async () => {
+    it('Browser - should expiration date is incorrect flag in product', async () => {
 
         allureReporter.addStep("Uncheck expiration date is incorrect flag in product")
         allureReporter.addStep("Scan the code with incorrect expiry date")
@@ -70,7 +70,7 @@ describe('070_Edit product to uncheck incorrect expiry date and edit batch to ha
 
         //update product
         await products.updateProduct()
-        await wait.setTimeoutwait(18);
+        await wait.setTimeoutwait(40);
 
 
         //click batch

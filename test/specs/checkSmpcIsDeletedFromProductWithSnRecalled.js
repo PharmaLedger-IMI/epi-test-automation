@@ -50,7 +50,7 @@ describe('079_Edit product to check SN is recalled and delete smpc. Pass recalle
 
         //update product
         await products.updateProduct()
-        await wait.setTimeoutwait(18);
+        await wait.setTimeoutwait(40);
 
 
         //click batch

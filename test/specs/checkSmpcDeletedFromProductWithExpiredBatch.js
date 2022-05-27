@@ -50,7 +50,7 @@ describe('074_Edit product to check batch is expired and delete smpc. Edit batch
 
         //update product
         await products.updateProduct()
-        await wait.setTimeoutwait(18);
+        await wait.setTimeoutwait(40);
 
 
         //click batch

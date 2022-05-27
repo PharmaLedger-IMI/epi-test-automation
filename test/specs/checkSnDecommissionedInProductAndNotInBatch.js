@@ -9,7 +9,7 @@ const wait = require('../utility/timeout')
 
 
 
-describe('083_Edit product to check SN is decommssioned and edit batch to reset decommissioned SN', () => {
+describe('083_Edit product to check SN is decommssioned and edit batch to update valid SN', () => {
 
     if (!process.env.npm_config_browserOnly) {
 
@@ -51,7 +51,7 @@ describe('083_Edit product to check SN is decommssioned and edit batch to reset 
 
         //update product
         await products.updateProduct()
-        await wait.setTimeoutwait(18);
+        await wait.setTimeoutwait(40);
 
 
         //click batch
@@ -63,20 +63,23 @@ describe('083_Edit product to check SN is decommssioned and edit batch to reset 
         console.log("editValue is " + editValue)
         await browser.execute('document.querySelector("div:nth-child(' + await utilityFunction.editBatchRow(editValue) + ') button:nth-child(1)").click()')
         await wait.setTimeoutwait(6);
-        //update decommissioned serial number
-        await batches.selectUpdateDecommissionedFromDropdown(testData.newBatchDetails.updateDecommissioned)
+        //update valid serial number
+        await batches.selectUpdateValidSerialFromDropdown(testData.newBatchDetails.updateValid)
         await wait.setTimeoutwait(5);
-        //reset decommissioned serial number
-        await batches.enableResetAllDecommisionedSerialNumber()
-        await wait.setTimeoutwait(2);
+        //set serial number value
+        utilityFunction.setSerialNumber(await batches.serialNum())
+        await wait.setTimeoutwait(3);
+        //enter serial number
+        await batches.enterSerialNumber(utilityFunction.getSerialNumber())
+        await wait.setTimeoutwait(5);
         //manage serial number accept
         await batches.acceptSerialNumber()
-        await wait.setTimeoutwait(4);
+        await wait.setTimeoutwait(3);
         //generate expectation file
-        data.generateExpectationFile(utilityFunction.getProductId(), utilityFunction.getbatchId(), utilityFunction.getCurrentRandomDate(), "", utilityFunction.getBrandName(), utilityFunction.getBatchRecall(), "", "", utilityFunction.getBatchRecallMsg(), utilityFunction.getEpiDisplayed())
+        data.generateExpectationFile(utilityFunction.getProductId(), utilityFunction.getbatchId(), utilityFunction.getCurrentRandomDate(), utilityFunction.getSerialNumber(), utilityFunction.getBrandName(), utilityFunction.getBatchRecall(), "", "", utilityFunction.getBatchRecallMsg(), utilityFunction.getEpiDisplayed())
         await wait.setTimeoutwait(12);
         //generate 2d matrix image
-        matrix.generate2dMatrixImage(utilityFunction.getProductId(), utilityFunction.getbatchId(), utilityFunction.getCurrentRandomDate(), "")
+        matrix.generate2dMatrixImage(utilityFunction.getProductId(), utilityFunction.getbatchId(), utilityFunction.getCurrentRandomDate(), utilityFunction.getSerialNumber())
         await wait.setTimeoutwait(9);
         //update batch
         await batches.updateBatchForEdit()

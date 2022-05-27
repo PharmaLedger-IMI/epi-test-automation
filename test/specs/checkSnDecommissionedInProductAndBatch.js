@@ -49,7 +49,7 @@ describe('082_Edit product to check SN is decommssioned and edit batch to update
 
         //update product
         await products.updateProduct()
-        await wait.setTimeoutwait(18);
+        await wait.setTimeoutwait(40);
 
 
         //click batch
@@ -67,6 +67,7 @@ describe('082_Edit product to check SN is decommssioned and edit batch to update
 
         //set serial number value
         utilityFunction.setSerialNumber(await batches.serialNum())
+        await wait.setTimeoutwait(3);
         //enter serial number
         await batches.enterSerialNumber(utilityFunction.getSerialNumber())
         await wait.setTimeoutwait(5);

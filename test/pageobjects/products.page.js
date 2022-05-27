@@ -182,7 +182,7 @@ class productsPage {
         return $("//button[normalize-space()='Cancel']")
 
     }
-   
+
     async clickProduct() {
 
         await this.openProduct.click();
@@ -298,7 +298,7 @@ class productsPage {
     }
     async enableSnIsInDecommissionedList() {
         await this.snIsInDecommissionedListCheckbox.click()
-        //await expect(this.snIsInDecommissionedListClick).toBeEnabled(); 
+        //await expect(this.snIsInDecommissionedListClick).toBeEnabled();
     }
     async enableSnIsUnknown() {
         await this.snIsUnknownCheckbox.click()
@@ -384,6 +384,20 @@ class productsPage {
     async updateProduct() {
         await this.updateProductButton.scrollIntoView()
         await this.updateProductButton.click()
+    }
+
+    async deleteAllFile() {
+
+        var i = 1
+
+        for (; await browser.$("//li[" + i + "]//div[1]//button[1]//i[1]").isExisting();) {
+            console.log(i)
+            await browser.$("//li[" + i + "]//div[1]//button[1]//i[1]").click()
+        }
+        if (await browser.$('//i[@class="fa fa-trash-o"]').isExisting()) {
+            await browser.$('//i[@class="fa fa-trash-o"]').click()
+        }
+
     }
     async clickImport() {
 
@@ -510,7 +524,7 @@ class productsPage {
             if (fs.existsSync(productFile)) {
 
                 let fileContents = JSON.parse(fs.readFileSync(productFile, 'utf-8'))
-                
+
                 // console.log(JSON.stringify(fileContents))
                 // console.log(JSON.stringify(rawdata))
                 console.log(JSON.stringify(fileContents) === JSON.stringify(rawdata))

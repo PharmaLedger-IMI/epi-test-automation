@@ -70,7 +70,7 @@ describe('095_Edit product to uncheck batch is unknown and edit batch to have va
 
         //update product
         await products.updateProduct()
-        await wait.setTimeoutwait(18);
+        await wait.setTimeoutwait(40);
 
 
         //click batch
@@ -88,6 +88,7 @@ describe('095_Edit product to uncheck batch is unknown and edit batch to have va
 
         //set serial number
         utilityFunction.setSerialNumber(await batches.serialNum())
+        await wait.setTimeoutwait(2);
         await batches.enterSerialNumber(utilityFunction.getSerialNumber())
         await wait.setTimeoutwait(3);
 

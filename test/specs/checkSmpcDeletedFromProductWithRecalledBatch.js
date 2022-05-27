@@ -53,16 +53,14 @@ describe('063_Edit product to check batch is recalled and delete smpc. Edit batc
         await wait.setTimeoutwait(2);
         //update product
         await products.updateProduct()
-        await wait.setTimeoutwait(18);
+        await wait.setTimeoutwait(40);
 
         //click batch
         await batches.clickBatchFromSideNav();
-        // await wait.setTimeoutwait(3);
-        //Created for QA environment
-        // await browser.execute('document.querySelector(`webc-app-menu-item:nth-child(4) stencil-route-link:nth-child(1) a:nth-child(1)`).click()')
-        await wait.setTimeoutwait(6);
+        await wait.setTimeoutwait(8);
         //edit batch
         let editValue = utilityFunction.getbatchId()
+        await wait.setTimeoutwait(6);
         console.log("editValue is " + editValue)
         await browser.execute('document.querySelector("div:nth-child(' + await utilityFunction.editBatchRow(editValue) + ') button:nth-child(1)").click()')
         await wait.setTimeoutwait(6);
@@ -81,7 +79,7 @@ describe('063_Edit product to check batch is recalled and delete smpc. Edit batc
 
         await wait.setTimeoutwait(2);
         //update recalled serial number
-        await batches.selectUpdateRecalledSerialFromDropdown(testData.newBatchDetails.updateRecalled)
+        await batches.selectUpdateValidSerialFromDropdown(testData.newBatchDetails.updateValid)
         await wait.setTimeoutwait(5);
 
         //set serial number value

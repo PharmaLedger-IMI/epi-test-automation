@@ -50,7 +50,7 @@ describe('072_Edit product to check batch is expired and edit batch to set expir
 
         //update product
         await products.updateProduct()
-        await wait.setTimeoutwait(8);
+        await wait.setTimeoutwait(40);
 
 
         //click batch

@@ -47,7 +47,7 @@ describe('086_Edit product to uncheck SN is decommissioned and edit batch to res
 
         //update product
         await products.updateProduct()
-        await wait.setTimeoutwait(18);
+        await wait.setTimeoutwait(40);
 
 
         //click batch
@@ -59,20 +59,23 @@ describe('086_Edit product to uncheck SN is decommissioned and edit batch to res
         console.log("editValue is " + editValue)
         await browser.execute('document.querySelector("div:nth-child(' + await utilityFunction.editBatchRow(editValue) + ') button:nth-child(1)").click()')
         await wait.setTimeoutwait(6);
-        //update decommissioned serial number
-        await batches.selectUpdateDecommissionedFromDropdown(testData.newBatchDetails.updateDecommissioned)
+        //update valid serial number
+        await batches.selectUpdateValidSerialFromDropdown(testData.newBatchDetails.updateValid)
         await wait.setTimeoutwait(5);
-        //reset decommissioned serial number
-        await batches.enableResetAllDecommisionedSerialNumber()
+        //set serial number value
+        utilityFunction.setSerialNumber(await batches.serialNum())
         await wait.setTimeoutwait(3);
+        //enter serial number
+        await batches.enterSerialNumber(utilityFunction.getSerialNumber())
+        await wait.setTimeoutwait(5);
         //manage serial number accept
         await batches.acceptSerialNumber()
         await wait.setTimeoutwait(3);
         //generate expectation file
-        data.generateExpectationFile(utilityFunction.getProductId(), utilityFunction.getbatchId(), utilityFunction.getCurrentRandomDate(), "", utilityFunction.getBrandName(), "", "", "", "", utilityFunction.getEpiDisplayed())
+        data.generateExpectationFile(utilityFunction.getProductId(), utilityFunction.getbatchId(), utilityFunction.getCurrentRandomDate(), utilityFunction.getSerialNumber(), utilityFunction.getBrandName(), "", "", "", "", utilityFunction.getEpiDisplayed())
         await wait.setTimeoutwait(12);
         //generate 2d matrix image
-        matrix.generate2dMatrixImage(utilityFunction.getProductId(), utilityFunction.getbatchId(), utilityFunction.getCurrentRandomDate(), "")
+        matrix.generate2dMatrixImage(utilityFunction.getProductId(), utilityFunction.getbatchId(), utilityFunction.getCurrentRandomDate(), utilityFunction.getSerialNumber())
         await wait.setTimeoutwait(10);
         //update batch
         await batches.updateBatchForEdit()

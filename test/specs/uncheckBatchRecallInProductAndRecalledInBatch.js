@@ -71,7 +71,7 @@ describe('064_Edit product to uncheck batch is recalled and edit batch to set re
 
         //update product
         await products.updateProduct()
-        await wait.setTimeoutwait(18);
+        await wait.setTimeoutwait(40);
 
 
         //click batch
@@ -84,8 +84,8 @@ describe('064_Edit product to uncheck batch is recalled and edit batch to set re
         await browser.execute('document.querySelector("div:nth-child(' + await utilityFunction.editBatchRow(editValue) + ') button:nth-child(1)").click()')
         await wait.setTimeoutwait(6);
 
-        //update recalled serial number
-        await batches.selectUpdateRecalledSerialFromDropdown(testData.newBatchDetails.updateRecalled)
+        //update valid serial number
+        await batches.selectUpdateValidSerialFromDropdown(testData.newBatchDetails.updateValid)
         await wait.setTimeoutwait(3);
 
         //set the serial number and enter
@@ -117,7 +117,7 @@ describe('064_Edit product to uncheck batch is recalled and edit batch to set re
 
         //update batch
         await batches.updateBatchForEdit()
-        await wait.setTimeoutwait(18);
+        await wait.setTimeoutwait(25);
 
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
 

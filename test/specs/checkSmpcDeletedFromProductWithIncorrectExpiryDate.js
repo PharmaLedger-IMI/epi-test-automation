@@ -57,7 +57,7 @@ describe('069_Edit product to check expiration date is incorrect and delete smpc
 
         //update product
         await products.updateProduct()
-        await wait.setTimeoutwait(18);
+        await wait.setTimeoutwait(40);
 
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
         //scan same batch

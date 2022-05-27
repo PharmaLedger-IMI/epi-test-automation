@@ -50,7 +50,7 @@ describe('071_Edit product to uncheck expiration date in incorrect and edit batc
 
         //update product
         await products.updateProduct()
-        await wait.setTimeoutwait(18);
+        await wait.setTimeoutwait(40);
 
 
         //click batch

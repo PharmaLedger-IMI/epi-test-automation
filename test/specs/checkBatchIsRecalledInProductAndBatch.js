@@ -51,7 +51,7 @@ describe('062_Edit Product to check batch is recalled and edit batch to set reca
 
         //update product
         await products.updateProduct()
-        await wait.setTimeoutwait(18);
+        await wait.setTimeoutwait(40);
 
         //click batch
         await batches.clickBatchFromSideNav();
@@ -62,16 +62,17 @@ describe('062_Edit Product to check batch is recalled and edit batch to set reca
         console.log("editValue is " + editValue)
         await browser.execute('document.querySelector("div:nth-child(' + await utilityFunction.editBatchRow(editValue) + ') button:nth-child(1)").click()')
         await wait.setTimeoutwait(6);
-        //update recalled serial number
-        await batches.selectUpdateRecalledSerialFromDropdown(testData.newBatchDetails.updateRecalled)
+        //update valid serial number
+        await batches.selectUpdateValidSerialFromDropdown(testData.newBatchDetails.updateValid)
         await wait.setTimeoutwait(5);
 
         //set serial number value
         utilityFunction.setSerialNumber(await batches.serialNum())
+        await wait.setTimeoutwait(2);
         //enter serial number
         await batches.enterSerialNumber(utilityFunction.getSerialNumber())
         await wait.setTimeoutwait(5);
-        // manage serial number accept
+        //manage serial number accept
         await batches.acceptSerialNumber()
         await wait.setTimeoutwait(4);
 

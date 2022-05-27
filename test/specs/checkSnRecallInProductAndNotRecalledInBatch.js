@@ -7,7 +7,7 @@ const testData = require('../testdata/config.json')
 const utilityFunction = require('../utility/reusableFunctions')
 const wait = require('../utility/timeout')
 
-describe('078_Edit product to check SN is recalled and edit batch to reset valid SN', () => {
+describe('078_Edit product to check SN is recalled and edit batch to update valid SN', () => {
 
     if (!process.env.npm_config_browserOnly) {
 
@@ -58,19 +58,22 @@ describe('078_Edit product to check SN is recalled and edit batch to reset valid
         await browser.execute('document.querySelector("div:nth-child(' + await utilityFunction.editBatchRow(editValue) + ') button:nth-child(1)").click()')
         await wait.setTimeoutwait(6);
         //update recalled serial number
-        await batches.selectUpdateRecalledSerialFromDropdown(testData.newBatchDetails.updateRecalled)
+        await batches.selectUpdateValidSerialFromDropdown(testData.newBatchDetails.updateValid)
         await wait.setTimeoutwait(5);
-        //reset recall
-        await batches.enableResetAllRecalledSerialNumber()
-        await wait.setTimeoutwait(2);
+        //set serial number value
+        utilityFunction.setSerialNumber(await batches.serialNum())
+        //enter serial number
+        await batches.enterSerialNumber(utilityFunction.getSerialNumber())
+        await wait.setTimeoutwait(5);
         //manage serial number accept
         await batches.acceptSerialNumber()
         await wait.setTimeoutwait(4);
+
         //generate expectation file
-        data.generateExpectationFile(utilityFunction.getProductId(), utilityFunction.getbatchId(), utilityFunction.getCurrentRandomDate(), "", utilityFunction.getBrandName(), utilityFunction.getBatchRecall(), "", "", utilityFunction.getBatchRecallMsg(), utilityFunction.getEpiDisplayed())
+        data.generateExpectationFile(utilityFunction.getProductId(), utilityFunction.getbatchId(), utilityFunction.getCurrentRandomDate(), utilityFunction.getSerialNumber(), utilityFunction.getBrandName(), utilityFunction.getBatchRecall(), "", "", utilityFunction.getBatchRecallMsg(), utilityFunction.getEpiDisplayed())
         await wait.setTimeoutwait(12);
         //generate 2d matrix image
-        matrix.generate2dMatrixImage(utilityFunction.getProductId(), utilityFunction.getbatchId(), utilityFunction.getCurrentRandomDate(), "")
+        matrix.generate2dMatrixImage(utilityFunction.getProductId(), utilityFunction.getbatchId(), utilityFunction.getCurrentRandomDate(), utilityFunction.getSerialNumber())
         await wait.setTimeoutwait(8);
         //update batch
         await batches.updateBatchForEdit()

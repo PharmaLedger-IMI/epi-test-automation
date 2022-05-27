@@ -44,12 +44,13 @@ describe('084_Edit product to check SN is decommissioned and delete smpc. Edit b
         //delete smpc
         await products.deleteSecondLanguage()
         await wait.setTimeoutwait(4);
+
         utilityFunction.setEpiDisplayed(await products.epiDisplayed())
         await wait.setTimeoutwait(3);
 
         //update product
         await products.updateProduct()
-        await wait.setTimeoutwait(18);
+        await wait.setTimeoutwait(40);
 
 
         //click batch
@@ -67,6 +68,7 @@ describe('084_Edit product to check SN is decommissioned and delete smpc. Edit b
 
         //set serial number value
         utilityFunction.setSerialNumber(await batches.serialNum())
+        await wait.setTimeoutwait(3);
         //enter serial number
         await batches.enterSerialNumber(utilityFunction.getSerialNumber())
         await wait.setTimeoutwait(5);

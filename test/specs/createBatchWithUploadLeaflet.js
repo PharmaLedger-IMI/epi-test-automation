@@ -15,7 +15,7 @@ describe('054_verify that the batch specific version is displayed correctly', ()
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            await utilityFunction.runAppium("createTheBatchWithUploadLeafletTest")
+            await utilityFunction.runAppium("createBatchWithUploadLeafletTestRun")
         })
         console.log("Running test suite in incremental mode and browser tests only")
     } else {

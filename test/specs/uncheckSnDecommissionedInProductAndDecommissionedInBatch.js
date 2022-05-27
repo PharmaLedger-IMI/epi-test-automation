@@ -68,7 +68,7 @@ describe('085_Edit product to uncheck SN is decommissioned and edit batch to hav
 
         //update product
         await products.updateProduct()
-        await wait.setTimeoutwait(18);
+        await wait.setTimeoutwait(40);
 
 
         //click batch
@@ -86,6 +86,7 @@ describe('085_Edit product to uncheck SN is decommissioned and edit batch to hav
 
         //set serial number value
         utilityFunction.setSerialNumber(await batches.serialNum())
+        await wait.setTimeoutwait(3);
         //enter serial number
         await batches.enterSerialNumber(utilityFunction.getSerialNumber())
         await wait.setTimeoutwait(5);

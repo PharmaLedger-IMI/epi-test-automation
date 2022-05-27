@@ -68,7 +68,7 @@ describe('080_Edit product to uncheck SN is in recall and edit batch to update v
 
         //update product
         await products.updateProduct()
-        await wait.setTimeoutwait(18);
+        await wait.setTimeoutwait(40);
 
 
         //click batch

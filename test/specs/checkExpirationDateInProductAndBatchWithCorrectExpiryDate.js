@@ -70,12 +70,11 @@ describe('067_Edit product to check expiration date is incorrect and edit batch 
 
         //update product
         await products.updateProduct()
-        await wait.setTimeoutwait(18);
+        await wait.setTimeoutwait(40);
 
 
         //click batch
         await batches.clickBatchFromSideNav();
-
         await wait.setTimeoutwait(8);
         //edit batch
         let editValue = utilityFunction.getbatchId()

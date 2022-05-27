@@ -51,7 +51,7 @@ describe('076_Edit product to uncheck batch is expired and edit batch to have va
 
         //update product
         await products.updateProduct()
-        await wait.setTimeoutwait(18);
+        await wait.setTimeoutwait(40);
 
 
         //click batch

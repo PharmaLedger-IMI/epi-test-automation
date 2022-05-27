@@ -45,7 +45,7 @@ describe('077_Edit product to check SN is recalled and edit batch to set recall 
 
         //update product
         await products.updateProduct()
-        await wait.setTimeoutwait(18);
+        await wait.setTimeoutwait(40);
 
 
         //click batch

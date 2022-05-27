@@ -55,7 +55,7 @@ describe('098_Edit product to check batch is unknown and pass invalid batch and 
 
     //update product
     await products.updateProduct()
-    await wait.setTimeoutwait(18);
+    await wait.setTimeoutwait(40);
 
 
     //click batch
@@ -88,6 +88,7 @@ describe('098_Edit product to check batch is unknown and pass invalid batch and 
 
     //set serial number value
     utilityFunction.setSerialNumber(await batches.serialNum())
+    await wait.setTimeoutwait(2);
     //enter serial number
     await batches.enterSerialNumber(utilityFunction.getSerialNumber())
     await wait.setTimeoutwait(5);
