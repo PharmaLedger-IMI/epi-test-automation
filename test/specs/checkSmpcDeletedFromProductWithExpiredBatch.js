@@ -7,7 +7,7 @@ const data = require('../utility/expectationFile')
 const utilityFunction = require('../utility/reusableFunctions')
 const wait = require('../utility/timeout')
 
-describe('074_Edit product to check batch is expired and delete smpc. Edit batch to have expired date', () => {
+describe('078_Edit product to check batch is expired and delete smpc. Edit batch to have expired date', () => {
 
     if (!process.env.npm_config_browserOnly) {
 

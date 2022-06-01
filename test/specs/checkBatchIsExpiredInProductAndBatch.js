@@ -11,7 +11,7 @@ const exec = util.promisify(require('child_process').exec);
 
 
 
-describe('072_Edit product to check batch is expired and edit batch to set expired date', () => {
+describe('076_Edit product to check batch is expired and edit batch to set expired date', () => {
 
     if (!process.env.npm_config_browserOnly) {
 

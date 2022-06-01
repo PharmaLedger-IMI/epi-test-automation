@@ -8,7 +8,7 @@ const testData = require('../testdata/config.json')
 const allureReporter = require('@wdio/allure-reporter').default
 const path = require('path');
 
-describe('057_Edit product to upload SMPC with another leaflet', () => {
+describe('061_Edit product to upload SMPC with another leaflet', () => {
 
     if (!process.env.npm_config_browserOnly) {
 

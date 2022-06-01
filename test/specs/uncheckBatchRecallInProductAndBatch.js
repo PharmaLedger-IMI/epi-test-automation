@@ -7,7 +7,7 @@ const utilityFunction = require('../utility/reusableFunctions')
 const wait = require('../utility/timeout')
 const testData = require('../testdata/config.json')
 
-describe('065_Edit product to uncheck batch is recalled and edit batch to uncheck batch recall', () => {
+describe('068_Edit product to uncheck batch is recalled and edit batch to uncheck batch recall', () => {
 
     if (!process.env.npm_config_browserOnly) {
 

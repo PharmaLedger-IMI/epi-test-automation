@@ -9,13 +9,13 @@ const wait = require('../utility/timeout')
 const path = require('path')
 
 
-describe('085_Edit product to uncheck SN is decommissioned and edit batch to have decommissioned SN', () => {
+describe('089_Edit product to uncheck SN is decommissioned and edit batch to have decommissioned SN', () => {
 
     if (!process.env.npm_config_browserOnly) {
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            await utilityFunction.runAppium("unCheckTheSnDecommissionedInProductAndDecommissionedInBatchTestRun")
+            await utilityFunction.runAppium("unCheckSnDecommissionedInProductAndDecommissionedInBatchTestRun")
 
         })
         console.log("Running test suite in incremental mode and browser tests only")

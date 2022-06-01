@@ -8,7 +8,7 @@ const utilityFunction = require('../utility/reusableFunctions')
 const wait = require('../utility/timeout')
 
 
-describe('076_Edit product to uncheck batch is expired and edit batch to have valid batch', () => {
+describe('080_Edit product to uncheck batch is expired and edit batch to have valid batch', () => {
 
     if (!process.env.npm_config_browserOnly) {
 

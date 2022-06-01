@@ -9,7 +9,7 @@ const wait = require('../utility/timeout')
 
 
 
-describe('096_Edit product to uncheck batch is unknown and edit batch to have valid batch', () => {
+describe('0100_Edit product to uncheck batch is unknown and edit batch to have valid batch', () => {
 
     if (!process.env.npm_config_browserOnly) {
 

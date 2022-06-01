@@ -8,7 +8,7 @@ const utilityFunction = require('../utility/reusableFunctions')
 const wait = require('../utility/timeout')
 
 
-describe('094_Edit product to check batch is unknown and delete smpc. Pass unknown batch in matrix', () => {
+describe('098_Edit product to check batch is unknown and delete smpc. Pass unknown batch in matrix', () => {
 
     if (!process.env.npm_config_browserOnly) {
 

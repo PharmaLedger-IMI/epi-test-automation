@@ -8,7 +8,7 @@ const utilityFunction = require('../utility/reusableFunctions')
 const wait = require('../utility/timeout')
 
 
-describe('087_Edit product to check SN is unknown and pass unknown SN in matrix', () => {
+describe('091_Edit product to check SN is unknown and pass unknown SN in matrix', () => {
 
     if (!process.env.npm_config_browserOnly) {
 

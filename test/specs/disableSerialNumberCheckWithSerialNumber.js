@@ -14,7 +14,7 @@ describe('009_Edit batch and disable serial number check with valid SN ', () => 
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            await utilityFunction.runAppium("disableTheSnCheckSnIsValidTest")
+            await utilityFunction.runAppium("disableSnCheckSnIsValidTestRun")
         })
         console.log("Running test suite in incremental mode and browser tests only")
     } else {

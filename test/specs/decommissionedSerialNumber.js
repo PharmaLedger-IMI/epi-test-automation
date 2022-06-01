@@ -8,14 +8,14 @@ const testData = require('../testdata/config.json')
 const allureReporter = require('@wdio/allure-reporter').default
 
 
-describe('040_Create a batch and enable serial number verification and set decommissioned serial numbers and reason code ', () => {
+describe('045_Create a batch and enable serial number verification and set decommissioned serial numbers and reason code ', () => {
 
     if (!process.env.npm_config_browserOnly) {
 
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            await utilityFunction.runAppium("checkDecommissionedSerialNumberTestRun")
+            await utilityFunction.runAppium("checkDecommissionedSerialNumberTest")
         })
         console.log("Running test suite in incremental mode and browser tests only")
     } else {

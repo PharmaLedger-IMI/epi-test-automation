@@ -9,7 +9,7 @@ const wait = require('../utility/timeout')
 
 
 
-describe('083_Edit product to check SN is decommssioned and edit batch to update valid SN', () => {
+describe('087_Edit product to check SN is decommssioned and edit batch to update valid SN', () => {
 
     if (!process.env.npm_config_browserOnly) {
 

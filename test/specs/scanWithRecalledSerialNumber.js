@@ -8,7 +8,7 @@ const testData = require('../testdata/config.json')
 const allureReporter = require('@wdio/allure-reporter').default
 
 
-describe('042_Edit a batch to update recalled SN and scan with recalled serial numbers ', () => {
+describe('047_Edit a batch to update recalled SN and scan with recalled serial numbers ', () => {
 
     if (!process.env.npm_config_browserOnly) {
 

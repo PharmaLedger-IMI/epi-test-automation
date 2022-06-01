@@ -7,7 +7,7 @@ const testData = require('../testdata/config.json')
 const utilityFunction = require('../utility/reusableFunctions')
 const wait = require('../utility/timeout')
 
-describe('089_Edit product to check SN is unknown and delete smpc. Pass unknown SN in matrix', () => {
+describe('093_Edit product to check SN is unknown and delete smpc. Pass unknown SN in matrix', () => {
 
     if (!process.env.npm_config_browserOnly) {
 

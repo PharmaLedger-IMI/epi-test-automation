@@ -7,7 +7,7 @@ const testData = require('../testdata/config.json')
 const utilityFunction = require('../utility/reusableFunctions')
 const wait = require('../utility/timeout')
 
-describe('077_Edit product to check SN is recalled and edit batch to set recall message', () => {
+describe('081_Edit product to check SN is recalled and edit batch to set recall message', () => {
 
     if (!process.env.npm_config_browserOnly) {
 

@@ -5,7 +5,7 @@ const wait = require('../utility/timeout')
 
 
 
-describe('060_Scan previous batch to see the leaflet at product level', () => {
+describe('064_Scan previous batch to see the leaflet at product level', () => {
 
 
     if (process.env.npm_config_incremental) {

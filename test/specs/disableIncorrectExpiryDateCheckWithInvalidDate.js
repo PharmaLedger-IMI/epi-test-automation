@@ -8,13 +8,13 @@ const allureReporter = require('@wdio/allure-reporter').default
 
 
 
-describe('013_Edit batch and disable expiry date check with valid expiry date ', () => {
+describe('014_Edit batch and disable expiry date check with valid expiry date ', () => {
 
     if (!process.env.npm_config_browserOnly) {
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            await utilityFunction.runAppium("disableTheExpiryDateCheckInValidExpiryDateTest")
+            await utilityFunction.runAppium("disableIncorrectExpiryDateWithInValidExpiryDateTestRun")
         })
         console.log("Running test suite in incremental mode and browser tests only")
     } else {

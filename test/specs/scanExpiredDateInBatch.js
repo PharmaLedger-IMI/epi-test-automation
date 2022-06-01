@@ -7,7 +7,7 @@ const wait = require('../utility/timeout')
 const allureReporter = require('@wdio/allure-reporter').default
 
 
-describe('023_Edit batch to select expired date', () => {
+describe('027_Edit batch to select expired date', () => {
 
     if (!process.env.npm_config_browserOnly) {
 

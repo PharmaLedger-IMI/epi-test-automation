@@ -8,7 +8,7 @@ const testData = require('../testdata/config.json')
 const allureReporter = require('@wdio/allure-reporter').default
 
 
-describe('049_Edit batch to reset the serial Numbers', () => {
+describe('053_Edit batch to reset the serial Numbers', () => {
 
     if (!process.env.npm_config_browserOnly) {
 

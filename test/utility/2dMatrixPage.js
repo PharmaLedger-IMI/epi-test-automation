@@ -12,7 +12,10 @@ exports.generate2dMatrixImage = function (gtin, batchNumber, expiryDate, serialN
     var expiryDateR = expdated.slice(2);
     let barcode = ''
 
-    if (serialNumber == "") {
+    if(gtin!="" && expiryDateR == "" && batchNumber == "" && serialNumber == ""){
+        barcode = '(01)' + gtin
+    }
+    else if (serialNumber == "") {
         barcode = '(01)' + gtin + '(17)' + expiryDateR + '(10)' + batchNumber
     }
     else {

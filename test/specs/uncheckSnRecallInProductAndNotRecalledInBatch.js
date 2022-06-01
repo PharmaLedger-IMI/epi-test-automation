@@ -7,7 +7,7 @@ const testData = require('../testdata/config.json')
 const utilityFunction = require('../utility/reusableFunctions')
 const wait = require('../utility/timeout')
 
-describe('081_Edit product to uncheck SN is in recall and edit batch to update serial number', () => {
+describe('085_Edit product to uncheck SN is in recall and edit batch to update serial number', () => {
 
     if (!process.env.npm_config_browserOnly) {
 

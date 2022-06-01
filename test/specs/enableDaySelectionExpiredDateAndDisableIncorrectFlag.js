@@ -9,7 +9,7 @@ const allureReporter = require('@wdio/allure-reporter').default
 
 
 
-describe('034_Create a batch with MonthYear as expiry date and enable day selection, disable incorrect and enable expired date flag', () => {
+describe('039_Create a batch with MonthYear as expiry date and enable day selection, disable incorrect and enable expired date flag', () => {
 
 
     if (!process.env.npm_config_browserOnly) {
@@ -17,7 +17,7 @@ describe('034_Create a batch with MonthYear as expiry date and enable day select
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            await utilityFunction.runAppium("enableDaySelectionAndExpiredDateAndDisableIncorrectTest")
+            await utilityFunction.runAppium("enableDaySelectionAndExpiredDateAndDisableIncorrectTestRun")
         })
         console.log("Running test suite in incremental mode and browser tests only")
 

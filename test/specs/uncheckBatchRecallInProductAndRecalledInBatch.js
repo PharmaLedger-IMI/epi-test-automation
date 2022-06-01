@@ -9,14 +9,14 @@ const testData = require('../testdata/config.json')
 const path = require('path')
 
 
-describe('064_Edit product to uncheck batch is recalled and edit batch to set recall message', () => {
+describe('069_Edit product to uncheck batch is recalled and edit batch to set recall message', () => {
 
     if (!process.env.npm_config_browserOnly) {
 
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            await utilityFunction.runAppium("uncheckBatchIsRecallInProductAndRecalledInBatchTest")
+            await utilityFunction.runAppium("uncheckBatchIsRecallInProductAndRecalledInBatchTestRun")
         })
         console.log("Running test suite in incremental mode and browser tests only")
     } else {

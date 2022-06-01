@@ -10,7 +10,7 @@ const allureReporter = require('@wdio/allure-reporter').default
 const util = require('util');
 const exec = util.promisify(require('child_process').exec);
 
-describe('025_change only the day on the new data matrix ', () => {
+describe('030_change only the day on the new data matrix ', () => {
 
     if (!process.env.npm_config_browserOnly) {
 

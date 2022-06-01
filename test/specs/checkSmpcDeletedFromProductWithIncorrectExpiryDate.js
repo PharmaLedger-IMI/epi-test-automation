@@ -6,7 +6,7 @@ const utilityFunction = require('../utility/reusableFunctions')
 const wait = require('../utility/timeout')
 
 
-describe('069_Edit product to check expiration date is incorrect and delete smpc. Pass incorrect expiry date in matrix', () => {
+describe('073_Edit product to check expiration date is incorrect and delete smpc. Pass incorrect expiry date in matrix', () => {
 
     if (!process.env.npm_config_browserOnly) {
 

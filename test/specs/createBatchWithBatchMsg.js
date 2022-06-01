@@ -6,7 +6,7 @@ const wait = require('../utility/timeout')
 const testData = require('../testdata/config.json')
 const allureReporter = require('@wdio/allure-reporter').default
 
-describe('019_Create a batch with batch message', () => {
+describe('023_Create a batch with batch message', () => {
 
     if (!process.env.npm_config_browserOnly) {
 

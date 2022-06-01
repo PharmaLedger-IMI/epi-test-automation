@@ -8,7 +8,7 @@ const testData = require('../testdata/config.json')
 const allureReporter = require('@wdio/allure-reporter').default
 
 
-describe('047_Edit batch to update without serial number ', () => {
+describe('051_Edit batch to update without serial number ', () => {
 
     if (!process.env.npm_config_browserOnly) {
 

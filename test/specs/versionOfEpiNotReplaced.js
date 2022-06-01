@@ -4,7 +4,7 @@ const utilityFunction = require('../utility/reusableFunctions')
 const wait = require('../utility/timeout')
 const allureReporter = require('@wdio/allure-reporter').default
 
-describe('055_Update product information that the version of ePI is not impacted / not replaced by  the batch specific', () => {
+describe('059_Update product information that the version of ePI is not impacted / not replaced by  the batch specific', () => {
 
     if (process.env.npm_config_incremental) {
 
@@ -16,7 +16,7 @@ describe('055_Update product information that the version of ePI is not impacted
 
             after(async () => {
                 console.log("Starting Mobile Execution");
-                await utilityFunction.runAppium("versionOfTheEpiNotReplacedTest")
+                await utilityFunction.runAppium("versionOfEpiNotReplacedTestRun")
             })
         }
 

@@ -8,13 +8,13 @@ const testData = require('../testdata/config.json')
 
 const allureReporter = require('@wdio/allure-reporter').default
 
-describe('010_Edit batch and disable serial number check with invalid SN ', () => {
+describe('011_Edit batch and disable serial number check with invalid SN ', () => {
 
     if (!process.env.npm_config_browserOnly) {
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            await utilityFunction.runAppium("enableTheSnCheckSnIsInValidTest")
+            await utilityFunction.runAppium("disableSnFlagWithInvalidSNTestRun")
         })
         console.log("Running test suite in incremental mode and browser tests only")
 

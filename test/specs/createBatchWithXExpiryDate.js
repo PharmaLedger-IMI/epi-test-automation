@@ -9,7 +9,7 @@ const allureReporter = require('@wdio/allure-reporter').default
 
 
 
-describe('024_Create a batch with X expiry date and pass different date Y in matrix ', () => {
+describe('029_Create a batch with X expiry date and pass different date Y in matrix ', () => {
 
     if (!process.env.npm_config_browserOnly) {
 

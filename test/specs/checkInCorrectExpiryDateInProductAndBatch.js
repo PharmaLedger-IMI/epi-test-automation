@@ -8,7 +8,7 @@ const utilityFunction = require('../utility/reusableFunctions')
 const wait = require('../utility/timeout')
 
 
-describe('068_Edit product to check expiration date is incorrect and edit batch to have incorrect expiry date', () => {
+describe('072_Edit product to check expiration date is incorrect and edit batch to have incorrect expiry date', () => {
 
     if (!process.env.npm_config_browserOnly) {
 

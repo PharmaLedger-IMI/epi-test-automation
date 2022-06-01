@@ -7,7 +7,7 @@ const testData = require('../testdata/config.json')
 const utilityFunction = require('../utility/reusableFunctions')
 const wait = require('../utility/timeout')
 
-describe('086_Edit product to uncheck SN is decommissioned and edit batch to reset decommissioned SN', () => {
+describe('090_Edit product to uncheck SN is decommissioned and edit batch to reset decommissioned SN', () => {
 
     if (!process.env.npm_config_browserOnly) {
 

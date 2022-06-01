@@ -8,7 +8,7 @@ const testData = require('../testdata/config.json')
 const allureReporter = require('@wdio/allure-reporter').default
 const path = require('path');
 
-describe('054_verify that the batch specific version is displayed correctly', () => {
+describe('058_verify that the batch specific version is displayed correctly', () => {
 
     if (!process.env.npm_config_browserOnly) {
 

@@ -8,7 +8,7 @@ const testData = require('../testdata/config.json')
 const allureReporter = require('@wdio/allure-reporter').default
 
 
-describe('043_Edit a batch to update decommissioned SN and scan with decommissioned serial numbers ', () => {
+describe('048_Edit a batch to update decommissioned SN and scan with decommissioned serial numbers ', () => {
 
     if (!process.env.npm_config_browserOnly) {
 

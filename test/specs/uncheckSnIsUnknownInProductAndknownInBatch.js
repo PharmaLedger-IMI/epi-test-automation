@@ -8,7 +8,7 @@ const utilityFunction = require('../utility/reusableFunctions')
 const wait = require('../utility/timeout')
 
 
-describe('091_Edit product to uncheck SN is unknown and edit batch to have valid SN', () => {
+describe('095_Edit product to uncheck SN is unknown and edit batch to have valid SN', () => {
 
     if (!process.env.npm_config_browserOnly) {
 

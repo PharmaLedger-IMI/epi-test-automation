@@ -8,7 +8,7 @@ const testData = require('../testdata/config.json')
 const allureReporter = require('@wdio/allure-reporter').default
 
 
-describe('045_Edit batch to remove 10 serial numbers from valid and upload 10 in decommissioned serial numbers ', () => {
+describe('050_Edit batch to remove 10 serial numbers from valid and upload 10 in decommissioned serial numbers ', () => {
 
     if (!process.env.npm_config_browserOnly) {
 

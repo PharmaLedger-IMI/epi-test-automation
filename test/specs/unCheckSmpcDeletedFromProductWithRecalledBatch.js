@@ -7,7 +7,7 @@ const utilityFunction = require('../utility/reusableFunctions')
 const wait = require('../utility/timeout')
 const testData = require('../testdata/config.json')
 
-describe('066_Edit product to uncheck batch recall and delete SMPC and edit batch to have batch recall', () => {
+describe('070_Edit product to uncheck batch recall and delete SMPC and edit batch to have batch recall', () => {
 
     if (!process.env.npm_config_browserOnly) {
 

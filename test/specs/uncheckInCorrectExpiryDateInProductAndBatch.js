@@ -9,13 +9,13 @@ const wait = require('../utility/timeout')
 const path = require('path')
 
 
-describe('070_Edit product to uncheck incorrect expiry date and edit batch to have valid expiry date and pass incorrect expiry date in matrix', () => {
+describe('074_Edit product to uncheck incorrect expiry date and edit batch to have valid expiry date and pass incorrect expiry date in matrix', () => {
 
     if (!process.env.npm_config_browserOnly) {
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            await utilityFunction.runAppium("uncheckIncorrectExpiryDateInProductAndBatchTest")
+            await utilityFunction.runAppium("uncheckIncorrectExpiryDateInProductAndBatchTestRun")
         })
         console.log("Running test suite in incremental mode and browser tests only")
     } else {

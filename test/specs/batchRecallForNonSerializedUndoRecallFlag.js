@@ -7,7 +7,7 @@ const wait = require('../utility/timeout')
 const testData = require('../testData/config.json')
 const allureReporter = require('@wdio/allure-reporter').default
 
-describe('017_Edit batch to undo batch recall without SN ', () => {
+describe('021_Edit batch to undo batch recall without SN ', () => {
 
     if (!process.env.npm_config_browserOnly) {
 

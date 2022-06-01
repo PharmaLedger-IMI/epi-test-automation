@@ -7,14 +7,14 @@ const wait = require('../utility/timeout')
 const testData = require('../testdata/config.json')
 const allureReporter = require('@wdio/allure-reporter').default
 
-describe('051_Edit batch to update without decommissioned and recalled serial number', () => {
+describe('055_Edit batch to update without decommissioned and recalled serial number', () => {
 
     if (!process.env.npm_config_browserOnly) {
 
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            await utilityFunction.runAppium("updateBatchWithoutDecommissionedRecalledSNTestRun")
+            await utilityFunction.runAppium("updateTheBatchWithoutDecommissionedRecalledSNTestRun")
         })
         console.log("Running test suite in incremental mode and browser tests only")
     } else {

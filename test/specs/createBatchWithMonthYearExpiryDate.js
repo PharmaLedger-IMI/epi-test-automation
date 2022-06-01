@@ -9,7 +9,7 @@ const allureReporter = require('@wdio/allure-reporter').default
 
 
 
-describe('028_create a batch with only MonthYear as expiry date', () => {
+describe('033_create a batch with only MonthYear as expiry date', () => {
 
     if (!process.env.npm_config_browserOnly) {
 

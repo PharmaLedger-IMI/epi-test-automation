@@ -7,14 +7,14 @@ const wait = require('../utility/timeout')
 const testData = require('../testdata/config.json')
 const allureReporter = require('@wdio/allure-reporter').default
 
-describe('011_Edit batch and enable incorrect expiry date check with valid expiry date ', () => {
+describe('012_Edit batch and enable incorrect expiry date check with valid expiry date ', () => {
 
     if (!process.env.npm_config_browserOnly) {
 
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            await utilityFunction.runAppium("enableIncorrectExpiryDateCheckValidExpiryDateTest")
+            await utilityFunction.runAppium("enableIncorrectExpiryDateWithValidExpiryDateTestRun")
         })
 
         console.log("Running test suite in incremental mode and browser tests only")
@@ -41,6 +41,10 @@ describe('011_Edit batch and enable incorrect expiry date check with valid expir
 
         //check incorrect expiry date is in enabled state
         await batches.enableIncorrectExpirationDateVerification()
+        await wait.setTimeoutwait(3);
+
+        //enable serial number check
+        await batches.disableSerialNumberVerification()
         await wait.setTimeoutwait(3);
 
         //select valid serial number

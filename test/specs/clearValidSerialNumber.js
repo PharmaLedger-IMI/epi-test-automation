@@ -7,7 +7,7 @@ const wait = require('../utility/timeout')
 const testData = require('../testdata/config.json')
 const allureReporter = require('@wdio/allure-reporter').default
 
-describe('036_Edit batch to reset serial number and scan with valid serial number ', () => {
+describe('041_Edit batch to reset serial number and scan with valid serial number ', () => {
 
     if (!process.env.npm_config_browserOnly) {
 

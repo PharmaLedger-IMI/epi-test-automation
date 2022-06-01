@@ -7,7 +7,7 @@ const matrix = require('../utility/2dMatrixPage')
 const data = require('../utility/expectationFile');
 
 
-describe('097_Edit batch to verify serial number invalid and expiry date invalid', () => {
+describe('101_Edit batch to verify serial number invalid and expiry date invalid', () => {
 
 
   if (!process.env.npm_config_browserOnly) {

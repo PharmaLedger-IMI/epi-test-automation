@@ -10,7 +10,7 @@ const allureReporter = require('@wdio/allure-reporter').default
 
 
 
-describe('052_Update product information ', () => {
+describe('056_Update product information ', () => {
 
     if (!process.env.npm_config_browserOnly) {
 

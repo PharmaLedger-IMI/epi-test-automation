@@ -10,7 +10,7 @@ const data = require('../utility/expectationFile');
 
 
 
-describe('098_Edit product to check batch is unknown and pass invalid batch and invalid expiry date', () => {
+describe('0102_Edit product to check batch is unknown and pass invalid batch and invalid expiry date', () => {
 
 
   if (!process.env.npm_config_browserOnly) {

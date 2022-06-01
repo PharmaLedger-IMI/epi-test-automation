@@ -9,7 +9,7 @@ const utilityFunction = require('../utility/reusableFunctions')
 const wait = require('../utility/timeout')
 const path = require('path')
 
-describe('061_Edit product to check batch is recalled and edit batch to uncheck batch recall ', () => {
+describe('065_Edit product to check batch is recalled and edit batch to uncheck batch recall ', () => {
 
     if (!process.env.npm_config_browserOnly) {
 

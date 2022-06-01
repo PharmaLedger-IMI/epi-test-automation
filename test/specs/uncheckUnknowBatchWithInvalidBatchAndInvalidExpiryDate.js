@@ -9,7 +9,7 @@ const matrix = require('../utility/2dMatrixPage')
 const data = require('../utility/expectationFile');
 
 
-describe('099_Edit product to uncheck batch is unknown and edit batch to update valid SN and pass invalid batch and incorrect date', () => {
+describe('103_Edit product to uncheck batch is unknown and edit batch to update valid SN and pass invalid batch and incorrect date', () => {
 
 
   if (!process.env.npm_config_browserOnly) {

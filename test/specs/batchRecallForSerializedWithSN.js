@@ -8,13 +8,13 @@ const testData = require('../testdata/config.json')
 const allureReporter = require('@wdio/allure-reporter').default
 
 
-describe('014_Edit batch to set batch recall with valid SN', () => {
+describe('018s_Edit batch to set batch recall with valid SN', () => {
 
     if (!process.env.npm_config_browserOnly) {
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            await utilityFunction.runAppium("editBatchUncheckRecallWithSerializedTest")
+            await utilityFunction.runAppium("editBatchRecallWithSerializedSNTest")
         })
 
         console.log("Running test suite in incremental mode and browser tests only")

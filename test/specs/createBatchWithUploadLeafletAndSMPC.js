@@ -8,7 +8,7 @@ const testData = require('../testdata/config.json')
 const allureReporter = require('@wdio/allure-reporter').default
 const path = require('path');
 
-describe('058_Leaflet updates on the product Batch specific version', () => {
+describe('062_Leaflet updates on the product Batch specific version', () => {
 
 
     if (!process.env.npm_config_browserOnly) {
@@ -16,7 +16,7 @@ describe('058_Leaflet updates on the product Batch specific version', () => {
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            await utilityFunction.runAppium("createBatchWithUploadLeafletAndSMPCTest")
+            await utilityFunction.runAppium("createBatchWithUploadLeafletAndSMPCTestRun")
         })
         console.log("Running test suite in incremental mode and browser tests only")
     } else {

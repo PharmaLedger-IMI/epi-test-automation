@@ -7,7 +7,7 @@ const wait = require('../utility/timeout')
 const testData = require('../testdata/config.json')
 const allureReporter = require('@wdio/allure-reporter').default
 
-describe('035_Create a batch and enable serial number verification and set valid serial numbers', () => {
+describe('040_Create a batch and enable serial number verification and set valid serial numbers', () => {
 
     if (!process.env.npm_config_browserOnly) {
 

@@ -7,7 +7,7 @@ const wait = require('../utility/timeout')
 const testData = require('../testdata/config.json')
 const allureReporter = require('@wdio/allure-reporter').default
 
-describe('023_Edit batch to set expired date and invalid serial number ', () => {
+describe('028_Edit batch to set expired date and invalid serial number ', () => {
 
     if (!process.env.npm_config_browserOnly) {
 

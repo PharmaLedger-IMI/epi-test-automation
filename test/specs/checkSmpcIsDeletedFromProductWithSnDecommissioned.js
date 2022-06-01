@@ -8,7 +8,7 @@ const utilityFunction = require('../utility/reusableFunctions')
 const wait = require('../utility/timeout')
 
 
-describe('084_Edit product to check SN is decommissioned and delete smpc. Edit batch to set decommissioned serial number', () => {
+describe('088_Edit product to check SN is decommissioned and delete smpc. Edit batch to set decommissioned serial number', () => {
 
     if (!process.env.npm_config_browserOnly) {
 

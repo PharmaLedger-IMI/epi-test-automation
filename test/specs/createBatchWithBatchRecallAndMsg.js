@@ -7,7 +7,7 @@ const wait = require('../utility/timeout')
 const testData = require('../testdata/config.json')
 const allureReporter = require('@wdio/allure-reporter').default
 
-describe('020_Create a batch to set batch recall and recall message', () => {
+describe('024_Create a batch to set batch recall and recall message', () => {
 
     if (!process.env.npm_config_browserOnly) {
 

@@ -9,7 +9,7 @@ const wait = require('../utility/timeout')
 
 
 
-describe('079_Edit product to check SN is recalled and delete smpc. Pass recalled SN in matrix', () => {
+describe('083_Edit product to check SN is recalled and delete smpc. Pass recalled SN in matrix', () => {
 
     if (!process.env.npm_config_browserOnly) {
 

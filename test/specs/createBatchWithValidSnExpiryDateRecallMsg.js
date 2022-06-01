@@ -7,7 +7,7 @@ const wait = require('../utility/timeout')
 const testData = require('../testdata/config.json')
 const allureReporter = require('@wdio/allure-reporter').default
 
-describe('022_Create a batch with valid SN, expiry date and recall message', () => {
+describe('026_Create a batch with valid SN, expiry date and recall message', () => {
 
     if (!process.env.npm_config_browserOnly) {
 

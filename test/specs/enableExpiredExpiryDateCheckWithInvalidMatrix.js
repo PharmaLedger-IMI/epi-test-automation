@@ -7,14 +7,14 @@ const wait = require('../utility/timeout')
 const allureReporter = require('@wdio/allure-reporter').default
 
 
-describe('012_Edit batch and enable expired expiry date check with invalid expiry date ', () => {
+describe('016_Edit batch and enable expired expiry date check with invalid expiry date ', () => {
 
     if (!process.env.npm_config_browserOnly) {
 
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            await utilityFunction.runAppium("enableExpiredExpiryDateCheckInValidExpiryDateTest")
+            await utilityFunction.runAppium("enableExpiredFlagWithInValidExpiryDateTestRun")
         })
         console.log("Running test suite in incremental mode and browser tests only")
     } else {

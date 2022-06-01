@@ -8,7 +8,7 @@ const matrix = require('../utility/2dMatrixPage')
 const data = require('../utility/expectationFile');
 
 
-describe('099_Edit product and verify epi displayed. Edit batch and pass invalid serial number in matrix', () => {
+describe('104_Edit product and verify epi displayed. Edit batch and pass invalid serial number in matrix', () => {
 
 
   if (!process.env.npm_config_browserOnly) {

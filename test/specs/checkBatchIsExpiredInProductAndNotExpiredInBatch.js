@@ -9,7 +9,7 @@ const wait = require('../utility/timeout')
 
 
 
-describe('073_Edit product to check batch is expired and edit batch to check batch is not expired', () => {
+describe('077_Edit product to check batch is expired and edit batch to check batch is not expired', () => {
 
     if (!process.env.npm_config_browserOnly) {
 

@@ -1,6 +1,6 @@
 
 const products = require('../pageobjects/products.page');
-const utilityFunction = require('../utility/reusableFile')
+const utilityFunction = require('../utility/reusableFunctions')
 const wait = require('../utility/timeout')
 const testData = require('../testdata/config.json')
 const allureReporter = require('@wdio/allure-reporter').default

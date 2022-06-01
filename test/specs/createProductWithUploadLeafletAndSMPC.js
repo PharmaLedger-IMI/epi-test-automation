@@ -10,14 +10,14 @@ const path = require('path');
 const util = require('util');
 const exec = util.promisify(require('child_process').exec);
 
-describe('056_SMPC update on the product Non- batch specific version', () => {
+describe('060_SMPC update on the product Non- batch specific version', () => {
 
     if (!process.env.npm_config_browserOnly) {
 
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            await utilityFunction.runAppium("createProductWithUploadLeafletAndSMPCTest")
+            await utilityFunction.runAppium("createProductWithUploadLeafletAndSMPCTestRun")
         })
         console.log("Running test suite in incremental mode and browser tests only")
     } else {

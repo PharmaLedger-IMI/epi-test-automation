@@ -18,7 +18,7 @@ describe('001_Generate gtin', () => {
         await wait.setTimeoutwait(2);
         await digits.clickCookie();
         await wait.setTimeoutwait(4);
-        const random = Math.floor(1000000000000 + Math.random() * 9000000000000)
+        const random = "021131" + Math.floor(1000000 + Math.random() * 9000000)
         await digits.enterDigits(random);
         await wait.setTimeoutwait(2);
         await digits.clickCalculate();

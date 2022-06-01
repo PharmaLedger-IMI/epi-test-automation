@@ -9,7 +9,7 @@ const wait = require('../utility/timeout')
 const path = require('path')
 
 
-describe('080_Edit product to uncheck SN is in recall and edit batch to update valid SN', () => {
+describe('084_Edit product to uncheck SN is in recall and edit batch to update valid SN', () => {
 
     if (!process.env.npm_config_browserOnly) {
 

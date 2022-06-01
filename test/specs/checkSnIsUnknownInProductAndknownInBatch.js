@@ -7,7 +7,7 @@ const testData = require('../testdata/config.json')
 const utilityFunction = require('../utility/reusableFunctions')
 const wait = require('../utility/timeout')
 
-describe('088_Edit product to check SN is unknown and edit batch to update valid SN', () => {
+describe('092_Edit product to check SN is unknown and edit batch to update valid SN', () => {
 
     if (!process.env.npm_config_browserOnly) {
 

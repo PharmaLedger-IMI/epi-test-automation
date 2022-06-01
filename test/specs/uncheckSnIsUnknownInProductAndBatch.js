@@ -9,7 +9,7 @@ const wait = require('../utility/timeout')
 const path = require('path')
 
 
-describe('090_Edit product to uncheck SN is unknown and edit batch to have valid SN and pass invalid SN in matrix', () => {
+describe('094_Edit product to uncheck SN is unknown and edit batch to have valid SN and pass invalid SN in matrix', () => {
 
     if (!process.env.npm_config_browserOnly) {
 

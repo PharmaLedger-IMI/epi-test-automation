@@ -9,7 +9,7 @@ const allureReporter = require('@wdio/allure-reporter').default
 
 
 
-describe('037_Edit batch to reset serial number and scan with invalid serial number ', () => {
+describe('042_Edit batch to reset serial number and scan with invalid serial number ', () => {
 
     if (!process.env.npm_config_browserOnly) {
 

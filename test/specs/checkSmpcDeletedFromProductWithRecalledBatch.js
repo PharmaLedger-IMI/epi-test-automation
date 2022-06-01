@@ -8,7 +8,7 @@ const wait = require('../utility/timeout')
 const testData = require('../testdata/config.json')
 
 
-describe('063_Edit product to check batch is recalled and delete smpc. Edit batch to have recall message', () => {
+describe('067_Edit product to check batch is recalled and delete smpc. Edit batch to have recall message', () => {
 
     if (!process.env.npm_config_browserOnly) {
 

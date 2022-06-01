@@ -8,7 +8,7 @@ const allureReporter = require('@wdio/allure-reporter').default
 const path = require('path');
 
 
-describe('053_Edit product to upload a new version of the ePI ', () => {
+describe('057_Edit product to upload a new version of the ePI ', () => {
 
     if (!process.env.npm_config_browserOnly) {
 

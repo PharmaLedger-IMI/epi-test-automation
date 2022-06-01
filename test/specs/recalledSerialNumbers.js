@@ -9,7 +9,7 @@ const allureReporter = require('@wdio/allure-reporter').default
 
 
 
-describe('038_Create a batch and enable serial number verification and set recalled serial numbers ', () => {
+describe('043_Create a batch and enable serial number verification and set recalled serial numbers ', () => {
 
     if (!process.env.npm_config_browserOnly) {
 

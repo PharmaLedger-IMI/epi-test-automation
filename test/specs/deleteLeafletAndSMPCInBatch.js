@@ -7,13 +7,13 @@ const wait = require('../utility/timeout')
 const testData = require('../testdata/config.json')
 
 
-describe('059_Edit batch to delete ePI and SMPC file.', () => {
+describe('063_Edit batch to delete ePI and SMPC file.', () => {
 
     if (!process.env.npm_config_browserOnly) {
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            await utilityFunction.runAppium("deleteLeafletSMPCInBatchTest")
+            await utilityFunction.runAppium("deleteLeafletAndSMPCInBatchTestRun")
         })
         console.log("Running test suite in incremental mode and browser tests only")
     } else {
