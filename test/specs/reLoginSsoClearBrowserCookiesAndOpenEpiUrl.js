@@ -5,7 +5,7 @@ const testData = require('../testdata/config.json')
 const wait = require('../utility/timeout');
 
 
-describe('130_Verify SSO relogin and Clear Browser cookies and history and open ePI url in browser', () => {
+describe('135_Verify SSO relogin and Clear Browser cookies and history and open ePI url in browser', () => {
     it('Browser - should verify SSO relogin and Clear Browser cookies and history and open ePI url in browser', async () => {
 
         allureReporter.addStep('1. Provide valid credentails in SSO login screens.')

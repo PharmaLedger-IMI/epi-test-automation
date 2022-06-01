@@ -29,7 +29,7 @@ describe('103_Edit product to uncheck batch is unknown and edit batch to update 
     allureReporter.addStep("Uncheck batch is unknown flag in product")
     allureReporter.addStep("Check batch number on barcode is unknow")
     allureReporter.addStep("Check expiry date is invalid")
-    allureReporter.addTestId('Other tests_2')
+    allureReporter.addTestId('Other tests_3')
     //click product
     await products.clickProductFromSideNav()
     await wait.setTimeoutwait(3);

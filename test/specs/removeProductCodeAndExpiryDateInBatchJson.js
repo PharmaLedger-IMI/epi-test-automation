@@ -6,7 +6,7 @@ const wait = require('../utility/timeout')
 const path = require('path');
 const fs = require('fs');
 
-describe('119_Update a batch via import of Json by deleting product code and expiry date', () => {
+describe('124_Update a batch via import of Json by deleting product code and expiry date', () => {
 
 
 

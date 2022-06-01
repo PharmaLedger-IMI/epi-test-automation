@@ -5,7 +5,7 @@ const allureReporter = require('@wdio/allure-reporter').default
 const testData = require('../testdata/config.json')
 const wait = require('../utility/timeout')
 
-describe('126_Verify invalid login', () => {
+describe('131_Verify invalid login', () => {
   it('Browser - should open ePI landing page', async () => {
 
     allureReporter.addTestId('Login_1')

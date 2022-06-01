@@ -7,7 +7,7 @@ const path = require('path');
 
 
 
-describe('102_Import product', () => {
+describe('109_Import product', () => {
 
     it('Browser - create a product via import of Json ', async () => {
         allureReporter.addTestId('ImportJson_1_1')
@@ -38,7 +38,7 @@ describe('102_Import product', () => {
         await products.clickDownloadMsgInSuccessLog()
         await wait.setTimeoutwait(10);
 
-      
+
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
 
     })

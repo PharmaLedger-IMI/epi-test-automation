@@ -6,7 +6,7 @@ const testData = require('../testdata/config.json')
 const wait = require('../utility/timeout');
 
 
-describe('128_Verify valid SSO login', () => {
+describe('133_Verify valid SSO login', () => {
     it('Browser - should verify valid SSO login', async () => {
 
         allureReporter.startStep('1. Open ePI url in browser')

@@ -6,7 +6,7 @@ const testData = require('../testdata/config.json')
 const wait = require('../utility/timeout');
 
 
-describe('130_Verify SSO relogin and login to the Enterprise Wallet', () => {
+describe('136_Verify SSO relogin and login to the Enterprise Wallet', () => {
     it('Browser - should verify SSO relogin and login to the Enterprise Wallet', async () => {
 
         allureReporter.addStep('1. Provide valid credentails in SSO login screens.')
