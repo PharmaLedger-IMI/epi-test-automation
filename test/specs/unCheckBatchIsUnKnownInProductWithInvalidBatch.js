@@ -15,7 +15,7 @@ describe('099_Edit product to uncheck batch is unknown and edit batch to have va
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            await utilityFunction.runAppium("unCheckBatchIsUnKnownInProductWithInvalidBatchRun")
+            await utilityFunction.runAppium("unCheckBatchIsUnKnownInProductWithInvalidBatchTestRun")
         })
         console.log("Running test suite in incremental mode and browser tests only")
     } else {
