@@ -77,6 +77,10 @@ describe('006_Edit product to check SN is in recalled list', () => {
         await batches.acceptSerialNumber()
         await wait.setTimeoutwait(2);
 
+        //uncheck batch recall
+        await batches.enableCheckToRecallThisBatch()
+        await wait.setTimeoutwait(3);
+
         //generate expectation file
         data.generateExpectationFile(utilityFunction.getProductId(), utilityFunction.getbatchId(), utilityFunction.getCurrentRandomDate(), utilityFunction.getSerialNumber(), utilityFunction.getBrandName(), " ", " ", utilityFunction.getSnIsinRecallList(), " ", utilityFunction.getEpiDisplayed())
         await wait.setTimeoutwait(15);

@@ -42,17 +42,6 @@ describe('007_Edit batch and enable serial number check with valid SN', () => {
         await browser.execute('document.querySelector("div:nth-child(' + await utilityFunction.editBatchRow(editValue) + ') button:nth-child(1)").click()')
         await wait.setTimeoutwait(10);
 
-        //clear recall message
-        await batches.clearRecallMessage()
-        await wait.setTimeoutwait(4);
-        utilityFunction.setBatchRecallMsg(await batches.checkBatchRecallMessage())
-        await wait.setTimeoutwait(4);
-
-        //uncheckbox batch recall
-        await batches.enableCheckToRecallThisBatch()
-        await wait.setTimeoutwait(3);
-        utilityFunction.setBatchRecall(await batches.checkBatchRecall())
-        await wait.setTimeoutwait(3);
 
         //check enable serial number verification
         await batches.enableSerialNumberVerification()
