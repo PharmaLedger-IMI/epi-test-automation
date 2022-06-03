@@ -17,7 +17,7 @@ describe('105_Scan the code which contains unknown gtin', () => {
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            await utilityFunction.runAppium("")
+            await utilityFunction.runAppium("scanUnknownGTINWithValidBatchSNAndExpiryDateTestRun")
         })
         console.log("Running test suite in incremental mode and browser tests only")
     } else {
@@ -26,7 +26,7 @@ describe('105_Scan the code which contains unknown gtin', () => {
 
     }
 
-    it('Browser - should Scan the code which contains unknown gtin', async () => {
+    it('Browser - should Scan the code which contains unknown gtin(no product created) and valid batch, expiry date and serial number', async () => {
         allureReporter.addDescription('Scan the code which contains unknown gtin')
         allureReporter.addStep("Scan the code which contains unknown gtin")
         allureReporter.addTestId('gtin_1')
@@ -45,7 +45,7 @@ describe('105_Scan the code which contains unknown gtin', () => {
         GTIN = await digits.copyGtin()
         await wait.setTimeoutwait(2);
         //generate expectation file
-        data.generateExpectationFile(GTIN, utilityFunction.getbatchId(), utilityFunction.getCurrentRandomDate(), utilityFunction.getSerialNumber(), utilityFunction.getBrandName(), "", "", "", "", "")
+        data.generateExpectationFile(GTIN, utilityFunction.getbatchId(), utilityFunction.getCurrentRandomDate(), utilityFunction.getSerialNumber(), "", "", "", "", "", "")
         await wait.setTimeoutwait(12);
 
         //generate 2d matrix Image

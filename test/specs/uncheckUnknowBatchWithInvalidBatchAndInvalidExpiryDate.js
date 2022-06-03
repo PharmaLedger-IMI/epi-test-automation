@@ -16,7 +16,7 @@ describe('103_Edit product to uncheck batch is unknown and edit batch to update 
 
     after(async () => {
       console.log("Starting Mobile Execution");
-      await utilityFunction.runAppium("editBatchUncheckRecallWithSerializedTest")
+      await utilityFunction.runAppium("unCheckUnknownBatchWithInvalidBatchAndInvalidExpiryDateTestRun")
     })
     console.log("Running test suite in incremental mode and browser tests only")
   } else {

@@ -15,7 +15,7 @@ describe('106_Scan the code which contains only gtin', () => {
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            await utilityFunction.runAppium("")
+            await utilityFunction.runAppium("scanKnownGTINWithoutBatchSNAndExpiryDateTestRun")
         })
         console.log("Running test suite in incremental mode and browser tests only")
     } else {
@@ -23,7 +23,7 @@ describe('106_Scan the code which contains only gtin', () => {
         console.log("different flag")
 
     }
-    it('Browser - should Scan the code which contains only gtin', async () => {
+    it('Browser - should Scan the code which contains only valid gtin', async () => {
         allureReporter.addDescription('Scan the code which contains only gtin')
         allureReporter.addStep("Scan the code which contains only gtin")
         allureReporter.addTestId('gtin_2')
