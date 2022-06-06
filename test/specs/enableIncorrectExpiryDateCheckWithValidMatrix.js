@@ -43,9 +43,9 @@ describe('012_Edit batch and enable incorrect expiry date check with valid expir
         await batches.enableIncorrectExpirationDateVerification()
         await wait.setTimeoutwait(3);
 
-        //enable serial number check
-        await batches.disableSerialNumberVerification()
-        await wait.setTimeoutwait(3);
+        // //enable serial number check
+        // await batches.disableSerialNumberVerification()
+        // await wait.setTimeoutwait(3);
 
         //select valid serial number
         await batches.selectUpdateValidSerialFromDropdown(testData.newBatchDetails.updateValid)
