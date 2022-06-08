@@ -1,5 +1,4 @@
 const batches = require('../pageobjects/batches.page.js');
-const products = require('../pageobjects/products.page');
 const wait = require('../utility/timeout')
 const testData = require('../testdata/config.json')
 const utilityFunction = require('../utility/reusableFunctions')
@@ -29,25 +28,6 @@ describe('104_Edit product and verify epi displayed. Edit batch and pass invalid
     allureReporter.addTestId('OtherTests_3')
     allureReporter.addStep("Edit batch.")
     allureReporter.addStep("Add serial number to the batch and Save")
-    //click product
-    await products.clickProductFromSideNav()
-    await wait.setTimeoutwait(3);
-    console.log("prod to edit" + utilityFunction.getProductId())
-    //search the product code
-    await products.searchProductCode(utilityFunction.getProductId())
-    await wait.setTimeoutwait(3);
-    await browser.keys('Enter')
-    await wait.setTimeoutwait(4);
-    //view or edits
-    await browser.execute('document.querySelector("button[data-tag=\'edit-product\']").click()')
-    await wait.setTimeoutwait(5);
-
-    utilityFunction.setEpiDisplayed(await products.epiDisplayed())
-    await wait.setTimeoutwait(3);
-
-    //update product
-    await products.updateProduct()
-    await wait.setTimeoutwait(18);
 
     //click batch
     await batches.clickBatchFromSideNav();
@@ -91,11 +71,6 @@ describe('104_Edit product and verify epi displayed. Edit batch and pass invalid
     //set batch recall
     utilityFunction.setBatchRecall(await batches.checkBatchRecall())
     await wait.setTimeoutwait(2);
-    // await batches.enterRecallMessage(testData.newBatchDetails.recallMsg)
-    // await wait.setTimeoutwait(2);
-    // //set batch recall msg
-    // info.setBatchRecallMsg(await batches.checkBatchRecallMessage())
-    // await wait.setTimeoutwait(2);
 
     const invalidSerialNumber = await batches.serialNum()
     console.log('invalid serial number ' + invalidSerialNumber)

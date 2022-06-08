@@ -50,7 +50,7 @@ describe('088_Edit product to check SN is decommissioned and delete smpc. Edit b
 
         //update product
         await products.updateProduct()
-        await wait.setTimeoutwait(40);
+        await wait.setTimeoutwait(50);
 
 
         //click batch

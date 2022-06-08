@@ -13,24 +13,31 @@ class productsPage {
         //return  $('//a[@href=\'/products\']//span')
         return $("//p[normalize-space()='Manage Products']")
     }
+
     get productFromleftsideNav() {
         return $("=Products")
     }
+    //add product
     get addProductButton() {
         return $('//button[normalize-space()=\'+ ADD PRODUCT\']')
     }
+    //gtin text
     get gtinField() {
         return $("#productcode-input")
     }
+    //brand
     get brandField() {
         return $("(//input[@placeholder='Add product name'])[1]")
     }
+    //product description
     get productDescriptionField() {
         return $("//div//textarea[@placeholder='Add product description']")
     }
+    //upload photo
     get uploadPhoto() {
         return $("//input[@type=\'file\']")
     }
+    //upload epi
     get uploadEpiFile() {
         return $('(//input[@type=\'file\'])[2]')
     }
@@ -61,27 +68,35 @@ class productsPage {
     get anticounterCheckbox() {
         return $("//label[normalize-space()='Enable Anti-Counterfeiting check for this product']")
     }
+    //batch is recalled checkbox
     get batchIsRecalledCheckbox() {
         return $("(//div[@class='checkbox-container featureCode-08'])//input[@type='checkbox']")
     }
+    //expiration date is incorrect checkbox
     get expirationDateIsIncorrectCheckbox() {
         return $("(//div[@class='checkbox-container featureCode-07'])[1]//input[@type='checkbox'][1]")
     }
+    //bathc is expired checkbox
     get batchIsExpiredCheckbox() {
         return $("(//div[@class='checkbox-container featureCode-02'])//input[@type='checkbox']")
     }
+    //SN is in recall list checkbox
     get snIsInRecallListCheckbox() {
         return $("(//div[@class='checkbox-container featureCode-07'])[2]//input[@type='checkbox'][1]")
     }
+    //SN is in decommissioned list checkbox
     get snIsInDecommissionedListCheckbox() {
         return $("(//div[@class='checkbox-container featureCode-07'])[3]//input[@type='checkbox'][1]")
     }
+    //SN is unknown checkbox
     get snIsUnknownCheckbox() {
         return $("(//div[@class='checkbox-container featureCode-07'])[4]//input[@type='checkbox'][1]")
     }
+    //batch number unknown checkbox
     get batchNumberUnknownEnabled() {
         return $("(//div[@class='checkbox-container featureCode-03'])[1]//input[@type='checkbox'][1]")
     }
+    //batch number unknown checkbox
     get disableBatchNumberUnknownCheckbox() {
         return $("(//div[@class='checkbox-container featureCode-03'])[1]//input[@type='checkbox'][1]")
     }
@@ -91,25 +106,32 @@ class productsPage {
     get healthCareInformation() {
         return $("//div[contains(text(),'Healthcare practitioner information')]")
     }
+    //add epi button
     get addEpiButton() {
         return $('//button[normalize-space()=\'+ Add ePI\']')
     }
+    //select epi language
     get selectLanguageDropdown() {
         return $('//select[@id=\'language\']')
     }
+    //select epi type
     get selectTypeDropdown() {
         // return $('//select[@id=\'type\']')
         return $('//select[@class="document-type-select dsu-select"]')
     }
+    //video source
     get videoSourceEpiField() {
         return $("//textarea[@value='@modalData.product.videoSource']")
     }
+    //epi accept button
     get addEpiAcceptButton() {
         return $("//button[normalize-space()='Accept']")
     }
+    //delete first file
     get deleteLanguageButton() {
         return $("//button[@class='delete-language']")
     }
+    //delete second file
     get deleteSecondLanguageButton() {
         //return  $('//li[2]//div[1]//button[1]//i[1]')
         return $("(//button[@class='delete-language'])[2]")
@@ -117,15 +139,19 @@ class productsPage {
     get marketManagementButton() {
         return $("div:nth-child(2) > div:nth-child(1) > psk-button:nth-child(2) > button:nth-child(1)")
     }
+    //add market button
     get addMarketButton() {
         return $("//button[normalize-space()='Add Market']")
     }
+    //select country
     get selectLanguageInMarketPageDropdown() {
         return $("//select[@id='selectcountry']")
     }
+    //national code
     get nationalCodeTextbox() {
         return $("//input[@placeholder='Enter national code']")
     }
+    //mah
     get mahNameTextbox() {
         return $("//input[@placeholder='Enter MAH name']")
     }
@@ -135,49 +161,61 @@ class productsPage {
     get addMarketButtonInPopup() {
         return ('document.querySelector("body > webc-app-root:nth-child(1) > webc-app-container:nth-child(3) > div:nth-child(1) > webc-app-router:nth-child(1) > stencil-router:nth-child(1) > stencil-route-switch:nth-child(1) > stencil-route:nth-child(9) > webc-app-loader:nth-child(1) > psk-page:nth-child(1) > h6:nth-child(1) > webc-container:nth-child(1) > webc-modal:nth-child(3) > footer:nth-child(3) > psk-button:nth-child(2) > button:nth-child(1)").click()')
     }
+    //close button
     get closeButton() {
         return $("//button[normalize-space()='Close']")
     }
 
-
+    //save product button
     get saveProductButton() {
         return $("//button[normalize-space()='Save Product']")
     }
+    //search box
     get searchProduct() {
         return $("//input[@id='code-search']")
     }
+    //update product button
     get updateProductButton() {
         return $("//button[normalize-space()='Update Product']")
     }
+    //import button in product page
     get importButton() {
         return $('button[data-tag="import"]')
     }
+    //select file
     get selectFileButton() {
         return $('//input[@type="file"]')
     }
+    //import file
     get importFileButton() {
         return $('//button[normalize-space()="Import"]')
     }
+    //view msg in failed logs
     get viewMessageInFailedLogs() {
         return $('webc-datatable[datasource="@failedDataSource"] button[class="btn btn-link p-0 col align-self-center text-left"]')
     }
+    //invalid field info button
     get invalidFieldInfoButton() {
         return $('psk-accordion-item[title="Invalid fields info"]')
     }
+    //view msg in success logs
     get viewMessageInSuccessLogs() {
         return $('div:nth-child(14) button:nth-child(1)')
     }
+    //download button
     get downloadMsgButton() {
         return $('//button[normalize-space()="Download message"]')
     }
+    //required fields
     get requiredFieldsText() {
         return $('ul[data-for="@actionModalModel.secondMessageData"]')
     }
+    //home text from sidenav
     get homeText() {
         return $('//a[normalize-space()="Home"]')
     }
 
-
+    //cancel button
     get cancelButton() {
         return $("//button[normalize-space()='Cancel']")
 
@@ -432,11 +470,11 @@ class productsPage {
     }
     async clickViewMessageInSuccessLog() {
 
-        try{
+        try {
 
-        await this.viewMessageInSuccessLogs.click()
+            await this.viewMessageInSuccessLogs.click()
         }
-        catch(e){
+        catch (e) {
             console.log("Failed logs")
         }
     }

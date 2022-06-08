@@ -51,7 +51,7 @@ describe('087_Edit product to check SN is decommssioned and edit batch to update
 
         //update product
         await products.updateProduct()
-        await wait.setTimeoutwait(40);
+        await wait.setTimeoutwait(50);
 
 
         //click batch

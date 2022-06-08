@@ -4,7 +4,7 @@ const matrix = require('../utility/2dMatrixPage')
 const data = require('../utility/expectationFile')
 const utilityFunction = require('../utility/reusableFunctions')
 const wait = require('../utility/timeout')
-const testData = require('../testdata/config.json')
+const testData = require('../testdata/config.json');
 const allureReporter = require('@wdio/allure-reporter').default
 
 describe('026_Create a batch with valid SN, expiry date and recall message', () => {
@@ -33,18 +33,19 @@ describe('026_Create a batch with valid SN, expiry date and recall message', () 
         allureReporter.addTestId('BatchRecallAndBatchMessage_12_1')
         //click batch
         await batches.clickBatchFromSideNav();
-        await wait.setTimeoutwait(4);
+        await wait.setTimeoutwait(6);
+
         //add batch
         await batches.addBatch();
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         utilityFunction.setBatchId(await batches.batchIdValue())
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         //enter site name
         await batches.siteName(testData.newBatchDetails.siteName);
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         //select date
         utilityFunction.setCurrentRandomDate()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         await browser.execute((date) => {
             (function () {
                 let event = new Event('change');
@@ -57,10 +58,10 @@ describe('026_Create a batch with valid SN, expiry date and recall message', () 
         //select product
         const selectBox = await browser.$('//psk-select[@class=\'default-select hydrated\']//select[@class=\'form-control\']');
         await selectBox.selectByAttribute('value', utilityFunction.getProductId());
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         //video source
         await batches.videoSource(testData.newBatchDetails.videoSource)
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
 
         //update valid serial number
         await batches.selectUpdateValidSerialFromDropdown(testData.newBatchDetails.updateValid)
@@ -68,22 +69,22 @@ describe('026_Create a batch with valid SN, expiry date and recall message', () 
         //enter serial number
         utilityFunction.setSerialNumber(await batches.serialNum())
         await batches.enterSerialNumber(utilityFunction.getSerialNumber())
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         await batches.acceptSerialNumber()
         await wait.setTimeoutwait(3);
 
         //enable recall checkbox
         await batches.enableCheckToRecallThisBatch()
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         //set batch recall
         utilityFunction.setBatchRecall(await batches.checkBatchRecall())
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         //enter recall message
         await batches.enterRecallMessage(testData.newBatchDetails.recallMsg)
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         //set batch recall msg
         utilityFunction.setBatchRecallMsg(await batches.checkBatchRecallMessage())
-        await wait.setTimeoutwait(2);
+        await wait.setTimeoutwait(3);
         //generate expectation file
         data.generateExpectationFile(utilityFunction.getProductId(), await batches.batchIdValue(), utilityFunction.getCurrentRandomDate(), utilityFunction.getSerialNumber(), utilityFunction.getBrandName(), utilityFunction.getBatchRecall(), " ", "", utilityFunction.getBatchRecallMsg())
         await wait.setTimeoutwait(12);

@@ -52,9 +52,9 @@
         "recallMsg": "This is a sample recall message"
     },
     "incrementalTest": {
-        "prodId": "52527133409836",
-        "batchId": "UL4264",
-        "expiryDate": "2027-08-00",
+        "prodId": "02113181020045",
+        "batchId": "TO0366",
+        "expiryDate": "2027-05-06",
         "serialNumber": "234765",
         "prodName": "epi-auto-"
     },

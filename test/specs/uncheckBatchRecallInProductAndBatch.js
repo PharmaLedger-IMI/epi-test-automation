@@ -14,7 +14,7 @@ describe('068_Edit product to uncheck batch is recalled and edit batch to unchec
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            await utilityFunction.runAppium("unCheckBatchRecallInProductAndBatchTest")
+            await utilityFunction.runAppium("unCheckBatchRecallInProductAndBatchTestRun")
         })
         console.log("Running test suite in incremental mode and browser tests only")
     } else {

@@ -2,74 +2,96 @@
 
 
 class DemiurgePage {
-
+    //demiurge wallet
     get demiurgeWallet() {
         return $('=Demiurge Wallet')
     }
+    //new account
     get newAccountButton() {
         return $('//a[@id="new-wallet"]')
     }
+    //username
     get userName() {
         return $('//input[@id="username"]')
     }
-    get emailIdField() {
+    //email
+    get emailIdField() {x
         return $('//input[@id="email"]')
     }
+    //password
     get passwordField() {
         return $('//input[@id="password"]')
     }
+    //company name
     get companyNameField() {
         return $('//input[@id="company"]')
     }
+    //confirm password
     get confirmPasswordField() {
         return $('//input[@id="confirm-password"]')
     }
+    //register
     get registerButton() {
         return $('//button[@id="register-btn"]')
     }
+    //recovery
     get recoveryCode() {
         return $('//div[@id="recovery-code"]')
     }
-    get copyUserIdendity() {
+    //copy user identity
+    get copyUserIdentity() {
         return $("//span[@class='icon fa fa-copy']")
     }
+    //open wallet
     get clickOpenWallet() {
         return $("//button[@id='access-wallet']")
     }
+    //enter button
     get enterButton() {
         return $("#open-wallet-btn")
     }
+    //admin identity
     get adminIdentity() {
         return $("//sl-input[@type='text']")
     }
+    //title
     get title() {
         return $('webc-container[id="booting-page"] dw-title')
     }
+    //groups
     get groupsLink() {
         return $('=Groups')
     }
+    //my identity tab
     get myIdentityTab() {
         return $('//webc-app-menu[@class="slot-before slot-after hydrated"]//a[@class="link-active"][normalize-space()="My Identities"]')
     }
+    //click my identity
     get clickMyIdentity() {
         return $("//sl-icon[@slot='suffix']")
     }
+    //current identity
     get currentIdentity() {
         return $('//dw-clipboard-input[@value="@did"]')
     }
+    //user identity
     get userIdentity() {
         return $('psk-label[id="did"] label[class="col-form-label"]')
     }
+    //admin group
     get adminGroupButton() {
         return $('//strong[normalize-space()="ePI Administration Group"]')
     }
+    //member id
     get memeberIdTextbox() {
         return $("//sl-input[@name='did']")
 
     }
+    //write group
     get writeGroupButton() {
         return $('//strong[normalize-space()="ePI Write Group"]')
     }
+    //add member
     get addMemberButton() {
         return $('//sl-button[normalize-space()="Add member"]')
     }
@@ -80,11 +102,7 @@ class DemiurgePage {
     async clickNewAccount() {
         await this.newAccountButton.click();
     }
-    // async clearUserName() {
 
-    //     await this.userName.click();
-    //     await this.userName.clearValue();
-    // }
     async enterUserName(userName) {
 
         await this.userName.click();
@@ -124,9 +142,9 @@ class DemiurgePage {
         return recoveryCode
 
     }
-    async userIdendity() {
+    async userIdentity() {
 
-        await this.copyUserIdendity.click();
+        await this.copyUserIdentity.click();
 
     }
     async openWallet() {

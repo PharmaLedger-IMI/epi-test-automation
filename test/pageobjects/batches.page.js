@@ -10,131 +10,164 @@ let isChecked = false
 class batchesPage {
 
 
-
+    //batch from side nav
     get batchFromSideNav() {
         //return  $("=Batches")
         return $("//a[normalize-space()='Batches']")
     }
+    //add batch
     get addbatchbutton() {
         return $("//button[normalize-space()='ADD BATCH']")
     }
+    //batch id value
     get batchIdValueTextbox() {
         return $('//input[@placeholder=\'Add batch id\']')
     }
 
-
+    //site name
     get addSiteNameField() {
         return $("//input[@placeholder='Add site name']")
     }
-   
+    //date selection
     get enableDaySelectionCheckbox() {
         return $("//label[normalize-space()='Enable day selection']")
     }
+    //video source
     get videoSourceEnterField() {
         return $("//textarea[@placeholder='Add video source']")
     }
+    //enable incorrect expiration date verification
     get enableIncorrectExpirationDateVerificationCheckbox() {
         return $("(//div[@class='checkbox-container featureCode-07'])[1]//input[@type='checkbox']")
     }
+    //enable expired expiration date verification
     get expirationDateVerificationCheckbox() {
         return $("(//div[@class='checkbox-container featureCode-02'])[1]//input[@type='checkbox']")
     }
+    //enable serial number verification
     get enableSerialNumberVerificationCheckbox() {
         return $("(//div[@class='checkbox-container featureCode-07'])[3]//input[@type='checkbox']")
     }
+    //select serial number
     get selectOptionFromDropdown() {
         return $('//psk-select[@class=\'hydrated\']//select[@class=\'form-control\']')
     }
+    //reset valid serial number
     get resetAllValidSerialNumberCheckbox() {
         return $('//input[@id=\'update-valid-serial\']')
     }
+    //reset recalled serial number
     get resetAllRecalledSerialNumberCheckbox() {
         return $("//input[@id='update-recalled-serial']")
     }
+    //reset decommissioned serial number
     get resetAllDecommisionedSerialNumberCheckbox() {
         return $("//input[@id='update-decommissioned-serial']")
     }
+    //serial number
     get enterSerialNumberField() {
         return $('//textarea[@value=\'@actionModalModel.serialNumbers\']')
     }
+    //reason
     get selectReasonFromDropdown() {
         return $("//psk-select[@view-model='@actionModalModel.reason']//select[@class='form-control']")
 
     }
-
+    //accept button in popup
     get serialNumberAcceptButton() {
         return $("//button[normalize-space()='Accept']")
     }
+    //cancel button in popup
     get serialNumberCancelButton() {
         return $("//psk-button[@class='marketplace-manager-button hydrated']//button[@class='btn btn-primary'][normalize-space()='Cancel']")
     }
+    //batch msg
     get batchMessageField() {
         return $("//textarea[@placeholder='This text will be displayed to user after Barcode is scanned']")
     }
+    //add epi button
     get addEpiButton() {
         return $("//button[normalize-space()='+ Add ePI']")
     }
+    //select language
     get selectLanguageDropdown() {
         return $('//select[@id=\'language\']')
     }
+    //select type
     get selectTypeDropdown() {
         return $('//select[@class="document-type-select dsu-select"]')
     }
+    //video source
     get videoSourceEpiField() {
         return $("//textarea[@value='@modalData.product.videoSource']")
     }
+    //upload file
     get uploadEpiFile() {
         return $('//input[@type=\'file\']')
     }
     get epiFileDisplayed() {
         return $("//li[@class='d-flex flex-row overflow-auto']")
     }
+    //add epi accept button
     get addEpiAcceptButton() {
         return $("//button[normalize-space()='Accept']")
     }
+    //check to recall this batch
     get enableRecallThisBatch() {
         //return $("//input[@id='recalled']")
         //return $("//input[@type='checkbox'][@id='recalled']")
         return $("(//div[@class='checkbox-container featureCode-08'])[1]//input[@type='checkbox']")
 
     }
+    //recall msg
     get recallMessageTextbox() {
         return $("//textarea[@placeholder='This text will be displayed to user after Barcode is scanned if batch is recalled']")
     }
+    //update button
     get updateBatchForEditButton() {
         return $("//button[normalize-space()='Update batch']")
     }
+    //cancel button
     get cancelButtonForBatch() {
         return $("//button[normalize-space()='Cancel']")
     }
-
+    //create batch
     get createBatchButton() {
         return $("//button[normalize-space()='Add batch']")
     }
+    //import button in batch page
     get importButton() {
         return $('//button[normalize-space()="IMPORT"]')
     }
+    //select file
     get selectFileButton() {
         return $('//input[@type="file"]')
     }
+    //import file
     get importFileButton() {
         return $('//button[normalize-space()="Import"]')
     }
+    //view msg in failed logs
     get viewMessageInFailedLogs() {
         return $("(//button[@class='btn btn-link p-0 col align-self-center text-left'][contains(text(),'View')])[16]")
     }
+    //view msg in success logs
     get viewMessageInSuccessLogs() {
         return $('div:nth-child(14) button:nth-child(1)')
     }
+    //download msg
     get downloadMsgButton() {
         return $('//button[normalize-space()="Download message"]')
     }
+    //invalid field info
     get invalidFieldInfoButton() {
         return $('psk-accordion-item[title="Invalid fields info"]')
     }
+    //required fields
     get requiredFieldsText() {
         return $('ul[data-for="@actionModalModel.secondMessageData"]')
     }
+    //close button
     get closeButton() {
         return $("//button[normalize-space()='Close']")
     }
@@ -326,7 +359,7 @@ class batchesPage {
         }
     }
     async enterRecallMessage(RecallMessage) {
-      
+
         await this.recallMessageTextbox.click()
         await this.recallMessageTextbox.setValue(RecallMessage)
     }
