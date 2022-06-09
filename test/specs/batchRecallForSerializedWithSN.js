@@ -8,7 +8,7 @@ const testData = require('../testdata/config.json')
 const allureReporter = require('@wdio/allure-reporter').default
 
 
-describe('018s_Edit batch to set batch recall with valid SN', () => {
+describe('018_Edit batch to set batch recall with valid SN', () => {
 
     if (!process.env.npm_config_browserOnly) {
 
