@@ -7,7 +7,7 @@ const matrix = require('../utility/2dMatrixPage')
 
 
 
-describe('106_Scan the code which contains only gtin', () => {
+describe('106_Scan the code which contains only gtin when batch unknown flag is unchecked', () => {
 
 
     if (!process.env.npm_config_browserOnly) {
@@ -25,6 +25,7 @@ describe('106_Scan the code which contains only gtin', () => {
     }
     it('Browser - should Scan the code which contains only valid gtin', async () => {
         allureReporter.addDescription('Scan the code which contains only gtin')
+        allureReporter.addStep("Uncheck batch unknown flag in product ")
         allureReporter.addStep("Scan the code which contains only gtin")
         allureReporter.addTestId('gtin_2')
         //generate expectation file

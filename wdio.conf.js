@@ -38,11 +38,11 @@ exports.config = {
 
             // 'test/specs/invalidLoginCredentials.js',
 
-            // 'test/specs/gtinPage.js',
+            'test/specs/gtinPage.js',
             'test/specs/loginCredentials.js',
 
-            // 'test/specs/createProduct.js',
-            // 'test/specs/createBatch.js',
+            'test/specs/createProduct.js',
+            'test/specs/createBatch.js',
 
             // 'test/specs/editBatchforRecallMsg.js',
             // 'test/specs/editProductforToggle_ePIFlag.js',
@@ -87,7 +87,7 @@ exports.config = {
             // 'test/specs/disableDaySelectionExpiredDateAndEnableIncorrectFlag.js',
             // 'test/specs/enableDaySelectionAndDisableIncorrectExpiredDateFlag.js',
             // 'test/specs/enableDaySelectionIncorrectAndDisableExpiredDateFlag.js',
-            // 'test/specs/enableDaySelectionExpiredDateAndDisableIncorrectFlag.js',
+             'test/specs/enableDaySelectionExpiredDateAndDisableIncorrectFlag.js',
 
             // 'test/specs/validSerialNumber.js',
             // 'test/specs/clearValidSerialNumber.js',
@@ -154,7 +154,7 @@ exports.config = {
             // 'test/specs/uncheckSnIsUnknownInProductAndBatch.js',
             // 'test/specs/uncheckSnIsUnknownInProductAndknownInBatch.js',
 
-            // 'test/specs/checkBatchIsUnknownInProductWithInvalidBatch.js',
+             'test/specs/checkBatchIsUnknownInProductWithInvalidBatch.js',
             // 'test/specs/checkBatchIsUnknownInProductWithValidBatch.js',
             // 'test/specs/checkSmpcIsDeletedFromProductWithBatchIsUnknown.js',
             // 'test/specs/uncheckBatchIsUnknownInProductWithInvalidBatch.js',
@@ -166,7 +166,8 @@ exports.config = {
             // 'test/specs/invalidSerialNumberWithBatchRecalled.js',
 
             //'test/specs/scanUnknownGTINWithValidBatchSNAndExpiryDate.js',
-            //'test/specs/scanknownGTINWithoutBatchSNAndExpiryDate.js'
+            //'test/specs/uncheckBatchUnknownFlagWithValidGTINAndWithoutBatchSNExpiryDate.js',
+            'test/specs/checkBatchUnknownFlagWithValidGTINAndWithoutBatchSNExpiryDate.js'
 
             // 'test/specs/productImport.js',
             // 'test/specs/removeInventedNameInProductJson.js',
