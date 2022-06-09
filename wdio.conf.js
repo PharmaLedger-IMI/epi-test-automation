@@ -166,8 +166,8 @@ exports.config = {
             // 'test/specs/invalidSerialNumberWithBatchRecalled.js',
 
             //'test/specs/scanUnknownGTINWithValidBatchSNAndExpiryDate.js',
-            //'test/specs/uncheckBatchUnknownFlagWithValidGTINAndWithoutBatchSNExpiryDate.js',
-            'test/specs/checkBatchUnknownFlagWithValidGTINAndWithoutBatchSNExpiryDate.js'
+            //'test/specs/uncheckBatchIsUnknownFlagWithOnlyValidGTINMatrix.js',
+            'test/specs/checkBatchIsUnknownFlagWithOnlyValidGTINMatrix.js'
 
             // 'test/specs/productImport.js',
             // 'test/specs/removeInventedNameInProductJson.js',
