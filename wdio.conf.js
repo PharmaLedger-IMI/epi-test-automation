@@ -166,8 +166,8 @@ exports.config = {
             // 'test/specs/invalidSerialNumberWithBatchRecalled.js',
 
             //'test/specs/scanUnknownGTINWithValidBatchSNAndExpiryDate.js',
-            //'test/specs/uncheckBatchIsUnknownFlagWithOnlyValidGTINMatrix.js',
-            'test/specs/checkBatchIsUnknownFlagWithOnlyValidGTINMatrix.js'
+            //'test/specs/disableBatchIsUnknownFlagWithOnlyValidGTINMatrix.js',
+            'test/specs/enableBatchIsUnknownFlagWithOnlyValidGTINMatrix.js'
 
             // 'test/specs/productImport.js',
             // 'test/specs/removeInventedNameInProductJson.js',
@@ -341,8 +341,8 @@ exports.config = {
     // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
     // gets prepended directly.
     //
-    //baseUrl: 'https://epiqa.westeurope.cloudapp.azure.com/',
-    baseUrl: 'http://localhost:3000',
+    baseUrl: 'https://epiqa.westeurope.cloudapp.azure.com/',
+    //baseUrl: 'http://localhost:3000',
     //baseUrl:'https://plsmap.westeurope.cloudapp.azure.com/',
     //
     // Default timeout for all waitFor* commands.
