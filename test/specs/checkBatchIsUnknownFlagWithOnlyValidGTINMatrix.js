@@ -27,7 +27,7 @@ describe('107_Scan the code which contains only gtin when batch unknown flag is 
         allureReporter.addDescription('Scan the code which contains only gtin')
         allureReporter.addStep("check batch unknown flag in product ")
         allureReporter.addStep("Scan the code which contains only gtin")
-        allureReporter.addTestId('gtin_2')
+        allureReporter.addTestId('gtin_3')
 
         //click product
         await products.clickProductFromSideNav()
