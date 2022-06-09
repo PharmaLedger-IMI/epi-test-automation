@@ -15,7 +15,7 @@ describe('107_Scan the code which contains only gtin when batch unknown flag is 
 
         after(async () => {
             console.log("Starting Mobile Execution");
-            await utilityFunction.runAppium("scanKnownGTINWithoutBatchSNAndExpiryDateTestRun")
+            await utilityFunction.runAppium("checkBatchIsUnknownFlagWithOnlyValidGTINMatrixTestRun")
         })
         console.log("Running test suite in incremental mode and browser tests only")
     } else {
