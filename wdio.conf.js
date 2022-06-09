@@ -38,11 +38,11 @@ exports.config = {
 
             // 'test/specs/invalidLoginCredentials.js',
 
-            'test/specs/gtinPage.js',
+            // 'test/specs/gtinPage.js',
             'test/specs/loginCredentials.js',
 
-            'test/specs/createProduct.js',
-            'test/specs/createBatch.js',
+            // 'test/specs/createProduct.js',
+            // 'test/specs/createBatch.js',
 
             // 'test/specs/editBatchforRecallMsg.js',
             // 'test/specs/editProductforToggle_ePIFlag.js',
@@ -87,7 +87,7 @@ exports.config = {
             // 'test/specs/disableDaySelectionExpiredDateAndEnableIncorrectFlag.js',
             // 'test/specs/enableDaySelectionAndDisableIncorrectExpiredDateFlag.js',
             // 'test/specs/enableDaySelectionIncorrectAndDisableExpiredDateFlag.js',
-             'test/specs/enableDaySelectionExpiredDateAndDisableIncorrectFlag.js',
+            // 'test/specs/enableDaySelectionExpiredDateAndDisableIncorrectFlag.js',
 
             // 'test/specs/validSerialNumber.js',
             // 'test/specs/clearValidSerialNumber.js',
@@ -154,7 +154,7 @@ exports.config = {
             // 'test/specs/uncheckSnIsUnknownInProductAndBatch.js',
             // 'test/specs/uncheckSnIsUnknownInProductAndknownInBatch.js',
 
-             'test/specs/checkBatchIsUnknownInProductWithInvalidBatch.js',
+            // 'test/specs/checkBatchIsUnknownInProductWithInvalidBatch.js',
             // 'test/specs/checkBatchIsUnknownInProductWithValidBatch.js',
             // 'test/specs/checkSmpcIsDeletedFromProductWithBatchIsUnknown.js',
             // 'test/specs/uncheckBatchIsUnknownInProductWithInvalidBatch.js',
@@ -341,8 +341,8 @@ exports.config = {
     // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
     // gets prepended directly.
     //
-    baseUrl: 'https://epiqa.westeurope.cloudapp.azure.com/',
-    //baseUrl: 'http://localhost:3000',
+    //baseUrl: 'https://epiqa.westeurope.cloudapp.azure.com/',
+    baseUrl: 'http://localhost:3000',
     //baseUrl:'https://plsmap.westeurope.cloudapp.azure.com/',
     //
     // Default timeout for all waitFor* commands.
