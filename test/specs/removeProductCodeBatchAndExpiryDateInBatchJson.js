@@ -51,6 +51,25 @@ describe('126_Update a batch via import of Json by deleting product code, batch 
         fs.writeFileSync(testData.path.batchImport, JSON.stringify(rawdata))
         await wait.setTimeoutwait(8);
 
+        await browser.keys(['\ue004']);
+        await wait.setTimeoutwait(2);
+        await browser.keys(['\ue004']);
+        await wait.setTimeoutwait(2);
+        await browser.keys(['\ue004']);
+        await wait.setTimeoutwait(2);
+        await browser.keys(['\ue004']);
+        await wait.setTimeoutwait(2);
+        await browser.keys(['\ue004']);
+        await wait.setTimeoutwait(2);
+        await browser.keys(['\ue004']);
+        await wait.setTimeoutwait(2);
+        await browser.keys(['\ue004']);
+        await wait.setTimeoutwait(2);
+
+        //failed logs
+        await browser.keys('Enter')
+        await wait.setTimeoutwait(15)
+
 
         //view message
         await batches.clickViewMessageInFailedLog()
@@ -59,7 +78,7 @@ describe('126_Update a batch via import of Json by deleting product code, batch 
         await batches.invalidFieldInfo()
         await wait.setTimeoutwait(5);
         //read invalid field info
-        await batches.invalidFieldInfoRequired()
+        await batches.invalidFieldInfoRequired(["productCode - Required field", "batch - Required field", "expiryDate - Required field"])
         await wait.setTimeoutwait(5);
         //download message
         await batches.clickDownloadMsgInFailedLog()

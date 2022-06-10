@@ -5,6 +5,8 @@ const allureReporter = require('@wdio/allure-reporter').default
 const wait = require('../utility/timeout')
 const path = require('path');
 const fs = require('fs');
+//const { assert } = require('console');
+
 
 describe('112_Update a product via import of Json by deleting name of medicinal product ', () => {
 
@@ -46,6 +48,25 @@ describe('112_Update a product via import of Json by deleting name of medicinal 
         fs.writeFileSync(testData.path.productImport, JSON.stringify(rawdata))
         await wait.setTimeoutwait(8);
 
+        await browser.keys(['\ue004']);
+        await wait.setTimeoutwait(2);
+        await browser.keys(['\ue004']);
+        await wait.setTimeoutwait(2);
+        await browser.keys(['\ue004']);
+        await wait.setTimeoutwait(2);
+        await browser.keys(['\ue004']);
+        await wait.setTimeoutwait(2);
+        await browser.keys(['\ue004']);
+        await wait.setTimeoutwait(2);
+        await browser.keys(['\ue004']);
+        await wait.setTimeoutwait(2);
+        await browser.keys(['\ue004']);
+        await wait.setTimeoutwait(2);
+
+        //failed logs
+        await browser.keys('Enter')
+        await wait.setTimeoutwait(15)
+
         //view message
         await products.clickViewMessageInFailedLog()
         await wait.setTimeoutwait(5);
@@ -53,12 +74,13 @@ describe('112_Update a product via import of Json by deleting name of medicinal 
         await products.invalidFieldInfo()
         await wait.setTimeoutwait(5);
         //read invalid field info
-        await products.invalidFieldInfoRequired()
+        await products.invalidFieldInfoRequired(["nameMedicinalProduct - Required field"])
         await wait.setTimeoutwait(5);
         //download message
         await products.clickDownloadMsgInFailedLog()
         await wait.setTimeoutwait(10);
-
+        //expect(2).to.equal(3)
+        //assert.fail("failed")
         allureReporter.addAttachment('img', Buffer.from(await browser.takeScreenshot(), 'base64'), 'image/jpeg');
 
     })

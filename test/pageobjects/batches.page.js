@@ -5,6 +5,7 @@ const path = require('path')
 const { URL } = require('url')
 const assert = require('assert');
 const fs = require('fs')
+const { expect } = require('chai')
 
 let isChecked = false
 class batchesPage {
@@ -432,30 +433,28 @@ class batchesPage {
 
         await this.importFileButton.click()
     }
-    async clickViewMessageInFailedLog() {
+    async clickViewMessageInFailedLog(missingFields) {
 
         try {
             await this.viewMessageInFailedLogs.click()
         }
 
         catch (e) {
-            console.log("success logs")
+
+            expect(JSON.stringify(e)).to.have.lengthOf(0, `${missingFields} not found in failed logs`)
+
         }
     }
-    async clickViewMessageInSuccessLog() {
-        // if(this.clickViewMessageInSuccessLogs.isExisting()==true){
+    async clickViewMessageInSuccessLog(missingFields) {
+
 
         try {
             await this.viewMessageInSuccessLogs.click()
         }
         catch (e) {
-            console.log("failed logs")
+            expect(JSON.stringify(e)).to.have.lengthOf(0, `${missingFields} not found in success logs`)
+
         }
-        // return true
-        // }
-        // else{
-        //     return false
-        // }
 
     }
     async clickDownloadMsgInSuccessLog() {
@@ -482,7 +481,9 @@ class batchesPage {
         try {
             await this.downloadMsgButton.click()
             await browser.pause(5000)
-        } catch (e) { console.log("failed logs") }
+        } catch (e) {
+            console.log("error")
+        }
 
         let rawdata = JSON.parse(fs.readFileSync(testData.path.batchImport, 'utf8'))
         const batchFile = filePath.concat(path.sep, "batch_", rawdata.batch.batch, ".json")
@@ -537,7 +538,7 @@ class batchesPage {
             await browser.pause(5000)
         }
         catch (e) {
-            console.log("success logs")
+            console.log("error")
         }
 
         let rawdata = JSON.parse(fs.readFileSync(testData.path.batchImport, 'utf8'))
@@ -562,7 +563,7 @@ class batchesPage {
             }
         }
         catch (e) {
-            console.log("success logs")
+            console.log("error")
         }
 
 
@@ -577,16 +578,32 @@ class batchesPage {
             console.log("success logs")
         }
     }
-    async invalidFieldInfoRequired() {
+    async invalidFieldInfoRequired(missingFields) {
+        let failedCase = []
+            try {
 
-        try {
+                const allFields = await this.requiredFieldsText.getText()
+                console.log('required fields are ' + allFields)
 
-            const allFields = await this.requiredFieldsText.getText()
-            console.log('required fields are ' + allFields)
-        }
-        catch (e) {
-            console.log("success logs")
-        }
+                for (var i = 0; i < missingFields.length; i++) {
+                   if(missingFields[i] != allFields){
+                       failedCase.push(missingFields[i])
+                       console.log(expect(allFields).to.equal(`${missingFields[i]}`))
+                   }
+                //    else{
+                //     console.log(expect(allFields).to.equal(`${missingFields[i]}`))
+                //    }
+            }
+
+            // if(failedCase.length>0){
+            //     expect(JSON.stringify(failedCase)).to.have.lengthOf(0, `${JSON.stringify(failedCase)} not found in failed logs`)
+            //   }
+            }
+            catch (e) {
+
+                expect(JSON.stringify(failedCase)).to.have.lengthOf(0, `${JSON.stringify(failedCase)} not found in failed logs`)
+
+            }
 
     }
     async closeButtonInPopup() {

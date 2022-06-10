@@ -45,6 +45,25 @@ describe('118_Update a product via import of Json to enter incorrect batch expir
         fs.writeFileSync(testData.path.productImport, JSON.stringify(rawdata))
         await wait.setTimeoutwait(8);
 
+        await browser.keys(['\ue004']);
+        await wait.setTimeoutwait(2);
+        await browser.keys(['\ue004']);
+        await wait.setTimeoutwait(2);
+        await browser.keys(['\ue004']);
+        await wait.setTimeoutwait(2);
+        await browser.keys(['\ue004']);
+        await wait.setTimeoutwait(2);
+        await browser.keys(['\ue004']);
+        await wait.setTimeoutwait(2);
+        await browser.keys(['\ue004']);
+        await wait.setTimeoutwait(2);
+        await browser.keys(['\ue004']);
+        await wait.setTimeoutwait(2);
+
+        //failed logs
+        await browser.keys('Enter')
+        await wait.setTimeoutwait(15)
+
         //view message
         await products.clickViewMessageInFailedLog()
         await wait.setTimeoutwait(5);

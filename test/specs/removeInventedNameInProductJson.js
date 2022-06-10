@@ -38,7 +38,26 @@ describe('110_Update a product via import of Json by deleting an invented name e
         //click on import
         // await products.clickImportFile()
         await browser.execute('document.querySelector(`psk-button[data-tag="import"] button[class="btn btn-primary"]`).click()')
-        await wait.setTimeoutwait(20);
+        await wait.setTimeoutwait(25);
+
+        await browser.keys(['\ue004']);
+        await wait.setTimeoutwait(2);
+        await browser.keys(['\ue004']);
+        await wait.setTimeoutwait(2);
+        await browser.keys(['\ue004']);
+        await wait.setTimeoutwait(2);
+        await browser.keys(['\ue004']);
+        await wait.setTimeoutwait(2);
+        await browser.keys(['\ue004']);
+        await wait.setTimeoutwait(2);
+        await browser.keys(['\ue004']);
+        await wait.setTimeoutwait(2);
+        await browser.keys(['\ue004']);
+        await wait.setTimeoutwait(2);
+
+        //failed logs
+        await browser.keys('Enter')
+        await wait.setTimeoutwait(15)
 
         //update json file
         rawdata.product.inventedName = inventedNameValue
@@ -52,7 +71,7 @@ describe('110_Update a product via import of Json by deleting an invented name e
         await products.invalidFieldInfo()
         await wait.setTimeoutwait(5);
         //read invalid field info
-        await products.invalidFieldInfoRequired()
+        await products.invalidFieldInfoRequired(["inventedName - Required field"])
         await wait.setTimeoutwait(5);
         //download message
         await products.clickDownloadMsgInFailedLog()

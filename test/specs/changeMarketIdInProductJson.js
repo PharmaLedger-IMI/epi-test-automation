@@ -46,6 +46,25 @@ describe('117_Update a product via import of Json to change market id', () => {
         fs.writeFileSync(testData.path.productImport, JSON.stringify(rawdata))
         await wait.setTimeoutwait(8);
 
+        await browser.keys(['\ue004']);
+        await wait.setTimeoutwait(2);
+        await browser.keys(['\ue004']);
+        await wait.setTimeoutwait(2);
+        await browser.keys(['\ue004']);
+        await wait.setTimeoutwait(2);
+        await browser.keys(['\ue004']);
+        await wait.setTimeoutwait(2);
+        await browser.keys(['\ue004']);
+        await wait.setTimeoutwait(2);
+        await browser.keys(['\ue004']);
+        await wait.setTimeoutwait(2);
+        await browser.keys(['\ue004']);
+        await wait.setTimeoutwait(2);
+
+        //failed logs
+        await browser.keys('Enter')
+        await wait.setTimeoutwait(15)
+
         //view message
         await products.clickViewMessageInFailedLog()
         await wait.setTimeoutwait(5);
@@ -54,7 +73,7 @@ describe('117_Update a product via import of Json to change market id', () => {
         await products.invalidFieldInfo()
         await wait.setTimeoutwait(5);
         //Read invalid field info
-        await products.invalidFieldInfoRequired()
+        await products.invalidFieldInfoRequired(["marketId - not recognized"])
         await wait.setTimeoutwait(5);
         //download message
         await products.clickDownloadMsgInFailedLog()

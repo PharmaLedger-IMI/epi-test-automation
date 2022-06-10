@@ -167,12 +167,12 @@ exports.config = {
 
             //'test/specs/scanUnknownGTINWithValidBatchSNAndExpiryDate.js',
             //'test/specs/disableBatchIsUnknownFlagWithOnlyValidGTINMatrix.js',
-            'test/specs/enableBatchIsUnknownFlagWithOnlyValidGTINMatrix.js'
+            //'test/specs/enableBatchIsUnknownFlagWithOnlyValidGTINMatrix.js'
 
             // 'test/specs/productImport.js',
-            // 'test/specs/removeInventedNameInProductJson.js',
+             'test/specs/removeInventedNameInProductJson.js',
             // 'test/specs/removeProductCodeInProductJson.js',
-            // 'test/specs/removeNameOfMedicinalProductInProductJson.js',
+             //'test/specs/removeNameOfMedicinalProductInProductJson.js',
             // 'test/specs/removeInventedNameAndProductCodeInProductJson.js',
             // 'test/specs/removeInventedNameAndNameOfMedicinalProductInProductJson.js',
             // 'test/specs/removeProductCodeAndNameOfMedicinalProductInProductJson.js',
@@ -215,19 +215,19 @@ exports.config = {
                 'test/specs/loginCredentials.js',
                 // 'test/specs/productImport.js',
                 // 'test/specs/removeInventedNameInProductJson.js',
-                // 'test/specs/removeProductCodeInProductJson.js',
-                // 'test/specs/removeNameOfMedicinalProductInProductJson.js',
-                // 'test/specs/removeInventedNameAndProductCodeInProductJson.js',
-                //'test/specs/removeInventedNameAndNameOfMedicinalProductInProductJson.js',
-                //'test/specs/removeProductCodeAndNameOfMedicinalProductInProductJson.js',
-                // 'test/specs/removeInventedNameProductCodeAndNameOfMedicinalProductInProductJson.js',
+                'test/specs/removeProductCodeInProductJson.js',
+                'test/specs/removeNameOfMedicinalProductInProductJson.js',
+                'test/specs/removeInventedNameAndProductCodeInProductJson.js',
+                'test/specs/removeInventedNameAndNameOfMedicinalProductInProductJson.js',
+                'test/specs/removeProductCodeAndNameOfMedicinalProductInProductJson.js',
+                'test/specs/removeInventedNameProductCodeAndNameOfMedicinalProductInProductJson.js',
 
-                // 'test/specs/changeSNRecalledFlagInProductJson.js',
-                // 'test/specs/changeSNDecommissionedFlagInProductJson.js',
-                // 'test/specs/changeMarketIdInProductJson.js',
-                // 'test/specs/enterIncorrectBatchExpiredFlagInProductJson.js',
+                'test/specs/changeSNRecalledFlagInProductJson.js',
+                'test/specs/changeSNDecommissionedFlagInProductJson.js',
+                'test/specs/changeMarketIdInProductJson.js',
+                'test/specs/enterIncorrectBatchExpiredFlagInProductJson.js',
 
-                // 'test/specs/batchImport.js',
+                'test/specs/batchImport.js',
                 'test/specs/removeProductCodeInBatchJson.js',
                 'test/specs/removeBatchInBatchJson.js',
                 'test/specs/removeExpiryDateInBatchJson.js',
@@ -333,7 +333,7 @@ exports.config = {
     //
     // If you only want to run your tests until a specific amount of tests have failed use
     // bail (default is 0 - don't bail, run all tests).
-    bail: 1,
+    bail: 0,
 
     //
     // Set a base URL in order to shorten url command calls. If your `url` parameter starts
@@ -341,8 +341,8 @@ exports.config = {
     // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
     // gets prepended directly.
     //
-    baseUrl: 'https://epiqa.westeurope.cloudapp.azure.com/',
-    //baseUrl: 'http://localhost:3000',
+    //baseUrl: 'https://epiqa.westeurope.cloudapp.azure.com/',
+    baseUrl: 'http://localhost:3000',
     //baseUrl:'https://plsmap.westeurope.cloudapp.azure.com/',
     //
     // Default timeout for all waitFor* commands.

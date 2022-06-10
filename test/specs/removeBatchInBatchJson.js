@@ -46,6 +46,25 @@ describe('121_Update a batch via import of Json by deleting batch ', () => {
         fs.writeFileSync(testData.path.batchImport, JSON.stringify(rawdata))
         await wait.setTimeoutwait(8);
 
+        await browser.keys(['\ue004']);
+        await wait.setTimeoutwait(2);
+        await browser.keys(['\ue004']);
+        await wait.setTimeoutwait(2);
+        await browser.keys(['\ue004']);
+        await wait.setTimeoutwait(2);
+        await browser.keys(['\ue004']);
+        await wait.setTimeoutwait(2);
+        await browser.keys(['\ue004']);
+        await wait.setTimeoutwait(2);
+        await browser.keys(['\ue004']);
+        await wait.setTimeoutwait(2);
+        await browser.keys(['\ue004']);
+        await wait.setTimeoutwait(2);
+
+        //failed logs
+        await browser.keys('Enter')
+        await wait.setTimeoutwait(15)
+
         //view message
         await batches.clickViewMessageInFailedLog()
         await wait.setTimeoutwait(5);
@@ -53,7 +72,7 @@ describe('121_Update a batch via import of Json by deleting batch ', () => {
         await batches.invalidFieldInfo()
         await wait.setTimeoutwait(5);
         //read invalid field info
-        await batches.invalidFieldInfoRequired()
+        await batches.invalidFieldInfoRequired(["batch - Required field"])
         await wait.setTimeoutwait(5);
         //download message
         await batches.clickDownloadMsgInFailedLog()

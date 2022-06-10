@@ -48,6 +48,25 @@ describe('113_Update a product via import of Json by deleting invented name & pr
         rawdata.product.inventedName = inventedNameValue
         fs.writeFileSync(testData.path.productImport, JSON.stringify(rawdata))
 
+        await browser.keys(['\ue004']);
+        await wait.setTimeoutwait(2);
+        await browser.keys(['\ue004']);
+        await wait.setTimeoutwait(2);
+        await browser.keys(['\ue004']);
+        await wait.setTimeoutwait(2);
+        await browser.keys(['\ue004']);
+        await wait.setTimeoutwait(2);
+        await browser.keys(['\ue004']);
+        await wait.setTimeoutwait(2);
+        await browser.keys(['\ue004']);
+        await wait.setTimeoutwait(2);
+        await browser.keys(['\ue004']);
+        await wait.setTimeoutwait(2);
+
+        //failed logs
+        await browser.keys('Enter')
+        await wait.setTimeoutwait(15)
+
         //view message
         await products.clickViewMessageInFailedLog()
         await wait.setTimeoutwait(10);
@@ -55,7 +74,7 @@ describe('113_Update a product via import of Json by deleting invented name & pr
         await products.invalidFieldInfo()
         await wait.setTimeoutwait(5);
         //read invalid field info
-        await products.invalidFieldInfoRequired()
+        await products.invalidFieldInfoRequired(["inventedName - Required field", "productCode - Required field"])
         await wait.setTimeoutwait(5);
         //downlaod message
         await products.clickDownloadMsgInFailedLog()

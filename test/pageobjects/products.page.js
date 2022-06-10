@@ -4,6 +4,7 @@ const path = require('path')
 const { URL } = require('url')
 const assert = require('assert');
 const fs = require('fs')
+const { expect } = require('chai')
 
 
 class productsPage {
@@ -458,24 +459,31 @@ class productsPage {
         await this.importFileButton.click()
 
     }
-    async clickViewMessageInFailedLog() {
+    async clickViewMessageInFailedLog(missingFields) {
 
         try {
 
             await this.viewMessageInFailedLogs.click()
         }
         catch (e) {
-            console.log("Success logs")
+
+
+            expect(JSON.stringify(e)).to.have.lengthOf(0, `${missingFields} not found in failed logs`)
+            //     expect(function () {
+            //       throw Error( `${missingFields} not found in failed logs`)
+            //     }).to.not.throw();
         }
     }
-    async clickViewMessageInSuccessLog() {
+    async clickViewMessageInSuccessLog(missingFields) {
 
         try {
 
             await this.viewMessageInSuccessLogs.click()
+
         }
         catch (e) {
-            console.log("Failed logs")
+            expect(JSON.stringify(e)).to.have.lengthOf(0, `${missingFields} not found in success logs`)
+
         }
     }
     async clickDownloadMsgInSuccessLog() {
@@ -505,6 +513,7 @@ class productsPage {
         }
         catch (e) {
             console.log("Failed logs")
+            console.log("not found in failed logs")
         }
 
         let rawdata = JSON.parse(fs.readFileSync(testData.path.productImport, 'utf8'))
@@ -550,7 +559,7 @@ class productsPage {
         try {
             await this.downloadMsgButton.click()
         } catch (e) {
-            console.log("success logs")
+            console.log("not found in failed logs")
         }
         await browser.pause(5000)
 
@@ -586,20 +595,40 @@ class productsPage {
     async invalidFieldInfo() {
         try {
             await this.invalidFieldInfoButton.click()
+
         }
         catch (e) {
-            console.log("success logs")
+
+            console.log("not found in failed logs")
         }
     }
-    async invalidFieldInfoRequired() {
-
+    async invalidFieldInfoRequired(missingFields) {
+        let failedCase = []
         try {
-            const allFields = await this.requiredFieldsText.getText()
-            console.log('required fields are ' + allFields)
+
+        const allFields = await this.requiredFieldsText.getText()
+        console.log('required fields are ' + allFields)
+
+        for (var i = 0; i < missingFields.length; i++) {
+            if (missingFields[i] != allFields) {
+                failedCase.push(missingFields[i])
+                console.log(expect(allFields).to.equal(`${missingFields[i]}`))
+            }
+            // else {
+            //     console.log(expect(allFields).to.equal(`${missingFields[i]}`))
+            // }
+        }
+
+        // if (failedCase.length > 0) {
+        //     expect(JSON.stringify(failedCase)).to.have.lengthOf(0, `${JSON.stringify(failedCase)} not found in failed logs`)
+        // }
         }
         catch (e) {
-            console.log("success logs")
+
+            expect(JSON.stringify(failedCase)).to.have.lengthOf(0, `${JSON.stringify(failedCase)} not found in failed logs`)
+
         }
+
     }
 
     async homePage() {
