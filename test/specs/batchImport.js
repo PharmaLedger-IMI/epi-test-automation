@@ -5,7 +5,7 @@ const allureReporter = require('@wdio/allure-reporter').default
 const wait = require('../utility/timeout')
 const path = require('path');
 
-describe('119_Create a batch via import of Json', () => {
+describe('120_Create a batch via import of Json', () => {
 
 
     it('Browser - create a batch via import of Json ', async () => {

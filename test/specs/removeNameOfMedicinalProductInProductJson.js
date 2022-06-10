@@ -8,7 +8,7 @@ const fs = require('fs');
 //const { assert } = require('console');
 
 
-describe('112_Update a product via import of Json by deleting name of medicinal product ', () => {
+describe('111_Update a product via import of Json by deleting name of medicinal product ', () => {
 
 
 

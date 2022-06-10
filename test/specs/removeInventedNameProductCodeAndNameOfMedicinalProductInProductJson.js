@@ -6,7 +6,7 @@ const wait = require('../utility/timeout')
 const path = require('path');
 const fs = require('fs');
 
-describe('114_Update a product via import of Json by deleting invented name, product code & name of medicinal product ', () => {
+describe('115_Update a product via import of Json by deleting invented name, product code & name of medicinal product ', () => {
 
 
 

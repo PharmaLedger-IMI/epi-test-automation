@@ -6,7 +6,7 @@ const wait = require('../utility/timeout')
 const path = require('path');
 const fs = require('fs');
 
-describe('118_Update a product via import of Json to enter incorrect batch expired flag', () => {
+describe('119_Update a product via import of Json to enter incorrect batch expired flag', () => {
 
 
 

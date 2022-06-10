@@ -7,7 +7,7 @@ const path = require('path');
 
 
 
-describe('109_Import product', () => {
+describe('108_Import product', () => {
 
     it('Browser - create a product via import of Json ', async () => {
         allureReporter.addTestId('ImportJson_1_1')

@@ -7,7 +7,7 @@ const wait = require('../utility/timeout')
 const path = require('path');
 const fs = require('fs');
 
-describe('117_Update a product via import of Json to change market id', () => {
+describe('118_Update a product via import of Json to change market id', () => {
 
 
 
