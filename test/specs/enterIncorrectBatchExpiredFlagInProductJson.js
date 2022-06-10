@@ -72,7 +72,7 @@ describe('118_Update a product via import of Json to enter incorrect batch expir
         await products.invalidFieldInfo()
         await wait.setTimeoutwait(5);
         //read invalid field info
-        await products.invalidFieldInfoRequired()
+        await products.invalidFieldInfoRequired(["flagDisplayEPI_BatchExpired - Wrong type. Found string , expected boolean"])
         await wait.setTimeoutwait(5);
         //download message
         await products.clickDownloadMsgInFailedLog()
