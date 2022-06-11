@@ -32,7 +32,7 @@
         "strength": "123",
         "flagDisplayEPI_BatchNumberUnknown": true,
         "inventedName": "Sample",
-        "nameMedicinalProduct": "This is Sample medicinal name",
-        "productCode": "05290931025615"
+        "productCode": "05290931025615",
+        "nameMedicinalProduct": "This is Sample medicinal name"
     }
 }

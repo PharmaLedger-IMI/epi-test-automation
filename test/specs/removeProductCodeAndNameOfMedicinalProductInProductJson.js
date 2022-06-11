@@ -5,6 +5,7 @@ const allureReporter = require('@wdio/allure-reporter').default
 const wait = require('../utility/timeout')
 const path = require('path');
 const fs = require('fs');
+const expect = require('chai').expect
 
 describe('114_Update a product via import of Json by deleting product code & name of medicinal product', () => {
 
@@ -74,8 +75,27 @@ describe('114_Update a product via import of Json by deleting product code & nam
         await products.invalidFieldInfo()
         await wait.setTimeoutwait(5);
         //read invalid field info
-        await products.invalidFieldInfoRequired(["productCode - Required field", "nameMedicinalProduct - Required field"])
-        await wait.setTimeoutwait(5);
+        // await products.invalidFieldInfoRequired(["productCode - Required field", "nameMedicinalProduct - Required field"])
+        // await wait.setTimeoutwait(5);
+        try {
+            const productCode = await products.firstRow()
+            await wait.setTimeoutwait(5);
+            const nameMedicinalProduct = await products.secondRow()
+            await wait.setTimeoutwait(5);
+            console.log("req text is " + expect(productCode).to.equal(testData.json.productCode))
+            await wait.setTimeoutwait(5);
+            console.log("req text is " + expect(nameMedicinalProduct).to.equal(testData.json.nameMedicinalProduct))
+            await wait.setTimeoutwait(5);
+
+        }
+        catch (e) {
+            console.log(e)
+            await products.closeButtonInPopup()
+            await wait.setTimeoutwait(5);
+            expect(JSON.stringify(e)).to.equal(0, `${testData.json.productCode, testData.json.nameMedicinalProduct} not found in failed logs`)
+
+        }
+
         //downlaod message
         await products.clickDownloadMsgInFailedLog()
         await wait.setTimeoutwait(10);

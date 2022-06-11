@@ -1,10 +1,13 @@
 
 const batches = require('../pageobjects/batches.page');
-const testData = require('../testdata/config.json')
+const testData = require('../testData/config.json')
 const allureReporter = require('@wdio/allure-reporter').default
 const wait = require('../utility/timeout')
 const path = require('path');
 const fs = require('fs');
+// const { expect } = require('chai')
+const expect = require('chai').expect
+
 
 describe('125_Update a batch via import of Json by deleting product code and expiry date', () => {
 
@@ -32,6 +35,7 @@ describe('125_Update a batch via import of Json by deleting product code and exp
         delete rawdata.batch.productCode
         delete rawdata.batch.expiryDate
         fs.writeFileSync(testData.path.batchImport, JSON.stringify(rawdata))
+
         await wait.setTimeoutwait(3);
         //select file
         await batches.selectFile(path.join(__dirname, '../testdata/sampleBatchImport.json'));
@@ -74,9 +78,25 @@ describe('125_Update a batch via import of Json by deleting product code and exp
         //click invalid field info
         await batches.invalidFieldInfo()
         await wait.setTimeoutwait(5);
+
         //read invalid field info
-        await batches.invalidFieldInfoRequired(["productCode - Required field", "expiryDate - Required field"])
-        await wait.setTimeoutwait(5);
+        //await batches.invalidFieldInfoRequired("productCode - Required field expiryDate - Required field")
+        try {
+            const productCode = await batches.firstRow()
+            await wait.setTimeoutwait(5);
+            const expiryDate = await batches.secondRow()
+            await wait.setTimeoutwait(5);
+            console.log("req text is " + expect(productCode).to.equal(testData.json.productCode))
+            await wait.setTimeoutwait(5);
+            console.log("req text is " + expect(expiryDate).to.equal(testData.json.expiryDate))
+
+        }
+        catch (e) {
+            await batches.closeButtonInPopup()
+            await wait.setTimeoutwait(5);
+            expect(JSON.stringify(e)).to.have.lengthOf(0, `${testData.json.productCode}, ${testData.json.expiryDate} not found in failed logs`)
+
+        }
         //downlaod message
         await batches.clickDownloadMsgInFailedLog()
         await wait.setTimeoutwait(10);

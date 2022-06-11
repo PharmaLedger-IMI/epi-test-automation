@@ -5,6 +5,7 @@ const allureReporter = require('@wdio/allure-reporter').default
 const wait = require('../utility/timeout')
 const path = require('path');
 const fs = require('fs');
+const expect = require('chai').expect
 
 describe('119_Update a product via import of Json to enter incorrect batch expired flag', () => {
 
@@ -72,8 +73,26 @@ describe('119_Update a product via import of Json to enter incorrect batch expir
         await products.invalidFieldInfo()
         await wait.setTimeoutwait(5);
         //read invalid field info
-        await products.invalidFieldInfoRequired(["flagDisplayEPI_BatchExpired - Wrong type. Found string , expected boolean"])
-        await wait.setTimeoutwait(5);
+        // await products.invalidFieldInfoRequired(["flagDisplayEPI_BatchExpired - Wrong type. Found string , expected boolean"])
+        // await wait.setTimeoutwait(5);
+
+        try {
+            const batchExpiredFlag = await products.firstRow()
+            await wait.setTimeoutwait(5);
+
+            console.log("req text is " + expect(batchExpiredFlag).to.equal(testData.json.batchExpiredFlag))
+            await wait.setTimeoutwait(5);
+
+
+        }
+        catch (e) {
+            console.log(e)
+            await products.closeButtonInPopup()
+            await wait.setTimeoutwait(5);
+            expect(JSON.stringify(e)).to.equal(0, `${testData.json.batchExpiredFlag} not found in failed logs`)
+
+        }
+
         //download message
         await products.clickDownloadMsgInFailedLog()
         await wait.setTimeoutwait(10);

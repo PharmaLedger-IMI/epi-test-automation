@@ -5,6 +5,7 @@ const allureReporter = require('@wdio/allure-reporter').default
 const wait = require('../utility/timeout')
 const path = require('path');
 const fs = require('fs');
+const expect = require('chai').expect
 
 describe('127_Update a batch via import of Json by deleting product code, batch and expiry date', () => {
 
@@ -78,8 +79,32 @@ describe('127_Update a batch via import of Json by deleting product code, batch 
         await batches.invalidFieldInfo()
         await wait.setTimeoutwait(5);
         //read invalid field info
-        await batches.invalidFieldInfoRequired(["productCode - Required field", "batch - Required field", "expiryDate - Required field"])
-        await wait.setTimeoutwait(5);
+        // await batches.invalidFieldInfoRequired(["productCode - Required field, batch - Required field", "expiryDate - Required field"])
+        // await wait.setTimeoutwait(5);
+
+        try {
+            const productCode = await batches.firstRow()
+            await wait.setTimeoutwait(5);
+            const batch = await batches.secondRow()
+            await wait.setTimeoutwait(5);
+            const expiryDate = await batches.secondRow()
+            await wait.setTimeoutwait(5);
+            console.log("req text is " + expect(productCode).to.equal(testData.json.productCode))
+            await wait.setTimeoutwait(5);
+            console.log("req text is " + expect(batch).to.equal(testData.json.batch))
+            await wait.setTimeoutwait(5);
+            console.log("req text is " + expect(expiryDate).to.equal(testData.json.expiryDate))
+
+        }
+        catch (e) {
+            console.log(e)
+            await batches.closeButtonInPopup()
+            await wait.setTimeoutwait(5);
+            expect(JSON.stringify(e)).to.equal(0, `${testData.json.productCode}`, `${testData.json.batch}`, `${testData.json.expiryDate} not found in failed logs`)
+
+        }
+
+
         //download message
         await batches.clickDownloadMsgInFailedLog()
         await wait.setTimeoutwait(10);

@@ -5,7 +5,7 @@ const allureReporter = require('@wdio/allure-reporter').default
 const wait = require('../utility/timeout')
 const path = require('path');
 const fs = require('fs');
-
+const expect = require('chai').expect
 
 describe('131_Update a batch via import of Json to enter valid serial number', () => {
 
@@ -55,8 +55,24 @@ describe('131_Update a batch via import of Json to enter valid serial number', (
         await wait.setTimeoutwait(8);
 
         //view message
-        await batches.clickViewMessageInSuccessLog()
+        await batches.clickViewMessageInSuccessLog("valid serial number")
         await wait.setTimeoutwait(10);
+
+        try {
+
+            const snValid = await batches.firstRow()
+            await wait.setTimeoutwait(5);
+
+            console.log("req text is " + expect(snValid).to.equal(testData.json.snValid))
+            await wait.setTimeoutwait(5);
+
+        }
+        catch (e) {
+            console.log(e)
+            await batches.closeButtonInPopup()
+            expect(JSON.stringify(e)).to.equal(0, `${testData.json.snValid} not found`)
+
+        }
         //download message
         await batches.clickDownloadMsgInSuccessLog()
         await wait.setTimeoutwait(10);

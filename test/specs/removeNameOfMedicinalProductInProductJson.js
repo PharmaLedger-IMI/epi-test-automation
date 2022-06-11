@@ -6,6 +6,7 @@ const wait = require('../utility/timeout')
 const path = require('path');
 const fs = require('fs');
 //const { assert } = require('console');
+const expect = require('chai').expect
 
 
 describe('111_Update a product via import of Json by deleting name of medicinal product ', () => {
@@ -74,8 +75,23 @@ describe('111_Update a product via import of Json by deleting name of medicinal 
         await products.invalidFieldInfo()
         await wait.setTimeoutwait(5);
         //read invalid field info
-        await products.invalidFieldInfoRequired(["nameMedicinalProduct - Required field"])
-        await wait.setTimeoutwait(5);
+        // await products.invalidFieldInfoRequired(["nameMedicinalProduct - Required field"])
+        // await wait.setTimeoutwait(5);
+        try {
+            const nameMedicinalProduct = await products.firstRow()
+            await wait.setTimeoutwait(5);
+            console.log("req text is " + expect(nameMedicinalProduct).to.equal(testData.json.nameMedicinalProduct))
+            await wait.setTimeoutwait(5);
+
+        }
+        catch (e) {
+            console.log(e)
+            await products.closeButtonInPopup()
+            await wait.setTimeoutwait(5);
+            expect(JSON.stringify(e)).to.equal(0, `${testData.json.nameMedicinalProduct} not found in failed logs`)
+
+        }
+
         //download message
         await products.clickDownloadMsgInFailedLog()
         await wait.setTimeoutwait(10);

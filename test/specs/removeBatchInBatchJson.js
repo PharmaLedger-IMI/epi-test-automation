@@ -5,7 +5,7 @@ const allureReporter = require('@wdio/allure-reporter').default
 const wait = require('../utility/timeout')
 const path = require('path');
 const fs = require('fs');
-
+const expect = require('chai').expect
 describe('122_Update a batch via import of Json by deleting batch ', () => {
 
 
@@ -72,8 +72,24 @@ describe('122_Update a batch via import of Json by deleting batch ', () => {
         await batches.invalidFieldInfo()
         await wait.setTimeoutwait(5);
         //read invalid field info
-        await batches.invalidFieldInfoRequired(["batch - Required field"])
-        await wait.setTimeoutwait(5);
+        // await batches.invalidFieldInfoRequired(["batch - Required field"])
+        // await wait.setTimeoutwait(5);
+        try {
+            const batch = await batches.firstRow()
+            await wait.setTimeoutwait(5);
+            console.log("req text is " + expect(batch).to.equal(testData.json.batch))
+            await wait.setTimeoutwait(5);
+
+        }
+        catch (e) {
+            console.log(e)
+            await batches.closeButtonInPopup()
+            await wait.setTimeoutwait(5);
+            expect(JSON.stringify(e)).to.equal(0, `${testData.json.batch} not found in failed logs`)
+
+        }
+
+
         //download message
         await batches.clickDownloadMsgInFailedLog()
         await wait.setTimeoutwait(10);

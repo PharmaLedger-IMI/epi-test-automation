@@ -1,10 +1,10 @@
 {
+
     "login": {
         "automationUserName": "kpepiwdio",
         "invalidUserName": "testing",
         "invalidPassword": "1234fefhf",
         "demiurgeLoginDetails": {
-
             "registeredDemiurgeUser": "testing2",
             "newDemiurgeUser": "testing12",
             "emailId": "dev@user.dev",
@@ -13,13 +13,11 @@
             "confirmPassword": "SuperUserSecurePassword1!"
         },
         "enterpriseLoginDetails": {
-
             "newEnterpriseUser": "user14",
             "emailId": "dev@user.dev",
             "validPassword": "SuperUserSecurePassword1!",
             "confirmPassword": "SuperUserSecurePassword1!"
         },
-
         "ssoValidEmail": "",
         "ssoInvalidEmail": "test@gmail",
         "ssoValidPassword": "",
@@ -52,16 +50,27 @@
         "recallMsg": "This is a sample recall message"
     },
     "incrementalTest": {
-        "prodId": "02113147865550",
+        "prodId": "02113181020045",
         "batchId": "TO0366",
         "expiryDate": "2027-05-06",
         "serialNumber": "234765",
         "prodName": "epi-auto-"
+
     },
     "path": {
         "matrixImage": "/Users/snehav/AppData/Local/Android/Sdk/emulator/resources/custom.png",
         "testExpectation": "C:/Users/snehav/epi-mobileapp-test-automation/test/testdata/testExpectations.json",
         "productImport": "../epi-test-automation/test/testdata/sampleProductImport.json",
         "batchImport": "../epi-test-automation/test/testdata/sampleBatchImport.json"
+    },
+    "json": {
+        "productCode": "productCode - Required field",
+        "inventedName": "inventedName - Required field",
+        "nameMedicinalProduct": "nameMedicinalProduct - Required field",
+        "batch": "batch - Required field",
+        "expiryDate": "expiryDate - Required field",
+        "marketId":"marketId - not recognized",
+        "snValid":"snValid - Wrong type. Found number , expected string",
+        "batchExpiredFlag": "flagDisplayEPI_BatchExpired - Wrong type. Found string , expected boolean"
     }
 }

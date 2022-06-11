@@ -211,6 +211,18 @@ class productsPage {
     get requiredFieldsText() {
         return $('ul[data-for="@actionModalModel.secondMessageData"]')
     }
+    //required fields
+    get firstRowText() {
+        return $('li:nth-child(1) h6:nth-child(1)')
+    }
+    //required fields
+    get secondRowText() {
+        return $('li:nth-child(2) h6:nth-child(1)')
+    }
+    //required fields
+    get thirdRowText() {
+        return $('li:nth-child(3) h6:nth-child(1)')
+    }
     //home text from sidenav
     get homeText() {
         return $('//a[normalize-space()="Home"]')
@@ -602,26 +614,38 @@ class productsPage {
             console.log("not found in failed logs")
         }
     }
+    async firstRow() {
+        const firstElement = await this.firstRowText.getText()
+        return firstElement
+    }
+    async secondRow() {
+        const secondElement = await this.secondRowText.getText()
+        return secondElement
+    }
+    async thirdRow() {
+        const thirdElement = await this.thirdRowText.getText()
+        return thirdElement
+    }
     async invalidFieldInfoRequired(missingFields) {
         let failedCase = []
         try {
 
-        const allFields = await this.requiredFieldsText.getText()
-        console.log('required fields are ' + allFields)
+            const allFields = await this.requiredFieldsText.getText()
+            console.log('required fields are ' + allFields)
 
-        for (var i = 0; i < missingFields.length; i++) {
-            if (missingFields[i] != allFields) {
-                failedCase.push(missingFields[i])
-                console.log(expect(allFields).to.equal(`${missingFields[i]}`))
+            for (var i = 0; i < missingFields.length; i++) {
+                if (missingFields[i] != allFields) {
+                    failedCase.push(missingFields[i])
+                    console.log(expect(allFields).to.equal(`${missingFields[i]}`))
+                }
+                // else {
+                //     console.log(expect(allFields).to.equal(`${missingFields[i]}`))
+                // }
             }
-            // else {
-            //     console.log(expect(allFields).to.equal(`${missingFields[i]}`))
-            // }
-        }
 
-        // if (failedCase.length > 0) {
-        //     expect(JSON.stringify(failedCase)).to.have.lengthOf(0, `${JSON.stringify(failedCase)} not found in failed logs`)
-        // }
+            // if (failedCase.length > 0) {
+            //     expect(JSON.stringify(failedCase)).to.have.lengthOf(0, `${JSON.stringify(failedCase)} not found in failed logs`)
+            // }
         }
         catch (e) {
 

@@ -6,6 +6,7 @@ var randomCountry = require('random-country');
 const wait = require('../utility/timeout')
 const path = require('path');
 const fs = require('fs');
+const expect = require('chai').expect
 
 describe('118_Update a product via import of Json to change market id', () => {
 
@@ -73,8 +74,25 @@ describe('118_Update a product via import of Json to change market id', () => {
         await products.invalidFieldInfo()
         await wait.setTimeoutwait(5);
         //Read invalid field info
-        await products.invalidFieldInfoRequired(["marketId - not recognized"])
-        await wait.setTimeoutwait(5);
+        // await products.invalidFieldInfoRequired(["marketId - not recognized"])
+        // await wait.setTimeoutwait(5);
+        try {
+            const marketId = await products.firstRow()
+            await wait.setTimeoutwait(5);
+
+            await wait.setTimeoutwait(5);
+            console.log("req text is " + expect(marketId).to.equal(testData.json.marketId))
+            await wait.setTimeoutwait(5);
+
+
+        }
+        catch (e) {
+            console.log(e)
+            await products.closeButtonInPopup()
+            await wait.setTimeoutwait(5);
+            expect(JSON.stringify(e)).to.equal(0, `${testData.json.marketId} not found in failed logs`)
+
+        }
         //download message
         await products.clickDownloadMsgInFailedLog()
         await wait.setTimeoutwait(10);

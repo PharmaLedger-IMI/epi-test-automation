@@ -170,9 +170,9 @@ exports.config = {
             //'test/specs/enableBatchIsUnknownFlagWithOnlyValidGTINMatrix.js'
 
             // 'test/specs/productImport.js',
-             'test/specs/removeInventedNameInProductJson.js',
+            'test/specs/removeInventedNameInProductJson.js',
             // 'test/specs/removeProductCodeInProductJson.js',
-             //'test/specs/removeNameOfMedicinalProductInProductJson.js',
+            //'test/specs/removeNameOfMedicinalProductInProductJson.js',
             // 'test/specs/removeInventedNameAndProductCodeInProductJson.js',
             // 'test/specs/removeInventedNameAndNameOfMedicinalProductInProductJson.js',
             // 'test/specs/removeProductCodeAndNameOfMedicinalProductInProductJson.js',
@@ -225,20 +225,20 @@ exports.config = {
                 // 'test/specs/changeSNRecalledFlagInProductJson.js',
                 // 'test/specs/changeSNDecommissionedFlagInProductJson.js',
                 // 'test/specs/changeMarketIdInProductJson.js',
-                'test/specs/enterIncorrectBatchExpiredFlagInProductJson.js',
+                // 'test/specs/enterIncorrectBatchExpiredFlagInProductJson.js',
 
-                'test/specs/batchImport.js',
-                'test/specs/removeProductCodeInBatchJson.js',
-                'test/specs/removeBatchInBatchJson.js',
-                'test/specs/removeExpiryDateInBatchJson.js',
-                'test/specs/removeProductCodeAndBatchInBatchJson.js',
-                'test/specs/removeProductCodeAndExpiryDateInBatchJson.js',
-                'test/specs/removeBatchAndExpiryDateInBatchJson.js',
-                'test/specs/removeProductCodeBatchAndExpiryDateInBatchJson.js',
+                // 'test/specs/batchImport.js',
+                // 'test/specs/removeProductCodeInBatchJson.js',
+                // 'test/specs/removeBatchInBatchJson.js',
+                //'test/specs/removeExpiryDateInBatchJson.js',
+                // 'test/specs/removeProductCodeAndBatchInBatchJson.js',
+                // 'test/specs/removeProductCodeAndExpiryDateInBatchJson.js',
+                // 'test/specs/removeBatchAndExpiryDateInBatchJson.js',
+                // 'test/specs/removeProductCodeBatchAndExpiryDateInBatchJson.js',
 
-                'test/specs/changeBatchRecallMsgFlagInBatchJson.js',
-                'test/specs/enterSnRecalledInBatchJson.js',
-                'test/specs/enterSnDecommissionedInBatchJson.js',
+                // 'test/specs/changeBatchRecallMsgFlagInBatchJson.js',
+                // 'test/specs/enterSnRecalledInBatchJson.js',
+                // 'test/specs/enterSnDecommissionedInBatchJson.js',
                 'test/specs/enterSnValidInBatchJson.js',
             ]
 
@@ -341,9 +341,9 @@ exports.config = {
     // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
     // gets prepended directly.
     //
-    //baseUrl: 'https://epiqa.westeurope.cloudapp.azure.com/',
-    baseUrl: 'http://localhost:3000',
-    //baseUrl:'https://plsmap.westeurope.cloudapp.azure.com/',
+    baseUrl: 'https://epiqa.westeurope.cloudapp.azure.com/',
+    //baseUrl: 'http://localhost:3000',
+
     //
     // Default timeout for all waitFor* commands.
     waitforTimeout: 10000,
