@@ -6,7 +6,7 @@ const wait = require('../utility/timeout')
 const path = require('path');
 const fs = require('fs');
 const expect = require('chai').expect
-describe('113_Update a product via import of Json by deleting invented name & name of medicinal product elemet', () => {
+describe('113_Update a product via import of Json by deleting invented name & name of medicinal product element', () => {
 
 
 
