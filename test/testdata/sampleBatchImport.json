@@ -1,0 +1,30 @@
+{
+    "messageType": "Batch",
+    "messageTypeVersion": 1,
+    "senderId": "kpepiwdio",
+    "receiverId": "",
+    "messageId": "7906528071357",
+    "messageDateTime": "2022-06-10T11:58:12.983Z",
+    "token": "",
+    "batch": {
+        "snValid": [],
+        "snRecalled": [],
+        "snDecom": [],
+        "flagEnableBatchRecallMessage": true,
+        "flagEnableSNVerification": true,
+        "flagEnableEXPVerification": true,
+        "flagEnableExpiredEXPCheck": true,
+        "recallMessage": "",
+        "batchMessage": "",
+        "packagingSiteName": "",
+        "flagEnableACFBatchCheck": false,
+        "acdcAuthFeatureSSI": "",
+        "acfBatchCheckURL": false,
+        "snValidReset": false,
+        "snRecalledReset": false,
+        "snDecomReset": false,
+        "expiryDate": "220630",
+        "productCode": "05290931025615",
+        "batch": "TX6055"
+    }
+}

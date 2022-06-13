@@ -10,5 +10,14 @@ module.exports = class Page {
     open(path) {
         //return browser.url(`https://the-internet.herokuapp.com/${path}`)
         return browser.url('/')
+
     }
+
+    opensuburl(opensuburl) {
+
+        return browser.url('https://www.gs1.org/services/check-digit-calculator')
+
+
+    }
+   
 }

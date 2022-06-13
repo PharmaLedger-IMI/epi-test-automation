@@ -1,0 +1,2429 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet href="https://www.accessdata.fda.gov/spl/stylesheet/spl.xsl" type="text/xsl"?>
+<document xmlns="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:hl7-org:v3 https://www.accessdata.fda.gov/spl/schema/spl.xsd">
+   <id root="9ed0dcad-96f2-4b22-aa47-22d88ef92a8b"/>
+   <code code="34391-3" displayName="HUMAN PRESCRIPTION DRUG LABEL" codeSystem="2.16.840.1.113883.6.1"/>
+   <title>
+      <content styleCode="bold">These highlights do not include all the information needed to use ENTRESTO safely and effectively. See full prescribing information for ENTRESTO.</content>
+      <br/>
+      <br/>
+      <content styleCode="bold">ENTRESTO<sup>®</sup> (sacubitril and valsartan) tablets, for oral use</content>
+      <br/>
+      <content styleCode="bold">Initial U.S. Approval: 2015</content>
+      <br/>
+   </title>
+   <effectiveTime value="20200614"/>
+   <setId root="000dc81d-ab91-450c-8eae-8eb74e72296f"/>
+   <versionNumber value="9"/>
+   <author>
+      <time/>
+      <assignedEntity>
+         <representedOrganization>
+            <id extension="002147023" root="1.3.6.1.4.1.519.1"/>
+            <name>Novartis Pharmaceuticals Corporation</name>
+            <assignedEntity>
+               <assignedOrganization/>
+            </assignedEntity>
+         </representedOrganization>
+      </assignedEntity>
+   </author>
+   <component>
+      <structuredBody>
+         <component>
+            <section>
+               <id root="6b4c2925-4c18-4282-8864-3fd1244ef429"/>
+               <code code="48780-1" displayName="SPL LISTING DATA ELEMENTS SECTION" codeSystem="2.16.840.1.113883.6.1"/>
+               <effectiveTime value="20181129"/>
+               <subject>
+                  <manufacturedProduct>
+                     <manufacturedProduct>
+                        <code code="0078-0659" codeSystem="2.16.840.1.113883.6.69"/>
+                        <name>ENTRESTO</name>
+                        <formCode code="C42931" displayName="TABLET, FILM COATED" codeSystem="2.16.840.1.113883.3.26.1.1"/>
+                        <asEntityWithGeneric>
+                           <genericMedicine>
+                              <name>Sacubitril and Valsartan</name>
+                           </genericMedicine>
+                        </asEntityWithGeneric>
+                        <ingredient classCode="ACTIB">
+                           <quantity>
+                              <numerator unit="mg" value="24"/>
+                              <denominator unit="1" value="1"/>
+                           </quantity>
+                           <ingredientSubstance>
+                              <code code="17ERJ0MKGI" codeSystem="2.16.840.1.113883.4.9"/>
+                              <name>SACUBITRIL</name>
+                              <activeMoiety>
+                                 <activeMoiety>
+                                    <code code="SPI5PBF81S" codeSystem="2.16.840.1.113883.4.9"/>
+                                    <name>SACUBITRILAT</name>
+                                 </activeMoiety>
+                              </activeMoiety>
+                           </ingredientSubstance>
+                        </ingredient>
+                        <ingredient classCode="ACTIB">
+                           <quantity>
+                              <numerator unit="mg" value="26"/>
+                              <denominator unit="1" value="1"/>
+                           </quantity>
+                           <ingredientSubstance>
+                              <code code="80M03YXJ7I" codeSystem="2.16.840.1.113883.4.9"/>
+                              <name>VALSARTAN</name>
+                              <activeMoiety>
+                                 <activeMoiety>
+                                    <code code="80M03YXJ7I" codeSystem="2.16.840.1.113883.4.9"/>
+                                    <name>VALSARTAN</name>
+                                 </activeMoiety>
+                              </activeMoiety>
+                           </ingredientSubstance>
+                        </ingredient>
+                        <ingredient classCode="IACT">
+                           <ingredientSubstance>
+                              <code code="OP1R32D61U" codeSystem="2.16.840.1.113883.4.9"/>
+                              <name>CELLULOSE, MICROCRYSTALLINE</name>
+                           </ingredientSubstance>
+                        </ingredient>
+                        <ingredient classCode="IACT">
+                           <ingredientSubstance>
+                              <code code="68401960MK" codeSystem="2.16.840.1.113883.4.9"/>
+                              <name>CROSPOVIDONE</name>
+                           </ingredientSubstance>
+                        </ingredient>
+                        <ingredient classCode="IACT">
+                           <ingredientSubstance>
+                              <code code="70097M6I30" codeSystem="2.16.840.1.113883.4.9"/>
+                              <name>MAGNESIUM STEARATE</name>
+                           </ingredientSubstance>
+                        </ingredient>
+                        <ingredient classCode="IACT">
+                           <ingredientSubstance>
+                              <code code="7SEV7J4R1U" codeSystem="2.16.840.1.113883.4.9"/>
+                              <name>TALC</name>
+                           </ingredientSubstance>
+                        </ingredient>
+                        <ingredient classCode="IACT">
+                           <ingredientSubstance>
+                              <code code="ETJ7Z6XBU4" codeSystem="2.16.840.1.113883.4.9"/>
+                              <name>SILICON DIOXIDE</name>
+                           </ingredientSubstance>
+                        </ingredient>
+                        <ingredient classCode="IACT">
+                           <ingredientSubstance>
+                              <code code="2165RE0K14" codeSystem="2.16.840.1.113883.4.9"/>
+                              <name>HYDROXYPROPYL CELLULOSE, LOW SUBSTITUTED</name>
+                           </ingredientSubstance>
+                        </ingredient>
+                        <ingredient classCode="IACT">
+                           <ingredientSubstance>
+                              <code code="3NXW29V3WO" codeSystem="2.16.840.1.113883.4.9"/>
+                              <name>HYPROMELLOSES</name>
+                           </ingredientSubstance>
+                        </ingredient>
+                        <ingredient classCode="IACT">
+                           <ingredientSubstance>
+                              <code code="15FIX9V2JP" codeSystem="2.16.840.1.113883.4.9"/>
+                              <name>TITANIUM DIOXIDE</name>
+                           </ingredientSubstance>
+                        </ingredient>
+                        <ingredient classCode="IACT">
+                           <ingredientSubstance>
+                              <code code="4R4HFI6D95" codeSystem="2.16.840.1.113883.4.9"/>
+                              <name>POLYETHYLENE GLYCOL 4000</name>
+                           </ingredientSubstance>
+                        </ingredient>
+                        <ingredient classCode="IACT">
+                           <ingredientSubstance>
+                              <code code="1K09F3G675" codeSystem="2.16.840.1.113883.4.9"/>
+                              <name>FERRIC OXIDE RED</name>
+                           </ingredientSubstance>
+                        </ingredient>
+                        <ingredient classCode="IACT">
+                           <ingredientSubstance>
+                              <code code="XM0M87F357" codeSystem="2.16.840.1.113883.4.9"/>
+                              <name>FERROSOFERRIC OXIDE</name>
+                           </ingredientSubstance>
+                        </ingredient>
+                        <asContent>
+                           <quantity>
+                              <numerator unit="1" value="60"/>
+                              <denominator value="1"/>
+                           </quantity>
+                           <containerPackagedProduct>
+                              <code code="0078-0659-20" codeSystem="2.16.840.1.113883.6.69"/>
+                              <formCode code="C43169" displayName="BOTTLE" codeSystem="2.16.840.1.113883.3.26.1.1"/>
+                           </containerPackagedProduct>
+                           <subjectOf>
+                              <marketingAct>
+                                 <code code="C53292" codeSystem="2.16.840.1.113883.3.26.1.1"/>
+                                 <statusCode code="active"/>
+                                 <effectiveTime>
+                                    <low value="20150707"/>
+                                 </effectiveTime>
+                              </marketingAct>
+                           </subjectOf>
+                           <subjectOf>
+                              <characteristic>
+                                 <code code="SPLCMBPRDTP" codeSystem="2.16.840.1.113883.1.11.19255"/>
+                                 <value code="C112160" displayName="Type 0: Not a Combination Product" codeSystem="2.16.840.1.113883.3.26.1.1" xsi:type="CV"/>
+                              </characteristic>
+                           </subjectOf>
+                        </asContent>
+                        <asContent>
+                           <quantity>
+                              <numerator unit="1" value="180"/>
+                              <denominator value="1"/>
+                           </quantity>
+                           <containerPackagedProduct>
+                              <code code="0078-0659-67" codeSystem="2.16.840.1.113883.6.69"/>
+                              <formCode code="C43169" displayName="BOTTLE" codeSystem="2.16.840.1.113883.3.26.1.1"/>
+                           </containerPackagedProduct>
+                           <subjectOf>
+                              <marketingAct>
+                                 <code code="C53292" codeSystem="2.16.840.1.113883.3.26.1.1"/>
+                                 <statusCode code="active"/>
+                                 <effectiveTime>
+                                    <low value="20150707"/>
+                                 </effectiveTime>
+                              </marketingAct>
+                           </subjectOf>
+                           <subjectOf>
+                              <characteristic>
+                                 <code code="SPLCMBPRDTP" codeSystem="2.16.840.1.113883.1.11.19255"/>
+                                 <value code="C112160" displayName="Type 0: Not a Combination Product" codeSystem="2.16.840.1.113883.3.26.1.1" xsi:type="CV"/>
+                              </characteristic>
+                           </subjectOf>
+                        </asContent>
+                        <asContent>
+                           <quantity>
+                              <numerator unit="1" value="1"/>
+                              <denominator value="1"/>
+                           </quantity>
+                           <containerPackagedProduct>
+                              <code code="0078-0659-61" codeSystem="2.16.840.1.113883.6.69"/>
+                              <formCode code="C43168" displayName="BLISTER PACK" codeSystem="2.16.840.1.113883.3.26.1.1"/>
+                              <asContent>
+                                 <quantity>
+                                    <numerator unit="1" value="100"/>
+                                    <denominator value="1"/>
+                                 </quantity>
+                                 <containerPackagedProduct>
+                                    <code code="0078-0659-35" codeSystem="2.16.840.1.113883.6.69"/>
+                                    <formCode code="C43179" displayName="BOX, UNIT-DOSE" codeSystem="2.16.840.1.113883.3.26.1.1"/>
+                                 </containerPackagedProduct>
+                                 <subjectOf>
+                                    <marketingAct>
+                                       <code code="C53292" codeSystem="2.16.840.1.113883.3.26.1.1"/>
+                                       <statusCode code="completed"/>
+                                       <effectiveTime>
+                                          <low value="20150707"/>
+                                          <high value="20201231"/>
+                                       </effectiveTime>
+                                    </marketingAct>
+                                 </subjectOf>
+                              </asContent>
+                           </containerPackagedProduct>
+                           <subjectOf>
+                              <characteristic>
+                                 <code code="SPLCMBPRDTP" codeSystem="2.16.840.1.113883.1.11.19255"/>
+                                 <value code="C112160" displayName="Type 0: Not a Combination Product" codeSystem="2.16.840.1.113883.3.26.1.1" xsi:type="CV"/>
+                              </characteristic>
+                           </subjectOf>
+                        </asContent>
+                     </manufacturedProduct>
+                     <subjectOf>
+                        <approval>
+                           <id extension="NDA207620" root="2.16.840.1.113883.3.150"/>
+                           <code code="C73594" displayName="NDA" codeSystem="2.16.840.1.113883.3.26.1.1"/>
+                           <author>
+                              <territorialAuthority>
+                                 <territory>
+                                    <code code="USA" codeSystem="2.16.840.1.113883.5.28"/>
+                                 </territory>
+                              </territorialAuthority>
+                           </author>
+                        </approval>
+                     </subjectOf>
+                     <subjectOf>
+                        <marketingAct>
+                           <code code="C53292" codeSystem="2.16.840.1.113883.3.26.1.1"/>
+                           <statusCode code="active"/>
+                           <effectiveTime>
+                              <low value="20150707"/>
+                           </effectiveTime>
+                        </marketingAct>
+                     </subjectOf>
+                     <subjectOf>
+                        <characteristic classCode="OBS">
+                           <code code="SPLCOLOR" codeSystem="2.16.840.1.113883.1.11.19255"/>
+                           <value code="C48325" displayName="WHITE" codeSystem="2.16.840.1.113883.3.26.1.1" xsi:type="CV">
+                              <originalText>Violet white</originalText>
+                           </value>
+                        </characteristic>
+                     </subjectOf>
+                     <subjectOf>
+                        <characteristic classCode="OBS">
+                           <code code="SPLIMPRINT" codeSystem="2.16.840.1.113883.1.11.19255"/>
+                           <value xsi:type="ST">NVR;LZ</value>
+                        </characteristic>
+                     </subjectOf>
+                     <subjectOf>
+                        <characteristic classCode="OBS">
+                           <code code="SPLSCORE" codeSystem="2.16.840.1.113883.1.11.19255"/>
+                           <value value="1" xsi:type="INT"/>
+                        </characteristic>
+                     </subjectOf>
+                     <subjectOf>
+                        <characteristic classCode="OBS">
+                           <code code="SPLSHAPE" codeSystem="2.16.840.1.113883.1.11.19255"/>
+                           <value code="C48345" displayName="OVAL" codeSystem="2.16.840.1.113883.3.26.1.1" xsi:type="CV">
+                              <originalText>ovaloid biconvex</originalText>
+                           </value>
+                        </characteristic>
+                     </subjectOf>
+                     <subjectOf>
+                        <characteristic classCode="OBS">
+                           <code code="SPLSIZE" codeSystem="2.16.840.1.113883.1.11.19255"/>
+                           <value unit="mm" value="13" xsi:type="PQ"/>
+                        </characteristic>
+                     </subjectOf>
+                     <consumedIn>
+                        <substanceAdministration>
+                           <routeCode code="C38288" displayName="ORAL" codeSystem="2.16.840.1.113883.3.26.1.1"/>
+                        </substanceAdministration>
+                     </consumedIn>
+                  </manufacturedProduct>
+               </subject>
+               <subject>
+                  <manufacturedProduct>
+                     <manufacturedProduct>
+                        <code code="0078-0777" codeSystem="2.16.840.1.113883.6.69"/>
+                        <name>ENTRESTO</name>
+                        <formCode code="C42931" displayName="TABLET, FILM COATED" codeSystem="2.16.840.1.113883.3.26.1.1"/>
+                        <asEntityWithGeneric>
+                           <genericMedicine>
+                              <name>Sacubitril and Valsartan</name>
+                           </genericMedicine>
+                        </asEntityWithGeneric>
+                        <ingredient classCode="ACTIB">
+                           <quantity>
+                              <numerator unit="mg" value="49"/>
+                              <denominator unit="1" value="1"/>
+                           </quantity>
+                           <ingredientSubstance>
+                              <code code="17ERJ0MKGI" codeSystem="2.16.840.1.113883.4.9"/>
+                              <name>SACUBITRIL</name>
+                              <activeMoiety>
+                                 <activeMoiety>
+                                    <code code="SPI5PBF81S" codeSystem="2.16.840.1.113883.4.9"/>
+                                    <name>SACUBITRILAT</name>
+                                 </activeMoiety>
+                              </activeMoiety>
+                           </ingredientSubstance>
+                        </ingredient>
+                        <ingredient classCode="ACTIB">
+                           <quantity>
+                              <numerator unit="mg" value="51"/>
+                              <denominator unit="1" value="1"/>
+                           </quantity>
+                           <ingredientSubstance>
+                              <code code="80M03YXJ7I" codeSystem="2.16.840.1.113883.4.9"/>
+                              <name>VALSARTAN</name>
+                              <activeMoiety>
+                                 <activeMoiety>
+                                    <code code="80M03YXJ7I" codeSystem="2.16.840.1.113883.4.9"/>
+                                    <name>VALSARTAN</name>
+                                 </activeMoiety>
+                              </activeMoiety>
+                           </ingredientSubstance>
+                        </ingredient>
+                        <ingredient classCode="IACT">
+                           <ingredientSubstance>
+                              <code code="OP1R32D61U" codeSystem="2.16.840.1.113883.4.9"/>
+                              <name>CELLULOSE, MICROCRYSTALLINE</name>
+                           </ingredientSubstance>
+                        </ingredient>
+                        <ingredient classCode="IACT">
+                           <ingredientSubstance>
+                              <code code="68401960MK" codeSystem="2.16.840.1.113883.4.9"/>
+                              <name>CROSPOVIDONE</name>
+                           </ingredientSubstance>
+                        </ingredient>
+                        <ingredient classCode="IACT">
+                           <ingredientSubstance>
+                              <code code="70097M6I30" codeSystem="2.16.840.1.113883.4.9"/>
+                              <name>MAGNESIUM STEARATE</name>
+                           </ingredientSubstance>
+                        </ingredient>
+                        <ingredient classCode="IACT">
+                           <ingredientSubstance>
+                              <code code="7SEV7J4R1U" codeSystem="2.16.840.1.113883.4.9"/>
+                              <name>TALC</name>
+                           </ingredientSubstance>
+                        </ingredient>
+                        <ingredient classCode="IACT">
+                           <ingredientSubstance>
+                              <code code="ETJ7Z6XBU4" codeSystem="2.16.840.1.113883.4.9"/>
+                              <name>SILICON DIOXIDE</name>
+                           </ingredientSubstance>
+                        </ingredient>
+                        <ingredient classCode="IACT">
+                           <ingredientSubstance>
+                              <code code="2165RE0K14" codeSystem="2.16.840.1.113883.4.9"/>
+                              <name>HYDROXYPROPYL CELLULOSE, LOW SUBSTITUTED</name>
+                           </ingredientSubstance>
+                        </ingredient>
+                        <ingredient classCode="IACT">
+                           <ingredientSubstance>
+                              <code code="3NXW29V3WO" codeSystem="2.16.840.1.113883.4.9"/>
+                              <name>HYPROMELLOSES</name>
+                           </ingredientSubstance>
+                        </ingredient>
+                        <ingredient classCode="IACT">
+                           <ingredientSubstance>
+                              <code code="15FIX9V2JP" codeSystem="2.16.840.1.113883.4.9"/>
+                              <name>TITANIUM DIOXIDE</name>
+                           </ingredientSubstance>
+                        </ingredient>
+                        <ingredient classCode="IACT">
+                           <ingredientSubstance>
+                              <code code="4R4HFI6D95" codeSystem="2.16.840.1.113883.4.9"/>
+                              <name>POLYETHYLENE GLYCOL 4000</name>
+                           </ingredientSubstance>
+                        </ingredient>
+                        <ingredient classCode="IACT">
+                           <ingredientSubstance>
+                              <code code="1K09F3G675" codeSystem="2.16.840.1.113883.4.9"/>
+                              <name>FERRIC OXIDE RED</name>
+                           </ingredientSubstance>
+                        </ingredient>
+                        <ingredient classCode="IACT">
+                           <ingredientSubstance>
+                              <code code="EX438O2MRT" codeSystem="2.16.840.1.113883.4.9"/>
+                              <name>FERRIC OXIDE YELLOW</name>
+                           </ingredientSubstance>
+                        </ingredient>
+                        <asContent>
+                           <quantity>
+                              <numerator unit="1" value="60"/>
+                              <denominator value="1"/>
+                           </quantity>
+                           <containerPackagedProduct>
+                              <code code="0078-0777-20" codeSystem="2.16.840.1.113883.6.69"/>
+                              <formCode code="C43169" displayName="BOTTLE" codeSystem="2.16.840.1.113883.3.26.1.1"/>
+                           </containerPackagedProduct>
+                           <subjectOf>
+                              <marketingAct>
+                                 <code code="C53292" codeSystem="2.16.840.1.113883.3.26.1.1"/>
+                                 <statusCode code="active"/>
+                                 <effectiveTime>
+                                    <low value="20150707"/>
+                                 </effectiveTime>
+                              </marketingAct>
+                           </subjectOf>
+                           <subjectOf>
+                              <characteristic>
+                                 <code code="SPLCMBPRDTP" codeSystem="2.16.840.1.113883.1.11.19255"/>
+                                 <value code="C112160" displayName="Type 0: Not a Combination Product" codeSystem="2.16.840.1.113883.3.26.1.1" xsi:type="CV"/>
+                              </characteristic>
+                           </subjectOf>
+                        </asContent>
+                        <asContent>
+                           <quantity>
+                              <numerator unit="1" value="180"/>
+                              <denominator value="1"/>
+                           </quantity>
+                           <containerPackagedProduct>
+                              <code code="0078-0777-67" codeSystem="2.16.840.1.113883.6.69"/>
+                              <formCode code="C43169" displayName="BOTTLE" codeSystem="2.16.840.1.113883.3.26.1.1"/>
+                           </containerPackagedProduct>
+                           <subjectOf>
+                              <marketingAct>
+                                 <code code="C53292" codeSystem="2.16.840.1.113883.3.26.1.1"/>
+                                 <statusCode code="active"/>
+                                 <effectiveTime>
+                                    <low value="20150707"/>
+                                 </effectiveTime>
+                              </marketingAct>
+                           </subjectOf>
+                           <subjectOf>
+                              <characteristic>
+                                 <code code="SPLCMBPRDTP" codeSystem="2.16.840.1.113883.1.11.19255"/>
+                                 <value code="C112160" displayName="Type 0: Not a Combination Product" codeSystem="2.16.840.1.113883.3.26.1.1" xsi:type="CV"/>
+                              </characteristic>
+                           </subjectOf>
+                        </asContent>
+                        <asContent>
+                           <quantity>
+                              <numerator unit="1" value="1"/>
+                              <denominator value="1"/>
+                           </quantity>
+                           <containerPackagedProduct>
+                              <code code="0078-0777-61" codeSystem="2.16.840.1.113883.6.69"/>
+                              <formCode code="C43168" displayName="BLISTER PACK" codeSystem="2.16.840.1.113883.3.26.1.1"/>
+                              <asContent>
+                                 <quantity>
+                                    <numerator unit="1" value="100"/>
+                                    <denominator value="1"/>
+                                 </quantity>
+                                 <containerPackagedProduct>
+                                    <code code="0078-0777-35" codeSystem="2.16.840.1.113883.6.69"/>
+                                    <formCode code="C43179" displayName="BOX, UNIT-DOSE" codeSystem="2.16.840.1.113883.3.26.1.1"/>
+                                 </containerPackagedProduct>
+                                 <subjectOf>
+                                    <marketingAct>
+                                       <code code="C53292" codeSystem="2.16.840.1.113883.3.26.1.1"/>
+                                       <statusCode code="completed"/>
+                                       <effectiveTime>
+                                          <low value="20150707"/>
+                                          <high value="20200531"/>
+                                       </effectiveTime>
+                                    </marketingAct>
+                                 </subjectOf>
+                              </asContent>
+                           </containerPackagedProduct>
+                           <subjectOf>
+                              <characteristic>
+                                 <code code="SPLCMBPRDTP" codeSystem="2.16.840.1.113883.1.11.19255"/>
+                                 <value code="C112160" displayName="Type 0: Not a Combination Product" codeSystem="2.16.840.1.113883.3.26.1.1" xsi:type="CV"/>
+                              </characteristic>
+                           </subjectOf>
+                        </asContent>
+                     </manufacturedProduct>
+                     <subjectOf>
+                        <approval>
+                           <id extension="NDA207620" root="2.16.840.1.113883.3.150"/>
+                           <code code="C73594" displayName="NDA" codeSystem="2.16.840.1.113883.3.26.1.1"/>
+                           <author>
+                              <territorialAuthority>
+                                 <territory>
+                                    <code code="USA" codeSystem="2.16.840.1.113883.5.28"/>
+                                 </territory>
+                              </territorialAuthority>
+                           </author>
+                        </approval>
+                     </subjectOf>
+                     <subjectOf>
+                        <marketingAct>
+                           <code code="C53292" codeSystem="2.16.840.1.113883.3.26.1.1"/>
+                           <statusCode code="active"/>
+                           <effectiveTime>
+                              <low value="20150707"/>
+                           </effectiveTime>
+                        </marketingAct>
+                     </subjectOf>
+                     <subjectOf>
+                        <characteristic classCode="OBS">
+                           <code code="SPLCOLOR" codeSystem="2.16.840.1.113883.1.11.19255"/>
+                           <value code="C48330" displayName="YELLOW" codeSystem="2.16.840.1.113883.3.26.1.1" xsi:type="CV">
+                              <originalText>Pale yellow</originalText>
+                           </value>
+                        </characteristic>
+                     </subjectOf>
+                     <subjectOf>
+                        <characteristic classCode="OBS">
+                           <code code="SPLIMPRINT" codeSystem="2.16.840.1.113883.1.11.19255"/>
+                           <value xsi:type="ST">NVR;L1</value>
+                        </characteristic>
+                     </subjectOf>
+                     <subjectOf>
+                        <characteristic classCode="OBS">
+                           <code code="SPLSCORE" codeSystem="2.16.840.1.113883.1.11.19255"/>
+                           <value value="1" xsi:type="INT"/>
+                        </characteristic>
+                     </subjectOf>
+                     <subjectOf>
+                        <characteristic classCode="OBS">
+                           <code code="SPLSHAPE" codeSystem="2.16.840.1.113883.1.11.19255"/>
+                           <value code="C48345" displayName="OVAL" codeSystem="2.16.840.1.113883.3.26.1.1" xsi:type="CV"/>
+                        </characteristic>
+                     </subjectOf>
+                     <subjectOf>
+                        <characteristic classCode="OBS">
+                           <code code="SPLSIZE" codeSystem="2.16.840.1.113883.1.11.19255"/>
+                           <value unit="mm" value="13" xsi:type="PQ"/>
+                        </characteristic>
+                     </subjectOf>
+                     <consumedIn>
+                        <substanceAdministration>
+                           <routeCode code="C38288" displayName="ORAL" codeSystem="2.16.840.1.113883.3.26.1.1"/>
+                        </substanceAdministration>
+                     </consumedIn>
+                  </manufacturedProduct>
+               </subject>
+               <subject>
+                  <manufacturedProduct>
+                     <manufacturedProduct>
+                        <code code="0078-0696" codeSystem="2.16.840.1.113883.6.69"/>
+                        <name>ENTRESTO</name>
+                        <formCode code="C42931" displayName="TABLET, FILM COATED" codeSystem="2.16.840.1.113883.3.26.1.1"/>
+                        <asEntityWithGeneric>
+                           <genericMedicine>
+                              <name>Sacubitril and Valsartan</name>
+                           </genericMedicine>
+                        </asEntityWithGeneric>
+                        <ingredient classCode="ACTIB">
+                           <quantity>
+                              <numerator unit="mg" value="97"/>
+                              <denominator unit="1" value="1"/>
+                           </quantity>
+                           <ingredientSubstance>
+                              <code code="17ERJ0MKGI" codeSystem="2.16.840.1.113883.4.9"/>
+                              <name>SACUBITRIL</name>
+                              <activeMoiety>
+                                 <activeMoiety>
+                                    <code code="SPI5PBF81S" codeSystem="2.16.840.1.113883.4.9"/>
+                                    <name>SACUBITRILAT</name>
+                                 </activeMoiety>
+                              </activeMoiety>
+                           </ingredientSubstance>
+                        </ingredient>
+                        <ingredient classCode="ACTIB">
+                           <quantity>
+                              <numerator unit="mg" value="103"/>
+                              <denominator unit="1" value="1"/>
+                           </quantity>
+                           <ingredientSubstance>
+                              <code code="80M03YXJ7I" codeSystem="2.16.840.1.113883.4.9"/>
+                              <name>VALSARTAN</name>
+                              <activeMoiety>
+                                 <activeMoiety>
+                                    <code code="80M03YXJ7I" codeSystem="2.16.840.1.113883.4.9"/>
+                                    <name>VALSARTAN</name>
+                                 </activeMoiety>
+                              </activeMoiety>
+                           </ingredientSubstance>
+                        </ingredient>
+                        <ingredient classCode="IACT">
+                           <ingredientSubstance>
+                              <code code="OP1R32D61U" codeSystem="2.16.840.1.113883.4.9"/>
+                              <name>CELLULOSE, MICROCRYSTALLINE</name>
+                           </ingredientSubstance>
+                        </ingredient>
+                        <ingredient classCode="IACT">
+                           <ingredientSubstance>
+                              <code code="68401960MK" codeSystem="2.16.840.1.113883.4.9"/>
+                              <name>CROSPOVIDONE</name>
+                           </ingredientSubstance>
+                        </ingredient>
+                        <ingredient classCode="IACT">
+                           <ingredientSubstance>
+                              <code code="70097M6I30" codeSystem="2.16.840.1.113883.4.9"/>
+                              <name>MAGNESIUM STEARATE</name>
+                           </ingredientSubstance>
+                        </ingredient>
+                        <ingredient classCode="IACT">
+                           <ingredientSubstance>
+                              <code code="7SEV7J4R1U" codeSystem="2.16.840.1.113883.4.9"/>
+                              <name>TALC</name>
+                           </ingredientSubstance>
+                        </ingredient>
+                        <ingredient classCode="IACT">
+                           <ingredientSubstance>
+                              <code code="ETJ7Z6XBU4" codeSystem="2.16.840.1.113883.4.9"/>
+                              <name>SILICON DIOXIDE</name>
+                           </ingredientSubstance>
+                        </ingredient>
+                        <ingredient classCode="IACT">
+                           <ingredientSubstance>
+                              <code code="2165RE0K14" codeSystem="2.16.840.1.113883.4.9"/>
+                              <name>HYDROXYPROPYL CELLULOSE, LOW SUBSTITUTED</name>
+                           </ingredientSubstance>
+                        </ingredient>
+                        <ingredient classCode="IACT">
+                           <ingredientSubstance>
+                              <code code="3NXW29V3WO" codeSystem="2.16.840.1.113883.4.9"/>
+                              <name>HYPROMELLOSES</name>
+                           </ingredientSubstance>
+                        </ingredient>
+                        <ingredient classCode="IACT">
+                           <ingredientSubstance>
+                              <code code="15FIX9V2JP" codeSystem="2.16.840.1.113883.4.9"/>
+                              <name>TITANIUM DIOXIDE</name>
+                           </ingredientSubstance>
+                        </ingredient>
+                        <ingredient classCode="IACT">
+                           <ingredientSubstance>
+                              <code code="4R4HFI6D95" codeSystem="2.16.840.1.113883.4.9"/>
+                              <name>POLYETHYLENE GLYCOL 4000</name>
+                           </ingredientSubstance>
+                        </ingredient>
+                        <ingredient classCode="IACT">
+                           <ingredientSubstance>
+                              <code code="1K09F3G675" codeSystem="2.16.840.1.113883.4.9"/>
+                              <name>FERRIC OXIDE RED</name>
+                           </ingredientSubstance>
+                        </ingredient>
+                        <ingredient classCode="IACT">
+                           <ingredientSubstance>
+                              <code code="XM0M87F357" codeSystem="2.16.840.1.113883.4.9"/>
+                              <name>FERROSOFERRIC OXIDE</name>
+                           </ingredientSubstance>
+                        </ingredient>
+                        <asContent>
+                           <quantity>
+                              <numerator unit="1" value="60"/>
+                              <denominator value="1"/>
+                           </quantity>
+                           <containerPackagedProduct>
+                              <code code="0078-0696-20" codeSystem="2.16.840.1.113883.6.69"/>
+                              <formCode code="C43169" displayName="BOTTLE" codeSystem="2.16.840.1.113883.3.26.1.1"/>
+                           </containerPackagedProduct>
+                           <subjectOf>
+                              <marketingAct>
+                                 <code code="C53292" codeSystem="2.16.840.1.113883.3.26.1.1"/>
+                                 <statusCode code="active"/>
+                                 <effectiveTime>
+                                    <low value="20150707"/>
+                                 </effectiveTime>
+                              </marketingAct>
+                           </subjectOf>
+                           <subjectOf>
+                              <characteristic>
+                                 <code code="SPLCMBPRDTP" codeSystem="2.16.840.1.113883.1.11.19255"/>
+                                 <value code="C112160" displayName="Type 0: Not a Combination Product" codeSystem="2.16.840.1.113883.3.26.1.1" xsi:type="CV"/>
+                              </characteristic>
+                           </subjectOf>
+                        </asContent>
+                        <asContent>
+                           <quantity>
+                              <numerator unit="1" value="180"/>
+                              <denominator value="1"/>
+                           </quantity>
+                           <containerPackagedProduct>
+                              <code code="0078-0696-67" codeSystem="2.16.840.1.113883.6.69"/>
+                              <formCode code="C43169" displayName="BOTTLE" codeSystem="2.16.840.1.113883.3.26.1.1"/>
+                           </containerPackagedProduct>
+                           <subjectOf>
+                              <marketingAct>
+                                 <code code="C53292" codeSystem="2.16.840.1.113883.3.26.1.1"/>
+                                 <statusCode code="active"/>
+                                 <effectiveTime>
+                                    <low value="20150707"/>
+                                 </effectiveTime>
+                              </marketingAct>
+                           </subjectOf>
+                           <subjectOf>
+                              <characteristic>
+                                 <code code="SPLCMBPRDTP" codeSystem="2.16.840.1.113883.1.11.19255"/>
+                                 <value code="C112160" displayName="Type 0: Not a Combination Product" codeSystem="2.16.840.1.113883.3.26.1.1" xsi:type="CV"/>
+                              </characteristic>
+                           </subjectOf>
+                        </asContent>
+                        <asContent>
+                           <quantity>
+                              <numerator unit="1" value="1"/>
+                              <denominator value="1"/>
+                           </quantity>
+                           <containerPackagedProduct>
+                              <code code="0078-0696-61" codeSystem="2.16.840.1.113883.6.69"/>
+                              <formCode code="C43168" displayName="BLISTER PACK" codeSystem="2.16.840.1.113883.3.26.1.1"/>
+                              <asContent>
+                                 <quantity>
+                                    <numerator unit="1" value="100"/>
+                                    <denominator value="1"/>
+                                 </quantity>
+                                 <containerPackagedProduct>
+                                    <code code="0078-0696-35" codeSystem="2.16.840.1.113883.6.69"/>
+                                    <formCode code="C43179" displayName="BOX, UNIT-DOSE" codeSystem="2.16.840.1.113883.3.26.1.1"/>
+                                 </containerPackagedProduct>
+                                 <subjectOf>
+                                    <marketingAct>
+                                       <code code="C53292" codeSystem="2.16.840.1.113883.3.26.1.1"/>
+                                       <statusCode code="completed"/>
+                                       <effectiveTime>
+                                          <low value="20150707"/>
+                                          <high value="20200630"/>
+                                       </effectiveTime>
+                                    </marketingAct>
+                                 </subjectOf>
+                              </asContent>
+                           </containerPackagedProduct>
+                           <subjectOf>
+                              <characteristic>
+                                 <code code="SPLCMBPRDTP" codeSystem="2.16.840.1.113883.1.11.19255"/>
+                                 <value code="C112160" displayName="Type 0: Not a Combination Product" codeSystem="2.16.840.1.113883.3.26.1.1" xsi:type="CV"/>
+                              </characteristic>
+                           </subjectOf>
+                        </asContent>
+                     </manufacturedProduct>
+                     <subjectOf>
+                        <approval>
+                           <id extension="NDA207620" root="2.16.840.1.113883.3.150"/>
+                           <code code="C73594" displayName="NDA" codeSystem="2.16.840.1.113883.3.26.1.1"/>
+                           <author>
+                              <territorialAuthority>
+                                 <territory>
+                                    <code code="USA" codeSystem="2.16.840.1.113883.5.28"/>
+                                 </territory>
+                              </territorialAuthority>
+                           </author>
+                        </approval>
+                     </subjectOf>
+                     <subjectOf>
+                        <marketingAct>
+                           <code code="C53292" codeSystem="2.16.840.1.113883.3.26.1.1"/>
+                           <statusCode code="active"/>
+                           <effectiveTime>
+                              <low value="20150707"/>
+                           </effectiveTime>
+                        </marketingAct>
+                     </subjectOf>
+                     <subjectOf>
+                        <characteristic classCode="OBS">
+                           <code code="SPLCOLOR" codeSystem="2.16.840.1.113883.1.11.19255"/>
+                           <value code="C48328" displayName="PINK" codeSystem="2.16.840.1.113883.3.26.1.1" xsi:type="CV">
+                              <originalText>Light pink</originalText>
+                           </value>
+                        </characteristic>
+                     </subjectOf>
+                     <subjectOf>
+                        <characteristic classCode="OBS">
+                           <code code="SPLIMPRINT" codeSystem="2.16.840.1.113883.1.11.19255"/>
+                           <value xsi:type="ST">NVR;L11</value>
+                        </characteristic>
+                     </subjectOf>
+                     <subjectOf>
+                        <characteristic classCode="OBS">
+                           <code code="SPLSCORE" codeSystem="2.16.840.1.113883.1.11.19255"/>
+                           <value value="1" xsi:type="INT"/>
+                        </characteristic>
+                     </subjectOf>
+                     <subjectOf>
+                        <characteristic classCode="OBS">
+                           <code code="SPLSHAPE" codeSystem="2.16.840.1.113883.1.11.19255"/>
+                           <value code="C48345" displayName="OVAL" codeSystem="2.16.840.1.113883.3.26.1.1" xsi:type="CV"/>
+                        </characteristic>
+                     </subjectOf>
+                     <subjectOf>
+                        <characteristic classCode="OBS">
+                           <code code="SPLSIZE" codeSystem="2.16.840.1.113883.1.11.19255"/>
+                           <value unit="mm" value="15" xsi:type="PQ"/>
+                        </characteristic>
+                     </subjectOf>
+                     <consumedIn>
+                        <substanceAdministration>
+                           <routeCode code="C38288" displayName="ORAL" codeSystem="2.16.840.1.113883.3.26.1.1"/>
+                        </substanceAdministration>
+                     </consumedIn>
+                  </manufacturedProduct>
+               </subject>
+            </section>
+         </component>
+         <component>
+            <section>
+               <id root="09da1bcb-bda0-4ecf-9474-d965130a3bbf"/>
+               <code codeSystem="2.16.840.1.113883.6.1" code="34066-1" displayName="BOXED WARNING SECTION"/>
+               <title>
+                  <content styleCode="bold">WARNING: FETAL TOXICITY</content>
+               </title>
+               <text>
+                  <list listType="unordered" styleCode="Disc">
+                     <item>
+                        <content styleCode="bold">When pregnancy is detected, discontinue ENTRESTO as soon as possible (5.1)</content>
+                     </item>
+                     <item>
+                        <content styleCode="bold">Drugs that act directly on the renin-angiotensin system can cause injury and death to the developing fetus (5.1)</content>
+                     </item>
+                  </list>
+               </text>
+               <effectiveTime value="20150707"/>
+               <excerpt>
+                  <highlight>
+                     <text>
+                        <paragraph>
+                           <content styleCode="bold">WARNING: FETAL TOXICITY</content>
+                        </paragraph>
+                        <paragraph>
+                           <content styleCode="bold italics">See full prescribing information for complete boxed warning.</content>
+                        </paragraph>
+                        <list listType="unordered" styleCode="Disc">
+                           <item>
+                              <content styleCode="bold">When pregnancy is detected, discontinue ENTRESTO as soon as possible. (<linkHtml href="#s5p1">5.1</linkHtml>)</content>
+                           </item>
+                           <item>
+                              <content styleCode="bold">Drugs that act directly on the renin-angiotensin system can cause injury and death to the developing fetus. (<linkHtml href="#s5p1">5.1</linkHtml>) </content>
+                           </item>
+                        </list>
+                     </text>
+                  </highlight>
+               </excerpt>
+            </section>
+         </component>
+         <component>
+            <section>
+               <id root="b3a80c50-ce49-4295-908a-fa32356fe9be"/>
+               <code codeSystem="2.16.840.1.113883.6.1" code="43683-2" displayName="RECENT MAJOR CHANGES SECTION"/>
+               <effectiveTime value="20191001"/>
+               <excerpt>
+                  <highlight>
+                     <text>
+                        <table width="100%">
+                           <col width="79%"/>
+                           <col width="21%"/>
+                           <tbody>
+                              <tr>
+                                 <td>Indications and Usage, Pediatric Heart Failure (<linkHtml href="#s1p2">1.2</linkHtml>)</td>
+                                 <td align="center">
+												10/2019</td>
+                              </tr>
+                              <tr>
+                                 <td>Dosage and Administration (<linkHtml href="#s2p3">2.3</linkHtml>, <linkHtml href="#s2p4">2.4</linkHtml>, <linkHtml href="#s2p5">2.5</linkHtml>, <linkHtml href="#s2p6">2.6</linkHtml>,  <linkHtml href="#s2p7">2.7</linkHtml>)</td>
+                                 <td align="center">10/2019</td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </text>
+                  </highlight>
+               </excerpt>
+            </section>
+         </component>
+         <component>
+            <section ID="s1">
+               <id root="845c0efe-d116-41ac-8f6e-d9df677c11d0"/>
+               <code codeSystem="2.16.840.1.113883.6.1" code="34067-9" displayName="INDICATIONS &amp; USAGE SECTION"/>
+               <title>
+                  <content styleCode="bold">1     INDICATIONS AND USAGE</content>
+               </title>
+               <effectiveTime value="20191001"/>
+               <excerpt>
+                  <highlight>
+                     <text>
+                        <paragraph>ENTRESTO is a combination of sacubitril, a neprilysin inhibitor, and valsartan, an angiotensin II receptor blocker indicated:</paragraph>
+                        <list>
+                           <item>to reduce the risk of cardiovascular death and hospitalization for heart failure in patients with chronic heart failure (NYHA Class II-IV) and reduced ejection fraction. (<linkHtml href="#s1p1">1.1</linkHtml>)<br/>
+                              <br/>ENTRESTO is usually administered in conjunction with other heart failure therapies, in place of an ACE inhibitor or other ARB. (<linkHtml href="#s1p1">1.1</linkHtml>)<br/>
+                              <br/>
+                           </item>
+                           <item>for the treatment of symptomatic heart failure with systemic left ventricular systolic dysfunction in pediatric patients aged one year and older. ENTRESTO reduces NT-proBNP and is expected to improve cardiovascular outcomes. (<linkHtml href="#s1p1">1.2</linkHtml>)
+									</item>
+                        </list>
+                     </text>
+                  </highlight>
+               </excerpt>
+               <component>
+                  <section ID="s1p1">
+                     <id root="908d5818-2207-4256-95ae-428a98865eb8"/>
+                     <code codeSystem="2.16.840.1.113883.6.1" code="42229-5" displayName="SPL UNCLASSIFIED SECTION"/>
+                     <title>1.1     Adult Heart Failure
+							</title>
+                     <text>
+                        <paragraph>ENTRESTO is indicated to reduce the risk of cardiovascular death and hospitalization for heart failure in patients with chronic heart failure (NYHA Class II-IV) and reduced ejection fraction.</paragraph>
+                        <paragraph>ENTRESTO is usually administered in conjunction with other heart failure therapies, in place of an ACE inhibitor or other ARB.</paragraph>
+                     </text>
+                     <effectiveTime value="20191001"/>
+                  </section>
+               </component>
+               <component>
+                  <section ID="s1p2">
+                     <id root="510a753f-f5d6-4fb5-a65e-09a869a7f5d4"/>
+                     <code codeSystem="2.16.840.1.113883.6.1" code="42229-5" displayName="SPL UNCLASSIFIED SECTION"/>
+                     <title>1.2     Pediatric Heart Failure
+							</title>
+                     <text>
+                        <paragraph>
+                           <content styleCode="xmChange">ENTRESTO is indicated for the treatment of symptomatic heart failure with systemic left ventricular systolic dysfunction in pediatric patients aged one year and older. ENTRESTO reduces NT-proBNP and is expected to improve cardiovascular outcomes.</content>
+                        </paragraph>
+                     </text>
+                     <effectiveTime value="20191001"/>
+                  </section>
+               </component>
+            </section>
+         </component>
+         <component>
+            <section ID="s2">
+               <id root="2e685737-3436-4186-a9a2-dfa16a375dc5"/>
+               <code codeSystem="2.16.840.1.113883.6.1" code="34068-7" displayName="DOSAGE &amp; ADMINISTRATION SECTION"/>
+               <title>
+                  <content styleCode="bold">2     DOSAGE AND ADMINISTRATION</content>
+               </title>
+               <effectiveTime value="20191001"/>
+               <excerpt>
+                  <highlight>
+                     <text>
+                        <table>
+                           <col width="150"/>
+                           <col width="150"/>
+                           <col width="150"/>
+                           <col width="150"/>
+                           <tbody>
+                              <tr>
+                                 <td styleCode="Toprule Lrule Rrule" align="center" valign="middle">
+                                    <content styleCode="bold">Indication</content>
+                                 </td>
+                                 <td styleCode="Toprule Lrule Rrule" align="center" valign="top" colspan="3">
+                                    <content styleCode="bold">Titration Step Dose (twice daily)</content>
+                                 </td>
+                              </tr>
+                              <tr>
+                                 <td styleCode="Lrule Rrule"/>
+                                 <td styleCode="Toprule Lrule Rrule" align="center" valign="top">
+                                    <content styleCode="bold">Starting</content>
+                                 </td>
+                                 <td styleCode="Toprule Lrule Rrule" align="center" valign="top">
+                                    <content styleCode="bold">Second</content>
+                                 </td>
+                                 <td styleCode="Toprule Lrule Rrule" align="center" valign="top">
+                                    <content styleCode="bold">Final</content>
+                                 </td>
+                              </tr>
+                              <tr>
+                                 <td styleCode="Toprule Lrule Rrule" align="left">Adult Heart Failure</td>
+                                 <td styleCode="Toprule Lrule Rrule" align="center" valign="middle">49/51 mg</td>
+                                 <td styleCode="Toprule Lrule Rrule" align="center" valign="middle" colspan="2">97/103 mg</td>
+                              </tr>
+                              <tr>
+                                 <td styleCode="Toprule Lrule Rrule" align="left">Pediatric Heart Failure<br/>Patients less than 40 kg</td>
+                                 <td styleCode="Toprule Lrule Rrule" align="center" valign="middle">1.6 mg/kg</td>
+                                 <td styleCode="Toprule Lrule Rrule" align="center" valign="middle">2.3 mg/kg</td>
+                                 <td styleCode="Toprule Lrule Rrule" align="center" valign="middle">3.1 mg/kg</td>
+                              </tr>
+                              <tr>
+                                 <td styleCode="Toprule Lrule Rrule" align="left">Pediatric Heart Failure<br/>Patients at least 40 kg, less than 50 kg</td>
+                                 <td styleCode="Toprule Lrule Rrule" align="center" valign="middle">24/26 mg</td>
+                                 <td styleCode="Toprule Lrule Rrule" align="center" valign="middle">49/51 mg</td>
+                                 <td styleCode="Toprule Lrule Rrule" align="center" valign="middle">72/78 mg</td>
+                              </tr>
+                              <tr>
+                                 <td styleCode="Toprule Lrule Rrule" align="left">Pediatric Heart Failure<br/>Patients at least 50 kg</td>
+                                 <td styleCode="Toprule Lrule Rrule" align="center" valign="middle">49/51 mg</td>
+                                 <td styleCode="Toprule Lrule Rrule" align="center" valign="middle">72/78 mg</td>
+                                 <td styleCode="Toprule Lrule Rrule" align="center" valign="middle">97/103 mg</td>
+                              </tr>
+                           </tbody>
+                        </table>
+                        <list>
+                           <item>Adjust adult doses every 2 to 4 weeks and pediatric doses every 2 weeks to the target maintenance dose, as tolerated by the patient. (<linkHtml href="#s2p2">2.2</linkHtml>, <linkHtml href="#s2p3">2.3</linkHtml>)
+									</item>
+                           <item>Reduce starting dose to half the usually recommended starting dosage for:
+										<br/>- patients not currently taking an ACE inhibitor or ARB or previously taking a low dose of these agents (<linkHtml href="#s2p5">2.5</linkHtml>)<br/> - patients with severe renal impairment (<linkHtml href="#s2p6">2.6</linkHtml>)<br/> - patients with moderate hepatic impairment (<linkHtml href="#s2p7">2.7</linkHtml>)
+									</item>
+                        </list>
+                     </text>
+                  </highlight>
+               </excerpt>
+               <component>
+                  <section ID="s2p1">
+                     <id root="19eefac1-90f4-417e-b583-3c42f1740747"/>
+                     <code codeSystem="2.16.840.1.113883.6.1" code="42229-5" displayName="SPL UNCLASSIFIED SECTION"/>
+                     <title>2.1     General Considerations</title>
+                     <text>
+                        <paragraph>ENTRESTO is contraindicated with concomitant use of an angiotensin-converting enzyme (ACE) inhibitor. If switching from an ACE inhibitor to ENTRESTO allow a washout period of 36 hours between administration of the two drugs <content styleCode="italics">[see Contraindications (4) and Drug Interactions (7.1)]</content>.</paragraph>
+                     </text>
+                     <effectiveTime value="20191001"/>
+                  </section>
+               </component>
+               <component>
+                  <section ID="s2p2">
+                     <id root="c4f97da0-4c52-44ce-a86d-b6aa6d873273"/>
+                     <code codeSystem="2.16.840.1.113883.6.1" code="42229-5" displayName="SPL UNCLASSIFIED SECTION"/>
+                     <title>2.2     Adult Heart Failure</title>
+                     <text>
+                        <paragraph>The recommended starting dose of ENTRESTO is 49/51 mg orally twice-daily.</paragraph>
+                        <paragraph>Double the dose of ENTRESTO after 2 to 4 weeks to the target maintenance dose of 97/103 mg twice daily, as tolerated by the patient.</paragraph>
+                     </text>
+                     <effectiveTime value="20191001"/>
+                  </section>
+               </component>
+               <component>
+                  <section ID="s2p3">
+                     <id root="3693a959-c18b-4616-853d-21186e8308ce"/>
+                     <code codeSystem="2.16.840.1.113883.6.1" code="42229-5" displayName="SPL UNCLASSIFIED SECTION"/>
+                     <title>2.3     Pediatric Heart Failure</title>
+                     <text>
+                        <paragraph>
+                           <content styleCode="xmChange">Refer to Table 1 for the recommended dose for pediatric patients aged one year and older. Take the recommended dose orally twice daily. Adjust pediatric patient doses every 2 weeks, as tolerated by the patient.</content>
+                        </paragraph>
+                        <table>
+                           <caption>Table 1: Recommended Dose Titration</caption>
+                           <col width="150"/>
+                           <col width="150"/>
+                           <col width="150"/>
+                           <col width="150"/>
+                           <tfoot>
+                              <tr>
+                                 <td colspan="4">
+                                    <sup>†</sup>Use of the Oral Suspension recommended in these patients. Recommended mg/kg doses are of the combined amount of both sacubitril and valsartan <content styleCode="italics">[see Dosage and Administration (2.4)]</content>.<br/>
+                                    <sup>‡</sup>Doses of 72/78 mg can be achieved using three 24/26 mg tablets <content styleCode="italics">[see Dosage Forms and Strengths (3)]</content>.</td>
+                              </tr>
+                           </tfoot>
+                           <tbody>
+                              <tr>
+                                 <td styleCode="Toprule Lrule Rrule"/>
+                                 <td styleCode="Toprule Lrule Rrule" align="center" valign="top" colspan="3">
+                                    <content styleCode="bold">Titration Step Dose (twice daily)</content>
+                                 </td>
+                              </tr>
+                              <tr>
+                                 <td styleCode="Lrule Rrule"/>
+                                 <td styleCode="Toprule Lrule Rrule" align="center" valign="top">
+                                    <content styleCode="bold">Starting</content>
+                                 </td>
+                                 <td styleCode="Toprule Lrule Rrule" align="center" valign="top">
+                                    <content styleCode="bold">Second</content>
+                                 </td>
+                                 <td styleCode="Toprule Lrule Rrule" align="center" valign="top">
+                                    <content styleCode="bold">Final</content>
+                                 </td>
+                              </tr>
+                              <tr>
+                                 <td styleCode="Toprule Lrule Rrule" align="left">
+                                    <content styleCode="bold">Pediatric Patients<br/>Less than 40 kg<sup>†</sup>
+                                    </content>
+                                 </td>
+                                 <td styleCode="Toprule Lrule Rrule" align="center" valign="middle">1.6 mg/kg</td>
+                                 <td styleCode="Toprule Lrule Rrule" align="center" valign="middle">2.3 mg/kg</td>
+                                 <td styleCode="Toprule Lrule Rrule" align="center" valign="middle">3.1 mg/kg</td>
+                              </tr>
+                              <tr>
+                                 <td styleCode="Toprule Lrule Rrule" align="left">
+                                    <content styleCode="bold">Pediatric Patients<br/>At least 40 kg, less than 50 kg</content>
+                                 </td>
+                                 <td styleCode="Toprule Lrule Rrule" align="center" valign="middle">24/26 mg</td>
+                                 <td styleCode="Toprule Lrule Rrule" align="center" valign="middle">49/51 mg</td>
+                                 <td styleCode="Toprule Lrule Rrule" align="center" valign="middle">72/78 mg<sup>‡</sup>
+                                 </td>
+                              </tr>
+                              <tr>
+                                 <td styleCode="Toprule Lrule Rrule" align="left">
+                                    <content styleCode="bold">Pediatric Patients<br/>At least 50 kg</content>
+                                 </td>
+                                 <td styleCode="Toprule Lrule Rrule" align="center" valign="middle">49/51 mg</td>
+                                 <td styleCode="Toprule Lrule Rrule" align="center" valign="middle">72/78 mg<sup>‡</sup>
+                                 </td>
+                                 <td styleCode="Toprule Lrule Rrule" align="center" valign="middle">97/103 mg</td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </text>
+                     <effectiveTime value="20191001"/>
+                  </section>
+               </component>
+               <component>
+                  <section ID="s2p4">
+                     <id root="0369abc3-2511-44e1-8a7b-f56ed21c3b79"/>
+                     <code codeSystem="2.16.840.1.113883.6.1" code="42229-5" displayName="SPL UNCLASSIFIED SECTION"/>
+                     <title>2.4     Preparation of Oral Suspension</title>
+                     <text>
+                        <paragraph>
+                           <content styleCode="xmChange">ENTRESTO oral suspension can be substituted at the recommended tablet dosage in patients unable to swallow tablets.</content>
+                        </paragraph>
+                        <paragraph>
+                           <content styleCode="xmChange">ENTRESTO 800 mg/200 mL oral suspension can be prepared in a concentration of 4 mg/mL (sacubitril/valsartan 1.96/2.04 mg/mL). Use ENTRESTO 49/51 mg tablets in the preparation of the suspension.</content>
+                        </paragraph>
+                        <paragraph>
+                           <content styleCode="xmChange">To  make an 800 mg/200 mL (4 mg/mL) oral suspension, transfer eight tablets of ENTRESTO 49/51 mg film-coated tablets into a mortar. Crush the tablets into a fine powder using a pestle. Add 60 mL of Ora-Plus<sup>®</sup> into the mortar and triturate gently with pestle for 10 minutes, to form a uniform suspension. Add 140 mL of Ora-Sweet<sup>®</sup> SF into mortar and triturate with pestle for another 10 minutes, to form a uniform suspension. Transfer the entire contents from the mortar into a clean 200 mL amber colored PET or glass bottle. Place a press-in bottle adapter and close the bottle with a child resistant cap.</content>
+                        </paragraph>
+                        <paragraph>
+                           <content styleCode="xmChange">The oral suspension can be stored for up to 15 days. Do not store above 25°C (77°F) and do not refrigerate. Shake before each use.</content>
+                        </paragraph>
+                        <paragraph>
+                           <content styleCode="xmChange">
+                              <sup>*</sup>Ora-Sweet SF<sup>®</sup> and Ora-Plus<sup>®</sup> are registered trademarks of Paddock Laboratories, Inc.</content>
+                        </paragraph>
+                     </text>
+                     <effectiveTime value="20191001"/>
+                  </section>
+               </component>
+               <component>
+                  <section ID="s2p5">
+                     <id root="d81effbb-49d8-49b7-8445-50e50319806d"/>
+                     <code codeSystem="2.16.840.1.113883.6.1" code="42229-5" displayName="SPL UNCLASSIFIED SECTION"/>
+                     <title>2.5     Dose Adjustment for Patients Not Taking an ACE inhibitor or ARB or Previously Taking Low Doses of These Agents</title>
+                     <text>
+                        <paragraph>In patients not currently taking an ACE inhibitor or an angiotensin II receptor blocker (ARB) and for patients previously taking low doses of these agents, start ENTRESTO at half the usually recommended starting dose. After initiation, increase the dose to follow the recommended dose escalation thereafter <content styleCode="italics">[see Dosage and Administration (2.2, 2.3)]</content>.</paragraph>
+                        <paragraph>
+                           <content styleCode="xmChange">Note: Initiate pediatric patients weighing 40 to 50 kg who meet this criterion at 0.8 mg/kg twice daily using the oral suspension <content styleCode="italics">[see Dosage and Administration (2.3, 2.4)]</content>.</content>
+                        </paragraph>
+                     </text>
+                     <effectiveTime value="20191001"/>
+                  </section>
+               </component>
+               <component>
+                  <section ID="s2p6">
+                     <id root="4a580f7c-6655-4a85-a13a-a7ebd25b0faf"/>
+                     <code codeSystem="2.16.840.1.113883.6.1" code="42229-5" displayName="SPL UNCLASSIFIED SECTION"/>
+                     <title>2.6     Dose Adjustment for Severe Renal Impairment</title>
+                     <text>
+                        <paragraph>In adults and pediatric patients with severe renal impairment (eGFR &lt; 30 mL/min/1.73 m<sup>2</sup>), start ENTRESTO at half the usually recommended starting dose. After initiation, increase the dose to follow the recommended dose escalation thereafter <content styleCode="italics">[see Dosage and Administration (2.2, 2.3)]</content>.</paragraph>
+                        <paragraph>
+                           <content styleCode="xmChange">Note: Initiate pediatric patients weighing 40 to 50 kg who meet this criterion at 0.8 mg/kg twice daily using the oral suspension <content styleCode="italics">[see Dosage and Administration (2.3, 2.4)]</content>.</content>
+                        </paragraph>
+                        <paragraph>No starting dose adjustment is needed for mild hepatic impairment.</paragraph>
+                        <paragraph>Use in patients with severe hepatic impairment is not recommended.</paragraph>
+                     </text>
+                     <effectiveTime value="20191001"/>
+                  </section>
+               </component>
+               <component>
+                  <section ID="s2p7">
+                     <id root="89c122bd-3486-4665-a950-8380f2e253b8"/>
+                     <code codeSystem="2.16.840.1.113883.6.1" code="42229-5" displayName="SPL UNCLASSIFIED SECTION"/>
+                     <title>2.7     Dose Adjustment for Hepatic Impairment</title>
+                     <text>
+                        <paragraph>In adults and pediatric patients with moderate hepatic impairment (Child-Pugh B classification), start ENTRESTO at half the usually recommended starting dose. After initiation, increase the dose to follow the recommended dose escalation thereafter <content styleCode="italics">[see Dosage and Administration (2.2, 2.3)]</content>.</paragraph>
+                        <paragraph>
+                           <content styleCode="xmChange">Note: Initiate pediatric patients weighing 40 to 50 kg who meet this criterion at 0.8 mg/kg twice daily using the oral suspension <content styleCode="italics">[see Dosage and Administration (2.3, 2.4)]</content>.</content>
+                        </paragraph>
+                        <paragraph>No starting dose adjustment is needed for mild or moderate renal impairment.</paragraph>
+                     </text>
+                     <effectiveTime value="20191001"/>
+                  </section>
+               </component>
+            </section>
+         </component>
+         <component>
+            <section ID="s3">
+               <id root="2dff2a4b-9ab7-402d-a18f-e28985b46dab"/>
+               <code codeSystem="2.16.840.1.113883.6.1" code="43678-2" displayName="DOSAGE FORMS &amp; STRENGTHS SECTION"/>
+               <title>
+                  <content styleCode="bold">3     DOSAGE FORMS AND STRENGTHS</content>
+               </title>
+               <text>
+                  <paragraph>ENTRESTO is supplied as unscored, ovaloid, film-coated tablets in the following strengths:</paragraph>
+                  <paragraph>ENTRESTO 24/26 mg, (sacubitril 24 mg and valsartan 26 mg) are violet white and debossed with “NVR” on one side and “LZ” on the other side. </paragraph>
+                  <paragraph>ENTRESTO 49/51 mg, (sacubitril 49 mg and valsartan 51 mg) are pale yellow and debossed with “NVR” on one side and “L1” on the other side. </paragraph>
+                  <paragraph>ENTRESTO 97/103 mg, (sacubitril 97 mg and valsartan 103 mg) are light pink and debossed with “NVR” on one side and “L11” on the other side.</paragraph>
+               </text>
+               <effectiveTime value="20191001"/>
+               <excerpt>
+                  <highlight>
+                     <text>
+                        <list>
+                           <item>Film-coated tablets: 24/26 mg; 49/51 mg; 97/103 mg (<linkHtml href="#s3">3</linkHtml>)</item>
+                        </list>
+                     </text>
+                  </highlight>
+               </excerpt>
+            </section>
+         </component>
+         <component>
+            <section ID="s4">
+               <id root="098233f7-4098-4cb7-b406-c3e4f57421ac"/>
+               <code codeSystem="2.16.840.1.113883.6.1" code="34070-3" displayName="CONTRAINDICATIONS SECTION"/>
+               <title>
+                  <content styleCode="bold">4     CONTRAINDICATIONS</content>
+               </title>
+               <text>
+                  <paragraph>ENTRESTO is contraindicated: </paragraph>
+                  <list listType="unordered" styleCode="Disc">
+                     <item>in patients with hypersensitivity to any component</item>
+                     <item>in patients with a history of angioedema related to previous ACE inhibitor or ARB therapy <content styleCode="italics">[see Warnings and Precautions (5.2)]</content>
+                     </item>
+                     <item>with concomitant use of ACE inhibitors. Do not administer within 36 hours of switching from or to an ACE inhibitor <content styleCode="italics">[see Drug Interactions (7.1)]</content>
+                     </item>
+                     <item>with concomitant use of aliskiren in patients with diabetes <content styleCode="italics">[see Drug Interactions (7.1)]</content>
+                     </item>
+                  </list>
+               </text>
+               <effectiveTime value="20191001"/>
+               <excerpt>
+                  <highlight>
+                     <text>
+                        <list>
+                           <item>Hypersensitivity to any component. (<linkHtml href="#s4">4</linkHtml>)</item>
+                           <item>History of angioedema related to previous ACEi or ARB therapy. (<linkHtml href="#s4">4</linkHtml>)</item>
+                           <item>Concomitant use with ACE inhibitors. (<linkHtml href="#s4">4</linkHtml>, <linkHtml href="#s7p1">7.1</linkHtml>)</item>
+                           <item>Concomitant use with aliskiren in patients with diabetes. (<linkHtml href="#s4">4</linkHtml>, <linkHtml href="#s7p1">7.1</linkHtml>)
+									</item>
+                        </list>
+                     </text>
+                  </highlight>
+               </excerpt>
+            </section>
+         </component>
+         <component>
+            <section ID="s5">
+               <id root="7ee41066-bb18-4123-ac1a-428633f09806"/>
+               <code codeSystem="2.16.840.1.113883.6.1" code="43685-7" displayName="WARNINGS AND PRECAUTIONS SECTION"/>
+               <title>
+                  <content styleCode="bold">5     WARNINGS AND PRECAUTIONS</content>
+               </title>
+               <effectiveTime value="20191001"/>
+               <excerpt>
+                  <highlight>
+                     <text>
+                        <list listType="unordered" styleCode="Disc">
+                           <item>Observe for signs and symptoms of angioedema and hypotension. (<linkHtml href="#s5p2">5.2</linkHtml>, <linkHtml href="#s5p3">5.3</linkHtml>)<br/>
+                           </item>
+                           <item>Monitor renal function and potassium in susceptible patients. (<linkHtml href="#s5p4">5.4</linkHtml>, <linkHtml href="#s5p5">5.5</linkHtml>)</item>
+                        </list>
+                     </text>
+                  </highlight>
+               </excerpt>
+               <component>
+                  <section ID="s5p1">
+                     <id root="54ba459b-5782-4523-abeb-fb01bb245f9d"/>
+                     <code codeSystem="2.16.840.1.113883.6.1" code="42229-5" displayName="SPL UNCLASSIFIED SECTION"/>
+                     <title>5.1     Fetal Toxicity</title>
+                     <text>
+                        <paragraph>ENTRESTO can cause fetal harm when administered to a pregnant woman. Use of drugs that act on the renin-angiotensin system during the second and third trimesters of pregnancy reduces fetal renal function and increases fetal and neonatal morbidity and death. When pregnancy is detected, consider alternative drug treatment and discontinue ENTRESTO. However, if there is no appropriate alternative to therapy with drugs affecting the renin-angiotensin system, and if the drug is considered lifesaving for the mother, advise a pregnant woman of the potential risk to the fetus <content styleCode="italics">[see Use in Specific Populations (8.1)]</content>.</paragraph>
+                     </text>
+                     <effectiveTime value="20150707"/>
+                  </section>
+               </component>
+               <component>
+                  <section ID="s5p2">
+                     <id root="6d5f1d8f-7064-492a-95f3-19392af9b01d"/>
+                     <code codeSystem="2.16.840.1.113883.6.1" code="42229-5" displayName="SPL UNCLASSIFIED SECTION"/>
+                     <title>5.2     Angioedema
+							</title>
+                     <text>
+                        <paragraph>ENTRESTO may cause angioedema. In the double-blind period of PARADIGM-HF, 0.5% of patients treated with ENTRESTO and 0.2% of patients treated with enalapril had angioedema <content styleCode="italics">[see Adverse Reactions (6.1)]</content>. If angioedema occurs, discontinue ENTRESTO immediately, provide appropriate therapy, and monitor for airway compromise. ENTRESTO must not be re-administered. In cases of confirmed angioedema where swelling has been confined to the face and lips, the condition has generally resolved without treatment, although antihistamines have been useful in relieving symptoms.</paragraph>
+                        <paragraph>Angioedema associated with laryngeal edema may be fatal. Where there is involvement of the tongue, glottis or larynx, likely to cause airway obstruction, administer appropriate therapy, e.g., subcutaneous epinephrine/adrenaline solution 1:1000 (0.3 mL to 0.5 mL) and take measures necessary to ensure maintenance of a patent airway.</paragraph>
+                        <paragraph>ENTRESTO has been associated with a higher rate of angioedema in Black than in non-Black patients. </paragraph>
+                        <paragraph>Patients with a prior history of angioedema may be at increased risk of angioedema with ENTRESTO <content styleCode="italics">[see Adverse Reactions (6.1)]</content>. ENTRESTO must not be used in patients with a known history of angioedema related to previous ACE inhibitor or ARB therapy <content styleCode="italics">[see Contraindications (4)]</content>. ENTRESTO should not be used in patients with hereditary angioedema.</paragraph>
+                     </text>
+                     <effectiveTime value="20181129"/>
+                  </section>
+               </component>
+               <component>
+                  <section ID="s5p3">
+                     <id root="2bffb946-a623-4a6d-8f82-442751177e76"/>
+                     <code codeSystem="2.16.840.1.113883.6.1" code="42229-5" displayName="SPL UNCLASSIFIED SECTION"/>
+                     <title>5.3     Hypotension
+							</title>
+                     <text>
+                        <paragraph>ENTRESTO lowers blood pressure and may cause symptomatic hypotension. Patients with an activated renin-angiotensin system, such as volume- and/or salt-depleted patients (e.g., those being treated with high doses of diuretics), are at greater risk. In the double-blind period of PARADIGM-HF, 18% of patients treated with ENTRESTO and 12% of patients treated with enalapril reported hypotension as an adverse event <content styleCode="italics">[see Adverse Reactions (6.1)]</content>, with hypotension reported as a serious adverse event in approximately 1.5% of patients in both treatment arms. Correct volume or salt depletion prior to administration of ENTRESTO or start at a lower dose. If hypotension occurs, consider dose adjustment of diuretics, concomitant antihypertensive drugs, and treatment of other causes of hypotension (e.g., hypovolemia). If hypotension persists despite such measures, reduce the dosage or temporarily discontinue ENTRESTO. Permanent discontinuation of therapy is usually not required.</paragraph>
+                     </text>
+                     <effectiveTime value="20150707"/>
+                  </section>
+               </component>
+               <component>
+                  <section ID="s5p4">
+                     <id root="2af9b925-7e6d-4286-b467-75375a58b241"/>
+                     <code codeSystem="2.16.840.1.113883.6.1" code="42229-5" displayName="SPL UNCLASSIFIED SECTION"/>
+                     <title>5.4     Impaired Renal Function
+							</title>
+                     <text>
+                        <paragraph>As a consequence of inhibiting the renin-angiotensin-aldosterone system (RAAS), decreases in renal function may be anticipated in susceptible individuals treated with ENTRESTO. In the double-blind period of PARADIGM-HF, 5% of patients in both the ENTRESTO and enalapril groups reported renal failure as an adverse event <content styleCode="italics">[see Adverse Reactions (6.1)]</content>. In patients whose renal function depends upon the activity of the renin-angiotensin-aldosterone system (e.g., patients with severe congestive heart failure), treatment with ACE inhibitors and angiotensin receptor antagonists has been associated with oliguria, progressive azotemia and, rarely, acute renal failure and death. Closely monitor serum creatinine, and down-titrate or interrupt ENTRESTO in patients who develop a clinically significant decrease in renal function <content styleCode="italics">[see Use in Specific Populations (8.7) and Clinical Pharmacology (12.3)]</content>. </paragraph>
+                        <paragraph>As with all drugs that affect the RAAS, ENTRESTO may increase blood urea and serum creatinine levels in patients with bilateral or unilateral renal artery stenosis. In patients with renal artery stenosis, monitor renal function.</paragraph>
+                     </text>
+                     <effectiveTime value="20150707"/>
+                  </section>
+               </component>
+               <component>
+                  <section ID="s5p5">
+                     <id root="29f4aa47-19e7-45a6-baff-3ade77f03135"/>
+                     <code codeSystem="2.16.840.1.113883.6.1" code="42229-5" displayName="SPL UNCLASSIFIED SECTION"/>
+                     <title>5.5     Hyperkalemia
+							</title>
+                     <text>
+                        <paragraph>Through its actions on the RAAS, hyperkalemia may occur with ENTRESTO. In the double-blind period of PARADIGM-HF, 12% of patients treated with ENTRESTO and 14% of patients treated with enalapril reported hyperkalemia as an adverse event  <content styleCode="italics">[see Adverse Reactions (6.1)]</content>. Monitor serum potassium periodically and treat appropriately, especially in patients with risk factors for hyperkalemia such as severe renal impairment, diabetes, hypoaldosteronism, or a high potassium diet. Dosage reduction or interruption of ENTRESTO may be required <content styleCode="italics">[see Dosage and Administration (2.6)]</content>.
+								</paragraph>
+                     </text>
+                     <effectiveTime value="20191001"/>
+                  </section>
+               </component>
+            </section>
+         </component>
+         <component>
+            <section ID="s6">
+               <id root="2325f7b3-9283-4402-ba3c-445b78e21a75"/>
+               <code codeSystem="2.16.840.1.113883.6.1" code="34084-4" displayName="ADVERSE REACTIONS SECTION"/>
+               <title>
+                  <content styleCode="bold">6     ADVERSE REACTIONS</content>
+               </title>
+               <text>
+                  <paragraph>Clinically significant adverse reactions that appear in other sections of the labeling include:</paragraph>
+                  <list>
+                     <item>Angioedema <content styleCode="italics">[see Warnings and Precautions (5.2)]</content>
+                     </item>
+                     <item>Hypotension <content styleCode="italics">[see Warnings and Precautions (5.3)]</content>
+                     </item>
+                     <item>Impaired Renal Function <content styleCode="italics">[see Warnings and Precautions (5.4)]</content>
+                     </item>
+                     <item>Hyperkalemia <content styleCode="italics">[see Warnings and Precautions (5.5)]</content>
+                     </item>
+                  </list>
+               </text>
+               <effectiveTime value="20191001"/>
+               <excerpt>
+                  <highlight>
+                     <text>
+                        <paragraph>Adverse reactions occurring ≥ 5% are hypotension, hyperkalemia, cough, dizziness, and renal failure. (<linkHtml href="#s6p1">6.1</linkHtml>)</paragraph>
+                        <paragraph>
+                           <content styleCode="bold">
+                              <br/>To report SUSPECTED ADVERSE REACTIONS, contact Novartis Pharmaceuticals Corporation at 1-888-669-6682 or FDA at 1-800-FDA-1088 or <linkHtml href="www.fda.gov/medwatch">www.fda.gov/medwatch</linkHtml>.</content>
+                        </paragraph>
+                     </text>
+                  </highlight>
+               </excerpt>
+               <component>
+                  <section ID="s6p1">
+                     <id root="b668950b-54db-4153-ba7c-4c73981149a3"/>
+                     <code codeSystem="2.16.840.1.113883.6.1" code="42229-5" displayName="SPL UNCLASSIFIED SECTION"/>
+                     <title>6.1     Clinical Trials Experience
+							</title>
+                     <text>
+                        <paragraph>Because clinical trials are conducted under widely varying conditions, adverse reaction rates observed in the clinical trials of a drug cannot be directly compared to rates in the clinical trials of another drug and may not reflect the rates observed in practice.</paragraph>
+                        <paragraph>
+                           <content styleCode="underline">Adult Heart Failure</content>
+                        </paragraph>
+                        <paragraph>In the PARADIGM-HF trial, subjects were required to complete sequential enalapril and ENTRESTO run-in periods of (median) 15 and 29 days, respectively, prior to entering the randomized double-blind period comparing ENTRESTO and enalapril. During the enalapril run-in period, 1,102 patients (10.5%) were permanently discontinued from the study, 5.6% because of an adverse event, most commonly renal dysfunction (1.7%), hyperkalemia (1.7%) and hypotension (1.4%). During the ENTRESTO run-in period, an additional 10.4% of patients permanently discontinued treatment, 5.9% because of an adverse event, most commonly renal dysfunction (1.8%), hypotension (1.7%) and hyperkalemia (1.3%). Because of this run-in design, the adverse reaction rates described below are lower than expected in practice.</paragraph>
+                        <paragraph>In the double-blind period, safety was evaluated in 4,203 patients treated with ENTRESTO and 4,229 treated with enalapril. In PARADIGM-HF, patients randomized to ENTRESTO received treatment for up to 4.3 years, with a median duration of exposure of 24 months; 3,271 patients were treated for more than one year. Discontinuation of therapy because of an adverse event during the double-blind period occurred in 450 (10.7%) of ENTRESTO treated patients and 516 (12.2%) of patients receiving enalapril.</paragraph>
+                        <paragraph>Adverse reactions occurring at an incidence of ≥ 5% in patients who were treated with ENTRESTO in the double-blind period are shown in Table 2.</paragraph>
+                        <table>
+                           <caption>Table 2: Adverse Reactions Reported in ≥ 5% of Patients Treated with ENTRESTO in the Double-Blind Period</caption>
+                           <col width="300"/>
+                           <col width="100"/>
+                           <col width="100"/>
+                           <tbody>
+                              <tr>
+                                 <td styleCode="Toprule Lrule Rrule "/>
+                                 <td styleCode="Toprule Lrule Rrule" align="center">
+                                    <content styleCode="bold">ENTRESTO<br/>(n = 4,203)<br/>%</content>
+                                 </td>
+                                 <td styleCode="Toprule Lrule Rrule " align="center">
+                                    <content styleCode="bold">Enalapril<br/>(n = 4,229)<br/>%</content>
+                                 </td>
+                              </tr>
+                              <tr>
+                                 <td styleCode="Toprule Lrule Rrule ">Hypotension</td>
+                                 <td styleCode="Toprule Lrule Rrule " align="center">18</td>
+                                 <td styleCode="Toprule Lrule Rrule " align="center">12</td>
+                              </tr>
+                              <tr>
+                                 <td styleCode="Toprule Lrule Rrule ">Hyperkalemia</td>
+                                 <td styleCode="Toprule Lrule Rrule " align="center">12</td>
+                                 <td styleCode="Toprule Lrule Rrule " align="center">14</td>
+                              </tr>
+                              <tr>
+                                 <td styleCode="Toprule Lrule Rrule ">Cough</td>
+                                 <td styleCode="Toprule Lrule Rrule " align="center">9</td>
+                                 <td styleCode="Toprule Lrule Rrule " align="center">13</td>
+                              </tr>
+                              <tr>
+                                 <td styleCode="Toprule Lrule Rrule ">Dizziness</td>
+                                 <td styleCode="Toprule Lrule Rrule " align="center">6</td>
+                                 <td styleCode="Toprule Lrule Rrule " align="center">5</td>
+                              </tr>
+                              <tr>
+                                 <td styleCode="Toprule Lrule Rrule ">Renal failure/acute renal failure</td>
+                                 <td styleCode="Toprule Lrule Rrule " align="center">5</td>
+                                 <td styleCode="Toprule Lrule Rrule " align="center">5</td>
+                              </tr>
+                           </tbody>
+                        </table>
+                        <paragraph>In the PARADIGM-HF trial, the incidence of angioedema was 0.1% in both the enalapril and ENTRESTO run-in periods. In the double-blind period, the incidence of angioedema was higher in patients treated with ENTRESTO than enalapril (0.5% and 0.2%, respectively). The incidence of angioedema in Black patients was 2.4% with ENTRESTO and 0.5% with enalapril <content styleCode="italics">[see Warnings and Precautions (5.2)]</content>.</paragraph>
+                        <paragraph>Orthostasis was reported in 2.1% of patients treated with ENTRESTO compared to 1.1% of patients treated with enalapril during the double-blind period of PARADIGM-HF. Falls were reported in 1.9% of patients treated with ENTRESTO compared to 1.3% of patients treated with enalapril.</paragraph>
+                        <paragraph>
+                           <content styleCode="underline">Pediatric Heart Failure</content>
+                        </paragraph>
+                        <paragraph>The adverse reactions observed in pediatric patients 1 to &lt; 18 years old who received treatment with ENTRESTO were consistent with those observed in adult patients.</paragraph>
+                        <paragraph>
+                           <content styleCode="underline">Laboratory Abnormalities</content>
+                        </paragraph>
+                        <paragraph>
+                           <content styleCode="italics">Hemoglobin and Hematocrit</content>
+                        </paragraph>
+                        <paragraph>Decreases in hemoglobin/hematocrit of &gt; 20% were observed in approximately 5% of both ENTRESTO- and enalapril-treated patients in the double-blind period in PARADIGM-HF.</paragraph>
+                        <paragraph>
+                           <content styleCode="italics">Serum Creatinine </content>
+                        </paragraph>
+                        <paragraph>Increases in serum creatinine of &gt; 50% were observed in 1.4% of patients in the enalapril run-in period and 2.2% of patients in the ENTRESTO run-in period. During the double-blind period, approximately 16% of both ENTRESTO- and enalapril-treated patients had increases in serum creatinine of &gt; 50%.</paragraph>
+                        <paragraph>
+                           <content styleCode="italics">Serum Potassium</content>
+                        </paragraph>
+                        <paragraph>Potassium concentrations &gt; 5.5 mEq/L were observed in approximately 4% of patients in both the enalapril and ENTRESTO run-in periods. During the double-blind period, approximately 16% of both ENTRESTO- and enalapril-treated patients had potassium concentrations &gt; 5.5 mEq/L.</paragraph>
+                     </text>
+                     <effectiveTime value="20191001"/>
+                  </section>
+               </component>
+               <component>
+                  <section ID="s6p2">
+                     <id root="7ed2314b-0e3f-4b0f-9a74-51a29944b38c"/>
+                     <code codeSystem="2.16.840.1.113883.6.1" code="42229-5" displayName="SPL UNCLASSIFIED SECTION"/>
+                     <title>6.2     Postmarketing Experience</title>
+                     <text>
+                        <paragraph>The following additional adverse reactions have been reported in postmarketing experience. Because these reactions are reported voluntarily from a population of uncertain size, it is not always possible to reliably estimate their frequency or establish a causal relationship to drug exposure. </paragraph>
+                        <paragraph>
+                           <content styleCode="italics">Hypersensitivity including rash, pruritus, and anaphylactic reaction</content>
+                        </paragraph>
+                     </text>
+                     <effectiveTime value="20170731"/>
+                  </section>
+               </component>
+            </section>
+         </component>
+         <component>
+            <section ID="s7">
+               <id root="e984653a-8219-4fb8-a694-9d599fe62b9b"/>
+               <code codeSystem="2.16.840.1.113883.6.1" code="34073-7" displayName="DRUG INTERACTIONS SECTION"/>
+               <title>7     DRUG INTERACTIONS
+					</title>
+               <effectiveTime value="20191001"/>
+               <excerpt>
+                  <highlight>
+                     <text>
+                        <list>
+                           <item>Avoid concomitant use with aliskiren in patients with eGFR &lt; 60. (<linkHtml href="#s7p1">7.1</linkHtml>)</item>
+                           <item>Potassium-sparing diuretics: May lead to increased serum potassium. (<linkHtml href="#s7p2">7.2</linkHtml>)</item>
+                           <item>NSAIDs: May lead to increased risk of renal impairment. (<linkHtml href="#s7p3">7.3</linkHtml>) </item>
+                           <item>Lithium: Increased risk of lithium toxicity. (<linkHtml href="#s7p4">7.4</linkHtml>)</item>
+                        </list>
+                     </text>
+                  </highlight>
+               </excerpt>
+               <component>
+                  <section ID="s7p1">
+                     <id root="cb6ad903-9b49-4a61-a3f7-31ee52469c87"/>
+                     <code codeSystem="2.16.840.1.113883.6.1" code="42229-5" displayName="SPL UNCLASSIFIED SECTION"/>
+                     <title>7.1     Dual Blockade of the Renin-Angiotensin-Aldosterone System
+							</title>
+                     <text>
+                        <paragraph>Concomitant use of ENTRESTO with an ACE inhibitor is contraindicated because of the increased risk of angioedema  <content styleCode="italics">[see Contraindications (4)]</content>.</paragraph>
+                        <paragraph>Avoid use of ENTRESTO with an ARB, because ENTRESTO contains the angiotensin II receptor blocker valsartan.</paragraph>
+                        <paragraph>The concomitant use of ENTRESTO with aliskiren is contraindicated in patients with diabetes <content styleCode="italics">[see Contraindications (4)]</content>. Avoid use with aliskiren in patients with renal impairment (eGFR &lt; 60 mL/min/1.73 m<sup>2</sup>). </paragraph>
+                     </text>
+                     <effectiveTime value="20171122"/>
+                  </section>
+               </component>
+               <component>
+                  <section ID="s7p2">
+                     <id root="6a5ed6dc-afcf-449e-aa0b-0fc0c7df33d8"/>
+                     <code codeSystem="2.16.840.1.113883.6.1" code="42229-5" displayName="SPL UNCLASSIFIED SECTION"/>
+                     <title>7.2     Potassium-Sparing Diuretics
+							</title>
+                     <text>
+                        <paragraph>As with other drugs that block angiotensin II or its effects, concomitant use of potassium-sparing diuretics (e.g., spironolactone, triamterene, amiloride), potassium supplements, or salt substitutes containing potassium may lead to increases in serum potassium <content styleCode="italics">[see Warnings and Precautions (5.5)]</content>.</paragraph>
+                     </text>
+                     <effectiveTime value="20150707"/>
+                  </section>
+               </component>
+               <component>
+                  <section ID="s7p3">
+                     <id root="c8ab213a-ba04-408e-bed6-87132649a864"/>
+                     <code codeSystem="2.16.840.1.113883.6.1" code="42229-5" displayName="SPL UNCLASSIFIED SECTION"/>
+                     <title>7.3     Nonsteroidal Anti-Inflammatory Drugs (NSAIDs) Including Selective Cyclooxygenase-2 Inhibitors (COX-2 Inhibitors)
+							</title>
+                     <text>
+                        <paragraph>In patients who are elderly, volume-depleted (including those on diuretic therapy), or with compromised renal function, concomitant use of NSAIDs, including COX-2 inhibitors, with ENTRESTO may result in worsening of renal function, including possible acute renal failure. These effects are usually reversible. Monitor renal function periodically.</paragraph>
+                     </text>
+                     <effectiveTime value="20150707"/>
+                  </section>
+               </component>
+               <component>
+                  <section ID="s7p4">
+                     <id root="8d737a82-09cf-40da-87a4-9ad27501fea7"/>
+                     <code codeSystem="2.16.840.1.113883.6.1" code="42229-5" displayName="SPL UNCLASSIFIED SECTION"/>
+                     <title>7.4     Lithium
+							</title>
+                     <text>
+                        <paragraph>Increases in serum lithium concentrations and lithium toxicity have been reported during concomitant administration of lithium with angiotensin II receptor antagonists. Monitor serum lithium levels during concomitant use with ENTRESTO.</paragraph>
+                     </text>
+                     <effectiveTime value="20150707"/>
+                  </section>
+               </component>
+            </section>
+         </component>
+         <component>
+            <section ID="s8">
+               <id root="29542bfe-4331-4952-9655-210297866784"/>
+               <code codeSystem="2.16.840.1.113883.6.1" code="43684-0" displayName="USE IN SPECIFIC POPULATIONS SECTION"/>
+               <title>8     USE IN SPECIFIC POPULATIONS
+					</title>
+               <effectiveTime value="20191001"/>
+               <excerpt>
+                  <highlight>
+                     <text>
+                        <list>
+                           <item>Lactation: Breastfeeding or drug should be discontinued. (<linkHtml href="#s8p2">8.2</linkHtml>)</item>
+                           <item>Severe Hepatic Impairment: Use not recommended. (<linkHtml href="#s2p7">2.7</linkHtml>, <linkHtml href="#s8p6">8.6</linkHtml>)</item>
+                        </list>
+                     </text>
+                  </highlight>
+               </excerpt>
+               <component>
+                  <section ID="s8p1">
+                     <id root="7ec24b0c-c4d5-45ce-9ff1-812cdf33d63a"/>
+                     <code codeSystem="2.16.840.1.113883.6.1" code="42228-7" displayName="PREGNANCY SECTION"/>
+                     <title>8.1     Pregnancy
+							</title>
+                     <text>
+                        <paragraph>
+                           <content styleCode="underline">Risk Summary</content>
+                        </paragraph>
+                        <paragraph>ENTRESTO can cause fetal harm when administered to a pregnant woman. Use of drugs that act on the renin-angiotensin system during the second and third trimesters of pregnancy reduces fetal renal function and increases fetal and neonatal morbidity and death. Most epidemiologic studies examining fetal abnormalities after exposure to antihypertensive use in the first trimester have not distinguished drugs affecting the renin-angiotensin system from other antihypertensive agents. In animal reproduction studies, ENTRESTO treatment during organogenesis resulted in increased embryo-fetal lethality in rats and rabbits and teratogenicity in rabbits. When pregnancy is detected, consider alternative drug treatment and discontinue ENTRESTO. However, if there is no appropriate alternative to therapy with drugs affecting the renin-angiotensin system, and if the drug is considered lifesaving for the mother, advise a pregnant woman of the potential risk to the fetus.</paragraph>
+                        <paragraph>The estimated background risk of major birth defects and miscarriage for the indicated population is unknown.  In the U.S. general population, the estimated background risk of major birth defects and miscarriage in clinically recognized pregnancies is 2-4% and 15-20%, respectively.</paragraph>
+                        <paragraph>
+                           <content styleCode="underline">Clinical Considerations</content>
+                        </paragraph>
+                        <paragraph>
+                           <content styleCode="italics">Fetal/Neonatal Adverse Reactions</content>
+                        </paragraph>
+                        <paragraph>Oligohydramnios in pregnant women who use drugs affecting the renin-angiotensin system in the second and third trimesters of pregnancy can result in the following: reduced fetal renal function leading to anuria and renal failure, fetal lung hypoplasia, skeletal deformations, including skull hypoplasia, hypotension, and death.
+								</paragraph>
+                        <paragraph>Perform serial ultrasound examinations to assess the intra-amniotic environment. Fetal testing may be appropriate, based on the week of gestation. Patients and physicians should be aware, however, that oligohydramnios may not appear until after the fetus has sustained irreversible injury. If oligohydramnios is observed, consider alternative drug treatment. Closely observe neonates with histories of <content styleCode="italics">in utero</content> exposure to ENTRESTO for hypotension, oliguria, and hyperkalemia. In neonates with a history of <content styleCode="italics">in utero</content> exposure to ENTRESTO, if oliguria or hypotension occurs, support blood pressure and renal perfusion. Exchange transfusions or dialysis may be required as a means of reversing hypotension and replacing renal function.</paragraph>
+                        <paragraph>
+                           <content styleCode="underline">Data</content>
+                        </paragraph>
+                        <paragraph>
+                           <content styleCode="italics">Animal Data</content>
+                        </paragraph>
+                        <paragraph>ENTRESTO treatment during organogenesis resulted in increased embryo-fetal lethality in rats at doses ≥ 49 mg sacubitril/51 mg valsartan/kg/day (≤ 0.14 [LBQ657, the active metabolite] and 1.5 [valsartan]-fold the maximum recommended human dose [MRHD] of 97/103 mg twice-daily on the basis of the area under the plasma drug concentration-time curve [AUC]) and rabbits at doses ≥ 5 mg sacubitril/5 mg valsartan/kg/day (4-fold and 0.06-fold the MRHD on the basis of valsartan and LBQ657 AUC, respectively). ENTRESTO is teratogenic based on a low incidence of fetal hydrocephaly, associated with maternally toxic doses, which was observed in rabbits at an ENTRESTO dose of ≥ 5 mg sacubitril/5 mg valsartan/kg/day. The adverse embryo-fetal effects of ENTRESTO are attributed to the angiotensin receptor antagonist activity.</paragraph>
+                        <paragraph>Pre- and postnatal development studies in rats at sacubitril doses up to 750 mg/kg/day (4.5-fold the MRHD on the basis of LBQ657 AUC) and valsartan at doses up to 600 mg/kg/day (0.86-fold the MRHD on the basis of AUC) indicate that treatment with ENTRESTO during organogenesis, gestation and lactation may affect pup development and survival.</paragraph>
+                     </text>
+                     <effectiveTime value="20150707"/>
+                  </section>
+               </component>
+               <component>
+                  <section ID="s8p2">
+                     <id root="d38d4a13-25ba-458c-916e-26ac3209b860"/>
+                     <code codeSystem="2.16.840.1.113883.6.1" code="77290-5" displayName="LACTATION SECTION"/>
+                     <title>8.2     Lactation
+							</title>
+                     <text>
+                        <paragraph>
+                           <content styleCode="underline">Risk Summary</content>
+                        </paragraph>
+                        <paragraph>There is no information regarding the presence of sacubitril/valsartan in human milk, the effects on the breastfed infant, or the effects on milk production. Sacubitril/valsartan is present in rat milk. Because of the potential for serious adverse reactions in breastfed infants from exposure to sacubitril/valsartan, advise a nursing woman that breastfeeding is not recommended during treatment with ENTRESTO. </paragraph>
+                        <paragraph>
+                           <content styleCode="underline">Data </content>
+                        </paragraph>
+                        <paragraph>Following an oral dose (15 mg sacubitril/15 mg valsartan/kg) of [<sup>14</sup>C] ENTRESTO to lactating rats, transfer of LBQ657 into milk was observed. After a single oral administration of 3 mg/kg [<sup>14</sup>C] valsartan to lactating rats, transfer of valsartan into milk was observed. </paragraph>
+                     </text>
+                     <effectiveTime value="20150707"/>
+                  </section>
+               </component>
+               <component>
+                  <section ID="s8p4">
+                     <id root="ec04ec0e-c1d6-416a-99c4-5e3af9c21954"/>
+                     <code codeSystem="2.16.840.1.113883.6.1" code="34081-0" displayName="PEDIATRIC USE SECTION"/>
+                     <title>8.4     Pediatric Use
+							</title>
+                     <text>
+                        <paragraph>The safety and effectiveness of ENTRESTO in pediatric heart failure patients 1 to &lt; 18 years old are supported by the reduction from baseline to 12 weeks in NT-proBNP in a randomized, double-blind clinical study <content styleCode="italics">[see Clinical Studies (14.2)]</content>. The analysis of NT-proBNP included 90 patients age 6 to 18 years and 20 patients age 1 to 6 years.</paragraph>
+                        <paragraph>Safety and effectiveness have not been established in pediatric patients less than 1 year of age.</paragraph>
+                        <paragraph>
+                           <content styleCode="underline">Animal Data</content>
+                        </paragraph>
+                        <paragraph>Sacubitril given orally to juvenile rats from postnatal day (PND) 7 to PND 35 or PND 70 (an age approximately equivalent to neonatal through pre-pubertal development or adulthood in humans) at doses ≥ 400 mg/kg/day (approximately 2-fold the AUC exposure to the active metabolite of sacubitril, LBQ657, at an ENTRESTO pediatric clinical dose of 3.1 mg/kg twice daily) resulted in decreases in body weight, bone length, and bone mass. The decrease in body weight was transient from PND 10 to PND 20 and the effects for most bone parameters were reversible after treatment stopped. Exposure at the No-Observed-Adverse-Effect-Level (NOAEL) of 100 mg/kg/day was approximately 0.5-fold the AUC exposure to LBQ657 at the 3.1 mg/kg twice daily dose of ENTRESTO. The mechanism underlying bone effects in rats and the translatability to pediatric patients are unknown.</paragraph>
+                        <paragraph>Valsartan given orally to juvenile rats from PND 7 to PND 70 (an age approximately equivalent to neonatal through adulthood in humans) produced persistent, irreversible kidney damage at all dose levels. Exposure at the lowest tested dose of 1 mg/kg/day was approximately 0.2-fold the exposure at 3.1 mg/kg twice daily dose of ENTRESTO based on AUC. These kidney effects in neonatal rats represent expected exaggerated pharmacological effects that are observed if rats are treated during the first 13 days of life.</paragraph>
+                     </text>
+                     <effectiveTime value="20191001"/>
+                  </section>
+               </component>
+               <component>
+                  <section ID="s8p5">
+                     <id root="b71f4371-afa7-435e-93da-eee3256643d7"/>
+                     <code codeSystem="2.16.840.1.113883.6.1" code="34082-8" displayName="GERIATRIC USE SECTION"/>
+                     <title>8.5     Geriatric Use
+							</title>
+                     <text>
+                        <paragraph>No relevant pharmacokinetic differences have been observed in elderly (≥ 65 years) or very elderly (≥ 75 years) patients compared to the overall population <content styleCode="italics">[see Clinical Pharmacology (12.3)]</content>. </paragraph>
+                     </text>
+                     <effectiveTime value="20171122"/>
+                  </section>
+               </component>
+               <component>
+                  <section ID="s8p6">
+                     <id root="9d367b9d-b252-46d8-97c0-cefafdf4fe44"/>
+                     <code codeSystem="2.16.840.1.113883.6.1" code="88829-7" displayName="HEPATIC IMPAIRMENT SUBSECTION"/>
+                     <title>8.6     Hepatic Impairment
+							</title>
+                     <text>
+                        <paragraph>No dose adjustment is required when administering ENTRESTO to patients with mild hepatic impairment (Child-Pugh A classification). The recommended starting dose in patients with moderate hepatic impairment (Child-Pugh B classification) is 24/26 mg twice daily. The use of ENTRESTO in patients with severe hepatic impairment (Child-Pugh C classification) is not recommended, as no studies have been conducted in these patients <content styleCode="italics">[see Dosage and Administration (2.6), Clinical Pharmacology (12.3)]</content>.</paragraph>
+                     </text>
+                     <effectiveTime value="20191001"/>
+                  </section>
+               </component>
+               <component>
+                  <section ID="s8p7">
+                     <id root="04bf8b1c-ec32-4618-89d4-517cc07684a3"/>
+                     <code codeSystem="2.16.840.1.113883.6.1" code="88828-9" displayName="RENAL IMPAIRMENT SUBSECTION"/>
+                     <title>8.7     Renal Impairment
+							</title>
+                     <text>
+                        <paragraph>No dose adjustment is required in patients with mild (eGFR 60 to 90 mL/min/1.73 m<sup>2</sup>) to moderate (eGFR 30 to 60 mL/min/1.73 m<sup>2</sup>) renal impairment. The recommended starting dose in patients with severe renal impairment (eGFR &lt; 30 mL/min/1.73 m<sup>2</sup>) is 24/26 mg twice daily <content styleCode="italics">[see Dosage and Administration (2.5), Warnings and Precautions (5.4), and Clinical Pharmacology (12.3)]</content>.</paragraph>
+                     </text>
+                     <effectiveTime value="20191001"/>
+                  </section>
+               </component>
+            </section>
+         </component>
+         <component>
+            <section>
+               <id root="d1658077-7930-47da-8917-43828d6f1c24"/>
+               <code codeSystem="2.16.840.1.113883.6.1" code="34088-5" displayName="OVERDOSAGE SECTION"/>
+               <title>
+                  <content styleCode="bold">10     OVERDOSAGE</content>
+               </title>
+               <text>
+                  <paragraph>Limited data are available with regard to overdosage in human subjects with ENTRESTO. In healthy volunteers, a single dose of ENTRESTO 583 mg sacubitril/617 mg valsartan, and multiple doses of 437 mg sacubitril/463 mg valsartan (14 days) have been studied and were well tolerated.</paragraph>
+                  <paragraph>Hypotension is the most likely result of overdosage due to the blood pressure lowering effects of ENTRESTO. Symptomatic treatment should be provided.</paragraph>
+                  <paragraph>ENTRESTO is unlikely to be removed by hemodialysis because of high protein binding.</paragraph>
+               </text>
+               <effectiveTime value="20150707"/>
+            </section>
+         </component>
+         <component>
+            <section>
+               <id root="1ce83f62-238d-4817-acc0-460dbbedfdcb"/>
+               <code codeSystem="2.16.840.1.113883.6.1" code="34089-3" displayName="DESCRIPTION SECTION"/>
+               <title>
+                  <content styleCode="bold">11     DESCRIPTION</content>
+               </title>
+               <text>
+                  <paragraph>#Leaflet at batch level# ENTRESTO (sacubitril and valsartan) is a combination of a neprilysin inhibitor and an angiotensin II receptor blocker.</paragraph>
+                  <paragraph>ENTRESTO contains a complex comprised of anionic forms of sacubitril and valsartan, sodium cations, and water molecules in the molar ratio of 1:1:3:2.5, respectively. Following oral administration, the complex dissociates into sacubitril (which is further metabolized to LBQ657) and valsartan. The complex is chemically described as Octadecasodiumhexakis(4-{[(1S,3R)-1-([1,1´-biphenyl]-4-ylmethyl)-4-ethoxy-3-methyl-4-oxobutyl]amino}-4-oxobutanoate)hexakis(N-pentanoyl-N-{[2´-(1H-tetrazol-1-id-5-yl)[1,1´-biphenyl]-4-yl]methyl}-L-valinate)—water (1/15). </paragraph>
+                  <paragraph>Its empirical formula (hemipentahydrate) is C<sub>48</sub>H<sub>55</sub>N<sub>6</sub>O<sub>8</sub>Na<sub>3</sub> 2.5 H<sub>2</sub>O. Its molecular mass is 957.99 and its schematic structural formula is:</paragraph>
+                  <renderMultiMedia referencedObject="MM03000001"/>
+                  <paragraph>ENTRESTO is available as film-coated tablets for oral administration, containing 24 mg of sacubitril and 26 mg of valsartan; 49 mg of sacubitril and 51 mg of valsartan; and 97 mg of sacubitril and 103 mg of valsartan. The tablet inactive ingredients  are microcrystalline cellulose, low-substituted hydroxypropylcellulose, crospovidone, magnesium stearate (vegetable origin), talc, and colloidal silicon dioxide. The film-coat   inactive ingredients are hypromellose, titanium dioxide (E 171), Macrogol 4000, talc, and iron oxide red (E 172). The film-coat for the 24 mg of sacubitril and 26 mg of valsartan tablet and the 97 mg of sacubitril and 103 mg of valsartan tablet also contains iron oxide black (E 172). The film-coat for the 49 mg of sacubitril and 51 mg of valsartan tablet contains iron oxide yellow (E 172).</paragraph>
+               </text>
+               <effectiveTime value="20150707"/>
+               <component>
+                  <observationMedia ID="MM03000001">
+                     <text>Valsartan structural formula</text>
+                     <value xsi:type="ED" mediaType="image/jpeg">
+                        <reference value="ENTRESTO-01.jpg"/>
+                     </value>
+                  </observationMedia>
+               </component>
+            </section>
+         </component>
+         <component>
+            <section>
+               <id root="e90a98db-0db2-473a-926f-3df581110473"/>
+               <code codeSystem="2.16.840.1.113883.6.1" code="34090-1" displayName="CLINICAL PHARMACOLOGY SECTION"/>
+               <title>
+                  <content styleCode="bold">12     CLINICAL PHARMACOLOGY</content>
+               </title>
+               <effectiveTime value="20191001"/>
+               <component>
+                  <section>
+                     <id root="12abd1a5-3aa1-4c80-9175-bb19e76df94e"/>
+                     <code codeSystem="2.16.840.1.113883.6.1" code="43679-0" displayName="MECHANISM OF ACTION SECTION"/>
+                     <title>12.1     Mechanism of Action
+							</title>
+                     <text>
+                        <paragraph>ENTRESTO contains a neprilysin inhibitor, sacubitril, and an angiotensin receptor blocker, valsartan. ENTRESTO inhibits neprilysin (neutral endopeptidase; NEP) via LBQ657, the active metabolite of the prodrug sacubitril, and blocks the angiotensin II type-1 (AT<sub>1</sub>) receptor via valsartan. The cardiovascular and renal effects of ENTRESTO in heart failure patients are attributed to the increased levels of peptides that are degraded by neprilysin, such as natriuretic peptides, by LBQ657, and the simultaneous inhibition of the effects of angiotensin II by valsartan. Valsartan inhibits the effects of angiotensin II by selectively blocking the AT<sub>1</sub> receptor, and also inhibits angiotensin II-dependent aldosterone release.</paragraph>
+                     </text>
+                     <effectiveTime value="20150707"/>
+                  </section>
+               </component>
+               <component>
+                  <section>
+                     <id root="b48b3ef8-a99d-4012-9bea-b43d619bf65c"/>
+                     <code codeSystem="2.16.840.1.113883.6.1" code="43681-6" displayName="PHARMACODYNAMICS SECTION"/>
+                     <title>12.2     Pharmacodynamics
+							</title>
+                     <text>
+                        <paragraph>The pharmacodynamic effects of ENTRESTO were evaluated after single and multiple dose administrations in healthy subjects and in patients with heart failure, and are consistent with simultaneous neprilysin inhibition and renin-angiotensin system blockade. In a 7-day valsartan-controlled study in patients with reduced ejection fraction (HFrEF), administration of ENTRESTO resulted in a significant non-sustained increase in natriuresis, increased urine cGMP, and decreased plasma MR-proANP and NT-proBNP compared to valsartan.</paragraph>
+                        <paragraph>In a 21-day study in HFrEF patients, ENTRESTO significantly increased urine ANP and cGMP and plasma cGMP, and decreased plasma NT-proBNP, aldosterone and endothelin-1. ENTRESTO also blocked the AT<sub>1</sub>-receptor as evidenced by increased plasma renin activity and plasma renin concentrations. In PARADIGM-HF, ENTRESTO decreased plasma NT-proBNP (not a neprilysin substrate) and increased plasma BNP (a neprilysin substrate) and urine cGMP compared with enalapril.</paragraph>
+                        <paragraph>QT Prolongation: In a thorough QTc clinical study in healthy male subjects, single doses of ENTRESTO 194 mg sacubitril/206 mg valsartan and 583 mg sacubitril/617 mg valsartan had no effect on cardiac repolarization.</paragraph>
+                        <paragraph>Amyloid-β: Neprilysin is one of multiple enzymes involved in the clearance of amyloid-β (Aβ) from the brain and cerebrospinal fluid (CSF). Administration of ENTRESTO 194 mg sacubitril/206 mg valsartan once-daily for 2 weeks to healthy subjects was associated with an increase in CSF Aβ<sub>1-38</sub> compared to placebo; there were no changes in concentrations of CSF Aβ<sub>1-40</sub> or CSF Aβ<sub>1-42</sub>. The clinical relevance of this finding is unknown <content styleCode="italics">[see Nonclinical Toxicology (13)]</content>.</paragraph>
+                        <paragraph>Blood Pressure: Addition of a 50 mg single dose of sildenafil to ENTRESTO at steady state (194 mg sacubitril/206 mg valsartan once daily for 5 days) in patients with hypertension was associated with additional blood pressure (BP) reduction (~ 5/4 mmHg, systolic/diastolic BP) compared to administration of ENTRESTO alone. </paragraph>
+                        <paragraph>Co-administration of ENTRESTO did not significantly alter the BP effect of intravenous nitroglycerin.</paragraph>
+                     </text>
+                     <effectiveTime value="20171122"/>
+                  </section>
+               </component>
+               <component>
+                  <section>
+                     <id root="0fb66cda-a310-47aa-be66-81304b5384be"/>
+                     <code codeSystem="2.16.840.1.113883.6.1" code="43682-4" displayName="PHARMACOKINETICS SECTION"/>
+                     <title>12.3     Pharmacokinetics
+							</title>
+                     <text>
+                        <paragraph>
+                           <content styleCode="underline">Absorption</content>
+                        </paragraph>
+                        <paragraph>Following oral administration, ENTRESTO dissociates into sacubitril and valsartan. Sacubitril is further metabolized to LBQ657. The peak plasma concentrations of sacubitril, LBQ657, and valsartan are reached in 0.5 hours, 2 hours, and 1.5 hours, respectively. The oral absolute bioavailability of sacubitril is estimated to be ≥ 60%. The valsartan in ENTRESTO is more bioavailable than the valsartan in other marketed tablet formulations; 26 mg, 51 mg, and 103 mg of valsartan in ENTRESTO is equivalent to 40 mg, 80 mg, and 160 mg of valsartan in other marketed tablet formulations, respectively. </paragraph>
+                        <paragraph>Following twice-daily dosing of ENTRESTO, steady state levels of sacubitril, LBQ657, and valsartan are reached in 3 days. At steady state, sacubitril and valsartan do not accumulate significantly, whereas LBQ657 accumulates by 1.6-fold. ENTRESTO administration with food has no clinically significant effect on the systemic exposures of sacubitril, LBQ657, or valsartan. Although there is a decrease in exposure to valsartan when ENTRESTO is administered with food, this decrease is not accompanied by a clinically significant reduction in the therapeutic effect. ENTRESTO can therefore be administered with or without food.</paragraph>
+                        <paragraph>
+                           <content styleCode="underline">Distribution</content>
+                        </paragraph>
+                        <paragraph>Sacubitril, LBQ657 and valsartan are highly bound to plasma proteins (94% to 97%). Based on the comparison of plasma and CSF exposures, LBQ657 crosses the blood brain barrier to a limited extent (0.28%). The average apparent volumes of distribution of valsartan and sacubitril are 75 and 103 L, respectively.</paragraph>
+                        <paragraph>
+                           <content styleCode="underline">Metabolism </content>
+                        </paragraph>
+                        <paragraph>Sacubitril is readily converted to LBQ657 by esterases; LBQ657 is not further metabolized to a significant extent. Valsartan is minimally metabolized; only about 20% of the dose is recovered as metabolites. A hydroxyl metabolite has been identified in plasma at low concentrations (&lt; 10%). </paragraph>
+                        <paragraph>
+                           <content styleCode="underline">Elimination</content>
+                        </paragraph>
+                        <paragraph>Following oral administration, 52% to 68% of sacubitril (primarily as LBQ657) and ~ 13% of valsartan and its metabolites are excreted in urine; 37% to 48% of sacubitril (primarily as LBQ657), and 86% of valsartan and its metabolites are excreted in feces. Sacubitril, LBQ657, and valsartan are eliminated from plasma with a mean elimination half-life (T<sub>1/2</sub>) of approximately 1.4 hours, 11.5 hours, and 9.9 hours, respectively.</paragraph>
+                        <paragraph>
+                           <content styleCode="italics">Linearity/Nonlinearity</content>
+                        </paragraph>
+                        <paragraph>The pharmacokinetics of sacubitril, LBQ657, and valsartan were linear over an ENTRESTO dose range of 24 mg sacubitril/26 mg valsartan to 194 mg sacubitril/206 mg valsartan.</paragraph>
+                        <paragraph>
+                           <content styleCode="underline">Drug Interactions:</content>
+                        </paragraph>
+                        <paragraph>
+                           <content styleCode="italics">Effect of Co-administered Drugs on ENTRESTO:</content>
+                        </paragraph>
+                        <paragraph>Because CYP450 enzyme-mediated metabolism of sacubitril and valsartan is minimal, coadministration with drugs that impact CYP450 enzymes is not expected to affect the pharmacokinetics of ENTRESTO. Dedicated drug interaction studies demonstrated that coadministration of furosemide, warfarin, digoxin, carvedilol, a combination of levonorgestrel/ethinyl estradiol, amlodipine, omeprazole, hydrochlorothiazide (HCTZ), metformin, atorvastatin, and sildenafil, did not alter the systemic exposure to sacubitril, LBQ657 or valsartan.</paragraph>
+                        <paragraph>
+                           <content styleCode="italics">Effect of ENTRESTO on Co-administered Drugs:</content>
+                        </paragraph>
+                        <paragraph>
+                           <content styleCode="italics">In vitro</content> data indicate that sacubitril inhibits OATP1B1 and OATP1B3 transporters. The effects of ENTRESTO on the pharmacokinetics of coadministered drugs are summarized in Figure 1.</paragraph>
+                        <paragraph>
+                           <content styleCode="bold">Figure 1: Effect of ENTRESTO on Pharmacokinetics of Coadministered Drugs</content>
+                        </paragraph>
+                        <paragraph>
+                           <renderMultiMedia referencedObject="MM03000002"/>
+                        </paragraph>
+                        <paragraph>
+                           <content styleCode="underline">Specific Populations </content>
+                        </paragraph>
+                        <paragraph>Effect of specific populations on the pharmacokinetics of LBQ657 and valsartan are shown in Figure 2.
+								</paragraph>
+                        <paragraph>
+                           <content styleCode="bold">Figure 2: Pharmacokinetics of ENTRESTO in Specific Populations</content>
+                        </paragraph>
+                        <paragraph>
+                           <renderMultiMedia referencedObject="MM03000003"/>
+                        </paragraph>
+                        <paragraph>Note: Child-Pugh Classification was used for hepatic impairment.</paragraph>
+                        <paragraph>
+                           <content styleCode="italics">Pediatric Patients:</content>
+                        </paragraph>
+                        <paragraph>The pharmacokinetics of ENTRESTO were evaluated in pediatric heart failure patients 1 to &lt; 18 years old administered oral doses of 0.8 mg/kg and 3.1 mg/kg of ENTRESTO. Pharmacokinetic data indicated that exposure to ENTRESTO in pediatric and adult patients is similar.</paragraph>
+                     </text>
+                     <effectiveTime value="20191001"/>
+                     <component>
+                        <observationMedia ID="MM03000002">
+                           <text>Figure 1: Effect of ENTRESTO on Pharmacokinetics of Coadministered Drugs </text>
+                           <value xsi:type="ED" mediaType="image/jpeg">
+                              <reference value="ENTRESTO-02.jpg"/>
+                           </value>
+                        </observationMedia>
+                     </component>
+                     <component>
+                        <observationMedia ID="MM03000003">
+                           <text>Figure 2: Pharmacokinetics of ENTRESTO in Specific Populations </text>
+                           <value xsi:type="ED" mediaType="image/jpeg">
+                              <reference value="ENTRESTO-03.jpg"/>
+                           </value>
+                        </observationMedia>
+                     </component>
+                  </section>
+               </component>
+            </section>
+         </component>
+         <component>
+            <section>
+               <id root="29611742-ffd6-4157-b46c-5808866d4872"/>
+               <code codeSystem="2.16.840.1.113883.6.1" code="43680-8" displayName="NONCLINICAL TOXICOLOGY SECTION"/>
+               <title>
+                  <content styleCode="bold">13     NONCLINICAL TOXICOLOGY</content>
+               </title>
+               <effectiveTime value="20171122"/>
+               <component>
+                  <section>
+                     <id root="bcd8056d-0bba-4209-9e07-a3de5f218e53"/>
+                     <code codeSystem="2.16.840.1.113883.6.1" code="34083-6" displayName="CARCINOGENESIS &amp; MUTAGENESIS &amp; IMPAIRMENT OF FERTILITY SECTION"/>
+                     <title>13.1     Carcinogenesis, Mutagenesis, Impairment of Fertility</title>
+                     <text>
+                        <paragraph>
+                           <content styleCode="underline">Carcinogenesis and Mutagenesis</content>
+                        </paragraph>
+                        <paragraph>Carcinogenicity studies conducted in mice and rats with sacubitril and valsartan did not identify any carcinogenic potential for ENTRESTO. The LBQ657 C<sub>max</sub> at the high dose (HD) of 1200 mg/kg/day in male and female mice was, respectively, 14 and 16 times that in humans at the MRHD. The LBQ657 C<sub>max</sub> in male and female rats at the HD of 400 mg/kg/day was, respectively, 1.7 and 3.5 times that at the MRHD. The doses of valsartan studied (high dose of 160 and 200 mg/kg/day in mice and rats, respectively) were about 4 and 10 times, respectively, the MRHD on a mg/m<sup>2</sup> basis.</paragraph>
+                        <paragraph>Mutagenicity and clastogenicity studies conducted with ENTRESTO, sacubitril, and valsartan did not reveal any effects at either the gene or chromosome level.</paragraph>
+                        <paragraph>
+                           <content styleCode="underline">Impairment of Fertility</content>
+                        </paragraph>
+                        <paragraph>ENTRESTO did not show any effects on fertility in rats up to a dose of 73 mg sacubitril/77 mg valsartan/kg/day (≤ 1.0-fold and ≤ 0.18-fold the MRHD on the basis of the AUCs of valsartan and LBQ657, respectively).</paragraph>
+                     </text>
+                     <effectiveTime value="20171122"/>
+                  </section>
+               </component>
+               <component>
+                  <section>
+                     <id root="9062eeb5-7515-4870-8d0b-1a4786af5478"/>
+                     <code codeSystem="2.16.840.1.113883.6.1" code="34091-9" displayName="ANIMAL PHARMACOLOGY &amp; OR TOXICOLOGY SECTION"/>
+                     <title>13.2     Animal Toxicology and/or Pharmacology</title>
+                     <text>
+                        <paragraph>The effects of ENTRESTO on amyloid-β concentrations in CSF and brain tissue were assessed in young (2 to 4 years old) cynomolgus monkeys treated with ENTRESTO (24 mg sacubitril/26 mg valsartan/kg/day) for 2 weeks. In this study, ENTRESTO affected CSF Aβ clearance, increasing CSF Aβ 1-40, 1-42, and 1-38 levels in CSF; there was no corresponding increase in Aβ levels in the brain. In addition, in a toxicology study in cynomolgus monkeys treated with ENTRESTO at 146 mg sacubitril/154 mg valsartan/kg/day for 39-weeks, there was no amyloid-β accumulation in the brain.</paragraph>
+                     </text>
+                     <effectiveTime value="20150707"/>
+                  </section>
+               </component>
+            </section>
+         </component>
+         <component>
+            <section>
+               <id root="3ffc223e-5970-40c6-b179-aba1f4e748c6"/>
+               <code codeSystem="2.16.840.1.113883.6.1" code="34092-7" displayName="CLINICAL STUDIES SECTION"/>
+               <title>14     CLINICAL STUDIES
+					</title>
+               <text>
+                  <paragraph>Dosing in clinical trials was based on the total amount of both components of ENTRESTO, i.e., 24/26 mg, 49/51 mg, and 97/103 mg were referred to as 50 mg, 100 mg, and 200 mg, respectively.</paragraph>
+               </text>
+               <effectiveTime value="20191001"/>
+               <component>
+                  <section>
+                     <id root="be49141e-9529-43d8-94d3-ed9046642283"/>
+                     <code codeSystem="2.16.840.1.113883.6.1" code="42229-5" displayName="SPL UNCLASSIFIED SECTION"/>
+                     <title>14.1     Adult Heart Failure
+					</title>
+                     <text>
+                        <paragraph>
+                           <content styleCode="underline">PARADIGM-HF</content>
+                        </paragraph>
+                        <paragraph>PARADIGM-HF was a multinational, randomized, double-blind trial comparing ENTRESTO and enalapril in 8,442 adult patients with symptomatic chronic heart failure (NYHA class II–IV) and systolic dysfunction (left ventricular ejection fraction ≤ 40%). Patients had to have been on an ACE inhibitor or ARB for at least four weeks and on maximally tolerated doses of beta-blockers. Patients with a systolic blood pressure of &lt; 100 mmHg at screening were excluded.</paragraph>
+                        <paragraph>The primary objective of PARADIGM-HF was to determine whether ENTRESTO, a combination of sacubitril and a RAS inhibitor (valsartan), was superior to a RAS inhibitor (enalapril) alone in reducing the risk of the combined endpoint of cardiovascular (CV) death or hospitalization for heart failure (HF).</paragraph>
+                        <paragraph>After discontinuing their existing ACE inhibitor or ARB therapy, patients entered sequential single-blind run-in periods during which they received enalapril 10 mg twice-daily, followed by ENTRESTO 100 mg twice-daily, increasing to 200 mg twice-daily. Patients who successfully completed the sequential run-in periods were randomized to receive either ENTRESTO 200 mg (N = 4,209) twice-daily or enalapril 10 mg (N = 4,233) twice-daily. The primary endpoint was the first event in the composite of CV death or hospitalization for HF. The median follow-up duration was 27 months and patients were treated for up to 4.3 years.</paragraph>
+                        <paragraph>The population was 66% Caucasian, 18% Asian, and 5% Black; the mean age was 64 years and 78% were male. At randomization, 70% of patients were NYHA Class II, 24% were NYHA Class III, and 0.7% were NYHA Class IV. The mean left ventricular ejection fraction was 29%. The underlying cause of heart failure was coronary artery disease in 60% of patients; 71% had a history of hypertension, 43% had a history of myocardial infarction, 37% had an eGFR &lt; 60 mL/min/1.73m<sup>2</sup>, and 35% had diabetes mellitus. Most patients were taking beta-blockers (94%), mineralocorticoid antagonists (58%), and diuretics (82%). Few patients had an implantable cardioverter-defibrillator (ICD) or cardiac resynchronization therapy-defibrillator (CRT-D) (15%).  </paragraph>
+                        <paragraph>PARADIGM-HF demonstrated that ENTRESTO, a combination of sacubitril and a RAS inhibitor (valsartan), was superior to a RAS inhibitor (enalapril), in reducing the risk of the combined endpoint of cardiovascular death or hospitalization for heart failure, based on a time-to-event analysis (hazard ratio [HR]: 0.80, 95% confidence interval [CI], 0.73, 0.87, <content styleCode="italics">p</content> &lt; 0.0001). The treatment effect reflected a reduction in both cardiovascular death and heart failure hospitalization; see Table 3 and Figure 3. Sudden death accounted for 45% of cardiovascular deaths, followed by pump failure, which accounted for 26%. </paragraph>
+                        <paragraph>ENTRESTO also improved overall survival (HR 0.84; 95% CI [0.76, 0.93], <content styleCode="italics">p</content> = 0.0009) (Table 3). This finding was driven entirely by a lower incidence of cardiovascular mortality on ENTRESTO.  </paragraph>
+                        <table>
+                           <caption>Table 3: Treatment Effect for the Primary Composite Endpoint, its Components, and All-cause Mortality</caption>
+                           <col width="300"/>
+                           <col width="150"/>
+                           <col width="150"/>
+                           <col width="150"/>
+                           <col width="150"/>
+                           <tfoot>
+                              <tr>
+                                 <td colspan="5">
+                                    <sup>*</sup>Analyses of the components of the primary composite endpoint were not prospectively planned to be adjusted for multiplicity<br/>
+                                    <sup>**</sup>Includes subjects who had heart failure hospitalization prior to death</td>
+                              </tr>
+                           </tfoot>
+                           <tbody>
+                              <tr>
+                                 <td styleCode="Toprule Lrule Rrule "/>
+                                 <td styleCode="Toprule Lrule Rrule" align="center" valign="top">
+                                    <content styleCode="bold">ENTRESTO<br/>N = 4,187<br/>n (%)</content>
+                                 </td>
+                                 <td styleCode="Toprule Lrule Rrule " align="center" valign="top">
+                                    <content styleCode="bold">Enalapril<br/>N = 4,212<br/>n (%)</content>
+                                 </td>
+                                 <td styleCode="Toprule Lrule Rrule " align="center" valign="top">
+                                    <content styleCode="bold">Hazard Ratio<br/>(95% CI)</content>
+                                 </td>
+                                 <td styleCode="Toprule Lrule Rrule " align="center" valign="top">
+                                    <content styleCode="bold italics">p</content>
+                                    <content styleCode="bold">-value</content>
+                                 </td>
+                              </tr>
+                              <tr>
+                                 <td styleCode="Toprule Lrule Rrule" align="left" valign="top">Primary composite endpoint of cardiovascular death or heart failure hospitalization<br/>
+                                    <br/>     Cardiovascular death as first event<br/>
+                                    <br/>     Heart failure hospitalization as first event</td>
+                                 <td styleCode="Toprule Lrule Rrule " align="center" valign="top">914 (21.8)<br/>
+                                    <br/>
+                                    <br/>377 (9.0)<br/>
+                                    <br/>537 (12.8)</td>
+                                 <td styleCode="Toprule Lrule Rrule " align="center" valign="top">1,117 (26.5)<br/>
+                                    <br/>
+                                    <br/>459 (10.9)<br/>
+                                    <br/>658 (15.6)</td>
+                                 <td styleCode="Toprule Lrule Rrule " align="center" valign="top">0.80 (0.73, 0.87)</td>
+                                 <td styleCode="Toprule Lrule Rrule " align="center" valign="top">&lt; 0.0001 </td>
+                              </tr>
+                              <tr>
+                                 <td styleCode="Toprule Lrule Rrule" align="left" valign="top">Number of patients with events: <sup>*</sup>
+                                    <br/>
+                                    <br/>     Cardiovascular death<sup>**</sup>
+                                    <br/>
+                                    <br/>     Heart failure hospitalizations </td>
+                                 <td styleCode="Toprule Lrule Rrule " align="center" valign="top">
+                                    <br/>
+                                    <br/>558 (13.3)<br/>
+                                    <br/>537 (12.8)</td>
+                                 <td styleCode="Toprule Lrule Rrule " align="center" valign="top">
+                                    <br/>
+                                    <br/>693 (16.5)<br/>
+                                    <br/>658 (15.6)</td>
+                                 <td styleCode="Toprule Lrule Rrule " align="center" valign="top">
+                                    <br/>
+                                    <br/>0.80 (0.71, 0.89)<br/>
+                                    <br/>0.79 (0.71, 0.89)</td>
+                                 <td styleCode="Toprule Lrule Rrule " align="center" valign="top"/>
+                              </tr>
+                              <tr>
+                                 <td styleCode="Toprule Lrule Rrule" align="left" valign="top">All-cause mortality</td>
+                                 <td styleCode="Toprule Lrule Rrule " align="center" valign="top">711 (17.0)</td>
+                                 <td styleCode="Toprule Lrule Rrule " align="center" valign="top">835 (19.8)</td>
+                                 <td styleCode="Toprule Lrule Rrule " align="center" valign="top">0.84 (0.76, 0.93)</td>
+                                 <td styleCode="Toprule Lrule Rrule " align="center" valign="top">0.0009</td>
+                              </tr>
+                           </tbody>
+                        </table>
+                        <paragraph>The Kaplan-Meier curves presented below (Figure 3) show time to first occurrence of the primary composite endpoint (3A), and time to occurrence of cardiovascular death at any time (3B) and first heart failure hospitalization (3C). </paragraph>
+                        <paragraph>
+                           <content styleCode="bold">Figure 3: Kaplan-Meier Curves for the Primary Composite Endpoint (A), Cardiovascular Death (B), and Heart Failure Hospitalization (C)</content>
+                        </paragraph>
+                        <paragraph>
+                           <renderMultiMedia referencedObject="MM03000004"/>
+                        </paragraph>
+                        <paragraph>A wide range of demographic characteristics, baseline disease characteristics, and baseline concomitant medications were examined for their influence on outcomes. The results of the primary composite endpoint were consistent across the subgroups examined (Figure 4).</paragraph>
+                        <paragraph>
+                           <content styleCode="bold">Figure 4: Primary Composite Endpoint (CV Death or HF Hospitalization) - Subgroup Analysis</content>
+                        </paragraph>
+                        <paragraph>
+                           <renderMultiMedia referencedObject="MM03000005"/>
+                        </paragraph>
+                        <paragraph>Note: The figure above presents effects in various subgroups, all of which are baseline characteristics. The 95% confidence limits that are shown do not take into account the number of comparisons made, and may not reflect the effect of a particular factor after adjustment for all other factors. Apparent homogeneity or heterogeneity among groups should not be over-interpreted.</paragraph>
+                     </text>
+                     <effectiveTime value="20191001"/>
+                     <component>
+                        <observationMedia ID="MM03000004">
+                           <text>Figure 3: Kaplan-Meier Curves for the Primary Composite Endpoint (A), Cardiovascular Death (B), and Heart Failure Hospitalization (C) </text>
+                           <value xsi:type="ED" mediaType="image/jpeg">
+                              <reference value="ENTRESTO-04.jpg"/>
+                           </value>
+                        </observationMedia>
+                     </component>
+                     <component>
+                        <observationMedia ID="MM03000005">
+                           <text>Figure 4: Primary Composite Endpoint (CV Death or HF Hospitalization) - Subgroup Analysis </text>
+                           <value xsi:type="ED" mediaType="image/jpeg">
+                              <reference value="ENTRESTO-05.jpg"/>
+                           </value>
+                        </observationMedia>
+                     </component>
+                  </section>
+               </component>
+               <component>
+                  <section>
+                     <id root="ddca696c-62cb-43a2-a6e5-7900daf91c8f"/>
+                     <code codeSystem="2.16.840.1.113883.6.1" code="42229-5" displayName="SPL UNCLASSIFIED SECTION"/>
+                     <title>14.2     Pediatric Heart Failure
+					</title>
+                     <text>
+                        <paragraph>
+                           <content styleCode="underline">PANORAMA-HF</content>
+                        </paragraph>
+                        <paragraph>The efficacy of ENTRESTO was evaluated in a multinational, randomized, double-blind trial comparing ENTRESTO and enalapril based on an analysis in 110 pediatric patients 1 to &lt; 18 years old with heart failure (NYHA/Ross class II-IV) due to systemic left ventricular systolic dysfunction (LVEF ≤ 40%). Patients with systemic right ventricles and single ventricles were excluded from the trial. The target maintenance dose of ENTRESTO in pediatric patients 1 to &lt; 18 years old was 3.1 mg/kg twice daily.</paragraph>
+                        <paragraph>The endpoint was the between-group difference in the change in plasma NT-proBNP from baseline to 12 weeks. The reduction from baseline in NT-proBNP was 44% and 33% in the ENTRESTO and enalapril groups, respectively. While the between-group difference was not statistically significant, the reductions for ENTRESTO and enalapril were similar to or larger than what was seen in adults; these reductions did not appear to be attributable to post-baseline changes in background therapy. </paragraph>
+                        <paragraph>Because ENTRESTO improved outcomes and reduced NT-proBNP in PARADIGM-HF, the effect on NT-proBNP was considered a reasonable basis to infer improved cardiovascular outcomes in pediatric patients.</paragraph>
+                     </text>
+                     <effectiveTime value="20191001"/>
+                  </section>
+               </component>
+            </section>
+         </component>
+         <component>
+            <section>
+               <id root="dc1051bc-12d3-447b-abf3-9923ab857a71"/>
+               <code codeSystem="2.16.840.1.113883.6.1" code="34069-5" displayName="HOW SUPPLIED SECTION"/>
+               <title>
+						16     HOW SUPPLIED/STORAGE AND HANDLING
+					</title>
+               <text>
+                  <paragraph>ENTRESTO (sacubitril/valsartan) is available as unscored, ovaloid, biconvex, film-coated tablets, containing 24 mg of sacubitril and 26 mg of valsartan; 49 mg of sacubitril and 51 mg of valsartan; and 97 mg of sacubitril and 103 mg of valsartan. All strengths are packaged in bottles as described below.</paragraph>
+                  <table>
+                     <col width="150"/>
+                     <col width="100"/>
+                     <col width="100"/>
+                     <col width="100"/>
+                     <col width="100"/>
+                     <tbody>
+                        <tr>
+                           <td styleCode="Toprule Lrule Rrule" valign="bottom" align="center">
+                              <content styleCode="bold">Tablet</content>
+                           </td>
+                           <td styleCode="Toprule Lrule Rrule" valign="bottom" align="center">
+                              <content styleCode="bold">Color</content>
+                           </td>
+                           <td styleCode="Toprule Lrule Rrule" valign="bottom" align="center">
+                              <content styleCode="bold">Debossment</content>
+                           </td>
+                           <td styleCode="Toprule Lrule Rrule" colspan="3" valign="bottom" align="center">
+                              <content styleCode="bold">NDC # 0078-XXXX-XX</content>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td styleCode="Toprule Lrule Rrule" valign="bottom" align="center">
+										Sacubitril/Valsartan
+									</td>
+                           <td styleCode="Toprule Lrule Rrule" valign="bottom"/>
+                           <td styleCode="Toprule Lrule Rrule" valign="bottom" align="center">“NVR”  and
+									</td>
+                           <td styleCode="Toprule Lrule Rrule" valign="bottom" align="center">Bottle of 60
+									</td>
+                           <td styleCode="Toprule Lrule Rrule" valign="bottom" align="center">Bottle of 180
+									</td>
+                        </tr>
+                        <tr>
+                           <td styleCode="Toprule Lrule Rrule" valign="bottom" align="center">24 mg/26 mg
+									</td>
+                           <td styleCode="Toprule Lrule Rrule" valign="bottom" align="center">Violet white
+									</td>
+                           <td styleCode="Toprule Lrule Rrule" valign="bottom" align="center">LZ</td>
+                           <td styleCode="Toprule Lrule Rrule" valign="bottom" align="center">0659-20</td>
+                           <td styleCode="Toprule Lrule Rrule" valign="bottom" align="center">0659-67</td>
+                        </tr>
+                        <tr>
+                           <td styleCode="Toprule Lrule Rrule" valign="bottom" align="center">49 mg/51 mg
+									</td>
+                           <td styleCode="Toprule Lrule Rrule" valign="bottom" align="center">Pale yellow
+									</td>
+                           <td styleCode="Toprule Lrule Rrule" valign="bottom" align="center">L1</td>
+                           <td styleCode="Toprule Lrule Rrule" valign="bottom" align="center">0777-20</td>
+                           <td styleCode="Toprule Lrule Rrule" valign="bottom" align="center">0777-67</td>
+                        </tr>
+                        <tr>
+                           <td styleCode="Toprule Lrule Rrule" valign="bottom" align="center">97 mg/103 mg
+									</td>
+                           <td styleCode="Toprule Lrule Rrule" valign="bottom" align="center">Light pink
+									</td>
+                           <td styleCode="Toprule Lrule Rrule" valign="bottom" align="center">L11</td>
+                           <td styleCode="Toprule Lrule Rrule" valign="bottom" align="center">0696-20</td>
+                           <td styleCode="Toprule Lrule Rrule" valign="bottom" align="center">0696-67</td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </text>
+               <effectiveTime value="20191001"/>
+               <component>
+                  <section>
+                     <id root="883b3a7d-8b89-4106-bbfd-aa6812375104"/>
+                     <code codeSystem="2.16.840.1.113883.6.1" code="44425-7" displayName="STORAGE AND HANDLING SECTION"/>
+                     <title/>
+                     <text>
+                        <paragraph>Store at 20°C to 25°C (77°F), excursions permitted 15°C to 30°C (59°F to 86°F) [see USP Controlled Room Temperature]. Protect from moisture. </paragraph>
+                     </text>
+                     <effectiveTime value="20191001"/>
+                  </section>
+               </component>
+            </section>
+         </component>
+         <component>
+            <section>
+               <id root="a76b13f5-ca5c-4cd7-a1a1-a67c4c24f053"/>
+               <code codeSystem="2.16.840.1.113883.6.1" code="34076-0" displayName="INFORMATION FOR PATIENTS SECTION"/>
+               <title>
+                  <content styleCode="bold">17     PATIENT COUNSELING INFORMATION</content>
+               </title>
+               <text>
+                  <paragraph>Advise patients to read the FDA-approved patient labeling (Patient Information).</paragraph>
+                  <paragraph>
+                     <content styleCode="italics">Pregnancy:</content> Advise female patients of childbearing age about the consequences of exposure to ENTRESTO during pregnancy. Discuss treatment options with women planning to become pregnant. Ask patients to report pregnancies to their physicians as soon as possible <content styleCode="italics">[see Warnings and Precautions (5.1) and Use in Specific Populations (8.1)]</content>.</paragraph>
+                  <paragraph>
+                     <content styleCode="italics">Angioedema:</content> Advise patients to discontinue use of their previous ACE inhibitor or ARB. Advise patients to allow a 36 hour wash-out period if switching from or to an ACE inhibitor <content styleCode="italics">[see Contraindications (4) and Warnings and Precautions (5.2)]</content>.</paragraph>
+                  <paragraph>T2019-106</paragraph>
+               </text>
+               <effectiveTime value="20191001"/>
+            </section>
+         </component>
+         <component>
+            <section>
+               <id root="55738eb5-42d9-4d2e-9e71-a5e10951a83a"/>
+               <code codeSystem="2.16.840.1.113883.6.1" code="42230-3" displayName="SPL PATIENT PACKAGE INSERT SECTION"/>
+               <title/>
+               <text>
+                  <table width="100%">
+                     <col width="50%"/>
+                     <col width="50%"/>
+                     <tfoot>
+                        <tr>
+                           <td>This Patient Information has been approved by the U.S. Food and Drug Administration</td>
+                           <td align="right">Revised: October 2019</td>
+                        </tr>
+                     </tfoot>
+                     <tbody>
+                        <tr>
+                           <td styleCode="Toprule Rrule Lrule Botrule" colspan="2" align="center">
+                              <content styleCode="bold">Patient Information<br/>ENTRESTO (en-TRESS-toh)<br/>(sacubitril/valsartan) tablets</content>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td styleCode="Rrule Lrule Botrule" colspan="2">
+                              <paragraph>
+                                 <content styleCode="bold">What is the most important information I should know about ENTRESTO?</content>
+                              </paragraph>
+                              <paragraph>
+                                 <br/>ENTRESTO can harm or cause death to your unborn baby. Talk to your doctor about other ways to treat heart failure if you plan to become pregnant. If you get pregnant while taking ENTRESTO, tell your doctor right away. <br/>
+                                 <br/>
+                              </paragraph>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td styleCode="Rrule Lrule Botrule" colspan="2">
+                              <paragraph>
+                                 <content styleCode="bold">What is ENTRESTO?</content>
+                              </paragraph>
+                              <br/>
+                              <paragraph>ENTRESTO is a prescription medicine used:</paragraph>
+                              <list>
+                                 <item>to reduce the risk of death and hospitalization in adults with long-lasting (chronic) heart failure.</item>
+                                 <item>to treat heart failure in children 1 to less than 18 years old.</item>
+                              </list>
+                              <paragraph>ENTRESTO is usually used with other heart failure therapies, in place of an angiotensin-converting enzyme (ACE) inhibitor or other angiotensin II receptor blocker (ARB) therapy.</paragraph>
+                              <paragraph>
+                                 <br/>Heart failure occurs when the heart is weak and cannot pump enough blood to your lungs and the rest of your body.<br/>
+                              </paragraph>
+                              <paragraph>
+                                 <br/>It is not known if ENTRESTO is safe and effective in children less than 1 year old.<br/>
+                                 <br/>
+                              </paragraph>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td styleCode="Rrule Lrule Botrule" colspan="2">
+                              <paragraph>
+                                 <content styleCode="bold">Who should not take ENTRESTO? <br/>
+                                 </content>
+                              </paragraph>
+                              <paragraph>
+                                 <content styleCode="bold">
+                                    <br/>Do not take ENTRESTO if you:</content>
+                              </paragraph>
+                              <list>
+                                 <item>are allergic to sacubitril or valsartan or any of the ingredients in ENTRESTO. See the end of this Patient Information leaflet for a complete list of ingredients in ENTRESTO.</item>
+                                 <item>have had an allergic reaction including swelling of your face, lips, tongue, throat, or trouble breathing while taking a type of medicine called an ACE inhibitor or ARB.</item>
+                                 <item>take an ACE inhibitor medicine. <content styleCode="bold">Do not take ENTRESTO for at least 36 hours before or after you take an ACE inhibitor medicine</content>. Talk with your doctor or pharmacist before taking ENTRESTO if you are not sure if you take an ACE inhibitor medicine.</item>
+                                 <item>have diabetes and take a medicine that contains aliskiren.</item>
+                              </list>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td styleCode="Rrule Lrule Botrule" colspan="2">
+                              <paragraph>
+                                 <content styleCode="bold">What should I tell my doctor before taking ENTRESTO?</content>
+                                 <br/>
+                              </paragraph>
+                              <paragraph>
+                                 <content styleCode="bold">
+                                    <br/>Before you take ENTRESTO, tell your doctor about all of your medical conditions, including if you:</content>
+                              </paragraph>
+                              <list>
+                                 <item>have kidney or liver problems</item>
+                                 <item>are pregnant or plan to become pregnant. See <content styleCode="bold">“What is the most important information I should know about ENTRESTO?”</content>
+                                 </item>
+                                 <item>are breastfeeding or plan to breastfeed. It is not known if ENTRESTO passes into your breast milk. You and your doctor should decide if you will take ENTRESTO or breastfeed. You should not do both.</item>
+                                 <item>have a history of hereditary angioedema.</item>
+                              </list>
+                              <paragraph>
+                                 <content styleCode="bold">Tell your doctor about all the medicines you take,</content> including prescription and over-the-counter medicines, vitamins, and herbal supplements. Using ENTRESTO with certain other medicines may affect each other. Using ENTRESTO with other medicines can cause serious side effects. Especially tell your doctor if you take:</paragraph>
+                              <list>
+                                 <item>potassium supplements or a salt substitute</item>
+                                 <item>nonsteroidal anti-inflammatory drugs (NSAIDs) </item>
+                                 <item>lithium</item>
+                                 <item>other medicines for high blood pressure or heart problems such as an ACE inhibitor, ARB, or aliskiren<br/>
+                                    <br/>
+                                 </item>
+                              </list>
+                              <paragraph>Keep a list of your medicines to show your doctor and pharmacist when you get a new medicine.<br/>
+                                 <br/>
+                              </paragraph>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td styleCode="Rrule Lrule Botrule" colspan="2">
+                              <paragraph>
+                                 <content styleCode="bold">How should I take ENTRESTO?</content>
+                                 <br/>
+                              </paragraph>
+                              <list>
+                                 <item>Take ENTRESTO exactly as your doctor tells you to take it.</item>
+                                 <item>Take ENTRESTO two times each day. Your doctor may change your dose of ENTRESTO during treatment.</item>
+                                 <item>If your child cannot swallow tablets, or if tablets are not available in the prescribed strength, your pharmacist will prepare ENTRESTO as a liquid suspension for your child. If your child switches between taking the tablet and the suspension, your doctor will adjust the dose as needed. Shake the bottle of suspension well before measuring the dose of medicine to give to your child.</item>
+                                 <item>If you miss a dose, take it as soon as you remember. If it is close to your next dose, do not take the missed dose. Take the next dose at your regular time.</item>
+                                 <item>If you take too much ENTRESTO, call your doctor right away.</item>
+                              </list>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td styleCode="Rrule Lrule Botrule" colspan="2">
+                              <paragraph>
+                                 <content styleCode="bold">What are the possible side effects of ENTRESTO?</content>
+                              </paragraph>
+                              <paragraph>
+                                 <content styleCode="bold">
+                                    <br/>ENTRESTO may cause serious side effects including:</content>
+                              </paragraph>
+                              <list>
+                                 <item>See <content styleCode="bold">“What is the most important information I should know about ENTRESTO?”</content>
+                                 </item>
+                                 <item>
+                                    <content styleCode="bold">Serious allergic reactions causing swelling of your face, lips, tongue, and throat (angioedema) that may cause trouble breathing and death.</content> Get emergency medical help right away if you have symptoms of angioedema or trouble breathing. Do not take ENTRESTO again if you have had angioedema while taking ENTRESTO.<br/>People who are Black and take ENTRESTO may have a higher risk of having angioedema than people who are not Black and take ENTRESTO.<br/>People who have had angioedema before taking ENTRESTO may have a higher risk of having angioedema than people who have not had angioedema before taking ENTRESTO. See <content styleCode="bold">“Who should not take ENTRESTO?”</content>
+                                 </item>
+                                 <item>
+                                    <content styleCode="bold">Low blood pressure (hypotension).</content> Low blood pressure may be more common if you also take water pills. Call your doctor if you become dizzy or lightheaded, or you develop extreme fatigue.</item>
+                                 <item>
+                                    <content styleCode="bold">Kidney problems.</content> Your doctor will check your kidney function during your treatment with ENTRESTO. If you have changes in your kidney function tests, you may need a lower dose of ENTRESTO or may need to stop taking ENTRESTO for a period of time.</item>
+                                 <item>
+                                    <content styleCode="bold">Increased amount of potassium in your blood.</content> Your doctor will check your potassium blood level during your treatment with ENTRESTO.<br/>
+                                    <br/>
+                                 </item>
+                              </list>
+                              <paragraph>These are not all the possible side effects of ENTRESTO. Call your doctor for medical advice about side effects. You may report side effects to FDA at 1-800-FDA-1088.<br/>
+                                 <br/>
+                              </paragraph>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td styleCode="Rrule Lrule Botrule" colspan="2">
+                              <paragraph>
+                                 <content styleCode="bold">How should I store ENTRESTO?</content>
+                              </paragraph>
+                              <list>
+                                 <item>Store ENTRESTO at room temperature between 68°F to 77°F (20°C to 25°C).</item>
+                                 <item>Protect ENTRESTO tablets from moisture.</item>
+                                 <item>Store bottles of ENTRESTO suspension at room temperature less than 77°F (25°C ) for up to 15 days. Do not refrigerate ENTRESTO suspension.</item>
+                              </list>
+                              <paragraph>
+                                 <content styleCode="bold">Keep ENTRESTO and all medicines out of the reach of children.</content>
+                                 <br/>
+                                 <br/>
+                              </paragraph>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td styleCode="Rrule Lrule Botrule" colspan="2">
+                              <paragraph>
+                                 <content styleCode="bold">General information about the safe and effective use of ENTRESTO</content>
+                                 <br/>
+                                 <br/>
+                              </paragraph>
+                              <paragraph>Medicines are sometimes prescribed for purposes other than those listed in a Patient Information leaflet. Do not use ENTRESTO for a condition for which it was not prescribed. Do not give ENTRESTO to other people, even if they have the same symptoms that you have. It may harm them.<br/>
+                                 <br/>
+                              </paragraph>
+                              <paragraph>This Patient Information leaflet summarizes the most important information about ENTRESTO. If you would like more information, talk with your doctor. You can ask your doctor or pharmacist for information about ENTRESTO that is written for health professionals.<br/>
+                                 <br/>
+                              </paragraph>
+                              <paragraph>For more information, go to <linkHtml href="www.ENTRESTO.com">www.ENTRESTO.com</linkHtml> or call 1-888-368-7378 (1-888-ENTRESTO).<br/>
+                                 <br/>
+                              </paragraph>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td styleCode="Rrule Lrule Botrule" colspan="2">
+                              <paragraph>
+                                 <content styleCode="bold">What are the ingredients in ENTRESTO?<br/>
+                                    <br/>
+                                 </content>
+                              </paragraph>
+                              <paragraph>
+                                 <content styleCode="bold">Active ingredients: </content>sacubitril and valsartan<br/>
+                                 <br/>
+                              </paragraph>
+                              <paragraph>
+                                 <content styleCode="bold">Inactive ingredients: </content>microcrystalline cellulose, low-substituted hydroxypropylcellulose, crospovidone, magnesium stearate (vegetable origin), talc, and colloidal silicon dioxide. Film coat: hypromellose, titanium dioxide (E 171), Macrogol 4000, talc, iron oxide red (E 172). The film-coat for the 24 mg of sacubitril and 26 mg of valsartan tablet and the 97 mg of sacubitril and 103 mg of valsartan tablet also contains iron oxide black (E 172). The film-coat for the 49 mg of sacubitril and 51 mg of valsartan tablet contains iron oxide yellow (E 172).<br/>
+                                 <br/>
+                              </paragraph>
+                              <paragraph>Distributed by: Novartis Pharmaceuticals Corporation East Hanover, New Jersey 07936<br/>
+                                 <br/>© Novartis<br/>
+                                 <br/>T2019-107<br/>
+                                 <br/>
+                              </paragraph>
+                              <paragraph>ENTRESTO is a registered trademark of Novartis AG<br/>
+                                 <br/>
+                              </paragraph>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </text>
+               <effectiveTime value="20191001"/>
+            </section>
+         </component>
+         <component>
+            <section>
+               <id root="a810b2fc-85e4-4b70-af2e-9b2b72a227e8"/>
+               <code codeSystem="2.16.840.1.113883.6.1" code="51945-4" displayName="PACKAGE LABEL.PRINCIPAL DISPLAY PANEL"/>
+               <title>PRINCIPAL DISPLAY PANEL</title>
+               <text>
+                  <paragraph>NDC 0078-0659-20
+						</paragraph>
+                  <paragraph>Entresto<sup>®</sup>
+                  </paragraph>
+                  <paragraph>(sacubitril/valsartan) tablets</paragraph>
+                  <paragraph>24 mg / 26 mg</paragraph>
+                  <paragraph>Rx only</paragraph>
+                  <paragraph>60 Tablets</paragraph>
+                  <paragraph>NOVARTIS</paragraph>
+                  <paragraph>
+                     <renderMultiMedia referencedObject="MM0300000A"/>
+                  </paragraph>
+               </text>
+               <effectiveTime value="20200614"/>
+               <component>
+                  <observationMedia ID="MM0300000A">
+                     <text>PRINCIPAL DISPLAY PANEL
+								NDC 0078-0659-20
+								Entresto®
+								(sacubitril/valsartan) tablets
+								24 mg / 26 mg
+								Rx only
+								60 Tablets
+								NOVARTIS</text>
+                     <value xsi:type="ED" mediaType="image/jpeg">
+                        <reference value="ENTRESTO-06.jpg"/>
+                     </value>
+                  </observationMedia>
+               </component>
+            </section>
+         </component>
+         <component>
+            <section>
+               <id root="a140af31-ba6a-49b3-8537-02453ac4e797"/>
+               <code codeSystem="2.16.840.1.113883.6.1" code="51945-4" displayName="PACKAGE LABEL.PRINCIPAL DISPLAY PANEL"/>
+               <title>PRINCIPAL DISPLAY PANEL</title>
+               <text>
+                  <paragraph>NDC 0078-0777-20
+						</paragraph>
+                  <paragraph>Entresto<sup>®</sup>
+                  </paragraph>
+                  <paragraph>(sacubitril/valsartan) tablets</paragraph>
+                  <paragraph>49 mg / 51 mg</paragraph>
+                  <paragraph>Rx only</paragraph>
+                  <paragraph>60 Tablets</paragraph>
+                  <paragraph>NOVARTIS</paragraph>
+                  <paragraph>
+                     <renderMultiMedia referencedObject="MM0300000B"/>
+                  </paragraph>
+               </text>
+               <effectiveTime value="20200614"/>
+               <component>
+                  <observationMedia ID="MM0300000B">
+                     <text>PRINCIPAL DISPLAY PANEL
+								NDC 0078-0777-20
+								Entresto®
+								(sacubitril/valsartan) tablets
+								49 mg / 51 mg
+								Rx only
+								60 Tablets
+								NOVARTIS</text>
+                     <value xsi:type="ED" mediaType="image/jpeg">
+                        <reference value="ENTRESTO-07.jpg"/>
+                     </value>
+                  </observationMedia>
+               </component>
+            </section>
+         </component>
+         <component>
+            <section>
+               <id root="04c588c9-a4b0-4d0b-aceb-899f9996d28e"/>
+               <code codeSystem="2.16.840.1.113883.6.1" code="51945-4" displayName="PACKAGE LABEL.PRINCIPAL DISPLAY PANEL"/>
+               <title>PRINCIPAL DISPLAY PANEL</title>
+               <text>
+                  <paragraph>NDC 0078-0696-20
+						</paragraph>
+                  <paragraph>Entresto<sup>®</sup>
+                  </paragraph>
+                  <paragraph>(sacubitril/valsartan) tablets</paragraph>
+                  <paragraph>97 mg / 103 mg</paragraph>
+                  <paragraph>Rx only</paragraph>
+                  <paragraph>60 Tablets</paragraph>
+                  <paragraph>NOVARTIS</paragraph>
+                  <paragraph>
+                     <renderMultiMedia referencedObject="MM0300000C"/>
+                  </paragraph>
+               </text>
+               <effectiveTime value="20200614"/>
+               <component>
+                  <observationMedia ID="MM0300000C">
+                     <text>PRINCIPAL DISPLAY PANEL
+								NDC 0078-0696-20
+								Entresto®
+								(sacubitril/valsartan) tablets
+								97 mg / 103 mg
+								Rx only
+								60 Tablets
+								NOVARTIS</text>
+                     <value xsi:type="ED" mediaType="image/jpeg">
+                        <reference value="ENTRESTO-08.jpg"/>
+                     </value>
+                  </observationMedia>
+               </component>
+            </section>
+         </component>
+      </structuredBody>
+   </component>
+</document>

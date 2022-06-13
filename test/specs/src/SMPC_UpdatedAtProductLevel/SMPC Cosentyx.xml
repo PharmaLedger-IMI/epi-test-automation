@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet href="https://www.accessdata.fda.gov/spl/stylesheet/spl.xsl" type="text/xsl"?>
+<document xmlns="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:hl7-org:v3 https://www.accessdata.fda.gov/spl/schema/spl.xsd">
+    <effectiveTime value="20200616"/>
+   <setId root="77c4b13e-7df3-42d4-81db-3d0cddb7f67a"/>
+   <versionNumber value="9"/>
+   <author>
+      <time/>
+      <assignedEntity>
+         <representedOrganization>
+            <id extension="002147023" root="1.3.6.1.4.1.519.1"/>
+            <name>Novartis Pharmaceuticals Corporation</name>
+            <assignedEntity>
+               <assignedOrganization/>
+            </assignedEntity>
+         </representedOrganization>
+      </assignedEntity>
+   </author>
+   <component>
+      <structuredBody>
+      <component>
+            <section>
+               <id root="1ce83f62-238d-4817-acc0-460dbbedfdcb"/>
+               <code codeSystem="2.16.840.1.113883.6.1" code="34089-3" displayName="DESCRIPTION SECTION"/>
+               <title>
+                  <content styleCode="bold">11     DESCRIPTION</content>
+               </title>
+               <text>
+                  <paragraph>#Updated SMPC at product level# ENTRESTO (sacubitril and valsartan) is a combination of a neprilysin inhibitor and an angiotensin II receptor blocker.</paragraph>
+                  <paragraph>ENTRESTO contains a complex comprised of anionic forms of sacubitril and valsartan, sodium cations, and water molecules in the molar ratio of 1:1:3:2.5, respectively. Following oral administration, the complex dissociates into sacubitril (which is further metabolized to LBQ657) and valsartan. The complex is chemically described as Octadecasodiumhexakis(4-{[(1S,3R)-1-([1,1´-biphenyl]-4-ylmethyl)-4-ethoxy-3-methyl-4-oxobutyl]amino}-4-oxobutanoate)hexakis(N-pentanoyl-N-{[2´-(1H-tetrazol-1-id-5-yl)[1,1´-biphenyl]-4-yl]methyl}-L-valinate)—water (1/15). </paragraph>
+                  <paragraph>Its empirical formula (hemipentahydrate) is C<sub>48</sub>H<sub>55</sub>N<sub>6</sub>O<sub>8</sub>Na<sub>3</sub> 2.5 H<sub>2</sub>O. Its molecular mass is 957.99 and its schematic structural formula is:</paragraph>
+                  <renderMultiMedia referencedObject="MM03000001"/>
+                  <paragraph>ENTRESTO is available as film-coated tablets for oral administration, containing 24 mg of sacubitril and 26 mg of valsartan; 49 mg of sacubitril and 51 mg of valsartan; and 97 mg of sacubitril and 103 mg of valsartan. The tablet inactive ingredients  are microcrystalline cellulose, low-substituted hydroxypropylcellulose, crospovidone, magnesium stearate (vegetable origin), talc, and colloidal silicon dioxide. The film-coat   inactive ingredients are hypromellose, titanium dioxide (E 171), Macrogol 4000, talc, and iron oxide red (E 172). The film-coat for the 24 mg of sacubitril and 26 mg of valsartan tablet and the 97 mg of sacubitril and 103 mg of valsartan tablet also contains iron oxide black (E 172). The film-coat for the 49 mg of sacubitril and 51 mg of valsartan tablet contains iron oxide yellow (E 172).</paragraph>
+               </text>
+               <effectiveTime value="20150707"/>
+               <component>
+                  <observationMedia ID="MM03000001">
+                     <text>Valsartan structural formula</text>
+                     <value xsi:type="ED" mediaType="image/jpeg">
+                        <reference value="ENTRESTO-01.jpg"/>
+                     </value>
+                  </observationMedia>
+               </component>
+            </section>
+         </component>
+         <component>
+            <section>
+               <id root="4621ff52-dd3b-4de5-a469-570793d807c0"/>
+               <code codeSystem="2.16.840.1.113883.6.1" code="59845-8" displayName="NAME OF THE MEDICINAL PRODUCT"/>
+               <title/>
+               <text>
+                  <paragraph>
+                  #Updated SMPC at Product level# Cosentyx 150 mg powder for solution for injection
+                  </paragraph>
+
+               </text>
+            </section>
+        </component>
+		<component>
+            <section>
+               <id root="4621ff52-dd3b-4de5-a469-570793d807c0"/>
+               <code codeSystem="2.16.840.1.113883.6.1" code="59845-8" displayName="QUALITATIVE AND QUANTITATIVE COMPOSITION"/>
+               <title/>
+               <text>
+                  <paragraph>
+                   Each vial of powder contains 150 mg secukinumab. After reconstitution, 1 ml of solution contains 150 mg secukinumab.
+                  </paragraph>
+                 <paragraph>
+				Secukinumab is a recombinant fully human monoclonal antibody produced in Chinese Hamster Ovary (CHO) cells.
+				 </paragraph>
+				 <paragraph>
+				 For the full list of excipients, see section 6.1.
+				 </paragraph>
+               </text>
+            </section>
+         </component>
+		 <component>
+            <section>
+               <id root="4621ff52-dd3b-4de5-a469-570793d807c0"/>
+               <code codeSystem="2.16.840.1.113883.6.1" code="59845-8" displayName="PHARMACEUTICAL FORM"/>
+               <title/>
+               <text>
+                  <paragraph>
+                   Powder for solution for injection
+                  </paragraph>
+                 <paragraph>
+				The powder is a white solid lyophilisate.
+				 </paragraph>
+               </text>
+            </section>
+         </component>
+		 <component>
+            <section>
+               <id root="4621ff52-dd3b-4de5-a469-570793d807c0"/>
+               <code codeSystem="2.16.840.1.113883.6.1" code="59845-8" displayName="DATE OF REVISION OF THE TEXT"/>
+               <title/>
+               <text>
+                  <paragraph>
+                   Detailed information on this medicinal product is available on the website of the European Medicines Agency <linkHtml href="http://www.ema.europa.eu">http://www.ema.europa.eu</linkHtml>.
+                  </paragraph>
+
+               </text>
+            </section>
+        </component>
+      </structuredBody>
+   </component>
+</document>
