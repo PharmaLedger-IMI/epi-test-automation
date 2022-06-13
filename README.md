@@ -1,3 +1,5 @@
+This is the repository which contains scripts to test Enterprise Wallet of the ePI application. This repo works in tandem with https://github.com/PharmaLedger-IMI/epi-mobileapp-test-automation which contains scripts to test corresponding mobile app scenarios. Tests have been designed in a way so that first browser related steps will be performed by the script and then relevant mobile app test script will be executed for a given scenario. It's mandatory to install and complete all pre-requisite steps for mobile app repo as well if the entire framework has to run end to end.
+
 ### Step 1: Clone the epi-test-automation workspace
 
 ```sh
@@ -11,41 +13,45 @@ $ cd epi-test-automation
 
 $ npm install
 ```
-### Step 2: Clone the epi-workspace only if application is not working(optional)
+### Step 2: (Optional) Clone and run epi-workspace
 ```sh
 Visit this link "https://github.com/PharmaLedger-IMI/epi-workspace#readme" and follow the steps
 To clone new version
 $ git checkout <version>
 ```
 
-### Register new account in demiurge wallet
-
+### Step 3: Clone and install epi-mobileapp-test-automation repository
+Install this repo at the same folder level where epi-test-automation is installed
+```sh
+Visit this link "https://github.com/PharmaLedger-IMI/epi-mobileapp-test-automation#readme" and follow the steps
 ```
-Go to ePI application and register a demiurge user
+
+
+### Step 4: Make necessary test configuration changes
+
+If ePI application is running on port number say 3000
+1. Go to epi-workspace > external-volume > apihub.json file and change ```port=3000``` property
+2. Go to epi-workspace > env.json and add ```"BDNS_ROOT_HOSTS":"http://localhost:3000"```
+3. Go to epi-test-automation-->wdio.conf.js and change ```baseUrl``` as per localhost or QA link
+e.g. ```baseUrl: 'http://localhost:3000'```
+
+**Note**: if ePI application is running on localhost, then during testing mobile-app tests will fail to execute unless ePI mobile app has been configured to access apihub server running on localhost 
+
+
+### Step 5: Register demiurge user 
+
+If not already registered, go to ePI application and register a demiurge user
 
 1. Open your Demiurge wallet and go to new account and register
 2. Navigate to the Groups page
 3. Select ePI admin group
 4. Input the user DID that needs admin priviledges
-5. Click add button.
-```
+5. Click add button
 
+### Step 6: Setup user and data details
 
-### Step 3: Do following changes in epi-test-automation folder
+Go to epi-test-automation > test > testData > config.json
 
-Go to epi-test-automation-->wdio.conf.js and change baseUrl as per local or QA
-```
-1. QA baseUrl: 'https://epiqa.westeurope.cloudapp.azure.com/',
-2. Local baseUrl: 'http://localhost:<port number>'
-//example: port number=3000 or 8080(default)
-```
-if you want to change port number
-1. Go to epi-workspace-->external-volume-->apihub.json-->port=3000
-2. Go to epi-workspace-->env.json
-   ->add "BDNS_ROOT_HOSTS" :"http://localhost:3000"
-
-### Provide details in config.json file
-Go to epi-test-automation-->test-->testData-->config.json
 1. Provide login details
    -Set automationUserName with registered user name   
    -Set invalid username, invalid password, vault value
@@ -65,27 +71,27 @@ Go to epi-test-automation-->test-->testData-->config.json
 6. Provide incremental test details
    -Set product id, batch id, expiry date, serial number, product name value
 
-7. Provide path details
-   change dir path for matrixImage and testExpectation 
-   // if android studio is available then generate image in below path to scan barcode using mobile 
-   1. matrixImage: <system user>/AppData/Local/Android/Sdk/emulator/resources/custom.png
-   // To validate assertions, store all expected data in json file
-   2. testExpectation: <system user>/epi-mobileapp-test-automation/test/testdata/testExpectations.json
-   3. Product and batch import path has been set to upload json file
-
+7. Provide file path details for following:  
+   If Android Studio is available, then 2D data matrix image will be generated in below path to be able to be picked up by Android Emulator during scanning ```matrixImage: <system user>/AppData/Local/Android/Sdk/emulator/resources/custom.png```
   
+   For mobile app assertions, browser scripts will generate assertion file at below location. This will then be used by mobile app scripts to assert on expected values
+   ```testExpectation: <system user>/epi-mobileapp-test-automation/test/testdata/testExpectations.json```
+   
+   Product and batch import path has been set to upload json file  
+   ```"productImport": "../epi-test-automation/test/testdata/sampleProductImport.json"```  
+   ```"batchImport": "../epi-test-automation/test/testdata/sampleBatchImport.json"```
+ 
 
-
-
-### Step 5: Launch the "server"
+   
+### Step 7: Run the server
 
 While in the *epi-test-automation* folder run:
 
-Run new product and new batch
+Run new product and new batch in "browser only" mode. No mobile app tests will be triggered if this flag is passed
 ```sh
 $ npm run test --browserOnly
 ```
-Run for existing product and existing batch or new batch
+Run for an existing product and a new / existing batch (both browser and mobile app tests will be triggered)
 ```sh
 $ npm run test --incremental
 ```
@@ -94,16 +100,13 @@ Run for existing product and existing batch in browser
 $ npm run test --incremental --browserOnly
 ``` 
 
-To run suite
+To run just import JSON feature related tests
 ```sh
 $ npx wdio run wdio.conf.js --suite importJson
 ``` 
 
-Created config.json file
 
-### Step 3: Generate test report
-
-After the above script has executed, run:
+### Step 8: Generate test report
 
 ```sh
 $ npm run report
